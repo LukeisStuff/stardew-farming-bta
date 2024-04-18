@@ -1,7 +1,7 @@
 {
     "required": true,
     "minVersion": "0.8",
-    "package": "turniplabs.examplemod.mixin",
+    "package": "luke.stardew.mixin",
     "compatibilityLevel": "JAVA_8",
     "mixins": [
     ],

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "stardew",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This mod aims to help new BTA modders.",
+  "name": "Stardew Farming",
+  "description": "A farming mod for BTA inspired by Stardew Valley",
   "authors": [
-    "Turnip Labs"
+    "LukeisStuff"
   ],
   "contact": {
     "homepage": "",
@@ -19,20 +19,20 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-			"turniplabs.examplemod.ExampleMod"
+			"luke.stardew.StardewMod"
     ],
 		"beforeGameStart": [
-			"turniplabs.examplemod.ExampleMod"
+			"luke.stardew.StardewMod"
 		],
 		"afterGameStart": [
-			"turniplabs.examplemod.ExampleMod"
+			"luke.stardew.StardewMod"
 		],
 		"recipesReady": [
-			"turniplabs.examplemod.ExampleMod"
+			"luke.stardew.StardewMod"
 		]
 	},
   "mixins": [
-      "examplemod.mixins.json"
+    "stardew.mixins.json"
   ],
 
   "depends": {
