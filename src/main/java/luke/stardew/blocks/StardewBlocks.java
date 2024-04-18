@@ -16,6 +16,7 @@ public class StardewBlocks {
 	}
 
 	public static Block cropsTomato;
+	public static Block cropsStrawberry;
 
 	private void initializeBlockDetails() {
 
@@ -32,6 +33,9 @@ public class StardewBlocks {
 
 		cropsTomato = crops
 			.build(new BlockCropsTomato("crops.tomato", blockID("cropsTomato")));
+
+		cropsStrawberry = crops
+			.build(new BlockCropsStrawberry("crops.strawberry", blockID("cropsStrawberru")));
 
 
 
