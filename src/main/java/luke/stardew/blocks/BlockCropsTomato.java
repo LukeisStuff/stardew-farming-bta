@@ -24,8 +24,6 @@ public class BlockCropsTomato extends BlockFlower implements IBonemealable {
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "tomato_crop_4.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "tomato_crop_5.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "tomato_crop_6.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "tomato_crop_7.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "tomato_crop_8.png")
 	};
 	public BlockCropsTomato(String key, int id) {
 		super(key, id);
@@ -42,7 +40,7 @@ public class BlockCropsTomato extends BlockFlower implements IBonemealable {
 		super.updateTick(world, x, y, z, rand);
 		if (world.getBlockLightValue(x, y + 1, z) >= 9) {
 			int l = world.getBlockMetadata(x, y, z);
-			if (l < 7) {
+			if (l < 5) {
 				float f = this.getGrowthRate(world, x, y, z);
 				if (rand.nextInt((int)(100.0F / f)) == 0) {
 					++l;
@@ -54,7 +52,7 @@ public class BlockCropsTomato extends BlockFlower implements IBonemealable {
 	}
 
 	public void fertilize(World world, int i, int j, int k) {
-		world.setBlockMetadataWithNotify(i, j, k, 7);
+		world.setBlockMetadataWithNotify(i, j, k, 5);
 	}
 
 	private float getGrowthRate(World world, int x, int y, int z) {
@@ -103,18 +101,18 @@ public class BlockCropsTomato extends BlockFlower implements IBonemealable {
 
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data > 7) {
-			data = 7;
+		if (data < 0 || data > 5) {
+			data = 5;
 		}
 		return this.growthStageTextures[data];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return meta != 7 ? new ItemStack[]{new ItemStack(StardewItems.seedsTomato)} : new ItemStack[]{new ItemStack(StardewItems.seedsTomato, world.rand.nextInt(3) + 1), new ItemStack(StardewItems.tomato)};
+		return meta != 5 ? new ItemStack[]{new ItemStack(StardewItems.seedsTomato)} : new ItemStack[]{new ItemStack(StardewItems.seedsTomato, world.rand.nextInt(3) + 1), new ItemStack(StardewItems.tomato)};
 	}
 
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-		if (world.getBlockMetadata(blockX, blockY, blockZ) < 7) {
+		if (world.getBlockMetadata(blockX, blockY, blockZ) < 5) {
 			if (!world.isClientSide) {
 				((BlockCropsTomato)StardewBlocks.cropsTomato).fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {

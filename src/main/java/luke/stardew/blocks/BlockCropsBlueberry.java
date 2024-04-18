@@ -4,10 +4,10 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockFlower;
 import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.block.entity.TileEntityBasket;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.IBonemealable;
+import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Side;
@@ -18,14 +18,15 @@ import java.util.Random;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
+public class BlockCropsBlueberry extends BlockFlower implements IBonemealable {
 	public final int[] growthStageTextures = new int[]{
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "strawberry_crop_1.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "strawberry_crop_2.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "strawberry_crop_3.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "strawberry_crop_4.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "blueberry_crop_1.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "blueberry_crop_2.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "blueberry_crop_3.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "blueberry_crop_4.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "blueberry_crop_5.png"),
 	};
-	public BlockCropsStrawberry(String key, int id) {
+	public BlockCropsBlueberry(String key, int id) {
 		super(key, id);
 		this.setTicking(true);
 		float f = 0.5F;
@@ -40,7 +41,7 @@ public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
 		super.updateTick(world, x, y, z, rand);
 		if (world.getBlockLightValue(x, y + 1, z) >= 9) {
 			int l = world.getBlockMetadata(x, y, z);
-			if (l < 3) {
+			if (l < 4) {
 				float f = this.getGrowthRate(world, x, y, z);
 				if (rand.nextInt((int)(100.0F / f)) == 0) {
 					++l;
@@ -52,7 +53,7 @@ public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
 	}
 
 	public void fertilize(World world, int i, int j, int k) {
-		world.setBlockMetadataWithNotify(i, j, k, +1);
+		world.setBlockMetadataWithNotify(i, j, k, 4);
 	}
 
 	private float getGrowthRate(World world, int x, int y, int z) {
@@ -101,31 +102,31 @@ public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
 
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data > 3) {
-			data = 3;
+		if (data < 0 || data > 4) {
+			data = 4;
 		}
 		return this.growthStageTextures[data];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return meta != 3 ? new ItemStack[]{new ItemStack(StardewItems.seedsStrawberry)} : new ItemStack[]{new ItemStack(StardewItems.seedsStrawberry, world.rand.nextInt(1) + 1), new ItemStack(StardewItems.strawberry, world.rand.nextInt(3) + 1)};
+		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsBlueberry)} : new ItemStack[]{new ItemStack(StardewItems.seedsBlueberry, world.rand.nextInt(1) + 1), new ItemStack(StardewItems.blueberry, world.rand.nextInt(3) + 1)};
 	}
 
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		int l = world.getBlockMetadata(x, y, z);
-		if (l == 3) {
-			world.setBlockMetadataWithNotify(x, y, z, 2);
-			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
-			world.dropItem(x, y, z, new ItemStack(StardewItems.strawberry, world.rand.nextInt(2) + 1));
+		if (l == 4) {
+			world.setBlockMetadataWithNotify(x, y, z, 3);
+			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);
+			world.dropItem(x, y, z, new ItemStack(StardewItems.blueberry, world.rand.nextInt(3) + 1));
 		}
 		return false;
 	}
 
 
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-		if (world.getBlockMetadata(blockX, blockY, blockZ) < 3) {
+		if (world.getBlockMetadata(blockX, blockY, blockZ) < 4) {
 			if (!world.isClientSide) {
-				((BlockCropsStrawberry)StardewBlocks.cropsStrawberry).fertilize(world, blockX, blockY, blockZ);
+				((BlockCropsBlueberry)StardewBlocks.cropsBlueberry).fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
 					--itemstack.stackSize;
 				}
