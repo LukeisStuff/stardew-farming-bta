@@ -29,9 +29,14 @@ public class StardewItems {
 	public static Item strawberry;
 	public static Item jamStrawberry;
 
+	public static Item seedsWatermelon;
+
 	public static Item seedsBlueberry;
 	public static Item blueberry;
 	public static Item jamBlueberry;
+
+	public static final Item devStick = ItemHelper.createItem(MOD_ID, new ItemDevStick("dev.stick", 18000), "stick_skyroot.png").setMaxStackSize(1);
+
 
 	public void initilizeItems() {
 		seedsTomato = ItemHelper.createItem(MOD_ID,
@@ -64,6 +69,9 @@ public class StardewItems {
 
 		jamStrawberry = ItemHelper.createItem(MOD_ID,
 			new ItemJam("food.jam.strawberry", itemID("jamStrawberry"), 10, 2), "jamStrawberry.png");
+
+		seedsWatermelon = ItemHelper.createItem(MOD_ID,
+			new ItemSeeds("seeds.watermelon", itemID("seedsWatermelon"), StardewBlocks.cropsWatermelon), "seedsWatermelon.png");
 
 
 

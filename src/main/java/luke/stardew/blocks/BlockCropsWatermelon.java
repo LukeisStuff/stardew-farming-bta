@@ -8,8 +8,8 @@ import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Side;
+import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.TextureHelper;
@@ -18,22 +18,45 @@ import java.util.Random;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class BlockCropsPotato extends BlockFlower implements IBonemealable {
-	public final int[] growthStageTextures = new int[]{
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "potato_crop_1.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "potato_crop_2.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "potato_crop_3.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "potato_crop_4.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "potato_crop_5.png"),
+public class BlockCropsWatermelon extends BlockFlower implements IBonemealable {
+	public static final int[] GROWTH_STAGE_TEXTURES_TOP = new int[]{
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_4.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_3.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_2.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_1.png")
 	};
-	public BlockCropsPotato(String key, int id) {
+	public static final int[] GROWTH_STAGE_TEXTURES_SIDE = new int[]{
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_side_4.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_side_3.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_side_2.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_side_1.png")
+	};
+	public static final int LEAF_TEXTURE = TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "watermelon_crop_leaf.png");
+
+	public BlockCropsWatermelon(String key, int id) {
 		super(key, id);
-		this.setTicking(true);
-		float f = 0.5F;
-		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
 	}
 
-	public boolean canThisPlantGrowOnThisBlockID(int i) {
+	public void setBlockBoundsBasedOnState(World world, int x, int y, int z) {
+		int meta = world.getBlockMetadata(x, y, z);
+		float onePix = 0.0625F;
+		float size = 0.0F;
+		if (meta == 0) {
+			size = 6.0F * onePix;
+		} else if (meta == 1) {
+			size = 8.0F * onePix;
+		} else if (meta == 2) {
+			size = 10.0F * onePix;
+		} else if (meta == 3) {
+			size = 12.0F * onePix;
+		} else if (meta == 4) {
+			size = 14.0F * onePix;
+		}
+
+		this.setBlockBounds(0.5F - size / 2.0F, 0.0F, 0.5F - size / 2.0F, 0.5F + size / 2.0F, size, 0.5F + size / 2.0F);
+	}
+
+	protected boolean canThisPlantGrowOnThisBlockID(int i) {
 		return i == Block.farmlandDirt.id;
 	}
 
@@ -41,20 +64,24 @@ public class BlockCropsPotato extends BlockFlower implements IBonemealable {
 		super.updateTick(world, x, y, z, rand);
 		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
 			if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-				int l = world.getBlockMetadata(x, y, z);
-				if (l < 4) {
+				int meta = world.getBlockMetadata(x, y, z);
+				if (meta < 6) {
 					float f = this.getGrowthRate(world, x, y, z);
 					if (rand.nextInt((int) (100.0F / f)) == 0) {
-						++l;
-						world.setBlockMetadataWithNotify(x, y, z, l);
+						++meta;
+						if (meta == 5) {
+							world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.watermelon.id, 0);
+						} else {
+							world.setBlockMetadataWithNotify(x, y, z, meta);
+						}
 					}
 				}
 			}
 		}
 	}
 
-	public void fertilize(World world, int i, int j, int k) {
-		world.setBlockMetadataWithNotify(i, j, k, 4);
+	public void fertilize(World world, int x, int y, int z) {
+		world.setBlockWithNotify(x, y, z, StardewBlocks.watermelon.id);
 	}
 
 	private float getGrowthRate(World world, int x, int y, int z) {
@@ -101,32 +128,28 @@ public class BlockCropsPotato extends BlockFlower implements IBonemealable {
 		return growthRate;
 	}
 
-	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data > 4) {
-			data = 4;
+		if (data < 1 || data > 4) {
+			data = 1;
 		}
-		return this.growthStageTextures[data];
+
+		return side != Side.TOP && side != Side.BOTTOM ? GROWTH_STAGE_TEXTURES_SIDE[data - 1] : GROWTH_STAGE_TEXTURES_TOP[data - 1];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsPotato)} : new ItemStack[]{new ItemStack(StardewItems.seedsPotato, world.rand.nextInt(3) + 1), new ItemStack(StardewItems.potato)};
+		return new ItemStack[]{new ItemStack(StardewItems.seedsWatermelon, 1)};
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
-		int l = world.getBlockMetadata(x, y, z);
-		if (l == 4) {
-			world.setBlockMetadataWithNotify(x, y, z, 0);
-			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);
-			world.dropItem(x, y, z, new ItemStack(StardewItems.potato, world.rand.nextInt(1) + 1));
-		}
-		return false;
+	public AABB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
+		this.setBlockBoundsBasedOnState(world, x, y, z);
+		int meta = world.getBlockMetadata(x, y, z);
+		return meta == 0 ? null : AABB.getBoundingBoxFromPool((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)y + this.maxY, (double)z + this.maxZ);
 	}
 
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-		if (world.getBlockMetadata(blockX, blockY, blockZ) < 4) {
+		if (world.getBlockMetadata(blockX, blockY, blockZ) < 5) {
 			if (!world.isClientSide) {
-				((BlockCropsPotato)StardewBlocks.cropsPotato).fertilize(world, blockX, blockY, blockZ);
+				((BlockCropsWatermelon)StardewBlocks.cropsWatermelon).fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
 					--itemstack.stackSize;
 				}

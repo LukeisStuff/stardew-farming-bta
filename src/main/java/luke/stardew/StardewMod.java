@@ -32,7 +32,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 
 	@Override
 	public void afterGameStart() {
-
+		new StardewRecipes().initializeRecipes();
 	}
 
 	@Override
