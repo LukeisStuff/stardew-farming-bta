@@ -52,7 +52,7 @@ public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
 	}
 
 	public void fertilize(World world, int i, int j, int k) {
-		world.setBlockMetadataWithNotify(i, j, k, +1);
+		world.setBlockMetadataWithNotify(i, j, k, 3);
 	}
 
 	private float getGrowthRate(World world, int x, int y, int z) {
@@ -114,7 +114,7 @@ public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (l == 3) {
-			world.setBlockMetadataWithNotify(x, y, z, 2);
+			world.setBlockMetadataWithNotify(x, y, z, 0);
 			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
 			world.dropItem(x, y, z, new ItemStack(StardewItems.strawberry, world.rand.nextInt(2) + 1));
 		}
