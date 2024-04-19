@@ -15,7 +15,9 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, RecipeEn
     public static final String MOD_ID = "stardew";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static final int[] floweringOverlay = TextureHelper.getOrCreateBlockTexture(MOD_ID, "overlayApple.png");
+	public static final int[] floweringOverlayApple = TextureHelper.getOrCreateBlockTexture(MOD_ID, "overlayApple.png");
+	public static final int[] floweringOverlayFlower = TextureHelper.getOrCreateBlockTexture(MOD_ID, "overlayAppleFlower.png");
+
 
 	@Override
     public void onInitialize() {
