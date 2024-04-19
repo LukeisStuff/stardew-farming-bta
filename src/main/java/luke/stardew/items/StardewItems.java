@@ -18,6 +18,9 @@ public class StardewItems {
 	public static Item seedsTomato;
 	public static Item tomato;
 
+	public static Item seedsCarrot;
+	public static Item carrot;
+
 	public static Item seedsStrawberry;
 	public static Item strawberry;
 	public static Item jamStrawberry;
@@ -32,6 +35,12 @@ public class StardewItems {
 
 		tomato = ItemHelper.createItem(MOD_ID,
 			new ItemFood("food.tomato", itemID("tomato"), 4, false), "tomato.png");
+
+		seedsCarrot = ItemHelper.createItem(MOD_ID,
+			new ItemSeeds("seeds.carrot", itemID("seedsCarrot"), StardewBlocks.cropsCarrot), "seedsCarrot.png");
+
+		carrot = ItemHelper.createItem(MOD_ID,
+			new ItemFood("food.carrot", itemID("carrot"), 4, false), "carrot.png");
 
 
 

@@ -3,8 +3,12 @@ package luke.stardew.blocks;
 import luke.stardew.StardewConfig;
 import net.minecraft.client.render.block.model.BlockModelRenderBlocks;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLeavesBase;
+import net.minecraft.core.block.BlockLog;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
+import net.minecraft.core.item.block.ItemBlockLeaves;
+import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import turniplabs.halplibe.helper.BlockBuilder;
 
@@ -16,8 +20,14 @@ public class StardewBlocks {
 	}
 
 	public static Block cropsTomato;
+	public static Block cropsCarrot;
 	public static Block cropsStrawberry;
 	public static Block cropsBlueberry;
+
+	public static Block logApple;
+	public static Block leavesApple;
+	public static Block leavesAppleFlowering;
+	public static Block saplingApple;
 
 	private void initializeBlockDetails() {
 
@@ -32,14 +42,65 @@ public class StardewBlocks {
 			.setBlockModel(new BlockModelRenderBlocks(1))
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU);
 
+		BlockBuilder leaves = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
+			.setHardness(0.2F)
+			.setResistance(0.2F)
+			.setFlammability(30, 60)
+			.setTickOnLoad()
+			.setVisualUpdateOnMetadata()
+			.setItemBlock(ItemBlockLeaves::new)
+			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_HOE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS, BlockTags.SHEARS_DO_SILK_TOUCH);
+
+		BlockBuilder sapling = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
+			.setHardness(0.0f)
+			.setResistance(0.0f)
+			.setBlockModel(new BlockModelRenderBlocks(1))
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR);
+
+		BlockBuilder log = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.0f))
+			.setHardness(2.0F)
+			.setResistance(1.0f)
+			.setFlammability(5, 5)
+			.setBlockModel(new BlockModelRenderBlocks(27))
+			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT);
+
+
 		cropsTomato = crops
 			.build(new BlockCropsTomato("crops.tomato", blockID("cropsTomato")));
+
+		cropsCarrot = crops
+			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
 
 		cropsStrawberry = crops
 			.build(new BlockCropsStrawberry("crops.strawberry", blockID("cropsStrawberry")));
 
 		cropsBlueberry = crops
 			.build(new BlockCropsBlueberry("crops.blueberry", blockID("cropsBlueberry")));
+
+		logApple = log
+			.setTopBottomTexture("logAppleTop.png")
+			.setSideTextures("logAppleSide.png")
+			.build(new BlockLog("log.apple", blockID("logApple")));
+
+		leavesApple = leaves
+			.setSideTextures("leavesApple.png")
+			.setBottomTexture("leavesAppleFast.png")
+			.setTopBottomTexture("leavesApple.png")
+			.build(new BlockLeavesApple("leaves.apple", blockID("leavesApple")));
+
+		leavesAppleFlowering = leaves
+			.setSideTextures("leavesApple.png")
+			.setBottomTexture("leavesAppleFast.png")
+			.setTopBottomTexture("leavesApple.png")
+			.setBlockModel(new BlockModelRenderBlocks(36))
+			.build(new BlockLeavesAppleFlowering("leaves.apple.flowering", blockID("leavesAppleFlowering")));
+
+		saplingApple = sapling
+			.setTextures("saplingApple.png")
+			.build(new BlockSaplingApple("sapling.apple", blockID("saplingApple")));
 
 
 
