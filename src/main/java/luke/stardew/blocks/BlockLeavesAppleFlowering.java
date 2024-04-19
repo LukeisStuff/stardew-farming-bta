@@ -1,8 +1,6 @@
 package luke.stardew.blocks;
 
 import java.util.Random;
-
-import net.minecraft.core.block.*;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
@@ -13,11 +11,11 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
 
-public class BlockLeavesAppleFlowering extends BlockLeavesCherryFlowering implements IBonemealable {
+public class BlockLeavesAppleFlowering extends BlockLeavesApple implements IBonemealable {
 	public BlockLeavesAppleFlowering(String key, int id) {
 		super(key, id);
 	}
-@Override
+
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
 		int growthRate = (meta & 240) >> 4;
 		if (dropCause != EnumDropCause.PICK_BLOCK && dropCause != EnumDropCause.SILK_TOUCH) {
@@ -27,11 +25,10 @@ public class BlockLeavesAppleFlowering extends BlockLeavesCherryFlowering implem
 		}
 	}
 
-@Override
 	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
 		this.blockActivated(world, x, y, z, player);
 	}
-@Override
+
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		int meta = world.getBlockMetadata(x, y, z);
 		int decayData = meta & 15;
@@ -49,7 +46,7 @@ public class BlockLeavesAppleFlowering extends BlockLeavesCherryFlowering implem
 			return super.blockActivated(world, x, y, z, player);
 		}
 	}
-@Override
+
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
 		int meta = world.getBlockMetadata(x, y, z);
@@ -65,7 +62,7 @@ public class BlockLeavesAppleFlowering extends BlockLeavesCherryFlowering implem
 		}
 
 	}
-@Override
+
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		int meta = world.getBlockMetadata(blockX, blockY, blockZ);
 		if ((meta & 240) >> 4 == 0) {
@@ -85,19 +82,4 @@ public class BlockLeavesAppleFlowering extends BlockLeavesCherryFlowering implem
 			return false;
 		}
 	}
-
-	public void placeLeaves(World world, int x, int y, int z, Random rand) {
-		if (rand.nextInt(5) == 0) {
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.leavesAppleFlowering.id, world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL ? 1 : 0);
-		} else {
-			world.setBlockWithNotify(x, y, z, StardewBlocks.leavesApple.id);
-		}
-
-	}
-
-	public boolean isLeaf(int id) {
-		return id == StardewBlocks.leavesAppleFlowering.id || id == StardewBlocks.leavesApple.id;
-	}
-
-
 }
