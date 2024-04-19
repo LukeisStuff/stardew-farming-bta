@@ -19,8 +19,11 @@ public class StardewBlocks {
 		return StardewConfig.cfg.getInt("Block IDs." + blockName);
 	}
 
-	public static Block cropsTomato;
 	public static Block cropsCarrot;
+
+
+	public static Block cropsTomato;
+	public static Block cropsPotato;
 	public static Block cropsStrawberry;
 	public static Block cropsBlueberry;
 
@@ -67,12 +70,37 @@ public class StardewBlocks {
 			.setBlockModel(new BlockModelRenderBlocks(27))
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT);
 
+		//Spring Crops
+
+		cropsCarrot = crops
+			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
+
+
+		//Summer Crops
 
 		cropsTomato = crops
 			.build(new BlockCropsTomato("crops.tomato", blockID("cropsTomato")));
 
-		cropsCarrot = crops
-			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
+		cropsPotato = crops
+			.build(new BlockCropsPotato("crops.potato", blockID("cropsPotato")));
+
+		cropsStrawberry = crops
+			.build(new BlockCropsStrawberry("crops.strawberry", blockID("cropsStrawberry")));
+
+		cropsBlueberry = crops
+			.build(new BlockCropsBlueberry("crops.blueberry", blockID("cropsBlueberry")));
+
+
+		//Fall Crops
+
+
+
+
+		//Winter Crops
+
+
+		cropsTomato = crops
+			.build(new BlockCropsTomato("crops.tomato", blockID("cropsTomato")));
 
 		cropsStrawberry = crops
 			.build(new BlockCropsStrawberry("crops.strawberry", blockID("cropsStrawberry")));

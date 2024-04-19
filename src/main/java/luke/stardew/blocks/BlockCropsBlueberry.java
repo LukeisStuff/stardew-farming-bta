@@ -12,6 +12,7 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.TextureHelper;
 
 import java.util.Random;
@@ -39,17 +40,18 @@ public class BlockCropsBlueberry extends BlockFlower implements IBonemealable {
 
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
-		if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-			int l = world.getBlockMetadata(x, y, z);
-			if (l < 4) {
-				float f = this.getGrowthRate(world, x, y, z);
-				if (rand.nextInt((int)(100.0F / f)) == 0) {
-					++l;
-					world.setBlockMetadataWithNotify(x, y, z, l);
+		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
+			if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+				int l = world.getBlockMetadata(x, y, z);
+				if (l < 4) {
+					float f = this.getGrowthRate(world, x, y, z);
+					if (rand.nextInt((int) (100.0F / f)) == 0) {
+						++l;
+						world.setBlockMetadataWithNotify(x, y, z, l);
+					}
 				}
 			}
 		}
-
 	}
 
 	public void fertilize(World world, int i, int j, int k) {
