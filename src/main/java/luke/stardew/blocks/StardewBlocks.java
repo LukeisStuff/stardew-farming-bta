@@ -20,22 +20,44 @@ public class StardewBlocks {
 		return StardewConfig.cfg.getInt("Block IDs." + blockName);
 	}
 
+	//Spring Crops
 	public static Block cropsCarrot;
-
+	public static Block cropsOnion;
 
 	public static Block cropsBlueberry;
+	public static Block cropsPineapple;
 
+	//Summer Crops
 	public static Block cropsTomato;
 	public static Block cropsPotato;
+
 	public static Block cropsStrawberry;
 	public static Block cropsWatermelon;
 	public static Block watermelon;
 
-
+	//Fall Crops
 	public static Block logApple;
 	public static Block leavesApple;
 	public static Block leavesAppleFlowering;
 	public static Block saplingApple;
+
+	public static Block cropsCorn;
+
+	public static Block cropsPlum;
+	public static Block cropsGrapes;
+
+	//Winter Crops
+	public static Block logPomegranate;
+	public static Block leavesPomegranate;
+	public static Block leavesPomegranateFlowering;
+	public static Block saplingPomegranate;
+
+	public static Block cropsCauliflower;
+	public static Block cauliflower;
+	public static Block cropsBroccoli;
+
+	public static Block cropsCranberries;
+	public static Block cropsBlackberries;
 
 	private void initializeBlockDetails() {
 
@@ -159,9 +181,14 @@ public class StardewBlocks {
 		//Winter Crops
 
 
+		cropsCauliflower = cropsBlock
+			.build(new BlockCropsCauliflower("crops.cauliflower", blockID("cropsCauliflower")));
 
-
-
+		cauliflower = block
+			.setSideTextures("cauliflowerSide.png")
+			.setTopTexture("cauliflowerTop.png")
+			.setBottomTexture("cauliflowerBottom.png")
+			.build(new Block("cauliflower", blockID("cauliflower"), Material.vegetable));
 
 
 

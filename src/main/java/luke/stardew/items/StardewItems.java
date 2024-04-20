@@ -28,6 +28,9 @@ public class StardewItems {
 	public static Item blueberry;
 	public static Item jamBlueberry;
 
+	public static Item seedsPineapple;
+	public static Item pineapple;
+
 	//Summer Crops
 	public static Item orange;
 

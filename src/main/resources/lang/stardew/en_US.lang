@@ -1,0 +1,106 @@
+Spring Crops=
+
+item.stardew.seeds.carrot.name=Carrot Seeds
+item.stardew.seeds.carrot.desc=
+
+item.stardew.food.carrot.name=Carrot
+item.stardew.food.carrot.desc=
+
+
+tile.stardew.crops.blueberry.name=Blueberry Crops
+tile.stardew.crops.blueberry.desc=Blueberry bush, plucked from the ground.
+
+item.stardew.seeds.blueberry.name=Blueberry Seeds
+item.stardew.seeds.blueberry.desc=
+
+item.stardew.food.blueberry.name=Blueberry
+item.stardew.food.blueberry.desc=
+
+item.stardew.food.jam.blueberry.name=Blueberry Jam
+item.stardew.food.jam.blueberry.desc=
+
+
+Summer Crops=
+
+tile.stardew.crops.tomato.name=Tomato Crops
+tile.stardew.crops.tomato.desc=Tomato vines, plucked from the ground.
+
+item.stardew.seeds.tomato.name=Tomato Seeds
+item.stardew.seeds.tomato.desc=
+
+item.stardew.food.tomato.name=Tomato
+item.stardew.food.tomato.desc=
+
+
+tile.stardew.crops.potato.name=Potato Crops
+tile.stardew.crops.potato.desc=Potato roots, plucked from the ground.
+
+item.stardew.seeds.potato.name=Potato Seeds
+item.stardew.seeds.potato.desc=
+
+item.stardew.food.potato.name=Potato
+item.stardew.food.potato.desc=
+
+
+tile.stardew.crops.strawberry.name=Strawberry Crops
+tile.stardew.crops.strawberry.desc=Strawberries, plucked from the ground.
+
+item.stardew.seeds.strawberry.name=Strawberry Seeds
+item.stardew.seeds.strawberry.desc=
+
+item.stardew.food.strawberry.name=Strawberry
+item.stardew.food.strawberry.desc=
+
+item.stardew.food.jam.strawberry.name=Strawberry Jam
+item.stardew.food.jam.strawberry.desc=
+
+
+tile.stardew.crops.watermelon.name=Watermelon Crops
+tile.stardew.crops.watermelon.desc=A ripening watermelon, plucked straight from the ground.
+
+item.stardew.seeds.watermelon.name=Watermelon Seeds
+item.stardew.seeds.watermelon.desc=
+
+item.stardew.food.watermelon.name=Watermelon Slice
+item.stardew.food.watermelon.desc=
+
+tile.stardew.watermelon.name=Watermelon
+tile.stardew.watermelon.desc=Juicy fruit with a hard rind, grown from a vine.
+
+
+
+
+
+Fall Crops=
+
+tile.stardew.log.apple.name=Apple Log
+tile.stardew.log.apple.desc=
+
+tile.stardew.leaves.apple.name=Apple Leaves
+tile.stardew.leaves.apple.desc=
+tile.stardew.leaves.apple.flowering.name=Flowering Apple Leaves
+tile.stardew.leaves.apple.flowering.desc=
+
+tile.stardew.sapling.apple.name=Apple Sapling
+tile.stardew.sapling.apple.desc=
+
+
+
+
+Winter Crops=
+
+tile.stardew.cauliflower.name=Cauliflower
+tile.stardew.cauliflower.desc=
+
+
+
+
+
+
+
+
+item.stardew.food.dough.name=Dough
+item.stardew.food.dough.name=
+
+item.stardew.egg.cooked.name=Cooked Egg
+item.stardew.egg.cooked.name=
