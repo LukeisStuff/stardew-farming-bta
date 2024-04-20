@@ -16,24 +16,59 @@ public class StardewItems {
 		return StardewConfig.cfg.getInt("Item IDs." + itemName);
 	}
 
-	public static Item seedsTomato;
-	public static Item tomato;
 
-	public static Item seedsPotato;
-	public static Item potato;
 
+	//Spring Crops
 	public static Item seedsCarrot;
 	public static Item carrot;
-
-	public static Item seedsStrawberry;
-	public static Item strawberry;
-	public static Item jamStrawberry;
-
-	public static Item seedsWatermelon;
+	public static Item seedsOnion;
+	public static Item onion;
 
 	public static Item seedsBlueberry;
 	public static Item blueberry;
 	public static Item jamBlueberry;
+
+	//Summer Crops
+	public static Item orange;
+
+	public static Item seedsTomato;
+	public static Item tomato;
+	public static Item seedsPotato;
+	public static Item potato;
+
+	public static Item seedsStrawberry;
+	public static Item strawberry;
+	public static Item jamStrawberry;
+	public static Item seedsWatermelon;
+	public static Item watermelon;
+
+	//Fall Crops
+	public static Item corn;
+
+	public static Item seedsPlum;
+	public static Item plum;
+	public static Item seedsGrapes;
+	public static Item grapes;
+
+	//Winter Crops
+	public static Item pomegranate;
+
+	public static Item seedsCauliflower;
+	public static Item cauliflower;
+	public static Item seedsBroccoli;
+	public static Item broccoli;
+
+	public static Item seedsCranberries;
+	public static Item cranberries;
+	public static Item seedsBlackberries;
+	public static Item blackberries;
+
+
+
+	public static Item dough;
+	public static Item eggCooked;
+
+
 
 	public static final Item devStick = ItemHelper.createItem(MOD_ID, new ItemDevStick("dev.stick", 18000), "stick_skyroot.png").setMaxStackSize(1);
 
@@ -70,8 +105,12 @@ public class StardewItems {
 		jamStrawberry = ItemHelper.createItem(MOD_ID,
 			new ItemJam("food.jam.strawberry", itemID("jamStrawberry"), 10, 2), "jamStrawberry.png");
 
+
 		seedsWatermelon = ItemHelper.createItem(MOD_ID,
 			new ItemSeeds("seeds.watermelon", itemID("seedsWatermelon"), StardewBlocks.cropsWatermelon), "seedsWatermelon.png");
+
+		watermelon = ItemHelper.createItem(MOD_ID,
+			new ItemFood("food.watermelon", itemID("watermelon"), 2, false), "watermelon.png");
 
 
 
@@ -83,6 +122,19 @@ public class StardewItems {
 
 		jamBlueberry = ItemHelper.createItem(MOD_ID,
 			new ItemJam("food.jam.blueberry", itemID("jamBlueberry"), 10, 2), "jamBlueberry.png");
+
+
+
+
+
+
+
+
+		dough = ItemHelper.createItem(MOD_ID,
+			new ItemFood("food.dough", itemID("tomato"), -1, false), "dough.png");
+
+		eggCooked = ItemHelper.createItem(MOD_ID,
+			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");
 
 	}
 
