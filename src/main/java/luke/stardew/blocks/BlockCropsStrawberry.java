@@ -116,7 +116,7 @@ public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (l == 3) {
-			world.setBlockMetadataWithNotify(x, y, z, 0);
+			world.setBlockMetadataWithNotify(x, y, z, 1);
 			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
 			world.dropItem(x, y, z, new ItemStack(StardewItems.strawberry, world.rand.nextInt(2) + 1));
 		}

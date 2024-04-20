@@ -117,7 +117,7 @@ public class BlockCropsTomato extends BlockFlower implements IBonemealable {
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (l == 5) {
-			world.setBlockMetadataWithNotify(x, y, z, 0);
+			world.setBlockMetadataWithNotify(x, y, z, 3);
 			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);
 			world.dropItem(x, y, z, new ItemStack(StardewItems.tomato, world.rand.nextInt(1) + 1));
 		}
