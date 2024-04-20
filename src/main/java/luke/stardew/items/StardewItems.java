@@ -131,7 +131,7 @@ public class StardewItems {
 
 
 		dough = ItemHelper.createItem(MOD_ID,
-			new ItemFood("food.dough", itemID("tomato"), -1, false), "dough.png");
+			new ItemFood("food.dough", itemID("dough"), -1, false), "dough.png");
 
 		eggCooked = ItemHelper.createItem(MOD_ID,
 			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");

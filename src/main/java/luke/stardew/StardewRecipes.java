@@ -24,6 +24,10 @@ public class StardewRecipes {
 			.addInput('C', Item.dye, 3)
 			.create("cookie", new ItemStack(Item.foodCookie, 1));
 
+		RecipeBuilder.Shaped(MOD_ID, "WWW")
+			.addInput('W', Item.wheat)
+			.create("dough", new ItemStack(StardewItems.dough, 3));
+
 		RecipeBuilder.Shaped(MOD_ID, "CMC", "SES", "DDD")
 			.addInput('D', StardewItems.dough)
 			.addInput('C', Item.cherry)
