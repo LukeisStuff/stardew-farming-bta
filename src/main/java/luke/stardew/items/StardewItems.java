@@ -57,7 +57,6 @@ public class StardewItems {
 	public static Item pomegranate;
 
 	public static Item seedsCauliflower;
-	public static Item cauliflower;
 	public static Item seedsBroccoli;
 	public static Item broccoli;
 
@@ -129,7 +128,8 @@ public class StardewItems {
 
 
 
-
+		seedsCauliflower = ItemHelper.createItem(MOD_ID,
+			new ItemSeeds("seeds.cauliflower", itemID("seedsCauliflower"), StardewBlocks.cropsCauliflower), "seedsCauliflower.png");
 
 
 

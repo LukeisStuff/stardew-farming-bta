@@ -89,6 +89,9 @@ tile.stardew.sapling.apple.desc=
 
 Winter Crops=
 
+item.stardew.seeds.cauliflower.name=Cauliflower Seeds
+item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted
+
 tile.stardew.cauliflower.name=Cauliflower
 tile.stardew.cauliflower.desc=
 
@@ -100,7 +103,7 @@ tile.stardew.cauliflower.desc=
 
 
 item.stardew.food.dough.name=Dough
-item.stardew.food.dough.name=
+item.stardew.food.dough.desc=
 
 item.stardew.egg.cooked.name=Cooked Egg
-item.stardew.egg.cooked.name=
+item.stardew.egg.cooked.desc=

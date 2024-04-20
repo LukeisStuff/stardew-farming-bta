@@ -149,7 +149,7 @@ public class BlockCropsCauliflower extends BlockFlower implements IBonemealable 
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		if (world.getBlockMetadata(blockX, blockY, blockZ) < 5) {
 			if (!world.isClientSide) {
-				((BlockCropsWatermelon)StardewBlocks.cropsCauliflower).fertilize(world, blockX, blockY, blockZ);
+				((BlockCropsCauliflower)StardewBlocks.cropsCauliflower).fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
 					--itemstack.stackSize;
 				}
