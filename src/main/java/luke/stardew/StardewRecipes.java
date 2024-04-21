@@ -49,6 +49,12 @@ public class StardewRecipes {
 			.addInput(new ItemStack(StardewItems.blueberry, 1))
 			.create("jam_blueberry", new ItemStack(StardewItems.jamBlueberry, 1));
 
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Item.bowl, 1))
+			.addInput(new ItemStack(StardewItems.carrot, 1))
+			.addInput(new ItemStack(StardewItems.potato, 1))
+			.create("vegetable_soup", new ItemStack(StardewItems.foodStewVegetable, 1));
+
 
 
 
@@ -69,6 +75,10 @@ public class StardewRecipes {
 		RecipeBuilder.Furnace(MOD_ID)
 			.setInput(StardewItems.dough)
 			.create("bread", Item.foodBread.getDefaultStack());
+
+		RecipeBuilder.Furnace(MOD_ID)
+			.setInput(Item.bucketMilk)
+			.create("cheese", StardewItems.cheese.getDefaultStack());
 
 
 

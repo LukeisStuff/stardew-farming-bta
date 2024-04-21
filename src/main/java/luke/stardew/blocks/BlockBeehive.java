@@ -56,7 +56,7 @@ public class BlockBeehive extends BlockRotatableHorizontal {
 				player.getHeldItem().consumeItem(player);
 				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehiveIdle.id, l);
 				world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
-				world.dropItem(x, y, z, new ItemStack(StardewItems.jarHoney, 1));
+				player.inventory.insertItem(new ItemStack(StardewItems.jarHoney, 1), true);
 				return true;
 			}
 		}

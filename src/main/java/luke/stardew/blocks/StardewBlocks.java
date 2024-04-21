@@ -40,7 +40,7 @@ public class StardewBlocks {
 
 	public static Block cropsCorn;
 
-	public static Block cropsPlum;
+	public static Block cropsBlackberries;
 	public static Block cropsGrapes;
 
 	//Winter Crops
@@ -53,8 +53,8 @@ public class StardewBlocks {
 	public static Block cauliflower;
 	public static Block cropsBroccoli;
 
-	public static Block cropsCranberries;
-	public static Block cropsBlackberries;
+	public static Block bushCranberries;
+	public static Block cropsPlum;
 
 
 
@@ -131,7 +131,7 @@ public class StardewBlocks {
 			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
 
 		cropsOnion = crops
-			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
+			.build(new BlockCropsCarrot("crops.onion", blockID("cropsOnion")));
 
 
 		// Spring Fruits
@@ -198,6 +198,10 @@ public class StardewBlocks {
 			.setTopTexture("cauliflowerTop.png")
 			.setBottomTexture("cauliflowerBottom.png")
 			.build(new Block("cauliflower", blockID("cauliflower"), Material.vegetable));
+
+
+		bushCranberries = crops
+			.build(new BlockCropsCranberries("crops.cranberries", blockID("bushCranberries")));
 
 
 

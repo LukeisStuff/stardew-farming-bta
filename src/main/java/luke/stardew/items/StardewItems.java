@@ -2,10 +2,7 @@ package luke.stardew.items;
 
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
-import net.minecraft.core.item.Item;
-import net.minecraft.core.item.ItemFood;
-import net.minecraft.core.item.ItemFoodStackable;
-import net.minecraft.core.item.ItemSeeds;
+import net.minecraft.core.item.*;
 import turniplabs.halplibe.helper.ItemHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
@@ -70,6 +67,9 @@ public class StardewItems {
 	public static Item dough;
 	public static Item eggCooked;
 	public static Item jarHoney;
+	public static Item cheese;
+
+	public static Item foodStewVegetable;
 
 
 
@@ -133,6 +133,13 @@ public class StardewItems {
 			new ItemSeeds("seeds.cauliflower", itemID("seedsCauliflower"), StardewBlocks.cropsCauliflower), "seedsCauliflower.png");
 
 
+		seedsCranberries = ItemHelper.createItem(MOD_ID,
+			new ItemPlaceable("seeds.cranberries", itemID("seedsCranberries"), StardewBlocks.bushCranberries), "seedsCranberries.png");
+
+		cranberries = ItemHelper.createItem(MOD_ID,
+			new ItemFood("food.cranberries", itemID("cranberries"), 2, false), "cranberries.png");
+
+
 
 		dough = ItemHelper.createItem(MOD_ID,
 			new ItemFood("food.dough", itemID("dough"), -1, false), "dough.png");
@@ -142,6 +149,12 @@ public class StardewItems {
 
 		jarHoney = ItemHelper.createItem(MOD_ID,
 			new ItemJam("jar.honey", itemID("jarHoney"), 6, 64), "jarHoney.png");
+
+		cheese = ItemHelper.createItem(MOD_ID,
+			new ItemFood("cheese", itemID("cheese"), 4, false), "cheese.png");
+
+		foodStewVegetable = ItemHelper.createItem(MOD_ID,
+			new ItemSoup("food.stew.vegetable", itemID("foodStewVegetable"), 16), "vegetableSoup.png");
 
 	}
 

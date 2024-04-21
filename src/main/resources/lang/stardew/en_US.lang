@@ -90,11 +90,17 @@ tile.stardew.sapling.apple.desc=
 Winter Crops=
 
 item.stardew.seeds.cauliflower.name=Cauliflower Seeds
-item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted
+item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted.
 
 tile.stardew.cauliflower.name=Cauliflower
 tile.stardew.cauliflower.desc=
 
+
+item.stardew.seeds.cranberries.name=Cranberry Seeds
+item.stardew.seeds.cranberries.desc=Cranberry seeds that can be planted.
+
+item.stardew.food.cranberries.name=Cranberries
+item.stardew.food.cranberries.desc=Bundle of a tart and sour, but slightly sweet fruit.
 
 
 
@@ -103,10 +109,10 @@ tile.stardew.cauliflower.desc=
 
 
 item.stardew.food.dough.name=Dough
-item.stardew.food.dough.desc=
+item.stardew.food.dough.desc=Raw and gooey, great for baking!
 
 item.stardew.egg.cooked.name=Cooked Egg
-item.stardew.egg.cooked.desc=
+item.stardew.egg.cooked.desc=Cooked.
 
 tile.stardew.beehiveIdle.name=Beehive
 tile.stardew.beehiveIdle.desc=A man-made nest for bees to create a sweet and sticky nectar.
