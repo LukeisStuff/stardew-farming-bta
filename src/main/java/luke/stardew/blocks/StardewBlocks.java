@@ -130,6 +130,9 @@ public class StardewBlocks {
 		cropsCarrot = crops
 			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
 
+		cropsOnion = crops
+			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
+
 
 		// Spring Fruits
 		cropsBlueberry = crops
@@ -155,7 +158,6 @@ public class StardewBlocks {
 
 		cropsWatermelon = cropsBlock
 			.build(new BlockCropsWatermelon("crops.watermelon", blockID("cropsWatermelon")));
-
 		watermelon = block
 			.setSideTextures("melonSide.png")
 			.setTopBottomTexture("melonTop.png")
@@ -169,20 +171,17 @@ public class StardewBlocks {
 			.setTopBottomTexture("logAppleTop.png")
 			.setSideTextures("logAppleSide.png")
 			.build(new BlockLog("log.apple", blockID("logApple")));
-
 		leavesApple = leaves
 			.setSideTextures("leavesApple.png")
 			.setBottomTexture("leavesAppleFast.png")
 			.setTopBottomTexture("leavesApple.png")
 			.build(new BlockLeavesApple("leaves.apple", blockID("leavesApple")));
-
 		leavesAppleFlowering = leaves
 			.setSideTextures("leavesApple.png")
 			.setBottomTexture("leavesAppleFast.png")
 			.setTopBottomTexture("leavesApple.png")
 			.setBlockModel(new BlockModelRenderBlocks(36))
 			.build(new BlockLeavesAppleFlowering("leaves.apple.flowering", blockID("leavesAppleFlowering")));
-
 		saplingApple = sapling
 			.setTextures("saplingApple.png")
 			.build(new BlockSaplingApple("sapling.apple", blockID("saplingApple")));
@@ -194,7 +193,6 @@ public class StardewBlocks {
 
 		cropsCauliflower = cropsBlock
 			.build(new BlockCropsCauliflower("crops.cauliflower", blockID("cropsCauliflower")));
-
 		cauliflower = block
 			.setSideTextures("cauliflowerSide.png")
 			.setTopTexture("cauliflowerTop.png")
@@ -215,17 +213,16 @@ public class StardewBlocks {
 
 
 		beehiveIdle = wood
-			.setHardness(2.5f)
 			.setTopBottomTexture("beehiveTop.png")
 			.setSideTextures("beehiveSide.png")
 			.setNorthTexture("beehiveFront.png")
 			.build(new BlockBeehive("beehiveIdle", blockID("beehiveIdle"), false));
 
 		beehiveHoney = wood
-			.setHardness(2.5f)
 			.setTopBottomTexture("beehiveTop.png")
 			.setSideTextures("beehiveSide.png")
 			.setNorthTexture("beehiveFrontHoney.png")
+			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build(new BlockBeehive("beehiveHoney", blockID("beehiveHoney"), true));
 
 

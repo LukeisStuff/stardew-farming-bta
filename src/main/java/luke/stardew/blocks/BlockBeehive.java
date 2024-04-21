@@ -9,6 +9,7 @@ import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.season.Seasons;
 
 import java.util.Objects;
 import java.util.Random;
@@ -40,12 +41,13 @@ public class BlockBeehive extends BlockRotatableHorizontal {
 
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
-				int l = world.getBlockMetadata(x, y, z);
-					if (rand.nextInt((int) (100.0F)) == 0) {
-						++l;
-						world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehiveHoney.id, l);
-				}
+		if (world.seasonManager.getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
+			int l = world.getBlockMetadata(x, y, z);
+			if (rand.nextInt(100) == 0) {
+				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehiveHoney.id, l);
 			}
+		}
+	}
 
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		int l = world.getBlockMetadata(x, y, z);
@@ -55,6 +57,7 @@ public class BlockBeehive extends BlockRotatableHorizontal {
 				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehiveIdle.id, l);
 				world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
 				world.dropItem(x, y, z, new ItemStack(StardewItems.jarHoney, 1));
+				return true;
 			}
 		}
 		return false;

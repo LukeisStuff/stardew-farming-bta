@@ -48,8 +48,8 @@ public class StardewItems {
 	//Fall Crops
 	public static Item corn;
 
-	public static Item seedsPlum;
-	public static Item plum;
+	public static Item seedsBlackberries;
+	public static Item blackberries;
 	public static Item seedsGrapes;
 	public static Item grapes;
 
@@ -62,8 +62,8 @@ public class StardewItems {
 
 	public static Item seedsCranberries;
 	public static Item cranberries;
-	public static Item seedsBlackberries;
-	public static Item blackberries;
+	public static Item seedsPlum;
+	public static Item plum;
 
 
 
@@ -141,7 +141,7 @@ public class StardewItems {
 			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");
 
 		jarHoney = ItemHelper.createItem(MOD_ID,
-			new ItemJam("jar.honey", itemID("jarHoney"), 6, 16), "jarHoney.png");
+			new ItemJam("jar.honey", itemID("jarHoney"), 6, 64), "jarHoney.png");
 
 	}
 

@@ -107,3 +107,30 @@ item.stardew.food.dough.desc=
 
 item.stardew.egg.cooked.name=Cooked Egg
 item.stardew.egg.cooked.desc=
+
+tile.stardew.beehiveIdle.name=Beehive
+tile.stardew.beehiveIdle.desc=A man-made nest for bees to create a sweet and sticky nectar.
+
+tile.stardew.beehiveHoney.name=Loaded Beehive
+tile.stardew.beehiveHoney.desc=A man-made nest for bees that created a sweet and sticky nectar.
+
+item.stardew.jar.honey.name=Honey Jar
+item.stardew.jar.honey.desc=Scooped up honey collected in a jar.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
