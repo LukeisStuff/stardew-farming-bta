@@ -2,10 +2,7 @@ package luke.stardew.blocks;
 
 import luke.stardew.StardewConfig;
 import net.minecraft.client.render.block.model.BlockModelRenderBlocks;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLeavesBase;
-import net.minecraft.core.block.BlockLog;
-import net.minecraft.core.block.BlockPumpkin;
+import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.block.ItemBlockLeaves;
@@ -59,6 +56,11 @@ public class StardewBlocks {
 	public static Block cropsCranberries;
 	public static Block cropsBlackberries;
 
+
+
+	public static Block beehiveIdle;
+	public static Block beehiveHoney;
+
 	private void initializeBlockDetails() {
 
 	}
@@ -109,6 +111,15 @@ public class StardewBlocks {
 			.setFlammability(5, 5)
 			.setBlockModel(new BlockModelRenderBlocks(27))
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT);
+
+		BlockBuilder wood = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.0f))
+			.setHardness(2.5f)
+			.setResistance(1.0f)
+			.setFlammability(5, 5)
+			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT);
+
+
 
 		//Spring Crops
 
@@ -191,6 +202,31 @@ public class StardewBlocks {
 			.build(new Block("cauliflower", blockID("cauliflower"), Material.vegetable));
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+		beehiveIdle = wood
+			.setHardness(2.5f)
+			.setTopBottomTexture("beehiveTop.png")
+			.setSideTextures("beehiveSide.png")
+			.setNorthTexture("beehiveFront.png")
+			.build(new BlockBeehive("beehiveIdle", blockID("beehiveIdle"), false));
+
+		beehiveHoney = wood
+			.setHardness(2.5f)
+			.setTopBottomTexture("beehiveTop.png")
+			.setSideTextures("beehiveSide.png")
+			.setNorthTexture("beehiveFrontHoney.png")
+			.build(new BlockBeehive("beehiveHoney", blockID("beehiveHoney"), true));
 
 
 

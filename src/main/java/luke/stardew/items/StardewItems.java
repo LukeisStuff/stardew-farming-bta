@@ -69,6 +69,7 @@ public class StardewItems {
 
 	public static Item dough;
 	public static Item eggCooked;
+	public static Item jarHoney;
 
 
 
@@ -138,6 +139,9 @@ public class StardewItems {
 
 		eggCooked = ItemHelper.createItem(MOD_ID,
 			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");
+
+		jarHoney = ItemHelper.createItem(MOD_ID,
+			new ItemJam("jar.honey", itemID("jarHoney"), 6, 16), "jarHoney.png");
 
 	}
 
