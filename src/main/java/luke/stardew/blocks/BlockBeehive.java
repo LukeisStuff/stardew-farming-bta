@@ -1,6 +1,8 @@
 package luke.stardew.blocks;
 
+import luke.stardew.EntityBeeFX;
 import luke.stardew.items.StardewItems;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.block.BlockRotatableHorizontal;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
@@ -13,6 +15,8 @@ import net.minecraft.core.world.season.Seasons;
 
 import java.util.Objects;
 import java.util.Random;
+
+import static net.minecraft.core.entity.animal.EntityFireflyCluster.FireflyColor.GREEN;
 
 public class BlockBeehive extends BlockRotatableHorizontal {
 	protected final boolean isActive;
@@ -36,6 +40,36 @@ public class BlockBeehive extends BlockRotatableHorizontal {
 			default:
 				return null;
 		}
+	}
+
+	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
+		int meta = world.getBlockMetadata(x, y, z);
+		Minecraft mc = Minecraft.getMinecraft(Minecraft.class);
+		double h = 0.5;
+		double q = 0.25;
+		double random = (world.rand.nextInt(1) - Math.random());
+		if (meta == 2) {
+			if (rand.nextInt(2) == 0) {
+				mc.effectRenderer.addEffect(new EntityBeeFX(world, (double) x + h, (double) y - random, z - q, 0.0, 0.0, 0.0));
+			}
+		} else if (meta == 3) {
+			if (rand.nextInt(2) == 0) {
+				mc.effectRenderer.addEffect(new EntityBeeFX(world, x + h, (double) y - random, z + 1 + q, 0.0, 0.0, 0.0));
+			}
+		} else if (meta == 4) {
+				if (rand.nextInt(2) == 0) {
+					mc.effectRenderer.addEffect(new EntityBeeFX(world, x - q, (double) y - random, z + h, 0.0, 0.0, 0.0));
+				}
+		} else if (meta == 5) {
+				if (rand.nextInt(2) == 0) {
+					mc.effectRenderer.addEffect(new EntityBeeFX(world, x + 1 + q , (double) y - random, (double) z + h, 0.0, 0.0, 0.0));
+				}
+		} else {
+			if (rand.nextInt(2) == 0) {
+			mc.effectRenderer.addEffect(new EntityBeeFX(world, x, y, z, 0.0, 0.0, 0.0));
+			}
+		}
+
 	}
 
 

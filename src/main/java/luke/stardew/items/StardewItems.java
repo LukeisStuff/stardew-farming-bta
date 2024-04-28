@@ -43,6 +43,7 @@ public class StardewItems {
 	public static Item watermelon;
 
 	//Fall Crops
+	public static Item seedsCorn;
 	public static Item corn;
 
 	public static Item seedsBlackberries;
@@ -127,6 +128,22 @@ public class StardewItems {
 			new ItemJam("food.jam.blueberry", itemID("jamBlueberry"), 10, 2), "jamBlueberry.png");
 
 
+		seedsPineapple = ItemHelper.createItem(MOD_ID,
+			new ItemSeeds("seeds.pineapple", itemID("seedsPineapple"), StardewBlocks.cropsPineapple), "seedsPineapple.png");
+
+		pineapple = ItemHelper.createItem(MOD_ID,
+			new ItemFood("food.pineapple", itemID("pineapple"), 6, false), "pineapple.png");
+
+
+
+
+		seedsCorn = ItemHelper.createItem(MOD_ID,
+			new ItemSeeds("seeds.corn", itemID("seedsCorn"), StardewBlocks.cropsCornBottom), "seedsCorn.png");
+
+		corn = ItemHelper.createItem(MOD_ID,
+			new ItemFood("food.corn", itemID("corn"), 2, false), "corn.png");
+
+
 
 
 		seedsCauliflower = ItemHelper.createItem(MOD_ID,
@@ -151,7 +168,7 @@ public class StardewItems {
 			new ItemJam("jar.honey", itemID("jarHoney"), 6, 64), "jarHoney.png");
 
 		cheese = ItemHelper.createItem(MOD_ID,
-			new ItemFood("cheese", itemID("cheese"), 4, false), "cheese.png");
+			new ItemFood("food.cheese", itemID("cheese"), 4, false), "cheese.png");
 
 		foodStewVegetable = ItemHelper.createItem(MOD_ID,
 			new ItemSoup("food.stew.vegetable", itemID("foodStewVegetable"), 16), "vegetableSoup.png");

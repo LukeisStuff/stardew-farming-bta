@@ -19,6 +19,11 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 	public static final int[] floweringOverlayFlower = TextureHelper.getOrCreateBlockTexture(MOD_ID, "overlayAppleFlower.png");
 
 
+	static {
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "bee.png");
+	}
+
+
 	@Override
     public void onInitialize() {
         LOGGER.info("Stardew Farming initialized.");

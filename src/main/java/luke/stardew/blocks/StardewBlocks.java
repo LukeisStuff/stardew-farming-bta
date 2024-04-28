@@ -38,23 +38,17 @@ public class StardewBlocks {
 	public static Block leavesAppleFlowering;
 	public static Block saplingApple;
 
-	public static Block cropsCorn;
+	public static Block cropsCornBottom;
+	public static Block cropsCornTop;
 
-	public static Block cropsBlackberries;
 	public static Block cropsGrapes;
 
 	//Winter Crops
-	public static Block logPomegranate;
-	public static Block leavesPomegranate;
-	public static Block leavesPomegranateFlowering;
-	public static Block saplingPomegranate;
 
 	public static Block cropsCauliflower;
 	public static Block cauliflower;
-	public static Block cropsBroccoli;
 
 	public static Block bushCranberries;
-	public static Block cropsPlum;
 
 
 
@@ -138,6 +132,9 @@ public class StardewBlocks {
 		cropsBlueberry = crops
 			.build(new BlockCropsBlueberry("crops.blueberry", blockID("cropsBlueberry")));
 
+		cropsPineapple = crops
+			.build(new BlockCropsPineapple("crops.pineapple", blockID("cropsPineapple")));
+
 
 		//Summer Crops
 
@@ -185,6 +182,13 @@ public class StardewBlocks {
 		saplingApple = sapling
 			.setTextures("saplingApple.png")
 			.build(new BlockSaplingApple("sapling.apple", blockID("saplingApple")));
+
+
+		cropsCornBottom = crops
+			.build(new BlockCropsCornBottom("crops.corn.bottom", blockID("cropsCornBottom")));
+
+		cropsCornTop = crops
+			.build(new BlockCropsCornTop("crops.corn.top", blockID("cropsCornTop")));
 
 
 

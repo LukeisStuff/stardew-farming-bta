@@ -1,5 +1,8 @@
 Spring Crops=
 
+tile.stardew.crops.carrot.name=Carrot Crop
+tile.stardew.crops.carrot.desc=Whole carrot, plucked from the ground.
+
 item.stardew.seeds.carrot.name=Carrot Seeds
 item.stardew.seeds.carrot.desc=
 
@@ -113,6 +116,12 @@ item.stardew.food.dough.desc=Raw and gooey, great for baking!
 
 item.stardew.egg.cooked.name=Cooked Egg
 item.stardew.egg.cooked.desc=Cooked.
+
+item.stardew.food.cheese.name=Cheese
+item.stardew.food.cheese.desc=Fermented milk, still good for your bones.
+
+item.stardew.food.stew.vegetable.name=Vegetable Stew
+item.stardew.food.stew.vegetable.desc=Mmm... veggies.
 
 tile.stardew.beehiveIdle.name=Beehive
 tile.stardew.beehiveIdle.desc=A man-made nest for bees to create a sweet and sticky nectar.
