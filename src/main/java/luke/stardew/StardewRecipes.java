@@ -37,6 +37,10 @@ public class StardewRecipes {
 			.addInput('E', Item.eggChicken)
 			.create("cake", new ItemStack(Item.foodCake, 1));
 
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewBlocks.watermelon, 1))
+			.create("watermelon", new ItemStack(StardewItems.watermelon, 4));
+
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Item.jar, 1))

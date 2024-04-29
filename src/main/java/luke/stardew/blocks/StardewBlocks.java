@@ -125,9 +125,6 @@ public class StardewBlocks {
 		cropsCarrot = crops
 			.build(new BlockCropsCarrot("crops.carrot", blockID("cropsCarrot")));
 
-		cropsOnion = crops
-			.build(new BlockCropsCarrot("crops.onion", blockID("cropsOnion")));
-
 
 		// Spring Fruits
 		cropsBlueberry = crops

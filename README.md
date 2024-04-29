@@ -4,7 +4,7 @@ Tree fruit - Cherry DONE
 Vegetable 1 - Carrot DONE
 
 Fruit 1 - Blueberry DONE
-Fruit 2 - Pineapple
+Fruit 2 - Pineapple DONE
 
 
 ## Summer Crops
@@ -39,4 +39,4 @@ Eggs can be cooked - DONE
 Wheat makes 3 dough instead of 1 bread DONE
 Dough cooked into bread DONE
 Dough used in wheat recipes (cake, cookies) DONE
-Pumpkin Pie? Coming in 7.2 so idk
+Pumpkin Pie? Coming in 7.2 so IDK
