@@ -18,8 +18,6 @@ public class StardewItems {
 	//Spring Crops
 	public static Item seedsCarrot;
 	public static Item carrot;
-	public static Item seedsOnion;
-	public static Item onion;
 
 	public static Item seedsBlueberry;
 	public static Item blueberry;
@@ -29,7 +27,6 @@ public class StardewItems {
 	public static Item pineapple;
 
 	//Summer Crops
-	public static Item orange;
 
 	public static Item seedsTomato;
 	public static Item tomato;
@@ -46,22 +43,15 @@ public class StardewItems {
 	public static Item seedsCorn;
 	public static Item corn;
 
-	public static Item seedsBlackberries;
-	public static Item blackberries;
 	public static Item seedsGrapes;
 	public static Item grapes;
 
 	//Winter Crops
-	public static Item pomegranate;
 
 	public static Item seedsCauliflower;
-	public static Item seedsBroccoli;
-	public static Item broccoli;
 
 	public static Item seedsCranberries;
 	public static Item cranberries;
-	public static Item seedsPlum;
-	public static Item plum;
 
 
 
@@ -144,6 +134,13 @@ public class StardewItems {
 			new ItemFood("food.corn", itemID("corn"), 2, false), "corn.png");
 
 
+		seedsGrapes = ItemHelper.createItem(MOD_ID,
+			new ItemSeeds("seeds.grape", itemID("seedsGrapes"), StardewBlocks.cropsGrapeBottom), "seedsGrapes.png");
+
+		grapes = ItemHelper.createItem(MOD_ID,
+			new ItemFood("food.grape", itemID("grapes"), 2, false), "grapes.png");
+
+
 
 
 		seedsCauliflower = ItemHelper.createItem(MOD_ID,
@@ -151,7 +148,7 @@ public class StardewItems {
 
 
 		seedsCranberries = ItemHelper.createItem(MOD_ID,
-			new ItemPlaceable("seeds.cranberries", itemID("seedsCranberries"), StardewBlocks.bushCranberries), "seedsCranberries.png");
+			new ItemPlaceable("seeds.cranberries", itemID("seedsCranberries"), StardewBlocks.cropsCranberries), "seedsCranberries.png");
 
 		cranberries = ItemHelper.createItem(MOD_ID,
 			new ItemFood("food.cranberries", itemID("cranberries"), 2, false), "cranberries.png");

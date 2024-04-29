@@ -1,37 +1,43 @@
-# Example Mod
+## Spring Crops
+Tree fruit - Cherry DONE
 
-Template for making Babric mods for BTA!
+Vegetable 1 - Carrot DONE
 
-**Note: *DO NOT fork this repository unless you want to contribute!***
+Fruit 1 - Blueberry DONE
+Fruit 2 - Pineapple
 
-## Prerequisites
-- JDK for Java 17 ([Eclipse Temurin](https://adoptium.net/temurin/releases/) recommended)
-- [Intellij IDEA](https://www.jetbrains.com/idea/download/) (Scroll down for the free community edition, if using linux **DO NOT** use the flatpak distribution)
-- Minecraft Development plugin (Optional, but highly recommended)
 
-## Setup instructions
-   
+## Summer Crops
+Tree fruit - Orange
 
-1. Click the `Use this template` button on this repo's page above (Will only appear if logged in). Choose `Create a new repository`, you will be redirected to a new page. Enter your repo's name and description, and hit `Create repository`.  
-   To get your project, open IntelliJ IDEA and click `Get from VCS`. Select `Repository URL` and enter your repo's url
+Vegetable 1 - Tomato DONE
+Vegetable 2 - Potato DONE
 
-2. After the project has finished importing, close it and open it again.  
-   If that does not work, open the right sidebar with `Gradle` on it, open `Tasks` > `fabric` and run `ideaSyncTask`.
+Fruit 1 - Strawberry DONE
+Fruit 2 - Watermelon DONE
 
-3. Create a new run configuration by going in `Run > Edit Configurations`.  
-   Then click on the plus icon and select Gradle. In the `Tasks and Arguments` field enter `build`.  
-   Running it will build your finished jar files and put them in `build/libs/`.
 
-4. Lastly, open `File` > `Settings` and head to `Build, Execution, Development` > `Build Tools` > `Gradle`.  
-   Make sure `Build and run using` and `Run tests using` is set to `Gradle`.
+## Fall Crops
+Tree fruit - Apple DONE
 
-5. Done! Now, all that's left is to change every mention of `examplemod` and `turniplabs` to your own mod id and mod group, respectively. Happy modding!
+Vegetable 1 - Pumpkin DONE
+Vegetable 2 - Corn
 
-## Tips
+Fruit 2 - Grape
 
-1. If you haven't already you should join the BTA modding discord! https://discord.gg/FTUNJhswBT
-2. You can set your username when launching the client run configuration by setting `--username <username>` in your program arguments.
-3. When launching the server run configuration you may want to remove the `nogui` program argument in order to see the regular server GUI.
-4. In Intellij you can double press shift or press ctrl+N to search class files, change the search from the default `Project Files` to `All Places` you can easily explore the classes for you dependencies and even BTA itself.
-5. In Intellij if ctrl+left click on a field or method you can quickly get information on when and where that field or method is assign or used.
 
+## Winter Crops
+
+Vegetable 1 - Cauliflower DONE
+
+Fruit 1 - Cranberries DONE
+
+
+All fruits can be made into JAM
+
+Eggs can be cooked - DONE
+
+Wheat makes 3 dough instead of 1 bread DONE
+Dough cooked into bread DONE
+Dough used in wheat recipes (cake, cookies) DONE
+Pumpkin Pie? Coming in 7.2 so idk

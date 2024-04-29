@@ -41,14 +41,15 @@ public class StardewBlocks {
 	public static Block cropsCornBottom;
 	public static Block cropsCornTop;
 
-	public static Block cropsGrapes;
+	public static Block cropsGrapeBottom;
+	public static Block cropsGrapeTop;
 
 	//Winter Crops
 
 	public static Block cropsCauliflower;
 	public static Block cauliflower;
 
-	public static Block bushCranberries;
+	public static Block cropsCranberries;
 
 
 
@@ -191,6 +192,13 @@ public class StardewBlocks {
 			.build(new BlockCropsCornTop("crops.corn.top", blockID("cropsCornTop")));
 
 
+		cropsGrapeBottom = crops
+			.build(new BlockCropsGrapeBottom("crops.grape.bottom", blockID("cropsGrapeBottom")));
+
+		cropsGrapeTop = crops
+			.build(new BlockCropsGrapeTop("crops.grape.top", blockID("cropsGrapeTop")));
+
+
 
 		//Winter Crops
 
@@ -204,15 +212,8 @@ public class StardewBlocks {
 			.build(new Block("cauliflower", blockID("cauliflower"), Material.vegetable));
 
 
-		bushCranberries = crops
-			.build(new BlockCropsCranberries("crops.cranberries", blockID("bushCranberries")));
-
-
-
-
-
-
-
+		cropsCranberries = crops
+			.build(new BlockCropsCranberries("crops.cranberries", blockID("cropsCranberries")));
 
 
 
