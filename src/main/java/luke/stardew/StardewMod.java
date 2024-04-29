@@ -5,7 +5,7 @@ import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import turniplabs.halplibe.helper.BlockBuilder;
+import turniplabs.halplibe.helper.SoundHelper;
 import turniplabs.halplibe.helper.TextureHelper;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
@@ -21,6 +21,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, RecipeEn
 
 	static {
 		TextureHelper.getOrCreateItemTexture(MOD_ID, "bee.png");
+		SoundHelper.Client.addSound(MOD_ID, "bee.ogg");
 	}
 
 

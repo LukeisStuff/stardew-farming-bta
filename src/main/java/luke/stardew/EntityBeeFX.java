@@ -1,8 +1,6 @@
 package luke.stardew;
 
 import net.minecraft.client.entity.fx.EntityFX;
-import net.minecraft.client.entity.fx.EntityFireflyFX;
-import net.minecraft.client.entity.fx.EntityFlameFX;
 import net.minecraft.client.render.Tessellator;
 import net.minecraft.core.Global;
 import net.minecraft.core.world.World;

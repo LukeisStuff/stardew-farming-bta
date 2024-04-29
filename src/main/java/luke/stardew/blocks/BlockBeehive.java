@@ -6,10 +6,12 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.block.BlockRotatableHorizontal;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
+import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
 
@@ -51,22 +53,37 @@ public class BlockBeehive extends BlockRotatableHorizontal {
 		if (meta == 2) {
 			if (rand.nextInt(2) == 0) {
 				mc.effectRenderer.addEffect(new EntityBeeFX(world, (double) x + h, (double) y - random, z - q, 0.0, 0.0, 0.0));
+				if (rand.nextInt(2) == 0) {
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "stardew.bee", 0.2F, rand.nextFloat() * 0.4F + 0.8F);
+				}
 			}
 		} else if (meta == 3) {
 			if (rand.nextInt(2) == 0) {
 				mc.effectRenderer.addEffect(new EntityBeeFX(world, x + h, (double) y - random, z + 1 + q, 0.0, 0.0, 0.0));
+				if (rand.nextInt(2) == 0) {
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "stardew.bee", 0.2F, rand.nextFloat() * 0.4F + 0.8F);
+				}
 			}
 		} else if (meta == 4) {
 				if (rand.nextInt(2) == 0) {
 					mc.effectRenderer.addEffect(new EntityBeeFX(world, x - q, (double) y - random, z + h, 0.0, 0.0, 0.0));
+					if (rand.nextInt(2) == 0) {
+						world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "stardew.bee", 0.2F, rand.nextFloat() * 0.4F + 0.8F);
+					}
 				}
 		} else if (meta == 5) {
 				if (rand.nextInt(2) == 0) {
 					mc.effectRenderer.addEffect(new EntityBeeFX(world, x + 1 + q , (double) y - random, (double) z + h, 0.0, 0.0, 0.0));
+					if (rand.nextInt(2) == 0) {
+						world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "stardew.bee", 0.2F, rand.nextFloat() * 0.4F + 0.8F);
+					}
 				}
 		} else {
 			if (rand.nextInt(2) == 0) {
 			mc.effectRenderer.addEffect(new EntityBeeFX(world, x, y, z, 0.0, 0.0, 0.0));
+				if (rand.nextInt(2) == 0) {
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "stardew.bee", 0.2F, rand.nextFloat() * 0.4F + 0.8F);
+				}
 			}
 		}
 
