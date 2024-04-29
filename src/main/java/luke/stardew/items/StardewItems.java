@@ -61,6 +61,7 @@ public class StardewItems {
 	public static Item cheese;
 
 	public static Item foodStewVegetable;
+	public static Item foodStewCheese;
 
 
 
@@ -97,7 +98,7 @@ public class StardewItems {
 			new ItemFood("food.strawberry", itemID("strawberry"), 2, false), "strawberry.png");
 
 		jamStrawberry = ItemHelper.createItem(MOD_ID,
-			new ItemJam("food.jam.strawberry", itemID("jamStrawberry"), 10, 2), "jamStrawberry.png");
+			new ItemJam("food.jam.strawberry", itemID("jamStrawberry"), 8, 2), "jamStrawberry.png");
 
 
 		seedsWatermelon = ItemHelper.createItem(MOD_ID,
@@ -115,7 +116,7 @@ public class StardewItems {
 			new ItemFoodStackable("food.blueberry", itemID("blueberry"), 1, false, 4), "blueberry.png");
 
 		jamBlueberry = ItemHelper.createItem(MOD_ID,
-			new ItemJam("food.jam.blueberry", itemID("jamBlueberry"), 10, 2), "jamBlueberry.png");
+			new ItemJam("food.jam.blueberry", itemID("jamBlueberry"), 8, 2), "jamBlueberry.png");
 
 
 		seedsPineapple = ItemHelper.createItem(MOD_ID,
@@ -138,7 +139,7 @@ public class StardewItems {
 			new ItemSeeds("seeds.grape", itemID("seedsGrapes"), StardewBlocks.cropsGrapeBottom), "seedsGrapes.png");
 
 		grapes = ItemHelper.createItem(MOD_ID,
-			new ItemFood("food.grape", itemID("grapes"), 2, false), "grapes.png");
+			new ItemFood("food.grape", itemID("grapes"), 1, false), "grapes.png");
 
 
 
@@ -151,7 +152,7 @@ public class StardewItems {
 			new ItemPlaceable("seeds.cranberries", itemID("seedsCranberries"), StardewBlocks.cropsCranberries), "seedsCranberries.png");
 
 		cranberries = ItemHelper.createItem(MOD_ID,
-			new ItemFood("food.cranberries", itemID("cranberries"), 2, false), "cranberries.png");
+			new ItemFood("food.cranberries", itemID("cranberries"), 1, false), "cranberries.png");
 
 
 
@@ -168,7 +169,10 @@ public class StardewItems {
 			new ItemFood("food.cheese", itemID("cheese"), 4, false), "cheese.png");
 
 		foodStewVegetable = ItemHelper.createItem(MOD_ID,
-			new ItemSoup("food.stew.vegetable", itemID("foodStewVegetable"), 16), "vegetableSoup.png");
+			new ItemSoup("food.stew.vegetable", itemID("foodStewVegetable"), 14), "vegetableSoup.png");
+
+		foodStewCheese = ItemHelper.createItem(MOD_ID,
+			new ItemSoup("food.stew.cheese", itemID("foodStewCheese"), 16), "cheeseSoup.png");
 
 	}
 

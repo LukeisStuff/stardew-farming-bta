@@ -117,7 +117,7 @@ public class BlockCropsCranberries extends BlockFlower implements IBonemealable 
 		if (l == 3) {
 			world.setBlockMetadataWithNotify(x, y, z, 2);
 			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
-			world.dropItem(x, y, z, new ItemStack(StardewItems.cranberries, world.rand.nextInt(3) + 1));
+			world.dropItem(x, y, z, new ItemStack(StardewItems.cranberries, world.rand.nextInt(2) + 1));
 		}
 		return false;
 	}

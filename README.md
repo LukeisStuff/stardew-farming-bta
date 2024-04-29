@@ -8,7 +8,6 @@ Fruit 2 - Pineapple
 
 
 ## Summer Crops
-Tree fruit - Orange
 
 Vegetable 1 - Tomato DONE
 Vegetable 2 - Potato DONE
@@ -21,9 +20,9 @@ Fruit 2 - Watermelon DONE
 Tree fruit - Apple DONE
 
 Vegetable 1 - Pumpkin DONE
-Vegetable 2 - Corn
+Vegetable 2 - Corn DONE 
 
-Fruit 2 - Grape
+Fruit 2 - Grape DONE
 
 
 ## Winter Crops
