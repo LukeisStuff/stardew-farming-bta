@@ -22,6 +22,15 @@ item.stardew.food.blueberry.desc=
 item.stardew.food.jam.blueberry.name=Blueberry Jam
 item.stardew.food.jam.blueberry.desc=
 
+tile.stardew.crops.pineapple.name=Pineapple Crops
+tile.stardew.crops.pineapple.desc=Pineapple bed, plucked from the ground.
+
+item.stardew.seeds.pineapple.name=Pineapple Seeds
+item.stardew.seeds.pineapple.desc=
+
+item.stardew.food.pineapple.name=Pineapple
+item.stardew.food.pineapple.desc=
+
 
 Summer Crops=
 
@@ -89,8 +98,37 @@ tile.stardew.sapling.apple.desc=
 
 
 
+tile.stardew.crops.corn.bottom.name=Corn Bottom Crop
+tile.stardew.crops.corn.bottom.desc=Bottom half of a corn stalk, plucked from the ground.
+
+tile.stardew.crops.corn.top.name=Corn Top Crop
+tile.stardew.crops.corn.top.desc=Top half of a corn stalk, plucked from the ground.
+
+item.stardew.seeds.corn.name=Corn Seeds
+item.stardew.seeds.corn.desc=
+
+item.stardew.food.corn.name=Corn
+item.stardew.food.corn.desc=
+
+
+tile.stardew.crops.grape.bottom.name=Grape Bottom Crop
+tile.stardew.crops.grape.bottom.desc=Bottom half of a grape stalk, plucked from the ground.
+
+tile.stardew.crops.grape.top.name=Grape Top Crop
+tile.stardew.crops.grape.top.desc=Top half of a grape stalk, plucked from the ground.
+
+item.stardew.seeds.grape.name=Grape Seeds
+item.stardew.seeds.grape.desc=
+
+item.stardew.food.grape.name=Grapes
+item.stardew.food.grape.desc=
+
+
 
 Winter Crops=
+
+tile.stardew.crops.cauliflower.name=Cauliflower Crops
+tile.stardew.crops.cauliflower.desc=A ripening cauliflower, plucked from the ground
 
 item.stardew.seeds.cauliflower.name=Cauliflower Seeds
 item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted.
@@ -98,6 +136,10 @@ item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted.
 tile.stardew.cauliflower.name=Cauliflower
 tile.stardew.cauliflower.desc=
 
+
+
+tile.stardew.crops.cranberries.name=Cranberry Crops
+tile.stardew.crops.cranberries.desc=Ripe cranberry bush, plucked straight from the ground.
 
 item.stardew.seeds.cranberries.name=Cranberry Seeds
 item.stardew.seeds.cranberries.desc=Cranberry seeds that can be planted.
@@ -122,6 +164,12 @@ item.stardew.food.cheese.desc=Fermented milk, still good for your bones.
 
 item.stardew.food.stew.vegetable.name=Vegetable Stew
 item.stardew.food.stew.vegetable.desc=Mmm... veggies.
+
+item.stardew.food.stew.cheese.name=Cauliflower Cheese Stew
+item.stardew.food.stew.cheese.desc=Mmm... cheesy.
+
+tile.stardew.bush.name=Bush
+tile.stardew.bush.desc=A wild bush that drops seeds based on the season.
 
 tile.stardew.beehiveIdle.name=Beehive
 tile.stardew.beehiveIdle.desc=A man-made nest for bees to create a sweet and sticky nectar.

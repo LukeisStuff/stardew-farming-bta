@@ -29,6 +29,9 @@
 		],
 		"recipesReady": [
 			"luke.stardew.StardewMod"
+		],
+		"terrain-api": [
+			"luke.stardew.TerrainApiPlugin"
 		]
 	},
   "mixins": [

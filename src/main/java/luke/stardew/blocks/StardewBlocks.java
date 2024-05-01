@@ -19,7 +19,6 @@ public class StardewBlocks {
 
 	//Spring Crops
 	public static Block cropsCarrot;
-	public static Block cropsOnion;
 
 	public static Block cropsBlueberry;
 	public static Block cropsPineapple;
@@ -50,6 +49,9 @@ public class StardewBlocks {
 	public static Block cauliflower;
 
 	public static Block cropsCranberries;
+
+
+	public static Block bush;
 
 
 
@@ -201,6 +203,7 @@ public class StardewBlocks {
 
 
 		cropsCauliflower = cropsBlock
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
 			.build(new BlockCropsCauliflower("crops.cauliflower", blockID("cropsCauliflower")));
 		cauliflower = block
 			.setSideTextures("cauliflowerSide.png")
@@ -216,6 +219,13 @@ public class StardewBlocks {
 
 
 
+		bush = crops
+			.setTextures("bushSpring.png")
+			.setTextures("bushSummer.png")
+			.setTextures("bushFall.png")
+			.setTextures("bushWinter.png")
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR)
+			.build(new BlockBush("bush", blockID("bush")));
 
 
 		beehiveIdle = wood
