@@ -55,15 +55,15 @@ public class StardewRecipes {
 			.create("jam_blueberry", new ItemStack(StardewItems.jamBlueberry, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(Item.bowl, 1))
 			.addInput(new ItemStack(StardewItems.carrot, 1))
 			.addInput(new ItemStack(StardewItems.potato, 1))
+			.addInput(new ItemStack(Item.bowl, 1))
 			.create("vegetable_soup", new ItemStack(StardewItems.foodStewVegetable, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(Item.bowl, 1))
 			.addInput(new ItemStack(StardewItems.cheese, 1))
 			.addInput(new ItemStack(StardewBlocks.cauliflower, 1))
+			.addInput(new ItemStack(Item.bowl, 1))
 			.create("cheese_soup", new ItemStack(StardewItems.foodStewCheese, 1));
 
 

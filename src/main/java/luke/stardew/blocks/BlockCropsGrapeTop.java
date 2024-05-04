@@ -9,6 +9,7 @@ import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.TextureHelper;
 
 import java.util.Random;
@@ -19,6 +20,7 @@ public class BlockCropsGrapeTop extends BlockFlower implements IBonemealable {
 	public final int[] growthStageTextures = new int[]{
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_top_1.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_top_2.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_top_3.png"),
 	};
 
 	public BlockCropsGrapeTop(String key, int id) {
@@ -28,31 +30,90 @@ public class BlockCropsGrapeTop extends BlockFlower implements IBonemealable {
 	}
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
+		super.updateTick(world, x, y, z, rand);
+		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
+			if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+				int l = world.getBlockMetadata(x, y, z);
+				if (l < 2) {
+					float f = this.getGrowthRate(world, x, y, z);
+					if (rand.nextInt((int) (100.0F / f)) == 0) {
+						++l;
+						world.setBlockMetadataWithNotify(x, y, z, l);
+					}
+				}
+			}
+		}
 	}
+
+	private float getGrowthRate(World world, int x, int y, int z) {
+		float growthRate = 10.0F;
+		int idNegZ = world.getBlockId(x, y, z - 1);
+		int idPosZ = world.getBlockId(x, y, z + 1);
+		int idNegX = world.getBlockId(x - 1, y, z);
+		int idPosX = world.getBlockId(x + 1, y, z);
+		int idNegXNegZ = world.getBlockId(x - 1, y, z - 1);
+		int idPosXNegZ = world.getBlockId(x + 1, y, z - 1);
+		int idPosXPosZ = world.getBlockId(x + 1, y, z + 1);
+		int idNegXPosZ = world.getBlockId(x - 1, y, z + 1);
+		boolean xNeighbor = idNegX == this.id || idPosX == this.id;
+		boolean zNeighbor = idNegZ == this.id || idPosZ == this.id;
+		boolean diagNeighbor = idNegXNegZ == this.id || idPosXNegZ == this.id || idPosXPosZ == this.id || idNegXPosZ == this.id;
+
+		for(int dx = x - 1; dx <= x + 1; ++dx) {
+			for(int dz = z - 1; dz <= z + 1; ++dz) {
+				int id = world.getBlockId(dx, y - 1, dz);
+				float growthRateMod = 0.0F;
+				if (id == StardewBlocks.cropsGrapeBottom.id) {
+					growthRateMod = 1.0F;
+					if (world.getBlockMetadata(dx, y - 1, dz) > 0) {
+						growthRateMod = 3.0F;
+					}
+				}
+
+				if (dx != x || dz != z) {
+					growthRateMod /= 4.0F;
+				}
+
+				growthRate += growthRateMod;
+			}
+		}
+
+		if (diagNeighbor || xNeighbor && zNeighbor) {
+			growthRate /= 2.0F;
+		}
+
+		if (world.seasonManager.getCurrentSeason() != null) {
+			growthRate *= world.seasonManager.getCurrentSeason().cropGrowthFactor;
+		}
+
+		return growthRate;
+	}
+
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
 		return (world.getBlockId(x, y-1, z) == StardewBlocks.cropsGrapeBottom.id);
 	}
+
 	@Override
 	public boolean canThisPlantGrowOnThisBlockID(int i) {
 		return i == StardewBlocks.cropsGrapeBottom.id;
 	}
 	public void fertilize(World world, int i, int j, int k) {
-		world.setBlockAndMetadataWithNotify(i, j, k, this.id,1);
+		world.setBlockAndMetadataWithNotify(i, j, k, this.id,2);
 	}
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int j) {
-		if (j < 0 || j > 1) {
-			j = 1;
+		if (j < 0 || j > 2) {
+			j = 2;
 		}
 		return this.growthStageTextures[j];
 	}
 
 	@Override
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-		if (world.getBlockMetadata(blockX, blockY, blockZ) < 1) {
+		if (world.getBlockMetadata(blockX, blockY, blockZ) < 2) {
 			if (!world.isClientSide) {
-				((BlockCropsGrapeTop) StardewBlocks.cropsGrapeTop).fertilize(world, blockX, blockY, blockZ);
+				((BlockCropsGrapeBottom) StardewBlocks.cropsGrapeBottom).fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
 					--itemstack.stackSize;
 				}

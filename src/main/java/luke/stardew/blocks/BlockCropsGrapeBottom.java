@@ -10,6 +10,7 @@ import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.TextureHelper;
 
 import java.util.Random;
@@ -21,6 +22,8 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_bottom_1.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_bottom_2.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_bottom_3.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_bottom_4.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_bottom_5.png"),
 	};
 
 	public BlockCropsGrapeBottom(String key, int id) {
@@ -78,45 +81,55 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 	}
 
 	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		if (world.seasonManager.getCurrentSeason() != null && world.seasonManager.getCurrentSeason().killFlowers && this.killedByWeather && rand.nextInt(256) == 0) {
-			world.setBlockWithNotify(x, y, z, 0);
+	public boolean canBlockStay(World world, int x, int y, int z) {
+		if(world.getBlockMetadata(x, y, z) == 0){
+			return super.canBlockStay(world, x ,y, z);
 		}
+		if(world.getBlockId(x, y+1, z) == StardewBlocks.cropsGrapeTop.id && world.getBlockMetadata(x,y,z) >= 0){
+			return super.canBlockStay(world, x ,y, z);
+		}
+		return true;
+	}
 
-		if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-			int blockMetadata = world.getBlockMetadata(x, y, z);
-			if (blockMetadata >= 2) {
-				return;
+	@Override
+	public void updateTick(World world, int x, int y, int z, Random rand) {
+		super.updateTick(world, x, y, z, rand);
+		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
+			if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+				int l = world.getBlockMetadata(x, y, z);
+				if (l < 4) {
+					float f = this.getGrowthRate(world, x, y, z);
+					if (rand.nextInt((int) (100.0F / f)) == 0) {
+						++l;
+						world.setBlockMetadataWithNotify(x, y, z, l);
+					}
+				}
 			}
-			float f = this.getGrowthRate(world, x, y, z);
-			int blockAbove = world.getBlockId(x, y + 1, z);
-			if ((blockAbove == 0 || blockAbove == StardewBlocks.cropsGrapeTop.id) && rand.nextInt((int) (100.0F / f)) == 0) {
-				world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, blockMetadata);
-				world.setBlockMetadataWithNotify(x, y, z, ++blockMetadata);
-
+			if (world.getBlockMetadata(x, y, z) == 3) {
+				world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, 0);
 			}
 		}
 	}
 
 
 	public void fertilize(World world, int x, int y, int z) {
-		world.setBlockMetadataWithNotify(x, y, z, 2);
+		world.setBlockMetadataWithNotify(x, y, z, 4);
 		int blockAbove = world.getBlockId(x, y + 1, z);
 		if (blockAbove == 0 || blockAbove == StardewBlocks.cropsGrapeTop.id) {
-			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, 1);
+			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, 3);
 		}
 	}
 
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int meta) {
-		if (meta < 0 || meta > 2) {
-			meta = 2;
+		if (meta < 0 || meta > 4) {
+			meta = 4;
 		}
 		return this.growthStageTextures[meta];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return null;
+		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsGrapes)} : new ItemStack[]{new ItemStack(StardewItems.seedsGrapes, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.grapes, world.rand.nextInt(1) + 3)};
 	}
 
 	@Override
