@@ -10,6 +10,7 @@ import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.TextureHelper;
 
 import java.util.Random;
@@ -23,6 +24,7 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_3.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_4.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_5.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_6.png"),
 	};
 
 	public BlockCropsCornBottom(String key, int id) {
@@ -32,7 +34,7 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 	}
 
 	private float getGrowthRate(World world, int x, int y, int z) {
-		float growthRate = 100.0F;
+		float growthRate = 1.0F;
 		int idNegZ = world.getBlockId(x, y, z - 1);
 		int idPosZ = world.getBlockId(x, y, z + 1);
 		int idNegX = world.getBlockId(x - 1, y, z);
@@ -92,29 +94,27 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
-		if (world.seasonManager.getCurrentSeason() != null && world.seasonManager.getCurrentSeason().killFlowers && this.killedByWeather && rand.nextInt(256) == 0) {
-			world.setBlockWithNotify(x, y, z, 0);
-		}
-
-		if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-			int blockMetadata = world.getBlockMetadata(x, y, z);
-			if (blockMetadata >= 3) {
-				return;
-			}
-				float f = this.getGrowthRate(world, x, y, z);
-			if (world.getBlockMetadata(x, y, z) == 3) {
-				int blockAbove = world.getBlockId(x, y + 1, z);
-				if ((blockAbove == 0 || blockAbove == StardewBlocks.cropsCornTop.id) && rand.nextInt((int) (100.0F / f)) == 0) {
-					world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 0);
+		super.updateTick(world, x, y, z, rand);
+		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
+			if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+				int l = world.getBlockMetadata(x, y, z);
+				if (l < 5) {
+					float f = this.getGrowthRate(world, x, y, z);
+					if (rand.nextInt((int) (100.0F / f)) == 0) {
+						++l;
+						world.setBlockMetadataWithNotify(x, y, z, l);
+					}
 				}
-				world.setBlockMetadataWithNotify(x, y, z, ++blockMetadata);
+			}
+			if (world.getBlockMetadata(x, y, z) == 3) {
+					world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 0);
 			}
 		}
 	}
 
 
 	public void fertilize(World world, int x, int y, int z) {
-		world.setBlockMetadataWithNotify(x, y, z, 4);
+		world.setBlockMetadataWithNotify(x, y, z, 5);
 		int blockAbove = world.getBlockId(x, y + 1, z);
 		if (blockAbove == 0 || blockAbove == StardewBlocks.cropsCornTop.id) {
 			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 3);
@@ -123,19 +123,19 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int meta) {
-		if (meta < 0 || meta > 4) {
-			meta = 4;
+		if (meta < 0 || meta > 5) {
+			meta = 5;
 		}
 		return this.growthStageTextures[meta];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsCorn)} : new ItemStack[]{new ItemStack(StardewItems.seedsCorn, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.corn, world.rand.nextInt(1) + 1)};
+		return meta != 5 ? new ItemStack[]{new ItemStack(StardewItems.seedsCorn)} : new ItemStack[]{new ItemStack(StardewItems.seedsCorn, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.corn, world.rand.nextInt(1) + 1)};
 	}
 
 	@Override
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-		if (world.getBlockMetadata(blockX, blockY, blockZ) < 4) {
+		if (world.getBlockMetadata(blockX, blockY, blockZ) < 5) {
 			if (!world.isClientSide) {
 				((BlockCropsCornBottom) StardewBlocks.cropsCornBottom).fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
