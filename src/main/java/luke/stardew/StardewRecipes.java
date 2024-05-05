@@ -104,7 +104,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('M', Item.bucketMilk)
 			.addInput('S', Item.dustSugar)
 			.addInput('E', Item.eggChicken)
-			.create("cake.chocolate", new ItemStack(StardewItems.foodCakeChocolate, 1));
+			.create("cake_chocolate", new ItemStack(StardewItems.foodCakeChocolate, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.logApple, 1))
@@ -113,6 +113,16 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.logAppleGolden, 1))
 			.create("golden_apple_log_to_yellow_wooden_planks", new ItemStack(Block.planksOakPainted, 4, 4));
+
+		RecipeBuilder.Shaped(MOD_ID, "I  ", "IBI", " I ")
+			.addInput('I', Item.ingotIron)
+			.addInput('B', Item.bucketWater)
+			.create("watering_can", new ItemStack(StardewItems.wateringCan, 1));
+
+		RecipeBuilder.Shaped(MOD_ID, "I  ", "IBI", " I ")
+			.addInput('I', Item.ingotSteel)
+			.addInput('B', Item.bucketWater)
+			.create("watering_can_steel", new ItemStack(StardewItems.wateringCanSteel, 1));
 
 
 

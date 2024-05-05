@@ -4,6 +4,7 @@ import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.item.*;
+import net.minecraft.core.item.material.ToolMaterial;
 import turniplabs.halplibe.helper.ItemHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
@@ -65,6 +66,9 @@ public class StardewItems {
 	public static Item foodStewFruit;
 
 	public static Item foodCakeChocolate;
+
+	public static Item wateringCan;
+	public static Item wateringCanSteel;
 
 
 
@@ -178,6 +182,15 @@ public class StardewItems {
 
 		foodCakeChocolate = ItemHelper.createItem(MOD_ID,
 			new ItemPlaceable("food.cake.chocolate", itemID("foodCakeChocolate"), StardewBlocks.cakeChocolate).setMaxStackSize(1), "foodCakeChocolate.png");
+
+
+		wateringCan = ItemHelper.createItem(MOD_ID,
+			new ItemToolWateringCan("tool.wateringcan", itemID("wateringCan"), ToolMaterial.iron),"wateringcan.png");
+
+		wateringCanSteel = ItemHelper.createItem(MOD_ID,
+			new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel), "wateringcanSteel.png");
+
+
 	}
 
 

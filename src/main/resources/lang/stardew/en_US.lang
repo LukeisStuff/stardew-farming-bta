@@ -4,7 +4,7 @@ tile.stardew.crops.carrot.name=Carrot Crop
 tile.stardew.crops.carrot.desc=Whole carrot, plucked from the ground.
 
 item.stardew.seeds.carrot.name=Carrot Seeds
-item.stardew.seeds.carrot.desc=
+item.stardew.seeds.carrot.desc=Carrot seeds that can be planted.
 
 item.stardew.food.carrot.name=Carrot
 item.stardew.food.carrot.desc=
@@ -14,7 +14,7 @@ tile.stardew.crops.blueberry.name=Blueberry Crops
 tile.stardew.crops.blueberry.desc=Blueberry bush, plucked from the ground.
 
 item.stardew.seeds.blueberry.name=Blueberry Seeds
-item.stardew.seeds.blueberry.desc=
+item.stardew.seeds.blueberry.desc=Blueberry seeds that can be planted.
 
 item.stardew.food.blueberry.name=Blueberry
 item.stardew.food.blueberry.desc=
@@ -26,7 +26,7 @@ tile.stardew.crops.pineapple.name=Pineapple Crops
 tile.stardew.crops.pineapple.desc=Pineapple bed, plucked from the ground.
 
 item.stardew.seeds.pineapple.name=Pineapple Seeds
-item.stardew.seeds.pineapple.desc=
+item.stardew.seeds.pineapple.desc=Pineapple seeds that can be planted.
 
 item.stardew.food.pineapple.name=Pineapple
 item.stardew.food.pineapple.desc=
@@ -38,7 +38,7 @@ tile.stardew.crops.tomato.name=Tomato Crops
 tile.stardew.crops.tomato.desc=Tomato vines, plucked from the ground.
 
 item.stardew.seeds.tomato.name=Tomato Seeds
-item.stardew.seeds.tomato.desc=
+item.stardew.seeds.tomato.desc=Tomato seeds that can be planted.
 
 item.stardew.food.tomato.name=Tomato
 item.stardew.food.tomato.desc=
@@ -48,7 +48,7 @@ tile.stardew.crops.potato.name=Potato Crops
 tile.stardew.crops.potato.desc=Potato roots, plucked from the ground.
 
 item.stardew.seeds.potato.name=Potato Seeds
-item.stardew.seeds.potato.desc=
+item.stardew.seeds.potato.desc=Potato seeds that can be planted.
 
 item.stardew.food.potato.name=Potato
 item.stardew.food.potato.desc=
@@ -58,7 +58,7 @@ tile.stardew.crops.strawberry.name=Strawberry Crops
 tile.stardew.crops.strawberry.desc=Strawberries, plucked from the ground.
 
 item.stardew.seeds.strawberry.name=Strawberry Seeds
-item.stardew.seeds.strawberry.desc=
+item.stardew.seeds.strawberry.desc=Strawberry seeds that can be planted.
 
 item.stardew.food.strawberry.name=Strawberry
 item.stardew.food.strawberry.desc=
@@ -71,10 +71,7 @@ tile.stardew.crops.watermelon.name=Watermelon Crops
 tile.stardew.crops.watermelon.desc=A ripening watermelon, plucked straight from the ground.
 
 item.stardew.seeds.watermelon.name=Watermelon Seeds
-item.stardew.seeds.watermelon.desc=
-
-item.stardew.food.watermelon.name=Watermelon Slice
-item.stardew.food.watermelon.desc=
+item.stardew.seeds.watermelon.desc=Watermelon seeds that can be planted.
 
 tile.stardew.watermelon.name=Watermelon
 tile.stardew.watermelon.desc=Juicy fruit with a hard rind, grown from a vine.
@@ -117,7 +114,7 @@ tile.stardew.crops.corn.top.name=Corn Top Crop
 tile.stardew.crops.corn.top.desc=Top half of a corn stalk, plucked from the ground.
 
 item.stardew.seeds.corn.name=Corn Seeds
-item.stardew.seeds.corn.desc=
+item.stardew.seeds.corn.desc=Corn seeds that can be planted.
 
 item.stardew.food.corn.name=Corn
 item.stardew.food.corn.desc=
@@ -130,7 +127,7 @@ tile.stardew.crops.grape.top.name=Grape Top Crop
 tile.stardew.crops.grape.top.desc=Top half of a grape stalk, plucked from the ground.
 
 item.stardew.seeds.grape.name=Grape Seeds
-item.stardew.seeds.grape.desc=
+item.stardew.seeds.grape.desc=Grape seeds that can be planted.
 
 item.stardew.food.grape.name=Grapes
 item.stardew.food.grape.desc=
@@ -146,7 +143,7 @@ item.stardew.seeds.cauliflower.name=Cauliflower Seeds
 item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted.
 
 tile.stardew.cauliflower.name=Cauliflower
-tile.stardew.cauliflower.desc=
+tile.stardew.cauliflower.desc=Large leaf covered vegetable with bumpy flesh.
 
 
 
@@ -204,10 +201,11 @@ item.stardew.jar.honey.desc=Scooped up honey collected in a jar.
 tile.stardew.cake.chocolate.name=Chocolate Cake
 tile.stardew.cake.chocolate.desc=Cake it easy.
 
+item.stardew.tool.wateringcan.name=Watering Can
+item.stardew.tool.wateringcan.desc=A handy tool for watering crops and soaking blocks.
 
-
-
-
+item.stardew.tool.wateringcan.steel.name=Steel Watering Can
+item.stardew.tool.wateringcan.steel.desc=A longer lasting variant of regular watering cans.
 
 
 
