@@ -37,10 +37,6 @@ public class StardewRecipes {
 			.addInput('E', Item.eggChicken)
 			.create("cake", new ItemStack(Item.foodCake, 1));
 
-		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(StardewBlocks.watermelon, 1))
-			.create("watermelon", new ItemStack(StardewItems.watermelon, 4));
-
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Item.jar, 1))
@@ -65,6 +61,23 @@ public class StardewRecipes {
 			.addInput(new ItemStack(StardewBlocks.cauliflower, 1))
 			.addInput(new ItemStack(Item.bowl, 1))
 			.create("cheese_soup", new ItemStack(StardewItems.foodStewCheese, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.blueberry, 1))
+			.addInput(new ItemStack(StardewItems.pineapple, 1))
+			.addInput(new ItemStack(StardewItems.strawberry, 1))
+			.addInput(new ItemStack(StardewItems.grapes, 1))
+			.addInput(new ItemStack(StardewBlocks.watermelon, 1))
+			.addInput(new ItemStack(Item.bowl, 1))
+			.create("fruit_soup", new ItemStack(StardewItems.foodStewFruit, 1));
+
+		RecipeBuilder.Shaped(MOD_ID, "CMC", "SES", "DDD")
+			.addInput('D', StardewItems.dough)
+			.addInput('C', Item.dye, 3)
+			.addInput('M', Item.bucketMilk)
+			.addInput('S', Item.dustSugar)
+			.addInput('E', Item.eggChicken)
+			.create("cake.chocolate", new ItemStack(StardewItems.foodCakeChocolate, 1));
 
 
 

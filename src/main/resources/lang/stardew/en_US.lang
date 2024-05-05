@@ -168,6 +168,12 @@ item.stardew.food.stew.vegetable.desc=Mmm... veggies.
 item.stardew.food.stew.cheese.name=Cauliflower Cheese Stew
 item.stardew.food.stew.cheese.desc=Mmm... cheesy.
 
+item.stardew.food.stew.fruit.name=Fruit Salad
+item.stardew.food.stew.fruit.desc=Mmm... fruity.
+
+item.stardew.food.cake.chocolate.name=Chocolate Cake
+item.stardew.food.cake.chocolate.desc=The cake is a lie.
+
 tile.stardew.bush.name=Bush
 tile.stardew.bush.desc=A wild bush that drops seeds based on the season.
 
@@ -179,6 +185,9 @@ tile.stardew.beehiveHoney.desc=A man-made nest for bees that created a sweet and
 
 item.stardew.jar.honey.name=Honey Jar
 item.stardew.jar.honey.desc=Scooped up honey collected in a jar.
+
+tile.stardew.cake.chocolate.name=Chocolate Cake
+tile.stardew.cake.chocolate.desc=Cake it easy.
 
 
 

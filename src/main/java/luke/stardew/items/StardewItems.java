@@ -2,6 +2,7 @@ package luke.stardew.items;
 
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.item.*;
 import turniplabs.halplibe.helper.ItemHelper;
 
@@ -37,7 +38,6 @@ public class StardewItems {
 	public static Item strawberry;
 	public static Item jamStrawberry;
 	public static Item seedsWatermelon;
-	public static Item watermelon;
 
 	//Fall Crops
 	public static Item seedsCorn;
@@ -62,6 +62,9 @@ public class StardewItems {
 
 	public static Item foodStewVegetable;
 	public static Item foodStewCheese;
+	public static Item foodStewFruit;
+
+	public static Item foodCakeChocolate;
 
 
 
@@ -103,10 +106,6 @@ public class StardewItems {
 
 		seedsWatermelon = ItemHelper.createItem(MOD_ID,
 			new ItemSeeds("seeds.watermelon", itemID("seedsWatermelon"), StardewBlocks.cropsWatermelon), "seedsWatermelon.png");
-
-		watermelon = ItemHelper.createItem(MOD_ID,
-			new ItemFood("food.watermelon", itemID("watermelon"), 2, false), "watermelon.png");
-
 
 
 		seedsBlueberry = ItemHelper.createItem(MOD_ID,
@@ -174,6 +173,11 @@ public class StardewItems {
 		foodStewCheese = ItemHelper.createItem(MOD_ID,
 			new ItemSoup("food.stew.cheese", itemID("foodStewCheese"), 16), "cheeseSoup.png");
 
+		foodStewFruit = ItemHelper.createItem(MOD_ID,
+			new ItemSoup("food.stew.fruit", itemID("foodStewFruit"), 18), "fruitSoup.png");
+
+		foodCakeChocolate = ItemHelper.createItem(MOD_ID,
+			new ItemPlaceable("food.cake.chocolate", itemID("foodCakeChocolate"), StardewBlocks.cakeChocolate).setMaxStackSize(1), "foodCakeChocolate.png");
 	}
 
 

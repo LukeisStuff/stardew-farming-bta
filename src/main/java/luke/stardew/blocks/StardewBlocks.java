@@ -1,6 +1,7 @@
 package luke.stardew.blocks;
 
 import luke.stardew.StardewConfig;
+import luke.stardew.StardewMod;
 import net.minecraft.client.render.block.model.BlockModelRenderBlocks;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
@@ -8,7 +9,9 @@ import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.block.ItemBlockLeaves;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
+import net.minecraft.core.util.helper.Side;
 import turniplabs.halplibe.helper.BlockBuilder;
+import turniplabs.halplibe.helper.TextureHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
@@ -57,6 +60,8 @@ public class StardewBlocks {
 
 	public static Block beehiveIdle;
 	public static Block beehiveHoney;
+
+	public static Block cakeChocolate;
 
 	private void initializeBlockDetails() {
 
@@ -242,8 +247,22 @@ public class StardewBlocks {
 			.build(new BlockBeehive("beehiveHoney", blockID("beehiveHoney"), true));
 
 
-
-
+		// Pumpkin Pie
+		cakeChocolate = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
+			.setHardness(0.5f)
+			.setResistance(0.5f)
+			.setTopTexture("chocoCakeTop.png")
+			.setBottomTexture("chocoCakeBottom.png")
+			.setSideTextures("chocoCakeSideBit.png")
+			.setSideTextures("chocoCakeSide.png")
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build(new BlockCake("cake.chocolate", blockID("cakeChocolate")) {
+				public int getBlockTextureFromSideAndMetadata(Side side, int j) {
+					int[] texture = TextureHelper.getOrCreateBlockTexture(StardewMod.MOD_ID, "chocoCakeSideBit.png");
+					return j > 0 && side == Side.WEST ? texCoordToIndex(texture[0], texture[1]) : this.atlasIndices[side.getId()];
+				}
+			});
 
 		initializeBlockDetails();
 	}
