@@ -40,6 +40,11 @@ public class StardewBlocks {
 	public static Block leavesAppleFlowering;
 	public static Block saplingApple;
 
+	public static Block logAppleGolden;
+	public static Block leavesAppleGolden;
+	public static Block leavesAppleGoldenFlowering;
+	public static Block saplingAppleGolden;
+
 	public static Block cropsCornBottom;
 	public static Block cropsCornTop;
 
@@ -60,6 +65,11 @@ public class StardewBlocks {
 
 	public static Block beehiveIdle;
 	public static Block beehiveHoney;
+
+	public static Block blockHoney;
+
+	public static Block crabTrapIdle;
+	public static Block crabTrapFilled;
 
 	public static Block cakeChocolate;
 
@@ -121,6 +131,12 @@ public class StardewBlocks {
 			.setFlammability(5, 5)
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT);
 
+		BlockBuilder metal = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.stone", "step.stone", 1.0f, 1.5f))
+			.setHardness(5.0f)
+			.setResistance(10.0f)
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT);
+
 
 
 		//Spring Crops
@@ -179,14 +195,31 @@ public class StardewBlocks {
 			.setTopBottomTexture("leavesApple.png")
 			.build(new BlockLeavesApple("leaves.apple", blockID("leavesApple")));
 		leavesAppleFlowering = leaves
-			.setSideTextures("leavesApple.png")
-			.setBottomTexture("leavesAppleFast.png")
-			.setTopBottomTexture("leavesApple.png")
-			.setBlockModel(new BlockModelRenderBlocks(36))
+			.setSideTextures("leavesAppleFlowering.png")
+			.setBottomTexture("leavesAppleFloweringFast.png")
+			.setTopBottomTexture("leavesAppleFlowering.png")
 			.build(new BlockLeavesAppleFlowering("leaves.apple.flowering", blockID("leavesAppleFlowering")));
 		saplingApple = sapling
 			.setTextures("saplingApple.png")
 			.build(new BlockSaplingApple("sapling.apple", blockID("saplingApple")));
+
+		logAppleGolden = log
+			.setTopBottomTexture("logAppleGoldenTop.png")
+			.setSideTextures("logAppleGoldenSide.png")
+			.build(new BlockLog("log.apple.golden", blockID("logAppleGolden")));
+		leavesAppleGolden = leaves
+			.setSideTextures("leavesAppleGolden.png")
+			.setBottomTexture("leavesAppleGoldenFast.png")
+			.setTopBottomTexture("leavesAppleGolden.png")
+			.build(new BlockLeavesAppleGolden("leaves.apple.golden", blockID("leavesAppleGolden")));
+		leavesAppleGoldenFlowering = leaves
+			.setSideTextures("leavesAppleGoldenFlowering.png")
+			.setBottomTexture("leavesAppleGoldenFloweringFast.png")
+			.setTopBottomTexture("leavesAppleGoldenFlowering.png")
+			.build(new BlockLeavesAppleGoldenFlowering("leaves.apple.flowering", blockID("leavesAppleGoldenFlowering")));
+		saplingAppleGolden = sapling
+			.setTextures("saplingAppleGolden.png")
+			.build(new BlockSaplingAppleGolden("sapling.apple.golden", blockID("saplingAppleGolden")));
 
 
 		cropsCornBottom = crops
@@ -230,6 +263,8 @@ public class StardewBlocks {
 			.setTextures("bushFall.png")
 			.setTextures("bushWinter.png")
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR)
+			.setTicking(true)
+			.setTickOnLoad()
 			.build(new BlockBush("bush", blockID("bush")));
 
 
@@ -237,17 +272,39 @@ public class StardewBlocks {
 			.setTopBottomTexture("beehiveTop.png")
 			.setSideTextures("beehiveSide.png")
 			.setNorthTexture("beehiveFront.png")
-			.build(new BlockBeehive("beehiveIdle", blockID("beehiveIdle"), false));
+			.build(new BlockBeehive("beehive.idle", blockID("beehiveIdle"), false));
 
 		beehiveHoney = wood
 			.setTopBottomTexture("beehiveTop.png")
 			.setSideTextures("beehiveSide.png")
 			.setNorthTexture("beehiveFrontHoney.png")
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build(new BlockBeehive("beehiveHoney", blockID("beehiveHoney"), true));
+			.build(new BlockBeehive("beehive.honey", blockID("beehiveHoney"), true));
+
+		blockHoney = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.5f))
+			.setHardness(0.2f)
+			.setResistance(0.2f)
+			.setLightOpacity(6)
+			.setTextures("blockHoney.png")
+			.setTags(BlockTags.MINEABLE_BY_AXE)
+			.build(new BlockHoney("block.honey", blockID("blockHoney"), false));
 
 
-		// Pumpkin Pie
+		crabTrapIdle = metal
+			.setTopTexture("crabTrapTop.png")
+			.setSideTextures("crabTrapSide.png")
+			.setBottomTexture("crabTrapBottom.png")
+			.build(new BlockCrabTrap("crabtrap.idle", blockID("crabTrapIdle"), false));
+
+		crabTrapFilled = metal
+			.setTopTexture("crabTrapTop.png")
+			.setSideTextures("crabTrapSideFilled.png")
+			.setBottomTexture("crabTrapBottom.png")
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build(new BlockCrabTrap("crabtrap.Filled", blockID("crabTrapFilled"), true));
+
+
 		cakeChocolate = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
 			.setHardness(0.5f)

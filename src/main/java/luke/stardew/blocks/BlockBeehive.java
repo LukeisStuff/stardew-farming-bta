@@ -94,7 +94,7 @@ public class BlockBeehive extends BlockRotatableHorizontal {
 		super.updateTick(world, x, y, z, rand);
 		if (world.seasonManager.getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
 			int l = world.getBlockMetadata(x, y, z);
-			if (rand.nextInt(100) == 0) {
+			if (rand.nextInt(50) == 0) {
 				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehiveHoney.id, l);
 			}
 		}

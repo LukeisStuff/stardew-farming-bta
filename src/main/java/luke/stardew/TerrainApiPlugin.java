@@ -2,6 +2,7 @@ package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.world.generate.feature.WorldFeatureFlowers;
+import net.minecraft.core.world.generate.feature.WorldFeaturePumpkin;
 import useless.terrainapi.api.TerrainAPI;
 import useless.terrainapi.generation.overworld.OverworldConfig;
 import useless.terrainapi.generation.overworld.api.ChunkDecoratorOverworldAPI;
@@ -13,11 +14,14 @@ public class TerrainApiPlugin implements TerrainAPI {
 	public String getModID() {
 		return MOD_ID;
 	}
-	public static final OverworldConfig overworldConfig = ChunkDecoratorOverworldAPI.overworldConfig;
+
 	@Override
 	public void onInitialize() {
 
-		ChunkDecoratorOverworldAPI.randomFeatures.addFeatureSurface(new WorldFeatureFlowers(StardewBlocks.bush.id), 4);
+		ChunkDecoratorOverworldAPI.randomFeatures.addFeatureSurface(new WorldFeatureFlowers(StardewBlocks.bush.id), 12);
+
+		ChunkDecoratorOverworldAPI.randomFeatures.addFeatureSurface(new WorldFeaturePumpkin(), 12);
+
 
 	}
 }

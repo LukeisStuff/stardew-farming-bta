@@ -162,19 +162,19 @@ public class StardewItems {
 			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");
 
 		jarHoney = ItemHelper.createItem(MOD_ID,
-			new ItemJam("jar.honey", itemID("jarHoney"), 6, 64), "jarHoney.png");
+			new ItemJam("jar.honey", itemID("jarHoney"), 3, 64), "jarHoney.png");
 
 		cheese = ItemHelper.createItem(MOD_ID,
 			new ItemFood("food.cheese", itemID("cheese"), 4, false), "cheese.png");
 
 		foodStewVegetable = ItemHelper.createItem(MOD_ID,
-			new ItemSoup("food.stew.vegetable", itemID("foodStewVegetable"), 14), "vegetableSoup.png");
+			new ItemSoup("food.stew.vegetable", itemID("foodStewVegetable"), 12), "vegetableSoup.png");
 
 		foodStewCheese = ItemHelper.createItem(MOD_ID,
-			new ItemSoup("food.stew.cheese", itemID("foodStewCheese"), 16), "cheeseSoup.png");
+			new ItemSoup("food.stew.cheese", itemID("foodStewCheese"), 14), "cheeseSoup.png");
 
 		foodStewFruit = ItemHelper.createItem(MOD_ID,
-			new ItemSoup("food.stew.fruit", itemID("foodStewFruit"), 18), "fruitSoup.png");
+			new ItemSoup("food.stew.fruit", itemID("foodStewFruit"), 16), "fruitSoup.png");
 
 		foodCakeChocolate = ItemHelper.createItem(MOD_ID,
 			new ItemPlaceable("food.cake.chocolate", itemID("foodCakeChocolate"), StardewBlocks.cakeChocolate).setMaxStackSize(1), "foodCakeChocolate.png");

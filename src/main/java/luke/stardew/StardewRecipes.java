@@ -2,6 +2,7 @@ package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import turniplabs.halplibe.helper.RecipeBuilder;
@@ -15,11 +16,14 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initializeRecipes() {
 		RecipeBuilderShaped templateLogtoPlank = new RecipeBuilderShaped(MOD_ID, "X", "X", "X");
 
-		RecipeBuilderShaped templateItemtoBlock = new RecipeBuilderShaped(MOD_ID, "XXX", "XXX", "XXX");
+		RecipeBuilderShaped template9ItemtoBlock = new RecipeBuilderShaped(MOD_ID, "XXX", "XXX", "XXX");
+
+		RecipeBuilderShaped template4ItemtoBlock = new RecipeBuilderShaped(MOD_ID, "XX", "XX");
 
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("cookie");
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("bread");
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("cake");
+		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("golden_apple");
 
 		RecipeBuilder.Shaped(MOD_ID, "DCD")
 			.addInput('D', StardewItems.dough)
@@ -37,6 +41,28 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('S', Item.dustSugar)
 			.addInput('E', Item.eggChicken)
 			.create("cake", new ItemStack(Item.foodCake, 1));
+
+		RecipeBuilder.Shaped(MOD_ID, "GGG", "GAG", "GGG")
+			.addInput('G', Item.ingotGold)
+			.addInput('A', Item.foodApple)
+			.create("golden_apple", new ItemStack(Item.foodAppleGold, 1));
+
+		RecipeBuilder.Shaped(MOD_ID, "GGG", "GAG", "GGG")
+			.addInput('G', Block.blockGold)
+			.addInput('A', StardewBlocks.saplingApple)
+			.create("golden_apple_sapling", new ItemStack(StardewBlocks.saplingAppleGolden, 1));
+
+		template4ItemtoBlock
+			.addInput('X', StardewItems.jarHoney)
+			.create("block_of_honey", new ItemStack(StardewBlocks.blockHoney, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewBlocks.watermelon, 1))
+			.create("melon_to_melon_seeds", new ItemStack(StardewItems.seedsWatermelon, 4));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewBlocks.cauliflower, 1))
+			.create("cauliflower_to_cauliflower_seeds", new ItemStack(StardewItems.seedsCauliflower, 4));
 
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -79,6 +105,14 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('S', Item.dustSugar)
 			.addInput('E', Item.eggChicken)
 			.create("cake.chocolate", new ItemStack(StardewItems.foodCakeChocolate, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewBlocks.logApple, 1))
+			.create("apple_log_to_red_wooden_planks", new ItemStack(Block.planksOakPainted, 4, 14));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewBlocks.logAppleGolden, 1))
+			.create("golden_apple_log_to_yellow_wooden_planks", new ItemStack(Block.planksOakPainted, 4, 4));
 
 
 
