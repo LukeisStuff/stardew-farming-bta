@@ -6,10 +6,11 @@ import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.helper.recipeBuilders.RecipeBuilderShaped;
+import turniplabs.halplibe.util.RecipeEntrypoint;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class StardewRecipes {
+public class StardewRecipes implements RecipeEntrypoint {
 
 	public void initializeRecipes() {
 		RecipeBuilderShaped templateLogtoPlank = new RecipeBuilderShaped(MOD_ID, "X", "X", "X");
@@ -106,17 +107,16 @@ public class StardewRecipes {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 	}
 
+	@Override
+	public void onRecipesReady() {
+		initializeRecipes();
+	}
+
+	@Override
+	public void initNamespaces() {
+		RecipeBuilder.initNameSpace(MOD_ID);
+		RecipeBuilder.getRecipeNamespace(MOD_ID);
+	}
 }

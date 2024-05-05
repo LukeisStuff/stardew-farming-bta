@@ -18,16 +18,19 @@
 
   "environment": "*",
   "entrypoints": {
-    "main": [
-			"luke.stardew.StardewMod"
-    ],
-		"beforeGameStart": [
+		"main": [
 			"luke.stardew.StardewMod"
 		],
-		"afterGameStart": [
+		"beforeGameStart" : [
+			"luke.stardew.StardewMod"
+		],
+		"beforeClientStart" : [
 			"luke.stardew.StardewMod"
 		],
 		"recipesReady": [
+			"luke.stardew.StardewRecipes"
+		],
+		"afterGameStart" : [
 			"luke.stardew.StardewMod"
 		],
 		"terrain-api": [
