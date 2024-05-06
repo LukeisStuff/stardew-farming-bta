@@ -72,6 +72,7 @@ public class StardewBlocks {
 	public static Block crabTrapFilled;
 
 	public static Block cakeChocolate;
+	public static Block pie;
 
 	private void initializeBlockDetails() {
 
@@ -320,6 +321,16 @@ public class StardewBlocks {
 					return j > 0 && side == Side.WEST ? texCoordToIndex(texture[0], texture[1]) : this.atlasIndices[side.getId()];
 				}
 			});
+
+		pie = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
+			.setHardness(0.5f)
+			.setResistance(0.5f)
+			.setTopTexture("pumpkinPieTop.png")
+			.setBottomTexture("pumpkinPieBottom.png")
+			.setSideTextures("pumpkinPieSide.png")
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build(new BlockPie("pie", blockID("pie")));
 
 		initializeBlockDetails();
 	}

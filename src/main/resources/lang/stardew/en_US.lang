@@ -119,6 +119,12 @@ item.stardew.seeds.corn.desc=Corn seeds that can be planted.
 item.stardew.food.corn.name=Corn
 item.stardew.food.corn.desc=
 
+tile.stardew.pie.name=Pumpkin Pie
+tile.stardew.pie.desc=I just want to pie already.
+
+item.stardew.food.pie.name=Pumpkin Pie
+item.stardew.food.pie.desc=Pumpkin spiced custard filled dessert.
+
 
 tile.stardew.crops.grape.bottom.name=Grape Bottom Crop
 tile.stardew.crops.grape.bottom.desc=Bottom half of a grape stalk, plucked from the ground.

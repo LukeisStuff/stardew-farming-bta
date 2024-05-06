@@ -106,6 +106,14 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('E', Item.eggChicken)
 			.create("cake_chocolate", new ItemStack(StardewItems.foodCakeChocolate, 1));
 
+		RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
+			.addInput('M', (Item.bucketMilk))
+			.addInput('W', (StardewItems.dough))
+			.addInput('S', (Item.dustSugar))
+			.addInput('E', (Item.eggChicken))
+			.addInput('P', (Block.pumpkin))
+			.create("pumpkin_pie", new ItemStack(StardewItems.foodPie, 1));
+
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.logApple, 1))
 			.create("apple_log_to_red_wooden_planks", new ItemStack(Block.planksOakPainted, 4, 14));

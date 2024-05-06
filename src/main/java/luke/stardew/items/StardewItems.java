@@ -66,6 +66,7 @@ public class StardewItems {
 	public static Item foodStewFruit;
 
 	public static Item foodCakeChocolate;
+	public static Item foodPie;
 
 	public static Item wateringCan;
 	public static Item wateringCanSteel;
@@ -182,6 +183,9 @@ public class StardewItems {
 
 		foodCakeChocolate = ItemHelper.createItem(MOD_ID,
 			new ItemPlaceable("food.cake.chocolate", itemID("foodCakeChocolate"), StardewBlocks.cakeChocolate).setMaxStackSize(1), "foodCakeChocolate.png");
+
+		foodPie = ItemHelper.createItem(MOD_ID,
+			new ItemPlaceable("food.pie", itemID("foodPie"), StardewBlocks.pie), "piePumpkin.png").setMaxStackSize(1);
 
 
 		wateringCan = ItemHelper.createItem(MOD_ID,
