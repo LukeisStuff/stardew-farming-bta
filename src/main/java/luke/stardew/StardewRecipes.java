@@ -3,6 +3,7 @@ package luke.stardew;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import turniplabs.halplibe.helper.RecipeBuilder;
@@ -68,14 +69,8 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Item.jar, 1))
 			.addInput(new ItemStack(Item.dustSugar, 1))
-			.addInput(new ItemStack(StardewItems.strawberry, 1))
-			.create("jam_strawberry", new ItemStack(StardewItems.jamStrawberry, 1));
-
-		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(Item.jar, 1))
-			.addInput(new ItemStack(Item.dustSugar, 1))
-			.addInput(new ItemStack(StardewItems.blueberry, 1))
-			.create("jam_blueberry", new ItemStack(StardewItems.jamBlueberry, 1));
+			.addInput("stardew:item/fruits")
+			.create("jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.carrot, 1))
@@ -170,5 +165,6 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initNamespaces() {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
+		Registries.ITEM_GROUPS.register("stardew:item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, StardewItems.grapes));
 	}
 }

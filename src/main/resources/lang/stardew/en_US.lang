@@ -19,8 +19,6 @@ item.stardew.seeds.blueberry.desc=Blueberry seeds that can be planted.
 item.stardew.food.blueberry.name=Blueberry
 item.stardew.food.blueberry.desc=Small and sweet blue berry.
 
-item.stardew.food.jam.blueberry.name=Blueberry Jam
-item.stardew.food.jam.blueberry.desc=Jam made from a blueberry.
 
 tile.stardew.crops.pineapple.name=Pineapple Crops
 tile.stardew.crops.pineapple.desc=Pineapple bed, plucked from the ground.
@@ -62,9 +60,6 @@ item.stardew.seeds.strawberry.desc=Strawberry seeds that can be planted.
 
 item.stardew.food.strawberry.name=Strawberry
 item.stardew.food.strawberry.desc=Ripe red fruit budding with seeds and flavor.
-
-item.stardew.food.jam.strawberry.name=Strawberry Jam
-item.stardew.food.jam.strawberry.desc=Jam made from a strawberry.
 
 
 tile.stardew.crops.watermelon.name=Watermelon Crops
@@ -203,6 +198,9 @@ tile.stardew.block.honey.desc=Sticky and sweet, coagulated into a block.
 
 item.stardew.jar.honey.name=Honey Jar
 item.stardew.jar.honey.desc=Scooped up honey collected in a jar.
+
+item.stardew.jar.jam.name=Jam Jar
+item.stardew.jar.jam.desc=Mashed up fruit collected in a jar.
 
 tile.stardew.cake.chocolate.name=Chocolate Cake
 tile.stardew.cake.chocolate.desc=Cake it easy.
