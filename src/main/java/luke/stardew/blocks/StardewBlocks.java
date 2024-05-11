@@ -292,18 +292,18 @@ public class StardewBlocks {
 			.build(new BlockHoney("block.honey", blockID("blockHoney"), false));
 
 
-		crabTrapIdle = metal
-			.setTopTexture("crabTrapTop.png")
-			.setSideTextures("crabTrapSide.png")
-			.setBottomTexture("crabTrapBottom.png")
-			.build(new BlockCrabTrap("crabtrap.idle", blockID("crabTrapIdle"), false));
-
-		crabTrapFilled = metal
-			.setTopTexture("crabTrapTop.png")
-			.setSideTextures("crabTrapSideFilled.png")
-			.setBottomTexture("crabTrapBottom.png")
-			.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build(new BlockCrabTrap("crabtrap.Filled", blockID("crabTrapFilled"), true));
+//		crabTrapIdle = metal
+//			.setTopTexture("crabTrapTop.png")
+//			.setSideTextures("crabTrapSide.png")
+//			.setBottomTexture("crabTrapBottom.png")
+//			.build(new BlockCrabTrap("crabtrap.idle", blockID("crabTrapIdle"), false));
+//
+//		crabTrapFilled = metal
+//			.setTopTexture("crabTrapTop.png")
+//			.setSideTextures("crabTrapSideFilled.png")
+//			.setBottomTexture("crabTrapBottom.png")
+//			.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+//			.build(new BlockCrabTrap("crabtrap.Filled", blockID("crabTrapFilled"), true));
 
 
 		cakeChocolate = new BlockBuilder(MOD_ID)

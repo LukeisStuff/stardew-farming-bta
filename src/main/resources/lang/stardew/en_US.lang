@@ -7,7 +7,7 @@ item.stardew.seeds.carrot.name=Carrot Seeds
 item.stardew.seeds.carrot.desc=Carrot seeds that can be planted.
 
 item.stardew.food.carrot.name=Carrot
-item.stardew.food.carrot.desc=
+item.stardew.food.carrot.desc=Orange vegetable known for being long and crunchy.
 
 
 tile.stardew.crops.blueberry.name=Blueberry Crops
@@ -17,10 +17,10 @@ item.stardew.seeds.blueberry.name=Blueberry Seeds
 item.stardew.seeds.blueberry.desc=Blueberry seeds that can be planted.
 
 item.stardew.food.blueberry.name=Blueberry
-item.stardew.food.blueberry.desc=
+item.stardew.food.blueberry.desc=Small and sweet blue berry.
 
 item.stardew.food.jam.blueberry.name=Blueberry Jam
-item.stardew.food.jam.blueberry.desc=
+item.stardew.food.jam.blueberry.desc=Jam made from a blueberry.
 
 tile.stardew.crops.pineapple.name=Pineapple Crops
 tile.stardew.crops.pineapple.desc=Pineapple bed, plucked from the ground.
@@ -29,7 +29,7 @@ item.stardew.seeds.pineapple.name=Pineapple Seeds
 item.stardew.seeds.pineapple.desc=Pineapple seeds that can be planted.
 
 item.stardew.food.pineapple.name=Pineapple
-item.stardew.food.pineapple.desc=
+item.stardew.food.pineapple.desc=Cut it into chunks for a delicious treat.
 
 
 Summer Crops=
@@ -41,7 +41,7 @@ item.stardew.seeds.tomato.name=Tomato Seeds
 item.stardew.seeds.tomato.desc=Tomato seeds that can be planted.
 
 item.stardew.food.tomato.name=Tomato
-item.stardew.food.tomato.desc=
+item.stardew.food.tomato.desc=Its not a vegetable! Its a fruit!
 
 
 tile.stardew.crops.potato.name=Potato Crops
@@ -51,7 +51,7 @@ item.stardew.seeds.potato.name=Potato Seeds
 item.stardew.seeds.potato.desc=Potato seeds that can be planted.
 
 item.stardew.food.potato.name=Potato
-item.stardew.food.potato.desc=
+item.stardew.food.potato.desc=Brown lumpy vegetable covered in dirt.
 
 
 tile.stardew.crops.strawberry.name=Strawberry Crops
@@ -61,10 +61,10 @@ item.stardew.seeds.strawberry.name=Strawberry Seeds
 item.stardew.seeds.strawberry.desc=Strawberry seeds that can be planted.
 
 item.stardew.food.strawberry.name=Strawberry
-item.stardew.food.strawberry.desc=
+item.stardew.food.strawberry.desc=Ripe red fruit budding with seeds and flavor.
 
 item.stardew.food.jam.strawberry.name=Strawberry Jam
-item.stardew.food.jam.strawberry.desc=
+item.stardew.food.jam.strawberry.desc=Jam made from a strawberry.
 
 
 tile.stardew.crops.watermelon.name=Watermelon Crops
@@ -117,7 +117,7 @@ item.stardew.seeds.corn.name=Corn Seeds
 item.stardew.seeds.corn.desc=Corn seeds that can be planted.
 
 item.stardew.food.corn.name=Corn
-item.stardew.food.corn.desc=
+item.stardew.food.corn.desc=Also known as maize!
 
 tile.stardew.pie.name=Pumpkin Pie
 tile.stardew.pie.desc=I just want to pie already.
@@ -136,7 +136,7 @@ item.stardew.seeds.grape.name=Grape Seeds
 item.stardew.seeds.grape.desc=Grape seeds that can be planted.
 
 item.stardew.food.grape.name=Grapes
-item.stardew.food.grape.desc=
+item.stardew.food.grape.desc=Bundle of purple berries loaded with juice.
 
 
 
