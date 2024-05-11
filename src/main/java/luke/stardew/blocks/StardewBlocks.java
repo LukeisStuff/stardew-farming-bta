@@ -263,7 +263,7 @@ public class StardewBlocks {
 			.setTextures("bushSummer.png")
 			.setTextures("bushFall.png")
 			.setTextures("bushWinter.png")
-			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR)
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
 			.setTicking(true)
 			.setTickOnLoad()
 			.build(new BlockBush("bush", blockID("bush")));

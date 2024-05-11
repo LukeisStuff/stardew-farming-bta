@@ -86,48 +86,40 @@ public class BlockBush extends BlockFlower {
 			case PICK_BLOCK:
 			case SILK_TOUCH:
 				return new ItemStack[]{new ItemStack(this)};
-			default: {
+			default:
 				if (meta == 0) {
 					int random = (world.rand.nextInt(3));
 					if (random == 0) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsCarrot)};
-					}
-					else if (random == 1) {
+					} else if (random == 1) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsBlueberry)};
-					}
-					else
+					} else
 						return new ItemStack[]{new ItemStack(StardewItems.seedsPineapple)};
-					}
+				}
 				if (meta == 1) {
 					int random = (world.rand.nextInt(4));
 					if (random == 0) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsTomato)};
-					}
-					else if (random == 1) {
+					} else if (random == 1) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsPotato)};
-					}
-					else if (random == 2) {
+					} else if (random == 2) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsStrawberry)};
-					}
-					else
+					} else
 						return new ItemStack[]{new ItemStack(StardewItems.seedsWatermelon)};
 				}
 				if (meta == 2) {
 					if (world.rand.nextInt(2) == 0) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsCorn)};
-					}
-					else
+					} else
 						return new ItemStack[]{new ItemStack(StardewItems.seedsGrapes)};
 				}
 				if (meta == 3) {
 					if (world.rand.nextInt(2) == 0) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsCauliflower)};
-					}
-					else
+					} else
 						return new ItemStack[]{new ItemStack(StardewItems.seedsCranberries)};
 				}
 				return null;
-			}
 		}
 	}
 
