@@ -53,6 +53,11 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('A', StardewBlocks.saplingApple)
 			.create("golden_apple_sapling", new ItemStack(StardewBlocks.saplingAppleGolden, 1));
 
+		RecipeBuilder.Shaped(MOD_ID, "PPP", "SSS", "PPP")
+			.addInput('P', "minecraft:planks")
+			.addInput('S', "stardew:block/flower")
+			.create("beehive", new ItemStack(StardewBlocks.beehiveIdle, 1));
+
 		template4ItemtoBlock
 			.addInput('X', StardewItems.jarHoney)
 			.create("block_of_honey", new ItemStack(StardewBlocks.blockHoney, 1));
@@ -166,5 +171,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
 		Registries.ITEM_GROUPS.register("stardew:item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, StardewItems.grapes));
+		Registries.ITEM_GROUPS.register("stardew:block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
+
 	}
 }
