@@ -187,8 +187,11 @@ item.stardew.food.cake.chocolate.desc=The cake is a lie.
 tile.stardew.bush.name=Bush
 tile.stardew.bush.desc=A wild bush that drops seeds based on the season.
 
-tile.stardew.beehive.idle.name=Beehive
-tile.stardew.beehive.idle.desc=A man-made nest for bees to create a sweet and sticky nectar.
+tile.stardew.beehive.name=Beehive
+tile.stardew.beehive.desc=A man-made nest for bees to create a sweet and sticky nectar.
+
+tile.stardew.beehive.idle.name=Active Beehive
+tile.stardew.beehive.idle.desc=A man-made nest for bees creating sweet and sticky nectar.
 
 tile.stardew.beehive.honey.name=Loaded Beehive
 tile.stardew.beehive.honey.desc=A man-made nest for bees that created a sweet and sticky nectar.
@@ -199,8 +202,8 @@ tile.stardew.block.honey.desc=Sticky and sweet, coagulated into a block.
 item.stardew.jar.honey.name=Honey Jar
 item.stardew.jar.honey.desc=Scooped up honey collected in a jar.
 
-item.stardew.jar.jam.name=Jam Jar
-item.stardew.jar.jam.desc=Mashed up fruit collected in a jar.
+item.stardew.food.jam.name=Jam Jar
+item.stardew.food.jam.desc=Mashed up fruit collected in a jar.
 
 tile.stardew.cake.chocolate.name=Chocolate Cake
 tile.stardew.cake.chocolate.desc=Cake it easy.

@@ -74,6 +74,11 @@ public class StardewBlocks {
 	public static Block cakeChocolate;
 	public static Block pie;
 
+	public static Block beehive;
+
+	public static Block candle;
+	public static Block candleActive;
+
 	private void initializeBlockDetails() {
 
 	}
@@ -273,14 +278,15 @@ public class StardewBlocks {
 			.setTopBottomTexture("beehiveTop.png")
 			.setSideTextures("beehiveSide.png")
 			.setNorthTexture("beehiveFront.png")
-			.build(new BlockBeehive("beehive.idle", blockID("beehiveIdle"), false));
+			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build(new BlockBeehiveActive("beehive.idle", blockID("beehiveIdle"), false));
 
 		beehiveHoney = wood
 			.setTopBottomTexture("beehiveTop.png")
 			.setSideTextures("beehiveSide.png")
 			.setNorthTexture("beehiveFrontHoney.png")
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build(new BlockBeehive("beehive.honey", blockID("beehiveHoney"), true));
+			.build(new BlockBeehiveActive("beehive.honey", blockID("beehiveHoney"), true));
 
 		blockHoney = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.5f))
@@ -290,20 +296,6 @@ public class StardewBlocks {
 			.setTextures("blockHoney.png")
 			.setTags(BlockTags.MINEABLE_BY_AXE)
 			.build(new BlockHoney("block.honey", blockID("blockHoney"), false));
-
-
-//		crabTrapIdle = metal
-//			.setTopTexture("crabTrapTop.png")
-//			.setSideTextures("crabTrapSide.png")
-//			.setBottomTexture("crabTrapBottom.png")
-//			.build(new BlockCrabTrap("crabtrap.idle", blockID("crabTrapIdle"), false));
-//
-//		crabTrapFilled = metal
-//			.setTopTexture("crabTrapTop.png")
-//			.setSideTextures("crabTrapSideFilled.png")
-//			.setBottomTexture("crabTrapBottom.png")
-//			.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-//			.build(new BlockCrabTrap("crabtrap.Filled", blockID("crabTrapFilled"), true));
 
 
 		cakeChocolate = new BlockBuilder(MOD_ID)
@@ -331,6 +323,34 @@ public class StardewBlocks {
 			.setSideTextures("pumpkinPieSide.png")
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build(new BlockPie("pie", blockID("pie")));
+
+		beehive = wood
+			.setTopBottomTexture("beehiveTop.png")
+			.setSideTextures("beehiveSide.png")
+			.setNorthTexture("beehiveFront.png")
+			.build(new BlockBeehive("beehive", blockID("beehive")));
+
+		candle = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
+			.setHardness(0.0f)
+			.setResistance(0.0f)
+			.setLuminance(14)
+			.setVisualUpdateOnMetadata()
+			.setBlockModel(new BlockModelRenderBlocks(25))
+			.setTextures("candle.png")
+			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
+			.build(new BlockCandle("candle", blockID("candle"), false));
+
+		candleActive = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
+			.setHardness(0.0f)
+			.setResistance(0.0f)
+			.setLuminance(14)
+			.setVisualUpdateOnMetadata()
+			.setBlockModel(new BlockModelRenderBlocks(25))
+			.setTextures("candle.png")
+			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
+			.build(new BlockCandle("candle.active", blockID("candleActive"), true));
 
 		initializeBlockDetails();
 	}

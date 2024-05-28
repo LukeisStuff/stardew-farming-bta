@@ -56,7 +56,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Shaped(MOD_ID, "PPP", "SSS", "PPP")
 			.addInput('P', "minecraft:planks")
 			.addInput('S', "stardew:block/flower")
-			.create("beehive", new ItemStack(StardewBlocks.beehiveIdle, 1));
+			.create("beehive", new ItemStack(StardewBlocks.beehive, 1));
 
 		template4ItemtoBlock
 			.addInput('X', StardewItems.jarHoney)
