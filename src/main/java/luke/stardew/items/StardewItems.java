@@ -1,11 +1,12 @@
 package luke.stardew.items;
 
 import luke.stardew.StardewConfig;
+import luke.stardew.StardewMod;
 import luke.stardew.blocks.StardewBlocks;
-import net.minecraft.core.block.Block;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import turniplabs.halplibe.helper.ItemHelper;
+import turniplabs.halplibe.helper.TextureHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
@@ -69,6 +70,8 @@ public class StardewItems {
 
 	public static Item wateringCan;
 	public static Item wateringCanSteel;
+
+	public static Item toolFishingRodIron;
 
 
 
@@ -190,6 +193,9 @@ public class StardewItems {
 		wateringCanSteel = ItemHelper.createItem(MOD_ID,
 			new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel), "wateringcanSteel.png");
 
+		toolFishingRodIron = ItemHelper.createItem(MOD_ID,
+			new ItemToolFishingRodTiered("tool.fishingRod.iron", itemID("toolFishingRodIron"), ToolMaterial.iron), "fishingrod_iron.png");
+		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_iron_active.png");
 
 	}
 

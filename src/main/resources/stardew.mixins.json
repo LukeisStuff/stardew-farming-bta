@@ -4,6 +4,8 @@
   "package": "luke.stardew.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "EntityBobberMixin",
+    "EntityPlayerMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"
   ],
