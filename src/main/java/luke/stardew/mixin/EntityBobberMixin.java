@@ -1,6 +1,7 @@
 package luke.stardew.mixin;
 
 import com.mojang.nbt.CompoundTag;
+import luke.stardew.items.ItemToolFishingRodTiered;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.HitResult;
 import net.minecraft.core.achievement.stat.StatList;
@@ -66,7 +67,8 @@ public class EntityBobberMixin extends Entity {
 
 	/**
 	 * @author DundiGundi
-	 * @reason modifying if statement that removes bobber when not fishingrod held to detect for the tiered fishing rod too (around line 106)
+	 * @reason modifying if statement that removes bobber when not fishingrod held to detect for the tiered fishing rod too (around line 97)
+	 * 			and decreasing catchTime based on material
 	 */
 	@Overwrite
 	public void tick() {
@@ -93,7 +95,7 @@ public class EntityBobberMixin extends Entity {
 			}
 			if (!this.world.isClientSide) {
 				ItemStack itemstack = this.angler.getCurrentEquippedItem();
-				if (this.angler.removed || !this.angler.isAlive() || itemstack == null || (itemstack.getItem() != Item.toolFishingrod  && itemstack.getItem() != StardewItems.toolFishingRodIron) || this.distanceToSqr(this.angler) > 1024.0) {
+				if (this.angler.removed || !this.angler.isAlive() || itemstack == null || (itemstack.getItem() != Item.toolFishingrod  && itemstack.getItem().getClass() != ItemToolFishingRodTiered.class) || this.distanceToSqr(this.angler) > 1024.0) {
 					this.remove();
 					this.angler.fishEntity = null;
 					return;
@@ -199,13 +201,17 @@ public class EntityBobberMixin extends Entity {
 				int catchRate = 500;
 				int rainRate = 0;
 				int algaeRate = 0;
+				int materialRate = 0;
 				if (this.world.canBlockBeRainedOn(MathHelper.floor_double(this.x), MathHelper.floor_double(this.y) + 1, MathHelper.floor_double(this.z))) {
 					rainRate = 200;
 				}
 				if (this.world.getBlockId(MathHelper.floor_double(this.x), MathHelper.floor_double(this.y) + 1, MathHelper.floor_double(this.z)) == Block.algae.id) {
 					algaeRate = 100;
 				}
-				if (this.random.nextInt(catchRate = catchRate - rainRate - algaeRate) == 0) {
+				if (angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingRodGold.id){
+					materialRate = 100;
+				}
+				if (this.random.nextInt(catchRate = catchRate - rainRate - algaeRate - materialRate) == 0) {
 					double zOff;
 					this.ticksCatchable = this.random.nextInt(30) + 10;
 					this.yd -= (double)0.2f;
@@ -263,7 +269,7 @@ public class EntityBobberMixin extends Entity {
 		} else if (this.ticksCatchable > 0) {
 			EntityItem entityitem = null;
 			if (angler.getCurrentEquippedItem().getItem() == StardewItems.toolFishingRodIron){
-				entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(Item.sign));
+				entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(Item.foodFishRaw));
 			}else {
 				entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(Item.foodFishRaw));
 			}

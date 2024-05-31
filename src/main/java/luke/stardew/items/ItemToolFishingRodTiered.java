@@ -8,11 +8,14 @@ import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.world.World;
 
 public class ItemToolFishingRodTiered extends Item {
+
 	public ItemToolFishingRodTiered(String name, int id, ToolMaterial material) {
 		super(name, id);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(material.getDurability());
 	}
+
+
 
 	@Override
 	public boolean isFull3D() {
