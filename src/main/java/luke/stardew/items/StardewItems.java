@@ -16,7 +16,13 @@ public class StardewItems {
 		return StardewConfig.cfg.getInt("Item IDs." + itemName);
 	}
 
-
+	//Fishes
+	public static Item fishSalmonRaw;
+	public static Item fishSalmonCooked;
+	public static Item fishBassRaw;
+	public static Item fishBassCooked;
+	public static Item fishSnapperRaw;
+	public static Item fishSnapperCooked;
 
 	//Spring Crops
 	public static Item seedsCarrot;
@@ -82,6 +88,7 @@ public class StardewItems {
 
 
 	public void initilizeItems() {
+
 		seedsTomato = ItemHelper.createItem(MOD_ID,
 			new ItemSeeds("seeds.tomato", itemID("seedsTomato"), StardewBlocks.cropsTomato), "seedsTomato.png");
 
@@ -213,6 +220,23 @@ public class StardewItems {
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_diamond_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_steel_active.png");
 
+		fishSalmonRaw = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.salmon.raw", itemID("fishSalmonRaw"), 2, false, 4), "salmon.png");
+
+		fishSalmonCooked = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.salmon.cooked", itemID("fishSalmonCooked"), 5, false, 4), "salmon_cooked.png");
+
+		fishBassRaw = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.bass.raw", itemID("fishBassRaw"), 2, false, 4), "bass.png");
+
+		fishBassCooked = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.bass.cooked", itemID("fishBassCooked"), 5, false, 4), "bass_cooked.png");
+
+		fishSnapperRaw = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.snapper.raw", itemID("fishSnapperRaw"), 2, false, 4), "snapper.png");
+
+		fishSnapperCooked = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.snapper.cooked", itemID("fishSnapperCooked"), 5, false, 4), "snapper_cooked.png");
 	}
 
 
