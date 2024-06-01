@@ -1,6 +1,7 @@
 package luke.stardew.mixin;
 
 import com.mojang.nbt.CompoundTag;
+import luke.stardew.entities.EntityItemFireResistant;
 import luke.stardew.items.ItemToolFishingRodTiered;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.HitResult;
@@ -21,9 +22,13 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.biome.Biomes;
 import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,14 +70,18 @@ public class EntityBobberMixin extends Entity {
 	@Shadow
 	private double field_6383_q;
 
+	@Unique
+	private boolean isInLava = false;
+
 	public EntityBobberMixin(World world) {
 		super(world);
 	}
 
 	/**
 	 * @author DundiGundi
-	 * @reason modifying if statement that removes bobber when not fishingrod held to detect for the tiered fishing rod too (around line 97)
+	 * @reason modifying if statement that removes bobber when not fishingrod held to detect for the tiered fishing rod too
 	 * 			and decreasing catchTime based on material
+	 * 			and making lava also a possible fishing place
 	 */
 	@Overwrite
 	public void tick() {
@@ -195,7 +204,12 @@ public class EntityBobberMixin extends Entity {
 			double d8 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double)l / (double)k - 0.125 + 0.125;
 			double d9 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double)(l + 1) / (double)k - 0.125 + 0.125;
 			AABB axisalignedbb1 = AABB.getBoundingBoxFromPool(this.bb.minX, d8, this.bb.minZ, this.bb.maxX, d9, this.bb.maxZ);
-			if (!this.world.isAABBInMaterial(axisalignedbb1, Material.water)) continue;
+			if (this.world.isAABBInMaterial(axisalignedbb1, Material.lava)) {
+				isInLava = true;
+			}else {
+				isInLava = false;
+			}
+			if (!this.world.isAABBInMaterial(axisalignedbb1, Material.water) && !this.world.isAABBInMaterial(axisalignedbb1, Material.lava)) continue;
 			d5 += 1.0 / (double)k;
 		}
 		if (d5 > 0.0) {
@@ -271,18 +285,32 @@ public class EntityBobberMixin extends Entity {
 			this.bobber.zd += d4 * d8;
 			byte0 = 3;
 		} else if (this.ticksCatchable > 0) {
-			EntityItem entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(getCatchableFish()));
-			double d1 = this.angler.x - this.x;
-			double d3 = this.angler.y - this.y;
-			double d5 = this.angler.z - this.z;
-			double d7 = MathHelper.sqrt_double(d1 * d1 + d3 * d3 + d5 * d5);
-			double d9 = 0.1;
-			entityitem.xd = d1 * d9;
-			entityitem.yd = d3 * d9 + (double)MathHelper.sqrt_double(d7) * 0.08;
-			entityitem.zd = d5 * d9;
-			this.world.entityJoinedWorld(entityitem);
+			if (isInLava){
+				EntityItemFireResistant entityitem = new EntityItemFireResistant(this.world, this.x, this.y, this.z, new ItemStack(getCatchableFish()));
+				double d1 = this.angler.x - this.x;
+				double d3 = this.angler.y - this.y;
+				double d5 = this.angler.z - this.z;
+				double d7 = MathHelper.sqrt_double(d1 * d1 + d3 * d3 + d5 * d5);
+				double d9 = 0.1;
+				entityitem.xd = d1 * d9;
+				entityitem.yd = d3 * d9 + (double)MathHelper.sqrt_double(d7) * 0.08;
+				entityitem.zd = d5 * d9;
+				this.world.entityJoinedWorld(entityitem);
+			}else {
+				EntityItem entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(getCatchableFish()));
+				double d1 = this.angler.x - this.x;
+				double d3 = this.angler.y - this.y;
+				double d5 = this.angler.z - this.z;
+				double d7 = MathHelper.sqrt_double(d1 * d1 + d3 * d3 + d5 * d5);
+				double d9 = 0.1;
+				entityitem.xd = d1 * d9;
+				entityitem.yd = d3 * d9 + (double)MathHelper.sqrt_double(d7) * 0.08;
+				entityitem.zd = d5 * d9;
+				this.world.entityJoinedWorld(entityitem);
+			}
 			this.angler.addStat(StatList.fishCaughtStat, 1);
 			byte0 = 1;
+
 		}
 		if (this.inGround) {
 			byte0 = 2;
@@ -295,19 +323,23 @@ public class EntityBobberMixin extends Entity {
 	private Item getCatchableFish() {
 		Season season = world.seasonManager.getCurrentSeason();
 
-		if (season == Seasons.OVERWORLD_SPRING ) {
-			return StardewItems.fishBassRaw;
+		if (isInLava) {
+			return StardewItems.fishLavaEel;
+		}else {
+			if (season == Seasons.OVERWORLD_SPRING ) {
+				return StardewItems.fishBassRaw;
+			}
+			else if (season == Seasons.OVERWORLD_SUMMER ) {
+				return StardewItems.fishSnapperRaw;
+			}
+			else if (season == Seasons.OVERWORLD_FALL ) {
+				return Item.foodFishRaw;
+			}
+			else if (season == Seasons.OVERWORLD_WINTER ) {
+				return StardewItems.fishSalmonRaw;
+			}
+			else return Item.bone;
 		}
-		else if (season == Seasons.OVERWORLD_SUMMER ) {
-			return StardewItems.fishSnapperRaw;
-		}
-		else if (season == Seasons.OVERWORLD_FALL ) {
-			return Item.foodFishRaw;
-		}
-		else if (season == Seasons.OVERWORLD_WINTER ) {
-			return StardewItems.fishSalmonRaw;
-		}
-		else return Item.bone;
 	}
 
 	@Override
