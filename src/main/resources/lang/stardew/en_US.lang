@@ -213,3 +213,33 @@ item.stardew.tool.wateringcan.desc=A handy tool for watering crops and soaking b
 
 item.stardew.tool.wateringcan.steel.name=Steel Watering Can
 item.stardew.tool.wateringcan.steel.desc=A longer lasting variant of regular watering cans.
+
+item.stardew.tool.fishingrod.iron.name=Iron Fishing Rod
+item.stardew.tool.fishingrod.iron.desc=Cast a line and catch the big one!
+
+item.stardew.tool.fishingrod.gold.name=Gold Fishing Rod
+item.stardew.tool.fishingrod.gold.desc=Cast a line and catch the big one!
+
+item.stardew.tool.fishingrod.diamond.name=Diamond Fishing Rod
+item.stardew.tool.fishingrod.diamond.desc=Cast a line and catch the big one!
+
+item.stardew.tool.fishingrod.steel.name=Steel Fishing Rod
+item.stardew.tool.fishingrod.steel.desc=Cast a line and catch the big one!
+
+item.stardew.fish.salmon.raw.name=Raw Salmon
+item.stardew.fish.salmon.raw.desc=Can be cooked to produce a tasty meal.
+
+item.stardew.fish.salmon.cooked.name=Cooked Salmon
+item.stardew.fish.salmon.cooked.desc=Delicious fish!
+
+item.stardew.fish.bass.raw.name=Raw Bass
+item.stardew.fish.bass.raw.desc=Can be cooked to produce a tasty meal.
+
+item.stardew.fish.bass.cooked.name=Cooked Bass
+item.stardew.fish.bass.cooked.desc=Delicious fish!
+
+item.stardew.fish.snapper.raw.name=Raw Snapper
+item.stardew.fish.snapper.raw.desc=Can be cooked to produce a tasty meal.
+
+item.stardew.fish.snapper.cooked.name=Cooked Snapper
+item.stardew.fish.snapper.cooked.desc=Delicious fish!

@@ -16,7 +16,13 @@ public class StardewItems {
 		return StardewConfig.cfg.getInt("Item IDs." + itemName);
 	}
 
-
+	//Fishes
+	public static Item fishSalmonRaw;
+	public static Item fishSalmonCooked;
+	public static Item fishBassRaw;
+	public static Item fishBassCooked;
+	public static Item fishSnapperRaw;
+	public static Item fishSnapperCooked;
 
 	//Spring Crops
 	public static Item seedsCarrot;
@@ -82,6 +88,7 @@ public class StardewItems {
 
 
 	public void initilizeItems() {
+
 		seedsTomato = ItemHelper.createItem(MOD_ID,
 			new ItemSeeds("seeds.tomato", itemID("seedsTomato"), StardewBlocks.cropsTomato), "seedsTomato.png");
 
@@ -197,22 +204,39 @@ public class StardewItems {
 			new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel), "wateringcanSteel.png");
 
 		toolFishingRodIron = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.iron", itemID("toolFishingRodIron"), ToolMaterial.iron), "fishingrod_iron.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingRodIron"), ToolMaterial.iron), "fishingrod_iron.png");
 
 		toolFishingRodGold = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.gold", itemID("toolFishingRodGold"), ToolMaterial.gold), "fishingrod_gold.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingRodGold"), ToolMaterial.gold), "fishingrod_gold.png");
 
 		toolFishingRodDiamond = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.diamond", itemID("toolFishingRodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingRodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
 
 		toolFishingRodSteel = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.steel", itemID("toolFishingRodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingRodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
 
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_iron_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_gold_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_diamond_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_steel_active.png");
 
+		fishSalmonRaw = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.salmon.raw", itemID("fishSalmonRaw"), 2, false, 4), "salmon.png");
+
+		fishSalmonCooked = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.salmon.cooked", itemID("fishSalmonCooked"), 5, false, 4), "salmon_cooked.png");
+
+		fishBassRaw = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.bass.raw", itemID("fishBassRaw"), 2, false, 4), "bass.png");
+
+		fishBassCooked = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.bass.cooked", itemID("fishBassCooked"), 5, false, 4), "bass_cooked.png");
+
+		fishSnapperRaw = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.snapper.raw", itemID("fishSnapperRaw"), 2, false, 4), "snapper.png");
+
+		fishSnapperCooked = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.snapper.cooked", itemID("fishSnapperCooked"), 5, false, 4), "snapper_cooked.png");
 	}
 
 

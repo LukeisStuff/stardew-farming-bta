@@ -18,10 +18,14 @@ import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.util.phys.Vec3d;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.biome.Biomes;
+import net.minecraft.core.world.season.Season;
+import net.minecraft.core.world.season.Seasons;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(value = EntityBobber.class, remap = false)
@@ -267,12 +271,7 @@ public class EntityBobberMixin extends Entity {
 			this.bobber.zd += d4 * d8;
 			byte0 = 3;
 		} else if (this.ticksCatchable > 0) {
-			EntityItem entityitem = null;
-			if (angler.getCurrentEquippedItem().getItem() == StardewItems.toolFishingRodIron){
-				entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(Item.foodFishRaw));
-			}else {
-				entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(Item.foodFishRaw));
-			}
+			EntityItem entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(getCatchableFish()));
 			double d1 = this.angler.x - this.x;
 			double d3 = this.angler.y - this.y;
 			double d5 = this.angler.z - this.z;
@@ -291,6 +290,24 @@ public class EntityBobberMixin extends Entity {
 		this.remove();
 		this.angler.fishEntity = null;
 		return byte0;
+	}
+
+	private Item getCatchableFish() {
+		Season season = world.seasonManager.getCurrentSeason();
+
+		if (season == Seasons.OVERWORLD_SPRING ) {
+			return StardewItems.fishBassRaw;
+		}
+		else if (season == Seasons.OVERWORLD_SUMMER ) {
+			return StardewItems.fishSnapperRaw;
+		}
+		else if (season == Seasons.OVERWORLD_FALL ) {
+			return Item.foodFishRaw;
+		}
+		else if (season == Seasons.OVERWORLD_WINTER ) {
+			return StardewItems.fishSalmonRaw;
+		}
+		else return Item.bone;
 	}
 
 	@Override
