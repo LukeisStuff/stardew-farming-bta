@@ -204,16 +204,16 @@ public class StardewItems {
 			new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel), "wateringcanSteel.png");
 
 		toolFishingRodIron = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.iron", itemID("toolFishingRodIron"), ToolMaterial.iron), "fishingrod_iron.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingRodIron"), ToolMaterial.iron), "fishingrod_iron.png");
 
 		toolFishingRodGold = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.gold", itemID("toolFishingRodGold"), ToolMaterial.gold), "fishingrod_gold.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingRodGold"), ToolMaterial.gold), "fishingrod_gold.png");
 
 		toolFishingRodDiamond = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.diamond", itemID("toolFishingRodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingRodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
 
 		toolFishingRodSteel = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingRod.steel", itemID("toolFishingRodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingRodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
 
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_iron_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_gold_active.png");
