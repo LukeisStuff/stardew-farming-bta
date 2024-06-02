@@ -19,18 +19,13 @@ import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.util.phys.Vec3d;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.biome.Biomes;
 import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(value = EntityBobber.class, remap = false)
@@ -130,9 +125,9 @@ public class EntityBobberMixin extends Entity {
 				int i = this.world.getBlockId(this.xTile, this.yTile, this.zTile);
 				if (i != this.inTile) {
 					this.inGround = false;
-					this.xd *= (double)(this.random.nextFloat() * 0.2f);
-					this.yd *= (double)(this.random.nextFloat() * 0.2f);
-					this.zd *= (double)(this.random.nextFloat() * 0.2f);
+					this.xd *= this.random.nextFloat() * 0.2f;
+					this.yd *= this.random.nextFloat() * 0.2f;
+					this.zd *= this.random.nextFloat() * 0.2f;
 					this.ticksInGround = 0;
 					this.ticksInAir = 0;
 					break block34;
@@ -157,16 +152,15 @@ public class EntityBobberMixin extends Entity {
 		Entity entity = null;
 		List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.bb.addCoord(this.xd, this.yd, this.zd).expand(1.0, 1.0, 1.0));
 		double d3 = 0.0;
-		for (int j = 0; j < list.size(); ++j) {
-			double d6;
-			float f2;
-			AABB axisalignedbb;
+        for (Entity value : list) {
+            double d6;
+            float f2;
 			HitResult movingobjectposition1;
-			Entity entity1 = list.get(j);
-			if (!entity1.isPickable() || entity1 == this.angler && this.ticksInAir < 5 || (movingobjectposition1 = (axisalignedbb = entity1.bb.expand(f2 = 0.3f, f2, f2)).func_1169_a(vec3d, vec3d1)) == null || !((d6 = vec3d.distanceTo(movingobjectposition1.location)) < d3) && d3 != 0.0) continue;
-			entity = entity1;
-			d3 = d6;
-		}
+            if (!value.isPickable() || value == this.angler && this.ticksInAir < 5 || (movingobjectposition1 = value.bb.expand(f2 = 0.3f, f2, f2).func_1169_a(vec3d, vec3d1)) == null || !((d6 = vec3d.distanceTo(movingobjectposition1.location)) < d3) && d3 != 0.0)
+                continue;
+            entity = value;
+            d3 = d6;
+        }
 		if (entity != null) {
 			movingobjectposition = new HitResult(entity);
 		}
@@ -204,11 +198,7 @@ public class EntityBobberMixin extends Entity {
 			double d8 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double)l / (double)k - 0.125 + 0.125;
 			double d9 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double)(l + 1) / (double)k - 0.125 + 0.125;
 			AABB axisalignedbb1 = AABB.getBoundingBoxFromPool(this.bb.minX, d8, this.bb.minZ, this.bb.maxX, d9, this.bb.maxZ);
-			if (this.world.isAABBInMaterial(axisalignedbb1, Material.lava)) {
-				isInLava = true;
-			}else {
-				isInLava = false;
-			}
+            isInLava = this.world.isAABBInMaterial(axisalignedbb1, Material.lava);
 			if (!this.world.isAABBInMaterial(axisalignedbb1, Material.water) && !this.world.isAABBInMaterial(axisalignedbb1, Material.lava)) continue;
 			d5 += 1.0 / (double)k;
 		}
@@ -226,13 +216,13 @@ public class EntityBobberMixin extends Entity {
 				if (this.world.getBlockId(MathHelper.floor_double(this.x), MathHelper.floor_double(this.y) + 1, MathHelper.floor_double(this.z)) == Block.algae.id) {
 					algaeRate = 100;
 				}
-				if (angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingRodGold.id){
+				if (angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodDiamond.id){
 					materialRate = 100;
 				}
-				if (this.random.nextInt(catchRate = catchRate - rainRate - algaeRate - materialRate) == 0) {
+				if (this.random.nextInt(catchRate - rainRate - algaeRate - materialRate) == 0) {
 					double zOff;
 					this.ticksCatchable = this.random.nextInt(30) + 10;
-					this.yd -= (double)0.2f;
+					this.yd -= 0.2f;
 					this.world.playSoundAtEntity(null, this, "random.splash", 0.25f, 1.0f + (this.random.nextFloat() - this.random.nextFloat()) * 0.4f);
 					float f3 = MathHelper.floor_double(this.bb.minY);
 					int i1 = 0;
@@ -261,9 +251,9 @@ public class EntityBobberMixin extends Entity {
 			f1 = (float)((double)f1 * 0.9);
 			this.yd *= 0.8;
 		}
-		this.xd *= (double)f1;
-		this.yd *= (double)f1;
-		this.zd *= (double)f1;
+		this.xd *= f1;
+		this.yd *= f1;
+		this.zd *= f1;
 		this.setPos(this.x, this.y, this.z);
 	}
 
@@ -320,23 +310,24 @@ public class EntityBobberMixin extends Entity {
 		return byte0;
 	}
 
+	@org.spongepowered.asm.mixin.Unique
 	private Item getCatchableFish() {
 		Season season = world.seasonManager.getCurrentSeason();
 
 		if (isInLava) {
-			return StardewItems.fishLavaEel;
+			return StardewItems.foodLavaEel;
 		}else {
 			if (season == Seasons.OVERWORLD_SPRING ) {
-				return StardewItems.fishBassRaw;
+				return StardewItems.foodBassRaw;
 			}
 			else if (season == Seasons.OVERWORLD_SUMMER ) {
-				return StardewItems.fishSnapperRaw;
+				return StardewItems.foodSnapperRaw;
 			}
 			else if (season == Seasons.OVERWORLD_FALL ) {
 				return Item.foodFishRaw;
 			}
 			else if (season == Seasons.OVERWORLD_WINTER ) {
-				return StardewItems.fishSalmonRaw;
+				return StardewItems.foodSalmonRaw;
 			}
 			else return Item.bone;
 		}

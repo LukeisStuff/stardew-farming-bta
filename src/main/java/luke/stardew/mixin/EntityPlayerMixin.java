@@ -40,16 +40,19 @@ public abstract class EntityPlayerMixin extends EntityLiving {
 	@Inject(method = "getItemIcon", at = @At(value = "HEAD"), cancellable = true)
 	private void changingTieredFishingRodTexture(ItemStack itemstack, CallbackInfoReturnable cir){
 		if (itemstack.getItem().getClass() == ItemToolFishingRodTiered.class && this.fishEntity != null) {
-			if (itemstack.itemID == StardewItems.toolFishingRodIron.id) {
+			if (itemstack.itemID == StardewItems.toolFishingrodStone.id) {
+				cir.setReturnValue(TextureHelper.getOrCreateItemTextureIndex(StardewMod.MOD_ID, "fishingrod_stone_active.png"));
+			}
+			if (itemstack.itemID == StardewItems.toolFishingrodIron.id) {
 				cir.setReturnValue(TextureHelper.getOrCreateItemTextureIndex(StardewMod.MOD_ID, "fishingrod_iron_active.png"));
 			}
-			if (itemstack.itemID == StardewItems.toolFishingRodGold.id) {
+			if (itemstack.itemID == StardewItems.toolFishingrodGold.id) {
 				cir.setReturnValue(TextureHelper.getOrCreateItemTextureIndex(StardewMod.MOD_ID, "fishingrod_gold_active.png"));
 			}
-			if (itemstack.itemID == StardewItems.toolFishingRodDiamond.id) {
+			if (itemstack.itemID == StardewItems.toolFishingrodDiamond.id) {
 				cir.setReturnValue(TextureHelper.getOrCreateItemTextureIndex(StardewMod.MOD_ID, "fishingrod_diamond_active.png"));
 			}
-			if (itemstack.itemID == StardewItems.toolFishingRodSteel.id) {
+			if (itemstack.itemID == StardewItems.toolFishingrodSteel.id) {
 				cir.setReturnValue(TextureHelper.getOrCreateItemTextureIndex(StardewMod.MOD_ID, "fishingrod_steel_active.png"));
 			}
 

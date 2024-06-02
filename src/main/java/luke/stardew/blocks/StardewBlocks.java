@@ -10,8 +10,11 @@ import net.minecraft.core.item.block.ItemBlockLeaves;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import net.minecraft.core.util.helper.Side;
+import org.apache.logging.log4j.core.appender.rolling.action.IfAll;
 import turniplabs.halplibe.helper.BlockBuilder;
 import turniplabs.halplibe.helper.TextureHelper;
+import useless.dragonfly.helper.ModelHelper;
+import useless.dragonfly.model.block.BlockModelDragonFly;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
@@ -334,23 +337,23 @@ public class StardewBlocks {
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
-			.setLuminance(14)
 			.setVisualUpdateOnMetadata()
-			.setBlockModel(new BlockModelRenderBlocks(25))
-			.setTextures("candle.png")
+			.setBlockModel(new BlockModelDragonFly(ModelHelper.getOrCreateBlockModel(MOD_ID, "candle.json"), null, null, false, 0.25f))
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
-			.build(new BlockCandle("candle", blockID("candle"), false));
+			.setTextures("candleItem.png")
+			.build(new BlockCandle("candle", blockID("candle"), false, ModelHelper.getOrCreateBlockModel(MOD_ID, "candle.json"), false));
 
 		candleActive = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setLuminance(14)
+			.setUseInternalLight()
 			.setVisualUpdateOnMetadata()
-			.setBlockModel(new BlockModelRenderBlocks(25))
-			.setTextures("candle.png")
+			.setBlockModel(new BlockModelDragonFly(ModelHelper.getOrCreateBlockModel(MOD_ID, "candle.json"), null, null, false, 0.25f))
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
-			.build(new BlockCandle("candle.active", blockID("candleActive"), true));
+			.setTextures("candleItem.png")
+			.build(new BlockCandle("candle.active", blockID("candleActive"), true, ModelHelper.getOrCreateBlockModel(MOD_ID, "candle.json"), false));
 
 		initializeBlockDetails();
 	}

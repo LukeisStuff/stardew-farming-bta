@@ -134,25 +134,31 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('B', Item.bucketWater)
 			.create("watering_can_steel", new ItemStack(StardewItems.wateringCanSteel, 1));
 
+
+		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
+			.addInput('I', "minecraft:stones")
+			.addInput('S', Item.string)
+			.create("fishingrod_stone", new ItemStack(StardewItems.toolFishingrodStone, 1));
+
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
 				.addInput('I', Item.ingotIron)
 				.addInput('S', Item.string)
-					.create("fishingrod_iron", new ItemStack(StardewItems.toolFishingRodIron, 1));
+					.create("fishingrod_iron", new ItemStack(StardewItems.toolFishingrodIron, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
 			.addInput('I', Item.ingotGold)
 			.addInput('S', Item.string)
-			.create("fishingrod_gold", new ItemStack(StardewItems.toolFishingRodGold, 1));
+			.create("fishingrod_gold", new ItemStack(StardewItems.toolFishingrodGold, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
 			.addInput('I', Item.diamond)
 			.addInput('S', Item.string)
-			.create("fishingrod_diamond", new ItemStack(StardewItems.toolFishingRodDiamond, 1));
+			.create("fishingrod_diamond", new ItemStack(StardewItems.toolFishingrodDiamond, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
 			.addInput('I', Item.ingotSteel)
 			.addInput('S', Item.string)
-			.create("fishingrod_steel", new ItemStack(StardewItems.toolFishingRodSteel, 1));
+			.create("fishingrod_steel", new ItemStack(StardewItems.toolFishingrodSteel, 1));
 
 
 
@@ -179,16 +185,16 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("cheese", StardewItems.cheese.getDefaultStack());
 
 		RecipeBuilder.Furnace(MOD_ID)
-			.setInput(StardewItems.fishSalmonRaw)
-			.create("fish_salmon_cooked", new ItemStack(StardewItems.fishSalmonCooked, 1));
+			.setInput(StardewItems.foodSalmonRaw)
+			.create("fish_salmon_cooked", new ItemStack(StardewItems.foodSalmonCooked, 1));
 
 		RecipeBuilder.Furnace(MOD_ID)
-			.setInput(StardewItems.fishBassRaw)
-			.create("fish_bass_cooked", new ItemStack(StardewItems.fishBassCooked, 1));
+			.setInput(StardewItems.foodBassRaw)
+			.create("fish_bass_cooked", new ItemStack(StardewItems.foodBassCooked, 1));
 
 		RecipeBuilder.Furnace(MOD_ID)
-			.setInput(StardewItems.fishSnapperRaw)
-			.create("fish_snapper_cooked", new ItemStack(StardewItems.fishSnapperCooked, 1));
+			.setInput(StardewItems.foodSnapperRaw)
+			.create("fish_snapper_cooked", new ItemStack(StardewItems.foodSnapperCooked, 1));
 
 
 
