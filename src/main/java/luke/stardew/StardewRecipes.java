@@ -160,7 +160,12 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('S', Item.string)
 			.create("fishingrod_steel", new ItemStack(StardewItems.toolFishingrodSteel, 1));
 
-
+		ItemStack itemStack = new ItemStack(StardewItems.armorCanOfWorms);
+		itemStack.damageItem(itemStack.getItem().getMaxDamage() - 1, null);
+		RecipeBuilder.Shaped(MOD_ID, "   ", "IWI", " I ")
+			.addInput('I', Item.ingotIron)
+			.addInput('W', StardewItems.worm)
+			.create("can_of_worms", itemStack);
 
 
 
