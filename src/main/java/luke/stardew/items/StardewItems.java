@@ -3,8 +3,10 @@ package luke.stardew.items;
 import luke.stardew.StardewConfig;
 import luke.stardew.StardewMod;
 import luke.stardew.blocks.StardewBlocks;
+import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
+import net.minecraft.core.item.tag.ItemTags;
 import turniplabs.halplibe.helper.ItemHelper;
 import turniplabs.halplibe.helper.TextureHelper;
 
@@ -23,6 +25,7 @@ public class StardewItems {
 	public static Item fishBassCooked;
 	public static Item fishSnapperRaw;
 	public static Item fishSnapperCooked;
+	public static Item fishLavaEel;
 
 	//Spring Crops
 	public static Item seedsCarrot;
@@ -237,6 +240,9 @@ public class StardewItems {
 
 		fishSnapperCooked = ItemHelper.createItem(MOD_ID,
 			new ItemFoodStackable("fish.snapper.cooked", itemID("fishSnapperCooked"), 5, false, 4), "snapper_cooked.png");
+
+		fishLavaEel = ItemHelper.createItem(MOD_ID,
+			new ItemFoodStackable("fish.lavaeel", itemID("fishLavaEel"), 2, false, 4), "lavaeel.png");
 	}
 
 

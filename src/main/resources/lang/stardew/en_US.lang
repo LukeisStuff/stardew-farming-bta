@@ -243,3 +243,6 @@ item.stardew.fish.snapper.raw.desc=Can be cooked to produce a tasty meal.
 
 item.stardew.fish.snapper.cooked.name=Cooked Snapper
 item.stardew.fish.snapper.cooked.desc=Delicious fish!
+
+item.stardew.fish.lavaeel.name=Lava Eel
+item.stardew.fish.lavaeel.desc=Found in lava lakes.
