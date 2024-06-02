@@ -210,20 +210,21 @@ public class StardewItems {
 			new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel), "wateringcanSteel.png");
 
 		toolFishingrodStone = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.stone", itemID("toolFishingRodStone"), ToolMaterial.stone), "fishingrod_stone.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.stone", itemID("toolFishingrodStone"), ToolMaterial.stone), "fishingrod_stone.png");
 
 		toolFishingrodIron = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingRodIron"), ToolMaterial.iron), "fishingrod_iron.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingrodIron"), ToolMaterial.iron), "fishingrod_iron.png");
 
 		toolFishingrodGold = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingRodGold"), ToolMaterial.gold), "fishingrod_gold.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingrodGold"), ToolMaterial.gold), "fishingrod_gold.png");
 
 		toolFishingrodDiamond = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingRodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingrodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
 
 		toolFishingrodSteel = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingRodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingrodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
 
+		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_stone_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_iron_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_gold_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_diamond_active.png");
