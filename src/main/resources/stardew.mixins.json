@@ -6,6 +6,8 @@
   "mixins": [
     "EntityBobberMixin",
     "EntityPlayerMixin",
+    "PlayerRendererMixin",
+    "SlotArmorMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"
   ],

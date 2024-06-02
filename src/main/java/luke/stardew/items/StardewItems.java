@@ -88,6 +88,11 @@ public class StardewItems {
 	public static Item toolFishingrodDiamond;
 	public static Item toolFishingrodSteel;
 
+	public static Item worm;
+
+	public static Item armorCanOfWorms;
+	public static Item armorCanOfWormsGolden;
+
 
 
 //	public static final Item devStick = ItemHelper.createItem(MOD_ID, new ItemDevStick("dev.stick", 18000), "stick_skyroot.png").setMaxStackSize(1);
@@ -210,24 +215,36 @@ public class StardewItems {
 			new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel), "wateringcanSteel.png");
 
 		toolFishingrodStone = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.stone", itemID("toolFishingRodStone"), ToolMaterial.stone), "fishingrod_stone.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.stone", itemID("toolFishingrodStone"), ToolMaterial.stone), "fishingrod_stone.png");
 
 		toolFishingrodIron = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingRodIron"), ToolMaterial.iron), "fishingrod_iron.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingrodIron"), ToolMaterial.iron), "fishingrod_iron.png");
 
 		toolFishingrodGold = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingRodGold"), ToolMaterial.gold), "fishingrod_gold.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingrodGold"), ToolMaterial.gold), "fishingrod_gold.png");
 
 		toolFishingrodDiamond = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingRodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingrodDiamond"), ToolMaterial.diamond), "fishingrod_diamond.png");
 
 		toolFishingrodSteel = ItemHelper.createItem(MOD_ID,
-			new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingRodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
+			new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingrodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
 
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_iron_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_gold_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_diamond_active.png");
 		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_steel_active.png");
+
+		worm = ItemHelper.createItem(MOD_ID,
+			new Item("worm", itemID("worm")), "worm.png");
+
+		armorCanOfWorms = ItemHelper.createItem(MOD_ID,
+			new ItemCanOfWorms("armor.canofworms", itemID("armorCanOfWorms")), "canOfWorms_empty.png");
+
+		armorCanOfWormsGolden = ItemHelper.createItem(MOD_ID,
+			new ItemCanOfWormsEndless("armor.canofworms.gold", itemID("armorCanOfWormsGolden")), "canOfWorms_golden.png");
+
+		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "canOfWorms_empty.png");
+		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "canOfWorms_full.png");
 
 		foodSalmonRaw = ItemHelper.createItem(MOD_ID,
 			new ItemFoodStackable("food.salmon.raw", itemID("foodSalmonRaw"), 2, false, 4), "salmon.png");
