@@ -88,11 +88,6 @@ public class StardewItems {
 	public static Item toolFishingrodDiamond;
 	public static Item toolFishingrodSteel;
 
-	public static Item worm;
-
-	public static Item armorCanOfWorms;
-	public static Item armorCanOfWormsGolden;
-
 
 
 //	public static final Item devStick = ItemHelper.createItem(MOD_ID, new ItemDevStick("dev.stick", 18000), "stick_skyroot.png").setMaxStackSize(1);
