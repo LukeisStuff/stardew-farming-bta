@@ -81,7 +81,11 @@ public class StardewItems {
 	public static Item foodBassCooked;
 	public static Item foodSnapperRaw;
 	public static Item foodSnapperCooked;
-	public static Item foodLavaEel;
+
+	public static Item fishEelLava;
+	public static Item fishSword;
+	public static Item fishGhost;
+	public static Item fishStone;
 
 	//Fishing Rods
 	public static Item toolFishingrodStone;
@@ -269,8 +273,18 @@ public class StardewItems {
 		foodSnapperCooked = ItemHelper.createItem(MOD_ID,
 			new ItemFoodStackable("food.snapper.cooked", itemID("foodSnapperCooked"), 5, false, 4), "snapper_cooked.png");
 
-		foodLavaEel = ItemHelper.createItem(MOD_ID,
-			new ItemFoodStackable("food.lavaeel", itemID("foodLavaEel"), 2, false, 4), "lavaeel.png");
+
+		fishEelLava = ItemHelper.createItem(MOD_ID,
+			new Item("fish.lavaeel", itemID("fishEelLava")), "lavaeel.png");
+
+		fishSword = ItemHelper.createItem(MOD_ID,
+			new Item("fish.sword", itemID("fishSword")), "swordfish.png");
+
+		fishGhost = ItemHelper.createItem(MOD_ID,
+			new Item("fish.ghost", itemID("fishGhost")), "ghostfish.png");
+
+		fishStone = ItemHelper.createItem(MOD_ID,
+			new Item("fish.stone", itemID("fishStone")), "stonefish.png");
 	}
 
 

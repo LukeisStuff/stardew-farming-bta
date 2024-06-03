@@ -261,5 +261,14 @@ item.stardew.food.snapper.raw.desc=Can be cooked to produce a tasty meal.
 item.stardew.food.snapper.cooked.name=Cooked Snapper
 item.stardew.food.snapper.cooked.desc=Delicious fish!
 
-item.stardew.food.lavaeel.name=Lava Eel
-item.stardew.food.lavaeel.desc=Found in lava lakes.
+item.stardew.fish.lavaeel.name=Lava Eel
+item.stardew.fish.lavaeel.desc=One of the legendary fishes, found in lava lakes.
+
+item.stardew.fish.sword.name=Swordfish
+item.stardew.fish.sword.desc=One of the legendary fishes, found in the stormy seas.
+
+item.stardew.fish.ghost.name=Ghostfish
+item.stardew.fish.ghost.desc=One of the legendary fishes, found during a foggy night.
+
+item.stardew.fish.stone.name=Stonefish
+item.stardew.fish.stone.desc=One of the legendary fishes, found underground.

@@ -22,6 +22,7 @@ import net.minecraft.core.util.phys.Vec3d;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
+import net.minecraft.core.world.weather.Weather;
 import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
@@ -248,7 +249,6 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 				if (((IEntityBobberMixin)angler.fishEntity).hasBait()){
 					baitRate = 50;
 				}
-				angler.addChatMessage(String.valueOf(this.random.nextInt(catchRate - rainRate - algaeRate - materialRate - baitRate)));
 				if (this.random.nextInt(catchRate - rainRate - algaeRate - materialRate - baitRate) == 0) {
 					double zOff;
 					this.ticksCatchable = this.random.nextInt(30) + 10;
@@ -343,25 +343,36 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	@org.spongepowered.asm.mixin.Unique
 	private Item getCatchableFish() {
 		Season season = world.seasonManager.getCurrentSeason();
+		Weather weather = world.weatherManager.getCurrentWeather();
 
 		if (isInLava) {
-			return StardewItems.foodLavaEel;
-		}else {
-			if (season == Seasons.OVERWORLD_SPRING ) {
-				return StardewItems.foodBassRaw;
+			return StardewItems.fishEelLava;
+		} else {
+			if (weather == Weather.overworldStorm && world.rand.nextInt(15) == 0) {
+					return StardewItems.fishSword;
+
+				} else if (weather == Weather.overworldFog && !world.isDaytime() && world.rand.nextInt(15) == 0){
+					return StardewItems.fishGhost;
+
+// add way to check position of bobber
+// 				} else if (world.rand.nextInt(15) == 0){
+//					return StardewItems.fishStone;
+//
+				} else if (season == Seasons.OVERWORLD_SPRING) {
+					return StardewItems.foodBassRaw;
+
+				} else if (season == Seasons.OVERWORLD_SUMMER) {
+					return StardewItems.foodSnapperRaw;
+
+				} else if (season == Seasons.OVERWORLD_FALL) {
+					return Item.foodFishRaw;
+
+				} else if (season == Seasons.OVERWORLD_WINTER) {
+					return StardewItems.foodSalmonRaw;
+				}
 			}
-			else if (season == Seasons.OVERWORLD_SUMMER ) {
-				return StardewItems.foodSnapperRaw;
-			}
-			else if (season == Seasons.OVERWORLD_FALL ) {
-				return Item.foodFishRaw;
-			}
-			else if (season == Seasons.OVERWORLD_WINTER ) {
-				return StardewItems.foodSalmonRaw;
-			}
-			else return Item.bone;
-		}
-	}
+        return Item.bone;
+    }
 
 	@Override
 	public void init() {
