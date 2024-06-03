@@ -229,6 +229,15 @@ item.stardew.tool.fishingrod.diamond.desc=Cast a quick line and catch the big on
 item.stardew.tool.fishingrod.steel.name=Steel Fishing Rod
 item.stardew.tool.fishingrod.steel.desc=Cast a sturdy line and catch the big one!
 
+item.stardew.worm.name=Worm
+item.stardew.worm.desc=Used mainly as bait.
+
+item.stardew.armor.canofworms.name=Can of Worms
+item.stardew.armor.canofworms.desc=Hold your worms in style.
+
+item.stardew.armor.canofworms.gold.name=Golden Can of Worms
+item.stardew.armor.canofworms.gold.desc=Supplies an endless amount of worms.
+
 item.stardew.wax.name=Wax
 item.stardew.wax.desc=A sticky yellowish moldable substance secreted from honey.
 
