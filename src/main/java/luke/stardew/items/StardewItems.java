@@ -229,11 +229,23 @@ public class StardewItems {
 		toolFishingrodSteel = ItemHelper.createItem(MOD_ID,
 			new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingrodSteel"), ToolMaterial.steel), "fishingrod_steel.png");
 
-		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_stone_active.png");
-		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_iron_active.png");
-		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_gold_active.png");
-		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_diamond_active.png");
-		TextureHelper.getOrCreateItemTexture(StardewMod.MOD_ID, "fishingrod_steel_active.png");
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "fishingrod_stone_active.png");
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "fishingrod_iron_active.png");
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "fishingrod_gold_active.png");
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "fishingrod_diamond_active.png");
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "fishingrod_steel_active.png");
+
+		worm = ItemHelper.createItem(MOD_ID,
+			new Item("worm", itemID("worm")), "worm.png");
+
+		armorCanOfWorms = ItemHelper.createItem(MOD_ID,
+			new ItemCanOfWorms("armor.canofworms", itemID("armorCanOfWorms")), "canOfWorms_empty.png");
+
+		armorCanOfWormsGolden = ItemHelper.createItem(MOD_ID,
+			new ItemCanOfWormsEndless("armor.canofworms.gold", itemID("armorCanOfWormsGolden")), "canOfWorms_golden.png");
+
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "canOfWorms_empty.png");
+		TextureHelper.getOrCreateItemTexture(MOD_ID, "canOfWorms_full.png");
 
 		foodSalmonRaw = ItemHelper.createItem(MOD_ID,
 			new ItemFoodStackable("food.salmon.raw", itemID("foodSalmonRaw"), 2, false, 4), "salmon.png");

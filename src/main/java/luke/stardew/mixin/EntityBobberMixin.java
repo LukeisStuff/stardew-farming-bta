@@ -1,6 +1,7 @@
 package luke.stardew.mixin;
 
 import com.mojang.nbt.CompoundTag;
+import luke.stardew.interfaces.IEntityBobberMixin;
 import luke.stardew.entities.EntityItemFireResistant;
 import luke.stardew.items.ItemToolFishingRodTiered;
 import luke.stardew.items.StardewItems;
@@ -25,11 +26,14 @@ import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
 @Mixin(value = EntityBobber.class, remap = false)
-public class EntityBobberMixin extends Entity {
+public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	@Shadow
 	public EntityPlayer angler;
 	@Shadow
@@ -70,6 +74,25 @@ public class EntityBobberMixin extends Entity {
 
 	public EntityBobberMixin(World world) {
 		super(world);
+	}
+
+	@Inject(method = "<init>(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/EntityPlayer;)V", at = @At("TAIL"))
+	private void init(CallbackInfo ci){
+		entityData.define(3, 0); //hasBait
+	}
+
+	@Override
+	public boolean hasBait() {
+		return entityData.getInt(3) == 1;
+	}
+
+	@Override
+	public void setBait(boolean bool) {
+		if (bool){
+			entityData.set(3, 1);
+		}else {
+			entityData.set(3, 0);
+		}
 	}
 
 	/**
@@ -210,16 +233,23 @@ public class EntityBobberMixin extends Entity {
 				int rainRate = 0;
 				int algaeRate = 0;
 				int materialRate = 0;
+				int baitRate = 0;
 				if (this.world.canBlockBeRainedOn(MathHelper.floor_double(this.x), MathHelper.floor_double(this.y) + 1, MathHelper.floor_double(this.z))) {
-					rainRate = 200;
+					rainRate = 100;
 				}
 				if (this.world.getBlockId(MathHelper.floor_double(this.x), MathHelper.floor_double(this.y) + 1, MathHelper.floor_double(this.z)) == Block.algae.id) {
-					algaeRate = 100;
+					algaeRate = 50;
 				}
 				if (angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodDiamond.id){
+					materialRate = 200;
+				} else if (angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodIron.id || angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodSteel.id) {
 					materialRate = 100;
 				}
-				if (this.random.nextInt(catchRate - rainRate - algaeRate - materialRate) == 0) {
+				if (((IEntityBobberMixin)angler.fishEntity).hasBait()){
+					baitRate = 50;
+				}
+				angler.addChatMessage(String.valueOf(this.random.nextInt(catchRate - rainRate - algaeRate - materialRate - baitRate)));
+				if (this.random.nextInt(catchRate - rainRate - algaeRate - materialRate - baitRate) == 0) {
 					double zOff;
 					this.ticksCatchable = this.random.nextInt(30) + 10;
 					this.yd -= 0.2f;

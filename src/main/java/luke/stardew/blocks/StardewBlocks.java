@@ -351,7 +351,7 @@ public class StardewBlocks {
 			.setUseInternalLight()
 			.setVisualUpdateOnMetadata()
 			.setBlockModel(new BlockModelDragonFly(ModelHelper.getOrCreateBlockModel(MOD_ID, "candle.json"), null, null, false, 0.25f))
-			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
+			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.setTextures("candleItem.png")
 			.build(new BlockCandle("candle.active", blockID("candleActive"), true, ModelHelper.getOrCreateBlockModel(MOD_ID, "candle.json"), false));
 
