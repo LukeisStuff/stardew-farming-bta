@@ -20,6 +20,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 	static {
 		TextureHelper.getOrCreateItemTexture(MOD_ID, "bee.png");
 		SoundHelper.Client.addSound(MOD_ID, "bee.ogg");
+		SoundHelper.Client.addStreaming(MOD_ID, "axolotl.ogg");
 	}
 
 

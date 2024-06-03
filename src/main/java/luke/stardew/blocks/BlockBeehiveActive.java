@@ -103,15 +103,11 @@ public class BlockBeehiveActive extends BlockRotatableHorizontal {
 	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (this.isActive) {
-			if  (player.getHeldItem() != null && player.getHeldItem().getItem() == Item.jar) {
-				player.getHeldItem().consumeItem(player);
-				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehive.id, l);
-				world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
-				player.inventory.insertItem(new ItemStack(StardewItems.jarHoney, 1), true);
-				return true;
-			}
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehive.id, l);
+			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
+			player.inventory.insertItem(new ItemStack(StardewItems.honey, 1), true);
+			return true;
 		}
-		return false;
-	}
-
+        return false;
+    }
 }

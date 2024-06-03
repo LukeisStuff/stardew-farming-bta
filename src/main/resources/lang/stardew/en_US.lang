@@ -199,8 +199,8 @@ tile.stardew.beehive.honey.desc=A man-made nest for bees that created a sweet an
 tile.stardew.block.honey.name=Block of Honey
 tile.stardew.block.honey.desc=Sticky and sweet, coagulated into a block.
 
-item.stardew.jar.honey.name=Honey Jar
-item.stardew.jar.honey.desc=Scooped up honey collected in a jar.
+item.stardew.honey.name=Honey
+item.stardew.honey.desc=Scooped up honey collected from a beehive.
 
 item.stardew.food.jam.name=Jam Jar
 item.stardew.food.jam.desc=Mashed up fruit collected in a jar.
@@ -213,6 +213,8 @@ item.stardew.tool.wateringcan.desc=A handy tool for watering crops and soaking b
 
 item.stardew.tool.wateringcan.steel.name=Steel Watering Can
 item.stardew.tool.wateringcan.steel.desc=A longer lasting variant of regular watering cans.
+
+item.tool.fishingrod.name=Wooden Fishing Rod
 
 item.stardew.tool.fishingrod.stone.name=Stone Fishing Rod
 item.stardew.tool.fishingrod.stone.desc=Cast a thick line and catch the big one!
@@ -272,3 +274,6 @@ item.stardew.fish.ghost.desc=One of the legendary fishes, found during a foggy n
 
 item.stardew.fish.stone.name=Stonefish
 item.stardew.fish.stone.desc=One of the legendary fishes, found underground.
+
+item.stardew.record.pink.name=Music Disc
+item.stardew.record.pink.desc=§6axolotl

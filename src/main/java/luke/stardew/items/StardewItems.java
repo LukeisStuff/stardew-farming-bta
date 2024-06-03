@@ -57,7 +57,7 @@ public class StardewItems {
 
 	public static Item dough;
 	public static Item eggCooked;
-	public static Item jarHoney;
+	public static Item honey;
 	public static Item jarJam;
 	public static Item cheese;
 
@@ -97,6 +97,8 @@ public class StardewItems {
 	public static Item worm;
 	public static Item armorCanOfWorms;
 	public static Item armorCanOfWormsGolden;
+
+	public static Item recordPink;
 
 
 
@@ -188,8 +190,8 @@ public class StardewItems {
 		eggCooked = ItemHelper.createItem(MOD_ID,
 			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");
 
-		jarHoney = ItemHelper.createItem(MOD_ID,
-			new ItemJam("jar.honey", itemID("jarHoney"), 3, 64), "jarHoney.png");
+		honey = ItemHelper.createItem(MOD_ID,
+			new ItemJam("honey", itemID("honey"), 3, 64), "honey.png");
 
 		jarJam = ItemHelper.createItem(MOD_ID,
 			new ItemJam("food.jam", itemID("jarJam"), 8, 2), "jam.png");
@@ -285,6 +287,10 @@ public class StardewItems {
 
 		fishStone = ItemHelper.createItem(MOD_ID,
 			new Item("fish.stone", itemID("fishStone")), "stonefish.png");
+
+		recordPink = ItemHelper.createItem(MOD_ID,
+			new ItemRecordAccessor("record.pink", itemID("recordPink"), "axolotl", "C418"), "axolotl.png").setMaxStackSize(1);
+
 	}
 
 

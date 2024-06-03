@@ -59,7 +59,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("beehive", new ItemStack(StardewBlocks.beehive, 1));
 
 		template4ItemtoBlock
-			.addInput('X', StardewItems.jarHoney)
+			.addInput('X', StardewItems.honey)
 			.create("block_of_honey", new ItemStack(StardewBlocks.blockHoney, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -162,7 +162,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(StardewItems.jarHoney, 1))
+			.addInput(new ItemStack(StardewItems.honey, 1))
 			.addInput(new ItemStack(Item.dustSugar, 1))
 			.addInput(new ItemStack(StardewItems.corn, 1))
 			.create("wax", new ItemStack(StardewItems.wax, 1));
@@ -172,9 +172,16 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('S', StardewItems.wax)
 			.create("wax", new ItemStack(StardewBlocks.candle, 4));
 
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.fishStone, 1))
+			.addInput(new ItemStack(StardewItems.fishEelLava, 1))
+			.addInput(new ItemStack(StardewItems.fishSword, 1))
+			.addInput(new ItemStack(StardewItems.fishGhost, 1))
+			.create("secret_disc", new ItemStack(StardewItems.recordPink, 1));
+
 		ItemStack itemStack = new ItemStack(StardewItems.armorCanOfWorms);
 		itemStack.damageItem(itemStack.getItem().getMaxDamage() - 1, null);
-		RecipeBuilder.Shaped(MOD_ID, "   ", "IWI", " I ")
+		RecipeBuilder.Shaped(MOD_ID, " W ", " I ", " I ")
 			.addInput('I', Item.ingotIron)
 			.addInput('W', StardewItems.worm)
 			.create("can_of_worms", itemStack);
