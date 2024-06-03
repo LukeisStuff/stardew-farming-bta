@@ -229,6 +229,9 @@ item.stardew.tool.fishingrod.diamond.desc=Cast a quick line and catch the big on
 item.stardew.tool.fishingrod.steel.name=Steel Fishing Rod
 item.stardew.tool.fishingrod.steel.desc=Cast a sturdy line and catch the big one!
 
+item.stardew.wax.name=Wax
+item.stardew.wax.desc=A sticky yellowish moldable substance secreted from honey.
+
 tile.stardew.candle.name=Wax Candle
 tile.stardew.candle.desc=A waxy light-source made from honey!
 tile.stardew.candle.active.name=Burning Wax Candle

@@ -1,9 +1,12 @@
 package luke.stardew.blocks;
 
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockFluid;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
+import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
+import net.minecraft.core.item.ItemFirestriker;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.phys.AABB;
@@ -40,6 +43,25 @@ public class BlockCandle extends Block {
 
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		return world.isBlockNormalCube(x, y - 1, z) || world.canPlaceOnSurfaceOfBlock(x, y - 1, z);
+	}
+
+	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
+		ItemStack heldItem = player.getHeldItem();
+		if (heldItem != null && heldItem.getItem() instanceof ItemFirestriker && !this.isActive) {
+			if (!(world.getBlock(x + 1, y, z) instanceof BlockFluid) && !(world.getBlock(x - 1, y, z) instanceof BlockFluid) && !(world.getBlock(x, y, z + 1) instanceof BlockFluid) && !(world.getBlock(x, y, z - 1) instanceof BlockFluid)) {
+				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.candleActive.id, 0);
+				heldItem.damageItem(1, player);
+				world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+				return true;
+			} else {
+				return false;
+			}
+		} else if (heldItem == null && this.isActive) {
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.candle.id, 0);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {

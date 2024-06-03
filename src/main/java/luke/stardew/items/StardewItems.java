@@ -72,6 +72,8 @@ public class StardewItems {
 	public static Item wateringCan;
 	public static Item wateringCanSteel;
 
+	public static Item wax;
+
 	//Fishes
 	public static Item foodSalmonRaw;
 	public static Item foodSalmonCooked;
@@ -208,6 +210,9 @@ public class StardewItems {
 
 		wateringCanSteel = ItemHelper.createItem(MOD_ID,
 			new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel), "wateringcanSteel.png");
+
+		wax = ItemHelper.createItem(MOD_ID,
+			new Item("wax", itemID("wax")), "wax.png");
 
 		toolFishingrodStone = ItemHelper.createItem(MOD_ID,
 			new ItemToolFishingRodTiered("tool.fishingrod.stone", itemID("toolFishingrodStone"), ToolMaterial.stone), "fishingrod_stone.png");

@@ -141,9 +141,9 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("fishingrod_stone", new ItemStack(StardewItems.toolFishingrodStone, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
-				.addInput('I', Item.ingotIron)
-				.addInput('S', Item.string)
-					.create("fishingrod_iron", new ItemStack(StardewItems.toolFishingrodIron, 1));
+			.addInput('I', Item.ingotIron)
+			.addInput('S', Item.string)
+			.create("fishingrod_iron", new ItemStack(StardewItems.toolFishingrodIron, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
 			.addInput('I', Item.ingotGold)
@@ -159,6 +159,18 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('I', Item.ingotSteel)
 			.addInput('S', Item.string)
 			.create("fishingrod_steel", new ItemStack(StardewItems.toolFishingrodSteel, 1));
+
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.jarHoney, 1))
+			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(new ItemStack(StardewItems.corn, 1))
+			.create("wax", new ItemStack(StardewItems.wax, 1));
+
+		RecipeBuilder.Shaped(MOD_ID, "I", "S")
+			.addInput('I', Item.string)
+			.addInput('S', StardewItems.wax)
+			.create("wax", new ItemStack(StardewBlocks.candle, 4));
 
 
 
