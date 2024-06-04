@@ -18,9 +18,10 @@ Watering can to speedup farmland cultivation
 
 - Halplibe
 - TerrainAPI
-- Instructions
 
-Check the BTA! wiki page about modding
+## Instructions
+
+Check the [BTA! wiki page](https://bta.miraheze.org/wiki/Main_Page) about modding
 
 ## Credits
 
