@@ -116,6 +116,14 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.setConsumeContainer(false)
 			.create("pumpkin_pie", new ItemStack(StardewItems.foodPie, 1));
 
+		RecipeBuilder.Shaped(MOD_ID, " W ", "SES", "DDD")
+			.addInput('W', (Item.bucketWater))
+			.addInput('D', (StardewItems.dough))
+			.addInput('S', (StardewItems.tomato))
+			.addInput('E', (StardewItems.cheese))
+			.setConsumeContainer(false)
+			.create("pizza", new ItemStack(StardewItems.foodPizza, 1));
+
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.logApple, 1))
 			.create("apple_log_to_red_wooden_planks", new ItemStack(Block.planksOakPainted, 4, 14));
