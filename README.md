@@ -1,42 +1,24 @@
-## Spring Crops
-Tree fruit - Cherry DONE
+A farming mod for BTA inspired by stardew valley! Have you ever wanted more crops and farming apart of BTA? More food choices and more reason to use seasons? Here is the mod for you
 
-Vegetable 1 - Carrot DONE
+Features
 
-Fruit 1 - Blueberry DONE
-Fruit 2 - Pineapple DONE
+11 New crops to farm and cultivate throughout the seasons!
+2 new tree types to harvest fruit from!
+Find bushes to collect the new seeds
+Beehives, honey and honey blocks!
+Tons of new food sources and blocks!
+Watering can to speedup farmland cultivation
+Requires
 
+Halplibe
+TerrainAPI
+Instructions
 
-## Summer Crops
+Check the BTA! wiki page about modding
+Credits
 
-Vegetable 1 - Tomato DONE
-Vegetable 2 - Potato DONE
+LukeisStuff - Creator
 
-Fruit 1 - Strawberry DONE
-Fruit 2 - Watermelon DONE
+Beatrice - Textures
 
-
-## Fall Crops
-Tree fruit - Apple DONE
-
-Vegetable 1 - Pumpkin DONE
-Vegetable 2 - Corn DONE 
-
-Fruit 2 - Grape DONE
-
-
-## Winter Crops
-
-Vegetable 1 - Cauliflower DONE
-
-Fruit 1 - Cranberries DONE
-
-
-All fruits can be made into JAM
-
-Eggs can be cooked - DONE
-
-Wheat makes 3 dough instead of 1 bread DONE
-Dough cooked into bread DONE
-Dough used in wheat recipes (cake, cookies) DONE
-Pumpkin Pie? Coming in 7.2 so IDK
+Useless, CookieCakes - Mod Help
