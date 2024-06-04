@@ -74,6 +74,8 @@ public class StardewItems {
 
 	public static Item wax;
 
+	public static Item foodPizza;
+
 	//Fishes
 	public static Item foodSalmonRaw;
 	public static Item foodSalmonCooked;
@@ -185,7 +187,7 @@ public class StardewItems {
 
 
 		dough = ItemHelper.createItem(MOD_ID,
-			new ItemFood("food.dough", itemID("dough"), -1, false), "dough.png");
+			new ItemFoodStackable("food.dough", itemID("dough"), -1, false, 64), "dough.png");
 
 		eggCooked = ItemHelper.createItem(MOD_ID,
 			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");
@@ -213,6 +215,9 @@ public class StardewItems {
 
 		foodPie = ItemHelper.createItem(MOD_ID,
 			new ItemPlaceable("food.pie", itemID("foodPie"), StardewBlocks.pie), "piePumpkin.png").setMaxStackSize(1);
+
+		foodPizza = ItemHelper.createItem(MOD_ID,
+			new ItemPlaceable("food.pizza", itemID("foodPizza"), StardewBlocks.pizza), "pizza.png").setMaxStackSize(1);
 
 
 		wateringCan = ItemHelper.createItem(MOD_ID,

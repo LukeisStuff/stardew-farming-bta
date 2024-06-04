@@ -1,4 +1,4 @@
-A farming mod for BTA inspired by stardew valley! Have you ever wanted more crops and farming apart of BTA? More food choices and more reason to use seasons? Here is the mod for you
+A farming mod for BTA inspired by stardew valley! Have you ever wanted more crops and farming added to BTA? More food choices and more reason to use seasons? Here is the mod for you
 
 Features
 
@@ -17,7 +17,9 @@ Instructions
 Check the BTA! wiki page about modding
 Credits
 
-LukeisStuff - Creator
+LukeisStuff - Creator, Lead Developer
+
+Dundi Gundi - Developer
 
 Beatrice - Textures
 

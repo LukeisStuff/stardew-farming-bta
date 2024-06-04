@@ -21,6 +21,7 @@ public class BlockBush extends BlockFlower {
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "bushSummer.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "bushFall.png"),
 		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "bushWinter.png"),
+		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "bushDead.png"),
 	};
 
 	public BlockBush(String key, int id) {
@@ -47,7 +48,7 @@ public class BlockBush extends BlockFlower {
 			world.setBlockMetadataWithNotify(x, y, z, 3);
 		}
 		else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_HELL) {
-			world.setBlockMetadataWithNotify(x, y, z, 2);
+			world.setBlockMetadataWithNotify(x, y, z, 4);
 		}
 
 	}
@@ -69,14 +70,17 @@ public class BlockBush extends BlockFlower {
 			world.setBlockMetadataWithNotify(x, y, z, 3);
 		}
 		else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_HELL) {
-			world.setBlockMetadataWithNotify(x, y, z, 2);
+			world.setBlockMetadataWithNotify(x, y, z, 4);
+		}
+		else if (world.seasonManager.getCurrentSeason() == Seasons.NULL) {
+			world.setBlockMetadataWithNotify(x, y, z, 4);
 		}
 	}
 
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data > 3) {
-			data = 3;
+		if (data < 0 || data > 4) {
+			data = 4;
 		}
 		return this.growthStageTextures[data];
 	}
@@ -119,10 +123,10 @@ public class BlockBush extends BlockFlower {
 					} else
 						return new ItemStack[]{new ItemStack(StardewItems.seedsCranberries)};
 				}
+				if (meta == 4) {
+					return null;
+				}
 				return null;
 		}
 	}
-
-
-
 }

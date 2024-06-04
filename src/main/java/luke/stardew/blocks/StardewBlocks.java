@@ -79,6 +79,8 @@ public class StardewBlocks {
 
 	public static Block beehive;
 
+	public static Block pizza;
+
 	public static Block candle;
 	public static Block candleActive;
 
@@ -332,6 +334,16 @@ public class StardewBlocks {
 			.setSideTextures("beehiveSide.png")
 			.setNorthTexture("beehiveFront.png")
 			.build(new BlockBeehive("beehive", blockID("beehive")));
+
+		pizza = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
+			.setHardness(0.5f)
+			.setResistance(0.5f)
+			.setTopTexture("pizzaTop.png")
+			.setBottomTexture("pizzaBottom.png")
+			.setSideTextures("pizzaSide.png")
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build(new BlockPizza("pizza", blockID("pizza")));
 
 		candle = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))

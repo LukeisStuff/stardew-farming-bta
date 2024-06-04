@@ -208,6 +208,12 @@ item.stardew.food.jam.desc=Mashed up fruit collected in a jar.
 tile.stardew.cake.chocolate.name=Chocolate Cake
 tile.stardew.cake.chocolate.desc=Cake it easy.
 
+item.stardew.food.pizza.name=Pizza
+item.stardew.food.pizza.desc=Flat base of dough coated with tomato and cheese.
+
+tile.stardew.pizza.name=Pizza
+tile.stardew.pizza.desc=You wanna slice of me?
+
 item.stardew.tool.wateringcan.name=Watering Can
 item.stardew.tool.wateringcan.desc=A handy tool for watering crops and soaking blocks.
 
