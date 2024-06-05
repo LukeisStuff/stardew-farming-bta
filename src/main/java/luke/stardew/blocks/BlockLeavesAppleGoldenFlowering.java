@@ -42,12 +42,12 @@ public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int meta) {
 		if (meta < 16) {
-			if (fancyGraphics == false) {
+			if (!fancyGraphics) {
 				return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenFloweringFast.png");
 			}
 			return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenFlowering.png");
 		}
-		else if (fancyGraphics == false) {
+		else if (!fancyGraphics) {
 			return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenGrownFast.png");
 		}
 		return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenGrown.png");

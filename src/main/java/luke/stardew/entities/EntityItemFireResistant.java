@@ -1,9 +1,7 @@
 package luke.stardew.entities;
 
-import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.EntityItem;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.world.World;
 
 public class EntityItemFireResistant extends EntityItem {

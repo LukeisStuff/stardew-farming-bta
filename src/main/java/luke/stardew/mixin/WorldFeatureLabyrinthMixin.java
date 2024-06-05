@@ -2,15 +2,12 @@ package luke.stardew.mixin;
 
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.biome.Biome;
 import net.minecraft.core.world.biome.Biomes;
 import net.minecraft.core.world.generate.feature.WorldFeatureLabyrinth;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -23,13 +20,7 @@ public class WorldFeatureLabyrinthMixin {
 	@Unique
 	boolean isHot = false;
 
-	@Shadow
-	boolean treasureGenerated;
-
-	@Shadow
-	int dungeonSize;
-
-	@Inject(method = "generate(Lnet/minecraft/core/world/World;Ljava/util/Random;III)Z", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "generate(Lnet/minecraft/core/world/World;Ljava/util/Random;III)Z", at = @At("HEAD"))
 	private void generate(World world, Random random, int x, int y, int z, CallbackInfoReturnable<Boolean> cir) {
 		Biome biome = world.getBlockBiome(x, y, z);
 		if (biome == Biomes.OVERWORLD_DESERT || biome == Biomes.OVERWORLD_OUTBACK || biome == Biomes.OVERWORLD_OUTBACK_GRASSY) {

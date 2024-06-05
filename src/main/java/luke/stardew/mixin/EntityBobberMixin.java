@@ -23,17 +23,15 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
 import net.minecraft.core.world.weather.Weather;
-import org.checkerframework.common.aliasing.qual.Unique;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Mixin(value = EntityBobber.class, remap = false)
 public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
@@ -85,12 +83,12 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	}
 
 	@Override
-	public boolean hasBait() {
+	public boolean stardew_farming_bta$hasBait() {
 		return entityData.getInt(3) == 1;
 	}
 
 	@Override
-	public void setBait(boolean bool) {
+	public void stardew_farming_bta$setBait(boolean bool) {
 		if (bool){
 			entityData.set(3, 1);
 		}else {
@@ -248,7 +246,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 				} else if (angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodIron.id || angler.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodSteel.id) {
 					materialRate = 100;
 				}
-				if (((IEntityBobberMixin)angler.fishEntity).hasBait()){
+				if (((IEntityBobberMixin)angler.fishEntity).stardew_farming_bta$hasBait()){
 					baitRate = 50;
 				}
 				if (this.random.nextInt(catchRate - rainRate - algaeRate - materialRate - baitRate) == 0) {

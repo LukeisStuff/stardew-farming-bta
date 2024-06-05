@@ -1,7 +1,6 @@
 package luke.stardew.blocks;
 
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockFlower;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.player.EntityPlayer;

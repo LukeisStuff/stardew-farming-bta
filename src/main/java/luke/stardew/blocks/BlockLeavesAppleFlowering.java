@@ -42,12 +42,12 @@ public class BlockLeavesAppleFlowering extends BlockLeavesApple implements IBone
 	@Override
 	public int getBlockTextureFromSideAndMetadata(Side side, int meta) {
 		if (meta < 16) {
-			if (fancyGraphics == false) {
+			if (!fancyGraphics) {
 				return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleFloweringFast.png");
 			}
 			return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleFlowering.png");
 		}
-		else if (fancyGraphics == false) {
+		else if (!fancyGraphics) {
 			return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGrownFast.png");
 		}
         return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGrown.png");

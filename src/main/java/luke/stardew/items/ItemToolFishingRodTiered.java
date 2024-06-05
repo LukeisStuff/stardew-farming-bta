@@ -45,9 +45,9 @@ public class ItemToolFishingRodTiered extends Item {
 				if (canSlot.itemID == StardewItems.armorCanOfWorms.id){
 					entityplayer.inventory.armorItemInSlot(1).damageItem(1, entityplayer);
 				}
-				((IEntityBobberMixin)entityplayer.fishEntity).setBait(true);
+				((IEntityBobberMixin)entityplayer.fishEntity).stardew_farming_bta$setBait(true);
 			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.worm.id)){
-				((IEntityBobberMixin)entityplayer.fishEntity).setBait(true);
+				((IEntityBobberMixin)entityplayer.fishEntity).stardew_farming_bta$setBait(true);
 			}
 		}
 		entityplayer.swingItem();

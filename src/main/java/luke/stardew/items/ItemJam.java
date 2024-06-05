@@ -3,7 +3,6 @@ package luke.stardew.items;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemFood;
-import net.minecraft.core.item.ItemFoodStackable;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
