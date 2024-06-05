@@ -4,7 +4,6 @@
   "package": "luke.stardew.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BiomeProviderOverworldMixin",
     "EntityBobberMixin",
     "EntityPlayerMixin",
     "ItemFishingRodMixin",
