@@ -20,7 +20,7 @@ import java.util.Random;
 
 public class StardewAchievements extends AchievementPage {
 	public StardewAchievements() {
-		super("Stardew", "achievements.page.stardew");
+		super("Stardew Farming", "achievements.page.stardew");
 		Field[] achievements = StardewAchievements.class.getDeclaredFields();
 		Arrays.stream(achievements).filter((F)->F.getType().equals(Achievement.class)).forEach((F)->{
 			try {
