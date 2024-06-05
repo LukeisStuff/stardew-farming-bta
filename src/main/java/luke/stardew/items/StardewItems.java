@@ -174,7 +174,7 @@ public class StardewItems {
 			new ItemPlaceable("seeds.cranberries", itemID("seedsCranberries"), StardewBlocks.cropsCranberries), "seedsCranberries.png");
 
 		cranberries = ItemHelper.createItem(MOD_ID,
-			new ItemFood("food.cranberries", itemID("cranberries"), 1, false), "cranberries.png");
+			new ItemFoodStackable("food.cranberries", itemID("cranberries"), 1, false, 2), "cranberries.png");
 
 
 
@@ -185,7 +185,7 @@ public class StardewItems {
 			new ItemFood("egg.cooked", itemID("eggCooked"), 10, true), "eggCooked.png");
 
 		honey = ItemHelper.createItem(MOD_ID,
-			new ItemJam("honey", itemID("honey"), 3, 64), "honey.png");
+			new ItemJam("honey", itemID("honey"), 1, 64), "honey.png");
 
 		jarJam = ItemHelper.createItem(MOD_ID,
 			new ItemJam("food.jam", itemID("jarJam"), 8, 2), "jam.png");
@@ -255,10 +255,10 @@ public class StardewItems {
 		TextureHelper.getOrCreateItemTexture(MOD_ID, "canOfWorms_full.png");
 
 		foodSalmonRaw = ItemHelper.createItem(MOD_ID,
-			new ItemFoodStackable("food.salmon.raw", itemID("foodSalmonRaw"), 2, false, 4), "salmon.png");
+			new ItemFoodStackable("food.salmon.raw", itemID("foodSalmonRaw"), 1, false, 4), "salmon.png");
 
 		foodSalmonCooked = ItemHelper.createItem(MOD_ID,
-			new ItemFoodStackable("food.salmon.cooked", itemID("foodSalmonCooked"), 5, false, 4), "salmon_cooked.png");
+			new ItemFoodStackable("food.salmon.cooked", itemID("foodSalmonCooked"), 4, false, 4), "salmon_cooked.png");
 
 		foodBassRaw = ItemHelper.createItem(MOD_ID,
 			new ItemFoodStackable("food.bass.raw", itemID("foodBassRaw"), 2, false, 4), "bass.png");
