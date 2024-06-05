@@ -11,6 +11,7 @@
     "ItemToolHoeMixin",
     "PlayerRendererMixin",
     "SlotArmorMixin",
+    "SlotCraftingMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"
   ],

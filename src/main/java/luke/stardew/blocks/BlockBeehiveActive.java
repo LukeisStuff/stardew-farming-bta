@@ -1,6 +1,7 @@
 package luke.stardew.blocks;
 
 import luke.stardew.EntityBeeFX;
+import luke.stardew.StardewAchievements;
 import luke.stardew.items.StardewItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.block.BlockRotatableHorizontal;
@@ -106,6 +107,7 @@ public class BlockBeehiveActive extends BlockRotatableHorizontal {
 			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehive.id, l);
 			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
 			player.inventory.insertItem(new ItemStack(StardewItems.honey, 1), true);
+			player.triggerAchievement(StardewAchievements.BEEHIVE);
 			return true;
 		}
         return false;
