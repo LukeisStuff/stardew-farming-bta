@@ -42,11 +42,12 @@ public class WorldFeatureLabyrinthMixin {
 		if (random.nextInt(16) == 0 && random.nextInt(10) == 0) {
 			cir.setReturnValue(new ItemStack(StardewBlocks.saplingApple, random.nextInt(1) + 1));
 		}
-		if (!this.treasureGenerated && this.dungeonSize > 7) {
-			this.treasureGenerated = true;
-			if (isHot) {
-				cir.setReturnValue(new ItemStack(StardewItems.armorCanOfWormsGolden));
-			}
+	}
+
+	@Inject(method = "pickCheckLootItem(Ljava/util/Random;)Lnet/minecraft/core/item/ItemStack;", at = @At(value = "FIELD", target = "Lnet/minecraft/core/world/generate/feature/WorldFeatureLabyrinth;treasureGenerated:Z", ordinal = 1, shift = At.Shift.AFTER), cancellable = true)
+	private void addTreasure(Random random, CallbackInfoReturnable<ItemStack> cir) {
+		if (isHot) {
+			cir.setReturnValue(new ItemStack(StardewItems.armorCanOfWormsGolden));
 		}
 	}
 
