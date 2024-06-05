@@ -31,7 +31,9 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Mixin(value = EntityBobber.class, remap = false)
 public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
@@ -344,33 +346,45 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	private Item getCatchableFish() {
 		Season season = world.seasonManager.getCurrentSeason();
 		Weather weather = world.weatherManager.getCurrentWeather();
+		Item[] treasuresLowValue = {Item.olivine, Item.quartz, Item.dustRedstone, Item.coal};
+		Item[] treasuresMiddleValue = {Item.oreRawIron, Item.oreRawGold};
+		Item[] treasuresHighValue = {Item.diamond, Item.ingotSteelCrude};
 
 		if (isInLava) {
 			return StardewItems.fishEelLava;
-		} else {
+		} else if (angler.getCurrentEquippedItem().itemID != StardewItems.toolFishingrodGold.id) {
 			if (weather == Weather.overworldStorm && world.rand.nextInt(15) == 0) {
 					return StardewItems.fishSword;
 
-				} else if (weather == Weather.overworldFog && !world.isDaytime() && world.rand.nextInt(15) == 0){
-					return StardewItems.fishGhost;
+			} else if (weather == Weather.overworldFog && !world.isDaytime() && world.rand.nextInt(15) == 0){
+				return StardewItems.fishGhost;
 
-// add way to check position of bobber
-// 				} else if (world.rand.nextInt(15) == 0){
-//					return StardewItems.fishStone;
-//
-				} else if (season == Seasons.OVERWORLD_SPRING) {
-					return StardewItems.foodBassRaw;
+			} else if (!world.canBlockSeeTheSky(MathHelper.floor_double(this.x), MathHelper.floor_double(this.y) + 1, MathHelper.floor_double(this.z)) && MathHelper.floor_double(this.y) + 1 <= 32 && world.rand.nextInt(15) == 0) {
+				return StardewItems.fishStone;
 
-				} else if (season == Seasons.OVERWORLD_SUMMER) {
-					return StardewItems.foodSnapperRaw;
+			} else if (season == Seasons.OVERWORLD_SPRING) {
+				return StardewItems.foodBassRaw;
 
-				} else if (season == Seasons.OVERWORLD_FALL) {
-					return Item.foodFishRaw;
+			} else if (season == Seasons.OVERWORLD_SUMMER) {
+				return StardewItems.foodSnapperRaw;
 
-				} else if (season == Seasons.OVERWORLD_WINTER) {
-					return StardewItems.foodSalmonRaw;
-				}
+			} else if (season == Seasons.OVERWORLD_FALL) {
+				return Item.foodFishRaw;
+
+			} else if (season == Seasons.OVERWORLD_WINTER) {
+				return StardewItems.foodSalmonRaw;
 			}
+		} else {
+			if (world.rand.nextInt(2) == 0){
+				if (world.rand.nextInt(2) == 0){
+					return treasuresMiddleValue[world.rand.nextInt(treasuresMiddleValue.length)];
+				} else {
+					return treasuresHighValue[world.rand.nextInt(treasuresHighValue.length)];
+				}
+			}else {
+				return treasuresLowValue[random.nextInt(treasuresLowValue.length)];
+			}
+		}
         return Item.bone;
     }
 
