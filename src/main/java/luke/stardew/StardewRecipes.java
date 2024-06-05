@@ -188,10 +188,9 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("secret_disc", new ItemStack(StardewItems.recordPink, 1));
 
 		ItemStack itemStack = new ItemStack(StardewItems.armorCanOfWorms);
-		itemStack.damageItem(itemStack.getItem().getMaxDamage() - 1, null);
-		RecipeBuilder.Shaped(MOD_ID, " W ", " I ", " I ")
+		itemStack.damageItem(itemStack.getItem().getMaxDamage(), null);
+		RecipeBuilder.Shaped(MOD_ID, " I ", " I ")
 			.addInput('I', Item.ingotIron)
-			.addInput('W', StardewItems.worm)
 			.create("can_of_worms", itemStack);
 
 
