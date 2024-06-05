@@ -18,7 +18,7 @@ public class SlotCraftingMixin {
 	@Inject(method = "onPickupFromSlot(Lnet/minecraft/core/item/ItemStack;)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/ItemStack;onCrafting(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/EntityPlayer;)V", shift = At.Shift.AFTER))
 	private void addCraftingAchievements(ItemStack itemstack, CallbackInfo ci){
 		if (itemstack.itemID == StardewBlocks.saplingAppleGolden.id) {
-			thePlayer.addStat(StardewAchievements.APPLE, 1);
+			thePlayer.addStat(StardewAchievements.GAPPLE, 1);
 		}
 		if (itemstack.itemID == StardewBlocks.candle.id) {
 			thePlayer.addStat(StardewAchievements.CANDLE, 1);

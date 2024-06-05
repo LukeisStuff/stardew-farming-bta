@@ -3,6 +3,7 @@ package luke.stardew;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.entity.player.EntityPlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.AchievementHelper;

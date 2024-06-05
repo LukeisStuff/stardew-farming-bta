@@ -240,7 +240,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initNamespaces() {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
-		Registries.ITEM_GROUPS.register("stardew:item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, StardewItems.grapes));
+		Registries.ITEM_GROUPS.register("stardew:item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple, Item.cherry));
 		Registries.ITEM_GROUPS.register("stardew:block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
 
 	}
