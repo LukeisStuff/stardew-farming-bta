@@ -20,7 +20,7 @@ public class WorldFeatureLabyrinthMixin {
 	@Unique
 	boolean isHot = false;
 
-	@Inject(method = "generate(Lnet/minecraft/core/world/World;Ljava/util/Random;III)Z", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "generate(Lnet/minecraft/core/world/World;Ljava/util/Random;III)Z", at = @At("HEAD"))
 	private void generate(World world, Random random, int x, int y, int z, CallbackInfoReturnable<Boolean> cir) {
 		Biome biome = world.getBlockBiome(x, y, z);
 		if (biome == Biomes.OVERWORLD_DESERT || biome == Biomes.OVERWORLD_OUTBACK || biome == Biomes.OVERWORLD_OUTBACK_GRASSY) {

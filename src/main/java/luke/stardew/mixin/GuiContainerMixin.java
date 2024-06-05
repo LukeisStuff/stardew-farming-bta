@@ -6,8 +6,6 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.client.gui.GuiContainer;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.core.item.Item;
-import net.minecraft.core.item.ItemArmor;
-import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.player.inventory.Container;
 import net.minecraft.core.player.inventory.ContainerPlayer;
 import org.spongepowered.asm.mixin.Mixin;

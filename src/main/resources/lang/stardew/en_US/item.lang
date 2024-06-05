@@ -1,8 +1,5 @@
 Spring Crops=
 
-tile.stardew.crops.carrot.name=Carrot Crop
-tile.stardew.crops.carrot.desc=Whole carrot, plucked from the ground.
-
 item.stardew.seeds.carrot.name=Carrot Seeds
 item.stardew.seeds.carrot.desc=Carrot seeds that can be planted.
 
@@ -10,18 +7,12 @@ item.stardew.food.carrot.name=Carrot
 item.stardew.food.carrot.desc=Orange vegetable known for being long and crunchy.
 
 
-tile.stardew.crops.blueberry.name=Blueberry Crops
-tile.stardew.crops.blueberry.desc=Blueberry bush, plucked from the ground.
-
 item.stardew.seeds.blueberry.name=Blueberry Seeds
 item.stardew.seeds.blueberry.desc=Blueberry seeds that can be planted.
 
 item.stardew.food.blueberry.name=Blueberry
 item.stardew.food.blueberry.desc=Small and sweet blue berry.
 
-
-tile.stardew.crops.pineapple.name=Pineapple Crops
-tile.stardew.crops.pineapple.desc=Pineapple bed, plucked from the ground.
 
 item.stardew.seeds.pineapple.name=Pineapple Seeds
 item.stardew.seeds.pineapple.desc=Pineapple seeds that can be planted.
@@ -32,18 +23,12 @@ item.stardew.food.pineapple.desc=Cut it into chunks for a delicious treat.
 
 Summer Crops=
 
-tile.stardew.crops.tomato.name=Tomato Crops
-tile.stardew.crops.tomato.desc=Tomato vines, plucked from the ground.
-
 item.stardew.seeds.tomato.name=Tomato Seeds
 item.stardew.seeds.tomato.desc=Tomato seeds that can be planted.
 
 item.stardew.food.tomato.name=Tomato
 item.stardew.food.tomato.desc=Its not a vegetable! Its a fruit!
 
-
-tile.stardew.crops.potato.name=Potato Crops
-tile.stardew.crops.potato.desc=Potato roots, plucked from the ground.
 
 item.stardew.seeds.potato.name=Potato Seeds
 item.stardew.seeds.potato.desc=Potato seeds that can be planted.
@@ -52,9 +37,6 @@ item.stardew.food.potato.name=Potato
 item.stardew.food.potato.desc=Brown lumpy vegetable covered in dirt.
 
 
-tile.stardew.crops.strawberry.name=Strawberry Crops
-tile.stardew.crops.strawberry.desc=Strawberries, plucked from the ground.
-
 item.stardew.seeds.strawberry.name=Strawberry Seeds
 item.stardew.seeds.strawberry.desc=Strawberry seeds that can be planted.
 
@@ -62,51 +44,12 @@ item.stardew.food.strawberry.name=Strawberry
 item.stardew.food.strawberry.desc=Ripe red fruit budding with seeds and flavor.
 
 
-tile.stardew.crops.watermelon.name=Watermelon Crops
-tile.stardew.crops.watermelon.desc=A ripening watermelon, plucked straight from the ground.
-
 item.stardew.seeds.watermelon.name=Watermelon Seeds
 item.stardew.seeds.watermelon.desc=Watermelon seeds that can be planted.
-
-tile.stardew.watermelon.name=Watermelon
-tile.stardew.watermelon.desc=Juicy fruit with a hard rind, grown from a vine.
-
-
 
 
 
 Fall Crops=
-
-tile.stardew.log.apple.name=Apple Log
-tile.stardew.log.apple.desc=A log from an apple tree.
-
-tile.stardew.leaves.apple.name=Apple Leaves
-tile.stardew.leaves.apple.desc=Leaves from an apple tree.
-tile.stardew.leaves.apple.flowering.name=Flowering Apple Leaves
-tile.stardew.leaves.apple.flowering.desc=Leaves from an apple tree that are budding with fruit.
-
-tile.stardew.sapling.apple.name=Apple Sapling
-tile.stardew.sapling.apple.desc=Plant to grow an apple tree.
-
-
-tile.stardew.log.apple.golden.name=Golden Apple Log
-tile.stardew.log.apple.golden.desc=A log from a golden apple tree.
-
-tile.stardew.leaves.apple.golden.name=Golden Apple Leaves
-tile.stardew.leaves.apple.golden.desc=Leaves from a golden apple tree.
-tile.stardew.leaves.apple.golden.flowering.name=Golden Flowering Apple Leaves
-tile.stardew.leaves.apple.golden.flowering.desc=Leaves from a golden apple tree that are budding with fruit.
-
-tile.stardew.sapling.apple.golden.name=Golden Apple Sapling
-tile.stardew.sapling.apple.golden.desc=Plant to grow a golden apple tree.
-
-
-
-tile.stardew.crops.corn.bottom.name=Corn Bottom Crop
-tile.stardew.crops.corn.bottom.desc=Bottom half of a corn stalk, plucked from the ground.
-
-tile.stardew.crops.corn.top.name=Corn Top Crop
-tile.stardew.crops.corn.top.desc=Top half of a corn stalk, plucked from the ground.
 
 item.stardew.seeds.corn.name=Corn Seeds
 item.stardew.seeds.corn.desc=Corn seeds that can be planted.
@@ -114,18 +57,10 @@ item.stardew.seeds.corn.desc=Corn seeds that can be planted.
 item.stardew.food.corn.name=Corn
 item.stardew.food.corn.desc=Also known as maize!
 
-tile.stardew.pie.name=Pumpkin Pie
-tile.stardew.pie.desc=I just want to pie already.
 
 item.stardew.food.pie.name=Pumpkin Pie
 item.stardew.food.pie.desc=Pumpkin spiced custard filled dessert.
 
-
-tile.stardew.crops.grape.bottom.name=Grape Bottom Crop
-tile.stardew.crops.grape.bottom.desc=Bottom half of a grape stalk, plucked from the ground.
-
-tile.stardew.crops.grape.top.name=Grape Top Crop
-tile.stardew.crops.grape.top.desc=Top half of a grape stalk, plucked from the ground.
 
 item.stardew.seeds.grape.name=Grape Seeds
 item.stardew.seeds.grape.desc=Grape seeds that can be planted.
@@ -137,29 +72,16 @@ item.stardew.food.grape.desc=Bundle of purple berries loaded with juice.
 
 Winter Crops=
 
-tile.stardew.crops.cauliflower.name=Cauliflower Crops
-tile.stardew.crops.cauliflower.desc=A ripening cauliflower, plucked from the ground
-
 item.stardew.seeds.cauliflower.name=Cauliflower Seeds
 item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted.
 
-tile.stardew.cauliflower.name=Cauliflower
-tile.stardew.cauliflower.desc=Large leaf covered vegetable with bumpy flesh.
 
-
-
-tile.stardew.crops.cranberries.name=Cranberry Crops
-tile.stardew.crops.cranberries.desc=Ripe cranberry bush, plucked straight from the ground.
 
 item.stardew.seeds.cranberries.name=Cranberry Seeds
 item.stardew.seeds.cranberries.desc=Cranberry seeds that can be planted.
 
 item.stardew.food.cranberries.name=Cranberries
 item.stardew.food.cranberries.desc=Bundle of a tart and sour, but slightly sweet fruit.
-
-
-
-
 
 
 
@@ -184,35 +106,14 @@ item.stardew.food.stew.fruit.desc=Mmm... fruity.
 item.stardew.food.cake.chocolate.name=Chocolate Cake
 item.stardew.food.cake.chocolate.desc=The cake is a lie.
 
-tile.stardew.bush.name=Bush
-tile.stardew.bush.desc=A wild bush that drops seeds based on the season.
-
-tile.stardew.beehive.name=Beehive
-tile.stardew.beehive.desc=A man-made nest for bees to create a sweet and sticky nectar.
-
-tile.stardew.beehive.idle.name=Active Beehive
-tile.stardew.beehive.idle.desc=A man-made nest for bees creating sweet and sticky nectar.
-
-tile.stardew.beehive.honey.name=Loaded Beehive
-tile.stardew.beehive.honey.desc=A man-made nest for bees that created a sweet and sticky nectar.
-
-tile.stardew.block.honey.name=Block of Honey
-tile.stardew.block.honey.desc=Sticky and sweet, coagulated into a block.
-
 item.stardew.honey.name=Honey
 item.stardew.honey.desc=Scooped up honey collected from a beehive.
 
 item.stardew.food.jam.name=Jam Jar
 item.stardew.food.jam.desc=Mashed up fruit collected in a jar.
 
-tile.stardew.cake.chocolate.name=Chocolate Cake
-tile.stardew.cake.chocolate.desc=Cake it easy.
-
 item.stardew.food.pizza.name=Pizza
 item.stardew.food.pizza.desc=Flat base of dough coated with tomato and cheese.
-
-tile.stardew.pizza.name=Pizza
-tile.stardew.pizza.desc=You wanna slice of me?
 
 item.stardew.tool.wateringcan.name=Watering Can
 item.stardew.tool.wateringcan.desc=A handy tool for watering crops and soaking blocks.
@@ -248,11 +149,6 @@ item.stardew.armor.canofworms.gold.desc=Supplies an endless amount of worms.
 
 item.stardew.wax.name=Wax
 item.stardew.wax.desc=A sticky yellowish moldable substance secreted from honey.
-
-tile.stardew.candle.name=Wax Candle
-tile.stardew.candle.desc=A waxy light-source made from honey!
-tile.stardew.candle.active.name=Burning Wax Candle
-tile.stardew.candle.active.desc= waxy light-source made from honey! Currently lit.
 
 item.stardew.food.salmon.raw.name=Raw Salmon
 item.stardew.food.salmon.raw.desc=Can be cooked to produce a tasty meal.

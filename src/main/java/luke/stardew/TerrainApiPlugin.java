@@ -2,9 +2,7 @@ package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.world.generate.feature.WorldFeatureFlowers;
-import net.minecraft.core.world.generate.feature.WorldFeaturePumpkin;
 import useless.terrainapi.api.TerrainAPI;
-import useless.terrainapi.generation.overworld.OverworldConfig;
 import useless.terrainapi.generation.overworld.api.ChunkDecoratorOverworldAPI;
 
 import static luke.stardew.StardewMod.MOD_ID;

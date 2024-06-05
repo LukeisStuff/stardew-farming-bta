@@ -1,9 +1,7 @@
 package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
-import net.minecraft.core.block.Block;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.generate.feature.WorldFeature;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTree;
 import net.minecraft.core.world.season.Seasons;
 

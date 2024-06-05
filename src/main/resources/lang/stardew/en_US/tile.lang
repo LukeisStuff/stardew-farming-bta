@@ -1,0 +1,118 @@
+Spring Crops=
+
+tile.stardew.crops.carrot.name=Carrot Crop
+tile.stardew.crops.carrot.desc=Whole carrot, plucked from the ground.
+
+
+tile.stardew.crops.blueberry.name=Blueberry Crops
+tile.stardew.crops.blueberry.desc=Blueberry bush, plucked from the ground.
+
+
+tile.stardew.crops.pineapple.name=Pineapple Crops
+tile.stardew.crops.pineapple.desc=Pineapple bed, plucked from the ground.
+
+
+
+Summer Crops=
+
+tile.stardew.crops.tomato.name=Tomato Crops
+tile.stardew.crops.tomato.desc=Tomato vines, plucked from the ground.
+
+
+tile.stardew.crops.potato.name=Potato Crops
+tile.stardew.crops.potato.desc=Potato roots, plucked from the ground.
+
+
+tile.stardew.crops.strawberry.name=Strawberry Crops
+tile.stardew.crops.strawberry.desc=Strawberries, plucked from the ground.
+
+
+tile.stardew.crops.watermelon.name=Watermelon Crops
+tile.stardew.crops.watermelon.desc=A ripening watermelon, plucked straight from the ground.
+
+tile.stardew.watermelon.name=Watermelon
+tile.stardew.watermelon.desc=Juicy fruit with a hard rind, grown from a vine.
+
+
+
+Fall Crops=
+
+tile.stardew.log.apple.name=Apple Log
+tile.stardew.log.apple.desc=A log from an apple tree.
+
+tile.stardew.leaves.apple.name=Apple Leaves
+tile.stardew.leaves.apple.desc=Leaves from an apple tree.
+tile.stardew.leaves.apple.flowering.name=Flowering Apple Leaves
+tile.stardew.leaves.apple.flowering.desc=Leaves from an apple tree that are budding with fruit.
+
+tile.stardew.sapling.apple.name=Apple Sapling
+tile.stardew.sapling.apple.desc=Plant to grow an apple tree.
+
+
+tile.stardew.log.apple.golden.name=Golden Apple Log
+tile.stardew.log.apple.golden.desc=A log from a golden apple tree.
+
+tile.stardew.leaves.apple.golden.name=Golden Apple Leaves
+tile.stardew.leaves.apple.golden.desc=Leaves from a golden apple tree.
+tile.stardew.leaves.apple.golden.flowering.name=Golden Flowering Apple Leaves
+tile.stardew.leaves.apple.golden.flowering.desc=Leaves from a golden apple tree that are budding with fruit.
+
+tile.stardew.sapling.apple.golden.name=Golden Apple Sapling
+tile.stardew.sapling.apple.golden.desc=Plant to grow a golden apple tree.
+
+
+tile.stardew.crops.corn.bottom.name=Corn Bottom Crop
+tile.stardew.crops.corn.bottom.desc=Bottom half of a corn stalk, plucked from the ground.
+
+tile.stardew.crops.corn.top.name=Corn Top Crop
+tile.stardew.crops.corn.top.desc=Top half of a corn stalk, plucked from the ground.
+
+
+tile.stardew.pie.name=Pumpkin Pie
+tile.stardew.pie.desc=I just want to pie already.
+
+
+tile.stardew.crops.grape.bottom.name=Grape Bottom Crop
+tile.stardew.crops.grape.bottom.desc=Bottom half of a grape stalk, plucked from the ground.
+
+tile.stardew.crops.grape.top.name=Grape Top Crop
+tile.stardew.crops.grape.top.desc=Top half of a grape stalk, plucked from the ground.
+
+
+
+Winter Crops=
+
+tile.stardew.crops.cauliflower.name=Cauliflower Crops
+tile.stardew.crops.cauliflower.desc=A ripening cauliflower, plucked from the ground
+
+tile.stardew.cauliflower.name=Cauliflower
+tile.stardew.cauliflower.desc=Large leaf covered vegetable with bumpy flesh.
+
+
+
+
+tile.stardew.crops.cranberries.name=Cranberry Crops
+tile.stardew.crops.cranberries.desc=Ripe cranberry bush, plucked straight from the ground.
+
+tile.stardew.bush.name=Bush
+tile.stardew.bush.desc=A wild bush that drops seeds based on the season.
+
+tile.stardew.beehive.name=Beehive
+tile.stardew.beehive.desc=A man-made nest for bees to create a sweet and sticky nectar.
+
+tile.stardew.beehive.idle.name=Active Beehive
+tile.stardew.beehive.idle.desc=A man-made nest for bees creating sweet and sticky nectar.
+
+tile.stardew.beehive.honey.name=Loaded Beehive
+tile.stardew.beehive.honey.desc=A man-made nest for bees that created a sweet and sticky nectar.
+
+tile.stardew.block.honey.name=Block of Honey
+tile.stardew.block.honey.desc=Sticky and sweet, coagulated into a block.
+
+tile.stardew.pizza.name=Pizza
+tile.stardew.pizza.desc=You wanna slice of me?
+
+tile.stardew.candle.name=Wax Candle
+tile.stardew.candle.desc=A waxy light-source made from honey!
+tile.stardew.candle.active.name=Burning Wax Candle
+tile.stardew.candle.active.desc= waxy light-source made from honey! Currently lit.

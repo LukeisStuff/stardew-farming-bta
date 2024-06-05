@@ -1,6 +1,5 @@
 package luke.stardew.mixin;
 
-import luke.stardew.items.ItemCanOfWorms;
 import luke.stardew.items.StardewItems;
 import net.minecraft.client.render.entity.LivingRenderer;
 import net.minecraft.client.render.entity.PlayerRenderer;
@@ -8,7 +7,6 @@ import net.minecraft.client.render.model.ModelBase;
 import net.minecraft.client.render.model.ModelBiped;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
-import net.minecraft.core.item.ItemQuiver;
 import net.minecraft.core.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,9 +17,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = PlayerRenderer.class, remap = false)
 public class PlayerRendererMixin extends LivingRenderer<EntityPlayer> {
-	@Shadow
-	@Final
-	private ModelBiped modelArmor;
 
 	@Shadow
 	@Final
@@ -32,7 +27,7 @@ public class PlayerRendererMixin extends LivingRenderer<EntityPlayer> {
 	}
 
 	@Inject(method = "setArmorModel", at = @At("HEAD"), cancellable = true)
-	private void addCanOfWormsRender(EntityPlayer entity, int renderPass, float partialTick, CallbackInfoReturnable cir) {
+	private void addCanOfWormsRender(EntityPlayer entity, int renderPass, float partialTick, CallbackInfoReturnable<Boolean> cir) {
 		ItemStack itemstack = entity.inventory.armorItemInSlot(3 - renderPass);
 		if (itemstack != null) {
 			Item item = itemstack.getItem();

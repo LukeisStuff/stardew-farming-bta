@@ -7,19 +7,14 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.core.block.BlockRotatableHorizontal;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
-import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
 
-import java.util.Objects;
 import java.util.Random;
-
-import static net.minecraft.core.entity.animal.EntityFireflyCluster.FireflyColor.GREEN;
 
 public class BlockBeehiveActive extends BlockRotatableHorizontal {
 	protected final boolean isActive;

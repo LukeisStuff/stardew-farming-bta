@@ -1,12 +1,9 @@
 package luke.stardew.items;
 
 import luke.stardew.StardewConfig;
-import luke.stardew.StardewMod;
 import luke.stardew.blocks.StardewBlocks;
-import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
-import net.minecraft.core.item.tag.ItemTags;
 import turniplabs.halplibe.helper.ItemHelper;
 import turniplabs.halplibe.helper.TextureHelper;
 
@@ -101,11 +98,6 @@ public class StardewItems {
 	public static Item armorCanOfWormsGolden;
 
 	public static Item recordPink;
-
-
-
-//	public static final Item devStick = ItemHelper.createItem(MOD_ID, new ItemDevStick("dev.stick", 18000), "stick_skyroot.png").setMaxStackSize(1);
-
 
 	public void initilizeItems() {
 
