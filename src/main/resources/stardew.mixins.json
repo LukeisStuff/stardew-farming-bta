@@ -6,6 +6,7 @@
   "mixins": [
     "EntityBobberMixin",
     "EntityPlayerMixin",
+    "GuiContainerMixin",
     "ItemFishingRodMixin",
     "ItemToolHoeMixin",
     "PlayerRendererMixin",
