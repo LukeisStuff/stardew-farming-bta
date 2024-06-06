@@ -21,10 +21,53 @@ public class ItemToolHoeMixin extends ItemTool {
 		super(name, id, damageDealt, toolMaterial, tagEffectiveAgainst);
 	}
 
-	@Inject(method = "onItemUse", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/world/World;playBlockSoundEffect(Lnet/minecraft/core/entity/Entity;DDDLnet/minecraft/core/block/Block;Lnet/minecraft/core/enums/EnumBlockSoundEffectType;)V"))
+	@Inject(method = "onItemUse", at = @At(value = "HEAD", target = "Lnet/minecraft/core/world/World;playBlockSoundEffect(Lnet/minecraft/core/entity/Entity;DDDLnet/minecraft/core/block/Block;Lnet/minecraft/core/enums/EnumBlockSoundEffectType;)V"))
 	private void dropWorms(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir){
-		if ((id == Block.grass.id || id == Block.dirt.id || id == Block.pathDirt.id || id == Block.grassRetro.id || id == Block.mud.id) || world.rand.nextInt(4) == 0) {
-			world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+		int i1 = world.getBlockId(blockX, blockY, blockZ);
+		if (i1 == Block.grass.id) {
+			if (!world.isClientSide) {
+				if (world.rand.nextInt(8) == 0) {
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+				}
+				entityplayer.swingItem();
+			}
+			entityplayer.swingItem();
+		}
+		if (i1 == Block.dirt.id) {
+			if (!world.isClientSide) {
+				if (world.rand.nextInt(8) == 0) {
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+				}
+				entityplayer.swingItem();
+			}
+			entityplayer.swingItem();
+		}
+		if (i1 == Block.grassRetro.id) {
+			if (!world.isClientSide) {
+				if (world.rand.nextInt(8) == 0) {
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+				}
+				entityplayer.swingItem();
+			}
+			entityplayer.swingItem();
+		}
+		if (i1 == Block.mud.id) {
+			if (!world.isClientSide) {
+				if (world.rand.nextInt(8) == 0) {
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+				}
+				entityplayer.swingItem();
+			}
+			entityplayer.swingItem();
+		}
+		if (i1 == Block.pathDirt.id) {
+			if (!world.isClientSide) {
+				if (world.rand.nextInt(8) == 0) {
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+				}
+				entityplayer.swingItem();
+			}
+			entityplayer.swingItem();
 		}
 	}
 }
