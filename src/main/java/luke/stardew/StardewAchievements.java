@@ -2,8 +2,8 @@ package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
-import net.minecraft.client.render.TextureFX;
-import net.minecraft.core.Global;
+import net.minecraft.client.render.block.model.BlockModelDispatcher;
+import net.minecraft.client.render.stitcher.IconCoordinate;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.achievement.AchievementList;
 import net.minecraft.core.achievement.stat.Stat;
@@ -70,17 +70,78 @@ public class StardewAchievements extends AchievementPage {
 
 	@Override
 	public void getBackground(GuiAchievements guiAchievements, Random random, int iOffset, int jOffset, int blockX1, int blockY1, int blockX2, int blockY2) {
-		int l7 = 0;
-		while (l7 * 16 - blockY2 < 155) {
-			float f5 = 0.6f - (float)(blockY1 + l7) / 25.0f * 0.3f;
+		int row = 0;
+		while (row * 16 - blockY2 < 155) {
+			float f5 = 0.6f - (float)(blockY1 + row) / 25.0f * 0.3f;
 			GL11.glColor4f(f5, f5, f5, 1.0f);
-			int i8 = 0;
-			while (i8 * 16 - blockX2 < 224) {
-				int k8 = StardewBlocks.blockHoney.getBlockTextureFromSideAndMetadata(Side.BOTTOM,0);
-				guiAchievements.drawTexturedModalRect(iOffset + i8 * 16 - blockX2, jOffset + l7 * 16 - blockY2, k8 % Global.TEXTURE_ATLAS_WIDTH_TILES * TextureFX.tileWidthTerrain, k8 / Global.TEXTURE_ATLAS_WIDTH_TILES * TextureFX.tileWidthTerrain, 16, 16, TextureFX.tileWidthTerrain, 1.0f / (float)(Global.TEXTURE_ATLAS_WIDTH_TILES * TextureFX.tileWidthTerrain));
-				++i8;
+			int column = 0;
+			while (column * 16 - blockX2 < 224) {
+				IconCoordinate texture = getTextureFromBlock(StardewBlocks.blockHoney);
+				guiAchievements.drawTexturedIcon(
+					iOffset + column * 16 - blockX2,
+					jOffset + row * 16 - blockY2,
+					texture.width,
+					texture.height,
+					texture
+				);
+				++column;
 			}
-			++l7;
+			++row;
 		}
 	}
+
+	protected IconCoordinate getTextureFromBlock(Block block) {
+		return BlockModelDispatcher.getInstance().getDispatch(block).getBlockTextureFromSideAndMetadata(Side.BOTTOM, 0);
+	}
+
+	/*@Override
+	public void getBackground(GuiAchievements guiAchievements, Random random, int iOffset, int jOffset, int blockX1, int blockY1, int blockX2, int blockY2) {
+		int row = 0;
+		while (row * 16 - blockY2 < 155) {
+			float brightness = 0.6f - (float)(blockY1 + row) / 25.0f * 0.3f;
+			GL11.glColor4f(brightness, brightness, brightness, 1.0f);
+			int column = 0;
+			while (column * 16 - blockX2 < 224) {
+				random.setSeed(1234 + blockX1 + column);
+				random.nextInt();
+				int randomY = random.nextInt(1 + blockY1 + row) + (blockY1 + row) / 2;
+				IconCoordinate texture = this.getTextureFromBlock(Block.sand);
+				Block[] oreArray = stoneOres;
+				if (randomY >= 28 || blockY1 + row > 24) {
+					oreArray = basaltOres;
+				}
+
+				if (randomY > 37 || blockY1 + row == 35) {
+					texture = this.getTextureFromBlock(Block.bedrock);
+				} else if (randomY == 22) {
+					if (random.nextInt(2) == 0) {
+						texture = this.getTextureFromBlock(oreArray[3]);
+					} else {
+						texture = this.getTextureFromBlock(oreArray[4]);
+					}
+				} else if (randomY == 10) {
+					texture = this.getTextureFromBlock(oreArray[1]);
+				} else if (randomY == 8) {
+					texture = this.getTextureFromBlock(oreArray[0]);
+				} else if (randomY > 4) {
+					texture = this.getTextureFromBlock(Block.stone);
+					if (randomY >= 28 || blockY1 + row > 24) {
+						texture = this.getTextureFromBlock(Block.basalt);
+					}
+				} else if (randomY > 0) {
+					texture = this.getTextureFromBlock(Block.dirt);
+				}
+
+				guiAchievements.drawTexturedIcon(
+					iOffset + column * 16 - blockX2,
+					jOffset + row * 16 - blockY2,
+					texture.width,
+					texture.height,
+					texture
+				);
+				++column;
+			}
+			++row;
+		}
+	}*/
 }

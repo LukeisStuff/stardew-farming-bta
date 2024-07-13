@@ -7,9 +7,10 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
 public class ItemJam extends ItemFood {
-	protected int healAmount;
-	public ItemJam(String name, int id, int healAmount, int maxStackSize) {
-		super(name, id, healAmount, false);
+	private final int healAmount;
+
+	public ItemJam(String name, int id, int healAmount, int ticksPerHeal, boolean favouriteWolfMeat, int maxStackSize) {
+		super(name, id, healAmount, ticksPerHeal, favouriteWolfMeat, maxStackSize);
 		this.healAmount = healAmount;
 		this.maxStackSize = maxStackSize;
 	}

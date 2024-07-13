@@ -16,7 +16,6 @@ public class ItemToolWateringCan extends Item {
 		this.setMaxDamage(material.getDurability());
 	}
 
-	@Override
 	public boolean onItemUse(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		int blockToWater = world.getBlockId(blockX, blockY, blockZ);
 		int meta = world.getBlockMetadata(blockX, blockY, blockZ);

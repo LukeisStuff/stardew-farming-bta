@@ -16,27 +16,14 @@ public class ItemToolFishingRodTiered extends Item {
 		this.setMaxDamage(material.getDurability());
 	}
 
-
-
-	@Override
-	public boolean isFull3D() {
-		return true;
-	}
-
-	@Override
-	public boolean shouldRotateAroundWhenRendering() {
-		return true;
-	}
-
-	@Override
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
+	public ItemStack onUseItem(ItemStack itemstack, World world, EntityPlayer entityplayer) {
 		ItemStack canSlot = entityplayer.inventory.armorItemInSlot(1);
 
-		if (entityplayer.fishEntity != null) {
-			int i = entityplayer.fishEntity.catchFish();
-			itemstack.damageItem(i, entityplayer);
+		if (entityplayer.bobberEntity != null) {
+			int damage = entityplayer.bobberEntity.yoink();
+			itemstack.damageItem(damage, entityplayer);
 		} else {
-			world.playSoundAtEntity(entityplayer, entityplayer, "random.bow", 0.5f, 0.4f / (itemRand.nextFloat() * 0.4f + 0.8f));
+			world.playSoundAtEntity(entityplayer, entityplayer, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
 			if (!world.isClientSide) {
 				world.entityJoinedWorld(new EntityBobber(world, entityplayer));
 			}
@@ -45,11 +32,12 @@ public class ItemToolFishingRodTiered extends Item {
 				if (canSlot.itemID == StardewItems.armorCanOfWorms.id){
 					entityplayer.inventory.armorItemInSlot(1).damageItem(1, entityplayer);
 				}
-				((IEntityBobberMixin)entityplayer.fishEntity).stardew_farming_bta$setBait(true);
+				((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.worm.id)){
-				((IEntityBobberMixin)entityplayer.fishEntity).stardew_farming_bta$setBait(true);
+				((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 			}
 		}
+
 		entityplayer.swingItem();
 		return itemstack;
 	}

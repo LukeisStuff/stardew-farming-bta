@@ -35,9 +35,9 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('W', Item.wheat)
 			.create("dough", new ItemStack(StardewItems.dough, 3));
 
-		RecipeBuilder.Shaped(MOD_ID, "CMC", "SES", "DDD")
+		RecipeBuilder.Shaped(MOD_ID, "BMB", "SES", "DDD")
 			.addInput('D', StardewItems.dough)
-			.addInput('C', Item.cherry)
+			.addInput('B', StardewItems.strawberry)
 			.addInput('M', Item.bucketMilk)
 			.addInput('S', Item.dustSugar)
 			.addInput('E', Item.eggChicken)
@@ -240,7 +240,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initNamespaces() {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
-		Registries.ITEM_GROUPS.register("stardew:item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple, Item.cherry));
+		Registries.ITEM_GROUPS.register("stardew:item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple));
 		Registries.ITEM_GROUPS.register("stardew:block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
 
 	}

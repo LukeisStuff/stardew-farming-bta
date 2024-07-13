@@ -38,16 +38,14 @@ public abstract class EntityItemMixin {
 			|| this.item.itemID == StardewItems.pineapple.id
 			|| this.item.itemID == StardewItems.blueberry.id
 			|| this.item.itemID == StardewBlocks.watermelon.id
-			|| this.item.itemID == Item.foodApple.id
-			|| this.item.itemID == Item.cherry.id)
+			|| this.item.itemID == Item.foodApple.id)
 			&& player.getStat(StatList.pickUpItemStats[StardewItems.cranberries.id]) > 0
 			&& player.getStat(StatList.pickUpItemStats[StardewItems.grapes.id]) > 0
 			&& player.getStat(StatList.pickUpItemStats[StardewItems.strawberry.id]) > 0
 			&& player.getStat(StatList.pickUpItemStats[StardewItems.pineapple.id]) > 0
 			&& player.getStat(StatList.pickUpItemStats[StardewItems.blueberry.id]) > 0
 			&& player.getStat(StatList.pickUpItemStats[StardewBlocks.watermelon.id]) > 0
-			&& player.getStat(StatList.pickUpItemStats[Item.foodApple.id]) > 0
-			&& player.getStat(StatList.pickUpItemStats[Item.cherry.id]) > 0) {
+			&& player.getStat(StatList.pickUpItemStats[Item.foodApple.id]) > 0) {
 			player.triggerAchievement(StardewAchievements.FRUIT);
 		}
 		if ((this.item.itemID == StardewItems.potato.id
