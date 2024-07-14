@@ -5,7 +5,6 @@ import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.player.inventory.slot.Slot;
-import turniplabs.halplibe.helper.TextureHelper;
 
 
 public class ItemCanOfWorms extends Item {
@@ -13,14 +12,6 @@ public class ItemCanOfWorms extends Item {
 		super(name, id);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(192);
-	}
-
-	@Override
-	public int getIconFromDamage(int id) {
-		if (id >= this.getMaxDamage()) {
-			return TextureHelper.getOrCreateItemTextureIndex(StardewMod.MOD_ID, "canOfWorms_empty.png");
-		}
-		return TextureHelper.getOrCreateItemTextureIndex(StardewMod.MOD_ID, "canOfWorms_full.png");
 	}
 
 	@Override

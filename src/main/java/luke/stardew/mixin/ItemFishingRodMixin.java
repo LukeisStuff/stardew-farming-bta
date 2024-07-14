@@ -18,17 +18,17 @@ public class ItemFishingRodMixin extends Item {
 		super(name, id);
 	}
 
-	@Inject(method = "onItemRightClick", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/entity/player/EntityPlayer;swingItem()V"))
+	@Inject(method = "onUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/entity/player/EntityPlayer;swingItem()V"))
 	private void addBaitFunctions(ItemStack itemstack, World world, EntityPlayer entityplayer, CallbackInfoReturnable<ItemStack> cir){
-		if (entityplayer.fishEntity != null){
+		if (entityplayer.bobberEntity != null){
 			ItemStack canSlot = entityplayer.inventory.armorItemInSlot(1);
 			if (canSlot != null && ((canSlot.itemID == StardewItems.armorCanOfWorms.id && canSlot.getMetadata() < canSlot.getMaxDamage()) || canSlot.itemID == StardewItems.armorCanOfWormsGolden.id)) {
 				if (canSlot.itemID == StardewItems.armorCanOfWorms.id){
 					entityplayer.inventory.armorItemInSlot(1).damageItem(1, entityplayer);
 				}
-				((IEntityBobberMixin)entityplayer.fishEntity).stardew_farming_bta$setBait(true);
+				((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.worm.id)){
-				((IEntityBobberMixin)entityplayer.fishEntity).stardew_farming_bta$setBait(true);
+				((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 			}
 		}
 	}

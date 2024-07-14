@@ -9,7 +9,7 @@ public class ItemRecordAccessor extends ItemRecord {
 	public static HashMap<String, String> titleToAuthor = new HashMap<>();
 
 	protected ItemRecordAccessor(String name, int id, String title, String author) {
-		super(name, id, title);
+		super(name, id, title, author);
 		titleToAuthor.put(title, author);
 	}
 
