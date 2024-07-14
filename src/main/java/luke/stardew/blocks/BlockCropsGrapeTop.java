@@ -17,11 +17,6 @@ import java.util.Random;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class BlockCropsGrapeTop extends BlockFlower implements IBonemealable {
-	public final int[] growthStageTextures = new int[]{
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_top_1.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_top_2.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "grape_crop_top_3.png"),
-	};
 
 	public BlockCropsGrapeTop(String key, int id) {
 		super(key, id);
@@ -100,13 +95,6 @@ public class BlockCropsGrapeTop extends BlockFlower implements IBonemealable {
 	}
 	public void fertilize(World world, int i, int j, int k) {
 		world.setBlockAndMetadataWithNotify(i, j, k, this.id,2);
-	}
-	@Override
-	public int getBlockTextureFromSideAndMetadata(Side side, int j) {
-		if (j < 0 || j > 2) {
-			j = 2;
-		}
-		return this.growthStageTextures[j];
 	}
 
 	@Override

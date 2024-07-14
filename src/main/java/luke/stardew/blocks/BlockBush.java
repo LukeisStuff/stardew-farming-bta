@@ -2,8 +2,6 @@ package luke.stardew.blocks;
 
 import luke.stardew.items.StardewItems;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.BlockFlower;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.EntityLiving;
@@ -15,23 +13,14 @@ import net.minecraft.core.world.season.Seasons;
 
 import java.util.Random;
 
-import static luke.stardew.StardewMod.MOD_ID;
-
 public class BlockBush extends BlockFlower {
-	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture(MOD_ID + ":block/bushSpring"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bushSummer"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bushFall"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bushWinter"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bushDead")
-	};
 
 	public BlockBush(String key, int id) {
 		super(key, id);
 		setTicking(true);
 	}
 
-@Override
+	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
 		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
@@ -77,15 +66,6 @@ public class BlockBush extends BlockFlower {
 		else if (world.seasonManager.getCurrentSeason() == Seasons.NULL) {
 			world.setBlockMetadataWithNotify(x, y, z, 4);
 		}
-	}
-
-	public void getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data > 4) {
-			data = 4;
-		}
-		return this.growthStageTextures[data];
-		//TODO something with growth stage
-		BlockModelDispatcher.getInstance().getDispatch(block).getBlockTextureFromSideAndMetadata(Side.BOTTOM, 0)
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {

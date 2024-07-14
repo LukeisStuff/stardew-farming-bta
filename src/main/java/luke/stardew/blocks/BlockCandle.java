@@ -9,24 +9,18 @@ import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemFirestriker;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
-import useless.dragonfly.model.block.processed.BlockModel;
 
 import java.util.Random;
 
 public class BlockCandle extends Block {
 	protected final boolean isActive;
 
-	public BlockCandle(String key, int id, boolean flag, BlockModel orCreateBlockModel, boolean render3d) {
+	public BlockCandle(String key, int id, boolean flag) {
 		super(key, id, Material.decoration);
 		this.setTicking(true);
 		this.isActive = flag;
 		this.setBlockBounds(0.40625F, 0.0F, 0.40625F, 0.59375F, 0.5F, 0.59375F);
-	}
-
-	public AABB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
-		return null;
 	}
 
 	public boolean isSolidRender() {
@@ -79,8 +73,8 @@ public class BlockCandle extends Block {
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
 		if (this.isActive) {
 			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("smoke", x + 0.5, y + 0.8, z + 0.5, 0.0, 0.0, 0.0);
-				world.spawnParticle("flame", x + 0.5, y + 0.8, z + 0.5, 0.0, 0.0, 0.0);
+				world.spawnParticle("smoke", x + 0.5, y + 0.8, z + 0.5, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("flame", x + 0.5, y + 0.8, z + 0.5, 0.0, 0.0, 0.0, 0);
 				}
 			}
 		}

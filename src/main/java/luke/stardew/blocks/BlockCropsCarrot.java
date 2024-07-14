@@ -12,18 +12,10 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
-import turniplabs.halplibe.helper.TextureHelper;
 
 import java.util.Random;
 
-import static luke.stardew.StardewMod.MOD_ID;
-
 public class BlockCropsCarrot extends BlockFlower implements IBonemealable {
-	public final int[] growthStageTextures = new int[]{
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "carrot_crop_1.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "carrot_crop_2.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "carrot_crop_3.png"),
-	};
 	public BlockCropsCarrot(String key, int id) {
 		super(key, id);
 		this.setTicking(true);
@@ -97,14 +89,6 @@ public class BlockCropsCarrot extends BlockFlower implements IBonemealable {
 		}
 
 		return growthRate;
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data > 2) {
-			data = 2;
-		}
-		return this.growthStageTextures[data];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {

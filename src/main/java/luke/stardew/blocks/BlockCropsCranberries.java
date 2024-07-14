@@ -18,12 +18,6 @@ import java.util.Random;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class BlockCropsCranberries extends BlockFlower implements IBonemealable {
-	public final int[] growthStageTextures = new int[]{
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "cranberry_bush_1.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "cranberry_bush_2.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "cranberry_bush_3.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "cranberry_bush_4.png"),
-	};
 
 	public BlockCropsCranberries(String key, int id) {
 		super(key, id);
@@ -98,14 +92,6 @@ public class BlockCropsCranberries extends BlockFlower implements IBonemealable 
 
 	public boolean canThisPlantGrowOnThisBlockID(int i) {
 		return i == Block.farmlandDirt.id;
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data > 3) {
-			data = 3;
-		}
-		return this.growthStageTextures[data];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {

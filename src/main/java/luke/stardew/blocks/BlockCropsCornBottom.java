@@ -11,21 +11,10 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
-import turniplabs.halplibe.helper.TextureHelper;
 
 import java.util.Random;
 
-import static luke.stardew.StardewMod.MOD_ID;
-
 public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
-	public final int[] growthStageTextures = new int[]{
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_1.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_2.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_3.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_4.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_5.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "corn_crop_bottom_6.png"),
-	};
 
 	public BlockCropsCornBottom(String key, int id) {
 		super(key, id);
@@ -119,14 +108,6 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 		if (blockAbove == 0 || blockAbove == StardewBlocks.cropsCornTop.id) {
 			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 3);
 		}
-	}
-
-	@Override
-	public int getBlockTextureFromSideAndMetadata(Side side, int meta) {
-		if (meta < 0 || meta > 5) {
-			meta = 5;
-		}
-		return this.growthStageTextures[meta];
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {

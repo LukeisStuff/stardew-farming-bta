@@ -27,8 +27,8 @@ public class StardewItems {
 	public static Item seedsPineapple;
 	public static Item pineapple;
 
-
 	//Summer Crops
+
 	public static Item seedsTomato;
 	public static Item tomato;
 	public static Item seedsPotato;
@@ -37,8 +37,6 @@ public class StardewItems {
 	public static Item seedsStrawberry;
 	public static Item strawberry;
 	public static Item seedsWatermelon;
-	public static Item watermelon;
-
 
 	//Fall Crops
 	public static Item seedsCorn;
@@ -47,14 +45,35 @@ public class StardewItems {
 	public static Item seedsGrapes;
 	public static Item grapes;
 
-
 	//Winter Crops
+
 	public static Item seedsCauliflower;
-	public static Item cauliflower;
 
 	public static Item seedsCranberries;
 	public static Item cranberries;
 
+
+
+	public static Item dough;
+	public static Item eggCooked;
+	public static Item honey;
+	public static Item jarJam;
+	public static Item cheese;
+
+	public static Item foodStewVegetable;
+	public static Item foodStewCheese;
+	public static Item foodStewFruit;
+
+	public static Item foodCakeChocolate;
+	public static Item foodPie;
+
+	//Watering Cans
+	public static Item wateringCan;
+	public static Item wateringCanSteel;
+
+	public static Item wax;
+
+	public static Item foodPizza;
 
 	//Fishes
 	public static Item foodSalmonRaw;
@@ -69,30 +88,7 @@ public class StardewItems {
 	public static Item fishGhost;
 	public static Item fishStone;
 
-	//Processed Foods
-	public static Item dough;
-	public static Item eggCooked;
-	public static Item honey;
-	public static Item jarJam;
-	public static Item cheese;
-
-	public static Item foodStewVegetable;
-	public static Item foodStewCheese;
-	public static Item foodStewFruit;
-
-	public static Item foodCakeChocolate;
-	public static Item foodPie;
-	public static Item foodPizza;
-
-
-	//Tools
-	public static Item wateringCan;
-	public static Item wateringCanSteel;
-
-	public static Item wax;
-
-
-	//Fishing
+	//Fishing Rods
 	public static Item toolFishingrodStone;
 	public static Item toolFishingrodIron;
 	public static Item toolFishingrodGold;
@@ -166,9 +162,6 @@ public class StardewItems {
 			.setIcon(MOD_ID + ":item/seedsWatermelon")
 			.setStackSize(64)
 			.build(new ItemSeeds("seeds.watermelon", itemID("seedsWatermelon"), StardewBlocks.cropsWatermelon));
-		watermelon = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/watermelon")
-			.build(new ItemFood("food.watermelon", itemID("watermelon"), 1, 8,false, 16));
 
 
 		//Fall Crops
@@ -194,9 +187,6 @@ public class StardewItems {
 			.setIcon(MOD_ID + ":item/seedsCauliflower")
 			.setStackSize(64)
 			.build(new ItemSeeds("seeds.cauliflower", itemID("seedsCauliflower"), StardewBlocks.cropsCauliflower));
-		cauliflower = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/cauliflower")
-			.build(new ItemFood("food.cauliflower", itemID("cauliflower"), 3, 8,false, 4));
 
 		seedsCranberries = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/seedsCranberries")
