@@ -94,19 +94,8 @@ public class BlockCropsPotato extends BlockFlower implements IBonemealable {
 		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsPotato)} : new ItemStack[]{new ItemStack(StardewItems.seedsPotato, world.rand.nextInt(3) + 1), new ItemStack(StardewItems.potato)};
 	}
 
-	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
-		int l = world.getBlockMetadata(x, y, z);
-		if (l == 4) {
-			world.setBlock(x, y, z, 0);
-			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);
-			world.dropItem(x, y, z, new ItemStack(StardewItems.potato));
-			world.dropItem(x, y, z, new ItemStack(StardewItems.seedsPotato, world.rand.nextInt(3) + 1));
-		}
-		return false;
-	}
-
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-		if (world.getBlockMetadata(blockX, blockY, blockZ) < 4) {
+		if (world.getBlockMetadata(blockX, blockY, blockZ) < 2) {
 			if (!world.isClientSide) {
 				((BlockCropsPotato)StardewBlocks.cropsPotato).fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
