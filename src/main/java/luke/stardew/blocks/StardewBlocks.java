@@ -3,6 +3,7 @@ package luke.stardew.blocks;
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.model.*;
 import net.minecraft.client.render.block.model.*;
+import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockCake;
 import net.minecraft.core.block.BlockLog;
@@ -269,12 +270,26 @@ public class StardewBlocks {
 
 		beehiveIdle = wood
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures("stardew:block/beehive_top", "stardew:block/beehive_top", "stardew:block/beehive_idle", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
+			.setTopBottomTextures("stardew:block/beehive_top")
+			.setSideTextures("stardew:block/beehive_side")
+			.setNorthTexture("stardew:block/beehive_idle")
+			.setBlockModel((block) -> {
+				TextureRegistry.getTexture(MOD_ID + ":item/bee");
+				return new BlockModelHorizontalRotation<>(block);
+			})
+			//.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures("stardew:block/beehive_top", "stardew:block/beehive_top", "stardew:block/beehive_idle", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
 			.build(new BlockBeehiveActive("beehive.idle", blockID("beehiveIdle"), false));
 
 		beehiveHoney = wood
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures("stardew:block/beehive_top", "stardew:block/beehive_top", "stardew:block/beehive_active", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
+			.setTopBottomTextures("stardew:block/beehive_top")
+			.setSideTextures("stardew:block/beehive_side")
+			.setNorthTexture("stardew:block/beehive_active")
+			.setBlockModel((block) -> {
+				TextureRegistry.getTexture(MOD_ID + ":item/bee");
+				return new BlockModelHorizontalRotation<>(block);
+			})
+			//.withTextures(, "stardew:block/beehive_top", "stardew:block/beehive_active", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
 			.build(new BlockBeehiveActive("beehive.honey", blockID("beehiveHoney"), true));
 
 		blockHoney = new BlockBuilder(MOD_ID)
