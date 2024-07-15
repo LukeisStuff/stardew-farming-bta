@@ -3,6 +3,7 @@ package luke.stardew.items;
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.models.ItemModelTieredFishingRod;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import turniplabs.halplibe.helper.ItemBuilder;
@@ -276,7 +277,7 @@ public class StardewItems {
 
 		foodPie = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/piePumpkin")
-			.build(new ItemPlaceable("food.pie", itemID("foodPie"), StardewBlocks.pie).setMaxStackSize(1));
+			.build(new ItemPlaceable("food.pie", itemID("foodPie"), Block.pumpkinPie).setMaxStackSize(1));
 
 		foodPizza = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/pizza")
@@ -309,7 +310,7 @@ public class StardewItems {
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingrodIron"), ToolMaterial.iron));
 		toolFishingrodGold = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_gold")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "gold"))
+			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "go	ld"))
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingrodGold"), ToolMaterial.gold));
 		toolFishingrodDiamond = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_diamond")
@@ -336,7 +337,7 @@ public class StardewItems {
 
 		//Treasures
 		recordPink = new ItemBuilder(MOD_ID)
-			.setIcon(":item/axolotl")
+			.setIcon(MOD_ID + ":item/axolotl")
 			.setStackSize(1)
 			.build(new ItemRecordAccessor("record.pink", itemID("recordPink"), "axolotl", "C418"));
 	}

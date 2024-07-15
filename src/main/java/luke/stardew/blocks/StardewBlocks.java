@@ -329,7 +329,8 @@ public class StardewBlocks {
 			.build(new BlockCandle("candle", blockID("candle"), false));
 
 		candleActive = new BlockBuilder(MOD_ID)
-			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candle).withTextures("stardew:block/candle_item"))
+			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candleActive))
+			.setIcon("stardew:block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
