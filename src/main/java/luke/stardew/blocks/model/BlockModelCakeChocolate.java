@@ -7,7 +7,7 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.Side;
 
 public class BlockModelCakeChocolate<T extends Block> extends BlockModelStandard<T> {
-	protected IconCoordinate cakeInner = TextureRegistry.getTexture("stardew:block/chocoCakeSideBit");
+	protected IconCoordinate cakeInner = TextureRegistry.getTexture("stardew:block/chocoCake_inner");
 
 	public BlockModelCakeChocolate(Block block) {
 		super(block);

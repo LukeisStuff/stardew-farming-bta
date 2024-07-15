@@ -10,12 +10,12 @@ import java.util.Random;
 
 public class BlockLeavesApple extends BlockLeavesBase {
 	public BlockLeavesApple(String key, int id) {
-		super(key, id, Material.leaves, false);
+		super(key, id, Material.leaves);
 	}
 
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
 		if (world.seasonManager.getCurrentSeason() != null && world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL && rand.nextInt(40) == 0) {
-			world.spawnParticle("fallingleaf", x, (double)y - 0.10000000149011612, z, 0.0, 0.0, 0.0);
+			world.spawnParticle("fallingleaf", x, (double)y - 0.10000000149011612, z, 0.0, 0.0, 0.0, 0);
 		}
 	}
 

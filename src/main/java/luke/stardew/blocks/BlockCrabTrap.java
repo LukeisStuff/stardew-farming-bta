@@ -17,7 +17,7 @@ public class BlockCrabTrap extends BlockTransparent {
 	protected final boolean isActive;
 
 	public BlockCrabTrap(String key, int id, boolean flag) {
-		super(key, id, Material.metal, true);
+		super(key, id, Material.metal);
 		this.setTicking(true);
 		this.isActive = flag;
 	}

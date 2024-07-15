@@ -9,16 +9,16 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
-public class BlockModelBush<T extends Block> extends BlockModelStandard<T> {
+public class BlockModelCropsPotato<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/bush_spring"),
-		TextureRegistry.getTexture("stardew:block/bush_summer"),
-		TextureRegistry.getTexture("stardew:block/bush_fall"),
-		TextureRegistry.getTexture("stardew:block/bush_winter"),
-		TextureRegistry.getTexture("stardew:block/bush_dead")
+		TextureRegistry.getTexture("stardew:block/potato_crop_top_1"),
+		TextureRegistry.getTexture("stardew:block/potato_crop_top_2"),
+		TextureRegistry.getTexture("stardew:block/potato_crop_top_3"),
+		TextureRegistry.getTexture("stardew:block/potato_crop_top_4"),
+		TextureRegistry.getTexture("stardew:block/potato_crop_top_5")
 	};
 
-	public BlockModelBush(Block block) {
+	public BlockModelCropsPotato(Block block) {
 		super(block);
 	}
 

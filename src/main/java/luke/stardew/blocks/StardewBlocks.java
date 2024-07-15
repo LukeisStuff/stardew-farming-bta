@@ -2,10 +2,7 @@ package luke.stardew.blocks;
 
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.model.*;
-import net.minecraft.client.render.block.model.BlockModelAxisAligned;
-import net.minecraft.client.render.block.model.BlockModelCropsPumpkin;
-import net.minecraft.client.render.block.model.BlockModelCrossedSquares;
-import net.minecraft.client.render.block.model.BlockModelHorizontalRotation;
+import net.minecraft.client.render.block.model.*;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockCake;
 import net.minecraft.core.block.BlockLog;
@@ -168,6 +165,7 @@ public class StardewBlocks {
 			.build(new BlockCropsBlueberry("crops.blueberry", blockID("cropsBlueberry")));
 
 		cropsPineapple = crops
+			.setBlockModel(BlockModelCropsPineapple::new)
 			.build(new BlockCropsPineapple("crops.pineapple", blockID("cropsPineapple")));
 
 
@@ -178,64 +176,28 @@ public class StardewBlocks {
 
 		// Summer Vegetables
 		cropsTomato = crops
+			.setBlockModel(BlockModelCropsTomato::new)
 			.build(new BlockCropsTomato("crops.tomato", blockID("cropsTomato")));
 
 		cropsPotato = crops
+			.setBlockModel(BlockModelCropsPotato::new)
 			.build(new BlockCropsPotato("crops.potato", blockID("cropsPotato")));
 
 		// Summer Fruits
 
 		cropsStrawberry = crops
+			.setBlockModel(BlockModelCropsStrawberry::new)
 			.build(new BlockCropsStrawberry("crops.strawberry", blockID("cropsStrawberry")));
 
 		cropsWatermelon = cropsBlock
+			.setBlockModel(BlockModelCropsWatermelon::new)
 			.build(new BlockCropsWatermelon("crops.watermelon", blockID("cropsWatermelon")));
 		watermelon = blocks
-			.setSideTextures("melonSide.png")
-			.setTopBottomTextures("melonTop.png")
+			.setBlockModel(block -> new BlockModelAxisAligned<>(block).withTextures("stardew:block/watermelon_top", "stardew:block/watermelon_side"))
 			.build(new Block("watermelon", blockID("watermelon"), Material.vegetable));
 
 
 		//Fall Crops
-
-		// Fall Tree
-		logApple = log
-			.setTopBottomTextures("logAppleTop.png")
-			.setSideTextures("logAppleSide.png")
-			.build(new BlockLog("log.apple", blockID("logApple")));
-		leavesApple = leaves
-			.setSideTextures("leavesApple.png")
-			.setBottomTexture("leavesAppleFast.png")
-			.setTopBottomTextures("leavesApple.png")
-			.build(new BlockLeavesApple("leaves.apple", blockID("leavesApple")));
-		leavesAppleFlowering = leaves
-			.setSideTextures("leavesAppleFlowering.png")
-			.setBottomTexture("leavesAppleFloweringFast.png")
-			.setTopBottomTextures("leavesAppleFlowering.png")
-			.build(new BlockLeavesAppleFlowering("leaves.apple.flowering", blockID("leavesAppleFlowering")));
-		saplingApple = sapling
-			.setTextures("saplingApple.png")
-			.build(new BlockSaplingApple("sapling.apple", blockID("saplingApple")));
-
-		logAppleGolden = log
-			.setTopBottomTextures("logAppleGoldenTop.png")
-			.setSideTextures("logAppleGoldenSide.png")
-			.build(new BlockLog("log.apple.golden", blockID("logAppleGolden")));
-		leavesAppleGolden = leaves
-			.setSideTextures("leavesAppleGolden.png")
-			.setBottomTexture("leavesAppleGoldenFast.png")
-			.setTopBottomTextures("leavesAppleGolden.png")
-			.build(new BlockLeavesAppleGolden("leaves.apple.golden", blockID("leavesAppleGolden")));
-		leavesAppleGoldenFlowering = leaves
-			.setSideTextures("leavesAppleGoldenFlowering.png")
-			.setBottomTexture("leavesAppleGoldenFloweringFast.png")
-			.setTopBottomTextures("leavesAppleGoldenFlowering.png")
-			.build(new BlockLeavesAppleGoldenFlowering("leaves.apple.flowering", blockID("leavesAppleGoldenFlowering")));
-		saplingAppleGolden = sapling
-			.setTextures("saplingAppleGolden.png")
-			.build(new BlockSaplingAppleGolden("sapling.apple.golden", blockID("saplingAppleGolden")));
-
-
 		cropsCornBottom = crops
 			.setBlockModel(BlockModelCropsCornBottom::new)
 			.build(new BlockCropsCornBottom("crops.corn.bottom", blockID("cropsCornBottom")));
@@ -254,18 +216,41 @@ public class StardewBlocks {
 			.build(new BlockCropsGrapeTop("crops.grape.top", blockID("cropsGrapeTop")));
 
 
+		// Fall Tree
+		logApple = log
+			.setBlockModel(block -> new BlockModelAxisAligned<>(block).withTextures("stardew:block/log_apple_top", "stardew:block/log_apple_side"))
+			.build(new BlockLog("log.apple", blockID("logApple")));
+		leavesApple = leaves
+			.setBlockModel(block -> new BlockModelLeaves<>(block, "stardew:block/leaves_apple"))
+			.build(new BlockLeavesApple("leaves.apple", blockID("leavesApple")));
+		leavesAppleFlowering = leaves
+			.setBlockModel(BlockModelLeavesAppleFlowering::new)
+			.build(new BlockLeavesAppleFlowering("leaves.apple.flowering", blockID("leavesAppleFlowering")));
+		saplingApple = sapling
+			.setBlockModel(block -> new BlockModelCrossedSquares<>(block).withTextures("stardew:block/sapling_apple"))
+			.build(new BlockSaplingApple("sapling.apple", blockID("saplingApple")));
+
+		logAppleGolden = log
+			.setBlockModel(block -> new BlockModelAxisAligned<>(block).withTextures("stardew:block/log_apple_golden_top", "stardew:block/log_apple_golden_side"))
+			.build(new BlockLog("log.apple.golden", blockID("logAppleGolden")));
+		leavesAppleGolden = leaves
+			.setBlockModel(block -> new BlockModelLeaves<>(block, "stardew:block/leaves_apple_golden"))
+			.build(new BlockLeavesAppleGolden("leaves.apple.golden", blockID("leavesAppleGolden")));
+		leavesAppleGoldenFlowering = leaves
+			.setBlockModel(BlockModelLeavesAppleGoldenFlowering::new)
+			.build(new BlockLeavesAppleGoldenFlowering("leaves.apple.flowering", blockID("leavesAppleGoldenFlowering")));
+		saplingAppleGolden = sapling
+			.setBlockModel(block -> new BlockModelCrossedSquares<>(block).withTextures("stardew:block/sapling_apple_golden"))
+			.build(new BlockSaplingAppleGolden("sapling.apple.golden", blockID("saplingAppleGolden")));
+
 
 		//Winter Crops
-
-
 		cropsCauliflower = cropsBlock
-			.setBlockModel(BlockModelCropsCauliflower::new)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
+			.setBlockModel(BlockModelCropsCauliflower::new)
 			.build(new BlockCropsCauliflower("crops.cauliflower", blockID("cropsCauliflower")));
 		cauliflower = blocks
-			.setSideTextures("cauliflowerSide.png")
-			.setTopTexture("cauliflowerTop.png")
-			.setBottomTexture("cauliflowerBottom.png")
+			.setBlockModel(block -> new BlockModelAxisAligned<>(block).withTextures("stardew:block/cauliflower_top", "stardew:block/cauliflower_bottom", "stardew:block/cauliflower_side"))
 			.build(new Block("cauliflower", blockID("cauliflower"), Material.vegetable));
 
 
@@ -278,27 +263,21 @@ public class StardewBlocks {
 
 
 		bush = crops
-			.setBlockModel(BlockModelBush::new)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
 			.setTicking(true)
 			.setTickOnLoad()
+			.setBlockModel(BlockModelBush::new)
 			.build(new BlockBush("bush", blockID("bush")));
 
 
 		beehiveIdle = wood
-			.setBlockModel(BlockModelHorizontalRotation::new)
-			.setTopBottomTextures("beehiveTop.png")
-			.setSideTextures("beehiveSide.png")
-			.setNorthTexture("beehiveFront.png")
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures("stardew:block/beehive_top", "stardew:block/beehive_top", "stardew:block/beehive_idle", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
 			.build(new BlockBeehiveActive("beehive.idle", blockID("beehiveIdle"), false));
 
 		beehiveHoney = wood
-			.setBlockModel(BlockModelHorizontalRotation::new)
-			.setTopBottomTextures("beehiveTop.png")
-			.setSideTextures("beehiveSide.png")
-			.setNorthTexture("beehiveFrontHoney.png")
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures("stardew:block/beehive_top", "stardew:block/beehive_top", "stardew:block/beehive_active", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
 			.build(new BlockBeehiveActive("beehive.honey", blockID("beehiveHoney"), true));
 
 		blockHoney = new BlockBuilder(MOD_ID)
@@ -306,71 +285,58 @@ public class StardewBlocks {
 			.setHardness(0.2f)
 			.setResistance(0.2f)
 			.setLightOpacity(6)
-			.setTextures("blockHoney.png")
 			.setTags(BlockTags.MINEABLE_BY_AXE)
-			.build(new BlockHoney("block.honey", blockID("blockHoney"), false));
+			.setBlockModel(block -> new BlockModelStandard<>(block).withTextures("stardew:block/block_honey"))
+			.build(new BlockHoney("block.honey", blockID("blockHoney")));
 
 
 		cakeChocolate = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
 			.setHardness(0.5f)
 			.setResistance(0.5f)
-			.setTopTexture("chocoCakeTop.png")
-			.setBottomTexture("chocoCakeBottom.png")
-			.setSideTextures("chocoCakeSideBit.png")
-			.setSideTextures("chocoCakeSide.png")
-			.setBlockModel(BlockModelCakeChocolate::new)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.setBlockModel(block -> new BlockModelCakeChocolate<>(block).withTextures("stardew:block/chokoCake_top", "stardew:block/chokoCake_bottom", "stardew:block/chokoCake_side"))
 			.build(new BlockCake("cake.chocolate", blockID("cakeChocolate")));
 
 		pie = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
 			.setHardness(0.5f)
 			.setResistance(0.5f)
-			.setTopTexture("pumpkinPieTop.png")
-			.setBottomTexture("pumpkinPieBottom.png")
-			.setSideTextures("pumpkinPieSide.png")
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			//.setBlockModel(block -> new BlockModelPumpkinPie<>(block).withTextures("stardew:block/chokoCake_top", "stardew:block/chokoCake_bottom", "stardew:block/chokoCake_side"))
 			.build(new BlockPie("pie", blockID("pie"), Material.cake));
 
 		beehive = wood
-			.setBlockModel(BlockModelHorizontalRotation::new)
-			.setTopBottomTextures("beehiveTop.png")
-			.setSideTextures("beehiveSide.png")
-			.setNorthTexture("beehiveFront.png")
+			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures("stardew:block/beehive_top", "stardew:block/beehive_top", "stardew:block/beehive_idle", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
 			.build(new BlockBeehive("beehive", blockID("beehive")));
 
 		pizza = new BlockBuilder(MOD_ID)
-			.setBlockModel(BlockModelPizza::new)
+			.setBlockModel(block -> new BlockModelPizza<>(block).withTextures("stardew:block/pizza_top", "stardew:block/pizza_bottom", "stardew:block/pizza_side"))
 			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
 			.setHardness(0.5f)
 			.setResistance(0.5f)
-			.setTopTexture("pizzaTop.png")
-			.setBottomTexture("pizzaBottom.png")
-			.setSideTextures("pizzaSide.png")
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build(new BlockPizza("pizza", blockID("pizza")));
 
 		candle = new BlockBuilder(MOD_ID)
+			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candle))
+			.setIcon("stardew:block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setVisualUpdateOnMetadata()
-			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candle))
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
-			.setIcon("candleItem.png")
 			.build(new BlockCandle("candle", blockID("candle"), false));
 
 		candleActive = new BlockBuilder(MOD_ID)
+			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candle).withTextures("stardew:block/candle_item"))
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setLuminance(14)
 			.setUseInternalLight()
 			.setVisualUpdateOnMetadata()
-			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candle))
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.setTextures("candleItem.png")
 			.build(new BlockCandle("candle.active", blockID("candleActive"), true));
 
 		initializeBlockDetails();
