@@ -72,14 +72,16 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		if(world.getBlockMetadata(x, y, z) == 0){
+		if(world.getBlockMetadata(x, y, z) >= 0 && world.getBlockMetadata(x, y, z) < 4){
 			return super.canBlockStay(world, x ,y, z);
 		}
-		if(world.getBlockId(x, y+1, z) == StardewBlocks.cropsGrapeTop.id && world.getBlockMetadata(x,y,z) >= 0){
+		if (world.getBlockId(x, y + 1, z) == StardewBlocks.cropsGrapeTop.id && world.getBlockMetadata(x, y, z) >= 3){
 			return super.canBlockStay(world, x ,y, z);
 		}
-		return true;
+		return false;
 	}
+
+
 
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
@@ -87,6 +89,7 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
 			if (world.getBlockLightValue(x, y + 1, z) >= 9) {
 				int l = world.getBlockMetadata(x, y, z);
+
 				if (l < 4) {
 					float f = this.getGrowthRate(world, x, y, z);
 					if (rand.nextInt((int) (100.0F / f)) == 0) {
@@ -95,7 +98,7 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 					}
 				}
 			}
-			if (world.getBlockMetadata(x, y, z) == 3) {
+			if (world.getBlockMetadata(x, y, z) == 3 && world.getBlockId(x, y + 1, z) == 0) {
 				world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, 0);
 			}
 		}
@@ -105,13 +108,27 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 	public void fertilize(World world, int x, int y, int z) {
 		world.setBlockMetadataWithNotify(x, y, z, 4);
 		int blockAbove = world.getBlockId(x, y + 1, z);
-		if (blockAbove == 0 || blockAbove == StardewBlocks.cropsGrapeTop.id) {
-			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, 3);
+		int blockAboveMeta = world.getBlockMetadata(x, y + 1, z);
+		if (blockAbove == 0) {
+			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, 1);
+		}
+		if ((blockAbove == StardewBlocks.cropsGrapeTop.id && blockAboveMeta < 2)) {
+			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsGrapeTop.id, 2);
 		}
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
 		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsGrapes)} : new ItemStack[]{new ItemStack(StardewItems.seedsGrapes, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.grapes, world.rand.nextInt(1) + 3)};
+	}
+
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
+		int l = world.getBlockMetadata(x, y, z);
+		if (l == 4) {
+			world.setBlockMetadataWithNotify(x, y, z, 3);
+			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
+			world.dropItem(x, y, z, new ItemStack(StardewItems.grapes, world.rand.nextInt(1) + 3));
+		}
+		return false;
 	}
 
 	@Override

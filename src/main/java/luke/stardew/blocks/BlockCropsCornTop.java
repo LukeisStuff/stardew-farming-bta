@@ -90,15 +90,12 @@ public class BlockCropsCornTop extends BlockFlower implements IBonemealable {
 	public boolean canThisPlantGrowOnThisBlockID(int i) {
 		return i == StardewBlocks.cropsCornBottom.id;
 	}
-	public void fertilize(World world, int i, int j, int k) {
-		world.setBlockAndMetadataWithNotify(i, j, k, this.id,3);
-	}
 
 	@Override
 	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		if (world.getBlockMetadata(blockX, blockY, blockZ) < 3) {
 			if (!world.isClientSide) {
-				((BlockCropsCornTop) StardewBlocks.cropsCornTop).fertilize(world, blockX, blockY, blockZ);
+				((BlockCropsCornBottom) StardewBlocks.cropsCornBottom).fertilize(world, blockX, blockY - 1, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
 					--itemstack.stackSize;
 				}
