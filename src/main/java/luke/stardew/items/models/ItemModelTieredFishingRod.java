@@ -1,6 +1,5 @@
 package luke.stardew.items.models;
 
-import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.render.item.model.ItemModelStandard;
 import net.minecraft.client.render.stitcher.IconCoordinate;
 import net.minecraft.client.render.stitcher.TextureRegistry;

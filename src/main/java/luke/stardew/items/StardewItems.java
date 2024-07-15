@@ -302,23 +302,23 @@ public class StardewItems {
 		//Fishing
 		toolFishingrodStone = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_stone")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "stone"))
+			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "stone").setFull3D().setRotateWhenRendering())
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.stone", itemID("toolFishingrodStone"), ToolMaterial.stone));
 		toolFishingrodIron = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_iron")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "iron"))
+			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "iron").setFull3D().setRotateWhenRendering())
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingrodIron"), ToolMaterial.iron));
 		toolFishingrodGold = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_gold")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "gold"))
+			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "gold").setFull3D().setRotateWhenRendering())
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingrodGold"), ToolMaterial.gold));
 		toolFishingrodDiamond = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_diamond")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "diamond"))
+			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "diamond").setFull3D().setRotateWhenRendering())
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingrodDiamond"), ToolMaterial.diamond));
 		toolFishingrodSteel = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_steel")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "steel"))
+			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "steel").setFull3D().setRotateWhenRendering())
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingrodSteel"), ToolMaterial.steel));
 
 		worm = new ItemBuilder(MOD_ID)
