@@ -23,7 +23,7 @@ public class BlockModelCropsCauliflower<T extends Block> extends BlockModelStand
 		TextureRegistry.getTexture("stardew:block/cauliflower_crop_side_4")
 	};
 
-	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture("stardew:block/cauliflower_crop_leaf.png");
+	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture("stardew:block/cauliflower_crop_leaf");
 
 	public BlockModelCropsCauliflower(Block block) {
 		super(block);

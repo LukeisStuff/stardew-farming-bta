@@ -62,11 +62,11 @@ item.stardew.food.pie.name=Pumpkin Pie
 item.stardew.food.pie.desc=Pumpkin spiced custard filled dessert.
 
 
-item.stardew.seeds.grape.name=Grape Seeds
-item.stardew.seeds.grape.desc=Grape seeds that can be planted.
+item.stardew.seeds.grapes.name=Grape Seeds
+item.stardew.seeds.grapes.desc=Grape seeds that can be planted.
 
-item.stardew.food.grape.name=Grapes
-item.stardew.food.grape.desc=Bundle of purple berries loaded with juice.
+item.stardew.food.grapes.name=Grapes
+item.stardew.food.grapes.desc=Bundle of purple berries loaded with juice.
 
 
 
@@ -106,8 +106,8 @@ item.stardew.food.stew.fruit.desc=Mmm... fruity.
 item.stardew.food.cake.chocolate.name=Chocolate Cake
 item.stardew.food.cake.chocolate.desc=The cake is a lie.
 
-item.stardew.honey.name=Honey
-item.stardew.honey.desc=Scooped up honey collected from a beehive.
+item.stardew.food.honey.name=Honey
+item.stardew.food.honey.desc=Scooped up honey collected from a beehive.
 
 item.stardew.food.jam.name=Jam Jar
 item.stardew.food.jam.desc=Mashed up fruit collected in a jar.

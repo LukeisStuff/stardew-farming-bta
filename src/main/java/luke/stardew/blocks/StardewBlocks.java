@@ -69,9 +69,6 @@ public class StardewBlocks {
 
 	public static Block blockHoney;
 
-	public static Block crabTrapIdle;
-	public static Block crabTrapFilled;
-
 	public static Block cakeChocolate;
 	public static Block pie;
 

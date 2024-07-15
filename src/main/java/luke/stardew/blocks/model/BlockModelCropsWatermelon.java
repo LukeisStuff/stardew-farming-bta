@@ -23,7 +23,7 @@ public class BlockModelCropsWatermelon<T extends Block> extends BlockModelStanda
 		TextureRegistry.getTexture("stardew:block/watermelon_crop_side_4")
 	};
 
-	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture("stardew:block/watermelon_crop_leaf.png");
+	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture("stardew:block/watermelon_crop_leaf");
 
 	public BlockModelCropsWatermelon(Block block) {
 		super(block);

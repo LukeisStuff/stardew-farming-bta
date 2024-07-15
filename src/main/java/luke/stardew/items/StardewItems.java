@@ -253,7 +253,7 @@ public class StardewItems {
 
 		jarJam = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/jam")
-			.build(new ItemJam("food.jarJam", itemID("jarJam"), 8, 16,false, 2));
+			.build(new ItemJam("food.jam", itemID("jarJam"), 8, 16,false, 2));
 
 		cheese = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/cheese")
@@ -310,7 +310,7 @@ public class StardewItems {
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingrodIron"), ToolMaterial.iron));
 		toolFishingrodGold = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_gold")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "go	ld"))
+			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "gold"))
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingrodGold"), ToolMaterial.gold));
 		toolFishingrodDiamond = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/fishingrod_diamond")
@@ -339,7 +339,7 @@ public class StardewItems {
 		recordPink = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/axolotl")
 			.setStackSize(1)
-			.build(new ItemRecordAccessor("record.pink", itemID("recordPink"), "axolotl", "C418"));
+			.build(new ItemRecord("record.pink", itemID("recordPink"), "axolotl", "C418"));
 	}
 
 

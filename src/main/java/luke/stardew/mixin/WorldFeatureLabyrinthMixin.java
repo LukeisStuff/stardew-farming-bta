@@ -28,8 +28,8 @@ public class WorldFeatureLabyrinthMixin {
 		}
 	}
 
-	@Inject(method = "pickCheckLootItem(Ljava/util/Random;)Lnet/minecraft/core/item/ItemStack;", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I"), cancellable = true)
-	private void addLoot(Random random, CallbackInfoReturnable<ItemStack> cir) {
+	@Inject(method = "pickCheckLootItem", at = @At("HEAD"), cancellable = true)
+	private void pickCheckLootItem(Random random, CallbackInfoReturnable<ItemStack> cir) {
 		if (random.nextInt(16) == 0 && random.nextInt(10) == 0) {
 			cir.setReturnValue(new ItemStack(StardewBlocks.saplingApple, random.nextInt(1) + 1));
 		}
