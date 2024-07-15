@@ -72,13 +72,13 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		if(world.getBlockMetadata(x, y, z) == 0){
+		if(world.getBlockMetadata(x, y, z) >= 0 && world.getBlockMetadata(x, y, z) < 4){
 			return super.canBlockStay(world, x ,y, z);
 		}
-		if(world.getBlockId(x, y+1, z) == StardewBlocks.cropsCornTop.id && world.getBlockMetadata(x,y,z) >= 0){
+		if (world.getBlockId(x, y + 1, z) == StardewBlocks.cropsCornTop.id && world.getBlockMetadata(x, y, z) >= 3){
 			return super.canBlockStay(world, x ,y, z);
 		}
-		return true;
+		return false;
 	}
 
 	@Override
@@ -95,8 +95,8 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 					}
 				}
 			}
-			if (world.getBlockMetadata(x, y, z) == 3) {
-					world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 0);
+			if (world.getBlockMetadata(x, y, z) == 3 && world.getBlockId(x, y + 1, z) == 0) {
+				world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 0);
 			}
 		}
 	}
@@ -105,7 +105,11 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 	public void fertilize(World world, int x, int y, int z) {
 		world.setBlockMetadataWithNotify(x, y, z, 5);
 		int blockAbove = world.getBlockId(x, y + 1, z);
-		if (blockAbove == 0 || blockAbove == StardewBlocks.cropsCornTop.id) {
+		int blockAboveMeta = world.getBlockMetadata(x, y + 1, z);
+		if (blockAbove == 0) {
+			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 1);
+		}
+		if ((blockAbove == StardewBlocks.cropsCornTop.id && blockAboveMeta < 3)) {
 			world.setBlockAndMetadataWithNotify(x, y + 1, z, StardewBlocks.cropsCornTop.id, 3);
 		}
 	}
