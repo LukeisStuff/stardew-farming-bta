@@ -26,10 +26,24 @@ public abstract class EntityItemMixin {
 			player.triggerAchievement(StardewAchievements.APPLE);
 		}
 
-		if ((this.item.itemID == Item.foodFishRaw.id || this.item.itemID == StardewItems.foodBassRaw.id || this.item.itemID == StardewItems.foodSnapperRaw.id || this.item.itemID == StardewItems.foodSalmonRaw.id) && player.getStat(StatList.pickUpItemStats[Item.foodFishRaw.id]) > 0 && player.getStat(StatList.pickUpItemStats[StardewItems.foodSalmonRaw.id]) > 0 && player.getStat(StatList.pickUpItemStats[StardewItems.foodSnapperRaw.id]) > 0 && player.getStat(StatList.pickUpItemStats[StardewItems.foodBassRaw.id]) > 0) {
+		if ((this.item.itemID == Item.foodFishRaw.id
+			|| this.item.itemID == StardewItems.foodBassRaw.id
+			|| this.item.itemID == StardewItems.foodSnapperRaw.id
+			|| this.item.itemID == StardewItems.foodSalmonRaw.id)
+			&& player.getStat(StatList.pickUpItemStats[Item.foodFishRaw.id]) > 0
+			&& player.getStat(StatList.pickUpItemStats[StardewItems.foodSalmonRaw.id]) > 0
+			&& player.getStat(StatList.pickUpItemStats[StardewItems.foodSnapperRaw.id]) > 0
+			&& player.getStat(StatList.pickUpItemStats[StardewItems.foodBassRaw.id]) > 0) {
 			player.triggerAchievement(StardewAchievements.AMATEUR_FISHER);
 		}
-		if ((this.item.itemID == StardewItems.fishGhost.id || this.item.itemID == StardewItems.fishSword.id || this.item.itemID == StardewItems.fishEelLava.id || this.item.itemID == StardewItems.fishStone.id) && player.getStat(StatList.pickUpItemStats[StardewItems.fishSword.id]) > 0 && player.getStat(StatList.pickUpItemStats[StardewItems.fishGhost.id]) > 0 && player.getStat(StatList.pickUpItemStats[StardewItems.fishEelLava.id]) > 0 && player.getStat(StatList.pickUpItemStats[StardewItems.fishStone.id]) > 0) {
+		if ((this.item.itemID == StardewItems.fishGhost.id
+			|| this.item.itemID == StardewItems.fishSword.id
+			|| this.item.itemID == StardewItems.fishEelLava.id
+			|| this.item.itemID == StardewItems.fishStone.id)
+			&& player.getStat(StatList.pickUpItemStats[StardewItems.fishSword.id]) > 0
+			&& player.getStat(StatList.pickUpItemStats[StardewItems.fishGhost.id]) > 0
+			&& player.getStat(StatList.pickUpItemStats[StardewItems.fishEelLava.id]) > 0
+			&& player.getStat(StatList.pickUpItemStats[StardewItems.fishStone.id]) > 0) {
 			player.triggerAchievement(StardewAchievements.MASTER_FISHER);
 		}
 		if ((this.item.itemID == StardewItems.cranberries.id
