@@ -21,7 +21,7 @@ public class ItemToolHoeMixin extends ItemTool {
 		super(name, id, damageDealt, toolMaterial, tagEffectiveAgainst);
 	}
 
-	@Inject(method = "onItemUse", at = @At(value = "HEAD", target = "Lnet/minecraft/core/world/World;playBlockSoundEffect(Lnet/minecraft/core/entity/Entity;DDDLnet/minecraft/core/block/Block;Lnet/minecraft/core/enums/EnumBlockSoundEffectType;)V"))
+	@Inject(method = "onUseItemOnBlock", at = @At(value = "HEAD", target = "Lnet/minecraft/core/world/World;playBlockSoundEffect(Lnet/minecraft/core/entity/Entity;DDDLnet/minecraft/core/block/Block;Lnet/minecraft/core/enums/EnumBlockSoundEffectType;)V"))
 	private void dropWorms(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir){
 		int i1 = world.getBlockId(blockX, blockY, blockZ);
 		if (i1 == Block.grass.id) {
