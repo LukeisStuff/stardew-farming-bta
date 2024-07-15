@@ -12,13 +12,13 @@ import org.jetbrains.annotations.Nullable;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class ItemModelCanOfWorms extends ItemModelStandard {
-	protected IconCoordinate quiverFull = TextureRegistry.getTexture(MOD_ID + ":item/canOfWorms_empty");
+	protected IconCoordinate canFull = TextureRegistry.getTexture(MOD_ID + ":item/canOfWorms_empty");
 
 	public ItemModelCanOfWorms(Item item, String namespace) {
 		super(item, namespace);
 	}
 
 	public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
-		return itemStack.getMetadata() >= itemStack.getItem().getMaxDamage() ? this.quiverFull : super.getIcon(entity, itemStack);
+		return itemStack.getMetadata() >= itemStack.getItem().getMaxDamage() ? this.canFull : super.getIcon(entity, itemStack);
 	}
 }

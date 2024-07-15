@@ -2,6 +2,7 @@ package luke.stardew.items;
 
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
+import luke.stardew.items.models.ItemModelCanOfWorms;
 import luke.stardew.items.models.ItemModelTieredFishingRod;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.item.*;
@@ -327,6 +328,7 @@ public class StardewItems {
 			.build(new Item("worm", itemID("worm")));
 
 		armorCanOfWorms = new ItemBuilder(MOD_ID)
+			.setItemModel((item) -> new ItemModelCanOfWorms(item, MOD_ID))
 			.setIcon(MOD_ID + ":item/canOfWorms_full")
 			.build(new ItemCanOfWorms("armor.canofworms", itemID("armorCanOfWorms")));
 
