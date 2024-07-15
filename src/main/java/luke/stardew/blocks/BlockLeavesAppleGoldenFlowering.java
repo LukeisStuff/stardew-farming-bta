@@ -11,6 +11,9 @@ import net.minecraft.core.world.season.Seasons;
 
 import java.util.Random;
 
+import static luke.stardew.blocks.StardewBlocks.leavesAppleFlowering;
+import static luke.stardew.blocks.StardewBlocks.leavesAppleGoldenFlowering;
+
 public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 
 	public BlockLeavesAppleGoldenFlowering(String key, int id) {
@@ -26,13 +29,11 @@ public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 		}
 	}
 
-	@Override
-	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
-		this.blockActivated(world, x, y, z, player, super.onBlockRightClicked(world, x, y, z, player, side, xHit, yHit));
-		return true;
+	public void onBlockLeftClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
+		this.onBlockRightClicked(world, x, y, z, player, null, 0.0, 0.0);
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player, boolean supersBoolean) {
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xPlaced, double yPlaced) {
 		int meta = world.getBlockMetadata(x, y, z);
 		int decayData = meta & 15;
 		int growthRate = (meta & 240) >> 4;
@@ -43,10 +44,10 @@ public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 			}
 
 			world.setBlockMetadataWithNotify(x, y, z, decayData);
-			world.scheduleBlockUpdate(x, y, z, StardewBlocks.leavesAppleFlowering.id, this.tickRate());
+			world.scheduleBlockUpdate(x, y, z, leavesAppleGoldenFlowering.id, this.tickRate());
 			return true;
 		} else {
-			return supersBoolean;
+			return super.onBlockRightClicked(world, x, y, z, player, side, xPlaced, yPlaced);
 		}
 	}
 
@@ -54,7 +55,7 @@ public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 		super.updateTick(world, x, y, z, rand);
 		int meta = world.getBlockMetadata(x, y, z);
 		int growthRate = (meta & 240) >> 4;
-		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
+		if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
 			if (rand.nextInt(80) == 0 && growthRate == 0) {
 				world.setBlockMetadataWithNotify(x, y, z, 16 | meta);
 				world.scheduleBlockUpdate(x, y, z, StardewBlocks.leavesAppleGoldenFlowering.id, this.tickRate());
@@ -63,7 +64,6 @@ public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 			world.setBlockMetadataWithNotify(x, y, z, meta & 15);
 			world.scheduleBlockUpdate(x, y, z, StardewBlocks.leavesAppleGoldenFlowering.id, this.tickRate());
 		}
-
 	}
 
 }

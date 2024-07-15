@@ -11,6 +11,8 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
 
+import static luke.stardew.blocks.StardewBlocks.leavesAppleFlowering;
+
 public class BlockLeavesAppleFlowering extends BlockLeavesApple implements IBonemealable {
 
 	public BlockLeavesAppleFlowering(String key, int id) {
@@ -26,13 +28,11 @@ public class BlockLeavesAppleFlowering extends BlockLeavesApple implements IBone
 		}
 	}
 
-	@Override
-	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
-		this.blockActivated(world, x, y, z, player, super.onBlockRightClicked(world, x, y, z, player, side, xHit, yHit));
-		return true;
+	public void onBlockLeftClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
+		this.onBlockRightClicked(world, x, y, z, player, null, 0.0, 0.0);
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player, boolean supersBoolean) {
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xPlaced, double yPlaced) {
 		int meta = world.getBlockMetadata(x, y, z);
 		int decayData = meta & 15;
 		int growthRate = (meta & 240) >> 4;
@@ -43,10 +43,10 @@ public class BlockLeavesAppleFlowering extends BlockLeavesApple implements IBone
 			}
 
 			world.setBlockMetadataWithNotify(x, y, z, decayData);
-			world.scheduleBlockUpdate(x, y, z, StardewBlocks.leavesAppleFlowering.id, this.tickRate());
+			world.scheduleBlockUpdate(x, y, z, leavesAppleFlowering.id, this.tickRate());
 			return true;
 		} else {
-			return supersBoolean;
+			return super.onBlockRightClicked(world, x, y, z, player, side, xPlaced, yPlaced);
 		}
 	}
 
@@ -54,7 +54,7 @@ public class BlockLeavesAppleFlowering extends BlockLeavesApple implements IBone
 		super.updateTick(world, x, y, z, rand);
 		int meta = world.getBlockMetadata(x, y, z);
 		int growthRate = (meta & 240) >> 4;
-		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
+		if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL) {
 			if (rand.nextInt(20) == 0 && growthRate == 0) {
 				world.setBlockMetadataWithNotify(x, y, z, 16 | meta);
 				world.scheduleBlockUpdate(x, y, z, StardewBlocks.leavesAppleFlowering.id, this.tickRate());

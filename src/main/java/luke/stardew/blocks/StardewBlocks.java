@@ -224,7 +224,7 @@ public class StardewBlocks {
 			.setBlockModel(block -> new BlockModelLeaves<>(block, "stardew:block/leaves_apple"))
 			.build(new BlockLeavesApple("leaves.apple", blockID("leavesApple")));
 		leavesAppleFlowering = leaves
-			.setBlockModel(BlockModelLeavesAppleFlowering::new)
+			.setBlockModel(BlockModelAppleLeavesBloom::new)
 			.build(new BlockLeavesAppleFlowering("leaves.apple.flowering", blockID("leavesAppleFlowering")));
 		saplingApple = sapling
 			.setBlockModel(block -> new BlockModelCrossedSquares<>(block).withTextures("stardew:block/sapling_apple"))
@@ -237,7 +237,7 @@ public class StardewBlocks {
 			.setBlockModel(block -> new BlockModelLeaves<>(block, "stardew:block/leaves_apple_golden"))
 			.build(new BlockLeavesAppleGolden("leaves.apple.golden", blockID("leavesAppleGolden")));
 		leavesAppleGoldenFlowering = leaves
-			.setBlockModel(BlockModelLeavesAppleGoldenFlowering::new)
+			.setBlockModel(BlockModelGoldenAppleLeavesBloom::new)
 			.build(new BlockLeavesAppleGoldenFlowering("leaves.apple.flowering", blockID("leavesAppleGoldenFlowering")));
 		saplingAppleGolden = sapling
 			.setBlockModel(block -> new BlockModelCrossedSquares<>(block).withTextures("stardew:block/sapling_apple_golden"))
@@ -250,7 +250,7 @@ public class StardewBlocks {
 			.setBlockModel(BlockModelCropsCauliflower::new)
 			.build(new BlockCropsCauliflower("crops.cauliflower", blockID("cropsCauliflower")));
 		cauliflower = blocks
-			.setBlockModel(block -> new BlockModelAxisAligned<>(block).withTextures("stardew:block/cauliflower_top", "stardew:block/cauliflower_bottom", "stardew:block/cauliflower_side"))
+			.setBlockModel(block -> new BlockModelAxisAligned<>(block).withTextures("stardew:block/cauliflower_bottom", "stardew:block/cauliflower_top", "stardew:block/cauliflower_side"))
 			.build(new Block("cauliflower", blockID("cauliflower"), Material.vegetable));
 
 

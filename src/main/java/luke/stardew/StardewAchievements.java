@@ -54,19 +54,20 @@ public class StardewAchievements extends AchievementPage {
 		achievementList.add(MASTER_FISHER);
 	}
 
-	public static final Achievement STARDEW = new Achievement(AchievementList.achievementList.size() + 1, "stardew.stardew", 0, 0, StardewItems.wateringCan, null);
+	private static final int StardewAchievementsID = 524300;
+	public static final Achievement STARDEW = new Achievement(StardewAchievementsID + 1, "stardew.stardew", 0, 0, StardewItems.wateringCan, null);
 
-	public static final Achievement FRUIT = new Achievement(AchievementList.achievementList.size() + 1, "stardew.fruit", 2, -2, StardewItems.strawberry, STARDEW);
-	public static final Achievement VEGETABLE = new Achievement(AchievementList.achievementList.size() + 1, "stardew.vegetable", -2, -2, StardewItems.carrot, STARDEW);
+	public static final Achievement FRUIT = new Achievement(StardewAchievementsID + 2, "stardew.fruit", 2, -2, StardewItems.strawberry, STARDEW);
+	public static final Achievement VEGETABLE = new Achievement(StardewAchievementsID + 3, "stardew.vegetable", -2, -2, StardewItems.carrot, STARDEW);
 
-	public static final Achievement APPLE = new Achievement(AchievementList.achievementList.size() + 1, "stardew.apple", -2, 0, Item.foodApple, STARDEW);
-	public static final Achievement GAPPLE = new Achievement(AchievementList.achievementList.size() + 1, "stardew.gapple", -4, 1, Item.foodAppleGold, APPLE);
+	public static final Achievement APPLE = new Achievement(StardewAchievementsID + 4, "stardew.apple", -2, 0, Item.foodApple, STARDEW);
+	public static final Achievement GAPPLE = new Achievement(StardewAchievementsID + 5, "stardew.gapple", -4, 1, Item.foodAppleGold, APPLE);
 
-	public static final Achievement BEEHIVE = new Achievement(AchievementList.achievementList.size() + 1, "stardew.beehive", 2, 0, StardewItems.honey, STARDEW);
-	public static final Achievement CANDLE = new Achievement(AchievementList.achievementList.size() + 1, "stardew.candle", 4, -1, StardewBlocks.candle, BEEHIVE);
+	public static final Achievement BEEHIVE = new Achievement(StardewAchievementsID + 6, "stardew.beehive", 2, 0, StardewItems.honey, STARDEW);
+	public static final Achievement CANDLE = new Achievement(StardewAchievementsID + 7, "stardew.candle", 4, -1, StardewBlocks.candle, BEEHIVE);
 
-	public static final Achievement AMATEUR_FISHER = new Achievement(AchievementList.achievementList.size() + 1, "stardew.amateur.fisher", 0, 2, StardewItems.foodSnapperRaw, STARDEW);
-	public static final Achievement MASTER_FISHER = new Achievement(AchievementList.achievementList.size() + 1, "stardew.master.fisher", 1, 4, StardewItems.fishSword, AMATEUR_FISHER);
+	public static final Achievement AMATEUR_FISHER = new Achievement(StardewAchievementsID + 8, "stardew.amateur.fisher", 0, 2, StardewItems.foodSnapperRaw, STARDEW);
+	public static final Achievement MASTER_FISHER = new Achievement(StardewAchievementsID + 9, "stardew.master.fisher", 1, 4, StardewItems.fishSword, AMATEUR_FISHER);
 
 	@Override
 	public void getBackground(GuiAchievements guiAchievements, Random random, int iOffset, int jOffset, int blockX1, int blockY1, int blockX2, int blockY2) {
@@ -94,54 +95,4 @@ public class StardewAchievements extends AchievementPage {
 		return BlockModelDispatcher.getInstance().getDispatch(block).getBlockTextureFromSideAndMetadata(Side.BOTTOM, 0);
 	}
 
-	/*@Override
-	public void getBackground(GuiAchievements guiAchievements, Random random, int iOffset, int jOffset, int blockX1, int blockY1, int blockX2, int blockY2) {
-		int row = 0;
-		while (row * 16 - blockY2 < 155) {
-			float brightness = 0.6f - (float)(blockY1 + row) / 25.0f * 0.3f;
-			GL11.glColor4f(brightness, brightness, brightness, 1.0f);
-			int column = 0;
-			while (column * 16 - blockX2 < 224) {
-				random.setSeed(1234 + blockX1 + column);
-				random.nextInt();
-				int randomY = random.nextInt(1 + blockY1 + row) + (blockY1 + row) / 2;
-				IconCoordinate texture = this.getTextureFromBlock(Block.sand);
-				Block[] oreArray = stoneOres;
-				if (randomY >= 28 || blockY1 + row > 24) {
-					oreArray = basaltOres;
-				}
-
-				if (randomY > 37 || blockY1 + row == 35) {
-					texture = this.getTextureFromBlock(Block.bedrock);
-				} else if (randomY == 22) {
-					if (random.nextInt(2) == 0) {
-						texture = this.getTextureFromBlock(oreArray[3]);
-					} else {
-						texture = this.getTextureFromBlock(oreArray[4]);
-					}
-				} else if (randomY == 10) {
-					texture = this.getTextureFromBlock(oreArray[1]);
-				} else if (randomY == 8) {
-					texture = this.getTextureFromBlock(oreArray[0]);
-				} else if (randomY > 4) {
-					texture = this.getTextureFromBlock(Block.stone);
-					if (randomY >= 28 || blockY1 + row > 24) {
-						texture = this.getTextureFromBlock(Block.basalt);
-					}
-				} else if (randomY > 0) {
-					texture = this.getTextureFromBlock(Block.dirt);
-				}
-
-				guiAchievements.drawTexturedIcon(
-					iOffset + column * 16 - blockX2,
-					jOffset + row * 16 - blockY2,
-					texture.width,
-					texture.height,
-					texture
-				);
-				++column;
-			}
-			++row;
-		}
-	}*/
 }
