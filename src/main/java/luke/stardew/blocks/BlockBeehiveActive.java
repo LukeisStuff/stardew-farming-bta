@@ -1,7 +1,7 @@
 package luke.stardew.blocks;
 
-import luke.stardew.EntityBeeFX;
 import luke.stardew.StardewAchievements;
+import luke.stardew.entities.fx.EntityBeeFX;
 import luke.stardew.items.StardewItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.block.BlockRotatableHorizontal;
