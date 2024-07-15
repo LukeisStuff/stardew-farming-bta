@@ -95,7 +95,7 @@ public class BlockCropsTomato extends BlockFlower implements IBonemealable {
 		return meta != 5 ? new ItemStack[]{new ItemStack(StardewItems.seedsTomato)} : new ItemStack[]{new ItemStack(StardewItems.seedsTomato, world.rand.nextInt(3) + 1), new ItemStack(StardewItems.tomato)};
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (l == 5) {
 			world.setBlockMetadataWithNotify(x, y, z, 3);

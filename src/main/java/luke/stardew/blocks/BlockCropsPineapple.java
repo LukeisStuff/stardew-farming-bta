@@ -95,7 +95,7 @@ public class BlockCropsPineapple extends BlockFlower implements IBonemealable {
 		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsPineapple)} : new ItemStack[]{new ItemStack(StardewItems.seedsPineapple, world.rand.nextInt(3) + 1), new ItemStack(StardewItems.pineapple)};
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (l == 4) {
 			world.setBlockMetadataWithNotify(x, y, z, 2);

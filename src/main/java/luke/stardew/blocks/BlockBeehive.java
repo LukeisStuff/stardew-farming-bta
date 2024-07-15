@@ -4,6 +4,7 @@ import net.minecraft.core.block.BlockRotatableHorizontal;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
+import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 
 public class BlockBeehive extends BlockRotatableHorizontal {
@@ -16,7 +17,7 @@ public class BlockBeehive extends BlockRotatableHorizontal {
 	public void onBlockAdded(World world, int x, int y, int z) {
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
 		int l = world.getBlockMetadata(x, y, z);
 			if  (player.getHeldItem() != null && player.getHeldItem().getItem() == Item.dustSugar) {
 				player.getHeldItem().consumeItem(player);
