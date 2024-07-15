@@ -3,14 +3,9 @@ package luke.stardew;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.render.Texture;
-import net.minecraft.client.render.stitcher.TextureRegistry;
-import net.minecraft.core.entity.player.EntityPlayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.AchievementHelper;
-import turniplabs.halplibe.helper.ItemBuilder;
-import turniplabs.halplibe.helper.ItemHelper;
 import turniplabs.halplibe.helper.SoundHelper;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 import turniplabs.halplibe.util.GameStartEntrypoint;
@@ -23,7 +18,6 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 
 
 	static {
-		//TODO bee png for fx
 		SoundHelper.addSound(MOD_ID, "bee.ogg");
 		SoundHelper.addStreaming(MOD_ID, "axolotl.ogg");
 	}

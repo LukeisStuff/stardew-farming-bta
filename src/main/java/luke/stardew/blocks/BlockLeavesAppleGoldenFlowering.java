@@ -8,19 +8,10 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
-import turniplabs.halplibe.helper.TextureHelper;
 
 import java.util.Random;
 
-import static luke.stardew.StardewMod.MOD_ID;
-
 public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
-	public final int[] growthStageTextures = new int[]{
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenFlowering.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenFloweringFast.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenGrown.png"),
-		TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenGrownFast.png"),
-	};
 
 	public BlockLeavesAppleGoldenFlowering(String key, int id) {
 		super(key, id);
@@ -35,25 +26,13 @@ public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 		}
 	}
 
-	public void onBlockClicked(World world, int x, int y, int z, EntityPlayer player) {
-		this.blockActivated(world, x, y, z, player);
-	}
-
 	@Override
-	public int getBlockTextureFromSideAndMetadata(Side side, int meta) {
-		if (meta < 16) {
-			if (!fancyGraphics) {
-				return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenFloweringFast.png");
-			}
-			return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenFlowering.png");
-		}
-		else if (!fancyGraphics) {
-			return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenGrownFast.png");
-		}
-		return TextureHelper.getOrCreateBlockTextureIndex(MOD_ID, "leavesAppleGoldenGrown.png");
+	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
+		this.blockActivated(world, x, y, z, player, super.onBlockRightClicked(world, x, y, z, player, side, xHit, yHit));
+		return true;
 	}
 
-	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player) {
+	public boolean blockActivated(World world, int x, int y, int z, EntityPlayer player, boolean supersBoolean) {
 		int meta = world.getBlockMetadata(x, y, z);
 		int decayData = meta & 15;
 		int growthRate = (meta & 240) >> 4;
@@ -64,10 +43,10 @@ public class BlockLeavesAppleGoldenFlowering extends BlockLeavesAppleGolden {
 			}
 
 			world.setBlockMetadataWithNotify(x, y, z, decayData);
-			world.scheduleBlockUpdate(x, y, z, StardewBlocks.leavesAppleGoldenFlowering.id, this.tickRate());
+			world.scheduleBlockUpdate(x, y, z, StardewBlocks.leavesAppleFlowering.id, this.tickRate());
 			return true;
 		} else {
-			return super.blockActivated(world, x, y, z, player);
+			return supersBoolean;
 		}
 	}
 

@@ -9,16 +9,17 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
-public class BlockModelBush<T extends Block> extends BlockModelStandard<T> {
+public class BlockModelCropsTomato<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/bush_spring"),
-		TextureRegistry.getTexture("stardew:block/bush_summer"),
-		TextureRegistry.getTexture("stardew:block/bush_fall"),
-		TextureRegistry.getTexture("stardew:block/bush_winter"),
-		TextureRegistry.getTexture("stardew:block/bush_dead")
+		TextureRegistry.getTexture("stardew:block/tomato_crop_1"),
+		TextureRegistry.getTexture("stardew:block/tomato_crop_2"),
+		TextureRegistry.getTexture("stardew:block/tomato_crop_3"),
+		TextureRegistry.getTexture("stardew:block/tomato_crop_4"),
+		TextureRegistry.getTexture("stardew:block/tomato_crop_5"),
+		TextureRegistry.getTexture("stardew:block/tomato_crop_6")
 	};
 
-	public BlockModelBush(Block block) {
+	public BlockModelCropsTomato(Block block) {
 		super(block);
 	}
 
@@ -90,6 +91,6 @@ public class BlockModelBush<T extends Block> extends BlockModelStandard<T> {
 	}
 
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
-		return this.growthStageTextures[MathHelper.clamp(data, 0, 4)];
+		return this.growthStageTextures[MathHelper.clamp(data, 0, 5)];
 	}
 }

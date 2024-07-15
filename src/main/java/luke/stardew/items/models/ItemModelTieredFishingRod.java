@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class ItemModelTieredFishingRod extends ItemModelStandard {
-	protected IconCoordinate rodCast = TextureRegistry.getTexture("minecraft:item/tool_fishingrod_cast");
+	protected IconCoordinate rodCast;
 
 	public ItemModelTieredFishingRod(Item item, String namespace, String type) {
 		super(item, namespace);

@@ -9,8 +9,8 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
 public class BlockHoney extends BlockTransparent {
-	public BlockHoney(String key, int id, boolean renderInside){
-		super(key, id, Material.leaves, renderInside);
+	public BlockHoney(String key, int id){
+		super(key, id, Material.leaves);
 		setTicking(true);
 	}
 

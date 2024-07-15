@@ -7,7 +7,7 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.Side;
 
 public class BlockModelPizza<T extends Block> extends BlockModelStandard<T> {
-	protected IconCoordinate pizzaInner = TextureRegistry.getTexture("stardew:block/pizzaBit");
+	protected IconCoordinate pizzaInner = TextureRegistry.getTexture("stardew:block/pizza_inner");
 
 	public BlockModelPizza(Block block) {
 		super(block);
