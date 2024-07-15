@@ -7,6 +7,7 @@ import luke.stardew.items.models.ItemModelTieredFishingRod;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
+import net.minecraft.core.item.tag.ItemTags;
 import turniplabs.halplibe.helper.ItemBuilder;
 import turniplabs.halplibe.helper.ItemHelper;
 
@@ -277,7 +278,7 @@ public class StardewItems {
 			.build(new ItemPlaceable("food.cake.chocolate", itemID("foodCakeChocolate"), StardewBlocks.cakeChocolate).setMaxStackSize(1));
 
 		foodPie = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/piePumpkin")
+			.setTags(ItemTags.NOT_IN_CREATIVE_MENU)
 			.build(new ItemPlaceable("food.pie", itemID("foodPie"), Block.pumpkinPie).setMaxStackSize(1));
 
 		foodPizza = new ItemBuilder(MOD_ID)

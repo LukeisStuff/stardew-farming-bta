@@ -7,7 +7,7 @@ import net.minecraft.core.world.World;
 
 public class EntityBeeFX extends EntityFX {
 	public float originalScale;
-	private float field_672_a;
+
 	public EntityBeeFX(World world, double d, double d1, double d2, double d3, double d4, double d5) {
 		super(world, d, d1, d2, d3, d4, d5);
 		this.particleTexture = TextureRegistry.getTexture("stardew:item/bee");
@@ -25,7 +25,7 @@ public class EntityBeeFX extends EntityFX {
 		if (f6 > 1.0F)
 			f6 = 1.0F;
 		super.renderParticle(tessellator, partialTick, rotationX, rotationXZ, rotationZ, rotationYZ, rotationXY);
-		this.particleScale = 1.0F - f6 * f6 * 0.5F;
+		this.particleScale = 2.0F - f6 * f6 * 0.5F;
 
 	}
 

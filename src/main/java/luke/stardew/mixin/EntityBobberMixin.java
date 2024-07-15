@@ -47,11 +47,11 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	@Shadow
 	private boolean inGround = false;
 	@Shadow
-	private int ticksInAir = 0;
+	private int ticksInAir;
 	@Shadow
-	private int ticksCatchable = 0;
+	private int ticksCatchable;
 	@Shadow
-	public Entity hookedEntity = null;
+	public Entity hookedEntity;
 	@Shadow
 	private int field_6388_l;
 	@Shadow
@@ -98,15 +98,15 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 		this.player = entityplayer;
 		this.setSize(0.25F, 0.25F);
 		this.moveTo(entityplayer.x, entityplayer.y + 1.62 - (double)entityplayer.heightOffset, entityplayer.z, entityplayer.yRot, entityplayer.xRot);
-		this.x -= (double)(MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * 0.16F);
+		this.x -= MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * 0.16F;
 		this.y -= 0.1;
-		this.z -= (double)(MathHelper.sin(this.yRot / 180.0F * 3.1415927F) * 0.16F);
+		this.z -= MathHelper.sin(this.yRot / 180.0F * 3.1415927F) * 0.16F;
 		this.setPos(this.x, this.y, this.z);
 		this.heightOffset = 0.0F;
 		float f = 0.4F;
-		this.xd = (double)(-MathHelper.sin(this.yRot / 180.0F * 3.1415927F) * MathHelper.cos(this.xRot / 180.0F * 3.1415927F) * f);
-		this.zd = (double)(MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * MathHelper.cos(this.xRot / 180.0F * 3.1415927F) * f);
-		this.yd = (double)(-MathHelper.sin(this.xRot / 180.0F * 3.1415927F) * f);
+		this.xd = -MathHelper.sin(this.yRot / 180.0F * 3.1415927F) * MathHelper.cos(this.xRot / 180.0F * 3.1415927F) * f;
+		this.zd = MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * MathHelper.cos(this.xRot / 180.0F * 3.1415927F) * f;
+		this.yd = -MathHelper.sin(this.xRot / 180.0F * 3.1415927F) * f;
 		this.func_4042_a(this.xd, this.yd, this.zd, 1.5F, 1.0F);
 		this.player.bobberEntity = (EntityBobber) (Object) this; //TODO idk what to do here reddit told me to use (EntityBobber) (Object) to trick the compiler
 	}
@@ -117,31 +117,32 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 		return distance < d1 * d1;
 	}
 
+	@Unique
 	public void func_4042_a(double d, double d1, double d2, float f, float f1) {
 		float f2 = MathHelper.sqrt_double(d * d + d1 * d1 + d2 * d2);
-		d /= (double)f2;
-		d1 /= (double)f2;
-		d2 /= (double)f2;
+		d /= f2;
+		d1 /= f2;
+		d2 /= f2;
 		d += this.random.nextGaussian() * 0.0075 * (double)f1;
 		d1 += this.random.nextGaussian() * 0.0075 * (double)f1;
 		d2 += this.random.nextGaussian() * 0.0075 * (double)f1;
-		d *= (double)f;
-		d1 *= (double)f;
-		d2 *= (double)f;
+		d *= f;
+		d1 *= f;
+		d2 *= f;
 		this.xd = d;
 		this.yd = d1;
 		this.zd = d2;
 		float f3 = MathHelper.sqrt_double(d * d + d2 * d2);
 		this.yRotO = this.yRot = (float)(Math.atan2(d, d2) * 180.0 / Math.PI);
-		this.xRotO = this.xRot = (float)(Math.atan2(d1, (double)f3) * 180.0 / Math.PI);
+		this.xRotO = this.xRot = (float)(Math.atan2(d1, f3) * 180.0 / Math.PI);
 	}
 
 	public void lerpTo(double x, double y, double z, float yRot, float xRot, int i) {
 		this.field_6387_m = x;
 		this.field_6386_n = y;
 		this.field_6385_o = z;
-		this.field_6384_p = (double)yRot;
-		this.field_6383_q = (double)xRot;
+		this.field_6384_p = yRot;
+		this.field_6383_q = xRot;
 		this.field_6388_l = i;
 		this.xd = this.velocityX;
 		this.yd = this.velocityY;
@@ -229,9 +230,9 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 				}
 
 				this.inGround = false;
-				this.xd *= (double) (this.random.nextFloat() * 0.2F);
-				this.yd *= (double) (this.random.nextFloat() * 0.2F);
-				this.zd *= (double) (this.random.nextFloat() * 0.2F);
+				this.xd *= this.random.nextFloat() * 0.2F;
+				this.yd *= this.random.nextFloat() * 0.2F;
+				this.zd *= this.random.nextFloat() * 0.2F;
 				this.ticksInAir = 0;
 				this.ticksCatchable = 0;
 			}
@@ -256,7 +257,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 			Entity entity = null;
 			List<Entity> list = this.world.getEntitiesWithinAABBExcludingEntity(this, this.bb.addCoord(this.xd, this.yd, this.zd).expand(1.0, 1.0, 1.0));
 			double d3 = 0.0;
-			Iterator var8 = list.iterator();
+			Iterator<Entity> var8 = list.iterator();
 
 			while(true) {
 				Entity e;
@@ -279,7 +280,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 									float f = MathHelper.sqrt_double(this.xd * this.xd + this.zd * this.zd);
 									this.yRot = (float)(Math.atan2(this.xd, this.zd) * 180.0 / Math.PI);
 
-									for(this.xRot = (float)(Math.atan2(this.yd, (double)f) * 180.0 / Math.PI); this.xRot - this.xRotO < -180.0F; this.xRotO -= 360.0F) {
+									for(this.xRot = (float)(Math.atan2(this.yd, f) * 180.0 / Math.PI); this.xRot - this.xRotO < -180.0F; this.xRotO -= 360.0F) {
 									}
 
 									while(this.xRot - this.xRotO >= 180.0F) {
@@ -343,22 +344,22 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 											if (this.random.nextInt(catchRate) == 0) {
 												this.ticksCatchable = this.random.nextInt(30) + 10;
 												this.yd -= 0.2;
-												this.world.playSoundAtEntity((Entity)null, this, "random.splash", 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
+												this.world.playSoundAtEntity(null, this, "random.splash", 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
 												float f3 = (float)MathHelper.floor_double(this.bb.minY);
 
 												int j1;
 												double zOff;
 												double xOff;
 												for(j1 = 0; (float)j1 < 1.0F + this.bbWidth * 20.0F; ++j1) {
-													xOff = (double)((this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth);
-													zOff = (double)((this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth);
-													this.world.spawnParticle("bubble", this.x + xOff, (double)(f3 + 1.0F), this.z + zOff, this.xd, this.yd - (double)(this.random.nextFloat() * 0.2F), this.zd, 0);
+													xOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
+													zOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
+													this.world.spawnParticle("bubble", this.x + xOff, f3 + 1.0F, this.z + zOff, this.xd, this.yd - (double)(this.random.nextFloat() * 0.2F), this.zd, 0);
 												}
 
 												for(j1 = 0; (float)j1 < 1.0F + this.bbWidth * 20.0F; ++j1) {
-													xOff = (double)((this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth);
-													zOff = (double)((this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth);
-													this.world.spawnParticle("splash", this.x + xOff, (double)(f3 + 1.0F), this.z + zOff, this.xd, this.yd, this.zd, 0);
+													xOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
+													zOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
+													this.world.spawnParticle("splash", this.x + xOff, f3 + 1.0F, this.z + zOff, this.xd, this.yd, this.zd, 0);
 												}
 											}
 										}
@@ -375,9 +376,9 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 										this.yd *= 0.8;
 									}
 
-									this.xd *= (double)movementScale;
-									this.yd *= (double)movementScale;
-									this.zd *= (double)movementScale;
+									this.xd *= movementScale;
+									this.yd *= movementScale;
+									this.zd *= movementScale;
 									this.setPos(this.x, this.y, this.z);
 									return;
 								}
@@ -387,7 +388,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 						} while(e == this.player && this.ticksInAir < 5);
 
 						float f2 = 0.3F;
-						AABB aabb = e.bb.expand((double)f2, (double)f2, (double)f2);
+						AABB aabb = e.bb.expand(f2, f2, f2);
 						newHitResult = aabb.func_1169_a(currentPos, nextPos);
 					} while(newHitResult == null);
 
@@ -418,7 +419,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 			dx = this.x - this.player.x;
 			dy = this.y - this.player.y;
 			dz = this.z - this.player.z;
-			distance = (double)MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+			distance = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
 			dx /= distance;
 			dy /= distance;
 			dz /= distance;
@@ -429,10 +430,8 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 			scale = 2.0;
 			EntityPlayer var10000 = this.player;
 			var10000.xd += dx * scale;
-			var10000 = this.player;
-			var10000.yd += dy * scale;
-			var10000 = this.player;
-			var10000.zd += dz * scale;
+            var10000.yd += dy * scale;
+            var10000.zd += dz * scale;
 			damage = 5;
 		}
 
@@ -440,12 +439,11 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 			dx = this.player.x - this.x;
 			dy = this.player.y - this.y;
 			dz = this.player.z - this.z;
-			distance = (double)MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+			distance = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
 			scale = 0.1;
 			Entity var15 = this.hookedEntity;
 			var15.xd += dx * scale;
-			var15 = this.hookedEntity;
-			var15.yd += dy * scale + (double)MathHelper.sqrt_double(distance) * 0.08;
+            var15.yd += dy * scale + (double)MathHelper.sqrt_double(distance) * 0.08;
 			var15 = this.hookedEntity;
 			var15.zd += dz * scale;
 			damage = 3;
@@ -455,7 +453,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 				dx = this.player.x - this.x;
 				dy = this.player.y - this.y;
 				dz = this.player.z - this.z;
-				distance = (double)MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+				distance = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
 				scale = 0.1;
 				entityitem.xd = dx * scale;
 				entityitem.yd = dy * scale + (double)MathHelper.sqrt_double(distance) * 0.08;
@@ -466,7 +464,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 				dx = this.player.x - this.x;
 				dy = this.player.y - this.y;
 				dz = this.player.z - this.z;
-				distance = (double)MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
+				distance = MathHelper.sqrt_double(dx * dx + dy * dy + dz * dz);
 				scale = 0.1;
 				entityitem.xd = dx * scale;
 				entityitem.yd = dy * scale + (double)MathHelper.sqrt_double(distance) * 0.08;
@@ -485,7 +483,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 		return damage;
 	}
 
-	@org.spongepowered.asm.mixin.Unique
+	@Unique
 	private Item getCatchableFish() {
 		Season season = world.seasonManager.getCurrentSeason();
 		Weather weather = world.weatherManager.getCurrentWeather();
