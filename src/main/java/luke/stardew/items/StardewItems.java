@@ -179,7 +179,7 @@ public class StardewItems {
 		seedsGrapes = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/seedsGrapes")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.grapes", itemID("seedsGrapes"), StardewBlocks.cropsGrapeBottom));
+			.build(new Item("seeds.grapes", itemID("seedsGrapes")));
 		grapes = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/grapes")
 			.build(new ItemFood("food.grapes", itemID("grapes"), 1, 8,false, 16));
