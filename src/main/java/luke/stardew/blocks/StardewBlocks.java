@@ -258,11 +258,13 @@ public class StardewBlocks {
 
 
 		plantStake = new BlockBuilder(MOD_ID)
+			.setBlockModel(BlockModelPlantStake::new)
+			.setTextures("stardew:block/plantStake")
+			.setHardness(0.0f)
+			.setResistance(0.0f)
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.0f))
-			.setHardness(2.0F)
-			.setResistance(1.0f)
-			.setFlammability(5, 5)
-			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.wood));
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND)
+			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.plant));
 
 
 

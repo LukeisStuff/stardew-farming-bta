@@ -7,6 +7,7 @@ import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.IBonemealable;
+import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
@@ -118,7 +119,7 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsGrapes)} : new ItemStack[]{new ItemStack(StardewItems.seedsGrapes, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.grapes, world.rand.nextInt(1) + 3)};
+		return meta != 4 ? new ItemStack[]{new ItemStack(StardewItems.seedsGrapes), new ItemStack(Item.stick)} : new ItemStack[]{new ItemStack(StardewItems.seedsGrapes, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.grapes, world.rand.nextInt(1) + 3), new ItemStack(Item.stick)};
 	}
 
 	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
