@@ -77,6 +77,7 @@ public abstract class EntityItemMixin {
 			&& player.getStat(StatList.pickUpItemStats[StardewBlocks.cauliflower.id]) > 0
 			&& player.getStat(StatList.pickUpItemStats[Item.wheat.id]) > 0) {
 			player.triggerAchievement(StardewAchievements.VEGETABLE);
+			ci.cancel();
 		}
 	}
 }
