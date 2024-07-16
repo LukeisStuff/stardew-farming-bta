@@ -2,10 +2,7 @@ package luke.stardew.mixin;
 
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.data.tag.ITaggable;
-import net.minecraft.core.data.tag.Tag;
 import net.minecraft.core.entity.player.EntityPlayer;
-import net.minecraft.core.item.IItemConvertible;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;

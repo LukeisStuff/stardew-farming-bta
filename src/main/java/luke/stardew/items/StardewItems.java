@@ -9,7 +9,6 @@ import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.item.tag.ItemTags;
 import turniplabs.halplibe.helper.ItemBuilder;
-import turniplabs.halplibe.helper.ItemHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
