@@ -4,7 +4,6 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockFluid;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
-import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemFirestriker;
@@ -47,7 +46,7 @@ public class BlockCandle extends Block {
 			if (!(world.getBlock(x + 1, y, z) instanceof BlockFluid) && !(world.getBlock(x - 1, y, z) instanceof BlockFluid) && !(world.getBlock(x, y, z + 1) instanceof BlockFluid) && !(world.getBlock(x, y, z - 1) instanceof BlockFluid)) {
 				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.candleActive.id, 0);
 				heldItem.damageItem(1, player);
-				world.playSoundEffect((Entity)null, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+				world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 				return true;
 			} else {
 				return false;

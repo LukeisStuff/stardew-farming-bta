@@ -1,5 +1,6 @@
 package luke.stardew.items;
 
+import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
@@ -61,6 +62,16 @@ public class ItemToolWateringCan extends Item {
 			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double)blockX + 0.5, (double)blockY + 0.5, (double)blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
 			if (!world.isClientSide) {
 				world.setBlockWithNotify(blockX, blockY, blockZ, Block.brazierInactive.id);
+				itemstack.damageItem(1, entityplayer);
+				entityplayer.swingItem();
+			}
+			entityplayer.swingItem();
+		}
+		if (blockToWater == StardewBlocks.candleActive.id) {
+			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (float)blockX + 0.5F, (float)blockY + 0.5F, (float)blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
+			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double)blockX + 0.5, (double)blockY + 0.5, (double)blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+			if (!world.isClientSide) {
+				world.setBlockWithNotify(blockX, blockY, blockZ, StardewBlocks.candle.id);
 				itemstack.damageItem(1, entityplayer);
 				entityplayer.swingItem();
 			}
