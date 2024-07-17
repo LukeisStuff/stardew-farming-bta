@@ -63,12 +63,13 @@ public class StardewBlocks {
 
 	public static Block bush;
 
-	public static Block plantStake;
-
 	public static Block beehiveIdle;
 	public static Block beehiveHoney;
 
 	public static Block blockHoney;
+
+	public static Block cropsBeansBottom;
+	public static Block cropsBeansTop;
 
 	public static Block cakeChocolate;
 	public static Block pie;
@@ -79,6 +80,8 @@ public class StardewBlocks {
 
 	public static Block candle;
 	public static Block candleActive;
+
+	public static Block plantStake;
 
 	private void initializeBlockDetails() {
 
@@ -148,9 +151,6 @@ public class StardewBlocks {
 
 		//Spring Crops
 
-		// Spring Tree
-		// Cherry Tree
-
 		// Spring Vegetables
 		cropsCarrot = crops
 			.setBlockModel(BlockModelCropsCarrot::new)
@@ -168,9 +168,6 @@ public class StardewBlocks {
 
 
 		//Summer Crops
-
-		// Summer Tree
-
 
 		// Summer Vegetables
 		cropsTomato = crops
@@ -257,16 +254,6 @@ public class StardewBlocks {
 			.build(new BlockCropsCranberries("crops.cranberries", blockID("cropsCranberries")));
 
 
-		plantStake = new BlockBuilder(MOD_ID)
-			.setBlockModel(BlockModelPlantStake::new)
-			.setTextures("stardew:block/plantStake")
-			.setHardness(0.0f)
-			.setResistance(0.0f)
-			.setBlockSound(new BlockSound("step.gravel", "step.gravel", 1.0f, 1.0f))
-			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.plant));
-
-
 
 		bush = crops
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
@@ -285,7 +272,6 @@ public class StardewBlocks {
 				TextureRegistry.getTexture(MOD_ID + ":item/bee");
 				return new BlockModelHorizontalRotation<>(block);
 			})
-			//.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures("stardew:block/beehive_top", "stardew:block/beehive_top", "stardew:block/beehive_idle", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
 			.build(new BlockBeehiveActive("beehive.idle", blockID("beehiveIdle"), false));
 
 		beehiveHoney = wood
@@ -297,7 +283,6 @@ public class StardewBlocks {
 				TextureRegistry.getTexture(MOD_ID + ":item/bee");
 				return new BlockModelHorizontalRotation<>(block);
 			})
-			//.withTextures(, "stardew:block/beehive_top", "stardew:block/beehive_active", "stardew:block/beehive_side", "stardew:block/beehive_side", "stardew:block/beehive_side"))
 			.build(new BlockBeehiveActive("beehive.honey", blockID("beehiveHoney"), true));
 
 		blockHoney = new BlockBuilder(MOD_ID)
@@ -308,6 +293,17 @@ public class StardewBlocks {
 			.setTags(BlockTags.MINEABLE_BY_AXE)
 			.setBlockModel(block -> new BlockModelStandard<>(block).withTextures("stardew:block/block_honey"))
 			.build(new BlockHoney("block.honey", blockID("blockHoney")));
+
+
+
+		cropsBeansBottom = crops
+			.setBlockModel(BlockModelCropsBeansBottom::new)
+			.build(new BlockCropsBeansBottom("crops.beans.bottom", blockID("cropsBeansBottom")));
+
+		cropsBeansTop = crops
+			.setBlockModel(BlockModelCropsBeansTop::new)
+			.build(new BlockCropsBeansTop("crops.beans.top", blockID("cropsBeansTop")));
+
 
 
 		cakeChocolate = new BlockBuilder(MOD_ID)
@@ -323,7 +319,6 @@ public class StardewBlocks {
 			.setHardness(0.5f)
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			//.setBlockModel(block -> new BlockModelPumpkinPie<>(block).withTextures("stardew:block/chokoCake_top", "stardew:block/chokoCake_bottom", "stardew:block/chokoCake_side"))
 			.build(new BlockPie("pie", blockID("pie"), Material.cake));
 
 		beehive = wood
@@ -359,6 +354,15 @@ public class StardewBlocks {
 			.setVisualUpdateOnMetadata()
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build(new BlockCandle("candle.active", blockID("candleActive"), true));
+
+		plantStake = new BlockBuilder(MOD_ID)
+			.setBlockModel(BlockModelPlantStake::new)
+			.setTextures("stardew:block/plantStake")
+			.setHardness(0.0f)
+			.setResistance(0.0f)
+			.setBlockSound(new BlockSound("step.gravel", "step.wood", 1.0f, 1.0f))
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.plant));
 
 		initializeBlockDetails();
 	}

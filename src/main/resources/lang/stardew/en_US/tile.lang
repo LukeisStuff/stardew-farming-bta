@@ -116,3 +116,6 @@ tile.stardew.candle.name=Wax Candle
 tile.stardew.candle.desc=A waxy light-source made from honey!
 tile.stardew.candle.active.name=Burning Wax Candle
 tile.stardew.candle.active.desc= waxy light-source made from honey! Currently lit.
+
+tile.stardew.plantstake.name=Trellis
+tile.stardew.plantstake.desc=A stick planted into the ground to support certain crops.

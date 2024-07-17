@@ -4,7 +4,6 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
-import net.minecraft.core.entity.EntityLiving;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumBlockSoundEffectType;
 import net.minecraft.core.enums.EnumDropCause;
@@ -40,7 +39,7 @@ public class BlockPlantStake extends Block {
 
 	protected final void func_268_h(World world, int i, int j, int k) {
 		if (!this.canBlockStay(world, i, j, k)) {
-			this.dropBlockWithCause(world, EnumDropCause.WORLD, i, j, k, world.getBlockMetadata(i, j, k), (TileEntity)null);
+			this.dropBlockWithCause(world, EnumDropCause.WORLD, i, j, k, world.getBlockMetadata(i, j, k), null);
 			world.setBlockWithNotify(i, j, k, 0);
 		}
 
@@ -51,7 +50,8 @@ public class BlockPlantStake extends Block {
 		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.seedsGrapes.id && world.getBlockId(x, y - 1, z) == farmlandDirt.id) {
 			player.getCurrentEquippedItem().consumeItem(player);
 			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.cropsGrapeBottom.id, 0);
-			world.playBlockSoundEffect(player, (double)((float)x + 0.5F), (double)((float)y + 0.5F), (double)((float)z + 0.5F), StardewBlocks.cropsGrapeBottom, EnumBlockSoundEffectType.PLACE);
+			player.swingItem();
+			world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.cropsGrapeBottom, EnumBlockSoundEffectType.PLACE);
 		}
 		return super.onBlockRightClicked(world, x, y, z, player, side, xHit, yHit);
 	}

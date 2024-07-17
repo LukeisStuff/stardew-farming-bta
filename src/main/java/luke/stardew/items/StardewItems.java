@@ -104,6 +104,8 @@ public class StardewItems {
 	//Treasures
 	public static Item recordPink;
 
+	public static Item beansCoffee;
+
 
 
 	public void initilizeItems() {
@@ -342,6 +344,11 @@ public class StardewItems {
 			.setIcon(MOD_ID + ":item/axolotl")
 			.setStackSize(1)
 			.build(new ItemRecord("record.pink", itemID("recordPink"), "axolotl", "C418"));
+
+		beansCoffee = new ItemBuilder(MOD_ID)
+			.setIcon(MOD_ID + ":item/beansCoffee")
+			.setStackSize(64)
+			.build(new ItemSeeds("bean.coffee", itemID("beansCoffee"), StardewBlocks.cropsBeansBottom));
 	}
 
 
