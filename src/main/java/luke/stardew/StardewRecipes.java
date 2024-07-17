@@ -55,7 +55,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 		RecipeBuilder.Shaped(MOD_ID, "PPP", "SSS", "PPP")
 			.addInput('P', "minecraft:planks")
-			.addInput('S', "stardew:block/flower")
+			.addInput('S', MOD_ID + ":block/flower")
 			.create("beehive", new ItemStack(StardewBlocks.beehive, 1));
 
 		template4ItemtoBlock
@@ -74,7 +74,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Item.jar, 1))
 			.addInput(new ItemStack(Item.dustSugar, 1))
-			.addInput("stardew:item/fruits")
+			.addInput(MOD_ID + ":item/fruits")
 			.create("jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -240,8 +240,8 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initNamespaces() {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
-		Registries.ITEM_GROUPS.register("stardew:item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple));
-		Registries.ITEM_GROUPS.register("stardew:block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
 
 	}
 }

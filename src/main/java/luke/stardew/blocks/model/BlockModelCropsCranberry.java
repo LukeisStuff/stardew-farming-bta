@@ -10,12 +10,14 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsCranberry<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/cranberry_bush_1"),
-		TextureRegistry.getTexture("stardew:block/cranberry_bush_2"),
-		TextureRegistry.getTexture("stardew:block/cranberry_bush_3"),
-		TextureRegistry.getTexture("stardew:block/cranberry_bush_4")
+		TextureRegistry.getTexture(MOD_ID + ":block/cranberry_bush_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cranberry_bush_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cranberry_bush_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cranberry_bush_4")
 	};
 
 	public BlockModelCropsCranberry(Block block) {

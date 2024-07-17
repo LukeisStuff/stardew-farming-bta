@@ -10,12 +10,14 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsCornTop<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/corn_crop_top_1"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_top_2"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_top_3"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_top_4")
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_top_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_top_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_top_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_top_4")
 	};
 
 	public BlockModelCropsCornTop(Block block) {

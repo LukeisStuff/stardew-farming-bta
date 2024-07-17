@@ -1,7 +1,6 @@
 package luke.stardew.blocks.model;
 
 import net.minecraft.client.render.LightmapHelper;
-import net.minecraft.client.render.block.color.BlockColor;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
 import net.minecraft.client.render.stitcher.IconCoordinate;
@@ -11,13 +10,15 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsPotato<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/potato_crop_1"),
-		TextureRegistry.getTexture("stardew:block/potato_crop_2"),
-		TextureRegistry.getTexture("stardew:block/potato_crop_3"),
-		TextureRegistry.getTexture("stardew:block/potato_crop_4"),
-		TextureRegistry.getTexture("stardew:block/potato_crop_5")
+		TextureRegistry.getTexture(MOD_ID + ":block/potato_crop_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/potato_crop_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/potato_crop_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/potato_crop_4"),
+		TextureRegistry.getTexture(MOD_ID + ":block/potato_crop_5")
 	};
 
 	public BlockModelCropsPotato(Block block) {

@@ -6,8 +6,10 @@ import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelPizza<T extends Block> extends BlockModelStandard<T> {
-	protected IconCoordinate pizzaInner = TextureRegistry.getTexture("stardew:block/pizza_inner");
+	protected IconCoordinate pizzaInner = TextureRegistry.getTexture(MOD_ID + ":block/pizza_inner");
 
 	public BlockModelPizza(Block block) {
 		super(block);

@@ -8,10 +8,12 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockEdible;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelPie<T extends Block> extends BlockModelStandard<T> {
-	protected IconCoordinate sideTexture = TextureRegistry.getTexture("stardew:block/pie_side");
-	protected IconCoordinate insideTexture = TextureRegistry.getTexture("stardew:block/pie_inside");
-	protected IconCoordinate topTexture = TextureRegistry.getTexture("stardew:block/pie_top");
+	protected IconCoordinate sideTexture = TextureRegistry.getTexture(MOD_ID + ":block/pie_side");
+	protected IconCoordinate insideTexture = TextureRegistry.getTexture(MOD_ID + ":block/pie_inside");
+	protected IconCoordinate topTexture = TextureRegistry.getTexture(MOD_ID + ":block/pie_top");
 	public int maxSlices;
 
 	public BlockModelPie(Block block) {

@@ -5,12 +5,14 @@ import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.world.World;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class EntityBeeFX extends EntityFX {
 	public float originalScale;
 
 	public EntityBeeFX(World world, double d, double d1, double d2, double d3, double d4, double d5) {
 		super(world, d, d1, d2, d3, d4, d5);
-		this.particleTexture = TextureRegistry.getTexture("stardew:item/bee");
+		this.particleTexture = TextureRegistry.getTexture(MOD_ID + ":item/bee");
 		this.particleRed = 1;
 		this.particleGreen = 1;
 		this.particleBlue = 1;
@@ -45,7 +47,7 @@ public class EntityBeeFX extends EntityFX {
 			this.xd *= 0.7;
 			this.zd *= 0.7;
 		}
-		this.particleTexture = TextureRegistry.getTexture("stardew:item/bee");
+		this.particleTexture = TextureRegistry.getTexture(MOD_ID + ":item/bee");
 
 	}
 

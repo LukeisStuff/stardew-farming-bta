@@ -6,8 +6,10 @@ import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCakeChocolate<T extends Block> extends BlockModelStandard<T> {
-	protected IconCoordinate cakeInner = TextureRegistry.getTexture("stardew:block/chocoCake_inner");
+	protected IconCoordinate cakeInner = TextureRegistry.getTexture(MOD_ID + ":block/chocoCake_inner");
 
 	public BlockModelCakeChocolate(Block block) {
 		super(block);

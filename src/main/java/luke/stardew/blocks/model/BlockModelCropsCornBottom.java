@@ -10,14 +10,16 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsCornBottom<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/corn_crop_bottom_1"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_bottom_2"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_bottom_3"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_bottom_4"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_bottom_5"),
-		TextureRegistry.getTexture("stardew:block/corn_crop_bottom_6")
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_bottom_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_bottom_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_bottom_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_bottom_4"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_bottom_5"),
+		TextureRegistry.getTexture(MOD_ID + ":block/corn_crop_bottom_6")
 	};
 
 	public BlockModelCropsCornBottom(Block block) {

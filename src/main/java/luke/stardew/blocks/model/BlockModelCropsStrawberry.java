@@ -10,12 +10,14 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsStrawberry<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/strawberry_crop_1"),
-		TextureRegistry.getTexture("stardew:block/strawberry_crop_2"),
-		TextureRegistry.getTexture("stardew:block/strawberry_crop_3"),
-		TextureRegistry.getTexture("stardew:block/strawberry_crop_4")
+		TextureRegistry.getTexture(MOD_ID + ":block/strawberry_crop_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/strawberry_crop_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/strawberry_crop_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/strawberry_crop_4")
 
 	};
 

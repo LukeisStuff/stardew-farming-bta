@@ -1,7 +1,6 @@
 package luke.stardew.blocks.model;
 
 import net.minecraft.client.render.LightmapHelper;
-import net.minecraft.client.render.block.color.BlockColor;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
 import net.minecraft.client.render.stitcher.IconCoordinate;
@@ -11,13 +10,15 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelBush<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/bush_spring"),
-		TextureRegistry.getTexture("stardew:block/bush_summer"),
-		TextureRegistry.getTexture("stardew:block/bush_fall"),
-		TextureRegistry.getTexture("stardew:block/bush_winter"),
-		TextureRegistry.getTexture("stardew:block/bush_dead")
+		TextureRegistry.getTexture(MOD_ID + ":block/bush_spring"),
+		TextureRegistry.getTexture(MOD_ID + ":block/bush_summer"),
+		TextureRegistry.getTexture(MOD_ID + ":block/bush_fall"),
+		TextureRegistry.getTexture(MOD_ID + ":block/bush_winter"),
+		TextureRegistry.getTexture(MOD_ID + ":block/bush_dead")
 	};
 
 	public BlockModelBush(Block block) {

@@ -10,13 +10,15 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsPineapple<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/pineapple_crop_1"),
-		TextureRegistry.getTexture("stardew:block/pineapple_crop_2"),
-		TextureRegistry.getTexture("stardew:block/pineapple_crop_3"),
-		TextureRegistry.getTexture("stardew:block/pineapple_crop_4"),
-		TextureRegistry.getTexture("stardew:block/pineapple_crop_5")
+		TextureRegistry.getTexture(MOD_ID + ":block/pineapple_crop_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/pineapple_crop_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/pineapple_crop_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/pineapple_crop_4"),
+		TextureRegistry.getTexture(MOD_ID + ":block/pineapple_crop_5")
 	};
 
 	public BlockModelCropsPineapple(Block block) {
