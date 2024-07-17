@@ -9,7 +9,6 @@ import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.item.tag.ItemTags;
 import turniplabs.halplibe.helper.ItemBuilder;
-import turniplabs.halplibe.helper.ItemHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
@@ -179,7 +178,7 @@ public class StardewItems {
 		seedsGrapes = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/seedsGrapes")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.grapes", itemID("seedsGrapes"), StardewBlocks.cropsGrapeBottom));
+			.build(new Item("seeds.grapes", itemID("seedsGrapes")));
 		grapes = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/grapes")
 			.build(new ItemFood("food.grapes", itemID("grapes"), 1, 8,false, 16));

@@ -21,9 +21,9 @@ public abstract class EntityPlayerMixin extends EntityLiving {
 		super(world);
 	}
 
-	@Inject(method = "tick", at = @At(value = "HEAD"), cancellable = true)
+	@Inject(method = "tick", at = @At(value = "HEAD"))
 	public void tick(CallbackInfo ci) {
 		this.addStat(StardewAchievements.STARDEW, 1);
-		ci.cancel();
+		//ci.cancel();
 	}
 }

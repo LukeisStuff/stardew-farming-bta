@@ -63,7 +63,7 @@ public class StardewBlocks {
 
 	public static Block bush;
 
-
+	public static Block plantStake;
 
 	public static Block beehiveIdle;
 	public static Block beehiveHoney;
@@ -257,6 +257,14 @@ public class StardewBlocks {
 			.build(new BlockCropsCranberries("crops.cranberries", blockID("cropsCranberries")));
 
 
+		plantStake = new BlockBuilder(MOD_ID)
+			.setBlockModel(BlockModelPlantStake::new)
+			.setTextures("stardew:block/plantStake")
+			.setHardness(0.0f)
+			.setResistance(0.0f)
+			.setBlockSound(new BlockSound("step.gravel", "step.gravel", 1.0f, 1.0f))
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.plant));
 
 
 
