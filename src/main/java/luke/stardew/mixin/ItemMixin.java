@@ -3,6 +3,7 @@ package luke.stardew.mixin;
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.enums.EnumBlockSoundEffectType;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
@@ -20,6 +21,7 @@ public abstract class ItemMixin {
 		if (entityplayer.getCurrentEquippedItem().itemID == Item.stick.id && world.getBlockId(blockX, blockY, blockZ) == Block.farmlandDirt.id && world.getBlockId(blockX, blockY + 1, blockZ) == 0 && side == Side.TOP){
 			entityplayer.getCurrentEquippedItem().consumeItem(entityplayer);
 			world.setBlockWithNotify(blockX, blockY + 1, blockZ, StardewBlocks.plantStake.id);
+			world.playBlockSoundEffect(entityplayer, (double)((float)blockX + 0.5F), (double)((float)blockY + 0.5F), (double)((float)blockZ + 0.5F), Block.dirt, EnumBlockSoundEffectType.PLACE);
 		}
 	}
 }

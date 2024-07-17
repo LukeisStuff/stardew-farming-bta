@@ -262,8 +262,8 @@ public class StardewBlocks {
 			.setTextures("stardew:block/plantStake")
 			.setHardness(0.0f)
 			.setResistance(0.0f)
-			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.0f))
-			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND)
+			.setBlockSound(new BlockSound("step.gravel", "step.gravel", 1.0f, 1.0f))
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.plant));
 
 
