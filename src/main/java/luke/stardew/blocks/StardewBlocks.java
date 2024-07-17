@@ -3,6 +3,7 @@ package luke.stardew.blocks;
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.model.*;
 import net.minecraft.client.render.block.model.*;
+import net.minecraft.client.render.block.model.BlockModelCandle;
 import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockCake;
@@ -12,7 +13,6 @@ import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.block.ItemBlockLeaves;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
-import org.useless.dragonfly.model.block.DFBlockModelBuilder;
 import turniplabs.halplibe.helper.BlockBuilder;
 
 import static luke.stardew.StardewMod.MOD_ID;
@@ -334,7 +334,8 @@ public class StardewBlocks {
 			.build(new BlockPizza("pizza", blockID("pizza")));
 
 		candle = new BlockBuilder(MOD_ID)
-			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candle))
+			.setBlockModel(BlockModelCandle::new)
+			.setTextures(MOD_ID + ":block/candle")
 			.setIcon(MOD_ID + ":block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
@@ -344,7 +345,8 @@ public class StardewBlocks {
 			.build(new BlockCandle("candle", blockID("candle"), false));
 
 		candleActive = new BlockBuilder(MOD_ID)
-			.setBlockModel(block -> new DFBlockModelBuilder(MOD_ID).setBlockModel("block/candle.json").setRender3D(false).build(candleActive))
+			.setBlockModel(BlockModelCandle::new)
+			.setTextures(MOD_ID + ":block/candle")
 			.setIcon(MOD_ID + ":block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
