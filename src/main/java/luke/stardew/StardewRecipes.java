@@ -181,11 +181,17 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("wax", new ItemStack(StardewBlocks.candle, 4));
 
 		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.beansCoffee, 1))
+			.addInput(new ItemStack(Item.bucketMilk, 1))
+			.create("food_coffee", new ItemStack(StardewItems.foodCoffee, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.fishStone, 1))
 			.addInput(new ItemStack(StardewItems.fishEelLava, 1))
 			.addInput(new ItemStack(StardewItems.fishSword, 1))
 			.addInput(new ItemStack(StardewItems.fishGhost, 1))
 			.create("secret_disc", new ItemStack(StardewItems.recordPink, 1));
+
 
 		ItemStack itemStack = new ItemStack(StardewItems.armorCanOfWorms);
 		itemStack.damageItem(itemStack.getItem().getMaxDamage(), null);

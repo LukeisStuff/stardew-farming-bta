@@ -62,6 +62,8 @@ public class StardewItems {
 	public static Item jarJam;
 	public static Item cheese;
 
+	public static Item foodCoffee;
+
 	public static Item foodStewVegetable;
 	public static Item foodStewCheese;
 	public static Item foodStewFruit;
@@ -261,6 +263,9 @@ public class StardewItems {
 		cheese = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/cheese")
 			.build(new ItemFood("food.cheese", itemID("cheese"), 4, 8,false, 4));
+
+		foodCoffee = new ItemBuilder(MOD_ID)
+			.build(new ItemCoffee("food.coffee", itemID("foodCoffee"), 1, 4, false, 1));
 
 		foodStewVegetable = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/vegetableSoup")
