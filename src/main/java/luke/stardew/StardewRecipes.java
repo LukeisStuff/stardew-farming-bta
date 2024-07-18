@@ -1,5 +1,6 @@
 package luke.stardew;
 
+import luke.stardew.blocks.BlockFruit;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.ItemFruit;
 import luke.stardew.items.StardewItems;
@@ -14,11 +15,9 @@ import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.helper.recipeBuilders.RecipeBuilderShaped;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-import static luke.stardew.StardewMod.LOGGER;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewRecipes implements RecipeEntrypoint {
@@ -85,7 +84,22 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Item.jar, 1))
 			.addInput(new ItemStack(Item.dustSugar, 1))
-			.addInput(MOD_ID + ":item/fruits")
+			.addInput(MOD_ID + ":item/fruits_small")
+			.addInput(MOD_ID + ":item/fruits_small")
+			.addInput(MOD_ID + ":item/fruits_small")
+			.create("jam", new ItemStack(StardewItems.jarJam, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Item.jar, 1))
+			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(MOD_ID + ":item/fruits_medium")
+			.addInput(MOD_ID + ":item/fruits_medium")
+			.create("jam", new ItemStack(StardewItems.jarJam, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Item.jar, 1))
+			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(MOD_ID + ":item/fruits_large")
 			.create("jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -256,26 +270,40 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initNamespaces() {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple, Item.foodCherry));
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_small", Registries.stackListOf(getAllFruitSizeFromItems(FruitSize.SMALL)));
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_medium", Registries.stackListOf(getAllFruitSizeFromItems(FruitSize.MEDIUM)));
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_large", Registries.stackListOf(getAllFruitSizeFromItems(FruitSize.LARGE)));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.ALL)));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_small", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.SMALL)));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_medium", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.MEDIUM)));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_large", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.LARGE)));
 
 		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
 	}
 
-	private Item[] getAllFruitSizeFromItems(FruitSize size){
-		List<Item> items = new ArrayList<>();
-		for (Item item : Item.itemsList){
-			if (item instanceof ItemFruit){
-				System.out.println(String.valueOf(item.id) + ": " + ((ItemFruit) item).size);
-				if (((ItemFruit)item).size == size){
-				  items.add(item);
+	private Object[] getAllFruitBasedOnSize(FruitSize size){
+		List<Object> items = new ArrayList<>();
+		if (size == FruitSize.ALL){
+			for (Item item : Item.itemsList){
+				if (item instanceof ItemFruit){
+					items.add(item);
+				}
+			}
+		} else {
+			for (Item item : Item.itemsList){
+				if (item instanceof ItemFruit){
+					if (((ItemFruit)item).size == size){
+						items.add(item);
+					}
 				}
 			}
 		}
-		Item[] arr = new Item[items.size()];
-		arr = items.toArray(arr);
-		return arr;
+
+		if (size == FruitSize.LARGE || size == FruitSize.ALL){
+			for (Block block : Block.blocksList){
+				if (block instanceof BlockFruit){
+					items.add(block);
+				}
+			}
+		}
+
+		return items.toArray();
 	}
 }

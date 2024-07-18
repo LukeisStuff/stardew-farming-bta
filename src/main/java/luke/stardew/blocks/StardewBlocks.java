@@ -189,7 +189,7 @@ public class StardewBlocks {
 			.build(new BlockCropsWatermelon("crops.watermelon", blockID("cropsWatermelon")));
 		watermelon = blocks
 			.setBlockModel(block -> new BlockModelAxisAligned<>(block).withTextures(MOD_ID + ":block/watermelon_top", MOD_ID + ":block/watermelon_side"))
-			.build(new Block("watermelon", blockID("watermelon"), Material.vegetable));
+			.build(new BlockFruit("watermelon", blockID("watermelon")));
 
 
 		//Fall Crops
