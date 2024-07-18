@@ -6,8 +6,12 @@ import net.minecraft.core.item.ItemFood;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemJam extends ItemFood {
 	private final int healAmount;
+	private List<Item> ingredients = new ArrayList<>();
 
 	public ItemJam(String name, int id, int healAmount, int ticksPerHeal, boolean favouriteWolfMeat, int maxStackSize) {
 		super(name, id, healAmount, ticksPerHeal, favouriteWolfMeat, maxStackSize);
@@ -27,4 +31,20 @@ public class ItemJam extends ItemFood {
 		return this.healAmount;
 	}
 
+	public void setIngredients(List<Item> items){
+		ingredients.addAll(items);
+	}
+
+	@Override
+	public String getTranslatedDescription(ItemStack itemstack) {
+		StringBuilder ingredientList = new StringBuilder();
+		int originalSize = ingredients.size();
+		for (int i = 1; i < originalSize; i++) {
+			ingredients.remove(ingredients.size() - 1);
+		}
+		for (Item ingredient : ingredients) {
+			ingredientList.append(getTranslatedName(new ItemStack(ingredient))).append(" | ");
+		}
+		return ingredientList + " ///// " + super.getTranslatedDescription(itemstack);
+	}
 }
