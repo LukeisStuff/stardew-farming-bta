@@ -4,6 +4,7 @@ import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.models.ItemModelCanOfWorms;
 import luke.stardew.items.models.ItemModelTieredFishingRod;
+import luke.stardew.misc.FruitSize;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
@@ -112,6 +113,8 @@ public class StardewItems {
 
 	public void initilizeItems() {
 
+		Item.foodCherry = new ItemFruit("food.cherry", 16515, 2, 2, FruitSize.SMALL, 8);
+		Item.foodApple = new ItemFruit("food.apple", 16388, 4, 8, FruitSize.MEDIUM, 8);
 
 		//Spring Crops
 		seedsCarrot = new ItemBuilder(MOD_ID)
@@ -128,7 +131,7 @@ public class StardewItems {
 			.build(new ItemSeeds("seeds.blueberry", itemID("seedsBlueberry"), StardewBlocks.cropsBlueberry));
 		blueberry = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/blueberry")
-			.build(new ItemFood("food.blueberry", itemID("blueberry"), 1, 8,false, 16));
+			.build(new ItemFruit("food.blueberry", itemID("blueberry"), 1, 8, FruitSize.SMALL, 16));
 
 		seedsPineapple = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/seedsPineapple")
@@ -136,7 +139,7 @@ public class StardewItems {
 			.build(new ItemSeeds("seeds.pineapple", itemID("seedsPineapple"), StardewBlocks.cropsPineapple));
 		pineapple = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/pineapple")
-			.build(new ItemFood("food.pineapple", itemID("pineapple"), 4, 8,false, 4));
+			.build(new ItemFruit("food.pineapple", itemID("pineapple"), 4, 8, FruitSize.LARGE, 4));
 
 
 		//Summer Crops
@@ -162,7 +165,7 @@ public class StardewItems {
 			.build(new ItemSeeds("seeds.strawberry", itemID("seedsStrawberry"), StardewBlocks.cropsStrawberry));
 		strawberry = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/strawberry")
-			.build(new ItemFood("food.strawberry", itemID("strawberry"), 2, 8,false, 8));
+			.build(new ItemFruit("food.strawberry", itemID("strawberry"), 2, 8, FruitSize.SMALL, 8));
 
 		seedsWatermelon = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/seedsWatermelon")
@@ -185,7 +188,7 @@ public class StardewItems {
 			.build(new Item("seeds.grapes", itemID("seedsGrapes")));
 		grapes = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/grapes")
-			.build(new ItemFood("food.grapes", itemID("grapes"), 1, 8,false, 16));
+			.build(new ItemFruit("food.grapes", itemID("grapes"), 1, 8, FruitSize.SMALL, 16));
 
 
 		//Winter Crops
@@ -200,7 +203,7 @@ public class StardewItems {
 			.build(new ItemSeeds("seeds.cranberries", itemID("seedsCranberries"), StardewBlocks.cropsCranberries));
 		cranberries = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/cranberries")
-			.build(new ItemFood("food.cranberries", itemID("cranberries"), 1, 8,false, 16));
+			.build(new ItemFruit("food.cranberries", itemID("cranberries"), 1, 8, FruitSize.SMALL, 16));
 
 
 		//Fishes
