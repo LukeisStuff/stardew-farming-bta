@@ -8,12 +8,14 @@ import net.minecraft.core.block.Block;
 import org.jetbrains.annotations.Nullable;
 import org.lwjgl.opengl.GL11;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelAppleLeavesBloom<T extends Block> extends BlockModelLeaves<T> {
-	private final IconCoordinate grownAppleOverlay = TextureRegistry.getTexture("stardew:block/leaves_apple_overlay");
-	private final IconCoordinate floweringAppleOverlay = TextureRegistry.getTexture("stardew:block/leaves_apple_flowering_overlay");
+	private final IconCoordinate grownAppleOverlay = TextureRegistry.getTexture(MOD_ID + ":block/leaves_apple_overlay");
+	private final IconCoordinate floweringAppleOverlay = TextureRegistry.getTexture(MOD_ID + ":block/leaves_apple_flowering_overlay");
 
 	public BlockModelAppleLeavesBloom(Block block) {
-		super(block, "stardew:block/leaves_apple");
+		super(block, MOD_ID + ":block/leaves_apple");
 	}
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {

@@ -8,22 +8,24 @@ import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsCauliflower<T extends Block> extends BlockModelStandard<T> {
 	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_TOP = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_1"),
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_2"),
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_3"),
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_4")
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_4")
 	};
 
 	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_SIDE = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_side_1"),
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_side_2"),
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_side_3"),
-		TextureRegistry.getTexture("stardew:block/cauliflower_crop_side_4")
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_3"),
+		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_4")
 	};
 
-	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture("stardew:block/cauliflower_crop_leaf");
+	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_leaf");
 
 	public BlockModelCropsCauliflower(Block block) {
 		super(block);

@@ -7,8 +7,10 @@ import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelPlantStake<T extends Block> extends BlockModelStandard<T> {
-	public final IconCoordinate getTexture = TextureRegistry.getTexture("stardew:block/plantStake");
+	public final IconCoordinate getTexture = TextureRegistry.getTexture(MOD_ID + ":block/plantStake");
 
 	public BlockModelPlantStake(Block block) {
 		super(block);

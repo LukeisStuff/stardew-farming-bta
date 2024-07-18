@@ -10,11 +10,13 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class BlockModelCropsCarrot<T extends Block> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture("stardew:block/carrot_crop_1"),
-		TextureRegistry.getTexture("stardew:block/carrot_crop_2"),
-		TextureRegistry.getTexture("stardew:block/carrot_crop_3")
+		TextureRegistry.getTexture(MOD_ID + ":block/carrot_crop_1"),
+		TextureRegistry.getTexture(MOD_ID + ":block/carrot_crop_2"),
+		TextureRegistry.getTexture(MOD_ID + ":block/carrot_crop_3")
 	};
 
 	public BlockModelCropsCarrot(Block block) {
