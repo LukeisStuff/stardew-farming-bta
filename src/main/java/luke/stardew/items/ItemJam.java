@@ -15,7 +15,7 @@ public class ItemJam extends ItemFood {
 		this.maxStackSize = maxStackSize;
 	}
 
-	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer) {
+	public ItemStack onUseItem(ItemStack itemstack, World world, EntityPlayer entityplayer) {
 		if (entityplayer.getHealth() < entityplayer.getMaxHealth() && itemstack.consumeItem(entityplayer)) {
 			entityplayer.heal(this.healAmount);
 			entityplayer.inventory.insertItem(new ItemStack(Item.jar, 1), true);

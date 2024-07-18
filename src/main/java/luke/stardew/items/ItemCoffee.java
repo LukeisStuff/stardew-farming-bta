@@ -3,6 +3,7 @@ package luke.stardew.items;
 import luke.stardew.interfaces.IPlayerEffects;
 import luke.stardew.misc.PlayerEffect;
 import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemFood;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
@@ -14,8 +15,9 @@ public class ItemCoffee extends ItemFood {
 
 	@Override
 	public ItemStack onUseItem(ItemStack itemstack, World world, EntityPlayer entityplayer) {
-		if (entityplayer.getHealth() < entityplayer.getMaxHealth() && entityplayer.getHealth() + entityplayer.getTotalHealingRemaining() < entityplayer.getMaxHealth() && itemstack.consumeItem(entityplayer)) {
+		if (itemstack.consumeItem(entityplayer)) {
 			entityplayer.eatFood(this);
+			entityplayer.inventory.insertItem(new ItemStack(Item.jar, 1), true);
 			((IPlayerEffects)entityplayer).stardew_farming_bta$addEffect(PlayerEffect.speedBoost, 240);
 		}
 
