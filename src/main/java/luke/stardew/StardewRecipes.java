@@ -182,7 +182,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.beansCoffee, 1))
-			.addInput(new ItemStack(Item.jar, 1))
+			.addInput(new ItemStack(Item.bucketMilk, 1))
 			.create("food_coffee", new ItemStack(StardewItems.foodCoffee, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)

@@ -17,7 +17,7 @@ public class ItemCoffee extends ItemFood {
 	public ItemStack onUseItem(ItemStack itemstack, World world, EntityPlayer entityplayer) {
 		if (itemstack.consumeItem(entityplayer)) {
 			entityplayer.eatFood(this);
-			entityplayer.inventory.insertItem(new ItemStack(Item.jar, 1), true);
+			entityplayer.inventory.insertItem(new ItemStack(Item.bucket, 1), true);
 			((IPlayerEffects)entityplayer).stardew_farming_bta$addEffect(PlayerEffect.speedBoost, 240);
 		}
 

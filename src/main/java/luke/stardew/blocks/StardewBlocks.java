@@ -3,7 +3,6 @@ package luke.stardew.blocks;
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.model.*;
 import net.minecraft.client.render.block.model.*;
-import net.minecraft.client.render.block.model.BlockModelCandle;
 import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockCake;
@@ -334,7 +333,7 @@ public class StardewBlocks {
 			.build(new BlockPizza("pizza", blockID("pizza")));
 
 		candle = new BlockBuilder(MOD_ID)
-			.setBlockModel(BlockModelCandle::new)
+			.setBlockModel(BlockModelWaxCandle::new)
 			.setTextures(MOD_ID + ":block/candle")
 			.setIcon(MOD_ID + ":block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
@@ -345,7 +344,7 @@ public class StardewBlocks {
 			.build(new BlockCandle("candle", blockID("candle"), false));
 
 		candleActive = new BlockBuilder(MOD_ID)
-			.setBlockModel(BlockModelCandle::new)
+			.setBlockModel(BlockModelWaxCandle::new)
 			.setTextures(MOD_ID + ":block/candle")
 			.setIcon(MOD_ID + ":block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
