@@ -261,7 +261,7 @@ public class StardewItems {
 
 		jarJam = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/jam")
-			.build(new ItemJam("food.jam", itemID("jarJam"), 8, 16,false, 2));
+			.build(new ItemJam("food.jam", itemID("jarJam"), 8, 16,false, 1));
 
 		cheese = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/cheese")
