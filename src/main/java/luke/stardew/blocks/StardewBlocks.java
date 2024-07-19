@@ -3,7 +3,6 @@ package luke.stardew.blocks;
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.model.*;
 import net.minecraft.client.render.block.model.*;
-import net.minecraft.client.render.block.model.BlockModelCandle;
 import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockCake;
