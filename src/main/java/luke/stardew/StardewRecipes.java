@@ -1,18 +1,28 @@
 package luke.stardew;
 
+import luke.stardew.blocks.BlockFruit;
 import luke.stardew.blocks.StardewBlocks;
+import luke.stardew.items.ItemFruit;
 import luke.stardew.items.StardewItems;
+import luke.stardew.misc.FruitSize;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.helper.recipeBuilders.RecipeBuilderShaped;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewRecipes implements RecipeEntrypoint {
+
+	private static final Logger log = LoggerFactory.getLogger(StardewRecipes.class);
 
 	public void initializeRecipes() {
 		RecipeBuilderShaped templateLogtoPlank = new RecipeBuilderShaped(MOD_ID, "X", "X", "X");
@@ -74,7 +84,22 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Item.jar, 1))
 			.addInput(new ItemStack(Item.dustSugar, 1))
-			.addInput(MOD_ID + ":item/fruits")
+			.addInput(MOD_ID + ":item/fruits_small")
+			.addInput(MOD_ID + ":item/fruits_small")
+			.addInput(MOD_ID + ":item/fruits_small")
+			.create("jam", new ItemStack(StardewItems.jarJam, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Item.jar, 1))
+			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(MOD_ID + ":item/fruits_medium")
+			.addInput(MOD_ID + ":item/fruits_medium")
+			.create("jam", new ItemStack(StardewItems.jarJam, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Item.jar, 1))
+			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(MOD_ID + ":item/fruits_large")
 			.create("jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -192,7 +217,6 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput(new ItemStack(StardewItems.fishGhost, 1))
 			.create("secret_disc", new ItemStack(StardewItems.recordPink, 1));
 
-
 		ItemStack itemStack = new ItemStack(StardewItems.armorCanOfWorms);
 		itemStack.damageItem(itemStack.getItem().getMaxDamage(), null);
 		RecipeBuilder.Shaped(MOD_ID, " I ", " I ")
@@ -246,8 +270,40 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initNamespaces() {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple));
-		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.ALL)));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_small", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.SMALL)));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_medium", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.MEDIUM)));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits_large", Registries.stackListOf(getAllFruitBasedOnSize(FruitSize.LARGE)));
 
+		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
+	}
+
+	private Object[] getAllFruitBasedOnSize(FruitSize size){
+		List<Object> items = new ArrayList<>();
+		if (size == FruitSize.ALL){
+			for (Item item : Item.itemsList){
+				if (item instanceof ItemFruit){
+					items.add(item);
+				}
+			}
+		} else {
+			for (Item item : Item.itemsList){
+				if (item instanceof ItemFruit){
+					if (((ItemFruit)item).size == size){
+						items.add(item);
+					}
+				}
+			}
+		}
+
+		if (size == FruitSize.LARGE || size == FruitSize.ALL){
+			for (Block block : Block.blocksList){
+				if (block instanceof BlockFruit){
+					items.add(block);
+				}
+			}
+		}
+
+		return items.toArray();
 	}
 }

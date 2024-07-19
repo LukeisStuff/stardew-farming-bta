@@ -98,4 +98,3 @@ public class BlockModelWaxCandle<T extends BlockCandle> extends BlockModelStanda
 		return false;
 	}
 }
-
