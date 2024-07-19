@@ -9,8 +9,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemStack.class, remap = false)
 public abstract class ItemStackMixin {
@@ -33,7 +31,7 @@ public abstract class ItemStackMixin {
 				strFinal.append(item.getTranslatedName(new ItemStack(item))).append(", ");
 			}
 			strFinal.delete(strFinal.length() - 2, strFinal.length());
-			strFinal.append("\n").append(Item.itemsList[itemID].getTranslatedDescription(itemstack));
+			strFinal.append("\n").append("\n").append(TextFormatting.LIGHT_GRAY).append(Item.itemsList[itemID].getTranslatedDescription(itemstack));
 			return strFinal.toString();
 		}else {
 			return Item.itemsList[itemID].getTranslatedDescription(itemstack);

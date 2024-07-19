@@ -5,7 +5,7 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.player.inventory.Container;
-import net.minecraft.core.player.inventory.ContainerPlayer;
+import net.minecraft.core.player.inventory.ContainerWorkbench;
 import net.minecraft.core.player.inventory.IInventory;
 import net.minecraft.core.player.inventory.InventoryCrafting;
 import org.spongepowered.asm.mixin.Mixin;
@@ -15,9 +15,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = ContainerPlayer.class, remap = false)
-public abstract class ContainerPlayerMixin extends Container{
-
+@Mixin(value = ContainerWorkbench.class, remap = false)
+public abstract class ContainerWorkbenchMixin extends Container {
 	@Shadow
 	public IInventory craftResult;
 	@Shadow

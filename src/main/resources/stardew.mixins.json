@@ -6,6 +6,7 @@
   "mixins": [
     "BlockAlgaeMixin",
     "ContainerPlayerMixin",
+    "ContainerWorkbenchMixin",
     "EntityBobberMixin",
     "EntityItemMixin",
     "EntityPlayerMixin",
