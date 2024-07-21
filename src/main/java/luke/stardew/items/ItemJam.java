@@ -6,6 +6,9 @@ import net.minecraft.core.item.ItemFood;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ItemJam extends ItemFood {
 	private final int healAmount;
 
@@ -26,5 +29,4 @@ public class ItemJam extends ItemFood {
 	public int getHealAmount() {
 		return this.healAmount;
 	}
-
 }
