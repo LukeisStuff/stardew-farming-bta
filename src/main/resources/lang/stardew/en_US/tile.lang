@@ -119,3 +119,9 @@ tile.stardew.candle.active.desc= waxy light-source made from honey! Currently li
 
 tile.stardew.plantstake.name=Trellis
 tile.stardew.plantstake.desc=A stick planted into the ground to support certain crops.
+
+item.stardew.bean.coffee.name=Coffee Bean
+item.stardew.bean.coffee.desc=Smells like coffee... Can be used to mix up a brew.
+
+item.stardew.food.coffee.name=Coffee
+item.stardew.food.coffee.desc=

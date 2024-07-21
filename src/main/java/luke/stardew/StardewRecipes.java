@@ -74,8 +74,23 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Item.jar, 1))
 			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(MOD_ID + ":item/small_fruits")
+			.addInput(MOD_ID + ":item/small_fruits")
+			.addInput(MOD_ID + ":item/small_fruits")
+			.create("small_jam", new ItemStack(StardewItems.jarJam, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Item.jar, 1))
+			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(MOD_ID + ":item/fruits")
 			.addInput(MOD_ID + ":item/fruits")
 			.create("jam", new ItemStack(StardewItems.jarJam, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Item.jar, 1))
+			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(MOD_ID + ":item/large_fruits")
+			.create("large_jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.carrot, 1))
@@ -246,8 +261,11 @@ public class StardewRecipes implements RecipeEntrypoint {
 	public void initNamespaces() {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.blueberry, StardewItems.pineapple, StardewItems.grapes, StardewItems.cranberries, StardewBlocks.watermelon, Item.foodApple));
-		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/small_fruits", Registries.stackListOf(StardewItems.blueberry, StardewItems.cranberries));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.grapes, Item.foodApple));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/large_fruits", Registries.stackListOf(StardewItems.pineapple, StardewBlocks.watermelon));
+
+		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow, Block.flowerOrange, Block.flowerPink, Block.flowerPurple, Block.flowerLightBlue));
 
 	}
 }
