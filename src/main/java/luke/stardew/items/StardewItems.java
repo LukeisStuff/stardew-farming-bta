@@ -113,9 +113,6 @@ public class StardewItems {
 
 	public void initilizeItems() {
 
-		Item.foodCherry = new ItemFruit("food.cherry", 16515, 2, 2, FruitSize.SMALL, 8);
-		Item.foodApple = new ItemFruit("food.apple", 16388, 4, 8, FruitSize.MEDIUM, 8);
-
 		//Spring Crops
 		seedsCarrot = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/seedsCarrot")
