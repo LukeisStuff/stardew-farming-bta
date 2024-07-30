@@ -313,13 +313,6 @@ public class StardewBlocks {
 			.setBlockModel(block -> new BlockModelCakeChocolate<>(block).withTextures(MOD_ID + ":block/chokoCake_top", MOD_ID + ":block/chokoCake_bottom", MOD_ID + ":block/chokoCake_side"))
 			.build(new BlockCake("cake.chocolate", blockID("cakeChocolate")));
 
-		pie = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
-			.setHardness(0.5f)
-			.setResistance(0.5f)
-			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build(new BlockPie("pie", blockID("pie"), Material.cake));
-
 		beehive = wood
 			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures(MOD_ID + ":block/beehive_top", MOD_ID + ":block/beehive_top", MOD_ID + ":block/beehive_idle", MOD_ID + ":block/beehive_side", MOD_ID + ":block/beehive_side", MOD_ID + ":block/beehive_side"))
 			.build(new BlockBeehive("beehive", blockID("beehive")));
