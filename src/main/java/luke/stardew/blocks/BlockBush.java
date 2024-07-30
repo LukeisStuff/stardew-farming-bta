@@ -1,7 +1,6 @@
 package luke.stardew.blocks;
 
 import luke.stardew.items.StardewItems;
-import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.core.block.BlockFlower;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.entity.EntityLiving;
@@ -101,8 +100,11 @@ public class BlockBush extends BlockFlower {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsGrapes)};
 				}
 				if (meta == 3) {
-					if (world.rand.nextInt(2) == 0) {
+					int random = (world.rand.nextInt(3));
+					if (random == 0) {
 						return new ItemStack[]{new ItemStack(StardewItems.seedsCauliflower)};
+					} else if (random == 1) {
+						return new ItemStack[]{new ItemStack(StardewItems.beansCoffee)};
 					} else
 						return new ItemStack[]{new ItemStack(StardewItems.seedsCranberries)};
 				}

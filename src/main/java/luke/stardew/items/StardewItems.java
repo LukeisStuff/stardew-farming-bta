@@ -354,7 +354,7 @@ public class StardewItems {
 		beansCoffee = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/beansCoffee")
 			.setStackSize(64)
-			.build(new ItemSeeds("bean.coffee", itemID("beansCoffee"), StardewBlocks.cropsBeansBottom));
+			.build(new Item("bean.coffee", itemID("beansCoffee")));
 	}
 
 

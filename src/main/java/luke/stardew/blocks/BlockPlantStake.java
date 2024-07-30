@@ -53,6 +53,12 @@ public class BlockPlantStake extends Block {
 			player.swingItem();
 			world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.cropsGrapeBottom, EnumBlockSoundEffectType.PLACE);
 		}
+		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.beansCoffee.id && world.getBlockId(x, y - 1, z) == farmlandDirt.id) {
+			player.getCurrentEquippedItem().consumeItem(player);
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.cropsBeansBottom.id, 0);
+			player.swingItem();
+			world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.cropsBeansBottom, EnumBlockSoundEffectType.PLACE);
+		}
 		return super.onBlockRightClicked(world, x, y, z, player, side, xHit, yHit);
 	}
 
