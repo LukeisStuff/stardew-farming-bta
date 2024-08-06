@@ -35,7 +35,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Mixin(value = EntityBobber.class, remap = false)
-public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
+public abstract class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	@Shadow
 	public EntityPlayer player;
 	@Shadow
@@ -44,8 +44,6 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	private int yTile = -1;
 	@Shadow
 	private int zTile = -1;
-	@Shadow
-	private boolean inGround = false;
 	@Shadow
 	private int ticksInAir;
 	@Shadow
@@ -70,6 +68,12 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 	private double velocityY;
 	@Shadow
 	private double velocityZ;
+
+	@Shadow
+	public abstract boolean isInGround();
+
+	@Shadow
+	public abstract void setInGround(boolean flag);
 
 	@Unique
 	private boolean isInLava = false;
@@ -221,7 +225,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 					this.hookedEntity = null;
 				}
 			}
-			if (this.inGround) {
+			if (this.isInGround()) {
 				if (this.world.getBlockId(this.xTile, this.yTile, this.zTile) == Block.rope.id) {
 					this.x = (double) this.xTile + 0.5;
 					this.y = (double) this.yTile + 0.5;
@@ -229,7 +233,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 					return;
 				}
 
-				this.inGround = false;
+				this.setInGround(false);
 				this.xd *= this.random.nextFloat() * 0.2F;
 				this.yd *= this.random.nextFloat() * 0.2F;
 				this.zd *= this.random.nextFloat() * 0.2F;
@@ -247,7 +251,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 			if (hitResult != null) {
 				nextPos = Vec3d.createVector(hitResult.location.xCoord, hitResult.location.yCoord, hitResult.location.zCoord);
 				if (hitResult.hitType == HitResult.HitType.TILE && this.world.getBlockId(hitResult.x, hitResult.y, hitResult.z) == Block.rope.id) {
-					this.inGround = true;
+					this.setInGround(true);
 					this.xTile = hitResult.x;
 					this.yTile = hitResult.y;
 					this.zTile = hitResult.z;
@@ -415,7 +419,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 		double distance;
 		double scale;
 
-		if (this.inGround) {
+		if (this.isInGround()) {
 			dx = this.x - this.player.x;
 			dy = this.y - this.player.y;
 			dz = this.z - this.player.z;
@@ -475,7 +479,7 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 			damage = 1;
 
 		}
-		if (this.inGround) {
+		if (this.isInGround()) {
 			damage = 2;
 		}
 		this.remove();
@@ -528,11 +532,6 @@ public class EntityBobberMixin extends Entity implements IEntityBobberMixin {
 		}
         return Item.bone;
     }
-
-	@Override
-	public void init() {
-
-	}
 
 	@Override
 	public void readAdditionalSaveData(CompoundTag compoundTag) {
