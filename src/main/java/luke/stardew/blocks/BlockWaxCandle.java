@@ -14,10 +14,10 @@ import net.minecraft.core.world.World;
 
 import java.util.Random;
 
-public class BlockCandle extends Block {
+public class BlockWaxCandle extends Block {
 	protected final boolean burning;
 
-	public BlockCandle(String key, int id, boolean flag) {
+	public BlockWaxCandle(String key, int id, boolean flag) {
 		super(key, id, Material.decoration);
 		this.setTicking(true);
 		this.burning = flag;
@@ -74,8 +74,8 @@ public class BlockCandle extends Block {
 	public void randomDisplayTick(World world, int x, int y, int z, Random rand) {
 		if (this.burning) {
 			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("smoke", x + 0.5, y + 0.8, z + 0.5, 0.0, 0.0, 0.0, 0);
-				world.spawnParticle("flame", x + 0.5, y + 0.8, z + 0.5, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
 				}
 			}
 		}

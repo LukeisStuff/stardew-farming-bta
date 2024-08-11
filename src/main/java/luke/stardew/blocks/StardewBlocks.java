@@ -334,7 +334,7 @@ public class StardewBlocks {
 			.setResistance(0.0f)
 			.setVisualUpdateOnMetadata()
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
-			.build(new BlockCandle("candle", blockID("candle"), false));
+			.build(new BlockWaxCandle("candle", blockID("candle"), false));
 
 		candleActive = new BlockBuilder(MOD_ID)
 			.setBlockModel(BlockModelWaxCandle::new)
@@ -347,7 +347,7 @@ public class StardewBlocks {
 			.setUseInternalLight()
 			.setVisualUpdateOnMetadata()
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build(new BlockCandle("candle.active", blockID("candleActive"), true));
+			.build(new BlockWaxCandle("candle.active", blockID("candleActive"), true));
 
 		plantStake = new BlockBuilder(MOD_ID)
 			.setBlockModel(BlockModelPlantStake::new)

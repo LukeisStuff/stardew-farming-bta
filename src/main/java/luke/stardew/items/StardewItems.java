@@ -266,7 +266,7 @@ public class StardewItems {
 
 		foodCoffee = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/coffee")
-			.build(new ItemCoffee("food.coffee", itemID("foodCoffee"), 1, 4, false, 1));
+			.build(new ItemCoffee("food.coffee", itemID("foodCoffee"), 1, 4));
 
 		foodStewVegetable = new ItemBuilder(MOD_ID)
 			.setIcon(MOD_ID + ":item/vegetableSoup")
