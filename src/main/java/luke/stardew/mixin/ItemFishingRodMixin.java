@@ -2,6 +2,7 @@ package luke.stardew.mixin;
 
 import luke.stardew.interfaces.IEntityBobberMixin;
 import luke.stardew.items.StardewItems;
+import net.minecraft.core.entity.EntityBobber;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemFishingRod;
@@ -29,6 +30,12 @@ public class ItemFishingRodMixin extends Item {
 				((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.worm.id)){
 				((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
+			}
+		}
+		else {
+			world.playSoundAtEntity(entityplayer, entityplayer, "random.bow", 0.5F, 0.4F / (itemRand.nextFloat() * 0.4F + 0.8F));
+			if (!world.isClientSide) {
+				world.entityJoinedWorld(new EntityBobber(world, entityplayer));
 			}
 		}
 	}
