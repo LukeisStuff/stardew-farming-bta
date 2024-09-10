@@ -14,6 +14,7 @@ public class LookupCookingIngredients {
 	}
 	protected void register() {
 		this.addIngredientEntry(Item.foodPorkchopRaw.id, Item.foodPorkchopCooked);
+		this.addIngredientEntry(Item.foodFishRaw.id, Item.foodFishCooked);
 		this.addIngredientEntry(StardewItems.foodSalmonRaw.id, StardewItems.foodSalmonCooked);
 		this.addIngredientEntry(StardewItems.foodBassRaw.id, StardewItems.foodBassCooked);
 		this.addIngredientEntry(StardewItems.foodSnapperRaw.id, StardewItems.foodSnapperCooked);

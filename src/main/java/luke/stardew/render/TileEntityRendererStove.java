@@ -46,7 +46,7 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 				GL11.glTranslated( x + 0.07f + relativeX, y + 1, z + 0.15f + relativeZ);
 				GL11.glRotatef(90, 1.0f, 0.0f, 0.0f);
 				GL11.glScaled(0.3f, 0.3f, 0.3f);
-				model.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false);
+				model.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false); //f = brightness, g = idk, but on 0 its not visible, bl = idk
 
 				GL11.glPopMatrix();
 
