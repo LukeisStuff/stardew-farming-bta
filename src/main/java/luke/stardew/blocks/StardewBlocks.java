@@ -82,6 +82,9 @@ public class StardewBlocks {
 
 	public static Block plantStake;
 
+	public static Block stoveIdle;
+	public static Block stoveActive;
+
 	private void initializeBlockDetails() {
 
 	}
@@ -357,6 +360,25 @@ public class StardewBlocks {
 			.setBlockSound(new BlockSound("step.gravel", "step.wood", 1.0f, 1.0f))
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.plant));
+
+		stoveIdle = new BlockBuilder(MOD_ID)
+			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures(MOD_ID + ":block/stove_top", MOD_ID + ":block/stove_side", MOD_ID + ":block/stove_front_idle", MOD_ID + ":block/stove_side", MOD_ID + ":block/stove_side", MOD_ID + ":block/stove_side"))
+			.setHardness(3.5f)
+			.setImmovable()
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.build(new BlockStove("stove.idle", blockID("stoveIdle"), false)
+				.withDisabledNeighborNotifyOnMetadataChange());
+
+		stoveActive = new BlockBuilder(MOD_ID)
+			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures(MOD_ID + ":block/stove_top", MOD_ID + ":block/stove_side", MOD_ID + ":block/stove_front_active", MOD_ID + ":block/stove_side", MOD_ID + ":block/stove_side", MOD_ID + ":block/stove_side"))
+			.setHardness(3.5f)
+			.setImmovable()
+			.setLuminance(14)
+			.setUseInternalLight()
+			.setVisualUpdateOnMetadata()
+			.setTags(BlockTags.MINEABLE_BY_PICKAXE)
+			.build(new BlockStove("stove.active", blockID("stoveActive"), false)
+				.withDisabledNeighborNotifyOnMetadataChange());
 
 		initializeBlockDetails();
 	}
