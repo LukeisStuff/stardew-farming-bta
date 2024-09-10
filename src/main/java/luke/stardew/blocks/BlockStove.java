@@ -80,10 +80,10 @@ public class BlockStove extends BlockTileEntityRotatable {
 		}
 
 		TileEntityStove tileEntity = (TileEntityStove) world.getBlockTileEntity(x, y, z);
-		float offsetX = tileEntity.itemRenderOffsetX;
-		float offsetZ = tileEntity.itemRenderOffsetZ;
-		float relativeX = tileEntity.itemRenderRelativeX;
-		float relativeZ = tileEntity.itemRenderRelativeZ;
+		float offsetX = tileEntity.itemRenderOffset1;
+		float offsetZ = tileEntity.itemRenderOffset2;
+		float relativeX = tileEntity.itemRenderRelative1;
+		float relativeZ = tileEntity.itemRenderRelative2;
 
 		if (tileEntity.isBurning()){
 			for (TileEntityStove.StoveItem content : tileEntity.contentsToCook){

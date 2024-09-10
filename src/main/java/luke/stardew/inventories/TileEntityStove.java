@@ -21,14 +21,14 @@ public class TileEntityStove extends TileEntity {
 	public final List<StoveItem> contentsToCook = new ArrayList<>();
 	private final int amountToCook = 6;
 	public ItemStack fuel = null;
-	public final int maxFuelAmount = 16;
+	public final int maxFuelAmount = 8;
 	public int maxCookTime = 200;
 	public int currentBurnTime = 0;
 
-	public float itemRenderOffsetX = 0.3f;
-	public float itemRenderOffsetZ = 0.4f;
-	public float itemRenderRelativeX = 0;
-	public float itemRenderRelativeZ = 0;
+	public float itemRenderOffset1 = 0.3f;
+	public float itemRenderOffset2 = 0.4f;
+	public float itemRenderRelative1 = 0;
+	public float itemRenderRelative2 = 0;
 
 	public TileEntityStove(){
 		for (int i = 0; i < amountToCook; i++) {
