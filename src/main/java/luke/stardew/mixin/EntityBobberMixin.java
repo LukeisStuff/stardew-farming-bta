@@ -69,10 +69,10 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 	@Shadow
 	private double velocityZ;
 
-	@Shadow
+	//TODO: isInGround and setInGround
 	public abstract boolean isInGround();
 
-	@Shadow
+
 	public abstract void setInGround(boolean flag);
 
 	@Unique

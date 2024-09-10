@@ -2,6 +2,9 @@ package luke.stardew.blocks;
 
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.model.*;
+import luke.stardew.inventories.TileEntityStove;
+import luke.stardew.render.TileEntityRendererStove;
+import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.model.*;
 import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
@@ -13,6 +16,7 @@ import net.minecraft.core.item.block.ItemBlockLeaves;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import turniplabs.halplibe.helper.BlockBuilder;
+import turniplabs.halplibe.helper.EntityHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
@@ -87,6 +91,10 @@ public class StardewBlocks {
 
 	private void initializeBlockDetails() {
 
+	}
+
+	public void initializeTiles() {
+		EntityHelper.createSpecialTileEntity(TileEntityStove.class, "Stove", TileEntityRendererStove::new);
 	}
 
 	public void initializeBlocks() {

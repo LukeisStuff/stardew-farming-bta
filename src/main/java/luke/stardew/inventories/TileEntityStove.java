@@ -3,6 +3,8 @@ package luke.stardew.inventories;
 import com.mojang.nbt.CompoundTag;
 import luke.stardew.blocks.BlockStove;
 import luke.stardew.misc.LookupCookingIngredients;
+import luke.stardew.render.TileEntityRendererStove;
+import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.entity.EntityItem;
@@ -17,7 +19,8 @@ public class TileEntityStove extends TileEntity {
 	private final Random random = new Random();
 
 	public final List<StoveItem> contentsToCook = new ArrayList<>();
-	public ItemStack fuel;
+	private final int amountToCook = 6;
+	public ItemStack fuel = null;
 	public final int maxFuelAmount = 16;
 	public int maxCookTime = 200;
 	public int currentBurnTime = 0;
@@ -27,16 +30,23 @@ public class TileEntityStove extends TileEntity {
 	public float itemRenderRelativeX = 0;
 	public float itemRenderRelativeZ = 0;
 
+	public TileEntityStove(){
+		for (int i = 0; i < amountToCook; i++) {
+			contentsToCook.add(new StoveItem(new ItemStack(Item.stick), maxCookTime));
+		}
+	}
+
 	@Override
 	public void readFromNBT(CompoundTag CompoundTag) {
 		super.readFromNBT(CompoundTag);
 
-		int size = CompoundTag.getShort("ContentsToCookSize");
-		for (int i = 0; i < size; i++) {
-			contentsToCook.add(new StoveItem(new ItemStack(Item.itemsList[CompoundTag.getInteger("ContentsToCook" + i)]), CompoundTag.getShort("CookTimeLeft" + i)));
+		for (int i = 0; i < amountToCook; i++) {
+			contentsToCook.set(i, new StoveItem(new ItemStack(Item.itemsList[CompoundTag.getInteger("ContentsToCook" + i)]), CompoundTag.getShort("CookTimeLeft" + i)));
 		}
 
-		fuel = new ItemStack(Item.itemsList[CompoundTag.getInteger("Fuel")], CompoundTag.getShort("FuelAmount"));
+		if (CompoundTag.containsKey("Fuel")){
+			fuel = new ItemStack(Item.itemsList[CompoundTag.getInteger("Fuel")], CompoundTag.getShort("FuelAmount"));
+		}
 		this.currentBurnTime = CompoundTag.getShort("BurnTime");
 	}
 
@@ -44,15 +54,16 @@ public class TileEntityStove extends TileEntity {
 	public void writeToNBT(CompoundTag CompoundTag) {
 		super.writeToNBT(CompoundTag);
 
-		CompoundTag.putShort("ContentsToCookSize", (short) contentsToCook.size());
 		for (int i = 0; i < contentsToCook.size(); i++) {
 			CompoundTag.putInt("ContentsToCook" + i, contentsToCook.get(i).getStack().itemID);
 			CompoundTag.putShort("CookTimeLeft" + i, (short) contentsToCook.get(i).getCookTimeLeft());
 		}
 
 		CompoundTag.putShort("BurnTime", (short) currentBurnTime);
-		CompoundTag.putInt("Fuel", fuel.itemID);
-		CompoundTag.putShort("FuelAmount", (short) fuel.stackSize);
+		if (fuel != null){
+			CompoundTag.putInt("Fuel", fuel.itemID);
+			CompoundTag.putShort("FuelAmount", (short) fuel.stackSize);
+		}
 	}
 
 	private int hasAvailableSpace(){
@@ -77,6 +88,8 @@ public class TileEntityStove extends TileEntity {
 		if (fuel != null && fuel.itemID == item.id && fuel.stackSize < maxFuelAmount){
 			++fuel.stackSize;
 			return true;
+		} else if (fuel == null) {
+			fuel = new ItemStack(item);
 		}
 		return false;
 	}
@@ -97,22 +110,6 @@ public class TileEntityStove extends TileEntity {
 			return 0;
 		}
 		return LookupFuelFurnace.instance.getFuelYield(itemStack.getItem().id);
-	}
-
-	private boolean consumeFuel() {
-		if (fuel != null){
-			--fuel.stackSize;
-			if (fuel.stackSize <= 0) {
-				if (fuel.itemID == Item.bucketLava.id) {
-					dropBucket();
-				}
-				fuel = null;
-				return false;
-			} else {
-				return true;
-			}
-		}
-		return false;
 	}
 
 	public void dropBucket(){
@@ -142,8 +139,15 @@ public class TileEntityStove extends TileEntity {
 		}
 		if (this.worldObj != null && !this.worldObj.isClientSide) {
 			if (this.currentBurnTime == 0 && this.canProduce()) {
-				if (consumeFuel()){
+				if (fuel != null){
+					--fuel.stackSize;
 					currentBurnTime = getBurnTimeFromItem(fuel);
+					if (fuel.stackSize == 0) {
+						if (fuel.itemID == Item.bucketLava.id) {
+							dropBucket();
+						}
+						fuel = null;
+					}
 				}
 
 				if (this.currentBurnTime > 0) {
@@ -160,11 +164,7 @@ public class TileEntityStove extends TileEntity {
 
 					--content.cookTimeLeft;
 					if (content.cookTimeLeft <= 0){
-						if (LookupCookingIngredients.instance.getResults(content.stack.itemID) != Item.foodPorkchopCooked ) {
-							worldObj.dropItem(x, y + 1, z, new ItemStack(LookupCookingIngredients.instance.getResults(content.stack.itemID), 1));
-						}else {
-							worldObj.dropItem(x, y + 1, z, new ItemStack(Item.foodPorkchopCooked, 1));
-						}
+						worldObj.dropItem(x, y + 1, z, new ItemStack(LookupCookingIngredients.instance.getResults(content.stack.itemID), 1));
 						contentsToCook.set(i, new StoveItem(new ItemStack(Item.stick), maxCookTime));
 					}
 				}

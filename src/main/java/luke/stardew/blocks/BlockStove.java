@@ -85,17 +85,19 @@ public class BlockStove extends BlockTileEntityRotatable {
 		float relativeX = tileEntity.itemRenderRelativeX;
 		float relativeZ = tileEntity.itemRenderRelativeZ;
 
-		for (TileEntityStove.StoveItem content : tileEntity.contentsToCook){
-			if (relativeX < offsetX * 3) {
-				if (content.getStack().getItem().id != Item.stick.id){
-					world.spawnParticle("smoke", x + 0.2f + relativeX, y + 1.2f, z + 0.24f + relativeZ, 0, 0, 0, 0);
-				}
+		if (tileEntity.isBurning()){
+			for (TileEntityStove.StoveItem content : tileEntity.contentsToCook){
+				if (relativeX < offsetX * 3) {
+					if (content.getStack().getItem().id != Item.stick.id){
+						world.spawnParticle("smoke", x + 0.2f + relativeX, y + 1.2f, z + 0.24f + relativeZ, 0, 0, 0, 0);
+					}
 
-				relativeX += offsetX;
-				if (relativeX == offsetX * 3) {
-					relativeX = 0;
-					if (relativeZ < offsetZ * 2) {
-						relativeZ += offsetZ;
+					relativeX += offsetX;
+					if (relativeX == offsetX * 3) {
+						relativeX = 0;
+						if (relativeZ < offsetZ * 2) {
+							relativeZ += offsetZ;
+						}
 					}
 				}
 			}

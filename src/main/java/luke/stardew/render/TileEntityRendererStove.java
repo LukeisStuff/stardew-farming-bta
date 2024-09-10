@@ -1,13 +1,19 @@
 package luke.stardew.render;
 
 import luke.stardew.inventories.TileEntityStove;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.option.GameSettings;
 import net.minecraft.client.render.item.model.ItemModel;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.tileentity.TileEntityRenderer;
 import net.minecraft.core.item.Item;
+import net.minecraft.core.world.settings.WorldSettingCollection;
+import net.minecraft.core.world.settings.WorldSettingEnum;
+import net.minecraft.core.world.settings.WorldSettings;
 import org.lwjgl.opengl.GL11;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -37,12 +43,10 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 				ItemModel model = ItemModelDispatcher.getInstance().getDispatch(content.getStack());
 
 				GL11.glPushMatrix();
-
-				GL11.glRotatef(90, 1.0f, 0, 0);
+				GL11.glTranslated( x + 0.07f + relativeX, y + 1, z + 0.15f + relativeZ);
+				GL11.glRotatef(90, 1.0f, 0.0f, 0.0f);
 				GL11.glScaled(0.3f, 0.3f, 0.3f);
-				GL11.glTranslated(x + 0.07d + relativeX, y + 1d, z + 0.15d + relativeZ);
-
-				model.renderAsItemEntity(tessellator, null, random, content.getStack(), content.getStack().stackSize, 0, 1, g);
+				model.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false);
 
 				GL11.glPopMatrix();
 
@@ -55,11 +59,5 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 				}
 			}
 		}
-
-
-		//TODO: igy nezed meg h block e
-		/*if(model instanceof ItemModelBlock){
-			BlockModel<?> blockModel = BlockModelDispatcher.getInstance().getDispatch(Block.blocksList[content.getStack().itemID]);
-		}*/
 	}
 }

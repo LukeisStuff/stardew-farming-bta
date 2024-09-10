@@ -13,11 +13,11 @@ public class LookupCookingIngredients {
 		this.register();
 	}
 	protected void register() {
-		LookupCookingIngredients.instance.addIngredientEntry(Item.foodPorkchopRaw.id, Item.foodPorkchopCooked);
-		LookupCookingIngredients.instance.addIngredientEntry(StardewItems.foodSalmonRaw.id, StardewItems.foodSalmonCooked);
-		LookupCookingIngredients.instance.addIngredientEntry(StardewItems.foodBassRaw.id, StardewItems.foodBassCooked);
-		LookupCookingIngredients.instance.addIngredientEntry(StardewItems.foodSnapperRaw.id, StardewItems.foodSnapperCooked);
-		LookupCookingIngredients.instance.addIngredientEntry(Item.eggChicken.id, StardewItems.eggCooked);
+		this.addIngredientEntry(Item.foodPorkchopRaw.id, Item.foodPorkchopCooked);
+		this.addIngredientEntry(StardewItems.foodSalmonRaw.id, StardewItems.foodSalmonCooked);
+		this.addIngredientEntry(StardewItems.foodBassRaw.id, StardewItems.foodBassCooked);
+		this.addIngredientEntry(StardewItems.foodSnapperRaw.id, StardewItems.foodSnapperCooked);
+		this.addIngredientEntry(Item.eggChicken.id, StardewItems.eggCooked);
 	}
 
 	public void addIngredientEntry(int id, Item resultItem) {

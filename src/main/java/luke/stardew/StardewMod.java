@@ -2,7 +2,10 @@ package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
+import luke.stardew.misc.LookupCookingIngredients;
+import luke.stardew.render.TileEntityRendererStove;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.render.TileEntityRenderDispatcher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.helper.AchievementHelper;
@@ -33,6 +36,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 	public void beforeGameStart() {
 		new StardewBlocks().initializeBlocks();
 		new StardewItems().initilizeItems();
+		new StardewBlocks().initializeTiles();
 
 		AchievementPage STARDEWACHIEVEMENTS;
 		STARDEWACHIEVEMENTS = new StardewAchievements();
