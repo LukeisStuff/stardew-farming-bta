@@ -18,10 +18,12 @@ import java.util.Random;
 public class TileEntityStove extends TileEntity {
 	private final Random random = new Random();
 
+	public int blockMetadata = 0;
+
 	public final List<StoveItem> contentsToCook = new ArrayList<>();
-	private final int amountToCook = 6;
+	public final int amountToCook = 6; //divisible by 2 !!
 	public ItemStack fuel = null;
-	public final int maxFuelAmount = 8;
+	public final int maxFuelAmount = 8; //divisible by 2 !!
 	public int maxCookTime = 200;
 	public int currentBurnTime = 0;
 

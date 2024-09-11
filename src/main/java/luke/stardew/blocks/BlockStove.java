@@ -9,6 +9,7 @@ import net.minecraft.core.block.BlockTileEntityRotatable;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.EntityItem;
+import net.minecraft.core.entity.EntityLiving;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.Item;
@@ -22,6 +23,7 @@ public class BlockStove extends BlockTileEntityRotatable {
 	protected Random stoveRand = new Random();
 	protected final boolean isActive;
 	protected static boolean keepStoveInventory = false;
+	protected TileEntityStove tileEntityStove;
 
 	public BlockStove(String key, int id, boolean flag) {
 		super(key, id, Material.stone);
@@ -40,6 +42,12 @@ public class BlockStove extends BlockTileEntityRotatable {
 	public void onBlockAdded(World world, int x, int y, int z) {
 		super.onBlockAdded(world, x, y, z);
 		this.setDefaultDirection(world, x, y, z);
+	}
+
+	@Override
+	public void onBlockPlaced(World world, int x, int y, int z, Side side, EntityLiving entity, double sideHeight) {
+		super.onBlockPlaced(world, x, y, z, side, entity, sideHeight);
+		tileEntityStove.blockMetadata = world.getBlockMetadata(x, y, z);
 	}
 
 	@Override
@@ -151,7 +159,8 @@ public class BlockStove extends BlockTileEntityRotatable {
 
 	@Override
 	protected TileEntity getNewBlockEntity() {
-		return new TileEntityStove();
+		tileEntityStove = new TileEntityStove();
+		return tileEntityStove;
 	}
 
 	@Override

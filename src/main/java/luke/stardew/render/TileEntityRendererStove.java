@@ -6,81 +6,118 @@ import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.tileentity.TileEntityRenderer;
 import net.minecraft.core.item.Item;
+import net.minecraft.core.item.ItemStack;
 import org.lwjgl.opengl.GL11;
 
 import java.util.List;
-import java.util.Random;
 
 public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove> {
-
-	private final Random random = new Random();
 
 	@Override
 	public void doRender(Tessellator tessellator, TileEntityStove tileEntity, double x, double y, double z, float g) {
 		float offset1Food = tileEntity.itemRenderOffset1;
 		float offset2Food = tileEntity.itemRenderOffset2;
-		float relative1Food = tileEntity.itemRenderRelative1;
-		float relative2Food = tileEntity.itemRenderRelative2;
 
-		float offset1Fuel = 0.1f;
+		float offset1Fuel = 0.13f;
 		float offset2Fuel = 0.13f;
-		float relative1Fuel = 0;
-		float relative2Fuel = 0;
 
-		List<TileEntityStove.StoveItem> contents = tileEntity.contentsToCook;
+		renderItemsBasedOnMetadata(tessellator, tileEntity.blockMetadata, x, y, z, tileEntity.contentsToCook, 2, tileEntity.amountToCook / 2, offset2Food, offset1Food);
+		renderItemsBasedOnMetadata(tessellator, tileEntity.blockMetadata, x, y, z, tileEntity.fuel, 2, tileEntity.maxFuelAmount / 2, offset2Fuel, offset1Fuel);
+
+
+	}
+
+	private void renderItemsBasedOnMetadata(Tessellator tessellator, int metadata, double x, double y, double z, List<TileEntityStove.StoveItem> contents, int verticalAmount, int horizontalAmount, float offsetValueVertical, float offsetValueHorizontal){
+		float currentVertical = 0;
+		float currentHorizontal = 0;
 
 		for (TileEntityStove.StoveItem content : contents) {
-			if (relative1Food < offset1Food * 3) {
-				if (content.getStack().getItem().id == Item.stick.id) {
-					relative1Food += offset1Food;
-					if (relative1Food == offset1Food * 3) {
-						relative1Food = 0;
-						if (relative2Food < offset2Food * 2) {
-							relative2Food += offset2Food;
-						}
+			if (content.getStack().getItem().id == Item.stick.id) {
+
+				currentHorizontal += offsetValueHorizontal;
+				if (currentHorizontal == offsetValueHorizontal * horizontalAmount) {
+					currentHorizontal = 0;
+					if (currentVertical < offsetValueVertical * verticalAmount) {
+						currentVertical += offsetValueVertical;
 					}
-					continue;
 				}
+				continue;
+			}
 
-				ItemModel foodModel = ItemModelDispatcher.getInstance().getDispatch(content.getStack());
+			ItemModel foodModel = ItemModelDispatcher.getInstance().getDispatch(content.getStack());
 
-				GL11.glPushMatrix();
-				GL11.glTranslated( x + 0.07f + relative1Food, y + 1, z + 0.15f + relative2Food);
-				GL11.glRotatef(90, 1.0f, 0.0f, 0.0f);
-				GL11.glScaled(0.3f, 0.3f, 0.3f);
-				foodModel.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false); //f = brightness, g = idk, but on 0 its not visible, bl = idk
+			GL11.glPushMatrix();
+			switch (metadata) {
+				case 2:
+					GL11.glTranslated( x + 0.062f + currentHorizontal, y + 1, z + 0.14f + currentVertical); //default
+					break;
+				case 3:
+					GL11.glTranslated( x + 0.938f - currentHorizontal, y + 1, z + 0.86f - currentVertical); // 0.938f = 1 - defX | 0.86f = 1 - defZ
+					GL11.glRotatef(180, 0.0f, 1.0f, 0.0f);
+					break;
+				case 4:
+					GL11.glTranslated( x + 0.14f + currentVertical, y + 1, z + 0.938f - currentHorizontal); // 0.14f = defZ | 0.938f = 1 - defX
+					GL11.glRotatef(90, 0.0f, 1.0f, 0.0f);
+					break;
+				case 5:
+					GL11.glTranslated( x + 0.86f - currentVertical, y + 1, z + 0.062f + currentHorizontal); // 0.86f = 1 - defZ | 0.062f = defX
+					GL11.glRotatef(90, 0.0f, -1.0f, 0.0f);
+					break;
+			}
+			GL11.glRotatef(90, 1.0f, 0.0f, 0.0f);
+			GL11.glScaled(0.3f, 0.3f, 0.3f);
 
-				GL11.glPopMatrix();
+			foodModel.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false); //f = brightness, g = idk, but on 0 its not visible, bl = idk
 
-				relative1Food += offset1Food;
-				if (relative1Food == offset1Food * 3) {
-					relative1Food = 0;
-					if (relative2Food < offset2Food * 2) {
-						relative2Food += offset2Food;
-					}
+			GL11.glPopMatrix();
+
+			currentHorizontal += offsetValueHorizontal;
+			if (currentHorizontal == offsetValueHorizontal * horizontalAmount) {
+				currentHorizontal = 0;
+				if (currentVertical < offsetValueVertical * verticalAmount) {
+					currentVertical += offsetValueVertical;
 				}
 			}
 		}
+	}
 
-		if (tileEntity.fuel != null){
-			for (int i = 0; i < tileEntity.fuel.stackSize; i++) {
-				if (relative1Fuel < offset1Fuel * 4) {
+	private void renderItemsBasedOnMetadata(Tessellator tessellator, int metadata, double x, double y, double z, ItemStack contents, int verticalAmount, int horizontalAmount, float offsetValueVertical, float offsetValueHorizontal){
+		if (contents != null){
+			float currentVertical = 0;
+			float currentHorizontal = 0;
 
-					ItemModel fuelModel = ItemModelDispatcher.getInstance().getDispatch(tileEntity.fuel);
+			ItemModel fuelModel = ItemModelDispatcher.getInstance().getDispatch(contents);
 
-					GL11.glPushMatrix();
-					GL11.glTranslated( x + 1 - relative1Fuel, y + 0.8 + relative2Fuel, z);
-					GL11.glScaled(0.1f, 0.1f, 0.1f);
-					fuelModel.renderItemInWorld(tessellator, null, tileEntity.fuel, 1, 1, false); //f = brightness, g = idk, but on 0 its not visible, bl = idk
+			for (int i = 0; i < contents.stackSize; i++) {
 
-					GL11.glPopMatrix();
+				GL11.glPushMatrix();
+				switch (metadata) {
+					case 2:
+						GL11.glTranslated( x + 0.64f - currentHorizontal, y + 0.64f + currentVertical, z); //default
+						break;
+					case 3:
+						GL11.glTranslated( x + 0.36f + currentHorizontal, y + 0.64f + currentVertical, z + 1); // 0.36f = 1 - defX | Y = defY | + 1
+						GL11.glRotatef(180, 0.0f, 1.0f, 0.0f);
+						break;
+					case 4:
+						GL11.glTranslated( x, y + 0.64f + currentVertical, z + 0.36f + currentHorizontal); // X | Y = defY | 0.36f = 1 - defX
+						GL11.glRotatef(90, 0.0f, 1.0f, 0.0f);
+						break;
+					case 5:
+						GL11.glTranslated( x + 1, y + 0.64f + currentVertical, z + 0.64f - currentHorizontal); // + 1 | Y = defY | Z = defX
+						GL11.glRotatef(90, 0.0f, -1.0f, 0.0f);
+						break;
+				}
+				GL11.glScaled(0.1f, 0.1f, 0.1f);
+				fuelModel.renderItemInWorld(tessellator, null, contents.getItem().getDefaultStack(), 1, 1, false); //f = brightness, g = idk, but on 0 its not visible, bl = idk
 
-					relative1Fuel += offset1Fuel;
-					if (relative1Fuel == offset1Fuel * 4) {
-						relative1Fuel = 0;
-						if (relative2Fuel < offset2Fuel * 2) {
-							relative2Fuel += offset2Fuel;
-						}
+				GL11.glPopMatrix();
+
+				currentHorizontal += offsetValueHorizontal;
+				if (currentHorizontal == offsetValueHorizontal * horizontalAmount) {
+					currentHorizontal = 0;
+					if (currentVertical < offsetValueVertical * verticalAmount) {
+						currentVertical += offsetValueVertical;
 					}
 				}
 			}
