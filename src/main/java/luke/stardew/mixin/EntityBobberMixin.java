@@ -112,7 +112,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 		this.zd = MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * MathHelper.cos(this.xRot / 180.0F * 3.1415927F) * f;
 		this.yd = -MathHelper.sin(this.xRot / 180.0F * 3.1415927F) * f;
 		this.func_4042_a(this.xd, this.yd, this.zd, 1.5F, 1.0F);
-		this.player.bobberEntity = (EntityBobber) (Object) this; //TODO idk what to do here reddit told me to use (EntityBobber) (Object) to trick the compiler
+		this.player.bobberEntity = (EntityBobber) (Object) this;
 	}
 
 	public boolean shouldRenderAtSqrDistance(double distance) {
