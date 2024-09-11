@@ -30,12 +30,12 @@ public class BlockStove extends BlockTileEntityRotatable {
 		this.isActive = flag;
 	}
 
-	private boolean isIngredient(Item item){
-		return LookupCookingIngredients.instance.getIngredientList().containsKey(item.id);
+	private boolean isIngredient(ItemStack item){
+		return LookupCookingIngredients.instance.getIngredientList().containsKey(item.itemID);
 	}
 
-	private boolean isFuel(Item item){
-		return LookupFuelStove.instance.getFuelList().containsKey(item.id);
+	private boolean isFuel(ItemStack item){
+		return LookupFuelStove.instance.getFuelList().containsKey(item.itemID);
 	}
 
 	@Override
@@ -120,7 +120,7 @@ public class BlockStove extends BlockTileEntityRotatable {
 			if (tileEntityStove == null) return false;
 			if (player.getHeldItem() == null) return false;
 
-			Item heldItem = player.getHeldItem().getItem();
+			ItemStack heldItem = player.getHeldItem();
 
 			if (world.getBlockId(x, y + 1, z) == 0){
 				if((isIngredient(heldItem) && tileEntityStove.addContentToCook(new ItemStack(heldItem))) || (isFuel(heldItem)) && tileEntityStove.addFuel(heldItem)){

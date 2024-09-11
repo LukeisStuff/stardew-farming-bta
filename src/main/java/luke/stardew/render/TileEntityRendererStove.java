@@ -2,6 +2,7 @@ package luke.stardew.render;
 
 import luke.stardew.inventories.TileEntityStove;
 import net.minecraft.client.render.item.model.ItemModel;
+import net.minecraft.client.render.item.model.ItemModelCoal;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.tileentity.TileEntityRenderer;
@@ -85,8 +86,10 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 		if (contents != null){
 			float currentVertical = 0;
 			float currentHorizontal = 0;
+			ItemModel fuelModel;
 
-			ItemModel fuelModel = ItemModelDispatcher.getInstance().getDispatch(contents);
+			//TODO: charcoal model support
+			fuelModel = ItemModelDispatcher.getInstance().getDispatch(contents);
 
 			for (int i = 0; i < contents.stackSize; i++) {
 
