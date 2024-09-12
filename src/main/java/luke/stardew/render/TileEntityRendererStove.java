@@ -68,7 +68,7 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 			GL11.glRotatef(90, 1.0f, 0.0f, 0.0f);
 			GL11.glScaled(0.3f, 0.3f, 0.3f);
 
-			foodModel.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false); //f = brightness, g = idk, but on 0 its not visible, bl = idk
+			foodModel.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false); //f = brightness, g = transparency, bl = idk
 
 			GL11.glPopMatrix();
 
@@ -112,7 +112,7 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 						break;
 				}
 				GL11.glScaled(0.1f, 0.1f, 0.1f);
-				fuelModel.renderItemInWorld(tessellator, null, contents.getItem().getDefaultStack(), 1, 1, false); //f = brightness, g = idk, but on 0 its not visible, bl = idk
+				fuelModel.renderItemInWorld(tessellator, null, contents.getItem().getDefaultStack(), 1, 1, false); //f = brightness, g = transparency, bl = idk
 
 				GL11.glPopMatrix();
 
