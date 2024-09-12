@@ -88,7 +88,7 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 			float currentHorizontal = 0;
 			ItemModel fuelModel;
 
-			//TODO: charcoal model support
+			//TODO: charcoal texture not working
 			if (contents.itemID == Item.coal.id && contents.getMetadata() == 1){
 				fuelModel = new ItemModelCoal(Item.coal, null);
 			}else {
