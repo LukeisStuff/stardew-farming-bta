@@ -68,7 +68,7 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 			GL11.glRotatef(90, 1.0f, 0.0f, 0.0f);
 			GL11.glScaled(0.3f, 0.3f, 0.3f);
 
-			foodModel.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false); //f = brightness, g = transparency, bl = idk
+			foodModel.renderItemInWorld(tessellator, null, content.getStack(), 1, 1, false); //f = brightness, g = alpha, bl = worldTransform
 
 			GL11.glPopMatrix();
 
@@ -89,7 +89,11 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 			ItemModel fuelModel;
 
 			//TODO: charcoal model support
-			fuelModel = ItemModelDispatcher.getInstance().getDispatch(contents);
+			if (contents.itemID == Item.coal.id && contents.getMetadata() == 1){
+				fuelModel = new ItemModelCoal(Item.coal, null);
+			}else {
+				fuelModel = ItemModelDispatcher.getInstance().getDispatch(contents);
+			}
 
 			for (int i = 0; i < contents.stackSize; i++) {
 
@@ -112,7 +116,7 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 						break;
 				}
 				GL11.glScaled(0.1f, 0.1f, 0.1f);
-				fuelModel.renderItemInWorld(tessellator, null, contents.getItem().getDefaultStack(), 1, 1, false); //f = brightness, g = transparency, bl = idk
+				fuelModel.renderItemInWorld(tessellator, null, contents.getItem().getDefaultStack(), 1, 1, false); //f = brightness, g = alpha, bl = worldTransform
 
 				GL11.glPopMatrix();
 

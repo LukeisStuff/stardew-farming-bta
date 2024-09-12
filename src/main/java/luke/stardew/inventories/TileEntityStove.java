@@ -89,12 +89,10 @@ public class TileEntityStove extends TileEntity {
 	public boolean addFuel(ItemStack item){
 		if (fuel != null && fuel.itemID == item.itemID && fuel.stackSize < maxFuelAmount && fuel.getMetadata() == item.getMetadata()){
 			++fuel.stackSize;
-			System.out.println(fuel.getMetadata());
 			return true;
 		} else if (fuel == null) {
 			if (item.itemID == Item.coal.id && item.getMetadata() == 1){
 				fuel = new ItemStack(item.getItem(), 1, 1);
-				System.out.println(fuel.getMetadata());
 				return true;
 			}
 			fuel = new ItemStack(item.getItem());
