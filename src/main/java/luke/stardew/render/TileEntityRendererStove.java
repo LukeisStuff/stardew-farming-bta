@@ -22,6 +22,7 @@ public class TileEntityRendererStove extends TileEntityRenderer<TileEntityStove>
 		float offset1Fuel = 0.13f;
 		float offset2Fuel = 0.13f;
 
+		//TODO: rendering bug, when the world is loaded back
 		renderItemsBasedOnMetadata(tessellator, tileEntity.blockMetadata, x, y, z, tileEntity.contentsToCook, 2, tileEntity.amountToCook / 2, offset2Food, offset1Food);
 		renderItemsBasedOnMetadata(tessellator, tileEntity.blockMetadata, x, y, z, tileEntity.fuel, 2, tileEntity.maxFuelAmount / 2, offset2Fuel, offset1Fuel);
 
