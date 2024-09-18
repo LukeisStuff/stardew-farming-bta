@@ -5,7 +5,6 @@ import luke.stardew.blocks.model.*;
 import net.minecraft.client.render.block.model.*;
 import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockCake;
 import net.minecraft.core.block.BlockLog;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
@@ -311,7 +310,7 @@ public class StardewBlocks {
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.setBlockModel(block -> new BlockModelCakeChocolate<>(block).withTextures(MOD_ID + ":block/chokoCake_top", MOD_ID + ":block/chokoCake_bottom", MOD_ID + ":block/chokoCake_side"))
-			.build(new BlockCake("cake.chocolate", blockID("cakeChocolate")));
+			.build(new BlockCakeChocolate("cake.chocolate", blockID("cakeChocolate")));
 
 		beehive = wood
 			.setBlockModel(block -> new BlockModelHorizontalRotation<>(block).withTextures(MOD_ID + ":block/beehive_top", MOD_ID + ":block/beehive_top", MOD_ID + ":block/beehive_idle", MOD_ID + ":block/beehive_side", MOD_ID + ":block/beehive_side", MOD_ID + ":block/beehive_side"))
