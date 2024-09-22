@@ -35,7 +35,7 @@ public class BlockModelPie<T extends Block> extends BlockModelStandard<T> {
 
 	}
 
-	private void renderSlice(Tessellator tessellator, Block block, int x, int y, int z, int sliceX, int sliceZ) {
+	public void renderSlice(Tessellator tessellator, Block block, int x, int y, int z, int sliceX, int sliceZ) {
 		double onePix = 0.0625;
 		double sliceWidth = onePix * 8.0;
 		double xMin = 0.0 + sliceWidth * (double)sliceX;

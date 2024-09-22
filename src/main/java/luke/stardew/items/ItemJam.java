@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ItemJam extends ItemFood {
-	private final int healAmount;
+	public final int healAmount;
 
 	public ItemJam(String name, int id, int healAmount, int ticksPerHeal, boolean favouriteWolfMeat, int maxStackSize) {
 		super(name, id, healAmount, ticksPerHeal, favouriteWolfMeat, maxStackSize);

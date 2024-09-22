@@ -1,6 +1,5 @@
 package luke.stardew.items;
 
-import luke.stardew.StardewMod;
 import net.minecraft.core.entity.player.EntityPlayer;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
@@ -34,7 +33,7 @@ public class ItemCanOfWorms extends Item {
 					this.setWormCount(canItem, wormCount - amount2);
 					stackInSlot = arrowStack;
 				}
-			} else if (stackInSlot != null && stackInSlot.itemID == StardewItems.worm.id && (amount = Math.min(freeSpace, stackInSlot.stackSize)) > 0) {
+			} else if (stackInSlot.itemID == StardewItems.worm.id && (amount = Math.min(freeSpace, stackInSlot.stackSize)) > 0) {
 				this.setWormCount(canItem, wormCount + amount);
 				stackInSlot.stackSize -= amount;
 			}
@@ -58,11 +57,11 @@ public class ItemCanOfWorms extends Item {
 		return stackInSlot;
 	}
 
-	private int getWormCount(ItemStack stack) {
+	public int getWormCount(ItemStack stack) {
 		return stack.getMaxDamage() - stack.getMetadata();
 	}
 
-	private void setWormCount(ItemStack stack, int count) {
+	public void setWormCount(ItemStack stack, int count) {
 		stack.setMetadata(stack.getMaxDamage() - count);
 	}
 

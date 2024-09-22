@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
 
 public class StardewConfig {
 	public static ConfigUpdater updater = ConfigUpdater.fromProperties();
-	private static final Toml properties = new Toml("Stardew Farming TOML Config");
+	public static final Toml properties = new Toml("Stardew Farming TOML Config");
 	public static TomlConfigHandler cfg;
 
-	private static int blockIDs = 6000;
+	public static int blockIDs = 6000;
 
-	private static int itemIDs = 22000;
+	public static int itemIDs = 22000;
 
 	static {
 		properties.addCategory("stardew")

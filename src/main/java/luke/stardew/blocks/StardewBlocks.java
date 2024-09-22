@@ -16,7 +16,7 @@ import turniplabs.halplibe.helper.BlockBuilder;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewBlocks {
-	private int blockID(String blockName) {
+	public int blockID(String blockName) {
 		return StardewConfig.cfg.getInt("Block IDs." + blockName);
 	}
 
@@ -81,7 +81,7 @@ public class StardewBlocks {
 
 	public static Block plantStake;
 
-	private void initializeBlockDetails() {
+	public void initializeBlockDetails() {
 
 	}
 

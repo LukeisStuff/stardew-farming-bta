@@ -5,7 +5,6 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.stitcher.IconCoordinate;
 import net.minecraft.core.achievement.Achievement;
-import net.minecraft.core.achievement.AchievementList;
 import net.minecraft.core.achievement.stat.Stat;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.item.Item;
@@ -54,7 +53,7 @@ public class StardewAchievements extends AchievementPage {
 		achievementList.add(MASTER_FISHER);
 	}
 
-	private static final int StardewAchievementsID = 524300;
+	public static final int StardewAchievementsID = 524300;
 	public static final Achievement STARDEW = new Achievement(StardewAchievementsID + 1, "stardew.stardew", 0, 0, StardewItems.wateringCan, null);
 
 	public static final Achievement FRUIT = new Achievement(StardewAchievementsID + 2, "stardew.fruit", 2, -2, StardewItems.strawberry, STARDEW);
@@ -91,7 +90,7 @@ public class StardewAchievements extends AchievementPage {
 		}
 	}
 
-	protected IconCoordinate getTextureFromBlock(Block block) {
+	public IconCoordinate getTextureFromBlock(Block block) {
 		return BlockModelDispatcher.getInstance().getDispatch(block).getBlockTextureFromSideAndMetadata(Side.BOTTOM, 0);
 	}
 

@@ -27,7 +27,7 @@ public class PlayerRendererMixin extends LivingRenderer<EntityPlayer> {
 	}
 
 	@Inject(method = "setArmorModel", at = @At("HEAD"), cancellable = true)
-	private void addCanOfWormsRender(EntityPlayer entity, int renderPass, float partialTick, CallbackInfoReturnable<Boolean> cir) {
+	public void addCanOfWormsRender(EntityPlayer entity, int renderPass, float partialTick, CallbackInfoReturnable<Boolean> cir) {
 		ItemStack itemstack = entity.inventory.armorItemInSlot(3 - renderPass);
 		if (itemstack != null) {
 			Item item = itemstack.getItem();

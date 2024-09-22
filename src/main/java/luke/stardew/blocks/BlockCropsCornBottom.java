@@ -22,7 +22,7 @@ public class BlockCropsCornBottom extends BlockFlower implements IBonemealable {
 		this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
 	}
 
-	private float getGrowthRate(World world, int x, int y, int z) {
+	public float getGrowthRate(World world, int x, int y, int z) {
 		float growthRate = 1.0F;
 		int idNegZ = world.getBlockId(x, y, z - 1);
 		int idPosZ = world.getBlockId(x, y, z + 1);

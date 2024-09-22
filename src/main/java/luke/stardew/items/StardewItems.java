@@ -15,7 +15,7 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewItems {
 
-	private int itemID(String itemName) {
+	public int itemID(String itemName) {
 		return StardewConfig.cfg.getInt("Item IDs." + itemName);
 	}
 

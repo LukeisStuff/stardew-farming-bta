@@ -76,7 +76,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 	public abstract void setInGround(boolean flag);
 
 	@Unique
-	private boolean isInLava = false;
+	public boolean isInLava = false;
 
 	public EntityBobberMixin(World world) {
 		super(world);
@@ -160,7 +160,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 	}
 
 	@Inject(method = "<init>(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/EntityPlayer;)V", at = @At("TAIL"))
-	private void init(CallbackInfo ci){
+	public void init(CallbackInfo ci){
 		entityData.define(3, 0); //hasBait
 	}
 

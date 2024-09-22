@@ -70,7 +70,7 @@ public class BlockCropsWatermelon extends BlockFlower implements IBonemealable {
 		world.setBlockWithNotify(x, y, z, StardewBlocks.watermelon.id);
 	}
 
-	private float getGrowthRate(World world, int x, int y, int z) {
+	public float getGrowthRate(World world, int x, int y, int z) {
 		float growthRate = 1.0F;
 		for(int dx = x - 1; dx <= x + 1; ++dx) {
 			for(int dz = z - 1; dz <= z + 1; ++dz) {

@@ -11,8 +11,8 @@ import org.lwjgl.opengl.GL11;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class BlockModelAppleLeavesBloom<T extends Block> extends BlockModelLeaves<T> {
-	private final IconCoordinate grownAppleOverlay = TextureRegistry.getTexture(MOD_ID + ":block/leaves_apple_overlay");
-	private final IconCoordinate floweringAppleOverlay = TextureRegistry.getTexture(MOD_ID + ":block/leaves_apple_flowering_overlay");
+	public final IconCoordinate grownAppleOverlay = TextureRegistry.getTexture(MOD_ID + ":block/leaves_apple_overlay");
+	public final IconCoordinate floweringAppleOverlay = TextureRegistry.getTexture(MOD_ID + ":block/leaves_apple_flowering_overlay");
 
 	public BlockModelAppleLeavesBloom(Block block) {
 		super(block, MOD_ID + ":block/leaves_apple");

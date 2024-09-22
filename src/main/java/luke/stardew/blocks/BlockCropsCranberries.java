@@ -39,7 +39,7 @@ public class BlockCropsCranberries extends BlockFlower implements IBonemealable 
 		}
 	}
 
-	private float getGrowthRate(World world, int x, int y, int z) {
+	public float getGrowthRate(World world, int x, int y, int z) {
 		float growthRate = 1.0F;
 		int idNegZ = world.getBlockId(x, y, z - 1);
 		int idPosZ = world.getBlockId(x, y, z + 1);
