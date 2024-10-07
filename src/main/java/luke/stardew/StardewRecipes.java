@@ -25,6 +25,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("bread");
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("cake");
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("golden_apple");
+		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("pumpkin_pie");
 
 		RecipeBuilder.Shaped(MOD_ID, "DCD")
 			.addInput('D', StardewItems.dough)
@@ -63,12 +64,53 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("block_of_honey", new ItemStack(StardewBlocks.blockHoney, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewBlocks.blockHoney, 1))
+			.create("block_of_honey_to_honey", new ItemStack(StardewItems.honey, 4));
+
+		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.watermelon, 1))
 			.create("melon_to_melon_seeds", new ItemStack(StardewItems.seedsWatermelon, 4));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.cauliflower, 1))
 			.create("cauliflower_to_cauliflower_seeds", new ItemStack(StardewItems.seedsCauliflower, 4));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.strawberry, 1))
+			.create("strawberry_to_strawberry_seeds", new ItemStack(StardewItems.seedsStrawberry, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.grapes, 1))
+			.create("grapes_to_grapes_seeds", new ItemStack(StardewItems.seedsGrapes, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.blueberry, 1))
+			.create("blueberry_to_blueberry_seeds", new ItemStack(StardewItems.seedsBlueberry, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.corn, 1))
+			.create("corn_to_corn_seeds", new ItemStack(StardewItems.seedsCorn, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.cranberries, 1))
+			.create("cranberries_to_cranberries_seeds", new ItemStack(StardewItems.seedsCranberries, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.potato, 1))
+			.create("potato_to_potato_seeds", new ItemStack(StardewItems.seedsPotato, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.tomato, 1))
+			.create("tomato_to_tomato_seeds", new ItemStack(StardewItems.seedsTomato, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.pineapple, 1))
+			.create("pineapple_to_pineapple_seeds", new ItemStack(StardewItems.seedsPineapple, 1));
+
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(StardewItems.carrot, 1))
+			.create("carrot_to_carrot_seeds", new ItemStack(StardewItems.seedsCarrot, 1));
+
 
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -129,7 +171,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('E', (Item.eggChicken))
 			.addInput('P', (Block.pumpkin))
 			.setConsumeContainer(false)
-			.create("pumpkin_pie", new ItemStack(StardewItems.foodPie, 1));
+			.create("pumpkin_pie", new ItemStack(Item.foodPumpkinPie, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, " W ", "SES", "DDD")
 			.addInput('W', (Item.bucketWater))

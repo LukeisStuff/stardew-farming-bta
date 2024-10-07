@@ -91,8 +91,11 @@ public class BlockCropsStrawberry extends BlockFlower implements IBonemealable {
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return meta != 3 ? new ItemStack[]{new ItemStack(StardewItems.seedsStrawberry)} : new ItemStack[]{new ItemStack(StardewItems.seedsStrawberry, world.rand.nextInt(1) + 1), new ItemStack(StardewItems.strawberry, world.rand.nextInt(3) + 1)};
-	}
+		if (meta == 3) {
+			return new ItemStack[]{new ItemStack(StardewItems.strawberry, world.rand.nextInt(1) + 1), new ItemStack(StardewItems.seedsStrawberry, world.rand.nextInt(1) + 2)};
+		}
+		return new ItemStack[]{new ItemStack(StardewItems.seedsStrawberry)};
+    }
 
 	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
 		int l = world.getBlockMetadata(x, y, z);

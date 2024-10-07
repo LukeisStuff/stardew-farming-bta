@@ -92,7 +92,10 @@ public class BlockCropsCranberries extends BlockFlower implements IBonemealable 
 	}
 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return meta != 3 ? new ItemStack[]{new ItemStack(StardewItems.seedsCranberries)} : new ItemStack[]{new ItemStack(StardewItems.seedsCranberries, world.rand.nextInt(2) + 1), new ItemStack(StardewItems.cranberries, world.rand.nextInt(3) + 1)};
+		if (meta == 3) {
+			return new ItemStack[]{new ItemStack(StardewItems.cranberries, world.rand.nextInt(4) + 1), new ItemStack(StardewItems.seedsCranberries, world.rand.nextInt(2) + 1)};
+		}
+		return new ItemStack[]{new ItemStack(StardewItems.seedsCranberries)};
 	}
 
 	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
