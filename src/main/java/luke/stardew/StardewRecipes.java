@@ -41,7 +41,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('B', StardewItems.strawberry)
 			.addInput('M', Item.bucketMilk)
 			.addInput('S', Item.dustSugar)
-			.addInput('E', Item.eggChicken)
+			.addInput('E', MOD_ID + ":item/eggs")
 			.create("cake", new ItemStack(Item.foodCake, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "GGG", "GAG", "GGG")
@@ -160,7 +160,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('C', Item.dye, 3)
 			.addInput('M', Item.bucketMilk)
 			.addInput('S', Item.dustSugar)
-			.addInput('E', Item.eggChicken)
+			.addInput('E', MOD_ID + ":item/eggs")
 			.setConsumeContainer(false)
 			.create("cake_chocolate", new ItemStack(StardewItems.foodCakeChocolate, 1));
 
@@ -168,7 +168,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('M', (Item.bucketMilk))
 			.addInput('W', (StardewItems.dough))
 			.addInput('S', (Item.dustSugar))
-			.addInput('E', (Item.eggChicken))
+			.addInput('E', (MOD_ID + ":item/eggs"))
 			.addInput('P', (Block.pumpkin))
 			.setConsumeContainer(false)
 			.create("pumpkin_pie", new ItemStack(Item.foodPumpkinPie, 1));
@@ -268,7 +268,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 
 		RecipeBuilder.Furnace(MOD_ID)
-			.setInput(Item.eggChicken)
+			.setInput(MOD_ID + ":item/eggs")
 			.create("egg_cooked", StardewItems.eggCooked.getDefaultStack());
 
 		RecipeBuilder.Furnace(MOD_ID)
@@ -307,6 +307,8 @@ public class StardewRecipes implements RecipeEntrypoint {
 		Registries.ITEM_GROUPS.register(MOD_ID + ":item/small_fruits", Registries.stackListOf(StardewItems.blueberry, StardewItems.cranberries));
 		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.grapes, Item.foodApple));
 		Registries.ITEM_GROUPS.register(MOD_ID + ":item/large_fruits", Registries.stackListOf(StardewItems.pineapple, StardewBlocks.watermelon));
+
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/eggs", Registries.stackListOf(StardewItems.eggDuck, Item.eggChicken));
 
 		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow, Block.flowerOrange, Block.flowerPink, Block.flowerPurple, Block.flowerLightBlue));
 
