@@ -25,7 +25,7 @@ public class StardewAchievements extends AchievementPage {
 			try {
 				achievementList.add((Achievement) ((Stat) F.get(null)).registerStat());
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
+				throw new RuntimeException(e);
 			}
 		});
 

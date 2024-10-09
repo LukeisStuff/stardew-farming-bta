@@ -11,9 +11,9 @@ public class EntityDuck extends EntityChicken {
 	public EntityDuck(World world) {
 		super(world);
 		this.textureIdentifier = new NamespaceID("stardew", "duck");
-		this.setSize(0.4f, 0.8f);
+		this.setSize(0.6f, 1.0f);
 		this.timeUntilNextEgg = this.random.nextInt(3000) + 3000;
-		this.mobDrops.add(new WeightedRandomLootObject(Item.featherChicken.getDefaultStack(), 1, 3));
+		this.mobDrops.add(new WeightedRandomLootObject(Item.featherChicken.getDefaultStack(), 0, 1));
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class EntityDuck extends EntityChicken {
 		}
 		this.field_752_b += this.field_755_h * 2.0f;
 		if (!this.world.isClientSide && --this.timeUntilNextEgg <= 0) {
-			this.world.playSoundAtEntity(null, this, "mob.chickenplop", 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f + 1.0f);
+			this.world.playSoundAtEntity(null, this, "mob.chickenplop", 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f - 1.0f);
 			this.spawnAtLocation(StardewItems.eggDuck.id, 1);
 			this.timeUntilNextEgg = this.random.nextInt(3000) + 3000;
 		}
@@ -56,7 +56,26 @@ public class EntityDuck extends EntityChicken {
 
 	@Override
 	public int getTalkInterval() {
-		return 240;
+		return 60;
+	}
+
+	protected float getSoundVolume() {
+		return 0.5f;
+	}
+
+	@Override
+	public String getLivingSound() {
+		return "stardew.duckidle";
+	}
+
+	@Override
+	protected String getHurtSound() {
+		return "stardew.duckhurt";
+	}
+
+	@Override
+	protected String getDeathSound() {
+		return "stardew.duckdeath";
 	}
 
 }

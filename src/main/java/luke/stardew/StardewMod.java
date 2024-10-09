@@ -29,6 +29,12 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 	static {
 		SoundHelper.addSound(MOD_ID, "bee.ogg");
 		SoundHelper.addStreaming(MOD_ID, "axolotl.ogg");
+
+		SoundHelper.addSound(MOD_ID, "duckidle1.ogg");
+		SoundHelper.addSound(MOD_ID, "duckidle2.ogg");
+		SoundHelper.addSound(MOD_ID, "duckhurt1.ogg");
+		SoundHelper.addSound(MOD_ID, "duckhurt2.ogg");
+		SoundHelper.addSound(MOD_ID, "duckdeath1.ogg");
 	}
 
 
@@ -55,7 +61,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 	@Override
 	public void afterGameStart() {
 		MobInfoRegistry.register(EntityDuck.class, "guidebook.section.mob.duck.name", "guidebook.section.mob.duck.desc",
-			4, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Item.featherChicken), 1.0f, 1, 3)});
+			4, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Item.featherChicken), 1.0f, 0, 1)});
 	}
 
 	@Override

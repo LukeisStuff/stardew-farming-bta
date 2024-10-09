@@ -21,7 +21,7 @@ achievement.stardew.candle.desc=Make a candle from wax.
 
 
 achievement.stardew.apple=Johnny Appleseed
-achievement.stardew.apple.desc=Collect a apple tree sapling.
+achievement.stardew.apple.desc=Collect an apple tree sapling.
 
 achievement.stardew.gapple=Tree of Life
 achievement.stardew.gapple.desc=Create a golden apple tree sapling.
@@ -32,3 +32,7 @@ achievement.stardew.amateur.fisher.desc=Catch every common fish type.
 
 achievement.stardew.master.fisher=Master Angler
 achievement.stardew.master.fisher.desc=Catch every legendary fish type.
+
+
+guidebook.section.mob.duck.name=Duck
+guidebook.section.mob.duck.desc=Ducks are a good source of eggs, which are useful for cooking, they can be found rarely in most biomes.
