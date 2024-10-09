@@ -6,6 +6,7 @@ import net.minecraft.client.render.block.model.*;
 import net.minecraft.client.render.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLog;
+import net.minecraft.core.block.BlockMushroom;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.block.ItemBlockLeaves;
@@ -80,6 +81,8 @@ public class StardewBlocks {
 	public static Block candleActive;
 
 	public static Block plantStake;
+
+	public static Block mushroomTruffle;
 
 	public void initializeBlockDetails() {
 
@@ -356,6 +359,16 @@ public class StardewBlocks {
 			.setBlockSound(new BlockSound("step.gravel", "step.wood", 1.0f, 1.0f))
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build(new BlockPlantStake("plantstake", blockID("plantStake"), Material.plant));
+
+
+		mushroomTruffle = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
+			.setHardness(0.0f)
+			.setResistance(0.0f)
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR)
+			.setBlockModel(BlockModelCrossedSquares::new)
+			.setTextures(MOD_ID + ":block/truffle")
+			.build(new BlockMushroom("mushroom.truffle", blockID("mushroomTruffle")));
 
 		initializeBlockDetails();
 	}

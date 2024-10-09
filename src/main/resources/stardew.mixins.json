@@ -15,6 +15,7 @@
     "ItemMixin",
     "ItemStackMixin",
     "ItemToolHoeMixin",
+    "PigDigTruffleMixin",
     "PlayerRendererMixin",
     "SlotArmorMixin",
     "SlotCraftingMixin",
