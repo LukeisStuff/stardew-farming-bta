@@ -7,6 +7,7 @@ import luke.stardew.entities.goat.EntityGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.entity.SpawnListEntry;
 import net.minecraft.core.enums.EnumCreatureType;
@@ -72,6 +73,10 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 	public void afterGameStart() {
 		MobInfoRegistry.register(EntityDuck.class, "guidebook.section.mob.duck.name", "guidebook.section.mob.duck.desc",
 			4, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Item.featherChicken), 1.0f, 0, 1)});
+
+		MobInfoRegistry.register(EntityGoat.class, "guidebook.section.mob.goat.name", "guidebook.section.mob.goat.desc",
+			10, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Item.leather), 1.0f, 0, 2), new MobInfoRegistry.MobDrop(new ItemStack(Block.wool), 1.0f, 1, 2)});
+
 	}
 
 	@Override
