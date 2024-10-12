@@ -32,7 +32,7 @@ public class EntityGoat extends EntityAnimal {
 
 	@Override
 	public String getLivingSound() {
-		return "stardew.goat";
+		return "stardew.goatidle";
 	}
 
 	@Override
