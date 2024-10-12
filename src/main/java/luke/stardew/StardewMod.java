@@ -3,6 +3,7 @@ package luke.stardew;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.entities.StardewEntities;
 import luke.stardew.entities.duck.EntityDuck;
+import luke.stardew.entities.goat.EntityGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
@@ -35,6 +36,14 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 		SoundHelper.addSound(MOD_ID, "duckhurt1.ogg");
 		SoundHelper.addSound(MOD_ID, "duckhurt2.ogg");
 		SoundHelper.addSound(MOD_ID, "duckdeath1.ogg");
+
+		SoundHelper.addSound(MOD_ID, "goatidle1.ogg");
+		SoundHelper.addSound(MOD_ID, "goatidle2.ogg");
+		SoundHelper.addSound(MOD_ID, "goatidle3.ogg");
+
+		SoundHelper.addSound(MOD_ID, "goatdeath1.ogg");
+		SoundHelper.addSound(MOD_ID, "goatdeath2.ogg");
+		SoundHelper.addSound(MOD_ID, "goatdeath3.ogg");
 	}
 
 
@@ -42,6 +51,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
     public void onInitialize() {
 		for (Biome b : Registries.BIOMES) {
 			b.getSpawnableList(EnumCreatureType.creature).add(new SpawnListEntry(EntityDuck.class, 51));
+			b.getSpawnableList(EnumCreatureType.creature).add(new SpawnListEntry(EntityGoat.class, 51));
 		}
 
         LOGGER.info("Stardew Farming initialized.");
