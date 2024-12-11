@@ -111,6 +111,8 @@ public class StardewItems {
 
 	public static Item eggDuck;
 
+	public static Item fiber;
+
 
 
 	public void initilizeItems() {
@@ -362,6 +364,13 @@ public class StardewItems {
 			.setIcon(MOD_ID + ":item/eggDuck")
 			.setStackSize(64)
 			.build(new ItemEggDuck("egg.duck", itemID("eggDuck")));
+
+
+		fiber = new ItemBuilder(MOD_ID)
+			.setIcon(MOD_ID + ":item/fiber")
+			.setStackSize(64)
+			.build(new Item("fiber", itemID("fiber")));
+
 	}
 
 

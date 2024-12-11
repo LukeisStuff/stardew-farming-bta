@@ -26,11 +26,17 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("cake");
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("golden_apple");
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("pumpkin_pie");
+		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("basket");
 
 		RecipeBuilder.Shaped(MOD_ID, "DCD")
 			.addInput('D', StardewItems.dough)
 			.addInput('C', Item.dye, 3)
 			.create("cookie", new ItemStack(Item.foodCookie, 1));
+
+		RecipeBuilder.Shaped(MOD_ID, "LLL", "F F", "FFF")
+			.addInput('L', Item.leather)
+			.addInput('F', StardewItems.fiber)
+			.create("basket", new ItemStack(Item.basket, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "WWW")
 			.addInput('W', Item.wheat)
@@ -291,6 +297,10 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.setInput(StardewItems.foodSnapperRaw)
 			.create("fish_snapper_cooked", new ItemStack(StardewItems.foodSnapperCooked, 1));
 
+		RecipeBuilder.Furnace(MOD_ID)
+			.setInput(MOD_ID + ":block/grass")
+			.create("fiber", new ItemStack(StardewItems.fiber, 1));
+
 
 
 	}
@@ -311,6 +321,9 @@ public class StardewRecipes implements RecipeEntrypoint {
 		Registries.ITEM_GROUPS.register(MOD_ID + ":item/eggs", Registries.stackListOf(StardewItems.eggDuck, Item.eggChicken));
 
 		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow, Block.flowerOrange, Block.flowerPink, Block.flowerPurple, Block.flowerLightBlue));
+
+		Registries.ITEM_GROUPS.register(MOD_ID + ":block/grass", Registries.stackListOf(Block.tallgrass, Block.tallgrassFern, Block.spinifex));
+
 
 	}
 }
