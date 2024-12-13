@@ -9,6 +9,7 @@ import net.minecraft.core.block.BlockLog;
 import net.minecraft.core.block.BlockMushroom;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
+import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.item.block.ItemBlockLeaves;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
@@ -84,8 +85,10 @@ public class StardewBlocks {
 
 	public static Block mushroomTruffle;
 
-	public void initializeBlockDetails() {
+	public static Block thatch;
 
+	public void initializeBlockDetails() {
+		LookupFuelFurnace.instance.addFuelEntry(thatch.id, 400);
 	}
 
 	public void initializeBlocks() {
@@ -369,6 +372,17 @@ public class StardewBlocks {
 			.setBlockModel(BlockModelCrossedSquares::new)
 			.setTextures(MOD_ID + ":block/truffle")
 			.build(new BlockMushroom("mushroom.truffle", blockID("mushroomTruffle")));
+
+		thatch = new BlockBuilder(MOD_ID)
+			.setBlockSound(new BlockSound("step.grass", "step.grass", 0.6f, 1.2f))
+			.setHardness(0.6f)
+			.setResistance(0.6f)
+			.setBlockModel(BlockModelAxisAligned::new)
+			.setTopBottomTextures(MOD_ID + ":block/thatch_top")
+			.setTopBottomTextures(MOD_ID + ":block/thatch_side")
+			.setFlammability(60, 120)
+			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS)
+			.build(new BlockThatch("thatch", blockID("thatch"), Material.grass));
 
 		initializeBlockDetails();
 	}

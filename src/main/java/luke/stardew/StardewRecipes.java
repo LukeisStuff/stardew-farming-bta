@@ -38,6 +38,11 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput('F', StardewItems.fiber)
 			.create("basket", new ItemStack(Item.basket, 1));
 
+		RecipeBuilder.Shaped(MOD_ID, "WS", "SW")
+			.addInput('W', StardewItems.fiber)
+			.addInput('S', Item.stick)
+			.create("block_of_thatch", new ItemStack(StardewBlocks.thatch, 4));
+
 		RecipeBuilder.Shaped(MOD_ID, "WWW")
 			.addInput('W', Item.wheat)
 			.create("dough", new ItemStack(StardewItems.dough, 3));
