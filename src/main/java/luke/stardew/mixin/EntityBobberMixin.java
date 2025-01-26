@@ -160,22 +160,29 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 	}
 
 	@Inject(method = "<init>(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/EntityPlayer;)V", at = @At("TAIL"))
-	public void init(CallbackInfo ci){
-		entityData.define(3, 0); //hasBait
+	public void init(CallbackInfo ci) {
+		entityData.define(3, 0);
+	}
+
+	@Unique
+	private void checkBait() {
+		try {
+			entityData.getInt(3);
+		} catch (Exception e) {
+			entityData.define(3, 0);
+		}
 	}
 
 	@Override
 	public boolean stardew_farming_bta$hasBait() {
+		checkBait();
 		return entityData.getInt(3) == 1;
 	}
 
 	@Override
 	public void stardew_farming_bta$setBait(boolean bool) {
-		if (bool){
-			entityData.set(3, 1);
-		}else {
-			entityData.set(3, 0);
-		}
+		checkBait();
+		entityData.set(3, bool ? 1 : 0);
 	}
 
 	/**
