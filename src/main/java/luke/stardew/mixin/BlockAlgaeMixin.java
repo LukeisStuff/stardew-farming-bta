@@ -47,7 +47,7 @@ public class BlockAlgaeMixin extends Block implements IBonemealable {
 					}
 				}
 
-				if (world.getBlockId(k1, l1, i2) == 0 && (double) rand.nextFloat() > 0.75) {
+				if (world.getBlockId(k1, l1, i2) == 0 && (double) rand.nextFloat() > 0.90) {
 					world.setBlockWithNotify(k1, l1, i2, Block.algae.id);
 				}
 			}

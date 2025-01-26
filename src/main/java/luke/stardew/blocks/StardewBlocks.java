@@ -379,7 +379,7 @@ public class StardewBlocks {
 			.setResistance(0.6f)
 			.setBlockModel(BlockModelAxisAligned::new)
 			.setTopBottomTextures(MOD_ID + ":block/thatch_top")
-			.setTopBottomTextures(MOD_ID + ":block/thatch_side")
+			.setSideTextures(MOD_ID + ":block/thatch_side")
 			.setFlammability(60, 120)
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS)
 			.build(new BlockThatch("thatch", blockID("thatch"), Material.grass));

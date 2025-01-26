@@ -1,20 +1,17 @@
 package luke.stardew.blocks;
 
-import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockAxisAligned;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
-public class BlockThatch extends Block {
+public class BlockThatch extends BlockAxisAligned {
 	public BlockThatch(String key, int id, Material material) {
 		super(key, id, material);
 	}
 
-	public int getMobilityFlag() {
-		return 1;
-	}
 	public boolean renderAsNormalBlock() {
 		return false;
 	}

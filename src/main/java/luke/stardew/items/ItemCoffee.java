@@ -15,12 +15,8 @@ public class ItemCoffee extends ItemFood {
 
 	@Override
 	public ItemStack onUseItem(ItemStack itemstack, World world, EntityPlayer entityplayer) {
-		if (entityplayer.getHealth() < entityplayer.getMaxHealth()) {
-			super.onUseItem(itemstack, world, entityplayer);
-			((IPlayerEffects)entityplayer).stardew_farming_bta$addEffect(PlayerEffect.speedBoost, 240);
-			return new ItemStack(Item.bucket);
-		} else {
-			return itemstack;
-		}
+		super.onUseItem(itemstack, world, entityplayer);
+		((IPlayerEffects) entityplayer).stardew_farming_bta$addEffect(PlayerEffect.speedBoost, 240);
+		return new ItemStack(Item.bucket);
 	}
 }
