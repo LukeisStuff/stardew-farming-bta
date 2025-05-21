@@ -2,10 +2,10 @@ package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.block.Block;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.data.registry.Registries;
-import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.item.Items;
 import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.helper.recipeBuilders.RecipeBuilderShaped;
 import turniplabs.halplibe.util.RecipeEntrypoint;
@@ -30,38 +30,38 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 		RecipeBuilder.Shaped(MOD_ID, "DCD")
 			.addInput('D', StardewItems.dough)
-			.addInput('C', Item.dye, 3)
-			.create("cookie", new ItemStack(Item.foodCookie, 1));
+			.addInput('C', Items.DYE, 3)
+			.create("cookie", new ItemStack(Items.FOOD_COOKIE, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "LLL", "F F", "FFF")
-			.addInput('L', Item.leather)
+			.addInput('L', Items.LEATHER)
 			.addInput('F', StardewItems.fiber)
-			.create("basket", new ItemStack(Item.basket, 1));
+			.create("basket", new ItemStack(Items.BASKET, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "WS", "SW")
 			.addInput('W', StardewItems.fiber)
-			.addInput('S', Item.stick)
+			.addInput('S', Items.STICK)
 			.create("block_of_thatch", new ItemStack(StardewBlocks.thatch, 4));
 
 		RecipeBuilder.Shaped(MOD_ID, "WWW")
-			.addInput('W', Item.wheat)
+			.addInput('W', Items.WHEAT)
 			.create("dough", new ItemStack(StardewItems.dough, 3));
 
 		RecipeBuilder.Shaped(MOD_ID, "BMB", "SES", "DDD")
 			.addInput('D', StardewItems.dough)
 			.addInput('B', StardewItems.strawberry)
-			.addInput('M', Item.bucketMilk)
-			.addInput('S', Item.dustSugar)
+			.addInput('M', Items.BUCKET_MILK)
+			.addInput('S', Items.DUST_SUGAR)
 			.addInput('E', MOD_ID + ":item/eggs")
-			.create("cake", new ItemStack(Item.foodCake, 1));
+			.create("cake", new ItemStack(Items.FOOD_CAKE, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "GGG", "GAG", "GGG")
-			.addInput('G', Item.ingotGold)
-			.addInput('A', Item.foodApple)
-			.create("golden_apple", new ItemStack(Item.foodAppleGold, 1));
+			.addInput('G', Items.INGOT_GOLD)
+			.addInput('A', Items.FOOD_APPLE)
+			.create("golden_apple", new ItemStack(Items.FOOD_APPLE_GOLD, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "GGG", "GAG", "GGG")
-			.addInput('G', Block.blockGold)
+			.addInput('G', Blocks.BLOCK_GOLD)
 			.addInput('A', StardewBlocks.saplingApple)
 			.create("golden_apple_sapling", new ItemStack(StardewBlocks.saplingAppleGolden, 1));
 
@@ -125,36 +125,36 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(Item.jar, 1))
-			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(new ItemStack(Items.JAR, 1))
+			.addInput(new ItemStack(Items.DUST_SUGAR, 1))
 			.addInput(MOD_ID + ":item/small_fruits")
 			.addInput(MOD_ID + ":item/small_fruits")
 			.addInput(MOD_ID + ":item/small_fruits")
 			.create("small_jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(Item.jar, 1))
-			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(new ItemStack(Items.JAR, 1))
+			.addInput(new ItemStack(Items.DUST_SUGAR, 1))
 			.addInput(MOD_ID + ":item/fruits")
 			.addInput(MOD_ID + ":item/fruits")
 			.create("jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(Item.jar, 1))
-			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(new ItemStack(Items.JAR, 1))
+			.addInput(new ItemStack(Items.DUST_SUGAR, 1))
 			.addInput(MOD_ID + ":item/large_fruits")
 			.create("large_jam", new ItemStack(StardewItems.jarJam, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.carrot, 1))
 			.addInput(new ItemStack(StardewItems.potato, 1))
-			.addInput(new ItemStack(Item.bowl, 1))
+			.addInput(new ItemStack(Items.BOWL, 1))
 			.create("vegetable_soup", new ItemStack(StardewItems.foodStewVegetable, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.cheese, 1))
 			.addInput(new ItemStack(StardewBlocks.cauliflower, 1))
-			.addInput(new ItemStack(Item.bowl, 1))
+			.addInput(new ItemStack(Items.BOWL, 1))
 			.create("cheese_soup", new ItemStack(StardewItems.foodStewCheese, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -163,29 +163,29 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput(new ItemStack(StardewItems.strawberry, 1))
 			.addInput(new ItemStack(StardewItems.grapes, 1))
 			.addInput(new ItemStack(StardewBlocks.watermelon, 1))
-			.addInput(new ItemStack(Item.bowl, 1))
+			.addInput(new ItemStack(Items.BOWL, 1))
 			.create("fruit_soup", new ItemStack(StardewItems.foodStewFruit, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "CMC", "SES", "DDD")
 			.addInput('D', StardewItems.dough)
-			.addInput('C', Item.dye, 3)
-			.addInput('M', Item.bucketMilk)
-			.addInput('S', Item.dustSugar)
+			.addInput('C', Items.DYE, 3)
+			.addInput('M', Items.BUCKET_MILK)
+			.addInput('S', Items.DUST_SUGAR)
 			.addInput('E', MOD_ID + ":item/eggs")
 			.setConsumeContainer(false)
 			.create("cake_chocolate", new ItemStack(StardewItems.foodCakeChocolate, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
-			.addInput('M', (Item.bucketMilk))
+			.addInput('M', (Items.BUCKET_MILK))
 			.addInput('W', (StardewItems.dough))
-			.addInput('S', (Item.dustSugar))
+			.addInput('S', (Items.DUST_SUGAR))
 			.addInput('E', (MOD_ID + ":item/eggs"))
-			.addInput('P', (Block.pumpkin))
+			.addInput('P', (Blocks.PUMPKIN))
 			.setConsumeContainer(false)
-			.create("pumpkin_pie", new ItemStack(Item.foodPumpkinPie, 1));
+			.create("pumpkin_pie", new ItemStack(Items.FOOD_PUMPKIN_PIE, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, " W ", "SES", "DDD")
-			.addInput('W', (Item.bucketWater))
+			.addInput('W', (Items.BUCKET_WATER))
 			.addInput('D', (StardewItems.dough))
 			.addInput('S', (StardewItems.tomato))
 			.addInput('E', (StardewItems.cheese))
@@ -194,64 +194,64 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.logApple, 1))
-			.create("apple_log_to_red_wooden_planks", new ItemStack(Block.planksOakPainted, 4, 14));
+			.create("apple_log_to_red_wooden_planks", new ItemStack(Blocks.PLANKS_OAK_PAINTED, 4, 14));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewBlocks.logAppleGolden, 1))
-			.create("golden_apple_log_to_yellow_wooden_planks", new ItemStack(Block.planksOakPainted, 4, 4));
+			.create("golden_apple_log_to_yellow_wooden_planks", new ItemStack(Blocks.PLANKS_OAK_PAINTED, 4, 4));
 
 		RecipeBuilder.Shaped(MOD_ID, "I  ", "IBI", " I ")
-			.addInput('I', Item.ingotIron)
-			.addInput('B', Item.bucketWater)
+			.addInput('I', Items.INGOT_IRON)
+			.addInput('B', Items.BUCKET_WATER)
 			.create("watering_can", new ItemStack(StardewItems.wateringCan, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "I  ", "IBI", " I ")
-			.addInput('I', Item.ingotSteel)
-			.addInput('B', Item.bucketWater)
+			.addInput('I', Items.INGOT_STEEL)
+			.addInput('B', Items.BUCKET_WATER)
 			.create("watering_can_steel", new ItemStack(StardewItems.wateringCanSteel, 1));
 
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
 			.addInput('I', "minecraft:stones")
-			.addInput('S', Item.string)
+			.addInput('S', Items.STRING)
 			.create("fishingrod_stone", new ItemStack(StardewItems.toolFishingrodStone, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
-			.addInput('I', Item.ingotIron)
-			.addInput('S', Item.string)
+			.addInput('I', Items.INGOT_IRON)
+			.addInput('S', Items.STRING)
 			.create("fishingrod_iron", new ItemStack(StardewItems.toolFishingrodIron, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
-			.addInput('I', Item.ingotGold)
-			.addInput('S', Item.string)
+			.addInput('I', Items.INGOT_GOLD)
+			.addInput('S', Items.STRING)
 			.create("fishingrod_gold", new ItemStack(StardewItems.toolFishingrodGold, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
-			.addInput('I', Item.diamond)
-			.addInput('S', Item.string)
+			.addInput('I', Items.DIAMOND)
+			.addInput('S', Items.STRING)
 			.create("fishingrod_diamond", new ItemStack(StardewItems.toolFishingrodDiamond, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
-			.addInput('I', Item.ingotSteel)
-			.addInput('S', Item.string)
+			.addInput('I', Items.INGOT_STEEL)
+			.addInput('S', Items.STRING)
 			.create("fishingrod_steel", new ItemStack(StardewItems.toolFishingrodSteel, 1));
 
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.honey, 1))
-			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(new ItemStack(Items.DUST_SUGAR, 1))
 			.addInput(new ItemStack(StardewItems.corn, 1))
 			.create("wax", new ItemStack(StardewItems.wax, 1));
 
 		RecipeBuilder.Shaped(MOD_ID, "I", "S")
-			.addInput('I', Item.string)
+			.addInput('I', Items.STRING)
 			.addInput('S', StardewItems.wax)
 			.create("wax", new ItemStack(StardewBlocks.candle, 4));
 
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(StardewItems.beansCoffee, 1))
-			.addInput(new ItemStack(Item.bucketMilk, 1))
-			.addInput(new ItemStack(Item.dustSugar, 1))
+			.addInput(new ItemStack(Items.BUCKET_MILK, 1))
+			.addInput(new ItemStack(Items.DUST_SUGAR, 1))
 			.create("food_coffee", new ItemStack(StardewItems.foodCoffee, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -265,7 +265,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 		ItemStack itemStack = new ItemStack(StardewItems.armorCanOfWorms);
 		itemStack.damageItem(itemStack.getItem().getMaxDamage(), null);
 		RecipeBuilder.Shaped(MOD_ID, " I ", " I ")
-			.addInput('I', Item.ingotIron)
+			.addInput('I', Items.INGOT_IRON)
 			.create("can_of_worms", itemStack);
 
 
@@ -284,10 +284,10 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 		RecipeBuilder.Furnace(MOD_ID)
 			.setInput(StardewItems.dough)
-			.create("bread", Item.foodBread.getDefaultStack());
+			.create("bread", Items.FOOD_BREAD.getDefaultStack());
 
 		RecipeBuilder.Furnace(MOD_ID)
-			.setInput(Item.bucketMilk)
+			.setInput(Items.BUCKET_MILK)
 			.create("cheese", StardewItems.cheese.getDefaultStack());
 
 		RecipeBuilder.Furnace(MOD_ID)
@@ -320,14 +320,14 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.initNameSpace(MOD_ID);
 		RecipeBuilder.getRecipeNamespace(MOD_ID);
 		Registries.ITEM_GROUPS.register(MOD_ID + ":item/small_fruits", Registries.stackListOf(StardewItems.blueberry, StardewItems.cranberries));
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.grapes, Item.foodApple));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/fruits", Registries.stackListOf(StardewItems.strawberry, StardewItems.grapes, Items.FOOD_APPLE));
 		Registries.ITEM_GROUPS.register(MOD_ID + ":item/large_fruits", Registries.stackListOf(StardewItems.pineapple, StardewBlocks.watermelon));
 
-		Registries.ITEM_GROUPS.register(MOD_ID + ":item/eggs", Registries.stackListOf(StardewItems.eggDuck, Item.eggChicken));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/eggs", Registries.stackListOf(StardewItems.eggDuck, Items.EGG_CHICKEN));
 
-		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Block.flowerRed, Block.flowerYellow, Block.flowerOrange, Block.flowerPink, Block.flowerPurple, Block.flowerLightBlue));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Blocks.FLOWER_RED, Blocks.FLOWER_YELLOW, Blocks.FLOWER_ORANGE, Blocks.FLOWER_PINK, Blocks.FLOWER_PURPLE, Blocks.FLOWER_LIGHT_BLUE));
 
-		Registries.ITEM_GROUPS.register(MOD_ID + ":block/grass", Registries.stackListOf(Block.tallgrass, Block.tallgrassFern, Block.spinifex));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":block/grass", Registries.stackListOf(Blocks.TALLGRASS, Blocks.TALLGRASS_FERN, Blocks.SPINIFEX));
 
 
 	}

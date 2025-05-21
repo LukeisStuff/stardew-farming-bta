@@ -3,31 +3,25 @@ package luke.stardew.blocks.model;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.tessellator.Tessellator;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.util.helper.MathHelper;
+import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.Side;
 
-import static luke.stardew.StardewMod.MOD_ID;
+import java.util.ArrayList;
+import java.util.List;
 
-public class BlockModelCropsTomato<T extends Block> extends BlockModelStandard<T> {
-	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture(MOD_ID + ":block/tomato_crop_1"),
-		TextureRegistry.getTexture(MOD_ID + ":block/tomato_crop_2"),
-		TextureRegistry.getTexture(MOD_ID + ":block/tomato_crop_3"),
-		TextureRegistry.getTexture(MOD_ID + ":block/tomato_crop_4"),
-		TextureRegistry.getTexture(MOD_ID + ":block/tomato_crop_5"),
-		TextureRegistry.getTexture(MOD_ID + ":block/tomato_crop_6")
-	};
+public class BlockModelCrops<T extends BlockLogic> extends BlockModelStandard<T> {
+	public List<IconCoordinate> growthStageIcons = new ArrayList<>();
 
-	public BlockModelCropsTomato(Block block) {
+	public BlockModelCrops(Block<T> block) {
 		super(block);
 	}
 
+	@Override
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
 		float brightness = 1.0F;
 		if (!LightmapHelper.isLightmapEnabled()) {
 			brightness = this.getBlockBrightness(renderBlocks.blockAccess, x, y, z);
@@ -75,11 +69,21 @@ public class BlockModelCropsTomato<T extends Block> extends BlockModelStandard<T
 		return true;
 	}
 
+	public void addIcon(String iconPath) {
+		this.growthStageIcons.add(TextureRegistry.getTexture(iconPath));
+	}
+
+	@Override
 	public boolean shouldItemRender3d() {
 		return false;
 	}
 
+	@Override
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
-		return this.growthStageTextures[MathHelper.clamp(data, 0, 5)];
+		if (data < 0 || data >= this.growthStageIcons.size()) {
+			return BlockModelStandard.BLOCK_TEXTURE_MISSING;
+		}
+
+		return this.growthStageIcons.get(data);
 	}
 }

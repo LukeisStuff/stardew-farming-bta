@@ -3,16 +3,17 @@ package luke.stardew.blocks.model;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class BlockModelCropsCranberry<T extends Block> extends BlockModelStandard<T> {
+public class BlockModelCropsCranberry<T extends BlockLogic> extends BlockModelStandard<T> {
 	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
 		TextureRegistry.getTexture(MOD_ID + ":block/cranberry_bush_1"),
 		TextureRegistry.getTexture(MOD_ID + ":block/cranberry_bush_2"),
@@ -20,12 +21,13 @@ public class BlockModelCropsCranberry<T extends Block> extends BlockModelStandar
 		TextureRegistry.getTexture(MOD_ID + ":block/cranberry_bush_4")
 	};
 
-	public BlockModelCropsCranberry(Block block) {
+	public BlockModelCropsCranberry(Block<T> block) {
 		super(block);
 	}
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
+		//FIXME
+		//this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
 		float brightness = 1.0F;
 		if (!LightmapHelper.isLightmapEnabled()) {
 			brightness = this.getBlockBrightness(renderBlocks.blockAccess, x, y, z);

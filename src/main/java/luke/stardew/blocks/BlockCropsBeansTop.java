@@ -1,23 +1,18 @@
 package luke.stardew.blocks;
 
-import luke.stardew.items.StardewItems;
-import net.minecraft.core.block.BlockFlower;
-import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.entity.player.EntityPlayer;
-import net.minecraft.core.enums.EnumDropCause;
+import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogicFlower;
 import net.minecraft.core.item.IBonemealable;
-import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.util.helper.Side;
-import net.minecraft.core.world.World;
-import net.minecraft.core.world.season.Seasons;
 
-import java.util.Random;
-
-public class BlockCropsBeansTop extends BlockFlower implements IBonemealable {
-
-	public BlockCropsBeansTop(String key, int id) {
-		super(key, id);
-		this.setTicking(true);
+@Deprecated
+public class BlockCropsBeansTop extends BlockLogicFlower implements IBonemealable {
+	public BlockCropsBeansTop(Block<?> block) {
+		super(block);
+	}
+	/*
+	public BlockCropsBeansTop(Block<?> block) {
+		super(block);
+		block.setTicking(true);
 		this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.5F, 0.75F);
 	}
 	@Override
@@ -37,6 +32,7 @@ public class BlockCropsBeansTop extends BlockFlower implements IBonemealable {
 		}
 	}
 
+	@Unique
 	public float getGrowthRate(World world, int x, int y, int z) {
 		float growthRate = 10.0F;
 		int idNegZ = world.getBlockId(x, y, z - 1);
@@ -47,15 +43,15 @@ public class BlockCropsBeansTop extends BlockFlower implements IBonemealable {
 		int idPosXNegZ = world.getBlockId(x + 1, y, z - 1);
 		int idPosXPosZ = world.getBlockId(x + 1, y, z + 1);
 		int idNegXPosZ = world.getBlockId(x - 1, y, z + 1);
-		boolean xNeighbor = idNegX == this.id || idPosX == this.id;
-		boolean zNeighbor = idNegZ == this.id || idPosZ == this.id;
-		boolean diagNeighbor = idNegXNegZ == this.id || idPosXNegZ == this.id || idPosXPosZ == this.id || idNegXPosZ == this.id;
+		boolean xNeighbor = idNegX == this.id() || idPosX == this.id();
+		boolean zNeighbor = idNegZ == this.id() || idPosZ == this.id();
+		boolean diagNeighbor = idNegXNegZ == this.id() || idPosXNegZ == this.id() || idPosXPosZ == this.id() || idNegXPosZ == this.id();
 
 		for(int dx = x - 1; dx <= x + 1; ++dx) {
 			for(int dz = z - 1; dz <= z + 1; ++dz) {
 				int id = world.getBlockId(dx, y - 1, dz);
 				float growthRateMod = 0.0F;
-				if (id == StardewBlocks.cropsBeansBottom.id) {
+				if (id == StardewBlocks.cropsBeansBottom.id()) {
 					growthRateMod = 1.0F;
 					if (world.getBlockMetadata(dx, y - 1, dz) > 0) {
 						growthRateMod = 3.0F;
@@ -83,16 +79,16 @@ public class BlockCropsBeansTop extends BlockFlower implements IBonemealable {
 
 	@Override
 	public boolean canBlockStay(World world, int x, int y, int z) {
-		return (world.getBlockId(x, y-1, z) == StardewBlocks.cropsBeansBottom.id);
+		return (world.getBlockId(x, y-1, z) == StardewBlocks.cropsBeansBottom.id());
 	}
 
 	@Override
-	public boolean canThisPlantGrowOnThisBlockID(int i) {
-		return i == StardewBlocks.cropsBeansBottom.id;
+	public boolean mayPlaceOn(int i) {
+		return i == StardewBlocks.cropsBeansBottom.id();
 	}
 
 	@Override
-	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+	public boolean onBonemealUsed(ItemStack itemstack, Player entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		if (world.getBlockMetadata(blockX, blockY, blockZ) < 2) {
 			if (!world.isClientSide) {
 				((BlockCropsBeansBottom) StardewBlocks.cropsBeansBottom).fertilize(world, blockX, blockY - 1, blockZ);
@@ -111,4 +107,5 @@ public class BlockCropsBeansTop extends BlockFlower implements IBonemealable {
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
 		return meta != 2 ? new ItemStack[]{new ItemStack(StardewItems.beansCoffee)} : new ItemStack[]{new ItemStack(StardewItems.beansCoffee, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.beansCoffee, world.rand.nextInt(1))};
 	}
+	 */
 }

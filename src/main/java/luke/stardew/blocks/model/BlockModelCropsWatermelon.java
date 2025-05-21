@@ -2,15 +2,16 @@ package luke.stardew.blocks.model;
 
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.Side;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class BlockModelCropsWatermelon<T extends Block> extends BlockModelStandard<T> {
+public class BlockModelCropsWatermelon<T extends BlockLogic> extends BlockModelStandard<T> {
 	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_TOP = new IconCoordinate[]{
 		TextureRegistry.getTexture(MOD_ID + ":block/watermelon_crop_1"),
 		TextureRegistry.getTexture(MOD_ID + ":block/watermelon_crop_2"),
@@ -27,12 +28,13 @@ public class BlockModelCropsWatermelon<T extends Block> extends BlockModelStanda
 
 	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture(MOD_ID + ":block/watermelon_crop_leaf");
 
-	public BlockModelCropsWatermelon(Block block) {
+	public BlockModelCropsWatermelon(Block<T> block) {
 		super(block);
 	}
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
+		//FIXME
+		//this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
 		float brightness = 1.0F;
 		if (LightmapHelper.isLightmapEnabled()) {
 			tessellator.setLightmapCoord(this.block.getLightmapCoord(renderBlocks.blockAccess, x, y, z));
@@ -75,7 +77,7 @@ public class BlockModelCropsWatermelon<T extends Block> extends BlockModelStanda
 		tessellator.addVertexWithUV(xMin, yMin, zMin, uMax, vMax);
 		tessellator.addVertexWithUV(xMax + extra, yMax, zMin, uMax, vMin);
 		if (meta >= 1) {
-			this.renderStandardBlock(tessellator, this.block, x, y, z);
+			this.renderStandardBlock(tessellator, this.block.getBounds(), x, y, z);
 		}
 
 		return true;

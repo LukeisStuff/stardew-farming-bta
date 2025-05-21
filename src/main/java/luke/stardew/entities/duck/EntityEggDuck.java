@@ -1,20 +1,19 @@
 package luke.stardew.entities.duck;
 
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.HitResult;
-import net.minecraft.core.entity.EntityLiving;
-import net.minecraft.core.entity.projectile.EntityProjectile;
+import net.minecraft.core.entity.player.Player;
+import net.minecraft.core.entity.projectile.ProjectileEgg;
+import net.minecraft.core.util.phys.HitResult;
 import net.minecraft.core.world.World;
 
-public class EntityEggDuck
-	extends EntityProjectile {
+public class EntityEggDuck extends ProjectileEgg {
 	public EntityEggDuck(World world) {
 		super(world);
 		this.modelItem = StardewItems.eggDuck;
 	}
 
-	public EntityEggDuck(World world, EntityLiving entityliving) {
-		super(world, entityliving);
+	public EntityEggDuck(World world, Player player) {
+		super(world, player);
 		this.modelItem = StardewItems.eggDuck;
 	}
 

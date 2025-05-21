@@ -1,24 +1,17 @@
 package luke.stardew.blocks;
 
-import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockFlower;
-import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.entity.player.EntityPlayer;
-import net.minecraft.core.enums.EnumDropCause;
+import net.minecraft.core.block.BlockLogicFlower;
 import net.minecraft.core.item.IBonemealable;
-import net.minecraft.core.item.Item;
-import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.util.helper.Side;
-import net.minecraft.core.world.World;
-import net.minecraft.core.world.season.Seasons;
 
-import java.util.Random;
-
-public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable {
-
-	public BlockCropsGrapeBottom(String key, int id) {
-		super(key, id);
+@Deprecated
+public class BlockCropsGrapeBottom extends BlockLogicFlower implements IBonemealable {
+	public BlockCropsGrapeBottom(Block<?> block) {
+		super(block);
+	}
+/*
+	public BlockCropsGrapeBottom(Block<?> block) {
+		super(block);
 		this.setTicking(true);
 		this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
 	}
@@ -33,15 +26,15 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 		int idPosXNegZ = world.getBlockId(x + 1, y, z - 1);
 		int idPosXPosZ = world.getBlockId(x + 1, y, z + 1);
 		int idNegXPosZ = world.getBlockId(x - 1, y, z + 1);
-		boolean xNeighbor = idNegX == this.id || idPosX == this.id;
-		boolean zNeighbor = idNegZ == this.id || idPosZ == this.id;
-		boolean diagNeighbor = idNegXNegZ == this.id || idPosXNegZ == this.id || idPosXPosZ == this.id || idNegXPosZ == this.id;
+		boolean xNeighbor = idNegX == this.id() || idPosX == this.id();
+		boolean zNeighbor = idNegZ == this.id() || idPosZ == this.id();
+		boolean diagNeighbor = idNegXNegZ == this.id() || idPosXNegZ == this.id() || idPosXPosZ == this.id() || idNegXPosZ == this.id();
 
 		for(int dx = x - 1; dx <= x + 1; ++dx) {
 			for(int dz = z - 1; dz <= z + 1; ++dz) {
 				int id = world.getBlockId(dx, y - 1, dz);
 				float growthRateMod = 0.0F;
-				if (id == Block.farmlandDirt.id) {
+				if (id == Blocks.FARMLAND_DIRT.id()) {
 					growthRateMod = 1.0F;
 					if (world.getBlockMetadata(dx, y - 1, dz) > 0) {
 						growthRateMod = 3.0F;
@@ -68,7 +61,7 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 	}
 
 	public boolean canThisPlantGrowOnThisBlockID(int i) {
-		return i == Block.farmlandDirt.id;
+		return i == Blocks.FARMLAND_DIRT.id();
 	}
 
 	@Override
@@ -147,4 +140,5 @@ public class BlockCropsGrapeBottom extends BlockFlower implements IBonemealable 
 			return false;
 		}
 	}
+ */
 }

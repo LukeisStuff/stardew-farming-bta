@@ -2,37 +2,53 @@ package luke.stardew.blocks.model;
 
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.Side;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class BlockModelCropsCauliflower<T extends Block> extends BlockModelStandard<T> {
-	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_TOP = new IconCoordinate[]{
+public class BlockModelCropsCauliflower<T extends BlockLogic> extends BlockModelStandard<T> {
+	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_TOP = new IconCoordinate[4]/*{
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_1"),
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_2"),
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_3"),
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_4")
-	};
+	}*/;
 
-	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_SIDE = new IconCoordinate[]{
+	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_SIDE = new IconCoordinate[4]/*{
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_1"),
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_2"),
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_3"),
 		TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_side_4")
-	};
+	}*/;
 
-	public static final IconCoordinate LEAF_TEXTURE = TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_leaf");
+	public static IconCoordinate LEAF_TEXTURE /*= TextureRegistry.getTexture(MOD_ID + ":block/cauliflower_crop_leaf")*/;
 
-	public BlockModelCropsCauliflower(Block block) {
+	public BlockModelCropsCauliflower(Block<T> block) {
 		super(block);
 	}
 
+	public void setLeafTexture(String key) {
+		LEAF_TEXTURE = TextureRegistry.getTexture(key);
+	}
+
+	public void setTopTextures(String... key) {
+		for (int i = 0; i < Math.min(key.length, 4); i++) {
+			GROWTH_STAGE_TEXTURES_TOP[i] = TextureRegistry.getTexture(key[i]);
+		}
+	}
+
+	public void setSideTextures(String... key) {
+		for (int i = 0; i < Math.min(key.length, 4); i++) {
+			GROWTH_STAGE_TEXTURES_SIDE[i] = TextureRegistry.getTexture(key[i]);
+		}
+	}
+
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
 		float brightness = 1.0F;
 		if (LightmapHelper.isLightmapEnabled()) {
 			tessellator.setLightmapCoord(this.block.getLightmapCoord(renderBlocks.blockAccess, x, y, z));
@@ -75,7 +91,7 @@ public class BlockModelCropsCauliflower<T extends Block> extends BlockModelStand
 		tessellator.addVertexWithUV(xMin, yMin, zMin, uMax, vMax);
 		tessellator.addVertexWithUV(xMax + extra, yMax, zMin, uMax, vMin);
 		if (meta >= 1) {
-			this.renderStandardBlock(tessellator, this.block, x, y, z);
+			this.renderStandardBlock(tessellator, this.block.getBlockBoundsFromState(renderBlocks.blockAccess, x, y, z), x, y, z);
 		}
 
 		return true;

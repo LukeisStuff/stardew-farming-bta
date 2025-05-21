@@ -2,7 +2,7 @@ package luke.stardew.mixin;
 
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.player.inventory.IInventory;
+import net.minecraft.core.player.inventory.container.Container;
 import net.minecraft.core.player.inventory.slot.Slot;
 import net.minecraft.core.player.inventory.slot.SlotArmor;
 import org.spongepowered.asm.mixin.Final;
@@ -18,11 +18,11 @@ public class SlotArmorMixin extends Slot {
 	@Final
 	int armorType;
 
-	public SlotArmorMixin(IInventory inventory, int id, int x, int y) {
+	public SlotArmorMixin(Container inventory, int id, int x, int y) {
 		super(inventory, id, x, y);
 	}
 
-	@Inject(method = "canPutStackInSlot", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "mayPlace", at = @At("HEAD"), cancellable = true)
 	private void addEquipableCanOfWorms(ItemStack itemstack, CallbackInfoReturnable<Boolean> cir){
 		if (itemstack.getItem().id == StardewItems.armorCanOfWorms.id || itemstack.getItem().id == StardewItems.armorCanOfWormsGolden.id) {
 			cir.setReturnValue(armorType == 2);

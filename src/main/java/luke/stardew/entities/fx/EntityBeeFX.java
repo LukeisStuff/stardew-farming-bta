@@ -1,33 +1,34 @@
 package luke.stardew.entities.fx;
 
-import net.minecraft.client.entity.fx.EntityFX;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.entity.particle.Particle;
 import net.minecraft.client.render.tessellator.Tessellator;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.world.World;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class EntityBeeFX extends EntityFX {
+public class EntityBeeFX extends Particle {
 	public float originalScale;
 
 	public EntityBeeFX(World world, double d, double d1, double d2, double d3, double d4, double d5) {
 		super(world, d, d1, d2, d3, d4, d5);
-		this.particleTexture = TextureRegistry.getTexture(MOD_ID + ":item/bee");
-		this.particleRed = 1;
-		this.particleGreen = 1;
-		this.particleBlue = 1;
-		particleScale *= 1.0f;
-		originalScale = particleScale;
+		this.tex = TextureRegistry.getTexture(MOD_ID + ":item/bee");
+		this.rCol = 1;
+		this.gCol = 1;
+		this.bCol = 1;
+		this.size *= 1.0f;
+		this.originalScale = this.size;
 	}
 
-	public void renderParticle(Tessellator tessellator, float partialTick, float rotationX, float rotationXZ, float rotationZ, float rotationYZ, float rotationXY) {
-		float f6 = (this.particleAge + partialTick) / (float)this.particleMaxAge * 32.0f;
+	@Override
+	public void render(Tessellator tessellator, float partialTick, double x, double y, double z, float rotationX, float rotationXZ, float rotationZ, float rotationYZ, float rotationXY) {
+		float f6 = (this.age + partialTick) / (float)this.lifetime * 32.0f;
 		if (f6 < 0.0F)
 			f6 = 0.0F;
 		if (f6 > 1.0F)
 			f6 = 1.0F;
-		super.renderParticle(tessellator, partialTick, rotationX, rotationXZ, rotationZ, rotationYZ, rotationXY);
-		this.particleScale = 2.0F - f6 * f6 * 0.5F;
+		super.render(tessellator, partialTick, x, y, z, rotationX, rotationXZ, rotationZ, rotationYZ, rotationXY);
+		this.size = 2.0F - f6 * f6 * 0.5F;
 
 	}
 
@@ -35,7 +36,7 @@ public class EntityBeeFX extends EntityFX {
 		this.xo = this.x;
 		this.yo = this.y;
 		this.zo = this.z;
-		if (this.particleAge++ >= this.particleMaxAge) {
+		if (this.age++ >= this.lifetime) {
 			this.remove();
 		}
 
@@ -47,11 +48,12 @@ public class EntityBeeFX extends EntityFX {
 			this.xd *= 0.7;
 			this.zd *= 0.7;
 		}
-		this.particleTexture = TextureRegistry.getTexture(MOD_ID + ":item/bee");
+		this.tex = TextureRegistry.getTexture(MOD_ID + ":item/bee");
 
 	}
 
-	public int getFXLayer() {
+	@Override
+	public int getParticleTexture() {
 		return 2;
 	}
 }

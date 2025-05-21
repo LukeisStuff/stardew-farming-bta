@@ -1,14 +1,15 @@
 package luke.stardew.items;
 
-import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.player.inventory.slot.Slot;
+import net.minecraft.core.util.collection.NamespaceID;
 
 
 public class ItemCanOfWorms extends Item {
-	public ItemCanOfWorms(String name, int id) {
-		super(name, id);
+	public ItemCanOfWorms(String translationKey, String namespaceID, int id) {
+		super(translationKey, namespaceID, id);
 		this.setMaxStackSize(1);
 		this.setMaxDamage(192);
 	}
@@ -19,7 +20,7 @@ public class ItemCanOfWorms extends Item {
 	}
 
 	@Override
-	public ItemStack onInventoryInteract(EntityPlayer player, Slot slot, ItemStack stackInSlot, boolean isItemGrabbed) {
+	public ItemStack onInventoryInteract(Player player, Slot slot, ItemStack stackInSlot, boolean isItemGrabbed) {
 		ItemStack canItem = isItemGrabbed ? player.inventory.getHeldItemStack() : stackInSlot;
 		int totalSpace = this.getMaxDamage();
 		int wormCount = this.getWormCount(canItem);
@@ -29,7 +30,7 @@ public class ItemCanOfWorms extends Item {
 			if (stackInSlot == null) {
 				ItemStack arrowStack;
 				int amount2 = Math.min(64, wormCount);
-				if (amount2 > 0 && slot.canPutStackInSlot(arrowStack = new ItemStack(StardewItems.worm, amount2, 0))) {
+				if (amount2 > 0 && slot.mayPlace(arrowStack = new ItemStack(StardewItems.worm, amount2, 0))) {
 					this.setWormCount(canItem, wormCount - amount2);
 					stackInSlot = arrowStack;
 				}

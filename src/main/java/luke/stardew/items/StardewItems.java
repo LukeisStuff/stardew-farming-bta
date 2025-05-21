@@ -2,10 +2,8 @@ package luke.stardew.items;
 
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
-import luke.stardew.items.models.ItemModelCanOfWorms;
-import luke.stardew.items.models.ItemModelTieredFishingRod;
 import luke.stardew.misc.FruitSize;
-import net.minecraft.core.block.Block;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.item.tag.ItemTags;
@@ -17,6 +15,10 @@ public class StardewItems {
 
 	public int itemID(String itemName) {
 		return StardewConfig.cfg.getInt("Item IDs." + itemName);
+	}
+
+	public String itemKey(String string) {
+		return MOD_ID + ":item/" + string;
 	}
 
 
@@ -119,257 +121,257 @@ public class StardewItems {
 
 		//Spring Crops
 		seedsCarrot = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsCarrot")
+			//.setIcon(MOD_ID + ":item/seedsCarrot")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.carrot", itemID("seedsCarrot"), StardewBlocks.cropsCarrot));
+			.build(new ItemSeeds("seeds.carrot", itemKey("seeds_carrot"), itemID("seedsCarrot"), StardewBlocks.cropsCarrot));
 		carrot = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/carrot")
-			.build(new ItemFood("food.carrot", itemID("carrot"), 2, 8,false, 8));
+			//.setIcon(MOD_ID + ":item/carrot")
+			.build(new ItemFood("food.carrot", itemKey("carrot"), itemID("carrot"), 2, 8,false, 8));
 
 		seedsBlueberry = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsBlueberry")
+			//.setIcon(MOD_ID + ":item/seedsBlueberry")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.blueberry", itemID("seedsBlueberry"), StardewBlocks.cropsBlueberry));
+			.build(new ItemSeeds("seeds.blueberry", itemKey("seeds_blueberry"), itemID("seedsBlueberry"), StardewBlocks.cropsBlueberry));
 		blueberry = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/blueberry")
-			.build(new ItemFruit("food.blueberry", itemID("blueberry"), 1, 8, FruitSize.SMALL, 16));
+			//.setIcon(MOD_ID + ":item/blueberry")
+			.build(new ItemFruit("food.blueberry", itemKey("blueberry"), itemID("blueberry"), 1, 8, FruitSize.SMALL, 16));
 
 		seedsPineapple = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsPineapple")
+			//.setIcon(MOD_ID + ":item/seedsPineapple")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.pineapple", itemID("seedsPineapple"), StardewBlocks.cropsPineapple));
+			.build(new ItemSeeds("seeds.pineapple", itemKey("seeds_pineapple"), itemID("seedsPineapple"), StardewBlocks.cropsPineapple));
 		pineapple = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/pineapple")
-			.build(new ItemFruit("food.pineapple", itemID("pineapple"), 4, 8, FruitSize.LARGE, 4));
+			//.setIcon(MOD_ID + ":item/pineapple")
+			.build(new ItemFruit("food.pineapple", itemKey("pineapple"), itemID("pineapple"), 4, 8, FruitSize.LARGE, 4));
 
 
 		//Summer Crops
 		seedsTomato = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsTomato")
+			//.setIcon(MOD_ID + ":item/seedsTomato")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.tomato", itemID("seedsTomato"), StardewBlocks.cropsTomato));
+			.build(new ItemSeeds("seeds.tomato", itemKey("seeds_tomato"), itemID("seedsTomato"), StardewBlocks.cropsTomato));
 		tomato = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/tomato")
-			.build(new ItemFood("food.tomato", itemID("tomato"), 2, 8,false, 8));
+			//.setIcon(MOD_ID + ":item/tomato")
+			.build(new ItemFood("food.tomato", itemKey("tomato"), itemID("tomato"), 2, 8,false, 8));
 
 		seedsPotato = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsPotato")
+			//.setIcon(MOD_ID + ":item/seedsPotato")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.potato", itemID("seedsPotato"), StardewBlocks.cropsPotato));
+			.build(new ItemSeeds("seeds.potato", itemKey("seeds_potato"), itemID("seedsPotato"), StardewBlocks.cropsPotato));
 		potato = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/potato")
-			.build(new ItemFood("food.potato", itemID("potato"), 1, 8,false, 8));
+			//.setIcon(MOD_ID + ":item/potato")
+			.build(new ItemFood("food.potato", itemKey("food_potato"), itemID("potato"), 1, 8,false, 8));
 
 		seedsStrawberry = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsStrawberry")
+			//.setIcon(MOD_ID + ":item/seedsStrawberry")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.strawberry", itemID("seedsStrawberry"), StardewBlocks.cropsStrawberry));
+			.build(new ItemSeeds("seeds.strawberry", itemKey("seeds_strawberry"), itemID("seedsStrawberry"), StardewBlocks.cropsStrawberry));
 		strawberry = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/strawberry")
-			.build(new ItemFruit("food.strawberry", itemID("strawberry"), 2, 8, FruitSize.SMALL, 8));
+			//.setIcon(MOD_ID + ":item/strawberry")
+			.build(new ItemFruit("food.strawberry", itemKey("food_strawberry"), itemID("strawberry"), 2, 8, FruitSize.SMALL, 8));
 
 		seedsWatermelon = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsWatermelon")
+			//.setIcon(MOD_ID + ":item/seedsWatermelon")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.watermelon", itemID("seedsWatermelon"), StardewBlocks.cropsWatermelon));
+			.build(new ItemSeeds("seeds_watermelon", itemKey("seeds_watermelon"), itemID("seedsWatermelon"), StardewBlocks.cropsWatermelon));
 
 
 		//Fall Crops
 		seedsCorn = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsCorn")
+			//.setIcon(MOD_ID + ":item/seedsCorn")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.corn", itemID("seedsCorn"), StardewBlocks.cropsCornBottom));
+			.build(new ItemSeeds("seeds.corn", itemKey("seeds_corn"), itemID("seedsCorn"), StardewBlocks.cropsCornBottom));
 		corn = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/corn")
-			.build(new ItemFood("food.corn", itemID("corn"), 2, 8,false, 8));
+			//.setIcon(MOD_ID + ":item/corn")
+			.build(new ItemFood("food.corn", itemKey("corn"), itemID("corn"), 2, 8,false, 8));
 
 		seedsGrapes = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsGrapes")
+			//.setIcon(MOD_ID + ":item/seedsGrapes")
 			.setStackSize(64)
-			.build(new Item("seeds.grapes", itemID("seedsGrapes")));
+			.build(new ItemSeeds("seeds.grapes", itemKey("seeds_grapes"), itemID("seedsGrapes"),  StardewBlocks.cropsGrapeBottom));
 		grapes = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/grapes")
-			.build(new ItemFruit("food.grapes", itemID("grapes"), 1, 8, FruitSize.SMALL, 16));
+			//.setIcon(MOD_ID + ":item/grapes")
+			.build(new ItemFruit("food.grapes", itemKey("grapes"), itemID("grapes"), 1, 8, FruitSize.SMALL, 16));
 
 
 		//Winter Crops
 		seedsCauliflower = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsCauliflower")
+			//.setIcon(MOD_ID + ":item/seedsCauliflower")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.cauliflower", itemID("seedsCauliflower"), StardewBlocks.cropsCauliflower));
+			.build(new ItemSeeds("seeds.cauliflower", itemKey("seeds_cauliflower"), itemID("seedsCauliflower"), StardewBlocks.cropsCauliflower));
 
 		seedsCranberries = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/seedsCranberries")
+			//.setIcon(MOD_ID + ":item/seedsCranberries")
 			.setStackSize(64)
-			.build(new ItemSeeds("seeds.cranberries", itemID("seedsCranberries"), StardewBlocks.cropsCranberries));
+			.build(new ItemSeeds("seeds.cranberries", itemKey("seeds_cranberries"), itemID("seedsCranberries"), StardewBlocks.cropsCranberries));
 		cranberries = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/cranberries")
-			.build(new ItemFruit("food.cranberries", itemID("cranberries"), 1, 8, FruitSize.SMALL, 16));
+			//.setIcon(MOD_ID + ":item/cranberries")
+			.build(new ItemFruit("food.cranberries", itemKey("cranberries"), itemID("cranberries"), 1, 8, FruitSize.SMALL, 16));
 
 
 		//Fishes
 		foodSalmonRaw = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/salmon")
-			.build(new ItemFood("food.salmon.raw", itemID("foodSalmonRaw"), 2, 12,false, 8));
+			//.setIcon(MOD_ID + ":item/salmon")
+			.build(new ItemFood("food.salmon.raw", itemKey("food_salmon_raw"), itemID("foodSalmonRaw"), 2, 12,false, 8));
 		foodSalmonCooked = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/salmon_cooked")
-			.build(new ItemFood("food.salmon.cooked", itemID("foodSalmonCooked"), 5, 12,false, 8));
+			//.setIcon(MOD_ID + ":item/salmon_cooked")
+			.build(new ItemFood("food.salmon.cooked", itemKey("food_salmon_cooked"), itemID("foodSalmonCooked"), 5, 12,false, 8));
 
 		foodBassRaw = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/bass")
-			.build(new ItemFood("food.bass.raw", itemID("foodBassRaw"), 2, 12,false, 8));
+			//.setIcon(MOD_ID + ":item/bass")
+			.build(new ItemFood("food.bass.raw", itemKey("food_bass_raw"), itemID("foodBassRaw"), 2, 12,false, 8));
 		foodBassCooked = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/bass_cooked")
-			.build(new ItemFood("food.bass.cooked", itemID("foodBassCooked"), 5, 12,false, 8));
+			//.setIcon(MOD_ID + ":item/bass_cooked")
+			.build(new ItemFood("food.bass.cooked", itemKey("food_bass_cooked"), itemID("foodBassCooked"), 5, 12,false, 8));
 
 		foodSnapperRaw = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/snapper")
-			.build(new ItemFood("food.snapper.raw", itemID("foodSnapperRaw"), 2, 12,false, 8));
+			//.setIcon(MOD_ID + ":item/snapper")
+			.build(new ItemFood("food.snapper.raw", itemKey("food_snapper_raw"), itemID("foodSnapperRaw"), 2, 12,false, 8));
 		foodSnapperCooked = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/snapper_cooked")
-			.build(new ItemFood("food.snapper.cooked", itemID("foodSnapperCooked"), 5, 12,false, 8));
+			//.setIcon(MOD_ID + ":item/snapper_cooked")
+			.build(new ItemFood("food.snapper.cooked", itemKey("food_snapper_cooked"), itemID("foodSnapperCooked"), 5, 12,false, 8));
 
 		fishEelLava = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/lavaeel")
+			//.setIcon(MOD_ID + ":item/lavaeel")
 			.setStackSize(1)
-			.build(new Item("fish.lavaeel", itemID("fishEelLava")));
+			.build(new Item("fish.eel.lava", itemKey("fish_eel_lava"), itemID("fishEelLava")));
 		fishSword = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/swordfish")
+			//.setIcon(MOD_ID + ":item/swordfish")
 			.setStackSize(1)
-			.build(new Item("fish.sword", itemID("fishSword")));
+			.build(new Item("fish.sword", itemKey("fish_sword"), itemID("fishSword")));
 		fishGhost = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/ghostfish")
+			//.setIcon(MOD_ID + ":item/ghostfish")
 			.setStackSize(1)
-			.build(new Item("fish.ghost", itemID("fishGhost")));
+			.build(new Item("fish.ghost", itemKey("fish_ghost"), itemID("fishGhost")));
 		fishStone = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/stonefish")
+			//.setIcon(MOD_ID + ":item/stonefish")
 			.setStackSize(1)
-			.build(new Item("fish.stone", itemID("fishStone")));
+			.build(new Item("fish.stone", itemKey("fish_stone"), itemID("fishStone")));
 
 
 		//Processed Foods
 		dough = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/dough")
-			.build(new ItemFood("food.dough", itemID("dough"), -1, 0,false, 64));
+			//.setIcon(MOD_ID + ":item/dough")
+			.build(new ItemFood("food.dough", itemKey("dough"), itemID("dough"), -1, 0,false, 64));
 
 		eggCooked = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/eggCooked")
-			.build(new ItemFood("egg.cooked", itemID("eggCooked"), 10, 8,false, 16));
+			//.setIcon(MOD_ID + ":item/eggCooked")
+			.build(new ItemFood("food.egg.cooked", itemKey("food_egg_cooked"), itemID("eggCooked"), 10, 8,false, 16));
 
 		honey = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/honey")
-			.build(new ItemFood("food.honey", itemID("honey"), 1, 16,false, 64));
+			//.setIcon(MOD_ID + ":item/honey")
+			.build(new ItemFood("food.honey", itemKey("honey"), itemID("honey"), 1, 16,false, 64));
 
 		jarJam = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/jam")
-			.build(new ItemJam("food.jam", itemID("jarJam"), 8, 16,false, 1));
+			//.setIcon(MOD_ID + ":item/jam")
+			.build(new ItemJam("food.jam", itemKey("food_jam"), itemID("jarJam"), 8, 16,false, 1));
 
 		cheese = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/cheese")
-			.build(new ItemFood("food.cheese", itemID("cheese"), 4, 8,false, 4));
+			//.setIcon(MOD_ID + ":item/cheese")
+			.build(new ItemFood("food.cheese", itemKey("cheese"), itemID("cheese"), 4, 8,false, 4));
 
 		foodCoffee = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/coffee")
-			.build(new ItemCoffee("food.coffee", itemID("foodCoffee"), 1, 4));
+			//.setIcon(MOD_ID + ":item/coffee")
+			.build(new ItemCoffee("food.coffee", itemKey("food_coffee"), itemID("foodCoffee"), 1, 4));
 
 		foodStewVegetable = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/vegetableSoup")
-			.build(new ItemSoup("food.stew.vegetable", itemID("foodStewVegetable"), 12, 16));
+			//.setIcon(MOD_ID + ":item/vegetableSoup")
+			.build(new ItemSoup("food.stew.vegetable", itemKey("food_stew_vegetable"), itemID("foodStewVegetable"), 12, 16));
 
 		foodStewCheese = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/cheeseSoup")
-			.build(new ItemSoup("food.stew.cheese", itemID("foodStewCheese"), 14, 16));
+			//.setIcon(MOD_ID + ":item/cheeseSoup")
+			.build(new ItemSoup("food.stew.cheese", itemKey("food_stew_cheese"), itemID("foodStewCheese"), 14, 16));
 
 		foodStewFruit = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/fruitSoup")
-			.build(new ItemSoup("food.stew.fruit", itemID("foodStewFruit"), 16, 16));
+			//.setIcon(MOD_ID + ":item/fruitSoup")
+			.build(new ItemSoup("food.stew.fruit", itemKey("food_stew_fruit"), itemID("foodStewFruit"), 16, 16));
 
 		foodCakeChocolate = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/foodCakeChocolate")
-			.build(new ItemPlaceable("food.cake.chocolate", itemID("foodCakeChocolate"), StardewBlocks.cakeChocolate).setMaxStackSize(1));
+			//.setIcon(MOD_ID + ":item/foodCakeChocolate")
+			.build(new ItemPlaceable("food.cake.chocolate", itemKey("food_cake_chocolate"), itemID("foodCakeChocolate"), StardewBlocks.cakeChocolate).setMaxStackSize(1));
 
 		foodPie = new ItemBuilder(MOD_ID)
 			.setTags(ItemTags.NOT_IN_CREATIVE_MENU)
-			.build(new ItemPlaceable("food.pie", itemID("foodPie"), Block.pumpkinPie).setMaxStackSize(1));
+			.build(new ItemPlaceable("food.pie", itemKey("food_pie"), itemID("foodPie"), Blocks.PUMPKIN_PIE).setMaxStackSize(1));
 
 		foodPizza = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/pizza")
-			.build(new ItemPlaceable("food.pizza", itemID("foodPizza"), StardewBlocks.pizza).setMaxStackSize(1));
+			//.setIcon(MOD_ID + ":item/pizza")
+			.build(new ItemPlaceable("food.pizza", itemKey("food_pizza"), itemID("foodPizza"), StardewBlocks.pizza).setMaxStackSize(1));
 
 
 		//Tools
 		wateringCan = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/wateringcan")
-			.build(new ItemToolWateringCan("tool.wateringcan", itemID("wateringCan"), ToolMaterial.iron));
+			//.setIcon(MOD_ID + ":item/wateringcan")
+			.build(new ItemToolWateringCan("tool.watering.can", itemKey("watering_can"), itemID("wateringCan"), ToolMaterial.iron));
 
 		wateringCanSteel = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/wateringcanSteel")
-			.build(new ItemToolWateringCan("tool.wateringcan.steel", itemID("wateringCanSteel"), ToolMaterial.steel));
+			//.setIcon(MOD_ID + ":item/wateringcanSteel")
+			.build(new ItemToolWateringCan("tool.watering.can.steel", itemKey("watering_can_steel"), itemID("wateringCanSteel"), ToolMaterial.steel));
 
 		wax = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/wax")
+			//.setIcon(MOD_ID + ":item/wax")
 			.setStackSize(16)
-			.build(new Item("wax", itemID("wax")));
+			.build(new Item("wax", itemKey("wax"), itemID("wax")));
 
 
 		//Fishing
 		toolFishingrodStone = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/fishingrod_stone")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "stone").setFull3D().setRotateWhenRendering())
-			.build(new ItemToolFishingRodTiered("tool.fishingrod.stone", itemID("toolFishingrodStone"), ToolMaterial.stone));
+			//.setIcon(MOD_ID + ":item/fishingrod_stone")
+			//.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "stone").setFull3D().setRotateWhenRendering())
+			.build(new ItemToolFishingRodTiered("tool.fishingrod.stone", itemKey("tool_fishing_rod_stone"), itemID("toolFishingrodStone"), ToolMaterial.stone));
 		toolFishingrodIron = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/fishingrod_iron")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "iron").setFull3D().setRotateWhenRendering())
-			.build(new ItemToolFishingRodTiered("tool.fishingrod.iron", itemID("toolFishingrodIron"), ToolMaterial.iron));
+			//.setIcon(MOD_ID + ":item/fishingrod_iron")
+			//.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "iron").setFull3D().setRotateWhenRendering())
+			.build(new ItemToolFishingRodTiered("tool.fishingrod.iron", itemKey("tool_fishing_rod_iron"), itemID("toolFishingrodIron"), ToolMaterial.iron));
 		toolFishingrodGold = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/fishingrod_gold")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "gold").setFull3D().setRotateWhenRendering())
-			.build(new ItemToolFishingRodTiered("tool.fishingrod.gold", itemID("toolFishingrodGold"), ToolMaterial.gold));
+			//.setIcon(MOD_ID + ":item/fishingrod_gold")
+			//.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "gold").setFull3D().setRotateWhenRendering())
+			.build(new ItemToolFishingRodTiered("tool.fishingrod.gold", itemKey("tool_fishing_rod_gold"), itemID("toolFishingrodGold"), ToolMaterial.gold));
 		toolFishingrodDiamond = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/fishingrod_diamond")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "diamond").setFull3D().setRotateWhenRendering())
-			.build(new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemID("toolFishingrodDiamond"), ToolMaterial.diamond));
+			//.setIcon(MOD_ID + ":item/fishingrod_diamond")
+			//.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "diamond").setFull3D().setRotateWhenRendering())
+			.build(new ItemToolFishingRodTiered("tool.fishingrod.diamond", itemKey("tool_fishing_rod_diamond"), itemID("toolFishingrodDiamond"), ToolMaterial.diamond));
 		toolFishingrodSteel = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/fishingrod_steel")
-			.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "steel").setFull3D().setRotateWhenRendering())
-			.build(new ItemToolFishingRodTiered("tool.fishingrod.steel", itemID("toolFishingrodSteel"), ToolMaterial.steel));
+			//.setIcon(MOD_ID + ":item/fishingrod_steel")
+			//.setItemModel((item) -> new ItemModelTieredFishingRod(item, MOD_ID, "steel").setFull3D().setRotateWhenRendering())
+			.build(new ItemToolFishingRodTiered("tool.fishingrod.steel", itemKey("tool_fishing_rod_steel"), itemID("toolFishingrodSteel"), ToolMaterial.steel));
 
 		worm = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/worm")
+			//.setIcon(MOD_ID + ":item/worm")
 			.setStackSize(16)
-			.build(new Item("worm", itemID("worm")));
+			.build(new Item("worm", itemKey("worm"), itemID("worm")));
 
 		armorCanOfWorms = new ItemBuilder(MOD_ID)
-			.setItemModel((item) -> new ItemModelCanOfWorms(item, MOD_ID))
-			.setIcon(MOD_ID + ":item/canOfWorms_full")
-			.build(new ItemCanOfWorms("armor.canofworms", itemID("armorCanOfWorms")));
+			//.setItemModel((item) -> new ItemModelCanOfWorms(item, MOD_ID))
+			//.setIcon(MOD_ID + ":item/canOfWorms_full")
+			.build(new ItemCanOfWorms("armor.canofworms", itemKey("armor_can_of_worms_empty"), itemID("armorCanOfWorms")));
 
 		armorCanOfWormsGolden = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/canOfWorms_golden")
-			.build(new ItemCanOfWormsEndless("armor.canofworms.gold", itemID("armorCanOfWormsGolden")));
+			//.setIcon(MOD_ID + ":item/canOfWorms_golden")
+			.build(new ItemCanOfWormsEndless("armor.canofworms.gold", itemKey("armor_can_of_worms_golden"), itemID("armorCanOfWormsGolden")));
 
 
 		//Treasures
 		recordPink = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/axolotl")
+			//.setIcon(MOD_ID + ":item/axolotl")
 			.setStackSize(1)
-			.build(new ItemRecord("record.pink", itemID("recordPink"), "axolotl", "C418"));
+			.build(new ItemDiscMusic("record.pink", itemKey("record_pink"), itemID("recordPink"), "axolotl", "C418"));
 
 		beansCoffee = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/beansCoffee")
+			//.setIcon(MOD_ID + ":item/beansCoffee")
 			.setStackSize(64)
-			.build(new Item("bean.coffee", itemID("beansCoffee")));
+			.build(new ItemSeeds("bean.coffee", itemKey("beans_coffee"), itemID("beansCoffee"), StardewBlocks.cropsBeansBottom));
 
 		eggDuck = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/eggDuck")
+			//.setIcon(MOD_ID + ":item/eggDuck")
 			.setStackSize(64)
-			.build(new ItemEggDuck("egg.duck", itemID("eggDuck")));
+			.build(new ItemEggDuck("egg.duck", itemKey("egg_duck"), itemID("eggDuck")));
 
 
 		fiber = new ItemBuilder(MOD_ID)
-			.setIcon(MOD_ID + ":item/fiber")
+			//.setIcon(MOD_ID + ":item/fiber")
 			.setStackSize(64)
-			.build(new Item("fiber", itemID("fiber")));
+			.build(new Item("fiber", itemKey("fiber"), itemID("fiber")));
 
 	}
 

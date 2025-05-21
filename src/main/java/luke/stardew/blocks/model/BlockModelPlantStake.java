@@ -2,22 +2,24 @@ package luke.stardew.blocks.model;
 
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class BlockModelPlantStake<T extends Block> extends BlockModelStandard<T> {
+public class BlockModelPlantStake<T extends BlockLogic> extends BlockModelStandard<T> {
 	public final IconCoordinate getTexture = TextureRegistry.getTexture(MOD_ID + ":block/plantStake");
 
-	public BlockModelPlantStake(Block block) {
+	public BlockModelPlantStake(Block<T> block) {
 		super(block);
 	}
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
+		//FIXME
+		//this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
 		float brightness = 1.0F;
 		if (LightmapHelper.isLightmapEnabled()) {
 			tessellator.setLightmapCoord(this.block.getLightmapCoord(renderBlocks.blockAccess, x, y, z));

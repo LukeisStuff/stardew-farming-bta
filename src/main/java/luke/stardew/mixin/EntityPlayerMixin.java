@@ -4,8 +4,8 @@ import luke.stardew.StardewAchievements;
 import luke.stardew.interfaces.IPlayerEffects;
 import luke.stardew.misc.PlayerEffect;
 import net.minecraft.core.achievement.stat.Stat;
-import net.minecraft.core.entity.EntityLiving;
-import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.entity.Mob;
+import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -17,8 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.HashMap;
 import java.util.Map;
 
-@Mixin(value = EntityPlayer.class, remap = false)
-public abstract class EntityPlayerMixin extends EntityLiving implements IPlayerEffects {
+@Mixin(value = Player.class, remap = false)
+public abstract class EntityPlayerMixin extends Mob implements IPlayerEffects {
 
 	@Shadow
 	public abstract void addStat(Stat statbase, int i);
@@ -50,11 +50,12 @@ public abstract class EntityPlayerMixin extends EntityLiving implements IPlayerE
 
 	@Inject(method = "tick", at = @At(value = "HEAD"))
 	public void tick(CallbackInfo ci) {
-		this.addStat(StardewAchievements.STARDEW, 1);
+		//FIXME
+		//this.addStat(StardewAchievements.STARDEW, 1);
 		//ci.cancel();
 	}
 
-	@Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/EntityPlayer;speed:F", shift = At.Shift.AFTER))
+	@Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/Player;speed:F", shift = At.Shift.AFTER))
 	private void boostSpeed(CallbackInfo ci){
 		decreaseEffects();
 		if (currentEffects.containsKey(PlayerEffect.speedBoost)){

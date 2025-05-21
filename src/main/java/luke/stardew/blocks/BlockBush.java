@@ -1,9 +1,10 @@
 package luke.stardew.blocks;
 
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.block.BlockFlower;
+import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogicFlower;
 import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.entity.EntityLiving;
+import net.minecraft.core.entity.Mob;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
@@ -12,11 +13,11 @@ import net.minecraft.core.world.season.Seasons;
 
 import java.util.Random;
 
-public class BlockBush extends BlockFlower {
+public class BlockBush extends BlockLogicFlower {
 
-	public BlockBush(String key, int id) {
-		super(key, id);
-		setTicking(true);
+	public BlockBush(Block<?> block) {
+		super(block);
+		block.setTicking(true);
 	}
 
 	@Override
@@ -43,7 +44,8 @@ public class BlockBush extends BlockFlower {
 
 	}
 
-	public void onBlockPlaced(World world, int x, int y, int z, Side side, EntityLiving entity, double sideHeight) {
+	@Override
+	public void onBlockPlacedByMob(World world, int x, int y, int z, Side side, Mob mob, double xPlaced, double yPlaced) {
 		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
 			world.setBlockMetadataWithNotify(x, y, z, 0);
 		}
@@ -67,6 +69,7 @@ public class BlockBush extends BlockFlower {
 		}
 	}
 
+	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
 		switch (dropCause) {
 			case PICK_BLOCK:

@@ -1,0 +1,47 @@
+{
+  "mob.duck.idle": {
+    "subtitle": "subtitles.mob.duck.idle",
+    "sounds": [
+      "mob/duck/idle1.ogg",
+      "mob/duck/idle2.ogg"
+    ]
+  },
+  "mob.duck.hurt": {
+    "subtitle": "subtitles.mob.duck.hurt",
+    "sounds": [
+      "mob/duck/hurt1.ogg",
+      "mob/duck/hurt2.ogg"
+    ]
+  },
+  "mob.duck.death": {
+    "subtitle": "subtitles.mob.duck.death",
+    "sounds": [
+      "mob/duck/death1.ogg"
+    ]
+  },
+  "mob.goat.idle": {
+    "subtitle": "subtitles.mob.goat.idle",
+    "sounds": [
+      "mob/goat/idle1.ogg",
+      "mob/goat/idle2.ogg",
+      "mob/goat/idle3.ogg"
+    ]
+  },
+  "mob.goat.death": {
+    "subtitle": "subtitles.mob.goat.death",
+    "sounds": [
+      "mob/goat/death1.ogg",
+      "mob/goat/death2.ogg"
+    ]
+  },
+  "record.axolotl": {
+    "sounds": [
+      {
+        "name": "record/axolotl.ogg",
+        "volume": 0.5,
+        "attenuation_distance": 64,
+        "stream": true
+      }
+    ]
+  }
+}

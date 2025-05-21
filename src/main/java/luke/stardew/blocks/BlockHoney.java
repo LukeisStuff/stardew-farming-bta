@@ -1,36 +1,34 @@
 package luke.stardew.blocks;
 
-import net.minecraft.core.block.BlockTransparent;
+import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogicTransparent;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.enums.EnumBlockSoundEffectType;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.WorldSource;
 
-public class BlockHoney extends BlockTransparent {
-	public BlockHoney(String key, int id){
-		super(key, id, Material.leaves);
-		setTicking(true);
+import java.util.ArrayList;
+
+public class BlockHoney extends BlockLogicTransparent {
+	public BlockHoney(Block<?> block){
+		super(block, Material.leaves);
+		block.setTicking(true);
 	}
 
+	@Override
 	public boolean isSolidRender() {
 		return false;
 	}
 
-	public boolean shouldSideBeRendered(WorldSource blockAccess, int x, int y, int z, int side) {
-		return super.shouldSideBeRendered(blockAccess, x, y, z, 1 - side);
-	}
-
-	public int getRenderBlockPass() {
-		return 1;
-	}
-
-	public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+	@Override
+	public void getCollidingBoundingBoxes(World world, int x, int y, int z, AABB aabb, ArrayList<AABB> aabbList) {
 		float f = 0.125F;
-		return AABB.getBoundingBoxFromPool(x + f, y + f, z + f, (float)(x + 1) - f, (float)(y + 1) - f, (float)(z + 1) - f);
+
+		aabbList.add(AABB.getTemporaryBB(x + f, y + f, z + f, (x + 1) - f, (y + 1) - f, (z + 1) - f));
 	}
 
+	@Override
 	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
 		entity.xd *= 0.4;
 		entity.yd *= 0.1;

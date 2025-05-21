@@ -1,6 +1,6 @@
 package luke.stardew.mixin;
 
-import com.mojang.nbt.CompoundTag;
+import com.mojang.nbt.tags.CompoundTag;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;

@@ -2,9 +2,10 @@ package luke.stardew.blocks;
 
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockFlower;
+import net.minecraft.core.block.BlockLogicFlower;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.ItemStack;
@@ -15,16 +16,17 @@ import net.minecraft.core.world.season.Seasons;
 
 import java.util.Random;
 
-public class BlockCropsCarrot extends BlockFlower implements IBonemealable {
-	public BlockCropsCarrot(String key, int id) {
-		super(key, id);
-		this.setTicking(true);
+@Deprecated
+public class BlockCropsCarrot extends BlockLogicFlower implements IBonemealable {
+	public BlockCropsCarrot(Block<?> block) {
+		super(block);
+		block.setTicking(true);
 		float f = 0.5F;
 		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 0.25F, 0.5F + f);
 	}
 
 	public boolean canThisPlantGrowOnThisBlockID(int i) {
-		return i == Block.farmlandDirt.id;
+		return i == Blocks.FARMLAND_DIRT.id();
 	}
 
 	public void updateTick(World world, int x, int y, int z, Random rand) {
@@ -57,15 +59,15 @@ public class BlockCropsCarrot extends BlockFlower implements IBonemealable {
 		int idPosXNegZ = world.getBlockId(x + 1, y, z - 1);
 		int idPosXPosZ = world.getBlockId(x + 1, y, z + 1);
 		int idNegXPosZ = world.getBlockId(x - 1, y, z + 1);
-		boolean xNeighbor = idNegX == this.id || idPosX == this.id;
-		boolean zNeighbor = idNegZ == this.id || idPosZ == this.id;
-		boolean diagNeighbor = idNegXNegZ == this.id || idPosXNegZ == this.id || idPosXPosZ == this.id || idNegXPosZ == this.id;
+		boolean xNeighbor = idNegX == this.id() || idPosX == this.id();
+		boolean zNeighbor = idNegZ == this.id() || idPosZ == this.id();
+		boolean diagNeighbor = idNegXNegZ == this.id() || idPosXNegZ == this.id() || idPosXPosZ == this.id() || idNegXPosZ == this.id();
 
 		for(int dx = x - 1; dx <= x + 1; ++dx) {
 			for(int dz = z - 1; dz <= z + 1; ++dz) {
 				int id = world.getBlockId(dx, y - 1, dz);
 				float growthRateMod = 0.0F;
-				if (id == Block.farmlandDirt.id) {
+				if (id == Blocks.FARMLAND_DIRT.id()) {
 					growthRateMod = 1.0F;
 					if (world.getBlockMetadata(dx, y - 1, dz) > 0) {
 						growthRateMod = 3.0F;
@@ -95,7 +97,7 @@ public class BlockCropsCarrot extends BlockFlower implements IBonemealable {
 		return meta != 2 ? new ItemStack[]{new ItemStack(StardewItems.seedsCarrot)} : new ItemStack[]{new ItemStack(StardewItems.seedsCarrot, world.rand.nextInt(1) + 2), new ItemStack(StardewItems.carrot)};
 	}
 
-	public boolean onBlockRightClicked(World world, int x, int y, int z, EntityPlayer player, Side side, double xHit, double yHit) {
+	public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (l == 4) {
 			world.setBlockAndMetadataWithNotify(x, y, z, 0, world.getBlockMetadata(x, y, z));
@@ -107,10 +109,10 @@ public class BlockCropsCarrot extends BlockFlower implements IBonemealable {
 		return false;
 	}
 
-	public boolean onBonemealUsed(ItemStack itemstack, EntityPlayer entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+	public boolean onBonemealUsed(ItemStack itemstack, Player entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		if (world.getBlockMetadata(blockX, blockY, blockZ) < 2) {
 			if (!world.isClientSide) {
-				((BlockCropsCarrot)StardewBlocks.cropsCarrot).fertilize(world, blockX, blockY, blockZ);
+				this.fertilize(world, blockX, blockY, blockZ);
 				if (entityplayer.getGamemode().consumeBlocks()) {
 					--itemstack.stackSize;
 				}

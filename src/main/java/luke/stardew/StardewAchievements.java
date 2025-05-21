@@ -1,23 +1,79 @@
 package luke.stardew;
 
-import luke.stardew.blocks.StardewBlocks;
-import luke.stardew.items.StardewItems;
-import net.minecraft.client.render.block.model.BlockModelDispatcher;
-import net.minecraft.client.render.stitcher.IconCoordinate;
+import net.minecraft.client.gui.achievements.ScreenAchievements;
+import net.minecraft.client.gui.achievements.data.AchievementPage;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.achievement.Achievement;
-import net.minecraft.core.achievement.stat.Stat;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.item.Item;
-import net.minecraft.core.util.helper.Side;
-import org.lwjgl.opengl.GL11;
-import turniplabs.halplibe.util.achievements.AchievementPage;
-import turniplabs.halplibe.util.achievements.GuiAchievements;
+import net.minecraft.core.item.ItemStack;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+//import turniplabs.halplibe.util.achievements.AchievementPage;
+//import turniplabs.halplibe.util.achievements.GuiAchievements;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
 import java.util.Random;
 
 public class StardewAchievements extends AchievementPage {
+	//FIXME
+	@Override
+	public @NotNull String getName() {
+		return null;
+	}
+
+	@Override
+	public @NotNull String getDescription() {
+		return null;
+	}
+
+	@Override
+	public @NotNull AchievementEntry onOpenAchievement() {
+		return null;
+	}
+
+	@Override
+	public @Nullable IconCoordinate getBackgroundTile(ScreenAchievements screenAchievements, int i, Random random, int j, int k) {
+		return null;
+	}
+
+	@Override
+	public void postProcessBackground(ScreenAchievements screenAchievements, Random random, ScreenAchievements.BGLayer bGLayer, int i, int j) {
+
+	}
+
+	@Override
+	public @NotNull ItemStack getIcon() {
+		return null;
+	}
+
+	@Override
+	public int backgroundLayers() {
+		return 0;
+	}
+
+	@Override
+	public int backgroundColor() {
+		return 0;
+	}
+
+	@Override
+	public IconCoordinate getAchievementIcon(Achievement achievement) {
+		return null;
+	}
+
+	@Override
+	public int lineColorLocked(boolean bl) {
+		return 0;
+	}
+
+	@Override
+	public int lineColorUnlocked(boolean bl) {
+		return 0;
+	}
+
+	@Override
+	public int lineColorCanUnlock(boolean bl) {
+		return 0;
+	}
+	/*
 	public StardewAchievements() {
 		super("Stardew Farming", "achievements.page.stardew");
 		Field[] achievements = StardewAchievements.class.getDeclaredFields();
@@ -93,5 +149,5 @@ public class StardewAchievements extends AchievementPage {
 	public IconCoordinate getTextureFromBlock(Block block) {
 		return BlockModelDispatcher.getInstance().getDispatch(block).getBlockTextureFromSideAndMetadata(Side.BOTTOM, 0);
 	}
-
+*/
 }
