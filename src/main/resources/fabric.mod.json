@@ -39,6 +39,9 @@
 		],
 		"terrain-api": [
 			"luke.stardew.TerrainApiPlugin"
+		],
+		"afterItemInit" : [
+			"luke.stardew.StardewMod"
 		]
 	},
   "mixins": [

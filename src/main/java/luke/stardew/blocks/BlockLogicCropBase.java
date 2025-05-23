@@ -168,7 +168,8 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
 		if (dropCause == EnumDropCause.PICK_BLOCK) {
-			return new ItemStack[]{new ItemStack(this.seedItem, 1)};
+			if (this.seedItem != null) return new ItemStack[]{new ItemStack(this.seedItem, 1)};
+			if (this.cropItem != null) return new ItemStack[]{new ItemStack(this.cropItem, 1)}; //Awful
 		}
 
 		List<ItemStack> drops = new ArrayList<>();
@@ -195,15 +196,19 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		return false;
 	}
 
+	public void onHarvest(World world, int x, int y, int z, int meta) {
+		world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
+	}
+
 	@Override
 	public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
 		if (!this.canHarvest) return false;
 		int meta = world.getBlockMetadata(x, y, z);
 		if (meta >= this.maxGrowth) {
 			if (this.resetMeta < 0) {
-				world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
+				onHarvest(world, x, y, z, meta);
 			}else {
-				world.setBlockMetadataWithNotify(x, y, z, this.resetMeta);
+				onGrowth(world, x, y, z, this.resetMeta);
 			}
 
 			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);

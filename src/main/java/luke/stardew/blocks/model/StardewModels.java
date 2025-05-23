@@ -1,57 +1,46 @@
 package luke.stardew.blocks.model;
 
 import luke.stardew.StardewMod;
-import luke.stardew.blocks.BlockLogicCropBase;
+import luke.stardew.blocks.BlockLogicWaxCandle;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.entities.duck.DuckRenderer;
 import luke.stardew.entities.duck.EntityDuck;
+import luke.stardew.entities.duck.EntityEggDuck;
 import luke.stardew.entities.duck.ModelDuck;
-import luke.stardew.entities.goat.EntityGoat;
+import luke.stardew.entities.goat.MobGoat;
+import luke.stardew.entities.goat.MobRendererGoat;
 import luke.stardew.entities.goat.ModelGoat;
-import luke.stardew.items.ItemToolFishingRodTiered;
+import luke.stardew.helper.BlockModelBuilder;
+import luke.stardew.helper.ItemModelBuilder;
+import luke.stardew.helper.ModelBuilder;
+import luke.stardew.items.StardewItems;
+import luke.stardew.items.models.ItemModelCanOfWorms;
 import luke.stardew.items.models.ItemModelTieredFishingRod;
-import net.fabricmc.loader.api.FabricLoader;
-import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.render.EntityRenderDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.*;
+import net.minecraft.client.render.entity.EntityRendererSprite;
 import net.minecraft.client.render.entity.MobRendererCow;
-import net.minecraft.client.render.item.model.ItemModel;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.item.model.ItemModelStandard;
-import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
-import net.minecraft.core.block.Blocks;
-import net.minecraft.core.item.Item;
-import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.Side;
 import turniplabs.halplibe.helper.ModelHelper;
 import turniplabs.halplibe.util.ModelEntrypoint;
-
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.Optional;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewModels implements ModelEntrypoint {
 
-	public static void createItemModel(Path path) {
+	/*public static void createItemModel(Path path) {
 		String name = path.getFileName().toString().replace(".png", "");
 		Item item = Item.itemsMap.get(NamespaceID.getPermanent(StardewMod.MOD_ID, "item/" + name));
+		if (itemModelDispatcher.hasDispatch(item)) return;
 
 		if (item != null) {
 			setStandardItemModel(item, (i, s) -> {
 				ItemModelStandard model = new ItemModelStandard(i, s);
-				if (i instanceof ItemToolFishingRodTiered) { //FIXME pretty bad
-					model = new ItemModelTieredFishingRod(i, s);
-				}
 				return model;
 			});
 		}else {
@@ -101,9 +90,9 @@ public class StardewModels implements ModelEntrypoint {
 		}else {
 			StardewMod.LOGGER.error("Missing for " + name);
 		}
-	}
+	}*/
 
-	public static void loadBlockModelsFromTexture() {
+	/*public static void loadBlockModelsFromTexture() {
 		//Despite the warning, ModContainer should always be present when this is called
 		ModContainer modContainer = FabricLoader.getInstance().getModContainer(StardewMod.MOD_ID).get();
 		Optional<Path> optionalPath = modContainer.findPath("assets/stardew/textures/block/");
@@ -116,15 +105,118 @@ public class StardewModels implements ModelEntrypoint {
 				StardewMod.LOGGER.error("Failed to initialize models");
 			}
 		}
-	}
+	}*/
 
 	@Override
 	public void initBlockModels(BlockModelDispatcher dispatcher) {
-		//ModelHelper.setBlockModel(StardewBlocks.cropsTomato, BlockModelCrossedSquares::new);
-		//setBlockModel(StardewBlocks.cropsTomato, BlockModelCropsTomato::new);
+		BlockModelBuilder edibleModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s_side")
+			.withMapping("%s_top", Side.TOP)
+			.withMapping("%s_bottom", Side.BOTTOM)
+			.extMapping("%s_inner")
+			.buildsModel(b -> new BlockModelEdible<>(b, (float) b.getBoundsRaw().maxY)); //This might be a bad idea in some cases, but it works :-]
 
-		//setBlockModel(StardewBlocks.logApple, BlockModelVeryRotatable::new);
-		//setBlockModel(StardewBlocks.leavesApple, BlockModelLeaves::new);
+		BlockModelBuilder leavesModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s")
+			.withMapping("%s_flowering_overlay", 1)
+			.withMapping("%s_overlay", 2)
+			.withMapping("%s_fancy", 3)
+			.buildsModel(BlockModelLeavesSeasonal::new);
+
+		BlockModelBuilder simpleCrossBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s") //Not sure why, but it's broken in inventory if only BOTTOM is set
+			.buildsModel(BlockModelCrossedSquares::new);
+
+		BlockModelBuilder logModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s_side")
+			.withMapping("%s_top", Side.TOP, Side.BOTTOM)
+			.buildsModel(BlockModelAxisAligned::new);
+
+		//Add copying
+		BlockModelBuilder fullyRotatableBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s_side")
+			.withMapping("%s_top", Side.TOP, Side.BOTTOM)
+			.buildsModel(BlockModelFullyRotatable::new);
+
+		BlockModelBuilder bushModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s_spring", 0)
+			.withMapping("%s_summer", 1)
+			.withMapping("%s_fall", 2)
+			.withMapping("%s_winter", 3)
+			.withMapping("%s_dead", 4)
+			.buildsModel(BlockModelBush::new); //I hate this
+
+		BlockModelBuilder iceModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s")
+			.onLayer(1)
+			.buildsModel(BlockModelIce::new);
+
+		BlockModelBuilder cropsModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.extMappingCounter("%s_%d")
+			.buildsModel(BlockModelCrops::new);
+
+		BlockModelBuilder stakeModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.extMapping("%s")
+			.buildsModel(BlockModelCrops::new);
+
+		BlockModelBuilder beeHiveModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s_side")
+			.withMapping("%s_top", Side.TOP, Side.BOTTOM)
+			.buildsModel(BlockModelHorizontalRotation::new);
+
+		BlockModelBuilder candleModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
+			.withMapping("%s")
+			.buildsModel(b ->new BlockModelWaxCandle<>((Block<BlockLogicWaxCandle>) b));
+
+		edibleModelBuilder.build(StardewBlocks.cakeChocolate, "choko_cake");
+		edibleModelBuilder.build(StardewBlocks.pizza);
+
+		leavesModelBuilder.build(StardewBlocks.leavesAppleFlowering, "leaves_apple");
+		leavesModelBuilder.build(StardewBlocks.leavesAppleGoldenFlowering, "leaves_apple_golden");
+
+		//Need to figure out how to pass arbitrary parameters to the builder (or just nuke ModelLeaves)
+		dispatcher.addDispatch(StardewBlocks.leavesApple, new BlockModelLeaves<>(StardewBlocks.leavesApple, MOD_ID + ":block/leaves_apple"));
+		dispatcher.addDispatch(StardewBlocks.leavesAppleGolden, new BlockModelLeaves<>(StardewBlocks.leavesAppleGolden, MOD_ID + ":block/leaves_apple_golden"));
+
+		simpleCrossBuilder.build(StardewBlocks.saplingApple);
+		simpleCrossBuilder.build(StardewBlocks.saplingAppleGolden);
+		simpleCrossBuilder.build(StardewBlocks.mushroomTruffle, "truffle");
+
+		logModelBuilder.build(StardewBlocks.logApple);
+		logModelBuilder.build(StardewBlocks.logAppleGolden);
+
+		fullyRotatableBuilder.build(StardewBlocks.thatch);
+
+		bushModelBuilder.build(StardewBlocks.bush);
+
+		iceModelBuilder.build(StardewBlocks.blockHoney);
+
+		cropsModelBuilder.count(3).build(StardewBlocks.cropsCarrot);
+		cropsModelBuilder.count(6).build(StardewBlocks.cropsTomato);
+		cropsModelBuilder.count(5).build(StardewBlocks.cropsPotato);
+		cropsModelBuilder.count(5).build(StardewBlocks.cropsBlueberry);
+		cropsModelBuilder.count(4).build(StardewBlocks.cropsCranberries);
+		cropsModelBuilder.count(4).build(StardewBlocks.cropsStrawberry);
+		cropsModelBuilder.count(5).build(StardewBlocks.cropsPineapple);
+
+		cropsModelBuilder.count(6).build(StardewBlocks.cropsGrapeBottom, "crops_grape_bottom");
+		cropsModelBuilder.count(3).build(StardewBlocks.cropsGrapeTop, "crops_grape_top");
+
+		cropsModelBuilder.count(7).build(StardewBlocks.cropsCornBottom, "crops_corn_bottom");
+		cropsModelBuilder.count(4).build(StardewBlocks.cropsCornTop, "crops_corn_top");
+
+		cropsModelBuilder.count(7).build(StardewBlocks.cropsBeansBottom, "crops_beans_bottom");
+		cropsModelBuilder.count(3).build(StardewBlocks.cropsBeansTop, "crops_beans_top");
+
+		//This is kinda bad, might need to add proper params
+		beeHiveModelBuilder.withMapping("beehive_idle", Side.NORTH).build(StardewBlocks.beehive, "beehive");
+		beeHiveModelBuilder.build(StardewBlocks.beehiveIdle, "beehive");
+		beeHiveModelBuilder.withMapping("beehive_active", Side.NORTH).build(StardewBlocks.beehiveHoney, "beehive");
+
+		candleModelBuilder.build(StardewBlocks.candleActive, "candle");
+		candleModelBuilder.build(StardewBlocks.candle, "candle");
+
+		stakeModelBuilder.build(StardewBlocks.plantStake);
 
 		ModelHelper.setBlockModel(StardewBlocks.cauliflower, () -> {
 			BlockModelAxisAligned<?> model = new BlockModelAxisAligned<>(StardewBlocks.cauliflower);
@@ -142,7 +234,7 @@ public class StardewModels implements ModelEntrypoint {
 		});
 
 		ModelHelper.setBlockModel(StardewBlocks.cropsCauliflower, () -> {
-			BlockModelCropsCauliflower<?> model = new BlockModelCropsCauliflower<>(StardewBlocks.cropsCauliflower);
+			BlockModelCropsGrowing<?> model = new BlockModelCropsGrowing<>(StardewBlocks.cropsCauliflower);
 			model.setLeafTexture(StardewMod.MOD_ID + ":block/cauliflower_crop_leaf");
 			model.setTopTextures(
 				MOD_ID + ":block/cauliflower_crop_1",
@@ -160,7 +252,7 @@ public class StardewModels implements ModelEntrypoint {
 		});
 
 		ModelHelper.setBlockModel(StardewBlocks.cropsWatermelon, () -> {
-			BlockModelCropsCauliflower<?> model = new BlockModelCropsCauliflower<>(StardewBlocks.cropsWatermelon);
+			BlockModelCropsGrowing<?> model = new BlockModelCropsGrowing<>(StardewBlocks.cropsWatermelon);
 			model.setLeafTexture(StardewMod.MOD_ID + ":block/watermelon_crop_leaf");
 			model.setTopTextures(
 				MOD_ID + ":block/watermelon_crop_1",
@@ -177,81 +269,105 @@ public class StardewModels implements ModelEntrypoint {
 			return model;
 		});
 
-		setBlockModel(StardewBlocks.leavesApple, b -> new BlockModelLeaves<>(b, MOD_ID + ":block/leaves_apple"));
-
-		ModelHelper.setBlockModel(StardewBlocks.leavesAppleFlowering, () -> {
-			BlockModelAppleLeavesBloom<?> model = new BlockModelAppleLeavesBloom<>(StardewBlocks.leavesApple, MOD_ID + ":block/leaves_apple");
-			model.setFlowingOverlay(MOD_ID + ":block/leaves_apple_flowering_overlay");
-			model.setGrownOverlay(MOD_ID + ":block/leaves_apple_overlay");
-			return model;
-		});
-
-		setBlockModel(StardewBlocks.leavesAppleGolden, b -> new BlockModelLeaves<>(b, MOD_ID + ":block/leaves_apple_golden"));
-
-		ModelHelper.setBlockModel(StardewBlocks.leavesAppleGoldenFlowering, () -> {
-			BlockModelAppleLeavesBloom<?> model = new BlockModelAppleLeavesBloom<>(StardewBlocks.leavesAppleGolden, MOD_ID + ":block/leaves_apple_golden");
-			model.setFlowingOverlay(MOD_ID + ":block/leaves_apple_golden_flowering_overlay");
-			model.setGrownOverlay(MOD_ID + ":block/leaves_apple_golden_overlay");
-			return model;
-		});
-
-		ModelHelper.setBlockModel(StardewBlocks.logApple, () -> {
-			BlockModelAxisAligned<?> model = new BlockModelAxisAligned<>(StardewBlocks.logApple);
-			model.setAllTextures(0, StardewMod.MOD_ID + ":block/log_apple_side");
-			model.setTex(0, StardewMod.MOD_ID + ":block/log_apple_top", Side.BOTTOM, Side.TOP);
-			return model;
-		});
-
-		ModelHelper.setBlockModel(StardewBlocks.logAppleGolden, () -> {
-			BlockModelAxisAligned<?> model = new BlockModelAxisAligned<>(StardewBlocks.logAppleGolden);
-			model.setAllTextures(0, StardewMod.MOD_ID + ":block/log_apple_golden_side");
-			model.setTex(0, StardewMod.MOD_ID + ":block/log_apple_golden_top", Side.BOTTOM, Side.TOP);
-			return model;
-		});
-
-		setBlockModel(StardewBlocks.saplingApple, b -> {
-			BlockModelCrossedSquares<?> model = new BlockModelCrossedSquares<>(b);
-			model.setAllTextures(0, MOD_ID + ":block/sapling_apple");
-			return model;
-		});
-
-		setBlockModel(StardewBlocks.saplingAppleGolden, b -> {
-			BlockModelCrossedSquares<?> model = new BlockModelCrossedSquares<>(b);
-			model.setAllTextures(0, MOD_ID + ":block/sapling_apple");
-			return model;
-		});
-
-		setBlockModel(StardewBlocks.cakeChocolate, b -> {
-			BlockModelCakeChocolate<?> model = new BlockModelCakeChocolate<>(b, 0.5F);
-			model.setCakeInner(MOD_ID + ":block/choko_cake_inner");
-			model.setAllTextures(0, MOD_ID + ":block/choko_cake_side");
-			model.setTex(0, MOD_ID + ":block/choko_cake_top", Side.TOP);
-			model.setTex(0, MOD_ID + ":block/choko_cake_bottom", Side.BOTTOM);
-			return model;
-		});
-
-		setBlockModel(StardewBlocks.pizza, b -> {
-			BlockModelCakeChocolate<?> model = new BlockModelCakeChocolate<>(b, 0.25F);
-			model.setCakeInner(MOD_ID + ":block/pizza_inner");
-			model.setAllTextures(0, MOD_ID + ":block/pizza_side");
-			model.setTex(0, MOD_ID + ":block/pizza_top", Side.TOP);
-			model.setTex(0, MOD_ID + ":block/pizza_bottom", Side.BOTTOM);
-			return model;
-		});
-
-		loadBlockModelsFromTexture();
+		//loadBlockModelsFromTexture();
 	}
 
 	@Override
 	public void initItemModels(ItemModelDispatcher dispatcher) {
+		ItemModelBuilder standardBuilder = ModelBuilder.item(MOD_ID, dispatcher)
+			.buildsModel(item -> new ItemModelStandard(item, null));
 
-		loadItemModelsFromTexture();
+		ItemModelBuilder fishingRodModelBuilder = ModelBuilder.item(MOD_ID, dispatcher)
+			.withMapping("%s")
+			.extMapping("%s_cast")
+			.rotateWhenRendering()
+			.withFull3D()
+			.buildsModel(ItemModelTieredFishingRod::new);
+
+		ItemModelBuilder canModelBuilder = ModelBuilder.item(MOD_ID, dispatcher)
+			.withMapping("%s")
+			.extMapping("%s_full")
+			.buildsModel(ItemModelCanOfWorms::new);
+
+		ItemModelBuilder blockItemModelBuilder = ModelBuilder.item(MOD_ID, dispatcher)
+			.withMapping("%s_item") //Same as standard, but with an '_item' suffix for clarity
+			.buildsModel(item -> new ItemModelStandard(item, null));
+
+		fishingRodModelBuilder.build(StardewItems.toolFishingrodStone);
+		fishingRodModelBuilder.build(StardewItems.toolFishingrodIron);
+		fishingRodModelBuilder.build(StardewItems.toolFishingrodGold);
+		fishingRodModelBuilder.build(StardewItems.toolFishingrodDiamond);
+		fishingRodModelBuilder.build(StardewItems.toolFishingrodSteel);
+
+		canModelBuilder.build(StardewItems.armorCanOfWorms);
+
+		standardBuilder.build(StardewItems.armorCanOfWormsGolden);
+
+		standardBuilder.build(StardewItems.seedsBlueberry);
+		standardBuilder.build(StardewItems.seedsCarrot);
+		standardBuilder.build(StardewItems.seedsCauliflower);
+		standardBuilder.build(StardewItems.seedsCorn);
+		standardBuilder.build(StardewItems.seedsGrapes);
+		standardBuilder.build(StardewItems.seedsCranberries);
+		standardBuilder.build(StardewItems.seedsPineapple);
+		standardBuilder.build(StardewItems.seedsTomato);
+		standardBuilder.build(StardewItems.seedsStrawberry);
+		standardBuilder.build(StardewItems.beansCoffee);
+		standardBuilder.build(StardewItems.seedsPotato);
+		standardBuilder.build(StardewItems.seedsWatermelon);
+
+		standardBuilder.build(StardewItems.blueberry);
+		standardBuilder.build(StardewItems.carrot);
+		standardBuilder.build(StardewItems.corn);
+		standardBuilder.build(StardewItems.grapes);
+		standardBuilder.build(StardewItems.cranberries);
+		standardBuilder.build(StardewItems.pineapple);
+		standardBuilder.build(StardewItems.tomato);
+		standardBuilder.build(StardewItems.strawberry);
+		standardBuilder.build(StardewItems.potato);
+
+		standardBuilder.build(StardewItems.honey);
+		standardBuilder.build(StardewItems.wax);
+		standardBuilder.build(StardewItems.recordPink);
+		standardBuilder.build(StardewItems.worm);
+		standardBuilder.build(StardewItems.eggDuck);
+		standardBuilder.build(StardewItems.fiber);
+		standardBuilder.build(StardewItems.dough);
+
+		standardBuilder.build(StardewItems.wateringCan);
+		standardBuilder.build(StardewItems.wateringCanSteel);
+
+		standardBuilder.build(StardewItems.foodPie);
+		standardBuilder.build(StardewItems.foodPizza);
+		standardBuilder.build(StardewItems.foodCakeChocolate);
+		standardBuilder.build(StardewItems.foodBassCooked);
+		standardBuilder.build(StardewItems.foodBassRaw);
+		standardBuilder.build(StardewItems.foodCoffee);
+		standardBuilder.build(StardewItems.foodSalmonCooked);
+		standardBuilder.build(StardewItems.foodSalmonRaw);
+		standardBuilder.build(StardewItems.foodSnapperCooked);
+		standardBuilder.build(StardewItems.foodSnapperRaw);
+		standardBuilder.build(StardewItems.foodStewFruit);
+		standardBuilder.build(StardewItems.foodStewCheese);
+		standardBuilder.build(StardewItems.foodStewVegetable);
+		standardBuilder.build(StardewItems.eggCooked);
+		standardBuilder.build(StardewItems.cheese);
+		standardBuilder.build(StardewItems.jarJam);
+
+		standardBuilder.build(StardewItems.fishEelLava);
+		standardBuilder.build(StardewItems.fishGhost);
+		standardBuilder.build(StardewItems.fishStone);
+		standardBuilder.build(StardewItems.fishSword);
+
+		blockItemModelBuilder.build(StardewBlocks.candleActive.asItem(), "candle");
+		blockItemModelBuilder.build(StardewBlocks.candle.asItem(), "candle");
 	}
 
 	@Override
 	public void initEntityModels(EntityRenderDispatcher dispatcher) {
 		ModelHelper.setEntityModel(EntityDuck.class, () -> new DuckRenderer(new ModelDuck(), 0.4F));
-		ModelHelper.setEntityModel(EntityGoat.class, () -> new MobRendererCow(new ModelGoat(), 0.7F));
+		ModelHelper.setEntityModel(MobGoat.class, () -> new MobRendererGoat(new ModelGoat(), 0.7F));
+		ModelHelper.setEntityModel(EntityEggDuck.class, () -> new EntityRendererSprite<>(StardewItems.eggDuck));
 	}
 
 	@Override
@@ -264,7 +380,7 @@ public class StardewModels implements ModelEntrypoint {
 
 	}
 
-	public static void setStandardItemModel(Item item, BiFunction<Item, String, ItemModel> modelSupplier) {
+	/*public static void setStandardItemModel(Item item, BiFunction<Item, String, ItemModel> modelSupplier) {
 		ModelHelper.setItemModel(item, () -> {
 			ItemModel model = modelSupplier.apply(item, null); //Nulled because spams warnings
 			if (model instanceof ItemModelStandard) {
@@ -282,5 +398,5 @@ public class StardewModels implements ModelEntrypoint {
 			BlockModel<?> model = modelSupplier.apply(block);
 			return model;
 		});
-	}
+	}*/
 }

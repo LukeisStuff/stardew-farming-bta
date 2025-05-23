@@ -13,9 +13,7 @@ import net.minecraft.core.util.helper.Side;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlockModelCrops<T extends BlockLogic> extends BlockModelStandard<T> {
-	public List<IconCoordinate> growthStageIcons = new ArrayList<>();
-
+public class BlockModelCrops<T extends BlockLogic> extends BlockModelExtended<T> {
 	public BlockModelCrops(Block<T> block) {
 		super(block);
 	}
@@ -69,10 +67,6 @@ public class BlockModelCrops<T extends BlockLogic> extends BlockModelStandard<T>
 		return true;
 	}
 
-	public void addIcon(String iconPath) {
-		this.growthStageIcons.add(TextureRegistry.getTexture(iconPath));
-	}
-
 	@Override
 	public boolean shouldItemRender3d() {
 		return false;
@@ -80,10 +74,10 @@ public class BlockModelCrops<T extends BlockLogic> extends BlockModelStandard<T>
 
 	@Override
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
-		if (data < 0 || data >= this.growthStageIcons.size()) {
+		if (data < 0 || data >= this.icons.size()) {
 			return BlockModelStandard.BLOCK_TEXTURE_MISSING;
 		}
 
-		return this.growthStageIcons.get(data);
+		return this.getIcon(data);
 	}
 }

@@ -14,14 +14,7 @@ import net.minecraft.core.util.helper.Side;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class BlockModelBush<T extends BlockLogic> extends BlockModelStandard<T> {
-	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_spring"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_summer"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_fall"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_winter"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_dead")
-	};
-
+	// 0 spring > 1 summer > 2 fall > 3 winter > 4 dead
 	public BlockModelBush(Block<T> block) {
 		super(block);
 	}
@@ -80,6 +73,6 @@ public class BlockModelBush<T extends BlockLogic> extends BlockModelStandard<T> 
 	}
 
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
-		return this.growthStageTextures[MathHelper.clamp(data, 0, 4)];
+		return this.blockTextures.get(MathHelper.clamp(data, 0, 4));
 	}
 }

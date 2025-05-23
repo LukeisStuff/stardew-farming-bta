@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BlockAlgaeMixin",
+    "BlockMixin",
     "ContainerPlayerMixin",
     "ContainerWorkbenchMixin",
     "EntityBobberMixin",
@@ -17,7 +18,6 @@
     "ItemToolHoeMixin",
     "PigDigTruffleMixin",
     "PlayerRendererMixin",
-    "SlotArmorMixin",
     "SlotCraftingMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"

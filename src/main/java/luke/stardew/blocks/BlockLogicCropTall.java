@@ -7,7 +7,7 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
 public class BlockLogicCropTall extends BlockLogicCropBase {
-	protected int growTopMeta = -1; //Block is considered a stem if -1
+	protected int growTopMeta = -1; //Block is considered top if -1
 	protected Block<? extends BlockLogicCropTall> otherBlock;
 
 	public BlockLogicCropTall(Block<?> block) {
@@ -33,6 +33,7 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
 	protected boolean mayPlaceOn(int blockId) {
 		return this.growTopMeta < 0 || super.mayPlaceOn(blockId);
 	}
+
 
 
 	@Override

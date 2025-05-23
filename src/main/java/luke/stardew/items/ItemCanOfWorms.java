@@ -1,13 +1,16 @@
 package luke.stardew.items;
 
 import net.minecraft.core.entity.player.Player;
+import net.minecraft.core.item.IArmorItem;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.item.material.ArmorMaterial;
 import net.minecraft.core.player.inventory.slot.Slot;
 import net.minecraft.core.util.collection.NamespaceID;
+import org.jetbrains.annotations.Nullable;
 
 
-public class ItemCanOfWorms extends Item {
+public class ItemCanOfWorms extends Item implements IArmorItem {
 	public ItemCanOfWorms(String translationKey, String namespaceID, int id) {
 		super(translationKey, namespaceID, id);
 		this.setMaxStackSize(1);
@@ -28,9 +31,9 @@ public class ItemCanOfWorms extends Item {
 		if (isItemGrabbed) {
 			int amount;
 			if (stackInSlot == null) {
-				ItemStack arrowStack;
 				int amount2 = Math.min(64, wormCount);
-				if (amount2 > 0 && slot.mayPlace(arrowStack = new ItemStack(StardewItems.worm, amount2, 0))) {
+				ItemStack arrowStack = new ItemStack(StardewItems.worm, amount2, 0);
+				if (amount2 > 0 && slot.mayPlace(arrowStack)) {
 					this.setWormCount(canItem, wormCount - amount2);
 					stackInSlot = arrowStack;
 				}
@@ -69,5 +72,15 @@ public class ItemCanOfWorms extends Item {
 	@Override
 	public boolean showFullDurability() {
 		return true;
+	}
+
+	@Override
+	public @Nullable ArmorMaterial getArmorMaterial() {
+		return null;
+	}
+
+	@Override
+	public int getArmorPiece() {
+		return IArmorItem.PIECE_LEGS;
 	}
 }
