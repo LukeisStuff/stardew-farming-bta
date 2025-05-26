@@ -1,10 +1,8 @@
 package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
-import luke.stardew.entities.StardewEntities;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.entity.Entity;
 import net.minecraft.core.item.Item;
 import turniplabs.halplibe.util.TomlConfigHandler;
 import turniplabs.halplibe.util.toml.Toml;

@@ -1,6 +1,5 @@
 package luke.stardew;
 
-import luke.stardew.achievements.AchievementPageStardew;
 import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.entities.StardewEntities;
@@ -8,11 +7,8 @@ import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.achievements.data.AchievementPages;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.sound.SoundRepository;
-import net.minecraft.core.achievement.stat.StatList;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.data.registry.Registries;
