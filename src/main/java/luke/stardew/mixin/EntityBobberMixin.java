@@ -345,9 +345,9 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 											if (this.world.getBlockId(MathHelper.floor(this.x), MathHelper.floor(this.y) + 1, MathHelper.floor(this.z)) == Blocks.ALGAE.id()) {
 												algaeRate = 50;
 											}
-											if (owner.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodDiamond.id){
+											if (owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_DIAMOND.id){
 												materialRate = 200;
-											} else if (owner.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodIron.id || owner.getCurrentEquippedItem().itemID == StardewItems.toolFishingrodSteel.id) {
+											} else if (owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_IRON.id || owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_STEEL.id) {
 												materialRate = 100;
 											}
 											if (((IEntityBobberMixin)owner.bobberEntity).stardew_farming_bta$hasBait()){
@@ -506,28 +506,28 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 		Item[] treasuresHighValue = {Items.DIAMOND, Items.INGOT_STEEL_CRUDE};
 
 		if (isInLava) {
-			return StardewItems.fishEelLava;
-		} else if (this.owner.getCurrentEquippedItem().itemID != StardewItems.toolFishingrodGold.id) {
+			return StardewItems.FISH_EEL_LAVA;
+		} else if (this.owner.getCurrentEquippedItem().itemID != StardewItems.TOOL_FISHINGROD_GOLD.id) {
 			if (weather == Weathers.OVERWORLD_STORM && world.rand.nextInt(15) == 0) {
-					return StardewItems.fishSword;
+					return StardewItems.FISH_SWORD;
 
 			} else if (weather == Weathers.OVERWORLD_FOG && !world.isDaytime() && world.rand.nextInt(15) == 0){
-				return StardewItems.fishGhost;
+				return StardewItems.FISH_GHOST;
 
 			} else if (!world.canBlockSeeTheSky(MathHelper.floor(this.x), MathHelper.floor(this.y) + 1, MathHelper.floor(this.z)) && MathHelper.floor(this.y) + 1 <= 32 && world.rand.nextInt(15) == 0) {
-				return StardewItems.fishStone;
+				return StardewItems.FISH_STONE;
 
 			} else if (season == Seasons.OVERWORLD_SPRING) {
-				return StardewItems.foodBassRaw;
+				return StardewItems.FOOD_BASS_RAW;
 
 			} else if (season == Seasons.OVERWORLD_SUMMER) {
-				return StardewItems.foodSnapperRaw;
+				return StardewItems.FOOD_SNAPPER_RAW;
 
 			} else if (season == Seasons.OVERWORLD_FALL) {
 				return Items.FOOD_FISH_RAW;
 
 			} else if (season == Seasons.OVERWORLD_WINTER) {
-				return StardewItems.foodSalmonRaw;
+				return StardewItems.FOOD_SALMON_RAW;
 			}
 		} else {
 			if (world.rand.nextInt(2) == 0){

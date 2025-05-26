@@ -6,7 +6,6 @@ import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.material.ToolMaterial;
-import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
 
 public class ItemToolFishingRodTiered extends Item {
@@ -32,15 +31,15 @@ public class ItemToolFishingRodTiered extends Item {
 				entityplayer.bobberEntity = bobber; // Directly set the bobber to entityplayer
 			}
 
-			if (canSlot != null && ((canSlot.itemID == StardewItems.armorCanOfWorms.id && canSlot.getMetadata() < canSlot.getMaxDamage()) || canSlot.itemID == StardewItems.armorCanOfWormsGolden.id)) {
-				if (canSlot.itemID == StardewItems.armorCanOfWorms.id){
+			if (canSlot != null && ((canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id && canSlot.getMetadata() < canSlot.getMaxDamage()) || canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN.id)) {
+				if (canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id){
 					entityplayer.inventory.armorItemInSlot(1).damageItem(1, entityplayer);
 				}
 				// Double check if bobberEntity is not null before casting and using it
 				if (entityplayer.bobberEntity instanceof IEntityBobberMixin) {
 					((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 				}
-			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.worm.id)){
+			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.WORM.id)){
 				if (entityplayer.bobberEntity instanceof IEntityBobberMixin) {
 					((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 				}

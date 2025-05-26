@@ -1,14 +1,20 @@
 package luke.stardew;
 
+import luke.stardew.achievements.AchievementPageStardew;
+import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.entities.StardewEntities;
-import luke.stardew.entities.duck.EntityDuck;
+import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.achievements.data.AchievementPages;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.sound.SoundRepository;
+import net.minecraft.core.achievement.stat.StatList;
 import net.minecraft.core.block.Blocks;
+import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.entity.SpawnListEntry;
 import net.minecraft.core.enums.MobCategory;
@@ -20,16 +26,17 @@ import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.ItemInitEntrypoint;
+import turniplabs.halplibe.util.RecipeEntrypoint;
 
 
-public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientStartEntrypoint, ItemInitEntrypoint {
+public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientStartEntrypoint, ItemInitEntrypoint, RecipeEntrypoint {
     public static final String MOD_ID = "stardew";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
     public void onInitialize() {
 		for (Biome b : Registries.BIOMES) {
-			b.getSpawnableList(MobCategory.creature).add(new SpawnListEntry(EntityDuck.class, 51));
+			b.getSpawnableList(MobCategory.creature).add(new SpawnListEntry(MobDuck.class, 51));
 			b.getSpawnableList(MobCategory.creature).add(new SpawnListEntry(MobGoat.class, 51));
 		}
 
@@ -40,13 +47,12 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 	public void beforeGameStart() {
 		new StardewEntities().initializeEntities();
 
-		//FIXME INSTANCE IS NULL
 		//AchievementPages.register(new StardewAchievements());
 	}
 
 	@Override
 	public void afterGameStart() {
-		MobInfoRegistry.register(EntityDuck.class, "guidebook.section.mob.duck.name", "guidebook.section.mob.duck.desc",
+		MobInfoRegistry.register(MobDuck.class, "guidebook.section.mob.duck.name", "guidebook.section.mob.duck.desc",
 			4, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Items.FEATHER_CHICKEN), 1.0f, 0, 1)});
 
 		MobInfoRegistry.register(MobGoat.class, "guidebook.section.mob.goat.name", "guidebook.section.mob.goat.desc",
@@ -60,13 +66,33 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 
 	@Override
 	public void afterClientStart() {
+
 	}
 
 	@Override
 	public void afterItemInit() {
 		//Initialize here because Blocks and items may refer to vanilla items
-		new StardewBlocks().initializeBlocks();
-		new StardewItems().initilizeItems();
+		StardewBlocks.initializeBlocks();
+		StardewItems.initilizeItems();
+
+		StardewBlocks.WATERMELON.asItem().withTags(StardewItems.IS_FRUIT);
+		Items.FOOD_APPLE.withTags(StardewItems.IS_FRUIT);
+		Items.FOOD_CHERRY.withTags(StardewItems.IS_FRUIT);
+
+		LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 400);
+
 		StardewBlocks.initializeCrops();
+
+		StardewAchievements.init();
+	}
+
+	@Override
+	public void onRecipesReady() {
+
+	}
+
+	@Override
+	public void initNamespaces() {
+
 	}
 }

@@ -1,6 +1,6 @@
 package luke.stardew.mixin;
 
-import luke.stardew.StardewAchievements;
+import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.interfaces.IPlayerEffects;
 import luke.stardew.misc.PlayerEffect;
 import net.minecraft.core.achievement.stat.Stat;
@@ -50,9 +50,7 @@ public abstract class EntityPlayerMixin extends Mob implements IPlayerEffects {
 
 	@Inject(method = "tick", at = @At(value = "HEAD"))
 	public void tick(CallbackInfo ci) {
-		//FIXME
-		//this.addStat(StardewAchievements.STARDEW, 1);
-		//ci.cancel();
+		this.addStat(StardewAchievements.STARDEW, 1);
 	}
 
 	@Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/Player;speed:F", shift = At.Shift.AFTER))

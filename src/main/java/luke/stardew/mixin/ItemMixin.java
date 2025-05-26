@@ -25,7 +25,7 @@ public abstract class ItemMixin implements NamespaceObject {
 	private void addStickFunctionality(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir){
 		if (player.getCurrentEquippedItem().itemID == Items.STICK.id && world.getBlockId(blockX, blockY, blockZ) == Blocks.FARMLAND_DIRT.id() && world.getBlockId(blockX, blockY + 1, blockZ) == 0 && side == Side.TOP){
 			player.getCurrentEquippedItem().consumeItem(player);
-			world.setBlockWithNotify(blockX, blockY + 1, blockZ, StardewBlocks.plantStake.id());
+			world.setBlockWithNotify(blockX, blockY + 1, blockZ, StardewBlocks.PLANT_STAKE.id());
 			player.swingItem();
 			world.playBlockSoundEffect(player, (float)blockX + 0.5F, (float)blockY + 0.5F, (float)blockZ + 0.5F, Blocks.DIRT, EnumBlockSoundEffectType.PLACE);
 		}

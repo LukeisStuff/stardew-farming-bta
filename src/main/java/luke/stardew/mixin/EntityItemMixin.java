@@ -1,5 +1,6 @@
 package luke.stardew.mixin;
 
+import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.achievement.stat.StatList;
@@ -21,63 +22,63 @@ public abstract class EntityItemMixin {
 
 	@Inject(method = "playerTouch", at = @At("TAIL"), cancellable = true)
 	public void playerTouch(Player player, CallbackInfo ci) {
-		if (this.item.itemID == StardewBlocks.saplingApple.id()) {
-			//player.triggerAchievement(StardewAchievements.APPLE);
+		if (this.item.itemID == StardewBlocks.SAPLING_APPLE.id()) {
+			player.triggerAchievement(StardewAchievements.APPLE);
 		}
 
 		String pickUpKey = StatList.STAT_PICKED_UP;
 
 		if ((this.item.itemID == Items.FOOD_FISH_RAW.id
-			|| this.item.itemID == StardewItems.foodBassRaw.id
-			|| this.item.itemID == StardewItems.foodSnapperRaw.id
-			|| this.item.itemID == StardewItems.foodSalmonRaw.id)
+			|| this.item.itemID == StardewItems.FOOD_BASS_RAW.id
+			|| this.item.itemID == StardewItems.FOOD_SNAPPER_RAW.id
+			|| this.item.itemID == StardewItems.FOOD_SALMON_RAW.id)
 			&& player.getStat(Items.FOOD_FISH_RAW.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.foodSalmonRaw.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.foodSnapperRaw.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.foodBassRaw.getStat(pickUpKey)) > 0) {
-			//player.triggerAchievement(StardewAchievements.AMATEUR_FISHER);
+			&& player.getStat(StardewItems.FOOD_SALMON_RAW.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.FOOD_SNAPPER_RAW.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.FOOD_BASS_RAW.getStat(pickUpKey)) > 0) {
+			player.triggerAchievement(StardewAchievements.AMATEUR_FISHER);
 		}
-		if ((this.item.itemID == StardewItems.fishGhost.id
-			|| this.item.itemID == StardewItems.fishSword.id
-			|| this.item.itemID == StardewItems.fishEelLava.id
-			|| this.item.itemID == StardewItems.fishStone.id)
-			&& player.getStat(StardewItems.fishSword.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.fishGhost.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.fishEelLava.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.fishStone.getStat(pickUpKey)) > 0) {
-			//player.triggerAchievement(StardewAchievements.MASTER_FISHER);
+		if ((this.item.itemID == StardewItems.FISH_GHOST.id
+			|| this.item.itemID == StardewItems.FISH_SWORD.id
+			|| this.item.itemID == StardewItems.FISH_EEL_LAVA.id
+			|| this.item.itemID == StardewItems.FISH_STONE.id)
+			&& player.getStat(StardewItems.FISH_SWORD.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.FISH_GHOST.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.FISH_EEL_LAVA.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.FISH_STONE.getStat(pickUpKey)) > 0) {
+			player.triggerAchievement(StardewAchievements.MASTER_FISHER);
 		}
-		if ((this.item.itemID == StardewItems.cranberries.id
-			|| this.item.itemID == StardewItems.grapes.id
-			|| this.item.itemID == StardewItems.strawberry.id
-			|| this.item.itemID == StardewItems.pineapple.id
-			|| this.item.itemID == StardewItems.blueberry.id
-			|| this.item.itemID == StardewBlocks.watermelon.id()
+		if ((this.item.itemID == StardewItems.CRANBERRIES.id
+			|| this.item.itemID == StardewItems.GRAPES.id
+			|| this.item.itemID == StardewItems.STRAWBERRY.id
+			|| this.item.itemID == StardewItems.PINEAPPLE.id
+			|| this.item.itemID == StardewItems.BLUEBERRY.id
+			|| this.item.itemID == StardewBlocks.WATERMELON.id()
 			|| this.item.itemID == Items.FOOD_APPLE.id)
-			&& player.getStat(StardewItems.cranberries.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.grapes.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.strawberry.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.pineapple.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.blueberry.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewBlocks.watermelon.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.CRANBERRIES.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.GRAPES.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.STRAWBERRY.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.PINEAPPLE.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.BLUEBERRY.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewBlocks.WATERMELON.getStat(pickUpKey)) > 0
 			&& player.getStat(Items.FOOD_APPLE.getStat(pickUpKey)) > 0) {
-			//player.triggerAchievement(StardewAchievements.FRUIT);
+			player.triggerAchievement(StardewAchievements.FRUIT);
 		}
-		if ((this.item.itemID == StardewItems.potato.id
-			|| this.item.itemID == StardewItems.carrot.id
-			|| this.item.itemID == StardewItems.tomato.id
-			|| this.item.itemID == StardewItems.corn.id
+		if ((this.item.itemID == StardewItems.POTATO.id
+			|| this.item.itemID == StardewItems.CARROT.id
+			|| this.item.itemID == StardewItems.TOMATO.id
+			|| this.item.itemID == StardewItems.CORN.id
 			|| this.item.itemID == Blocks.PUMPKIN.id()
-			|| this.item.itemID == StardewBlocks.cauliflower.id()
+			|| this.item.itemID == StardewBlocks.CAULIFLOWER.id()
 			|| this.item.itemID == Items.WHEAT.id)
-			&& player.getStat(StardewItems.potato.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.carrot.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.tomato.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewItems.corn.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.POTATO.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.CARROT.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.TOMATO.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewItems.CORN.getStat(pickUpKey)) > 0
 			&& player.getStat(Blocks.PUMPKIN.getStat(pickUpKey)) > 0
-			&& player.getStat(StardewBlocks.cauliflower.getStat(pickUpKey)) > 0
+			&& player.getStat(StardewBlocks.CAULIFLOWER.getStat(pickUpKey)) > 0
 			&& player.getStat(Items.WHEAT.getStat(pickUpKey)) > 0) {
-			//player.triggerAchievement(StardewAchievements.VEGETABLE);
+			player.triggerAchievement(StardewAchievements.VEGETABLE);
 			ci.cancel();
 		}
 	}

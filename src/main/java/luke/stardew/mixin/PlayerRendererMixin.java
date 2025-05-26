@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = MobRendererPlayer.class, remap = false)
-public class PlayerRendererMixin extends MobRenderer<Player> {
+public abstract class PlayerRendererMixin extends MobRenderer<Player> {
 
 	@Shadow
 	@Final
@@ -31,7 +31,7 @@ public class PlayerRendererMixin extends MobRenderer<Player> {
 		ItemStack itemstack = entity.inventory.armorItemInSlot(3 - renderPass);
 		if (itemstack != null) {
 			Item item = itemstack.getItem();
-			if (item == StardewItems.armorCanOfWorms) {
+			if (item == StardewItems.ARMOR_CAN_OF_WORMS) {
 				this.bindTexture("/assets/stardew/armor/canOfWorms.png");
 				ModelBiped modelbiped = this.modelArmorChestplate;
 				modelbiped.legRight.visible = renderPass == 2 || renderPass == 3;
@@ -39,7 +39,7 @@ public class PlayerRendererMixin extends MobRenderer<Player> {
 				this.setArmorModel(modelbiped);
 				cir.setReturnValue(true);
 			}
-			if (item == StardewItems.armorCanOfWormsGolden) {
+			if (item == StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN) {
 				this.bindTexture("/assets/stardew/armor/canOfWorms_golden.png");
 				ModelBiped modelbiped = this.modelArmorChestplate;
 				modelbiped.legRight.visible = renderPass == 2 || renderPass == 3;

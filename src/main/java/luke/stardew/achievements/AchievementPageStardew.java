@@ -1,52 +1,61 @@
-package luke.stardew;
+package luke.stardew.achievements;
 
+import luke.stardew.StardewMod;
+import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.client.gui.achievements.ScreenAchievements;
 import net.minecraft.client.gui.achievements.data.AchievementPage;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.lang.I18n;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-//import turniplabs.halplibe.util.achievements.AchievementPage;
-//import turniplabs.halplibe.util.achievements.GuiAchievements;
 
+import java.util.Objects;
 import java.util.Random;
 
-public class StardewAchievements extends AchievementPage {
-	//FIXME
+public class AchievementPageStardew extends AchievementPage {
+	private final String name;
+	private final ItemStack icon;
+
+	public AchievementPageStardew(String name, ItemStack icon) {
+		this.name = name;
+		this.icon = icon;
+	}
+
 	@Override
 	public @NotNull String getName() {
-		return null;
+		return I18n.getInstance().translateNameKey(name);
 	}
 
 	@Override
 	public @NotNull String getDescription() {
-		return null;
+		return I18n.getInstance().translateNameKey(name);
 	}
 
 	@Override
 	public @NotNull AchievementEntry onOpenAchievement() {
-		return null;
+		return Objects.requireNonNull(this.getEntry(StardewAchievements.STARDEW));
 	}
 
 	@Override
-	public @Nullable IconCoordinate getBackgroundTile(ScreenAchievements screenAchievements, int i, Random random, int j, int k) {
-		return null;
+	public @Nullable IconCoordinate getBackgroundTile(ScreenAchievements screen, int i, Random random, int j, int k) {
+		return getTextureFromBlock(StardewBlocks.THATCH);
 	}
 
 	@Override
-	public void postProcessBackground(ScreenAchievements screenAchievements, Random random, ScreenAchievements.BGLayer bGLayer, int i, int j) {
-
+	public void postProcessBackground(ScreenAchievements screen, Random random, ScreenAchievements.BGLayer bGLayer, int i, int j) {
 	}
 
 	@Override
 	public @NotNull ItemStack getIcon() {
-		return null;
+		return this.icon;
 	}
 
 	@Override
 	public int backgroundLayers() {
-		return 0;
+		return 1;
 	}
 
 	@Override
@@ -56,7 +65,7 @@ public class StardewAchievements extends AchievementPage {
 
 	@Override
 	public IconCoordinate getAchievementIcon(Achievement achievement) {
-		return null;
+		return TextureRegistry.getTexture(achievement.getType().texture);
 	}
 
 	@Override
@@ -66,12 +75,12 @@ public class StardewAchievements extends AchievementPage {
 
 	@Override
 	public int lineColorUnlocked(boolean bl) {
-		return 0;
+		return 7368816;
 	}
 
 	@Override
 	public int lineColorCanUnlock(boolean bl) {
-		return 0;
+		return 65280;
 	}
 	/*
 	public StardewAchievements() {
@@ -110,19 +119,7 @@ public class StardewAchievements extends AchievementPage {
 	}
 
 	public static final int StardewAchievementsID = 524300;
-	public static final Achievement STARDEW = new Achievement(StardewAchievementsID + 1, "stardew.stardew", 0, 0, StardewItems.wateringCan, null);
 
-	public static final Achievement FRUIT = new Achievement(StardewAchievementsID + 2, "stardew.fruit", 2, -2, StardewItems.strawberry, STARDEW);
-	public static final Achievement VEGETABLE = new Achievement(StardewAchievementsID + 3, "stardew.vegetable", -2, -2, StardewItems.carrot, STARDEW);
-
-	public static final Achievement APPLE = new Achievement(StardewAchievementsID + 4, "stardew.apple", -2, 0, Item.foodApple, STARDEW);
-	public static final Achievement GAPPLE = new Achievement(StardewAchievementsID + 5, "stardew.gapple", -4, 1, Item.foodAppleGold, APPLE);
-
-	public static final Achievement BEEHIVE = new Achievement(StardewAchievementsID + 6, "stardew.beehive", 2, 0, StardewItems.honey, STARDEW);
-	public static final Achievement CANDLE = new Achievement(StardewAchievementsID + 7, "stardew.candle", 4, -1, StardewBlocks.candle, BEEHIVE);
-
-	public static final Achievement AMATEUR_FISHER = new Achievement(StardewAchievementsID + 8, "stardew.amateur.fisher", 0, 2, StardewItems.foodSnapperRaw, STARDEW);
-	public static final Achievement MASTER_FISHER = new Achievement(StardewAchievementsID + 9, "stardew.master.fisher", 1, 4, StardewItems.fishSword, AMATEUR_FISHER);
 
 	@Override
 	public void getBackground(GuiAchievements guiAchievements, Random random, int iOffset, int jOffset, int blockX1, int blockY1, int blockX2, int blockY2) {

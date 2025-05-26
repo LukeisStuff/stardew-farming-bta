@@ -1,7 +1,5 @@
 package luke.stardew.mixin;
 
-import luke.stardew.StardewMod;
-import luke.stardew.items.ItemFruit;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.item.Item;
@@ -31,7 +29,7 @@ public abstract class ContainerPlayerMixin extends MenuAbstract {
 	@Inject(method = "slotsChanged", at = @At(value = "TAIL"))
 	private void setInv(Container container, CallbackInfo ci){
 		//resultSlots.setItem(0, Registries.RECIPES.findMatchingRecipe(craftSlots));
-		if (Registries.RECIPES.findMatchingRecipe(craftSlots) != null && resultSlots.getItem(0).itemID == StardewItems.jarJam.id && !resultSlots.getItem(0).getData().containsKey("itemIds")) {
+		if (Registries.RECIPES.findMatchingRecipe(craftSlots) != null && resultSlots.getItem(0).itemID == StardewItems.JAR_JAM.id && !resultSlots.getItem(0).getData().containsKey("itemIds")) {
 			setDescription(resultSlots.getItem(0));
 		}
 	}

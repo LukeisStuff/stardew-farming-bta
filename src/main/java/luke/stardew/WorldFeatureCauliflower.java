@@ -18,38 +18,38 @@ public class WorldFeatureCauliflower extends WorldFeature {
 			int j1 = y + random.nextInt(4) - random.nextInt(4);
 			int k1 = z + random.nextInt(8) - random.nextInt(8);
 			if (world.getBlockBiome(x, y, z) == Biomes.OVERWORLD_TUNDRA) {
-				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.GRASS.id() && StardewBlocks.cauliflower.canPlaceBlockAt(world, i1, j1, k1)) {
+				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.GRASS.id() && StardewBlocks.CAULIFLOWER.canPlaceBlockAt(world, i1, j1, k1)) {
 					if (random.nextInt(50) == 0) {
-						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.cauliflower.id(), random.nextInt(4));
+						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.CAULIFLOWER.id(), random.nextInt(4));
 					} else {
-						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.cauliflower.id());
+						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.CAULIFLOWER.id());
 					}
 				}
 			}
 			if (world.getBlockBiome(x, y, z) == Biomes.OVERWORLD_BOREAL_FOREST) {
-				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.GRASS.id() && StardewBlocks.cauliflower.canPlaceBlockAt(world, i1, j1, k1)) {
+				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.GRASS.id() && StardewBlocks.CAULIFLOWER.canPlaceBlockAt(world, i1, j1, k1)) {
 					if (random.nextInt(50) == 0) {
-						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.cauliflower.id(), random.nextInt(4));
+						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.CAULIFLOWER.id(), random.nextInt(4));
 					} else {
-						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.cauliflower.id());
+						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.CAULIFLOWER.id());
 					}
 				}
 			}
 			if (world.getBlockBiome(x, y, z) == Biomes.OVERWORLD_TAIGA) {
-				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.GRASS.id() && StardewBlocks.cauliflower.canPlaceBlockAt(world, i1, j1, k1)) {
+				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.GRASS.id() && StardewBlocks.CAULIFLOWER.canPlaceBlockAt(world, i1, j1, k1)) {
 					if (random.nextInt(50) == 0) {
-						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.cauliflower.id(), random.nextInt(4));
+						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.CAULIFLOWER.id(), random.nextInt(4));
 					} else {
-						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.cauliflower.id());
+						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.CAULIFLOWER.id());
 					}
 				}
 			}
 			if (world.getBlockBiome(x, y, z) == Biomes.OVERWORLD_GLACIER) {
-				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.BLOCK_SNOW.id() && StardewBlocks.cauliflower.canPlaceBlockAt(world, i1, j1, k1)) {
+				if (world.isAirBlock(i1, j1, k1) && world.getBlockId(i1, j1 - 1, k1) == Blocks.BLOCK_SNOW.id() && StardewBlocks.CAULIFLOWER.canPlaceBlockAt(world, i1, j1, k1)) {
 					if (random.nextInt(50) == 0) {
-						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.cauliflower.id(), random.nextInt(4));
+						world.setBlockAndMetadata(i1, j1, k1, StardewBlocks.CAULIFLOWER.id(), random.nextInt(4));
 					} else {
-						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.cauliflower.id());
+						world.setBlockWithNotify(i1, j1, k1, StardewBlocks.CAULIFLOWER.id());
 					}
 				}
 			}

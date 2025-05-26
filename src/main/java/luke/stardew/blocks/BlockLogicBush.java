@@ -78,37 +78,37 @@ public class BlockLogicBush extends BlockLogicFlower {
 				if (meta == 0) {
 					int random = (world.rand.nextInt(3));
 					if (random == 0) {
-						return new ItemStack[]{new ItemStack(StardewItems.seedsCarrot)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CARROT)};
 					} else if (random == 1) {
-						return new ItemStack[]{new ItemStack(StardewItems.seedsBlueberry)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_BLUEBERRY)};
 					} else
-						return new ItemStack[]{new ItemStack(StardewItems.seedsPineapple)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_PINEAPPLE)};
 				}
 				if (meta == 1) {
 					int random = (world.rand.nextInt(4));
 					if (random == 0) {
-						return new ItemStack[]{new ItemStack(StardewItems.seedsTomato)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_TOMATO)};
 					} else if (random == 1) {
-						return new ItemStack[]{new ItemStack(StardewItems.seedsPotato)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_POTATO)};
 					} else if (random == 2) {
-						return new ItemStack[]{new ItemStack(StardewItems.seedsStrawberry)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_STRAWBERRY)};
 					} else
-						return new ItemStack[]{new ItemStack(StardewItems.seedsWatermelon)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_WATERMELON)};
 				}
 				if (meta == 2) {
 					if (world.rand.nextInt(2) == 0) {
-						return new ItemStack[]{new ItemStack(StardewItems.seedsCorn)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CORN)};
 					} else
-						return new ItemStack[]{new ItemStack(StardewItems.seedsGrapes)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_GRAPES)};
 				}
 				if (meta == 3) {
 					int random = (world.rand.nextInt(3));
 					if (random == 0) {
-						return new ItemStack[]{new ItemStack(StardewItems.seedsCauliflower)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CAULIFLOWER)};
 					} else if (random == 1) {
-						return new ItemStack[]{new ItemStack(StardewItems.beansCoffee)};
+						return new ItemStack[]{new ItemStack(StardewItems.BEANS_COFFE)};
 					} else
-						return new ItemStack[]{new ItemStack(StardewItems.seedsCranberries)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CRANBERRIES)};
 				}
 				if (meta == 4) {
 					return null;

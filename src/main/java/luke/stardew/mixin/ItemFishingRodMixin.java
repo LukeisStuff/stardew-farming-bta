@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemFishingRod.class, remap = false)
-public class ItemFishingRodMixin extends Item {
+public abstract class ItemFishingRodMixin extends Item {
 	public ItemFishingRodMixin(NamespaceID namespaceID, int id) {
 		super(namespaceID, id);
 	}
@@ -24,12 +24,12 @@ public class ItemFishingRodMixin extends Item {
 	private void addBaitFunctions(ItemStack itemstack, World world, Player player, CallbackInfoReturnable<ItemStack> cir){
 		if (player.bobberEntity != null){
 			ItemStack canSlot = player.inventory.armorItemInSlot(1);
-			if (canSlot != null && ((canSlot.itemID == StardewItems.armorCanOfWorms.id && canSlot.getMetadata() < canSlot.getMaxDamage()) || canSlot.itemID == StardewItems.armorCanOfWormsGolden.id)) {
-				if (canSlot.itemID == StardewItems.armorCanOfWorms.id){
+			if (canSlot != null && ((canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id && canSlot.getMetadata() < canSlot.getMaxDamage()) || canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN.id)) {
+				if (canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id){
 					player.inventory.armorItemInSlot(1).damageItem(1, player);
 				}
 				((IEntityBobberMixin)player.bobberEntity).stardew_farming_bta$setBait(true);
-			} else if (player.inventory.consumeInventoryItem(StardewItems.worm.id)){
+			} else if (player.inventory.consumeInventoryItem(StardewItems.WORM.id)){
 				((IEntityBobberMixin)player.bobberEntity).stardew_farming_bta$setBait(true);
 			}
 		}

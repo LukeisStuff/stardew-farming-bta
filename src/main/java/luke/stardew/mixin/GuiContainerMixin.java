@@ -14,6 +14,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = Gui.class, remap = false)
 public class GuiContainerMixin /*extends GuiScreen*/ {
+	//I have no idea where and what this was supposed to do
+
 	/*@Shadow
 	public Container inventorySlots;
 

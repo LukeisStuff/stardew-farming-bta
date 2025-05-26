@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemToolHoe.class, remap = false)
-public class ItemToolHoeMixin extends ItemTool {
+public abstract class ItemToolHoeMixin extends ItemTool {
 	protected ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
 		super(name, namespaceID, id, damageDealt, toolMaterial, tagEffectiveAgainst);
 	}
@@ -28,7 +28,7 @@ public class ItemToolHoeMixin extends ItemTool {
 		if (i1 == Blocks.GRASS.id()) {
 			if (!world.isClientSide) {
 				if (world.rand.nextInt(8) == 0) {
-					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
 				}
 				player.swingItem();
 			}
@@ -37,7 +37,7 @@ public class ItemToolHoeMixin extends ItemTool {
 		if (i1 == Blocks.DIRT.id()) {
 			if (!world.isClientSide) {
 				if (world.rand.nextInt(8) == 0) {
-					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
 				}
 				player.swingItem();
 			}
@@ -46,7 +46,7 @@ public class ItemToolHoeMixin extends ItemTool {
 		if (i1 == Blocks.GRASS_RETRO.id()) {
 			if (!world.isClientSide) {
 				if (world.rand.nextInt(8) == 0) {
-					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
 				}
 				player.swingItem();
 			}
@@ -55,7 +55,7 @@ public class ItemToolHoeMixin extends ItemTool {
 		if (i1 == Blocks.MUD.id()) {
 			if (!world.isClientSide) {
 				if (world.rand.nextInt(8) == 0) {
-					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
 				}
 				player.swingItem();
 			}
@@ -64,7 +64,7 @@ public class ItemToolHoeMixin extends ItemTool {
 		if (i1 == Blocks.PATH_DIRT.id()) {
 			if (!world.isClientSide) {
 				if (world.rand.nextInt(8) == 0) {
-					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.worm, world.rand.nextInt(2) + 2));
+					world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
 				}
 				player.swingItem();
 			}

@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(value = MobPig.class, remap = false)
-public class PigDigTruffleMixin extends MobAnimal {
+public abstract class PigDigTruffleMixin extends MobAnimal {
 	@Unique
 	public int timeUntilNextTruffle = this.random.nextInt(3000) + 3000;
 	public PigDigTruffleMixin(World world) {
@@ -33,7 +33,7 @@ public class PigDigTruffleMixin extends MobAnimal {
 		if (!(blockBelow != Blocks.GRASS && blockBelow != Blocks.GRASS_RETRO && blockBelow != Blocks.DIRT && blockBelow != Blocks.MUD && blockBelow != Blocks.FARMLAND_DIRT || this.world.isClientSide)) {
 			if (--this.timeUntilNextTruffle <= 0) {
 				this.world.playBlockSoundEffect(null, (int)this.x, (int)this.y - 1, (int)this.z, this.world.getBlock((int)this.x, (int)this.y - 1, (int)this.z), EnumBlockSoundEffectType.MINE);
-				this.dropItem(StardewBlocks.mushroomTruffle.id(), world.rand.nextInt(2) + 1);
+				this.dropItem(StardewBlocks.MUSHROOM_TRUFFLE.id(), world.rand.nextInt(2) + 1);
 				this.isMovementBlocked();
 				this.world.setBlockWithNotify(blockX, blockY - 1, blockZ, Blocks.DIRT.id());
 				this.timeUntilNextTruffle = this.random.nextInt(3000) + 3000;

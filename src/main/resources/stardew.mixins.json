@@ -6,6 +6,7 @@
   "mixins": [
     "BlockAlgaeMixin",
     "BlockMixin",
+    "ChunkDecoratorOverworldMixin",
     "ContainerPlayerMixin",
     "ContainerWorkbenchMixin",
     "EntityBobberMixin",
@@ -14,8 +15,11 @@
     "GuiContainerMixin",
     "ItemFishingRodMixin",
     "ItemMixin",
+    "ItemsAccessor",
+    "ItemsMixin",
     "ItemStackMixin",
     "ItemToolHoeMixin",
+    "MinecraftServerMixin",
     "PigDigTruffleMixin",
     "PlayerRendererMixin",
     "SlotCraftingMixin",
@@ -23,6 +27,7 @@
     "WorldFeatureLabyrinthMixin"
   ],
   "client": [
+    "MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1

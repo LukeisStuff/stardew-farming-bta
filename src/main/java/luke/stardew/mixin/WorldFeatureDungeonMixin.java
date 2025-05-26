@@ -11,12 +11,12 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = WorldFeatureDungeon.class, remap = false)
-public class WorldFeatureDungeonMixin {
+public abstract class WorldFeatureDungeonMixin {
 	@Shadow
 	public WeightedRandomBag<WeightedRandomLootObject> chestLoot;
 
 	@Inject(method = "<init>", at = @At(value = "TAIL"))
 	private void addLoot(CallbackInfo ci){
-		this.chestLoot.addEntry(new WeightedRandomLootObject(StardewBlocks.saplingApple.getDefaultStack()), 50);
+		this.chestLoot.addEntry(new WeightedRandomLootObject(StardewBlocks.SAPLING_APPLE.getDefaultStack()), 50);
 	}
 }

@@ -33,7 +33,7 @@ public class BlockLogicHoney extends BlockLogicTransparent {
 		entity.zd *= 0.4;
 		if (entity.fallDistance > 1.5F) {
 			entity.fallDistance = 0.0F;
-			world.playBlockSoundEffect(null, x, y, z, StardewBlocks.blockHoney, EnumBlockSoundEffectType.ENTITY_LAND);
+			world.playBlockSoundEffect(null, x, y, z, StardewBlocks.BLOCK_HONEY, EnumBlockSoundEffectType.ENTITY_LAND);
 		}
 	}
 }

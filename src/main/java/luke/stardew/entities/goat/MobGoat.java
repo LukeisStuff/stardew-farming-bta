@@ -53,11 +53,6 @@ public class MobGoat extends MobAnimal {
 	}
 
 	@Override
-	public void setSkinVariant(int skinVariant) {
-		super.setSkinVariant(skinVariant);
-	}
-
-	@Override
 	public boolean interact(Player player) {
 		ItemStack itemstack = player.inventory.getCurrentItem();
 		if (itemstack != null && itemstack.itemID == Items.BUCKET.id) {
@@ -65,11 +60,5 @@ public class MobGoat extends MobAnimal {
 			return true;
 		}
 		return super.interact(player);
-	}
-
-	@Override
-	public int getSkinVariant() {
-		int skinVariantCount = 4;
-		return this.entityData.getByte(1) % skinVariantCount;
 	}
 }

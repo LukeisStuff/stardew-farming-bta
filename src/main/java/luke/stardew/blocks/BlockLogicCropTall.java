@@ -1,7 +1,12 @@
 package luke.stardew.blocks;
 
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.entity.TileEntity;
+import net.minecraft.core.entity.player.Player;
+import net.minecraft.core.enums.EnumDropCause;
+import net.minecraft.core.item.Item;
 import net.minecraft.core.util.helper.MathHelper;
+import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
@@ -16,6 +21,7 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
 
 	@SuppressWarnings("unchecked")
 	public BlockLogicCropTall asTop(Block<?> block) {
+		block.setTicking(false);
 		this.otherBlock = (Block<? extends BlockLogicCropTall>) block;
 		this.setBlockBounds(0.25F, -1.0F, 0.25F, 0.75F, 0.5F, 0.75F);
 		return this;
@@ -34,7 +40,21 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
 		return this.growTopMeta < 0 || super.mayPlaceOn(blockId);
 	}
 
-
+	@Override
+	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) { //This isn't very good but it works
+        Block<?> block;
+        if (growTopMeta > -1) {
+            block = world.getBlock(x, y + 1, z);
+        }else {
+            block = world.getBlock(x, y - 1, z);
+        }
+        if (block == null){
+            world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
+        }
+		if (!this.canBlockStay(world, x, y, z)) {
+			world.setBlockWithNotify(x, y, z, 0);
+		}
+	}
 
 	@Override
 	public AABB getBlockBoundsFromState(WorldSource world, int x, int y, int z) {
@@ -47,18 +67,18 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
 		if (this.growTopMeta > -1 && meta >= this.growTopMeta) {
 			Block<?> blockAbove = world.getBlock(x, y + 1, z);
 			if(blockAbove == null) { //FIXME this is kinda awful
-				world.setBlockMetadata(x, y, z, meta);
+				world.setBlockMetadataWithNotify(x, y, z, meta);
 				int max = otherBlock.getLogic().maxGrowth;
 				int topMeta = MathHelper.clamp(meta - growTopMeta, 0, max);
 				world.setBlockAndMetadataWithNotify(x, y + 1, z, otherBlock.id(), topMeta);
 			}else if(blockAbove == otherBlock) {
-				world.setBlockMetadata(x, y, z, meta);
+				world.setBlockMetadataWithNotify(x, y, z, meta);
 				int max = otherBlock.getLogic().maxGrowth;
 				int topMeta = MathHelper.clamp(meta - growTopMeta, 0, max);
 				world.setBlockMetadataWithNotify(x, y + 1, z, topMeta);
 			}
 		}else if (this.growTopMeta < 0) { //TODO: top shouldn't be ticking, but it's better to handle it
-			world.setBlockMetadata(x, y, z, meta);
+			world.setBlockMetadataWithNotify(x, y, z, meta);
 			Block<?> blockBelow = world.getBlock(x, y - 1, z);
 			if (blockBelow == otherBlock) {
 				int max = otherBlock.getLogic().maxGrowth;
@@ -67,7 +87,7 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
 				world.setBlockMetadataWithNotify(x, y - 1, z, bottomMeta);
 			}
 		} else{
-			world.setBlockMetadata(x, y, z, meta);
+			world.setBlockMetadataWithNotify(x, y, z, meta);
 		}
 	}
 

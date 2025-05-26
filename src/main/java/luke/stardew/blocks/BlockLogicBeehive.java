@@ -24,7 +24,7 @@ public class BlockLogicBeehive extends BlockLogicRotatable {
 		ItemStack stack = player.getHeldItem();
 		if  (stack != null && stack.getItem() == Items.DUST_SUGAR) {
 			player.getHeldItem().consumeItem(player);
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehiveIdle.id(), l);
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE_IDLE.id(), l);
 			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
 			return true;
 		}

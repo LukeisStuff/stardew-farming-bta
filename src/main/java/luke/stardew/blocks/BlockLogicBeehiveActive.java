@@ -34,7 +34,7 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 			case EXPLOSION:
 			case PROPER_TOOL:
 			case SILK_TOUCH:
-				return new ItemStack[]{new ItemStack(StardewBlocks.beehive)};
+				return new ItemStack[]{new ItemStack(StardewBlocks.BEEHIVE)};
 			default:
 				return null;
 		}
@@ -93,7 +93,7 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 		if (world.seasonManager.getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
 			int l = world.getBlockMetadata(x, y, z);
 			if (rand.nextInt(50) == 0) {
-				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehiveHoney.id(), l);
+				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE_HONEY.id(), l);
 			}
 		}
 	}
@@ -102,9 +102,9 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 	public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
 		int l = world.getBlockMetadata(x, y, z);
 		if (this.isActive) {
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.beehive.id(), l);
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE.id(), l);
 			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
-			player.inventory.insertItem(new ItemStack(StardewItems.honey, 1), true);
+			player.inventory.insertItem(new ItemStack(StardewItems.HONEY, 1), true);
 			//FIXME
 			//player.triggerAchievement(StardewAchievements.BEEHIVE);
 			return true;

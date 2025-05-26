@@ -28,6 +28,9 @@
 		"beforeClientStart" : [
 			"luke.stardew.StardewMod"
 		],
+		"afterClientStart" : [
+			"luke.stardew.StardewMod"
+		],
 		"recipesReady": [
 			"luke.stardew.StardewRecipes"
 		],

@@ -2,7 +2,6 @@ package luke.stardew.entities.duck;
 
 import luke.stardew.StardewMod;
 import luke.stardew.items.StardewItems;
-import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicFluid;
 import net.minecraft.core.entity.animal.MobAnimal;
@@ -11,14 +10,14 @@ import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 
-public class EntityDuck extends MobAnimal {
+public class MobDuck extends MobAnimal {
 	public float flap = 0.0F;
 	public float flapSpeed = 0.0F;
 	public float oFlapSpeed;
 	public float oFlap;
 	public float flapping = 1.0F;
 	public int eggTimer;
-	public EntityDuck(World world) {
+	public MobDuck(World world) {
 		super(world);
 		this.textureIdentifier = NamespaceID.getPermanent("stardew", "duck");
 		this.setSize(0.6f, 1.0f);
@@ -93,7 +92,7 @@ public class EntityDuck extends MobAnimal {
 
 		if (this.world != null && !this.world.isClientSide && --this.eggTimer <= 0) {
 			this.world.playSoundAtEntity(null, this, "mob.chickenplop", 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f - 1.0f);
-			this.dropItem(StardewItems.eggDuck.id, 1);
+			this.dropItem(StardewItems.EGG_DUCK.id, 1);
 			this.eggTimer = this.random.nextInt(3000) + 3000;
 		}
 	}

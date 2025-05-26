@@ -62,7 +62,7 @@ public class BlockLogicWaxCandle extends BlockLogic {
 				StardewBlocks.isBlockLogic(world, x, y, z + 1, BlockLogicFluid.class) ||
 				StardewBlocks.isBlockLogic(world, x, y, z - 1, BlockLogicFluid.class);
 			if (!adjacentFluid) {
-				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.candleActive.id(), 0);
+				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CANDLE_ACTIVE.id(), 0);
 				heldItem.damageItem(1, player);
 				world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 				return true;
@@ -70,7 +70,7 @@ public class BlockLogicWaxCandle extends BlockLogic {
 				return false;
 			}
 		} else if (heldItem == null && this.burning) {
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.candle.id(), 0);
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CANDLE.id(), 0);
 			return true;
 		} else {
 			return false;
@@ -103,6 +103,6 @@ public class BlockLogicWaxCandle extends BlockLogic {
 
 	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return new ItemStack[]{new ItemStack(StardewBlocks.candle)};
+		return new ItemStack[]{new ItemStack(StardewBlocks.CANDLE)};
 	}
 }

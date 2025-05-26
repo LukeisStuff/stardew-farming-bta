@@ -54,22 +54,22 @@ public class BlockLogicPlantStake extends BlockLogic {
 		return world.getBlockLogic(x, y, z, BlockLogicFarmland.class) != null;
 	}
 
-	@Override
+	/*@Override
 	public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
-		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.seedsGrapes.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
+		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.SEEDS_GRAPES.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
 			player.getCurrentEquippedItem().consumeItem(player);
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.cropsGrapeBottom.id(), 0);
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CROPS_GRAPE_BOTTOM.id(), 0);
 			player.swingItem();
-			world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.cropsGrapeBottom, EnumBlockSoundEffectType.PLACE);
+			world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.CROPS_GRAPE_BOTTOM, EnumBlockSoundEffectType.PLACE);
 		}
-		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.beansCoffee.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
+		if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.BEANS_COFFE.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
 			player.getCurrentEquippedItem().consumeItem(player);
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.cropsBeansBottom.id(), 0);
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CROPS_BEANS_BOTTOM.id(), 0);
 			player.swingItem();
-			world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.cropsBeansBottom, EnumBlockSoundEffectType.PLACE);
+			world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.CROPS_BEANS_BOTTOM, EnumBlockSoundEffectType.PLACE);
 		}
 		return super.onBlockRightClicked(world, x, y, z, player, side, xHit, yHit);
-	}
+	}*/
 
 	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {

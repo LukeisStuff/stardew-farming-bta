@@ -1,5 +1,6 @@
 package luke.stardew.blocks;
 
+import luke.stardew.misc.Range;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicFarmland;
 import net.minecraft.core.block.BlockLogicFlower;
@@ -10,6 +11,7 @@ import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.item.Items;
 import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
@@ -23,10 +25,12 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 	protected float fertilizedRate;
 	protected int maxGrowth;
 	protected boolean canFertilize;
-	protected Item seedItem;
+	protected Item seedItem = Items.SEEDS_WHEAT;
 	protected Item cropItem;
-	protected int seedMin;
-	protected int seedCount;
+	//protected int seedMin;
+	//protected int seedCount;
+	protected Range seedRange = Range.EMPTY;
+	protected Range cropRange = Range.ONE;
 	protected int resetMeta = -1;
 	protected Block<?> growsInto;
 	protected boolean canHarvest;
@@ -38,23 +42,27 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		this.maxGrowth = 5;
 		this.canFertilize = true;
 		this.canHarvest = true;
-		this.seedMin = 1;
-		this.seedCount = 1;
 		this.setBlockBounds(0, 0.0F, 0, 1, 0.25F, 1);
 	}
 	public BlockLogicCropBase withGrowth(int maxGrowth) {
 		this.maxGrowth = maxGrowth;
 		return this;
 	}
-	public BlockLogicCropBase withSeed(Item seedItem, int seedMin, int seedCount) {
+	public BlockLogicCropBase withSeed(Item seedItem, int seedMin, int seedMax) {
 		this.seedItem = seedItem;
-		this.seedMin = seedMin;
-		this.seedCount = seedCount + 1;
+		this.seedRange = new Range(seedMin, seedMax);
+		return this;
+	}
+
+	public BlockLogicCropBase withCrop(Item cropItem, int seedMin, int seedMax) {
+		this.cropItem = cropItem;
+		this.cropRange = new Range(seedMin, seedMax);
 		return this;
 	}
 
 	public BlockLogicCropBase withCrop(Item cropItem) {
 		this.cropItem = cropItem;
+		this.cropRange = Range.ONE;
 		return this;
 	}
 
@@ -165,21 +173,31 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		return growthRate;
 	}
 
-	@Override
-	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		if (dropCause == EnumDropCause.PICK_BLOCK) {
-			if (this.seedItem != null) return new ItemStack[]{new ItemStack(this.seedItem, 1)};
-			if (this.cropItem != null) return new ItemStack[]{new ItemStack(this.cropItem, 1)}; //Awful
-		}
-
+	public List<ItemStack> getDrops(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
 		List<ItemStack> drops = new ArrayList<>();
+		if (dropCause == EnumDropCause.PICK_BLOCK) {
+			if (this.seedItem != null) {
+				drops.add(new ItemStack(this.seedItem, 1));
+            }else {
+				ItemStack stack = new ItemStack(Items.SEEDS_WHEAT, 1);
+				drops.add(stack);
+				stack.setCustomName("If you somehow got this item, this is a bug [" + this.namespaceId() + "]");
+            }
+            return drops;
+        }
+
 		if (meta < maxGrowth) {
 			if (this.seedItem != null) drops.add(new ItemStack(this.seedItem));
 		}else {
-			if (this.seedItem != null) drops.add(new ItemStack(this.seedItem, world.rand.nextInt(this.seedCount) + this.seedMin));
-			if (this.cropItem != null) drops.add(new ItemStack(this.cropItem));
+			if (this.seedItem != null) drops.add(new ItemStack(this.seedItem, this.seedRange.get(world.rand)));
+			if (this.cropItem != null) drops.add(new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
 		}
-		return drops.toArray(new ItemStack[]{});
+		return drops;
+	}
+
+	@Override
+	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
+		return getDrops(world, dropCause, x, y, z, meta, tileEntity).toArray(new ItemStack[]{});
 	}
 
 	public boolean onBonemealUsed(ItemStack stack, Player player, World world, int x, int y, int z, Side side, double xPlaced, double yPlaced) {
@@ -212,8 +230,8 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 			}
 
 			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);
-			if(this.cropItem != null) world.dropItem(x, y, z, new ItemStack(this.cropItem));
-			if(this.seedItem != null) world.dropItem(x, y, z, new ItemStack(this.seedItem, world.rand.nextInt(this.seedCount) + this.seedMin));
+			if(this.cropItem != null) world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
+			if(this.seedItem != null) world.dropItem(x, y, z, new ItemStack(this.seedItem, this.seedRange.get(world.rand)));
 			return true;
 		}
 		return false;
