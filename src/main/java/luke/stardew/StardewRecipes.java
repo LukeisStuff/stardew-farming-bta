@@ -130,6 +130,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput(MOD_ID + ":item/small_fruits")
 			.addInput(MOD_ID + ":item/small_fruits")
 			.addInput(MOD_ID + ":item/small_fruits")
+			.addInput(MOD_ID + ":item/small_fruits")
 			.create("small_jam", new ItemStack(StardewItems.JAR_JAM, 1));
 
 		RecipeBuilder.Shapeless(MOD_ID)
@@ -212,7 +213,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 
 		RecipeBuilder.Shaped(MOD_ID, "  I", " IS", "I S")
-			.addInput('I', "minecraft:stones")
+			.addInput('I', "minecraft:cobblestones")
 			.addInput('S', Items.STRING)
 			.create("fishingrod_stone", new ItemStack(StardewItems.TOOL_FISHINGROD_STONE, 1));
 

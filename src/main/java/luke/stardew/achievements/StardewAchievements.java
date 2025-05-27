@@ -2,8 +2,6 @@ package luke.stardew.achievements;
 
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
-import net.minecraft.client.gui.achievements.data.AchievementPage;
-import net.minecraft.client.gui.achievements.data.AchievementPages;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.util.collection.NamespaceID;
@@ -20,6 +18,7 @@ public final class StardewAchievements {
 
 	public static final Achievement FRUIT = new Achievement(key("get_fruit"), "stardew.fruit", StardewItems.STRAWBERRY, STARDEW).registerAchievement();
 	public static final Achievement VEGETABLE = new Achievement(key("get_vegetable"), "stardew.vegetable", StardewItems.CARROT, STARDEW).registerAchievement();
+	public static final Achievement EGG = new Achievement(key("get_egg"), "stardew.egg", StardewItems.EGG_DUCK, STARDEW).registerAchievement();
 
 	public static final Achievement APPLE = new Achievement(key("get_apple"), "stardew.apple", Items.FOOD_APPLE, STARDEW).registerAchievement();
 	public static final Achievement GAPPLE = new Achievement(key("get_apple_gold"), "stardew.gapple", Items.FOOD_APPLE_GOLD, APPLE).registerAchievement();

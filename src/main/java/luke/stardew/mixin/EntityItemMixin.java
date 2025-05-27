@@ -81,5 +81,12 @@ public abstract class EntityItemMixin {
 			player.triggerAchievement(StardewAchievements.VEGETABLE);
 			ci.cancel();
 		}
+		if ((this.item.itemID == StardewItems.EGG_DUCK.id
+			|| this.item.itemID == Items.EGG_CHICKEN.id)
+			&& player.getStat(StardewItems.EGG_DUCK.getStat(pickUpKey)) > 0
+			&& player.getStat(Items.EGG_CHICKEN.getStat(pickUpKey)) > 0) {
+			player.triggerAchievement(StardewAchievements.EGG);
+			ci.cancel();
+		}
 	}
 }

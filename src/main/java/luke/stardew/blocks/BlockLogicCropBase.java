@@ -52,9 +52,9 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		return this;
 	}
 
-	public BlockLogicCropBase withCrop(Item cropItem, int seedMin, int seedMax) {
+	public BlockLogicCropBase withCrop(Item cropItem, int cropMin, int cropMax) {
 		this.cropItem = cropItem;
-		this.cropRange = new Range(seedMin, seedMax);
+		this.cropRange = new Range(cropMin, cropMax);
 		return this;
 	}
 

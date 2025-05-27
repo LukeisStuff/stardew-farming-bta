@@ -53,6 +53,7 @@ public class StardewClient implements ClientStartEntrypoint {
 		page.addAchievement(StardewAchievements.STARDEW, 0, 0);
 		page.addAchievement(StardewAchievements.FRUIT, 2, -2);
 		page.addAchievement(StardewAchievements.VEGETABLE, -2, -2);
+		page.addAchievement(StardewAchievements.EGG, 0, -4);
 		page.addAchievement(StardewAchievements.APPLE, -2, 0);
 		page.addAchievement(StardewAchievements.GAPPLE, -4, 1);
 		page.addAchievement(StardewAchievements.BEEHIVE, 2, 0);

@@ -14,8 +14,6 @@ import net.minecraft.core.sound.BlockSounds;
 import net.minecraft.core.world.World;
 import turniplabs.halplibe.helper.BlockBuilder;
 
-import java.util.function.Supplier;
-
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewBlocks {
@@ -318,7 +316,7 @@ public class StardewBlocks {
 			.noHarvest();
 
 		StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_BLUEBERRY)
-			.withCrop(StardewItems.BLUEBERRY)
+			.withCrop(StardewItems.BLUEBERRY, 1, 4)
 			.withSeed(StardewItems.SEEDS_BLUEBERRY, 1, 2)
 			.withGrowth(4)
 			.withResetMeta(2)
@@ -332,7 +330,7 @@ public class StardewBlocks {
 			.notFertilized();
 
 		StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_TOMATO)
-			.withCrop(StardewItems.TOMATO)
+			.withCrop(StardewItems.TOMATO, 1, 2)
 			.withSeed(StardewItems.SEEDS_TOMATO, 1, 1)
 			.withGrowth(5)
 			.withResetMeta(3)
@@ -353,14 +351,14 @@ public class StardewBlocks {
 			.noHarvest();
 
 		StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_STRAWBERRY)
-			.withCrop(StardewItems.STRAWBERRY)
+			.withCrop(StardewItems.STRAWBERRY, 1, 2)
 			.withSeed(StardewItems.SEEDS_STRAWBERRY, 1, 1)
 			.withResetMeta(1)
 			.withGrowth(3)
 			.notFertilized();
 
 		StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_CRANBERRIES)
-			.withCrop(StardewItems.CRANBERRIES)
+			.withCrop(StardewItems.CRANBERRIES, 1, 3)
 			.withSeed(StardewItems.SEEDS_CRANBERRIES, 1, 2)
 			.withGrowth(3)
 			.withResetMeta(2)
@@ -391,13 +389,13 @@ public class StardewBlocks {
 		StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_BOTTOM)
 			.growsTop(CROPS_BEANS_TOP, 4)
 			.withGrowth(6)
-			.withSeed(StardewItems.BEANS_COFFE, 2, 3)
+			.withSeed(StardewItems.BEANS_COFFE, 1, 3)
 			.notFertilized();
 
 		StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_TOP)
 			.asTop(CROPS_BEANS_BOTTOM)
 			.withGrowth(2)
-			.withSeed(StardewItems.BEANS_COFFE, 2, 3)
+			.withSeed(StardewItems.BEANS_COFFE, 1, 3)
 			.notFertilized();
 
 		StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_GRAPE_TOP)
@@ -405,7 +403,7 @@ public class StardewBlocks {
 			.withGrowth(2)
 			.withSeed(StardewItems.SEEDS_GRAPES, 2, 2)
 			.withResetMeta(0)
-			.withCrop(StardewItems.GRAPES)
+			.withCrop(StardewItems.GRAPES, 1, 3)
 			.notFertilized();
 
 		StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_GRAPE_BOTTOM)
@@ -413,7 +411,7 @@ public class StardewBlocks {
 			.withGrowth(5)
 			.withSeed(StardewItems.SEEDS_GRAPES, 2, 2)
 			.withResetMeta(3)
-			.withCrop(StardewItems.GRAPES)
+			.withCrop(StardewItems.GRAPES, 1, 3)
 			.notFertilized();
 	}
 
