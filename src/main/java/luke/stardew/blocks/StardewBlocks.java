@@ -295,7 +295,7 @@ public class StardewBlocks {
 			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
-			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR)
+			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR, BlockTags.PIGS_FAVOURITE_BLOCK)
 			.build("mushroom_truffle", blockID("MUSHROOM_TRUFFLE"), b -> new BlockLogicMushroom(b));
 
 		THATCH = new BlockBuilder(MOD_ID)

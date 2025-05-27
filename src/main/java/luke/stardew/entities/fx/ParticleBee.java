@@ -19,7 +19,7 @@ public class ParticleBee extends Particle {
 		this.rCol = 1;
 		this.gCol = 1;
 		this.bCol = 1;
-		this.size *= 1.0f;
+		this.size *= 1.2f;
 		this.originalScale = this.size;
 		this.lifetime = random.nextInt(20) + 20;
 		this.age = 1;

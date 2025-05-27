@@ -7,8 +7,6 @@
     "BlockAlgaeMixin",
     "BlockMixin",
     "ChunkDecoratorOverworldMixin",
-    "ContainerPlayerMixin",
-    "ContainerWorkbenchMixin",
     "EntityBobberMixin",
     "EntityItemMixin",
     "GuiContainerMixin",
@@ -27,7 +25,7 @@
     "WorldFeatureLabyrinthMixin"
   ],
   "client": [
-    "MinecraftMixin",
+    "MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1

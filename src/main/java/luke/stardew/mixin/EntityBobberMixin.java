@@ -350,7 +350,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 											} else if (owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_IRON.id || owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_STEEL.id) {
 												materialRate = 100;
 											}
-											if (((IEntityBobberMixin)owner.bobberEntity).stardew_farming_bta$hasBait()){
+                                            assert owner.bobberEntity != null;
+                                            if (((IEntityBobberMixin)owner.bobberEntity).stardew_farming_bta$hasBait()){
 												baitRate = 50;
 											}
 
@@ -397,7 +398,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 									return;
 								}
 
-								e = (Entity)var8.next();
+								e = var8.next();
 							} while(!e.isPickable());
 						} while(e == this.owner && this.ticksInAir < 5);
 

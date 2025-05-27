@@ -3,7 +3,6 @@ package luke.stardew.items;
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Blocks;
-import net.minecraft.core.data.tag.Tag;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.item.tag.ItemTags;
@@ -121,7 +120,6 @@ public class StardewItems {
 	public static Item EGG_DUCK;
 
 	public static Item FIBER;
-	public static Tag<Item> IS_FRUIT = Tag.of(MOD_ID + ":is_fruit");
 
 
 
@@ -138,14 +136,12 @@ public class StardewItems {
 			.setStackSize(64)
 			.build(new ItemSeeds("seeds.blueberry", itemKey("seeds_blueberry"), itemID("SEEDS_BLUEBERRY"), StardewBlocks.CROPS_BLUEBERRY));
 		BLUEBERRY = new ItemBuilder(MOD_ID)
-			.addTags(IS_FRUIT)
 			.build(new ItemFruit("food.blueberry", itemKey("blueberry"), itemID("BLUEBERRY"), 1, 8, 16));
 
 		SEEDS_PINEAPPLE = new ItemBuilder(MOD_ID)
 			.setStackSize(64)
 			.build(new ItemSeeds("seeds.pineapple", itemKey("seeds_pineapple"), itemID("SEEDS_PINEAPPLE"), StardewBlocks.CROPS_PINEAPPLE));
 		PINEAPPLE = new ItemBuilder(MOD_ID)
-			.addTags(IS_FRUIT)
 			.build(new ItemFruit("food.pineapple", itemKey("pineapple"), itemID("PINEAPPLE"), 4, 8, 4));
 
 
@@ -166,7 +162,6 @@ public class StardewItems {
 			.setStackSize(64)
 			.build(new ItemSeeds("seeds.strawberry", itemKey("seeds_strawberry"), itemID("SEEDS_STRAWBERRY"), StardewBlocks.CROPS_STRAWBERRY));
 		STRAWBERRY = new ItemBuilder(MOD_ID)
-			.addTags(IS_FRUIT)
 			.build(new ItemFruit("food.strawberry", itemKey("food_strawberry"), itemID("STRAWBERRY"), 2, 8, 8));
 
 		SEEDS_WATERMELON = new ItemBuilder(MOD_ID)
@@ -185,7 +180,6 @@ public class StardewItems {
 			.setStackSize(64)
 			.build(new ItemSeedsStake("seeds.grapes", itemKey("seeds_grapes"), itemID("SEEDS_GRAPES"),  StardewBlocks.CROPS_GRAPE_BOTTOM));
 		GRAPES = new ItemBuilder(MOD_ID)
-			.addTags(IS_FRUIT)
 			.build(new ItemFruit("food.grapes", itemKey("grapes"), itemID("GRAPES"), 1, 8, 16));
 
 
@@ -198,7 +192,6 @@ public class StardewItems {
 			.setStackSize(64)
 			.build(new ItemSeeds("seeds.cranberries", itemKey("seeds_cranberries"), itemID("SEEDS_CRANBERRIES"), StardewBlocks.CROPS_CRANBERRIES));
 		CRANBERRIES = new ItemBuilder(MOD_ID)
-			.addTags(IS_FRUIT)
 			.build(new ItemFruit("food.cranberries", itemKey("cranberries"), itemID("CRANBERRIES"), 1, 8, 16));
 
 
