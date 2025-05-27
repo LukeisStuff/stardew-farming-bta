@@ -9,6 +9,7 @@ import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.crafting.LookupFuelFurnace;
@@ -25,6 +26,9 @@ import turniplabs.halplibe.util.ClientStartEntrypoint;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.ItemInitEntrypoint;
 import turniplabs.halplibe.util.RecipeEntrypoint;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 
 public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientStartEntrypoint, ItemInitEntrypoint, RecipeEntrypoint {
@@ -62,12 +66,18 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 		ParticleHelper.createParticle("bee", (world, x, y, z, xa, ya, za, id) -> new ParticleBee(world, x, y, z, xa, ya, za));
 
 		SoundRepository.registerNamespace(MOD_ID);
+
+		try {
+			TextureRegistry.initializeAllFiles(MOD_ID, TextureRegistry.particleAtlas, false);
+		} catch (URISyntaxException | IOException e) {
+			LOGGER.error("Failed to initialize textures!");
+		}
 	}
 
 	@Override
 	public void afterClientStart() {
 
-	}
+    }
 
 	@Override
 	public void afterItemInit() {
