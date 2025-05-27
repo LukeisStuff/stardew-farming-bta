@@ -19,6 +19,12 @@
       "mob/duck/death1.ogg"
     ]
   },
+  "mob.bee": {
+    "subtitle": "subtitles.mob.bee",
+    "sounds": [
+      "bee/bee.ogg"
+    ]
+  },
   "mob.goat.idle": {
     "subtitle": "subtitles.mob.goat.idle",
     "sounds": [

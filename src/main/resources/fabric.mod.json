@@ -52,7 +52,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.15.5"
+    "fabricloader": ">=0.15.6-beta"
   },
   "suggests": {
   }

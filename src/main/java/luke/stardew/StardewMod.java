@@ -4,6 +4,7 @@ import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.entities.StardewEntities;
 import luke.stardew.entities.duck.MobDuck;
+import luke.stardew.entities.fx.ParticleBee;
 import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
@@ -19,6 +20,7 @@ import net.minecraft.core.item.Items;
 import net.minecraft.core.world.biome.Biome;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import turniplabs.halplibe.helper.ParticleHelper;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.ItemInitEntrypoint;
@@ -57,6 +59,8 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ClientSt
 
 	@Override
 	public void beforeClientStart() {
+		ParticleHelper.createParticle("bee", (world, x, y, z, xa, ya, za, id) -> new ParticleBee(world, x, y, z, xa, ya, za));
+
 		SoundRepository.registerNamespace(MOD_ID);
 	}
 
