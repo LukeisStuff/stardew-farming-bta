@@ -5,24 +5,29 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BlockAlgaeMixin",
+    "BlockMixin",
+    "ChunkDecoratorOverworldMixin",
     "ContainerPlayerMixin",
     "ContainerWorkbenchMixin",
     "EntityBobberMixin",
     "EntityItemMixin",
-    "EntityPlayerMixin",
     "GuiContainerMixin",
     "ItemFishingRodMixin",
     "ItemMixin",
+    "ItemsAccessor",
+    "ItemsMixin",
     "ItemStackMixin",
     "ItemToolHoeMixin",
+    "MinecraftServerMixin",
     "PigDigTruffleMixin",
+    "PlayerMixin",
     "PlayerRendererMixin",
-    "SlotArmorMixin",
     "SlotCraftingMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"
   ],
   "client": [
+    "MinecraftMixin",
   ],
   "injectors": {
     "defaultRequire": 1

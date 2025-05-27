@@ -1,10 +1,7 @@
 package luke.stardew.entities.goat;
 
-import net.minecraft.client.render.entity.LivingRenderer;
-import net.minecraft.client.render.model.ModelBase;
-import net.minecraft.client.render.tessellator.Tessellator;
-
-public class GoatRenderer
+public class GoatRenderer {
+	/*
 	extends LivingRenderer<EntityGoat> {
 	public GoatRenderer(ModelBase modelbase, float f) {
 		super(modelbase, f);
@@ -22,5 +19,5 @@ public class GoatRenderer
 	@Override
 	public void doRender(Tessellator tessellator, EntityGoat entity, double x, double y, double z, float yaw, float partialTick) {
 		this.renderCow(entity, x, y, z, yaw, partialTick);
-	}
+	}*/
 }

@@ -88,8 +88,8 @@ item.stardew.food.cranberries.desc=Bundle of a tart and sour, but slightly sweet
 item.stardew.food.dough.name=Dough
 item.stardew.food.dough.desc=Raw and gooey, great for baking!
 
-item.stardew.egg.cooked.name=Cooked Egg
-item.stardew.egg.cooked.desc=Cooked.
+item.stardew.food.egg.cooked.name=Cooked Egg
+item.stardew.food.egg.cooked.desc=Cooked.
 
 item.stardew.egg.duck.name=Duck Egg
 item.stardew.egg.duck.desc=Egged.
@@ -193,3 +193,5 @@ item.stardew.food.coffee.desc=A delicious brew that gives you a brief boost of s
 
 item.stardew.fiber.name=Fiber
 item.stardew.fiber.desc=A bundle of dry fibers taken from grass plants.
+
+stardew.ingredients=Ingredients

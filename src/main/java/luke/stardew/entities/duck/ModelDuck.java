@@ -4,8 +4,7 @@ import net.minecraft.client.render.model.Cube;
 import net.minecraft.client.render.model.ModelBase;
 import net.minecraft.core.util.helper.MathHelper;
 
-public class ModelDuck
-	extends ModelBase {
+public class ModelDuck extends ModelBase {
 	public Cube head;
 	public Cube neck;
 	public Cube body;
@@ -68,7 +67,7 @@ public class ModelDuck
 
 	@Override
 	public void render(float limbSwing, float limbYaw, float limbPitch, float headYaw, float headPitch, float scale) {
-		this.setRotationAngles(limbSwing, limbYaw, limbPitch, headYaw, headPitch, scale);
+		this.setupAnimation(limbSwing, limbYaw, limbPitch, headYaw, headPitch, scale);
 		this.head.render(scale);
 		this.neck.render(scale);
 		this.bill.render(scale);
@@ -81,15 +80,15 @@ public class ModelDuck
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbYaw, float limbPitch, float headYaw, float headPitch, float scale) {
-		this.head.rotateAngleX = headPitch / 57.29578f;
-		this.head.rotateAngleY = headYaw / 57.29578f;
-		this.bill.rotateAngleX = this.head.rotateAngleX;
-		this.bill.rotateAngleY = this.head.rotateAngleY;
-		this.body.rotateAngleX = 1.570796f;
-		this.rightLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbYaw;
-		this.leftLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + 3.141593f) * 1.4f * limbYaw;
-		this.rightWing.rotateAngleZ = limbPitch;
-		this.leftWing.rotateAngleZ = -limbPitch;
+	public void setupAnimation(float limbSwing, float limbYaw, float limbPitch, float headYaw, float headPitch, float scale) {
+		this.head.xRot = headPitch / 57.29578f;
+		this.head.yRot = headYaw / 57.29578f;
+		this.bill.xRot = this.head.xRot;
+		this.bill.yRot = this.head.yRot;
+		this.body.xRot = 1.570796f;
+		this.rightLeg.xRot = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbYaw;
+		this.leftLeg.xRot = MathHelper.cos(limbSwing * 0.6662f + 3.141593f) * 1.4f * limbYaw;
+		this.rightWing.zRot = limbPitch;
+		this.leftWing.zRot = -limbPitch;
 	}
 }

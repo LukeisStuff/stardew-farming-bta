@@ -1,26 +1,31 @@
 package luke.stardew.items.models;
 
+import net.minecraft.client.render.item.model.ItemModel;
 import net.minecraft.client.render.item.model.ItemModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.entity.Entity;
-import net.minecraft.core.entity.player.EntityPlayer;
+import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.util.collection.NamespaceID;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class ItemModelTieredFishingRod extends ItemModelStandard {
-	protected IconCoordinate rodCast;
+public class ItemModelTieredFishingRod extends ItemModelExtended {
+	public ItemModelTieredFishingRod(Item item) {
+		super(item);
+	}
 
-	public ItemModelTieredFishingRod(Item item, String namespace, String type) {
-		super(item, namespace);
-		rodCast = TextureRegistry.getTexture(MOD_ID + ":item/fishingrod_" + type + "_cast");
+	public void initCastTexture() {
+		//NamespaceID id = this.icon.namespaceId;
+		//For some reason icons omit the atlas
+		//rodCast = TextureRegistry.getTexture(id.namespace() + ":item/" + id.value() + "_cast");
 	}
 
 	public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
-		return entity instanceof EntityPlayer && itemStack == ((EntityPlayer)entity).getHeldItem() && ((EntityPlayer)entity).bobberEntity != null ? this.rodCast : super.getIcon(entity, itemStack);
+		return entity instanceof Player && itemStack == ((Player)entity).getHeldItem() && ((Player)entity).bobberEntity != null ? this.getIcon(0) : super.getIcon(entity, itemStack);
 	}
 }

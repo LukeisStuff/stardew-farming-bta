@@ -26,7 +26,10 @@
 			"luke.stardew.StardewMod"
 		],
 		"beforeClientStart" : [
-			"luke.stardew.StardewMod"
+			"luke.stardew.StardewClient"
+		],
+		"afterClientStart" : [
+			"luke.stardew.StardewClient"
 		],
 		"recipesReady": [
 			"luke.stardew.StardewRecipes"
@@ -34,8 +37,14 @@
 		"afterGameStart" : [
 			"luke.stardew.StardewMod"
 		],
+		"initModels" : [
+			"luke.stardew.blocks.model.StardewModels"
+		],
 		"terrain-api": [
 			"luke.stardew.TerrainApiPlugin"
+		],
+		"afterItemInit" : [
+			"luke.stardew.StardewMod"
 		]
 	},
   "mixins": [
@@ -43,7 +52,7 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.15.5"
+    "fabricloader": ">=0.15.6-beta"
   },
   "suggests": {
   }

@@ -2,15 +2,17 @@ package luke.stardew.mixin;
 
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.entity.animal.EntityAnimal;
-import net.minecraft.core.entity.animal.EntityPig;
+import net.minecraft.core.block.Blocks;
+import net.minecraft.core.entity.animal.MobAnimal;
+import net.minecraft.core.entity.animal.MobPig;
+import net.minecraft.core.enums.EnumBlockSoundEffectType;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 
-@Mixin(value = EntityPig.class, remap = false)
-public class PigDigTruffleMixin extends EntityAnimal {
+@Mixin(value = MobPig.class, remap = false)
+public abstract class PigDigTruffleMixin extends MobAnimal {
 	@Unique
 	public int timeUntilNextTruffle = this.random.nextInt(3000) + 3000;
 	public PigDigTruffleMixin(World world) {
@@ -24,16 +26,16 @@ public class PigDigTruffleMixin extends EntityAnimal {
 		int blockY;
 		int blockX;
 		super.onLivingUpdate();
-		blockX = MathHelper.floor_double(this.x);
-		blockY = MathHelper.floor_double(this.y);
-		blockZ = MathHelper.floor_double(this.z);
+		blockX = MathHelper.floor(this.x);
+		blockY = MathHelper.floor(this.y);
+		blockZ = MathHelper.floor(this.z);
 		blockBelow = this.world.getBlock(blockX, blockY - 1, blockZ);
-		if (!(blockBelow != Block.grass && blockBelow != Block.grassRetro && blockBelow != Block.dirt && blockBelow != Block.mud && blockBelow != Block.farmlandDirt || this.world.isClientSide)) {
+		if (!(blockBelow != Blocks.GRASS && blockBelow != Blocks.GRASS_RETRO && blockBelow != Blocks.DIRT && blockBelow != Blocks.MUD && blockBelow != Blocks.FARMLAND_DIRT || this.world.isClientSide)) {
 			if (--this.timeUntilNextTruffle <= 0) {
-				this.world.playSoundEffect(null, 2001, (int)this.x, (int)this.y - 1, (int)this.z, this.world.getBlockId((int)this.x, (int)this.y - 1, (int)this.z));
-				this.spawnAtLocation(StardewBlocks.mushroomTruffle.id, world.rand.nextInt(2) + 1);
+				this.world.playBlockSoundEffect(null, (int)this.x, (int)this.y - 1, (int)this.z, this.world.getBlock((int)this.x, (int)this.y - 1, (int)this.z), EnumBlockSoundEffectType.MINE);
+				this.dropItem(StardewBlocks.MUSHROOM_TRUFFLE.id(), world.rand.nextInt(2) + 1);
 				this.isMovementBlocked();
-				this.world.setBlockWithNotify(blockX, blockY - 1, blockZ, Block.dirt.id);
+				this.world.setBlockWithNotify(blockX, blockY - 1, blockZ, Blocks.DIRT.id());
 				this.timeUntilNextTruffle = this.random.nextInt(3000) + 3000;
 			}
 		}

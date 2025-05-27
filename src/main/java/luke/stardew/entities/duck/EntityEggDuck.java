@@ -1,26 +1,25 @@
 package luke.stardew.entities.duck;
 
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.HitResult;
-import net.minecraft.core.entity.EntityLiving;
-import net.minecraft.core.entity.projectile.EntityProjectile;
+import net.minecraft.core.entity.player.Player;
+import net.minecraft.core.entity.projectile.Projectile;
+import net.minecraft.core.util.phys.HitResult;
 import net.minecraft.core.world.World;
 
-public class EntityEggDuck
-	extends EntityProjectile {
+public class EntityEggDuck extends Projectile {
 	public EntityEggDuck(World world) {
 		super(world);
-		this.modelItem = StardewItems.eggDuck;
+		this.modelItem = StardewItems.EGG_DUCK;
 	}
 
-	public EntityEggDuck(World world, EntityLiving entityliving) {
-		super(world, entityliving);
-		this.modelItem = StardewItems.eggDuck;
+	public EntityEggDuck(World world, Player player) {
+		super(world, player);
+		this.modelItem = StardewItems.EGG_DUCK;
 	}
 
 	public EntityEggDuck(World world, double d, double d1, double d2) {
 		super(world, d, d1, d2);
-		this.modelItem = StardewItems.eggDuck;
+		this.modelItem = StardewItems.EGG_DUCK;
 	}
 
 	@Override
@@ -31,7 +30,7 @@ public class EntityEggDuck
 				byte0 = 2;
 			}
 			for (int k = 0; k < byte0; ++k) {
-				EntityDuck entityduck = new EntityDuck(this.world);
+				MobDuck entityduck = new MobDuck(this.world);
 				entityduck.moveTo(this.x, this.y, this.z, this.yRot, 0.0f);
 				this.world.entityJoinedWorld(entityduck);
 			}

@@ -3,30 +3,25 @@ package luke.stardew.blocks.model;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
-import net.minecraft.client.render.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class BlockModelBush<T extends Block> extends BlockModelStandard<T> {
-	public final IconCoordinate[] growthStageTextures = new IconCoordinate[]{
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_spring"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_summer"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_fall"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_winter"),
-		TextureRegistry.getTexture(MOD_ID + ":block/bush_dead")
-	};
-
-	public BlockModelBush(Block block) {
+public class BlockModelBush<T extends BlockLogic> extends BlockModelStandard<T> {
+	// 0 spring > 1 summer > 2 fall > 3 winter > 4 dead
+	public BlockModelBush(Block<T> block) {
 		super(block);
 	}
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
+		//FIXME
+		//this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
 		float brightness = 1.0F;
 		if (!LightmapHelper.isLightmapEnabled()) {
 			brightness = this.getBlockBrightness(renderBlocks.blockAccess, x, y, z);
@@ -78,6 +73,6 @@ public class BlockModelBush<T extends Block> extends BlockModelStandard<T> {
 	}
 
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
-		return this.growthStageTextures[MathHelper.clamp(data, 0, 4)];
+		return this.blockTextures.get(MathHelper.clamp(data, 0, 4));
 	}
 }

@@ -1,14 +1,16 @@
 package luke.stardew.mixin;
 
-import com.mojang.nbt.CompoundTag;
+import com.mojang.nbt.tags.CompoundTag;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.lang.I18n;
 import net.minecraft.core.net.command.TextFormatting;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Redirect;
+import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemStack.class, remap = false)
 public abstract class ItemStackMixin {
@@ -20,21 +22,23 @@ public abstract class ItemStackMixin {
 
 	//TODO BlockFruit, not just ItemFruit
 
-	@Redirect(method = "getItemDescription", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/Item;getTranslatedDescription(Lnet/minecraft/core/item/ItemStack;)Ljava/lang/String;"))
-	private String addSpecialJarJamDesc(Item instance, ItemStack itemstack){
-		if (itemID == StardewItems.jarJam.id && tag.containsKey("itemIds")){
-			String[] str = tag.getString("itemIds").split("#");
+	@Inject(method = "getItemDescription", at = @At(value = "HEAD"), cancellable = true)
+	private void addSpecialJarJamDesc(CallbackInfoReturnable<String> cir){
+		if (itemID == StardewItems.JAR_JAM.id && tag.containsKey("itemIds")){
+			I18n i18n = I18n.getInstance();
+
 			StringBuilder strFinal = new StringBuilder();
-			strFinal.append("Ingredients: ");
-			for (String string : str){
-				Item item = Item.itemsList[Integer.parseInt(string)];
-				strFinal.append(item.getTranslatedName(new ItemStack(item))).append(", ");
+			strFinal.append(i18n.translateKey("stardew.ingredients")).append(": ");
+
+			String[] strings = tag.getString("itemIds").split(", ");
+			for (String string : strings) {
+				strFinal.append(i18n.translateNameKey(string)).append(", ");
 			}
-			strFinal.delete(strFinal.length() - 2, strFinal.length());
-			strFinal.append("\n").append("\n").append(TextFormatting.LIGHT_GRAY).append(Item.itemsList[itemID].getTranslatedDescription(itemstack));
-			return strFinal.toString();
-		}else {
-			return Item.itemsList[itemID].getTranslatedDescription(itemstack);
+
+			String ingredients = strFinal.delete(strFinal.length() - 2, strFinal.length()).append("\n\n").toString();
+			String desc = TextFormatting.formatted(Item.itemsList[this.itemID].getTranslatedDescription((ItemStack) (Object) this), TextFormatting.LIGHT_GRAY);
+
+			cir.setReturnValue(ingredients + desc);
 		}
 	}
 }

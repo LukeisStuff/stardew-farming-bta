@@ -5,8 +5,8 @@ import net.minecraft.core.item.ItemFood;
 
 public class ItemFruit extends ItemFood {
 	public FruitSize size;
-	public ItemFruit(String name, int id, int healAmount, int ticksPerHeal, FruitSize size, int maxStackSize) {
-		super(name, id, healAmount, ticksPerHeal, false, maxStackSize);
+	public ItemFruit(String name, String namespaceID, int id, int healAmount, int ticksPerHeal, FruitSize size, int maxStackSize) {
+		super(name, namespaceID, id, healAmount, ticksPerHeal, false, maxStackSize);
 		this.size = size;
 	}
 }

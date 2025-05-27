@@ -1,21 +1,20 @@
 package luke.stardew.blocks.model;
 
-import luke.stardew.blocks.BlockWaxCandle;
+import luke.stardew.blocks.BlockLogicWaxCandle;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.Side;
 
-public class BlockModelWaxCandle<T extends BlockWaxCandle> extends BlockModelStandard<T> {
-	public BlockModelWaxCandle(Block block) {
+public class BlockModelWaxCandle<T extends BlockLogicWaxCandle> extends BlockModelStandard<T> {
+	public BlockModelWaxCandle(Block<T> block) {
 		super(block);
 	}
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		this.block.setBlockBoundsBasedOnState(renderBlocks.blockAccess, x, y, z);
-
 		float minX = (float)x + 0.5F - 0.09375F;
 		float minY = (float)y + 0.0F;
 		float minZ = (float)z + 0.5F - 0.09375F;
@@ -28,7 +27,7 @@ public class BlockModelWaxCandle<T extends BlockWaxCandle> extends BlockModelSta
 			tessellator.setLightmapCoord(this.block.getLightmapCoord(renderBlocks.blockAccess, x, y, z));
 		} else {
 			brightness = this.getBlockBrightness(renderBlocks.blockAccess, x, y, z);
-			if (Block.lightEmission[this.block.id] > 0) {
+			if (Blocks.lightBlock[block.id()] > 0) {
 				brightness = 1.0F;
 			}
 		}
