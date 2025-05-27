@@ -6,11 +6,13 @@ import net.minecraft.core.item.Item;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.WorldSource;
 
+import java.util.function.Supplier;
+
 public class BlockLogicEdibleCustom extends BlockLogicEdible {
 	private float height;
 
-	public BlockLogicEdibleCustom(Block<?> block, float height, Item dropItem) {
-		super(block, 6, 3, () -> dropItem);
+	public BlockLogicEdibleCustom(Block<?> block, float height, Supplier<Item> dropItemSupplier) {
+		super(block, 6, 3, dropItemSupplier);
 		this.height = height;
 	}
 

@@ -223,9 +223,6 @@ public class StardewBlocks {
 			.build("crops_cauliflower", blockID("CROPS_CAULIFLOWER"), (b) -> new BlockLogicCropGrowing(b));
 
 		CROPS_CRANBERRIES = crops.build("crops_cranberries", blockID("CROPS_CRANBERRIES"), (b) -> new BlockLogicCropBase(b));
-		/*cropsCranberries = crops
-			.setBlockModel(BlockModelCropsCranberry::new)
-			.build(new BlockCropsCranberries("crops.cranberries", blockID("cropsCranberries")));*/
 
 		BUSH = crops
 			.setTags(BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
@@ -259,7 +256,7 @@ public class StardewBlocks {
 			.setHardness(0.5f)
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("cake_chocolate", blockID("CAKE_CHOCOLATE"), b -> new BlockLogicEdibleCustom(b, 0.5f, StardewItems.FOOD_CAKE_CHOCOLATE));
+			.build("cake_chocolate", blockID("CAKE_CHOCOLATE"), b -> new BlockLogicEdibleCustom(b, 0.5f, () -> StardewItems.FOOD_CAKE_CHOCOLATE));
 
 		BEEHIVE = wood.build("beehive", blockID("BEEHIVE"), BlockLogicBeehive::new);
 
@@ -268,12 +265,9 @@ public class StardewBlocks {
 			.setHardness(0.5f)
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 0.25F, StardewItems.FOOD_PIZZA));
+			.build("pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 0.25F, () -> StardewItems.FOOD_PIZZA));
 
 		CANDLE = new BlockBuilder(MOD_ID)
-			//.setBlockModel(BlockModelWaxCandle::new)
-			//.setTextures(MOD_ID + ":block/candle")
-			//.setIcon(MOD_ID + ":block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
@@ -282,9 +276,6 @@ public class StardewBlocks {
 			.build("candle", blockID("CANDLE"), b -> new BlockLogicWaxCandle(b, false));
 
 		CANDLE_ACTIVE = new BlockBuilder(MOD_ID)
-			//.setBlockModel(BlockModelWaxCandle::new)
-			//.setTextures(MOD_ID + ":block/candle")
-			//.setIcon(MOD_ID + ":block/candle_item")
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
@@ -295,8 +286,6 @@ public class StardewBlocks {
 			.build("candle_active", blockID("CANDLE_ACTIVE"), b -> new BlockLogicWaxCandle(b, true));
 
 		PLANT_STAKE = new BlockBuilder(MOD_ID)
-			//.setBlockModel(BlockModelPlantStake::new)
-			//.setTextures(MOD_ID + ":block/plantStake")
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setBlockSound(new BlockSound("step.gravel", "step.wood", 1.0f, 1.0f))

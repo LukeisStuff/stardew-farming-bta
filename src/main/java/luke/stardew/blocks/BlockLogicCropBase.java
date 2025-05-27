@@ -27,8 +27,6 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 	protected boolean canFertilize;
 	protected Item seedItem = Items.SEEDS_WHEAT;
 	protected Item cropItem;
-	//protected int seedMin;
-	//protected int seedCount;
 	protected Range seedRange = Range.EMPTY;
 	protected Range cropRange = Range.ONE;
 	protected int resetMeta = -1;
