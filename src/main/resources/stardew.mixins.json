@@ -11,7 +11,6 @@
     "ContainerWorkbenchMixin",
     "EntityBobberMixin",
     "EntityItemMixin",
-    "EntityPlayerMixin",
     "GuiContainerMixin",
     "ItemFishingRodMixin",
     "ItemMixin",
@@ -21,13 +20,14 @@
     "ItemToolHoeMixin",
     "MinecraftServerMixin",
     "PigDigTruffleMixin",
+    "PlayerMixin",
     "PlayerRendererMixin",
     "SlotCraftingMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"
   ],
   "client": [
-    "MinecraftMixin"
+    "MinecraftMixin",
   ],
   "injectors": {
     "defaultRequire": 1

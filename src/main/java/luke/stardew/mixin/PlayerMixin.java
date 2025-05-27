@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Mixin(value = Player.class, remap = false)
-public abstract class EntityPlayerMixin extends Mob implements IPlayerEffects {
+public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 
 	@Shadow
 	public abstract void addStat(Stat statbase, int i);
@@ -26,10 +26,13 @@ public abstract class EntityPlayerMixin extends Mob implements IPlayerEffects {
 	@Shadow
 	protected float baseSpeed;
 
+	@Shadow
+	public abstract void triggerAchievement(Stat statbase);
+
 	@Unique
 	private Map<PlayerEffect, Integer> currentEffects = new HashMap<>();
 
-	public EntityPlayerMixin(World world) {
+	public PlayerMixin(World world) {
 		super(world);
 	}
 
@@ -48,9 +51,9 @@ public abstract class EntityPlayerMixin extends Mob implements IPlayerEffects {
 		}
 	}
 
-	@Inject(method = "tick", at = @At(value = "HEAD"))
-	public void tick(CallbackInfo ci) {
-		this.addStat(StardewAchievements.STARDEW, 1);
+	@Inject(method = "tick", at = @At("HEAD"))
+	public void addStardew(CallbackInfo ci) {
+		this.triggerAchievement(StardewAchievements.STARDEW);
 	}
 
 	@Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/Player;speed:F", shift = At.Shift.AFTER))
