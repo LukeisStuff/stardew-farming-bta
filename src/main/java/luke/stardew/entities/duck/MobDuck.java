@@ -97,6 +97,9 @@ public class MobDuck extends MobAnimal {
 		}
 	}
 
+	protected void causeFallDamage(float distance) {
+	}
+
 	@Override
 	public int getAmbientSoundInterval() {
 		return 60;
