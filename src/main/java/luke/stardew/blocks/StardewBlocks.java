@@ -179,7 +179,7 @@ public class StardewBlocks {
 
 		WATERMELON = blocks
 			.build("watermelon", blockID("WATERMELON"), b -> new BlockLogic(b, Material.vegetable));
-		CROPS_WATERMELON = crops.build("crops_watermelon", blockID("CROPS_WATERMELON"), (b) -> new BlockLogicCropGrowing(b)); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
+		CROPS_WATERMELON = cropsBlock.build("crops_watermelon", blockID("CROPS_WATERMELON"), (b) -> new BlockLogicCropsWatermelon(b)); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
 
 		//Fall Crops
 		CROPS_CORN_BOTTOM = crops
@@ -216,9 +216,9 @@ public class StardewBlocks {
 		//Winter Crops
 		CAULIFLOWER = blocks
 			.build("cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogic(b, Material.vegetable));
-		CROPS_CAULIFLOWER = crops
+		CROPS_CAULIFLOWER = cropsBlock
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
-			.build("crops_cauliflower", blockID("CROPS_CAULIFLOWER"), (b) -> new BlockLogicCropGrowing(b));
+			.build("crops_cauliflower", blockID("CROPS_CAULIFLOWER"), (b) -> new BlockLogicCropsCauliflower(b));
 
 		CROPS_CRANBERRIES = crops.build("crops_cranberries", blockID("CROPS_CRANBERRIES"), (b) -> new BlockLogicCropBase(b));
 
@@ -343,7 +343,7 @@ public class StardewBlocks {
 			.notFertilized()
 			.noHarvest();
 
-		StardewBlocks.<BlockLogicCropGrowing>getLogicAs(CROPS_CAULIFLOWER)
+		StardewBlocks.<BlockLogicCropsCauliflower>getLogicAs(CROPS_CAULIFLOWER)
 			.withSeed(StardewItems.SEEDS_CAULIFLOWER, 0, 0)
 			.withGrowth(4)
 			.growsInto(CAULIFLOWER)
@@ -364,7 +364,7 @@ public class StardewBlocks {
 			.withResetMeta(2)
 			.notFertilized();
 
-		StardewBlocks.<BlockLogicCropGrowing>getLogicAs(CROPS_WATERMELON)
+		StardewBlocks.<BlockLogicCropsWatermelon>getLogicAs(CROPS_WATERMELON)
 			.withSeed(StardewItems.SEEDS_WATERMELON, 0, 0)
 			.withGrowth(4)
 			.growsInto(WATERMELON)

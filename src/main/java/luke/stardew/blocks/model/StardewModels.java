@@ -32,80 +32,6 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewModels implements ModelEntrypoint {
 
-	/*public static void createItemModel(Path path) {
-		String name = path.getFileName().toString().replace(".png", "");
-		Item item = Item.itemsMap.get(NamespaceID.getPermanent(StardewMod.MOD_ID, "item/" + name));
-		if (itemModelDispatcher.hasDispatch(item)) return;
-
-		if (item != null) {
-			setStandardItemModel(item, (i, s) -> {
-				ItemModelStandard model = new ItemModelStandard(i, s);
-				return model;
-			});
-		}else {
-			StardewMod.LOGGER.error("Missing for " + name);
-		}
-	}
-
-	public static void loadItemModelsFromTexture() {
-		//Despite the warning, ModContainer should always be present when this is called
-		ModContainer modContainer = FabricLoader.getInstance().getModContainer(StardewMod.MOD_ID).get();
-		Optional<Path> optionalPath = modContainer.findPath("assets/stardew/textures/item/");
-
-		if (optionalPath.isPresent()) {
-			Path path = optionalPath.get();
-			try (Stream<Path> pathStream = Files.list(path)) {
-				pathStream.forEach(StardewModels::createItemModel);
-			}catch (IOException e) {
-                StardewMod.LOGGER.error("Failed to initialize models");
-            }
-        }
-	}
-
-	public static void createBlockModel(Path path) {
-		if (Files.isDirectory(path)) return;
-
-		String name = path.getFileName().toString().replace(".png", "");
-		int lastIndex = name.lastIndexOf("_");
-		if (lastIndex < 0) return;
-		String blockName = name.substring(0, lastIndex);
-
-		Block<?> block = Blocks.blockMap.get(NamespaceID.getPermanent(StardewMod.MOD_ID, "block/" + blockName));
-
-		if (block != null) {
-			BlockModel<?> model;
-			if ((model = BlockModelDispatcher.getInstance().getDispatch(block)) != null) {
-				if (model instanceof BlockModelCrops && block.getLogic() instanceof BlockLogicCropBase) {
-					((BlockModelCrops<?>)model).addIcon(StardewMod.MOD_ID + ":block/" + name);
-				}
-
-			}else {
-				if (block.getLogic() instanceof BlockLogicCropBase) {
-					BlockModelCrops<?> newModel = new BlockModelCrops<>(block);
-					ModelHelper.setBlockModel(block, () -> newModel);
-					newModel.addIcon(StardewMod.MOD_ID + ":block/" + name);
-				}
-			}
-		}else {
-			StardewMod.LOGGER.error("Missing for " + name);
-		}
-	}*/
-
-	/*public static void loadBlockModelsFromTexture() {
-		//Despite the warning, ModContainer should always be present when this is called
-		ModContainer modContainer = FabricLoader.getInstance().getModContainer(StardewMod.MOD_ID).get();
-		Optional<Path> optionalPath = modContainer.findPath("assets/stardew/textures/block/");
-
-		if (optionalPath.isPresent()) {
-			Path path = optionalPath.get();
-			try (Stream<Path> pathStream = Files.list(path)) {
-				pathStream.forEach(StardewModels::createBlockModel);
-			}catch (IOException e) {
-				StardewMod.LOGGER.error("Failed to initialize models");
-			}
-		}
-	}*/
-
 	@Override
 	public void initBlockModels(BlockModelDispatcher dispatcher) {
 		BlockModelBuilder edibleModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
@@ -236,16 +162,16 @@ public class StardewModels implements ModelEntrypoint {
 			BlockModelCropsGrowing<?> model = new BlockModelCropsGrowing<>(StardewBlocks.CROPS_CAULIFLOWER);
 			model.setLeafTexture(StardewMod.MOD_ID + ":block/cauliflower_crop_leaf");
 			model.setTopTextures(
-				MOD_ID + ":block/cauliflower_crop_1",
-				MOD_ID + ":block/cauliflower_crop_2",
+				MOD_ID + ":block/cauliflower_crop_4",
 				MOD_ID + ":block/cauliflower_crop_3",
-				MOD_ID + ":block/cauliflower_crop_4"
+				MOD_ID + ":block/cauliflower_crop_2",
+				MOD_ID + ":block/cauliflower_crop_1"
 			);
 			model.setSideTextures(
-				MOD_ID + ":block/cauliflower_crop_side_1",
-				MOD_ID + ":block/cauliflower_crop_side_2",
+				MOD_ID + ":block/cauliflower_crop_side_4",
 				MOD_ID + ":block/cauliflower_crop_side_3",
-				MOD_ID + ":block/cauliflower_crop_side_4"
+				MOD_ID + ":block/cauliflower_crop_side_2",
+				MOD_ID + ":block/cauliflower_crop_side_1"
 			);
 			return model;
 		});
@@ -254,16 +180,16 @@ public class StardewModels implements ModelEntrypoint {
 			BlockModelCropsGrowing<?> model = new BlockModelCropsGrowing<>(StardewBlocks.CROPS_WATERMELON);
 			model.setLeafTexture(StardewMod.MOD_ID + ":block/watermelon_crop_leaf");
 			model.setTopTextures(
-				MOD_ID + ":block/watermelon_crop_1",
-				MOD_ID + ":block/watermelon_crop_2",
+				MOD_ID + ":block/watermelon_crop_4",
 				MOD_ID + ":block/watermelon_crop_3",
-				MOD_ID + ":block/watermelon_crop_4"
+				MOD_ID + ":block/watermelon_crop_2",
+				MOD_ID + ":block/watermelon_crop_1"
 			);
 			model.setSideTextures(
-				MOD_ID + ":block/watermelon_crop_side_1",
-				MOD_ID + ":block/watermelon_crop_side_2",
+				MOD_ID + ":block/watermelon_crop_side_4",
 				MOD_ID + ":block/watermelon_crop_side_3",
-				MOD_ID + ":block/watermelon_crop_side_4"
+				MOD_ID + ":block/watermelon_crop_side_2",
+				MOD_ID + ":block/watermelon_crop_side_1"
 			);
 			return model;
 		});
