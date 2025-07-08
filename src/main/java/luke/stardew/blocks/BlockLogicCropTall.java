@@ -12,8 +12,8 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
 public class BlockLogicCropTall extends BlockLogicCropBase {
-	protected int growTopMeta = -1; //Block is considered top if -1
-	protected Block<? extends BlockLogicCropTall> otherBlock;
+	public int growTopMeta = -1; //Block is considered top if -1
+	public Block<? extends BlockLogicCropTall> otherBlock;
 
 	public BlockLogicCropTall(Block<?> block) {
 		super(block);
@@ -36,7 +36,7 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
 	}
 
 	@Override
-	protected boolean mayPlaceOn(int blockId) {
+	public boolean mayPlaceOn(int blockId) {
 		return this.growTopMeta < 0 || super.mayPlaceOn(blockId);
 	}
 

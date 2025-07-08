@@ -8,12 +8,12 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 public abstract class ModelBuilder<O, M, B> {
-    protected final String modID;
-    private final Dispatcher<O, M> dispatcher;
-    protected Function<O, M> modelSupplier;
-	protected Consumer<M> modelConsumer;
+    public final String modID;
+    public final Dispatcher<O, M> dispatcher;
+    public Function<O, M> modelSupplier;
+	public Consumer<M> modelConsumer;
 
-    protected ModelBuilder(String modID, Dispatcher<O, M> dispatcher) {
+    public ModelBuilder(String modID, Dispatcher<O, M> dispatcher) {
         this.dispatcher = dispatcher;
         this.modID = modID;
     }
@@ -40,7 +40,7 @@ public abstract class ModelBuilder<O, M, B> {
 		return (B) this;
 	}
 
-    protected abstract void onBuild(O block, M model, String namespaceValue);
+    public abstract void onBuild(O block, M model, String namespaceValue);
 
 	public void build(O target, String key) {
 		M model = this.modelSupplier.apply(target);

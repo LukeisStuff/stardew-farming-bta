@@ -91,7 +91,7 @@ public class StardewModels implements ModelEntrypoint {
 
 		BlockModelBuilder candleModelBuilder = ModelBuilder.block(MOD_ID, dispatcher)
 			.withMapping("%s")
-			.buildsModel(b ->new BlockModelWaxCandle<>((Block<BlockLogicWaxCandle>) b));
+			.buildsModel(b -> new BlockModelWaxCandle<>((Block<BlockLogicWaxCandle>) b));
 
 		edibleModelBuilder.build(StardewBlocks.CAKE_CHOCOLATE, "choko_cake");
 		edibleModelBuilder.build(StardewBlocks.PIZZA);

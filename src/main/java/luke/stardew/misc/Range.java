@@ -5,7 +5,7 @@ import java.util.Random;
 public class Range {
 	public static final Range EMPTY = new Range(0, 0);
 	public static final Range ONE = new Range(1, 0);
-	private final int min, max;
+	public final int min, max;
 
 	public Range(int min, int max) {
 		this.min = min;

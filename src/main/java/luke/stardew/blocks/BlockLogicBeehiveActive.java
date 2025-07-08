@@ -18,7 +18,7 @@ import net.minecraft.core.world.season.Seasons;
 import java.util.Random;
 
 public class BlockLogicBeehiveActive extends BlockLogicRotatable {
-	protected final boolean isActive;
+	public final boolean isActive;
 
 	public BlockLogicBeehiveActive(Block<?> block, boolean flag) {
 		super(block, Material.wood);

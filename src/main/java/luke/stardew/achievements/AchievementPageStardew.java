@@ -15,8 +15,8 @@ import java.util.Objects;
 import java.util.Random;
 
 public class AchievementPageStardew extends AchievementPage {
-	private final String name;
-	private final ItemStack icon;
+	public final String name;
+	public final ItemStack icon;
 
 	public AchievementPageStardew(String name, ItemStack icon) {
 		this.name = name;

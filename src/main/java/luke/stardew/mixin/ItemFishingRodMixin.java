@@ -21,7 +21,7 @@ public abstract class ItemFishingRodMixin extends Item {
 	}
 
 	@Inject(method = "onUseItem", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/entity/player/Player;swingItem()V"))
-	private void addBaitFunctions(ItemStack itemstack, World world, Player player, CallbackInfoReturnable<ItemStack> cir){
+	public void addBaitFunctions(ItemStack itemstack, World world, Player player, CallbackInfoReturnable<ItemStack> cir){
 		if (player.bobberEntity != null){
 			ItemStack canSlot = player.inventory.armorItemInSlot(1);
 			if (canSlot != null && ((canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id && canSlot.getMetadata() < canSlot.getMaxDamage()) || canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN.id)) {

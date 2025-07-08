@@ -38,17 +38,17 @@ public class MobGoat extends MobAnimal {
 	}
 
 	@Override
-	protected String getHurtSound() {
+	public String getHurtSound() {
 		return StardewMod.MOD_ID +  ":mob.goat.death";
 	}
 
 	@Override
-	protected String getDeathSound() {
+	public String getDeathSound() {
 		return StardewMod.MOD_ID +  ":mob.goat.death";
 	}
 
 	@Override
-	protected float getSoundVolume() {
+	public float getSoundVolume() {
 		return 0.6f;
 	}
 

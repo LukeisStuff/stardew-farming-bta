@@ -30,7 +30,7 @@ public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 	public abstract void triggerAchievement(Stat statbase);
 
 	@Unique
-	private Map<PlayerEffect, Integer> currentEffects = new HashMap<>();
+	public Map<PlayerEffect, Integer> currentEffects = new HashMap<>();
 
 	public PlayerMixin(World world) {
 		super(world);
@@ -42,7 +42,7 @@ public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 	}
 
 	@Unique
-	private void decreaseEffects(){
+	public void decreaseEffects(){
 		for (Map.Entry<PlayerEffect, Integer> entry : currentEffects.entrySet()){
 			entry.setValue(entry.getValue() - 1);
 			if (entry.getValue() <= 0){
@@ -57,7 +57,7 @@ public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 	}
 
 	@Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/Player;speed:F", shift = At.Shift.AFTER))
-	private void boostSpeed(CallbackInfo ci){
+	public void boostSpeed(CallbackInfo ci){
 		decreaseEffects();
 		if (currentEffects.containsKey(PlayerEffect.speedBoost)){
 			this.speed = baseSpeed + PlayerEffect.speedBoost.getSpeedIncrement();

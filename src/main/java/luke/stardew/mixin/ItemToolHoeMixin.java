@@ -18,12 +18,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemToolHoe.class, remap = false)
 public abstract class ItemToolHoeMixin extends ItemTool {
-	protected ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
+	public ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
 		super(name, namespaceID, id, damageDealt, toolMaterial, tagEffectiveAgainst);
 	}
 
 	@Inject(method = "onUseItemOnBlock", at = @At(value = "HEAD", target = "Lnet/minecraft/core/world/World;playBlockSoundEffect(Lnet/minecraft/core/entity/Entity;DDDLnet/minecraft/core/block/Block;Lnet/minecraft/core/enums/EnumBlockSoundEffectType;)V"))
-	private void dropWorms(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir){
+	public void dropWorms(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir){
 		int i1 = world.getBlockId(blockX, blockY, blockZ);
 		if (i1 == Blocks.GRASS.id()) {
 			if (!world.isClientSide) {

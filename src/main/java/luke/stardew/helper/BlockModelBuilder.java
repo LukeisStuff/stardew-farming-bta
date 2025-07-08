@@ -14,11 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 public final class BlockModelBuilder extends ModelBuilder<Block<?>, BlockModel<?>, BlockModelBuilder>{
-    private final Map<Side, String> sideMap = new HashMap<>();
-	private final List<String> extendedMap = new ArrayList<>();
-	private int renderLayer = 0;
-	private String counterString = "";
-	private int count = 0;
+    public final Map<Side, String> sideMap = new HashMap<>();
+	public final List<String> extendedMap = new ArrayList<>();
+	public int renderLayer = 0;
+	public String counterString = "";
+	public int count = 0;
     BlockModelBuilder(String modID, BlockModelDispatcher dispatcher) {
         super(modID, dispatcher);
     }
@@ -87,7 +87,7 @@ public final class BlockModelBuilder extends ModelBuilder<Block<?>, BlockModel<?
 	}
 
     @Override
-    protected void onBuild(Block<?> block, BlockModel<?> model, String namespaceValue) {
+    public void onBuild(Block<?> block, BlockModel<?> model, String namespaceValue) {
 		//Check errors
 		if (model instanceof BlockModelExtended) {
 			for (String format : this.extendedMap) {

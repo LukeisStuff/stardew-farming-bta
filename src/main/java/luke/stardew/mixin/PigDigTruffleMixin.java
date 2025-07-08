@@ -43,7 +43,7 @@ public abstract class PigDigTruffleMixin extends MobAnimal {
 	}
 
 	@Override
-	protected boolean isMovementBlocked() {
+	public boolean isMovementBlocked() {
 		return super.isMovementBlocked();
 	}
 

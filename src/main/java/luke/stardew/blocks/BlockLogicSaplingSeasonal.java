@@ -10,10 +10,10 @@ import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeFancy;
 import java.util.Random;
 
 public class BlockLogicSaplingSeasonal extends BlockLogicSaplingBase {
-	private final Block<?> logBlock;
-	private final Block<?> leafBlock;
-	private final Block<?> leafFloweringBlock;
-	private final int flowerRarity;
+	public final Block<?> logBlock;
+	public final Block<?> leafBlock;
+	public final Block<?> leafFloweringBlock;
+	public final int flowerRarity;
 
 	public BlockLogicSaplingSeasonal(Block<?> block, Block<?> logBlock, Block<?> leafBlock, Block<?> leafFloweringBlock, int flowerRarity) {
 		super(block);

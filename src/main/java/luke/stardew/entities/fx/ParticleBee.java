@@ -9,8 +9,8 @@ import net.minecraft.core.world.World;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class ParticleBee extends Particle {
-	private static final IconCoordinate bee1 = TextureRegistry.getTexture(MOD_ID + ":particle/bee");
-	private static final IconCoordinate bee2 = TextureRegistry.getTexture(MOD_ID + ":particle/bee_2");
+	public static final IconCoordinate bee1 = TextureRegistry.getTexture(MOD_ID + ":particle/bee");
+	public static final IconCoordinate bee2 = TextureRegistry.getTexture(MOD_ID + ":particle/bee_2");
 	public float originalScale;
 
 	public ParticleBee(World world, double d, double d1, double d2, double d3, double d4, double d5) {

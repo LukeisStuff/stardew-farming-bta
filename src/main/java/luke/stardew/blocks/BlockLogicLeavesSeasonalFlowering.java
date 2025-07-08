@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal implements IBonemealable {
 
-	private final Item fruitItem;
+	public final Item fruitItem;
 
 	public BlockLogicLeavesSeasonalFlowering(Block<?> block, Supplier<Block<?>> sapling, Item fruitItem) {
 		super(block, sapling);

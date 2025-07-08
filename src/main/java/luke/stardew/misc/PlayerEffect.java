@@ -1,14 +1,14 @@
 package luke.stardew.misc;
 
 public class PlayerEffect {
-	private float speedIncrement = 0.0f;
+	public float speedIncrement = 0.0f;
 
 	public static final PlayerEffect speedBoost;
 
 	public PlayerEffect(){
 	}
 
-	private PlayerEffect speedIncrement(float value){
+	public PlayerEffect speedIncrement(float value){
 		speedIncrement = value;
 
 		return this;

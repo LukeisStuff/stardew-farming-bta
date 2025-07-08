@@ -168,7 +168,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 	}
 
 	@Unique
-	private void checkBait() {
+	public void checkBait() {
 		try {
 			entityData.getInt(3);
 		} catch (Exception e) {
@@ -219,7 +219,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
             assert this.world != null;
             if (!this.world.isClientSide) {
 				ItemStack heldPlayerItem = this.owner.getCurrentEquippedItem();
-				if (this.owner.removed || !this.owner.isAlive() || heldPlayerItem == null || (heldPlayerItem.getItem() != Items.TOOL_FISHINGROD && heldPlayerItem.getItem().getClass() != ItemToolFishingRodTiered.class) || this.distanceToSqr(this.owner) > 1024.0) {
+				if (this.owner.removed || !this.owner.isAlive() || heldPlayerItem == null || (!heldPlayerItem.getItem().equals(Items.TOOL_FISHINGROD) && heldPlayerItem.getItem().getClass() != ItemToolFishingRodTiered.class) || this.distanceToSqr(this.owner) > 1024.0) {
 					this.remove();
 					this.owner.bobberEntity = null;
 					return;
@@ -502,7 +502,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 	}
 
 	@Unique
-	private Item getCatchableFish() {
+	public Item getCatchableFish() {
         assert world != null;
         Season season = world.seasonManager.getCurrentSeason();
 		Weather weather = world.weatherManager.getCurrentWeather();

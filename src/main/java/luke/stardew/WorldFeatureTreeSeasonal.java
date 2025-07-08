@@ -7,8 +7,8 @@ import net.minecraft.core.world.season.Seasons;
 import java.util.Random;
 
 public class WorldFeatureTreeSeasonal extends WorldFeatureTree {
-	protected final int leavesFloweringID;
-	protected final int rarity;
+	public final int leavesFloweringID;
+	public final int rarity;
 
 	public WorldFeatureTreeSeasonal(int leavesID, int leavesFloweringID, int logID, int heightMod, int rarity) {
 		super(leavesID, logID, heightMod);

@@ -10,7 +10,7 @@ public class MobRendererDuck extends MobRenderer<MobDuck> {
 	}
 
 	@Override
-	protected float limbSway(MobDuck entity, float partialTick) {
+	public float limbSway(MobDuck entity, float partialTick) {
 		float flap = entity.oFlap + (entity.flap - entity.oFlap) * partialTick;
 		float flapSpeed = entity.oFlapSpeed + (entity.flapSpeed - entity.oFlapSpeed) * partialTick;
 		return (MathHelper.sin(flap) + 1.0F) * flapSpeed;

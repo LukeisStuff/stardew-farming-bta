@@ -10,12 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BlockModelExtended<T extends BlockLogic> extends BlockModelStandard<T> {
-	protected final List<IconCoordinate> icons = new ArrayList<>();
+	public final List<IconCoordinate> icons = new ArrayList<>();
 	public BlockModelExtended(Block<T> block) {
 		super(block);
 	}
 
-	protected IconCoordinate getIcon(int index) {
+	public IconCoordinate getIcon(int index) {
 		if (index < 0 || index >= this.icons.size()) {
 			return BlockModelStandard.BLOCK_TEXTURE_UNASSIGNED;
 		}

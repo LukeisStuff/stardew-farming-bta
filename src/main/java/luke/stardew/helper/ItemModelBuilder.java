@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ItemModelBuilder extends ModelBuilder<Item, ItemModel, ItemModelBuilder> {
-    private boolean full3D = false;
-    private boolean fullbright = false;
-    private boolean rotateWhenRendering = false;
-    private boolean pointInFrontOfPlayer = false;
-    private @NotNull String stringFormat = "%s";
-	private final List<String> extendedMap = new ArrayList<>();
+    public boolean full3D = false;
+    public boolean fullbright = false;
+    public boolean rotateWhenRendering = false;
+    public boolean pointInFrontOfPlayer = false;
+    public @NotNull String stringFormat = "%s";
+	public final List<String> extendedMap = new ArrayList<>();
     ItemModelBuilder(String modID, ItemModelDispatcher dispatcher) {
         super(modID, dispatcher);
     }
@@ -59,7 +59,7 @@ public final class ItemModelBuilder extends ModelBuilder<Item, ItemModel, ItemMo
     }
 
     @Override
-    protected void onBuild(Item block, ItemModel model, String namespaceValue) {
+    public void onBuild(Item block, ItemModel model, String namespaceValue) {
 
 		if (model instanceof ItemModelExtended)  {
 			for (String format : this.extendedMap) {

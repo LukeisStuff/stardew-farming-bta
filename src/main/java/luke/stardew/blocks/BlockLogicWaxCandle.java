@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Random;
 
 public class BlockLogicWaxCandle extends BlockLogic {
-	protected final boolean burning;
+	public final boolean burning;
 
 	public BlockLogicWaxCandle(Block<?> block, boolean flag) {
 		super(block, Material.decoration);

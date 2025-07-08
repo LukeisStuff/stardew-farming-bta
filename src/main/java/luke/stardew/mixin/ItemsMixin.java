@@ -8,6 +8,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(value = Items.class, remap = false)
 public abstract class ItemsMixin {
     @Redirect(method = "init", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/Items;initStats()V"))
-    private static void delayStats() {
+	private static void delayStats() {
     }
 }

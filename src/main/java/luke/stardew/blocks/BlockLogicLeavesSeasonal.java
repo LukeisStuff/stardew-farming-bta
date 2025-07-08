@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class BlockLogicLeavesSeasonal extends BlockLogicLeavesBase {
-	protected @NotNull Supplier<Block<?>> saplingSupplier;
+	public @NotNull Supplier<Block<?>> saplingSupplier;
 
 	public BlockLogicLeavesSeasonal(Block<?> block, @NotNull Supplier<Block<?>> sapling) {
 		super(block, Material.leaves, null);

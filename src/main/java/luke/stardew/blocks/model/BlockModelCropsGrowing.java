@@ -10,10 +10,10 @@ import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.Side;
 
 public class BlockModelCropsGrowing<T extends BlockLogic> extends BlockModelStandard<T> {
-	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_TOP = new IconCoordinate[4];
-	public static final IconCoordinate[] GROWTH_STAGE_TEXTURES_SIDE = new IconCoordinate[4];
+	public final IconCoordinate[] GROWTH_STAGE_TEXTURES_TOP = new IconCoordinate[4];
+	public final IconCoordinate[] GROWTH_STAGE_TEXTURES_SIDE = new IconCoordinate[4];
 
-	public static IconCoordinate LEAF_TEXTURE;
+	public IconCoordinate LEAF_TEXTURE;
 
 	public BlockModelCropsGrowing(Block<T> block) {
 		super(block);

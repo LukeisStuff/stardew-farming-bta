@@ -22,16 +22,16 @@ import java.util.List;
 import java.util.Random;
 
 public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealable {
-	protected float fertilizedRate;
-	protected int maxGrowth;
-	protected boolean canFertilize;
-	protected Item seedItem = Items.SEEDS_WHEAT;
-	protected Item cropItem;
-	protected Range seedRange = Range.EMPTY;
-	protected Range cropRange = Range.ONE;
-	protected int resetMeta = -1;
-	protected Block<?> growsInto;
-	protected boolean canHarvest;
+	public float fertilizedRate;
+	public int maxGrowth;
+	public boolean canFertilize;
+	public Item seedItem = Items.SEEDS_WHEAT;
+	public Item cropItem;
+	public Range seedRange = Range.EMPTY;
+	public Range cropRange = Range.ONE;
+	public int resetMeta = -1;
+	public Block<?> growsInto;
+	public boolean canHarvest;
 
 	public BlockLogicCropBase(Block<?> block) {
 		super(block);
@@ -90,7 +90,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 	}
 
 	@Override
-	protected boolean mayPlaceOn(int blockId) {
+	public boolean mayPlaceOn(int blockId) {
 		return Blocks.FARMLAND_DIRT.id() == blockId;
 	}
 
