@@ -185,18 +185,18 @@ public class StardewBlocks {
 		LOG_APPLE = log
 			.build("log_apple", blockID("LOG_APPLE"), b -> new BlockLogicLog(b));
 		LEAVES_APPLE = leaves
-			.build("leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, StardewBlocks.SAPLING_APPLE));
+			.build("leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE));
 		LEAVES_APPLE_FLOWERING = leaves
-			.build("leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"), b -> new BlockLogicLeavesSeasonalFlowering(b, StardewBlocks.SAPLING_APPLE, Items.FOOD_APPLE));
+			.build("leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"), b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE, Items.FOOD_APPLE));
 		SAPLING_APPLE = sapling
 			.build("sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
 
 		LOG_APPLE_GOLDEN = log
 			.build("log_apple_golden", blockID("LOG_APPLE_GOLDEN"), b -> new BlockLogicLog(b));
 		LEAVES_APPLE_GOLDEN = leaves
-			.build("leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, SAPLING_APPLE_GOLDEN));
+			.build("leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN));
 		LEAVES_APPLE_GOLDEN_FLOWERING = leaves
-			.build("leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"), b -> new BlockLogicLeavesSeasonalFlowering(b, SAPLING_APPLE_GOLDEN, Items.FOOD_APPLE_GOLD));
+			.build("leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"), b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE_GOLDEN, Items.FOOD_APPLE_GOLD));
 		SAPLING_APPLE_GOLDEN = sapling
 			.build("sapling_apple_golden", blockID("SAPLING_APPLE_GOLDEN"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN_FLOWERING, 20));
 

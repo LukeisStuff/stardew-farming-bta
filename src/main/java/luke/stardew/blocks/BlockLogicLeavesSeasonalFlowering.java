@@ -15,12 +15,13 @@ import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
+import java.util.function.Supplier;
 
 public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal implements IBonemealable {
 
 	private final Item fruitItem;
 
-	public BlockLogicLeavesSeasonalFlowering(Block<?> block, Block<?> sapling, Item fruitItem) {
+	public BlockLogicLeavesSeasonalFlowering(Block<?> block, Supplier<Block<?>> sapling, Item fruitItem) {
 		super(block, sapling);
 		this.fruitItem = fruitItem;
 	}
