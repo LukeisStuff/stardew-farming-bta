@@ -1,18 +1,16 @@
 package luke.stardew.blocks;
 
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogicLeavesCherryFlowering;
 import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.block.entity.TileEntityActivator;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -28,7 +26,7 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
 
 	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		int growthRate = getGrowthRate(meta);
+		int growthRate = BlockLogicLeavesCherryFlowering.getGrowthRate(meta);
 		if (dropCause != EnumDropCause.PICK_BLOCK && dropCause != EnumDropCause.SILK_TOUCH) {
 			return growthRate == 0 ? null : new ItemStack[]{new ItemStack(this.fruitItem, world.rand.nextInt(1) + 1)};
 		} else {
@@ -37,36 +35,26 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
 	}
 
 	@Override
-
 	public void onBlockLeftClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
 		this.onBlockRightClicked(world, x, y, z, player, null, 0.0, 0.0);
 	}
 
+	@Override
 	public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xPlaced, double yPlaced) {
-		return this.harvest(world, x, y, z, player);
-	}
-
-	public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
-		this.harvest(world, x, y, z, null);
-	}
-
-	public boolean harvest(World world, int x, int y, int z, @Nullable Player player) {
 		int meta = world.getBlockMetadata(x, y, z);
-		int growthRate = getGrowthRate(meta);
+		int decayData = meta & 15;
+		int growthRate = BlockLogicLeavesCherryFlowering.getGrowthRate(meta);
 		if (growthRate > 0) {
-			if (player != null) {
-				world.playSoundAtEntity(player, player, "item.pickup", 1.0F, 1.0F);
-			}
-
+			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
 			if (!world.isClientSide) {
-				this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, meta, null, null);
+				this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, meta, null, player);
 			}
 
-			world.setBlockMetadataWithNotify(x, y, z, setGrowthRate(meta, 0));
+			world.setBlockMetadataWithNotify(x, y, z, decayData);
 			world.scheduleBlockUpdate(x, y, z, this.id(), this.tickDelay());
 			return true;
 		} else {
-			return false;
+			return super.onBlockRightClicked(world, x, y, z, player, side, xPlaced, yPlaced);
 		}
 	}
 
@@ -88,16 +76,16 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
 	}
 
 	@Override
-	public boolean onBonemealUsed(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+	public boolean onBonemealUsed(ItemStack itemstack, Player entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		int meta = world.getBlockMetadata(blockX, blockY, blockZ);
 		if ((meta & 240) >> 4 == 0) {
 			if (!world.isClientSide) {
-				if (world.getSeasonManager().getCurrentSeason() != Seasons.OVERWORLD_FALL) {
+				if (world.seasonManager.getCurrentSeason() != Seasons.OVERWORLD_FALL) {
 					return true;
 				}
 
 				world.setBlockMetadataWithNotify(blockX, blockY, blockZ, 16 | meta);
-				if (player == null || player.getGamemode().consumeBlocks()) {
+				if (entityplayer.getGamemode().consumeBlocks()) {
 					--itemstack.stackSize;
 				}
 			}
@@ -106,13 +94,5 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
 		} else {
 			return false;
 		}
-	}
-
-	public static int getGrowthRate(int meta) {
-		return (meta & 240) >> 4;
-	}
-
-	public static int setGrowthRate(int meta, int growthRate) {
-		return meta & -241 | growthRate << 4 & 240;
 	}
 }
