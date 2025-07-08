@@ -31,7 +31,7 @@ public class MobDuck extends MobAnimal {
 	}
 
 	@Override
-	protected void updateAI() {
+	public void updateAI() {
 		boolean inWater = this.wasInWater;
 		this.wasInWater = false;
 		super.updateAI(); //Stop jumping in water
@@ -97,7 +97,7 @@ public class MobDuck extends MobAnimal {
 		}
 	}
 
-	protected void causeFallDamage(float distance) {
+	public void causeFallDamage(float distance) {
 	}
 
 	@Override
@@ -106,7 +106,7 @@ public class MobDuck extends MobAnimal {
 	}
 
 	@Override
-	protected float getSoundVolume() {
+	public float getSoundVolume() {
 		return 0.5f;
 	}
 
@@ -116,12 +116,12 @@ public class MobDuck extends MobAnimal {
 	}
 
 	@Override
-	protected String getHurtSound() {
+	public String getHurtSound() {
 		return StardewMod.MOD_ID + ":mob.duck.hurt";
 	}
 
 	@Override
-	protected String getDeathSound() {
+	public String getDeathSound() {
 		return StardewMod.MOD_ID + ":mob.duck.death";
 	}
 

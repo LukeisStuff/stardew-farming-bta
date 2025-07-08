@@ -20,8 +20,6 @@ public class StardewConfig {
 
 	public static int itemIDs = 22000;
 
-	public static int entityIDs = 300;
-
 	static {
 		properties.addCategory("stardew")
 			.addEntry("cfgVersion", 6);

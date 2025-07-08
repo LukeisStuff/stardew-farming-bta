@@ -31,7 +31,7 @@ public abstract class PlayerRendererMixin extends MobRenderer<Player> {
 		ItemStack itemstack = entity.inventory.armorItemInSlot(3 - renderPass);
 		if (itemstack != null) {
 			Item item = itemstack.getItem();
-			if (item == StardewItems.ARMOR_CAN_OF_WORMS) {
+			if (item.equals(StardewItems.ARMOR_CAN_OF_WORMS)) {
 				this.bindTexture("/assets/stardew/armor/canOfWorms.png");
 				ModelBiped modelbiped = this.modelArmorChestplate;
 				modelbiped.legRight.visible = renderPass == 2 || renderPass == 3;

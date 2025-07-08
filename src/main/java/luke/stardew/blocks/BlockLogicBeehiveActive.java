@@ -3,7 +3,6 @@ package luke.stardew.blocks;
 import luke.stardew.StardewMod;
 import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.items.StardewItems;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicRotatable;
 import net.minecraft.core.block.entity.TileEntity;
@@ -43,7 +42,6 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 	@Override
 	public void animationTick(World world, int x, int y, int z, Random rand) {
 		int meta = world.getBlockMetadata(x, y, z);
-		Minecraft mc = Minecraft.getMinecraft();
 		double h = 0.5;
 		double q = 0.25;
 		double random = (world.rand.nextInt(1) - Math.random());

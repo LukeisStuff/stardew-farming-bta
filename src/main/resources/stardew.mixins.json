@@ -9,7 +9,6 @@
     "ChunkDecoratorOverworldMixin",
     "EntityBobberMixin",
     "EntityItemMixin",
-    "GuiContainerMixin",
     "ItemFishingRodMixin",
     "ItemMixin",
     "ItemsAccessor",

@@ -19,7 +19,7 @@ public final class BlockModelBuilder extends ModelBuilder<Block<?>, BlockModel<?
 	private int renderLayer = 0;
 	private String counterString = "";
 	private int count = 0;
-    protected BlockModelBuilder(String modID, BlockModelDispatcher dispatcher) {
+    BlockModelBuilder(String modID, BlockModelDispatcher dispatcher) {
         super(modID, dispatcher);
     }
 

@@ -10,6 +10,7 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -44,7 +45,7 @@ public class BlockLogicBush extends BlockLogicFlower {
 	}
 
 	@Override
-	public void onBlockPlacedByMob(World world, int x, int y, int z, Side side, Mob mob, double xPlaced, double yPlaced) {
+	public void onBlockPlacedByMob(World world, int x, int y, int z, @NotNull Side side, Mob mob, double xPlaced, double yPlaced) {
 		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
 			world.setBlockMetadataWithNotify(x, y, z, 0);
 		}

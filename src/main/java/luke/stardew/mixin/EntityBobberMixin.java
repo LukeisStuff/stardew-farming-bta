@@ -216,7 +216,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 			this.setPos(d, d1, d2);
 			this.setRot(this.yRot, this.xRot);
 		} else {
-			if (!this.world.isClientSide) {
+            assert this.world != null;
+            if (!this.world.isClientSide) {
 				ItemStack heldPlayerItem = this.owner.getCurrentEquippedItem();
 				if (this.owner.removed || !this.owner.isAlive() || heldPlayerItem == null || (heldPlayerItem.getItem() != Items.TOOL_FISHINGROD && heldPlayerItem.getItem().getClass() != ItemToolFishingRodTiered.class) || this.distanceToSqr(this.owner) > 1024.0) {
 					this.remove();
@@ -473,7 +474,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 				entityitem.xd = dx * scale;
 				entityitem.yd = dy * scale + (double)MathHelper.sqrt(distance) * 0.08;
 				entityitem.zd = dz * scale;
-				this.world.entityJoinedWorld(entityitem);
+                assert this.world != null;
+                this.world.entityJoinedWorld(entityitem);
 			}else {
 				EntityItem entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(getCatchableFish()));
 				dx = this.owner.x - this.x;
@@ -484,7 +486,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 				entityitem.xd = dx * scale;
 				entityitem.yd = dy * scale + (double)MathHelper.sqrt(distance) * 0.08;
 				entityitem.zd = dz * scale;
-				this.world.entityJoinedWorld(entityitem);
+                assert this.world != null;
+                this.world.entityJoinedWorld(entityitem);
 			}
 			this.owner.addStat(StatList.fishCaughtStat, 1);
 			damage = 1;
@@ -500,7 +503,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 
 	@Unique
 	private Item getCatchableFish() {
-		Season season = world.seasonManager.getCurrentSeason();
+        assert world != null;
+        Season season = world.seasonManager.getCurrentSeason();
 		Weather weather = world.weatherManager.getCurrentWeather();
 		Item[] treasuresLowValue = {Items.OLIVINE, Items.QUARTZ, Items.DUST_REDSTONE, Items.COAL};
 		Item[] treasuresMiddleValue = {Items.ORE_RAW_IRON, Items.ORE_RAW_GOLD};

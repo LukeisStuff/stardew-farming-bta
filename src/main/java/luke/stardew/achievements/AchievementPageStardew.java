@@ -1,6 +1,5 @@
 package luke.stardew.achievements;
 
-import luke.stardew.StardewMod;
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.client.gui.achievements.ScreenAchievements;
 import net.minecraft.client.gui.achievements.data.AchievementPage;
@@ -82,69 +81,5 @@ public class AchievementPageStardew extends AchievementPage {
 	public int lineColorCanUnlock(boolean bl) {
 		return 65280;
 	}
-	/*
-	public StardewAchievements() {
-		super("Stardew Farming", "achievements.page.stardew");
-		Field[] achievements = StardewAchievements.class.getDeclaredFields();
-		Arrays.stream(achievements).filter((F)->F.getType().equals(Achievement.class)).forEach((F)->{
-			try {
-				achievementList.add((Achievement) ((Stat) F.get(null)).registerStat());
-			} catch (IllegalAccessException e) {
-				throw new RuntimeException(e);
-			}
-		});
 
-		((Stat) STARDEW).registerStat();
-		achievementList.add(STARDEW);
-
-		((Stat) FRUIT).registerStat();
-		achievementList.add(FRUIT);
-		((Stat) VEGETABLE).registerStat();
-		achievementList.add(VEGETABLE);
-
-		((Stat) APPLE).registerStat();
-		achievementList.add(APPLE);
-		((Stat) GAPPLE).registerStat();
-		achievementList.add(GAPPLE);
-
-		((Stat) BEEHIVE).registerStat();
-		achievementList.add(BEEHIVE);
-		((Stat) CANDLE).registerStat();
-		achievementList.add(CANDLE);
-
-		((Stat) AMATEUR_FISHER).registerStat();
-		achievementList.add(AMATEUR_FISHER);
-		((Stat) MASTER_FISHER).registerStat();
-		achievementList.add(MASTER_FISHER);
-	}
-
-	public static final int StardewAchievementsID = 524300;
-
-
-	@Override
-	public void getBackground(GuiAchievements guiAchievements, Random random, int iOffset, int jOffset, int blockX1, int blockY1, int blockX2, int blockY2) {
-		int row = 0;
-		while (row * 16 - blockY2 < 155) {
-			float f5 = 0.6f - (float)(blockY1 + row) / 25.0f * 0.3f;
-			GL11.glColor4f(f5, f5, f5, 1.0f);
-			int column = 0;
-			while (column * 16 - blockX2 < 224) {
-				IconCoordinate texture = getTextureFromBlock(StardewBlocks.blockHoney);
-				guiAchievements.drawTexturedIcon(
-					iOffset + column * 16 - blockX2,
-					jOffset + row * 16 - blockY2,
-					texture.width,
-					texture.height,
-					texture
-				);
-				++column;
-			}
-			++row;
-		}
-	}
-
-	public IconCoordinate getTextureFromBlock(Block block) {
-		return BlockModelDispatcher.getInstance().getDispatch(block).getBlockTextureFromSideAndMetadata(Side.BOTTOM, 0);
-	}
-*/
 }

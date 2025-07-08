@@ -18,7 +18,7 @@ public final class ItemModelBuilder extends ModelBuilder<Item, ItemModel, ItemMo
     private boolean pointInFrontOfPlayer = false;
     private @NotNull String stringFormat = "%s";
 	private final List<String> extendedMap = new ArrayList<>();
-    protected ItemModelBuilder(String modID, ItemModelDispatcher dispatcher) {
+    ItemModelBuilder(String modID, ItemModelDispatcher dispatcher) {
         super(modID, dispatcher);
     }
 

@@ -12,7 +12,7 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewItems {
 
-	private static int itemID = 22000;
+	public static int itemID = 22000;
 
 	public static int itemID(String itemName) {
 		try {

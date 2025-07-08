@@ -9,7 +9,7 @@ import net.minecraft.core.world.WorldSource;
 import java.util.function.Supplier;
 
 public class BlockLogicEdibleCustom extends BlockLogicEdible {
-	private float height;
+	private final float height;
 
 	public BlockLogicEdibleCustom(Block<?> block, float height, Supplier<Item> dropItemSupplier) {
 		super(block, 6, 3, dropItemSupplier);

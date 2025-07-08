@@ -27,12 +27,6 @@ public class ParticleBee extends Particle {
 
 	@Override
 	public void render(Tessellator tessellator, float partialTick, double x, double y, double z, float rotationX, float rotationXZ, float rotationZ, float rotationYZ, float rotationXY) {
-		/*float f6 = (this.age + partialTick) / (float)this.lifetime * 32.0f;
-		if (f6 < 0.0F)
-			f6 = 0.0F;
-		if (f6 > 1.0F)
-			f6 = 1.0F;*/
-
 		this.size = this.originalScale - this.originalScale * ((float) this.age / this.lifetime);
 		super.render(tessellator, partialTick, x, y, z, rotationX, rotationXZ, rotationZ, rotationYZ, rotationXY);
 	}

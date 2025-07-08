@@ -21,7 +21,7 @@ public abstract class PigDigTruffleMixin extends MobAnimal {
 
 
 	public void onLivingUpdate() {
-		Block blockBelow;
+		Block<?> blockBelow;
 		int blockZ;
 		int blockY;
 		int blockX;
@@ -29,7 +29,8 @@ public abstract class PigDigTruffleMixin extends MobAnimal {
 		blockX = MathHelper.floor(this.x);
 		blockY = MathHelper.floor(this.y);
 		blockZ = MathHelper.floor(this.z);
-		blockBelow = this.world.getBlock(blockX, blockY - 1, blockZ);
+        assert this.world != null;
+        blockBelow = this.world.getBlock(blockX, blockY - 1, blockZ);
 		if (!(blockBelow != Blocks.GRASS && blockBelow != Blocks.GRASS_RETRO && blockBelow != Blocks.DIRT && blockBelow != Blocks.MUD && blockBelow != Blocks.FARMLAND_DIRT  || this.world.isClientSide)) {
 			if (--this.timeUntilNextTruffle <= 0) {
 				this.world.playBlockSoundEffect(null, (int)this.x, (int)this.y - 1, (int)this.z, this.world.getBlock((int)this.x, (int)this.y - 1, (int)this.z), EnumBlockSoundEffectType.MINE);

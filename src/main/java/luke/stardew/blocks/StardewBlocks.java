@@ -78,7 +78,6 @@ public class StardewBlocks {
 	public static Block<?> CROPS_BEANS_TOP;
 
 	public static Block<?> CAKE_CHOCOLATE;
-	public static Block<?> PIE;
 
 	public static Block<?> BEEHIVE;
 
@@ -92,10 +91,6 @@ public class StardewBlocks {
 	public static Block<?> MUSHROOM_TRUFFLE;
 
 	public static Block<?> THATCH;
-
-	public static String key(String name) {
-		return MOD_ID + ":block/" + name;
-	}
 
 	public static void initializeBlocks() {
 
@@ -145,13 +140,6 @@ public class StardewBlocks {
 			.setResistance(1.0f)
 			.setFlammability(5, 5)
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT);
-
-		BlockBuilder metal = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.stone", "step.stone", 1.0f, 1.5f))
-			.setHardness(5.0f)
-			.setResistance(10.0f)
-			.setTags(BlockTags.MINEABLE_BY_PICKAXE, BlockTags.CHAINLINK_FENCES_CONNECT);
-
 
 
 		//Spring Crops

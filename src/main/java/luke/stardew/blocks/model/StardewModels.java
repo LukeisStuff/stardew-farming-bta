@@ -305,23 +305,4 @@ public class StardewModels implements ModelEntrypoint {
 
 	}
 
-	/*public static void setStandardItemModel(Item item, BiFunction<Item, String, ItemModel> modelSupplier) {
-		ModelHelper.setItemModel(item, () -> {
-			ItemModel model = modelSupplier.apply(item, null); //Nulled because spams warnings
-			if (model instanceof ItemModelStandard) {
-				((ItemModelStandard) model).icon = TextureRegistry.getTexture(item.namespaceID.toString());
-				if (model instanceof ItemModelTieredFishingRod) {
-					((ItemModelTieredFishingRod)model).initCastTexture();
-				}
-			}
-			return model;
-		});
-	}
-
-	public static void setBlockModel(Block<?> block, Function<Block<?>, BlockModel<?>> modelSupplier) {
-		ModelHelper.setBlockModel(block, () -> {
-			BlockModel<?> model = modelSupplier.apply(block);
-			return model;
-		});
-	}*/
 }

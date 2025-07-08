@@ -41,9 +41,6 @@
 		"initModels" : [
 			"luke.stardew.blocks.model.StardewModels"
 		],
-		"terrain-api": [
-			"luke.stardew.TerrainApiPlugin"
-		],
 		"afterItemInit" : [
 			"luke.stardew.StardewMod"
 		]
