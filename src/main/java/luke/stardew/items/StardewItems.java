@@ -62,8 +62,7 @@ public class StardewItems {
 	public static Item SEEDS_CRANBERRIES;
 	public static Item CRANBERRIES;
 
-
-
+	//Processed Foods
 	public static Item DOUGH;
 	public static Item EGG_COOKED;
 	public static Item HONEY;
@@ -73,9 +72,10 @@ public class StardewItems {
 	public static Item FOOD_STEW_VEGETABLE;
 	public static Item FOOD_STEW_CHEESE;
 	public static Item FOOD_STEW_FRUIT;
-	public static Item FOOD_STEW_TRUFFLE;
 
 	public static Item FOOD_CAKE_CHOCOLATE;
+
+
 
 	//Watering Cans
 	public static Item WATERING_CAN;
@@ -119,6 +119,9 @@ public class StardewItems {
 	public static Item EGG_DUCK;
 
 	public static Item FIBER;
+
+	public static Item FOOD_STEW_TRUFFLE;
+	public static Item FOOD_SEEDS_ROASTED;
 
 
 
@@ -253,6 +256,9 @@ public class StardewItems {
 
 		FOOD_PIZZA = new ItemBuilder(MOD_ID)
 			.build(new ItemPlaceable("food.pizza", itemKey("food_pizza"), itemID("FOOD_PIZZA"), StardewBlocks.PIZZA).setMaxStackSize(1));
+
+		FOOD_SEEDS_ROASTED = new ItemBuilder(MOD_ID)
+			.build(new ItemFood("food.seeds.roasted", itemKey("food_seeds_roasted"), itemID("FOOD_SEEDS_ROASTED"), 1, 20,false, 64));
 
 
 		//Tools

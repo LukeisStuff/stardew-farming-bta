@@ -278,6 +278,7 @@ public class StardewModels implements ModelEntrypoint {
 		standardBuilder.build(StardewItems.EGG_COOKED);
 		standardBuilder.build(StardewItems.CHEESE);
 		standardBuilder.build(StardewItems.JAR_JAM);
+		standardBuilder.build(StardewItems.FOOD_SEEDS_ROASTED);
 
 		standardBuilder.build(StardewItems.FISH_EEL_LAVA);
 		standardBuilder.build(StardewItems.FISH_GHOST);

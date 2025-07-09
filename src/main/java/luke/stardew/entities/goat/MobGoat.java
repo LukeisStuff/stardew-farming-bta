@@ -55,8 +55,9 @@ public class MobGoat extends MobAnimal {
 	}
 
 	public boolean isFavouriteItem(ItemStack itemStack) {
-		return itemStack != null && itemStack.getItem().hasTag(ItemTags.COWS_FAVOURITE_ITEM) || itemStack.itemID < Blocks.blocksList.length && Blocks.blocksList[itemStack.itemID].hasTag(BlockTags.SHEEPS_FAVOURITE_BLOCK );
-	}
+        if (itemStack != null && itemStack.getItem().hasTag(ItemTags.COWS_FAVOURITE_ITEM)) return true;
+        return itemStack != null && itemStack.itemID < Blocks.blocksList.length && Blocks.blocksList[itemStack.itemID].hasTag(BlockTags.SHEEPS_FAVOURITE_BLOCK);
+    }
 
 	@Override
 	public boolean interact(Player player) {

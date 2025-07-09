@@ -314,6 +314,10 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.setInput(MOD_ID + ":block/grass")
 			.create("fiber", new ItemStack(StardewItems.FIBER, 1));
 
+		RecipeBuilder.Furnace(MOD_ID)
+			.setInput(MOD_ID + ":item/seeds")
+			.create("roasted_seeds", new ItemStack(StardewItems.FOOD_SEEDS_ROASTED, 1));
+
 
 
 	}
@@ -333,7 +337,17 @@ public class StardewRecipes implements RecipeEntrypoint {
 
 		Registries.ITEM_GROUPS.register(MOD_ID + ":item/eggs", Registries.stackListOf(StardewItems.EGG_DUCK, Items.EGG_CHICKEN));
 
-		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf(Blocks.FLOWER_RED, Blocks.FLOWER_YELLOW, Blocks.FLOWER_ORANGE, Blocks.FLOWER_PINK, Blocks.FLOWER_PURPLE, Blocks.FLOWER_LIGHT_BLUE));
+		Registries.ITEM_GROUPS.register(MOD_ID + ":item/seeds", Registries.stackListOf
+			(Items.SEEDS_WHEAT, Items.SEEDS_PUMPKIN,
+				StardewItems.SEEDS_BLUEBERRY, StardewItems.SEEDS_CARROT,
+				StardewItems.SEEDS_CAULIFLOWER, StardewItems.SEEDS_CORN,
+				StardewItems.SEEDS_CRANBERRIES, StardewItems.SEEDS_GRAPES,
+				StardewItems.SEEDS_PINEAPPLE, StardewItems.SEEDS_TOMATO,
+				StardewItems.SEEDS_STRAWBERRY, StardewItems.SEEDS_WATERMELON,
+				StardewItems.SEEDS_POTATO));
+
+		Registries.ITEM_GROUPS.register(MOD_ID + ":block/flower", Registries.stackListOf
+			(Blocks.FLOWER_RED, Blocks.FLOWER_YELLOW, Blocks.FLOWER_ORANGE, Blocks.FLOWER_PINK, Blocks.FLOWER_PURPLE, Blocks.FLOWER_LIGHT_BLUE));
 
 		Registries.ITEM_GROUPS.register(MOD_ID + ":block/grass", Registries.stackListOf(Blocks.TALLGRASS, Blocks.TALLGRASS_FERN, Blocks.SPINIFEX));
 	}
