@@ -34,17 +34,17 @@ public class MobGoat extends MobAnimal {
 
 	@Override
 	public String getLivingSound() {
-		return StardewMod.MOD_ID +  ":mob.goat.idle";
+		return StardewMod.MOD_ID + ":mob.goat.idle";
 	}
 
 	@Override
 	public String getHurtSound() {
-		return StardewMod.MOD_ID +  ":mob.goat.death";
+		return StardewMod.MOD_ID + ":mob.goat.death";
 	}
 
 	@Override
 	public String getDeathSound() {
-		return StardewMod.MOD_ID +  ":mob.goat.death";
+		return StardewMod.MOD_ID + ":mob.goat.death";
 	}
 
 	@Override
