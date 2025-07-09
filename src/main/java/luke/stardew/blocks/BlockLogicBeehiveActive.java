@@ -101,7 +101,7 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 		if (this.isActive) {
 			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE.id(), l);
 			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
-			player.inventory.insertItem(new ItemStack(StardewItems.HONEY, 1), true);
+			player.inventory.insertItem(new ItemStack(StardewItems.HONEY, world.rand.nextInt(2) + 1), true);
 			player.triggerAchievement(StardewAchievements.BEEHIVE);
 			return true;
 		}
