@@ -84,9 +84,8 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		return this;
 	}
 
-	public BlockLogicCropBase noHarvest() {
+	public void noHarvest() {
 		this.canHarvest = false;
-		return this;
 	}
 
 	@Override
@@ -230,7 +229,6 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);
 			if (!world.isClientSide) {
 				if(this.cropItem != null) world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
-				if(this.seedItem != null) world.dropItem(x, y, z, new ItemStack(this.seedItem, this.seedRange.get(world.rand)));
 			}
 			return true;
 		}
