@@ -40,7 +40,7 @@
       "mob/goat/death2.ogg"
     ]
   },
-  "record.axolotl": {
+  "axolotl": {
     "sounds": [
       {
         "name": "record/axolotl.ogg",

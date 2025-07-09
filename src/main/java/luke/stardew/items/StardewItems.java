@@ -302,7 +302,7 @@ public class StardewItems {
 		//Treasures
 		RECORD_PINK = new ItemBuilder(MOD_ID)
 			.setStackSize(1)
-			.build(new ItemDiscMusic("record.pink", itemKey("record_pink"), itemID("RECORD_PINK"), "axolotl", "C418"));
+			.build(new ItemDiscMusic("record.pink", itemKey("record_pink"), itemID("RECORD_PINK"), "stardew:axolotl", "C418"));
 
 		BEANS_COFFE = new ItemBuilder(MOD_ID)
 			.setStackSize(64)
