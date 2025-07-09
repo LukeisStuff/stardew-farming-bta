@@ -2,7 +2,6 @@ package luke.stardew.items;
 
 import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
-import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.item.tag.ItemTags;
@@ -74,9 +73,9 @@ public class StardewItems {
 	public static Item FOOD_STEW_VEGETABLE;
 	public static Item FOOD_STEW_CHEESE;
 	public static Item FOOD_STEW_FRUIT;
+	public static Item FOOD_STEW_TRUFFLE;
 
 	public static Item FOOD_CAKE_CHOCOLATE;
-	public static Item FOOD_PIE;
 
 	//Watering Cans
 	public static Item WATERING_CAN;
@@ -123,73 +122,66 @@ public class StardewItems {
 
 
 
-	public static void initilizeItems() {
+	public static void initializeItems() {
+
+		ItemBuilder seeds = new ItemBuilder(MOD_ID)
+			.setStackSize(64)
+			.setTags(ItemTags.CHICKENS_FAVOURITE_ITEM);
 
 		//Spring Crops
-		SEEDS_CARROT = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_CARROT = seeds
 			.build(new ItemSeeds("seeds.carrot", itemKey("seeds_carrot"), itemID("SEEDS_CARROT"), StardewBlocks.CROPS_CARROT));
 		CARROT = new ItemBuilder(MOD_ID)
 			.build(new ItemFood("food.carrot", itemKey("carrot"), itemID("CARROT"), 2, 8,false, 8));
 
-		SEEDS_BLUEBERRY = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_BLUEBERRY = seeds
 			.build(new ItemSeeds("seeds.blueberry", itemKey("seeds_blueberry"), itemID("SEEDS_BLUEBERRY"), StardewBlocks.CROPS_BLUEBERRY));
 		BLUEBERRY = new ItemBuilder(MOD_ID)
 			.build(new ItemFruit("food.blueberry", itemKey("blueberry"), itemID("BLUEBERRY"), 1, 8, 16));
 
-		SEEDS_PINEAPPLE = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_PINEAPPLE = seeds
 			.build(new ItemSeeds("seeds.pineapple", itemKey("seeds_pineapple"), itemID("SEEDS_PINEAPPLE"), StardewBlocks.CROPS_PINEAPPLE));
 		PINEAPPLE = new ItemBuilder(MOD_ID)
 			.build(new ItemFruit("food.pineapple", itemKey("pineapple"), itemID("PINEAPPLE"), 4, 8, 4));
 
 
 		//Summer Crops
-		SEEDS_TOMATO = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_TOMATO = seeds
 			.build(new ItemSeeds("seeds.tomato", itemKey("seeds_tomato"), itemID("SEEDS_TOMATO"), StardewBlocks.CROPS_TOMATO));
 		TOMATO = new ItemBuilder(MOD_ID)
 			.build(new ItemFood("food.tomato", itemKey("tomato"), itemID("TOMATO"), 2, 8,false, 8));
 
-		SEEDS_POTATO = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_POTATO = seeds
 			.build(new ItemSeeds("seeds.potato", itemKey("seeds_potato"), itemID("SEEDS_POTATO"), StardewBlocks.CROPS_POTATO));
 		POTATO = new ItemBuilder(MOD_ID)
 			.build(new ItemFood("food.potato", itemKey("food_potato"), itemID("POTATO"), 1, 8,false, 8));
 
-		SEEDS_STRAWBERRY = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_STRAWBERRY = seeds
 			.build(new ItemSeeds("seeds.strawberry", itemKey("seeds_strawberry"), itemID("SEEDS_STRAWBERRY"), StardewBlocks.CROPS_STRAWBERRY));
 		STRAWBERRY = new ItemBuilder(MOD_ID)
 			.build(new ItemFruit("food.strawberry", itemKey("food_strawberry"), itemID("STRAWBERRY"), 2, 8, 8));
 
-		SEEDS_WATERMELON = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_WATERMELON = seeds
 			.build(new ItemSeeds("seeds.watermelon", itemKey("seeds_watermelon"), itemID("SEEDS_WATERMELON"), StardewBlocks.CROPS_WATERMELON));
 
 
 		//Fall Crops
-		SEEDS_CORN = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_CORN = seeds
 			.build(new ItemSeeds("seeds.corn", itemKey("seeds_corn"), itemID("SEEDS_CORN"), StardewBlocks.CROPS_CORN_BOTTOM));
 		CORN = new ItemBuilder(MOD_ID)
 			.build(new ItemFood("food.corn", itemKey("corn"), itemID("CORN"), 2, 8,false, 8));
 
-		SEEDS_GRAPES = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_GRAPES = seeds
 			.build(new ItemSeedsStake("seeds.grapes", itemKey("seeds_grapes"), itemID("SEEDS_GRAPES"),  StardewBlocks.CROPS_GRAPE_BOTTOM));
 		GRAPES = new ItemBuilder(MOD_ID)
 			.build(new ItemFruit("food.grapes", itemKey("grapes"), itemID("GRAPES"), 1, 8, 16));
 
 
 		//Winter Crops
-		SEEDS_CAULIFLOWER = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_CAULIFLOWER = seeds
 			.build(new ItemSeeds("seeds.cauliflower", itemKey("seeds_cauliflower"), itemID("SEEDS_CAULIFLOWER"), StardewBlocks.CROPS_CAULIFLOWER));
 
-		SEEDS_CRANBERRIES = new ItemBuilder(MOD_ID)
-			.setStackSize(64)
+		SEEDS_CRANBERRIES = seeds
 			.build(new ItemSeeds("seeds.cranberries", itemKey("seeds_cranberries"), itemID("SEEDS_CRANBERRIES"), StardewBlocks.CROPS_CRANBERRIES));
 		CRANBERRIES = new ItemBuilder(MOD_ID)
 			.build(new ItemFruit("food.cranberries", itemKey("cranberries"), itemID("CRANBERRIES"), 1, 8, 16));
@@ -245,20 +237,19 @@ public class StardewItems {
 			.build(new ItemCoffee("food.coffee", itemKey("food_coffee"), itemID("FOOD_COFFEE"), 1, 4));
 
 		FOOD_STEW_VEGETABLE = new ItemBuilder(MOD_ID)
-			.build(new ItemSoup("food.stew.vegetable", itemKey("food_stew_vegetable"), itemID("FOOD_STEW_VEGETABLE"), 12, 16));
+			.build(new ItemSoup("food.stew.vegetable", itemKey("food_stew_vegetable"), itemID("FOOD_STEW_VEGETABLE"), 12, 17));
 
 		FOOD_STEW_CHEESE = new ItemBuilder(MOD_ID)
-			.build(new ItemSoup("food.stew.cheese", itemKey("food_stew_cheese"), itemID("FOOD_STEW_CHEESE"), 14, 16));
+			.build(new ItemSoup("food.stew.cheese", itemKey("food_stew_cheese"), itemID("FOOD_STEW_CHEESE"), 14, 18));
 
 		FOOD_STEW_FRUIT = new ItemBuilder(MOD_ID)
-			.build(new ItemSoup("food.stew.fruit", itemKey("food_stew_fruit"), itemID("FOOD_STEW_FRUIT"), 16, 16));
+			.build(new ItemSoup("food.stew.fruit", itemKey("food_stew_fruit"), itemID("FOOD_STEW_FRUIT"), 16, 19));
+
+		FOOD_STEW_TRUFFLE = new ItemBuilder(MOD_ID)
+			.build(new ItemSoup("food.stew.truffle", itemKey("food_stew_truffle"), itemID("FOOD_STEW_TRUFFLE"), 20, 15));
 
 		FOOD_CAKE_CHOCOLATE = new ItemBuilder(MOD_ID)
 			.build(new ItemPlaceable("food.cake.chocolate", itemKey("food_cake_chocolate"), itemID("FOOD_CAKE_CHOCOLATE"), StardewBlocks.CAKE_CHOCOLATE).setMaxStackSize(1));
-
-		FOOD_PIE = new ItemBuilder(MOD_ID)
-			.setTags(ItemTags.NOT_IN_CREATIVE_MENU)
-			.build(new ItemPlaceable("food.pie", itemKey("food_pie"), itemID("FOOD_PIE"), Blocks.PUMPKIN_PIE).setMaxStackSize(1));
 
 		FOOD_PIZZA = new ItemBuilder(MOD_ID)
 			.build(new ItemPlaceable("food.pizza", itemKey("food_pizza"), itemID("FOOD_PIZZA"), StardewBlocks.PIZZA).setMaxStackSize(1));

@@ -5,7 +5,9 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicFluid;
 import net.minecraft.core.entity.animal.MobAnimal;
+import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
+import net.minecraft.core.item.tag.ItemTags;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
@@ -123,6 +125,10 @@ public class MobDuck extends MobAnimal {
 	@Override
 	public String getDeathSound() {
 		return StardewMod.MOD_ID + ":mob.duck.death";
+	}
+
+	public boolean isFavouriteItem(ItemStack itemStack) {
+		return itemStack != null && itemStack.getItem().hasTag(ItemTags.CHICKENS_FAVOURITE_ITEM);
 	}
 
 }

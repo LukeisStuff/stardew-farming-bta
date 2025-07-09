@@ -262,7 +262,6 @@ public class StardewModels implements ModelEntrypoint {
 		standardBuilder.build(StardewItems.WATERING_CAN);
 		standardBuilder.build(StardewItems.WATERING_CAN_STEEL);
 
-		standardBuilder.build(StardewItems.FOOD_PIE);
 		standardBuilder.build(StardewItems.FOOD_PIZZA);
 		standardBuilder.build(StardewItems.FOOD_CAKE_CHOCOLATE);
 		standardBuilder.build(StardewItems.FOOD_BASS_COOKED);
@@ -275,6 +274,7 @@ public class StardewModels implements ModelEntrypoint {
 		standardBuilder.build(StardewItems.FOOD_STEW_FRUIT);
 		standardBuilder.build(StardewItems.FOOD_STEW_CHEESE);
 		standardBuilder.build(StardewItems.FOOD_STEW_VEGETABLE);
+		standardBuilder.build(StardewItems.FOOD_STEW_TRUFFLE);
 		standardBuilder.build(StardewItems.EGG_COOKED);
 		standardBuilder.build(StardewItems.CHEESE);
 		standardBuilder.build(StardewItems.JAR_JAM);

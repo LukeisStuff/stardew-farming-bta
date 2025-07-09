@@ -167,6 +167,13 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.addInput(new ItemStack(Items.BOWL, 1))
 			.create("fruit_soup", new ItemStack(StardewItems.FOOD_STEW_FRUIT, 1));
 
+		RecipeBuilder.Shapeless(MOD_ID)
+			.addInput(new ItemStack(Blocks.MUSHROOM_BROWN, 1))
+			.addInput(new ItemStack(Blocks.MUSHROOM_RED, 1))
+			.addInput(new ItemStack(StardewBlocks.MUSHROOM_TRUFFLE, 1))
+			.addInput(new ItemStack(Items.BOWL, 1))
+			.create("truffle_soup", new ItemStack(StardewItems.FOOD_STEW_TRUFFLE, 1));
+
 		RecipeBuilder.Shaped(MOD_ID, "CMC", "SES", "DDD")
 			.addInput('D', StardewItems.DOUGH)
 			.addInput('C', Items.DYE, 3)

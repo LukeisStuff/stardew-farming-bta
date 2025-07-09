@@ -44,7 +44,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
 	public void afterItemInit() {
 		//Initialize here because Blocks and items may refer to vanilla items
 		StardewBlocks.initializeBlocks();
-		StardewItems.initilizeItems();
+		StardewItems.initializeItems();
 
 		LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 400);
 
