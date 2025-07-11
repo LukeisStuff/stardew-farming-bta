@@ -24,7 +24,7 @@ public class ItemSeedsStake extends ItemSeeds {
 				player.swingItem();
 				world.playBlockSoundEffect(player, (float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, StardewBlocks.CROPS_GRAPE_BOTTOM, EnumBlockSoundEffectType.PLACE);
 			}
-			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.BEANS_COFFE.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
+			if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.BEANS_COFFEE.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
 				player.getCurrentEquippedItem().consumeItem(player);
 				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CROPS_BEANS_BOTTOM.id(), 0);
 				player.swingItem();

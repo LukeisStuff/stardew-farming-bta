@@ -113,7 +113,7 @@ public class StardewItems {
 	public static Item RECORD_PINK;
 
 	// Beans/Coffee
-	public static Item BEANS_COFFE;
+	public static Item BEANS_COFFEE;
 	public static Item FOOD_COFFEE;
 
 	public static Item EGG_DUCK;
@@ -301,9 +301,9 @@ public class StardewItems {
 			.setStackSize(1)
 			.build(new ItemDiscMusic("record.pink", itemKey("record_pink"), itemID("RECORD_PINK"), "stardew:axolotl", "C418"));
 
-		BEANS_COFFE = new ItemBuilder(MOD_ID)
+		BEANS_COFFEE = new ItemBuilder(MOD_ID)
 			.setStackSize(64)
-			.build(new ItemSeedsStake("bean.coffee", itemKey("beans_coffee"), itemID("BEANS_COFFE"), StardewBlocks.CROPS_BEANS_BOTTOM));
+			.build(new ItemSeedsStake("bean.coffee", itemKey("beans_coffee"), itemID("BEANS_COFFEE"), StardewBlocks.CROPS_BEANS_BOTTOM));
 
 		EGG_DUCK = new ItemBuilder(MOD_ID)
 			.setStackSize(64)

@@ -237,7 +237,7 @@ public class StardewModels implements ModelEntrypoint {
 		standardBuilder.build(StardewItems.SEEDS_PINEAPPLE);
 		standardBuilder.build(StardewItems.SEEDS_TOMATO);
 		standardBuilder.build(StardewItems.SEEDS_STRAWBERRY);
-		standardBuilder.build(StardewItems.BEANS_COFFE);
+		standardBuilder.build(StardewItems.BEANS_COFFEE);
 		standardBuilder.build(StardewItems.SEEDS_POTATO);
 		standardBuilder.build(StardewItems.SEEDS_WATERMELON);
 

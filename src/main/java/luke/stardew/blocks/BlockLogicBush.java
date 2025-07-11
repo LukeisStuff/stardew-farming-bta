@@ -107,7 +107,7 @@ public class BlockLogicBush extends BlockLogicFlower {
 					if (random == 0) {
 						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CAULIFLOWER)};
 					} else if (random == 1) {
-						return new ItemStack[]{new ItemStack(StardewItems.BEANS_COFFE)};
+						return new ItemStack[]{new ItemStack(StardewItems.BEANS_COFFEE)};
 					} else
 						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CRANBERRIES)};
 				}

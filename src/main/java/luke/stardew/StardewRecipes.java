@@ -257,7 +257,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("wax", new ItemStack(StardewBlocks.CANDLE, 4));
 
 		RecipeBuilder.Shapeless(MOD_ID)
-			.addInput(new ItemStack(StardewItems.BEANS_COFFE, 1))
+			.addInput(new ItemStack(StardewItems.BEANS_COFFEE, 1))
 			.addInput(new ItemStack(Items.BUCKET_MILK, 1))
 			.addInput(new ItemStack(Items.DUST_SUGAR, 1))
 			.create("food_coffee", new ItemStack(StardewItems.FOOD_COFFEE, 1));
