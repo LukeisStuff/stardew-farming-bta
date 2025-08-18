@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
-@Mixin(Block.class)
+@Mixin(value = Block.class, remap = false)
 public abstract class BlockMixin implements NamespaceObject {
     @Shadow @Final private @NotNull NamespaceID namespaceID;
 
