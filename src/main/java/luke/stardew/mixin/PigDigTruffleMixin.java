@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.Unique;
 @Mixin(value = MobPig.class, remap = false)
 public abstract class PigDigTruffleMixin extends MobAnimal {
 	@Unique
-	public int timeUntilNextTruffle = this.random.nextInt(3000) + 3000;
+	public int timeUntilNextTruffle = this.random.nextInt(6000) + 6000;
 	public PigDigTruffleMixin(World world) {
 		super(world);
 	}
@@ -37,7 +37,7 @@ public abstract class PigDigTruffleMixin extends MobAnimal {
 				this.dropItem(StardewBlocks.MUSHROOM_TRUFFLE.id(), world.rand.nextInt(2) + 1);
 				this.isMovementBlocked();
 				this.world.setBlockWithNotify(blockX, blockY - 1, blockZ, Blocks.DIRT.id());
-				this.timeUntilNextTruffle = this.random.nextInt(3000) + 3000;
+				this.timeUntilNextTruffle = this.random.nextInt(6000) + 6000;
 			}
 		}
 	}
