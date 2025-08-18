@@ -5,6 +5,7 @@ import luke.stardew.StardewMod;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.tag.BlockTags;
+import net.minecraft.core.entity.animal.Creature;
 import net.minecraft.core.entity.animal.MobAnimal;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemBucketEmpty;
@@ -15,7 +16,7 @@ import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.NotNull;
 
-public class MobGoat extends MobAnimal {
+public class MobGoat extends MobAnimal implements Creature {
 	public MobGoat(World world) {
 		super(world);
 		this.textureIdentifier = NamespaceID.getPermanent("stardew", "goat");

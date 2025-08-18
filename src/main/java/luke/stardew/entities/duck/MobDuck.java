@@ -4,6 +4,7 @@ import luke.stardew.StardewMod;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicFluid;
+import net.minecraft.core.entity.animal.Creature;
 import net.minecraft.core.entity.animal.MobAnimal;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -12,7 +13,7 @@ import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 
-public class MobDuck extends MobAnimal {
+public class MobDuck extends MobAnimal implements Creature {
 	public float flap = 0.0F;
 	public float flapSpeed = 0.0F;
 	public float oFlapSpeed;
@@ -67,8 +68,9 @@ public class MobDuck extends MobAnimal {
 			this.flapSpeed = 0;
 			this.flapping = 0;
 			this.flap = 0;
+			this.yd *= 0.1;
 
-		}else {
+		} else {
 			this.oFlap = this.flap;
 			this.oFlapSpeed = this.flapSpeed;
 			this.flapSpeed = (float) ((double) this.flapSpeed + (double) (this.onGround ? -1 : 4) * 0.3);
