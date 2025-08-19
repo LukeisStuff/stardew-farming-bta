@@ -377,14 +377,18 @@ public class StardewBlocks {
 		StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_BOTTOM)
 			.growsTop(CROPS_BEANS_TOP, 4)
 			.withGrowth(6)
-			.withSeed(StardewItems.BEANS_COFFEE, 1, 3)
-			.notFertilized();
+			.withResetMeta(4)
+			.withCrop(StardewItems.BEANS_COFFEE, 1, 3)
+			.notFertilized()
+			.seedItem = (StardewItems.BEANS_COFFEE);
 
 		StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_TOP)
 			.asTop(CROPS_BEANS_BOTTOM)
 			.withGrowth(2)
-			.withSeed(StardewItems.BEANS_COFFEE, 1, 3)
-			.notFertilized();
+			.withResetMeta(0)
+			.withCrop(StardewItems.BEANS_COFFEE, 1, 3)
+			.notFertilized()
+			.seedItem = (StardewItems.BEANS_COFFEE);
 
 		StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_GRAPE_TOP)
 			.asTop(CROPS_GRAPE_BOTTOM)
