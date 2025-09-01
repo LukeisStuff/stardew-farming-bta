@@ -16,12 +16,14 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = EntityItem.class, remap = false)
-public abstract class EntityItemMixin {
+public abstract class ItemPickupAchievementMixin {
 
-	@Shadow public ItemStack item;
+	@Shadow
+	public ItemStack item;
 
 	@Inject(method = "playerTouch", at = @At("TAIL"), cancellable = true)
 	public void playerTouch(Player player, CallbackInfo ci) {
+
 		String pickUpKey = StatList.STAT_PICKED_UP;
 
 		if (this.item.itemID == StardewBlocks.SAPLING_APPLE.id()) {
@@ -79,14 +81,13 @@ public abstract class EntityItemMixin {
 			&& player.getStat(StardewBlocks.CAULIFLOWER.getStat(pickUpKey)) > 0
 			&& player.getStat(Items.WHEAT.getStat(pickUpKey)) > 0) {
 			player.triggerAchievement(StardewAchievements.VEGETABLE);
-			ci.cancel();
 		}
 		if ((this.item.itemID == StardewItems.EGG_DUCK.id
 			|| this.item.itemID == Items.EGG_CHICKEN.id)
 			&& player.getStat(StardewItems.EGG_DUCK.getStat(pickUpKey)) > 0
 			&& player.getStat(Items.EGG_CHICKEN.getStat(pickUpKey)) > 0) {
 			player.triggerAchievement(StardewAchievements.EGG);
-			ci.cancel();
 		}
+		ci.cancel();
 	}
 }

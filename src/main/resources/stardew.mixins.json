@@ -8,7 +8,7 @@
     "BlockMixin",
     "ChunkDecoratorOverworldMixin",
     "EntityBobberMixin",
-    "EntityItemMixin",
+    "ItemPickupAchievementMixin",
     "ItemFishingRodMixin",
     "ItemMixin",
     "ItemsAccessor",
