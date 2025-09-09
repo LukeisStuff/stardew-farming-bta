@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ItemModelExtended extends ItemModelStandard {
 	public final List<IconCoordinate> icons = new ArrayList<>();
+
 	public ItemModelExtended(Item item) {
 		super(item, null);
 	}

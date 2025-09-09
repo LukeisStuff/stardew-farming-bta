@@ -18,10 +18,11 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewBlocks {
 	public static int blockID = 6000;
+
 	public static int blockID(String blockName) {
 		try {
 			return StardewConfig.cfg.getInt("Block IDs." + blockName);
-		}catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 			System.out.println(blockID);
 			StardewConfig.properties.addEntry("Block IDs." + blockName, blockID);
 			return blockID++;

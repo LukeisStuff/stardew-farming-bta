@@ -123,7 +123,6 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("carrot_to_carrot_seeds", new ItemStack(StardewItems.SEEDS_CARROT, 1));
 
 
-
 		RecipeBuilder.Shapeless(MOD_ID)
 			.addInput(new ItemStack(Items.JAR, 1))
 			.addInput(new ItemStack(Items.DUST_SUGAR, 1))
@@ -277,15 +276,6 @@ public class StardewRecipes implements RecipeEntrypoint {
 			.create("can_of_worms", itemStack);
 
 
-
-
-
-
-
-
-
-
-
 		RecipeBuilder.Furnace(MOD_ID)
 			.setInput(MOD_ID + ":item/eggs")
 			.create("egg_cooked", StardewItems.EGG_COOKED.getDefaultStack());
@@ -317,7 +307,6 @@ public class StardewRecipes implements RecipeEntrypoint {
 		RecipeBuilder.Furnace(MOD_ID)
 			.setInput(MOD_ID + ":item/seeds")
 			.create("roasted_seeds", new ItemStack(StardewItems.FOOD_SEEDS_ROASTED, 1));
-
 
 
 	}

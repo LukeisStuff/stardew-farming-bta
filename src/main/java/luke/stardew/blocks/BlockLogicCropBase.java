@@ -42,10 +42,12 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		this.canHarvest = true;
 		this.setBlockBounds(0, 0.0F, 0, 1, 0.25F, 1);
 	}
+
 	public BlockLogicCropBase withGrowth(int maxGrowth) {
 		this.maxGrowth = maxGrowth;
 		return this;
 	}
+
 	public BlockLogicCropBase withSeed(Item seedItem, int seedMin, int seedMax) {
 		this.seedItem = seedItem;
 		this.seedRange = new Range(seedMin, seedMax);
@@ -100,7 +102,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 	public void onGrowth(World world, int x, int y, int z, int meta) {
 		if (this.growsInto != null && meta >= this.maxGrowth) {
 			world.setBlockAndMetadataWithNotify(x, y, z, this.growsInto.id(), 0);
-		}else {
+		} else {
 			world.setBlockMetadataWithNotify(x, y, z, meta);
 		}
 	}
@@ -135,8 +137,8 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		boolean zNeighbor = idNegZ == this.id() || idPosZ == this.id();
 		boolean diagNeighbor = idNegXNegZ == this.id() || idPosXNegZ == this.id() || idPosXPosZ == this.id() || idNegXPosZ == this.id();
 
-		for(int dx = x - 1; dx <= x + 1; ++dx) {
-			for(int dz = z - 1; dz <= z + 1; ++dz) {
+		for (int dx = x - 1; dx <= x + 1; ++dx) {
+			for (int dz = z - 1; dz <= z + 1; ++dz) {
 				int id = world.getBlockId(dx, y - 1, dz);
 				float growthRateMod = 0.0F;
 				if (id == Blocks.FARMLAND_DIRT.id()) {
@@ -175,17 +177,17 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		if (dropCause == EnumDropCause.PICK_BLOCK) {
 			if (this.seedItem != null) {
 				drops.add(new ItemStack(this.seedItem, 1));
-            }else {
+			} else {
 				ItemStack stack = new ItemStack(Items.SEEDS_WHEAT, 1);
 				drops.add(stack);
 				stack.setCustomName("If you somehow got this item, this is a bug [" + this.namespaceId() + "]");
-            }
-            return drops;
-        }
+			}
+			return drops;
+		}
 
 		if (meta < maxGrowth) {
 			if (this.seedItem != null) drops.add(new ItemStack(this.seedItem));
-		}else {
+		} else {
 			if (this.seedItem != null) drops.add(new ItemStack(this.seedItem, this.seedRange.get(world.rand)));
 			if (this.cropItem != null) drops.add(new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
 		}
@@ -222,13 +224,14 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		if (meta >= this.maxGrowth) {
 			if (this.resetMeta < 0) {
 				onHarvest(world, x, y, z, meta);
-			}else {
+			} else {
 				onGrowth(world, x, y, z, this.resetMeta);
 			}
 
-			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.pop", 0.3F, 1.0f);
+			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "random.pop", 0.3F, 1.0f);
 			if (!world.isClientSide) {
-				if(this.cropItem != null) world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
+				if (this.cropItem != null)
+					world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
 			}
 			return true;
 		}

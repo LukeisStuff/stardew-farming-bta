@@ -30,11 +30,11 @@ public class StardewConfig {
 		properties.addEntry("Item IDs.startingID", itemIDs);
 
 
-		List<Field> blockFields = Arrays.stream(StardewBlocks.class.getDeclaredFields()).filter((F)-> Block.class.isAssignableFrom(F.getType())).collect(Collectors.toList());
+		List<Field> blockFields = Arrays.stream(StardewBlocks.class.getDeclaredFields()).filter((F) -> Block.class.isAssignableFrom(F.getType())).collect(Collectors.toList());
 		for (Field blockField : blockFields) {
 			properties.addEntry("Block IDs." + blockField.getName(), blockIDs++);
 		}
-		List<Field> itemFields = Arrays.stream(StardewItems.class.getDeclaredFields()).filter((F)-> Item.class.isAssignableFrom(F.getType())).collect(Collectors.toList());
+		List<Field> itemFields = Arrays.stream(StardewItems.class.getDeclaredFields()).filter((F) -> Item.class.isAssignableFrom(F.getType())).collect(Collectors.toList());
 		for (Field itemField : itemFields) {
 			properties.addEntry("Item IDs." + itemField.getName(), itemIDs++);
 		}

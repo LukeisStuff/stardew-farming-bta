@@ -11,9 +11,10 @@ import java.util.Random;
 public class WorldFeatureMelon extends WorldFeature {
 	public WorldFeatureMelon() {
 	}
+
 	@Override
 	public boolean place(World world, Random random, int x, int y, int z) {
-		for(int l = 0; l < 64; ++l) {
+		for (int l = 0; l < 64; ++l) {
 			int i1 = x + random.nextInt(8) - random.nextInt(8);
 			int j1 = y + random.nextInt(4) - random.nextInt(4);
 			int k1 = z + random.nextInt(8) - random.nextInt(8);

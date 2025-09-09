@@ -51,6 +51,6 @@ public abstract class PlayerRendererAddWormCans extends MobRenderer<Player> {
 			modelbiped.legLeft.visible = false;
 			this.setArmorModel(modelbiped);
 			info.setReturnValue(true);
-        }
+		}
 	}
 }

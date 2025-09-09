@@ -16,7 +16,7 @@ public class StardewItems {
 	public static int itemID(String itemName) {
 		try {
 			return StardewConfig.cfg.getInt("Item IDs." + itemName);
-		}catch (NullPointerException e) {
+		} catch (NullPointerException e) {
 			StardewConfig.properties.addEntry("Item IDs." + itemName, itemID);
 			return itemID++;
 		}
@@ -76,7 +76,6 @@ public class StardewItems {
 	public static Item FOOD_CAKE_CHOCOLATE;
 
 
-
 	//Watering Cans
 	public static Item WATERING_CAN;
 	public static Item WATERING_CAN_STEEL;
@@ -124,7 +123,6 @@ public class StardewItems {
 	public static Item FOOD_SEEDS_ROASTED;
 
 
-
 	public static void initializeItems() {
 
 		ItemBuilder seeds = new ItemBuilder(MOD_ID)
@@ -135,7 +133,7 @@ public class StardewItems {
 		SEEDS_CARROT = seeds
 			.build(new ItemSeeds("seeds.carrot", itemKey("seeds_carrot"), itemID("SEEDS_CARROT"), StardewBlocks.CROPS_CARROT));
 		CARROT = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.carrot", itemKey("carrot"), itemID("CARROT"), 2, 8,false, 8));
+			.build(new ItemFood("food.carrot", itemKey("carrot"), itemID("CARROT"), 2, 8, false, 8));
 
 		SEEDS_BLUEBERRY = seeds
 			.build(new ItemSeeds("seeds.blueberry", itemKey("seeds_blueberry"), itemID("SEEDS_BLUEBERRY"), StardewBlocks.CROPS_BLUEBERRY));
@@ -152,12 +150,12 @@ public class StardewItems {
 		SEEDS_TOMATO = seeds
 			.build(new ItemSeeds("seeds.tomato", itemKey("seeds_tomato"), itemID("SEEDS_TOMATO"), StardewBlocks.CROPS_TOMATO));
 		TOMATO = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.tomato", itemKey("tomato"), itemID("TOMATO"), 2, 8,false, 8));
+			.build(new ItemFood("food.tomato", itemKey("tomato"), itemID("TOMATO"), 2, 8, false, 8));
 
 		SEEDS_POTATO = seeds
 			.build(new ItemSeeds("seeds.potato", itemKey("seeds_potato"), itemID("SEEDS_POTATO"), StardewBlocks.CROPS_POTATO));
 		POTATO = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.potato", itemKey("food_potato"), itemID("POTATO"), 1, 8,false, 8));
+			.build(new ItemFood("food.potato", itemKey("food_potato"), itemID("POTATO"), 1, 8, false, 8));
 
 		SEEDS_STRAWBERRY = seeds
 			.build(new ItemSeeds("seeds.strawberry", itemKey("seeds_strawberry"), itemID("SEEDS_STRAWBERRY"), StardewBlocks.CROPS_STRAWBERRY));
@@ -172,10 +170,10 @@ public class StardewItems {
 		SEEDS_CORN = seeds
 			.build(new ItemSeeds("seeds.corn", itemKey("seeds_corn"), itemID("SEEDS_CORN"), StardewBlocks.CROPS_CORN_BOTTOM));
 		CORN = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.corn", itemKey("corn"), itemID("CORN"), 2, 8,false, 8));
+			.build(new ItemFood("food.corn", itemKey("corn"), itemID("CORN"), 2, 8, false, 8));
 
 		SEEDS_GRAPES = seeds
-			.build(new ItemSeedsStake("seeds.grapes", itemKey("seeds_grapes"), itemID("SEEDS_GRAPES"),  StardewBlocks.CROPS_GRAPE_BOTTOM));
+			.build(new ItemSeedsStake("seeds.grapes", itemKey("seeds_grapes"), itemID("SEEDS_GRAPES"), StardewBlocks.CROPS_GRAPE_BOTTOM));
 		GRAPES = new ItemBuilder(MOD_ID)
 			.build(new ItemFruit("food.grapes", itemKey("grapes"), itemID("GRAPES"), 1, 8, 16));
 
@@ -192,19 +190,19 @@ public class StardewItems {
 
 		//Fishes
 		FOOD_SALMON_RAW = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.salmon.raw", itemKey("food_salmon_raw"), itemID("FOOD_SALMON_RAW"), 2, 12,false, 8));
+			.build(new ItemFood("food.salmon.raw", itemKey("food_salmon_raw"), itemID("FOOD_SALMON_RAW"), 2, 12, false, 8));
 		FOOD_SALMON_COOKED = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.salmon.cooked", itemKey("food_salmon_cooked"), itemID("FOOD_SALMON_COOKED"), 5, 12,false, 8));
+			.build(new ItemFood("food.salmon.cooked", itemKey("food_salmon_cooked"), itemID("FOOD_SALMON_COOKED"), 5, 12, false, 8));
 
 		FOOD_BASS_RAW = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.bass.raw", itemKey("food_bass_raw"), itemID("FOOD_BASS_RAW"), 2, 12,false, 8));
+			.build(new ItemFood("food.bass.raw", itemKey("food_bass_raw"), itemID("FOOD_BASS_RAW"), 2, 12, false, 8));
 		FOOD_BASS_COOKED = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.bass.cooked", itemKey("food_bass_cooked"), itemID("FOOD_BASS_COOKED"), 5, 12,false, 8));
+			.build(new ItemFood("food.bass.cooked", itemKey("food_bass_cooked"), itemID("FOOD_BASS_COOKED"), 5, 12, false, 8));
 
 		FOOD_SNAPPER_RAW = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.snapper.raw", itemKey("food_snapper_raw"), itemID("FOOD_SNAPPER_RAW"), 2, 12,false, 8));
+			.build(new ItemFood("food.snapper.raw", itemKey("food_snapper_raw"), itemID("FOOD_SNAPPER_RAW"), 2, 12, false, 8));
 		FOOD_SNAPPER_COOKED = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.snapper.cooked", itemKey("food_snapper_cooked"), itemID("FOOD_SNAPPER_COOKED"), 5, 12,false, 8));
+			.build(new ItemFood("food.snapper.cooked", itemKey("food_snapper_cooked"), itemID("FOOD_SNAPPER_COOKED"), 5, 12, false, 8));
 
 		FISH_EEL_LAVA = new ItemBuilder(MOD_ID)
 			.setStackSize(1)
@@ -222,19 +220,19 @@ public class StardewItems {
 
 		//Processed Foods
 		DOUGH = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.dough", itemKey("dough"), itemID("DOUGH"), -1, 0,false, 64));
+			.build(new ItemFood("food.dough", itemKey("dough"), itemID("DOUGH"), -1, 0, false, 64));
 
 		EGG_COOKED = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.egg.cooked", itemKey("food_egg_cooked"), itemID("EGG_COOKED"), 10, 8,false, 16));
+			.build(new ItemFood("food.egg.cooked", itemKey("food_egg_cooked"), itemID("EGG_COOKED"), 10, 8, false, 16));
 
 		HONEY = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.honey", itemKey("honey"), itemID("HONEY"), 1, 16,false, 64));
+			.build(new ItemFood("food.honey", itemKey("honey"), itemID("HONEY"), 1, 16, false, 64));
 
 		JAR_JAM = new ItemBuilder(MOD_ID)
-			.build(new ItemJam("food.jam", itemKey("food_jam"), itemID("JAR_JAM"), 8, 16,false, 1));
+			.build(new ItemJam("food.jam", itemKey("food_jam"), itemID("JAR_JAM"), 8, 16, false, 1));
 
 		CHEESE = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.cheese", itemKey("cheese"), itemID("CHEESE"), 4, 8,false, 4));
+			.build(new ItemFood("food.cheese", itemKey("cheese"), itemID("CHEESE"), 4, 8, false, 4));
 
 		FOOD_COFFEE = new ItemBuilder(MOD_ID)
 			.build(new ItemCoffee("food.coffee", itemKey("food_coffee"), itemID("FOOD_COFFEE"), 1, 4));
@@ -258,7 +256,7 @@ public class StardewItems {
 			.build(new ItemPlaceable("food.pizza", itemKey("food_pizza"), itemID("FOOD_PIZZA"), StardewBlocks.PIZZA).setMaxStackSize(1));
 
 		FOOD_SEEDS_ROASTED = new ItemBuilder(MOD_ID)
-			.build(new ItemFood("food.seeds.roasted", itemKey("food_seeds_roasted"), itemID("FOOD_SEEDS_ROASTED"), 1, 20,false, 64));
+			.build(new ItemFood("food.seeds.roasted", itemKey("food_seeds_roasted"), itemID("FOOD_SEEDS_ROASTED"), 1, 20, false, 64));
 
 
 		//Tools

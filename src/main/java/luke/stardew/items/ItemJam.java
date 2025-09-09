@@ -20,8 +20,8 @@ public class ItemJam extends ItemFood {
 			entityplayer.heal(this.healAmount);
 			entityplayer.inventory.insertItem(new ItemStack(Items.JAR, 1), true);
 		}
-			return itemstack;
-		}
+		return itemstack;
+	}
 
 	public int getHealAmount() {
 		return this.healAmount;

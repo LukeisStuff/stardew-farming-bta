@@ -32,16 +32,16 @@ public class ItemToolFishingRodTiered extends Item {
 			}
 
 			if (canSlot != null && ((canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id && canSlot.getMetadata() < canSlot.getMaxDamage()) || canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN.id)) {
-				if (canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id){
+				if (canSlot.itemID == StardewItems.ARMOR_CAN_OF_WORMS.id) {
 					entityplayer.inventory.armorItemInSlot(1).damageItem(1, entityplayer);
 				}
 				// Double check if bobberEntity is not null before casting and using it
 				if (entityplayer.bobberEntity instanceof IEntityBobberMixin) {
-					((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
+					((IEntityBobberMixin) entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 				}
-			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.WORM.id)){
+			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.WORM.id)) {
 				if (entityplayer.bobberEntity instanceof IEntityBobberMixin) {
-					((IEntityBobberMixin)entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
+					((IEntityBobberMixin) entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 				}
 			}
 		}

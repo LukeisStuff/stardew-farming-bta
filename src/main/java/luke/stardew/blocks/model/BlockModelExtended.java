@@ -11,6 +11,7 @@ import java.util.List;
 
 public class BlockModelExtended<T extends BlockLogic> extends BlockModelStandard<T> {
 	public final List<IconCoordinate> icons = new ArrayList<>();
+
 	public BlockModelExtended(Block<T> block) {
 		super(block);
 	}

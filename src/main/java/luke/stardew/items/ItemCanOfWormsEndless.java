@@ -3,7 +3,6 @@ package luke.stardew.items;
 import net.minecraft.core.item.IArmorItem;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.material.ArmorMaterial;
-import net.minecraft.core.util.collection.NamespaceID;
 import org.jetbrains.annotations.Nullable;
 
 public class ItemCanOfWormsEndless extends Item implements IArmorItem {

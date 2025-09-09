@@ -16,7 +16,7 @@ public abstract class WorldFeatureDungeonMixin {
 	public WeightedRandomBag<WeightedRandomLootObject> chestLoot;
 
 	@Inject(method = "<init>", at = @At(value = "TAIL"))
-	public void addLoot(CallbackInfo ci){
+	public void addLoot(CallbackInfo ci) {
 		this.chestLoot.addEntry(new WeightedRandomLootObject(StardewBlocks.SAPLING_APPLE.getDefaultStack()), 50);
 	}
 }

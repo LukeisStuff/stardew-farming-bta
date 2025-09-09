@@ -32,7 +32,7 @@ public class ParticleBee extends Particle {
 	}
 
 	public void tick() {
-		this.tex = this.age % 2 == 0 ? bee1: bee2;
+		this.tex = this.age % 2 == 0 ? bee1 : bee2;
 
 		this.xo = this.x;
 		this.yo = this.y;

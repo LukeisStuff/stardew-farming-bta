@@ -104,7 +104,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 		this.ignoreFrustumCheck = true;
 		this.owner = player;
 		this.setSize(0.25F, 0.25F);
-		this.moveTo(player.x, player.y + 1.62 - (double)player.heightOffset, player.z, player.yRot, player.xRot);
+		this.moveTo(player.x, player.y + 1.62 - (double) player.heightOffset, player.z, player.yRot, player.xRot);
 		this.x -= MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * 0.16F;
 		this.y -= 0.1;
 		this.z -= MathHelper.sin(this.yRot / 180.0F * 3.1415927F) * 0.16F;
@@ -130,9 +130,9 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 		d /= f2;
 		d1 /= f2;
 		d2 /= f2;
-		d += this.random.nextGaussian() * 0.0075 * (double)f1;
-		d1 += this.random.nextGaussian() * 0.0075 * (double)f1;
-		d2 += this.random.nextGaussian() * 0.0075 * (double)f1;
+		d += this.random.nextGaussian() * 0.0075 * (double) f1;
+		d1 += this.random.nextGaussian() * 0.0075 * (double) f1;
+		d2 += this.random.nextGaussian() * 0.0075 * (double) f1;
 		d *= f;
 		d1 *= f;
 		d2 *= f;
@@ -140,8 +140,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 		this.yd = d1;
 		this.zd = d2;
 		float f3 = MathHelper.sqrt(d * d + d2 * d2);
-		this.yRotO = this.yRot = (float)(Math.atan2(d, d2) * 180.0 / Math.PI);
-		this.xRotO = this.xRot = (float)(Math.atan2(d1, f3) * 180.0 / Math.PI);
+		this.yRotO = this.yRot = (float) (Math.atan2(d, d2) * 180.0 / Math.PI);
+		this.xRotO = this.xRot = (float) (Math.atan2(d1, f3) * 180.0 / Math.PI);
 	}
 
 	public void lerpTo(double x, double y, double z, float yRot, float xRot, int i) {
@@ -191,33 +191,33 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 	/**
 	 * @author DundiGundi
 	 * @reason modifying if statement that removes hookedEntity when not fishingrod held to detect for the tiered fishing rod too
-	 * 			and decreasing catchTime based on material
-	 * 			and making lava also a possible fishing place
+	 * and decreasing catchTime based on material
+	 * and making lava also a possible fishing place
 	 */
 	@Overwrite
 	public void tick() {
 		super.tick();
 		if (this.lerpSteps > 0) {
-			double d = this.x + (this.lerpX - this.x) / (double)this.lerpSteps;
-			double d1 = this.y + (this.lerpY - this.y) / (double)this.lerpSteps;
-			double d2 = this.z + (this.lerpZ - this.z) / (double)this.lerpSteps;
+			double d = this.x + (this.lerpX - this.x) / (double) this.lerpSteps;
+			double d1 = this.y + (this.lerpY - this.y) / (double) this.lerpSteps;
+			double d2 = this.z + (this.lerpZ - this.z) / (double) this.lerpSteps;
 
 			double d4;
-			for(d4 = this.lerpYRot - (double)this.yRot; d4 < -180.0; d4 += 360.0) {
+			for (d4 = this.lerpYRot - (double) this.yRot; d4 < -180.0; d4 += 360.0) {
 			}
 
-			while(d4 >= 180.0) {
+			while (d4 >= 180.0) {
 				d4 -= 360.0;
 			}
 
-			this.yRot = (float)((double)this.yRot + d4 / (double)this.lerpSteps);
-			this.xRot = (float)((double)this.xRot + (this.lerpXRot - (double)this.xRot) / (double)this.lerpSteps);
+			this.yRot = (float) ((double) this.yRot + d4 / (double) this.lerpSteps);
+			this.xRot = (float) ((double) this.xRot + (this.lerpXRot - (double) this.xRot) / (double) this.lerpSteps);
 			--this.lerpSteps;
 			this.setPos(d, d1, d2);
 			this.setRot(this.yRot, this.xRot);
 		} else {
-            assert this.world != null;
-            if (!this.world.isClientSide) {
+			assert this.world != null;
+			if (!this.world.isClientSide) {
 				ItemStack heldPlayerItem = this.owner.getCurrentEquippedItem();
 				if (this.owner.removed || !this.owner.isAlive() || heldPlayerItem == null || (!heldPlayerItem.getItem().equals(Items.TOOL_FISHINGROD) && heldPlayerItem.getItem().getClass() != ItemToolFishingRodTiered.class) || this.distanceToSqr(this.owner) > 1024.0) {
 					this.remove();
@@ -274,7 +274,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 			double d3 = 0.0;
 			Iterator<Entity> var8 = list.iterator();
 
-			while(true) {
+			while (true) {
 				Entity e;
 				double d7;
 				do {
@@ -293,20 +293,20 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 
 									this.move(this.xd, this.yd, this.zd);
 									float f = MathHelper.sqrt(this.xd * this.xd + this.zd * this.zd);
-									this.yRot = (float)(Math.atan2(this.xd, this.zd) * 180.0 / Math.PI);
+									this.yRot = (float) (Math.atan2(this.xd, this.zd) * 180.0 / Math.PI);
 
-									for(this.xRot = (float)(Math.atan2(this.yd, f) * 180.0 / Math.PI); this.xRot - this.xRotO < -180.0F; this.xRotO -= 360.0F) {
+									for (this.xRot = (float) (Math.atan2(this.yd, f) * 180.0 / Math.PI); this.xRot - this.xRotO < -180.0F; this.xRotO -= 360.0F) {
 									}
 
-									while(this.xRot - this.xRotO >= 180.0F) {
+									while (this.xRot - this.xRotO >= 180.0F) {
 										this.xRotO += 360.0F;
 									}
 
-									while(this.yRot - this.yRotO < -180.0F) {
+									while (this.yRot - this.yRotO < -180.0F) {
 										this.yRotO -= 360.0F;
 									}
 
-									while(this.yRot - this.yRotO >= 180.0F) {
+									while (this.yRot - this.yRotO >= 180.0F) {
 										this.yRotO += 360.0F;
 									}
 
@@ -321,13 +321,13 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 									double d5 = 0.0;
 
 									int catchRate;
-									for(catchRate = 0; catchRate < k; ++catchRate) {
-										double d8 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double)catchRate / (double)k - 0.125 + 0.125;
-										double d9 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double)(catchRate + 1) / (double)k - 0.125 + 0.125;
+									for (catchRate = 0; catchRate < k; ++catchRate) {
+										double d8 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double) catchRate / (double) k - 0.125 + 0.125;
+										double d9 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (double) (catchRate + 1) / (double) k - 0.125 + 0.125;
 										AABB axisalignedbb1 = AABB.getTemporaryBB(this.bb.minX, d8, this.bb.minZ, this.bb.maxX, d9, this.bb.maxZ);
 										isInLava = this.world.isAABBInMaterial(axisalignedbb1, Material.lava);
 										if (this.world.isAABBInMaterial(axisalignedbb1, Material.water) || this.world.isAABBInMaterial(axisalignedbb1, Material.lava)) {
-											d5 += 1.0 / (double)k;
+											d5 += 1.0 / (double) k;
 										}
 									}
 
@@ -346,13 +346,13 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 											if (this.world.getBlockId(MathHelper.floor(this.x), MathHelper.floor(this.y) + 1, MathHelper.floor(this.z)) == Blocks.ALGAE.id()) {
 												algaeRate = 50;
 											}
-											if (owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_DIAMOND.id){
+											if (owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_DIAMOND.id) {
 												materialRate = 200;
 											} else if (owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_IRON.id || owner.getCurrentEquippedItem().itemID == StardewItems.TOOL_FISHINGROD_STEEL.id) {
 												materialRate = 100;
 											}
-                                            assert owner.bobberEntity != null;
-                                            if (((IEntityBobberMixin)owner.bobberEntity).stardew_farming_bta$hasBait()){
+											assert owner.bobberEntity != null;
+											if (((IEntityBobberMixin) owner.bobberEntity).stardew_farming_bta$hasBait()) {
 												baitRate = 50;
 											}
 
@@ -361,18 +361,18 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 												this.ticksCatchable = this.random.nextInt(30) + 10;
 												this.yd -= 0.2;
 												this.world.playSoundAtEntity(null, this, "random.splash", 0.25F, 1.0F + (this.random.nextFloat() - this.random.nextFloat()) * 0.4F);
-												float f3 = (float)MathHelper.floor(this.bb.minY);
+												float f3 = (float) MathHelper.floor(this.bb.minY);
 
 												int j1;
 												double zOff;
 												double xOff;
-												for(j1 = 0; (float)j1 < 1.0F + this.bbWidth * 20.0F; ++j1) {
+												for (j1 = 0; (float) j1 < 1.0F + this.bbWidth * 20.0F; ++j1) {
 													xOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
 													zOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
-													this.world.spawnParticle("bubble", this.x + xOff, f3 + 1.0F, this.z + zOff, this.xd, this.yd - (double)(this.random.nextFloat() * 0.2F), this.zd, 0);
+													this.world.spawnParticle("bubble", this.x + xOff, f3 + 1.0F, this.z + zOff, this.xd, this.yd - (double) (this.random.nextFloat() * 0.2F), this.zd, 0);
 												}
 
-												for(j1 = 0; (float)j1 < 1.0F + this.bbWidth * 20.0F; ++j1) {
+												for (j1 = 0; (float) j1 < 1.0F + this.bbWidth * 20.0F; ++j1) {
 													xOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
 													zOff = (this.random.nextFloat() * 2.0F - 1.0F) * this.bbWidth;
 													this.world.spawnParticle("splash", this.x + xOff, f3 + 1.0F, this.z + zOff, this.xd, this.yd, this.zd, 0);
@@ -382,13 +382,13 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 									}
 
 									if (this.ticksCatchable > 0) {
-										this.yd -= (double)(this.random.nextFloat() * this.random.nextFloat() * this.random.nextFloat()) * 0.2;
+										this.yd -= (double) (this.random.nextFloat() * this.random.nextFloat() * this.random.nextFloat()) * 0.2;
 									}
 
 									d7 = d5 * 2.0 - 1.0;
 									this.yd += 0.04 * d7;
 									if (d5 > 0.0) {
-										movementScale = (float)((double)movementScale * 0.9);
+										movementScale = (float) ((double) movementScale * 0.9);
 										this.yd *= 0.8;
 									}
 
@@ -400,16 +400,16 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 								}
 
 								e = var8.next();
-							} while(!e.isPickable());
-						} while(e == this.owner && this.ticksInAir < 5);
+							} while (!e.isPickable());
+						} while (e == this.owner && this.ticksInAir < 5);
 
 						float f2 = 0.3F;
 						AABB aabb = e.bb.expand(f2, f2, f2);
 						newHitResult = aabb.clip(currentPos, nextPos);
-					} while(newHitResult == null);
+					} while (newHitResult == null);
 
 					d7 = currentPos.distanceTo(newHitResult.location);
-				} while(!(d7 < d3) && d3 != 0.0);
+				} while (!(d7 < d3) && d3 != 0.0);
 
 				entity = e;
 				d3 = d7;
@@ -446,8 +446,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 			scale = 2.0;
 			Player var10000 = this.owner;
 			var10000.xd += dx * scale;
-            var10000.yd += dy * scale;
-            var10000.zd += dz * scale;
+			var10000.yd += dy * scale;
+			var10000.zd += dz * scale;
 			damage = 5;
 		}
 
@@ -459,12 +459,12 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 			scale = 0.1;
 			Entity var15 = this.hookedEntity;
 			var15.xd += dx * scale;
-            var15.yd += dy * scale + (double)MathHelper.sqrt(distance) * 0.08;
+			var15.yd += dy * scale + (double) MathHelper.sqrt(distance) * 0.08;
 			var15 = this.hookedEntity;
 			var15.zd += dz * scale;
 			damage = 3;
 		} else if (this.ticksCatchable > 0) {
-			if (isInLava){
+			if (isInLava) {
 				EntityItemFireResistant entityitem = new EntityItemFireResistant(this.world, this.x, this.y, this.z, new ItemStack(getCatchableFish()));
 				dx = this.owner.x - this.x;
 				dy = this.owner.y - this.y;
@@ -472,11 +472,11 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 				distance = MathHelper.sqrt(dx * dx + dy * dy + dz * dz);
 				scale = 0.1;
 				entityitem.xd = dx * scale;
-				entityitem.yd = dy * scale + (double)MathHelper.sqrt(distance) * 0.08;
+				entityitem.yd = dy * scale + (double) MathHelper.sqrt(distance) * 0.08;
 				entityitem.zd = dz * scale;
-                assert this.world != null;
-                this.world.entityJoinedWorld(entityitem);
-			}else {
+				assert this.world != null;
+				this.world.entityJoinedWorld(entityitem);
+			} else {
 				EntityItem entityitem = new EntityItem(this.world, this.x, this.y, this.z, new ItemStack(getCatchableFish()));
 				dx = this.owner.x - this.x;
 				dy = this.owner.y - this.y;
@@ -484,10 +484,10 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 				distance = MathHelper.sqrt(dx * dx + dy * dy + dz * dz);
 				scale = 0.1;
 				entityitem.xd = dx * scale;
-				entityitem.yd = dy * scale + (double)MathHelper.sqrt(distance) * 0.08;
+				entityitem.yd = dy * scale + (double) MathHelper.sqrt(distance) * 0.08;
 				entityitem.zd = dz * scale;
-                assert this.world != null;
-                this.world.entityJoinedWorld(entityitem);
+				assert this.world != null;
+				this.world.entityJoinedWorld(entityitem);
 			}
 			this.owner.addStat(StatList.fishCaughtStat, 1);
 			damage = 1;
@@ -503,8 +503,8 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 
 	@Unique
 	public Item getCatchableFish() {
-        assert world != null;
-        Season season = world.seasonManager.getCurrentSeason();
+		assert world != null;
+		Season season = world.seasonManager.getCurrentSeason();
 		Weather weather = world.weatherManager.getCurrentWeather();
 		Item[] treasuresLowValue = {Items.OLIVINE, Items.QUARTZ, Items.DUST_REDSTONE, Items.COAL};
 		Item[] treasuresMiddleValue = {Items.ORE_RAW_IRON, Items.ORE_RAW_GOLD};
@@ -514,9 +514,9 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 			return StardewItems.FISH_EEL_LAVA;
 		} else if (this.owner.getCurrentEquippedItem().itemID != StardewItems.TOOL_FISHINGROD_GOLD.id) {
 			if (weather == Weathers.OVERWORLD_STORM && world.rand.nextInt(15) == 0) {
-					return StardewItems.FISH_SWORD;
+				return StardewItems.FISH_SWORD;
 
-			} else if (weather == Weathers.OVERWORLD_FOG && !world.isDaytime() && world.rand.nextInt(15) == 0){
+			} else if (weather == Weathers.OVERWORLD_FOG && !world.isDaytime() && world.rand.nextInt(15) == 0) {
 				return StardewItems.FISH_GHOST;
 
 			} else if (!world.canBlockSeeTheSky(MathHelper.floor(this.x), MathHelper.floor(this.y) + 1, MathHelper.floor(this.z)) && MathHelper.floor(this.y) + 1 <= 32 && world.rand.nextInt(15) == 0) {
@@ -535,18 +535,18 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 				return StardewItems.FOOD_SALMON_RAW;
 			}
 		} else {
-			if (world.rand.nextInt(2) == 0){
-				if (world.rand.nextInt(2) == 0){
+			if (world.rand.nextInt(2) == 0) {
+				if (world.rand.nextInt(2) == 0) {
 					return treasuresMiddleValue[world.rand.nextInt(treasuresMiddleValue.length)];
 				} else {
 					return treasuresHighValue[world.rand.nextInt(treasuresHighValue.length)];
 				}
-			}else {
+			} else {
 				return treasuresLowValue[random.nextInt(treasuresLowValue.length)];
 			}
 		}
-        return Items.BONE;
-    }
+		return Items.BONE;
+	}
 
 	@Override
 	public void readAdditionalSaveData(@NotNull CompoundTag compoundTag) {

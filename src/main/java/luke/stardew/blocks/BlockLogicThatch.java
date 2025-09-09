@@ -27,7 +27,7 @@ public class BlockLogicThatch extends BlockLogicFullyRotatable {
 	}
 
 	@Override
-	public AABB getCollisionBoundingBoxFromPool(WorldSource world,int x, int y, int z){
-		return AABB.getTemporaryBB(x, y, z, (x + 1), y+.9f, (z + 1));
+	public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+		return AABB.getTemporaryBB(x, y, z, (x + 1), y + .9f, (z + 1));
 	}
 }

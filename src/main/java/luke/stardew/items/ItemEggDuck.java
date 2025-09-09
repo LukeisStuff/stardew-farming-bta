@@ -5,7 +5,6 @@ import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.IDispensable;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
 
 import java.util.Random;

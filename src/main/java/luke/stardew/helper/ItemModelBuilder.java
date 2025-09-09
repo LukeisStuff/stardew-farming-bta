@@ -12,21 +12,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ItemModelBuilder extends ModelBuilder<Item, ItemModel, ItemModelBuilder> {
-    public boolean full3D = false;
-    public boolean fullbright = false;
-    public boolean rotateWhenRendering = false;
-    public boolean pointInFrontOfPlayer = false;
-    public @NotNull String stringFormat = "%s";
+	public boolean full3D = false;
+	public boolean fullbright = false;
+	public boolean rotateWhenRendering = false;
+	public boolean pointInFrontOfPlayer = false;
+	public @NotNull String stringFormat = "%s";
 	public final List<String> extendedMap = new ArrayList<>();
-    ItemModelBuilder(String modID, ItemModelDispatcher dispatcher) {
-        super(modID, dispatcher);
-    }
 
-    @SuppressWarnings("unused")
-    public ItemModelBuilder withMapping(String stringFormat) {
-        this.stringFormat = stringFormat;
-        return this;
-    }
+	ItemModelBuilder(String modID, ItemModelDispatcher dispatcher) {
+		super(modID, dispatcher);
+	}
+
+	@SuppressWarnings("unused")
+	public ItemModelBuilder withMapping(String stringFormat) {
+		this.stringFormat = stringFormat;
+		return this;
+	}
 
 	@SuppressWarnings("unused")
 	public ItemModelBuilder extMapping(String stringFormat) {
@@ -34,48 +35,48 @@ public final class ItemModelBuilder extends ModelBuilder<Item, ItemModel, ItemMo
 		return this;
 	}
 
-    @SuppressWarnings("unused")
-    public ItemModelBuilder withFull3D() {
-        this.full3D = true;
-        return this;
-    }
+	@SuppressWarnings("unused")
+	public ItemModelBuilder withFull3D() {
+		this.full3D = true;
+		return this;
+	}
 
-    @SuppressWarnings("unused")
-    public ItemModelBuilder withFullbright() {
-        this.fullbright = true;
-        return this;
-    }
+	@SuppressWarnings("unused")
+	public ItemModelBuilder withFullbright() {
+		this.fullbright = true;
+		return this;
+	}
 
-    @SuppressWarnings("unused")
-    public ItemModelBuilder setPointForward() {
-        this.pointInFrontOfPlayer = true;
-        return this;
-    }
+	@SuppressWarnings("unused")
+	public ItemModelBuilder setPointForward() {
+		this.pointInFrontOfPlayer = true;
+		return this;
+	}
 
-    @SuppressWarnings("unused")
-    public ItemModelBuilder rotateWhenRendering() {
-        this.rotateWhenRendering = true;
-        return this;
-    }
+	@SuppressWarnings("unused")
+	public ItemModelBuilder rotateWhenRendering() {
+		this.rotateWhenRendering = true;
+		return this;
+	}
 
-    @Override
-    public void onBuild(Item block, ItemModel model, String namespaceValue) {
+	@Override
+	public void onBuild(Item block, ItemModel model, String namespaceValue) {
 
-		if (model instanceof ItemModelExtended)  {
+		if (model instanceof ItemModelExtended) {
 			for (String format : this.extendedMap) {
 				String formatted = modID + ":item/" + String.format(format, namespaceValue);
-				((ItemModelExtended)model).addIcon(formatted);
+				((ItemModelExtended) model).addIcon(formatted);
 			}
 		}
 
-        if (model instanceof ItemModelStandard) {//TODO log non-standard warning
+		if (model instanceof ItemModelStandard) {//TODO log non-standard warning
 			String formatted = modID + ":item/" + String.format(this.stringFormat, namespaceValue);
-            ItemModelStandard modelStd = ((ItemModelStandard) model);
-            if (this.pointInFrontOfPlayer) modelStd.setPointInfrontOfPlayer();
-            if (this.full3D) modelStd.setFull3D();
-            if (this.fullbright) modelStd.setFullBright();
-            if (this.rotateWhenRendering) modelStd.setRotateWhenRendering();
-            modelStd.icon = TextureRegistry.getTexture(formatted);
-        }
-    }
+			ItemModelStandard modelStd = ((ItemModelStandard) model);
+			if (this.pointInFrontOfPlayer) modelStd.setPointInfrontOfPlayer();
+			if (this.full3D) modelStd.setFull3D();
+			if (this.fullbright) modelStd.setFullBright();
+			if (this.rotateWhenRendering) modelStd.setRotateWhenRendering();
+			modelStd.icon = TextureRegistry.getTexture(formatted);
+		}
+	}
 }

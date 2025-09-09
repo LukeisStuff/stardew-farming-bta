@@ -41,13 +41,13 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
 		return AABB.getTemporaryBB(0.5F - size / 2.0F, 0.0, 0.5F - size / 2.0F, 0.5F + size / 2.0F, size, 0.5F + size / 2.0F);
 	}
 
-    public void updateTick(World world, int x, int y, int z, Random rand) {
+	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
 		if (world.getBlockLightValue(x, y + 1, z) >= 9) {
 			int meta = world.getBlockMetadata(x, y, z);
 			if (meta < 6) {
 				float f = this.getGrowthRate(world, x, y, z);
-				if (rand.nextInt((int)(100.0F / f)) == 0) {
+				if (rand.nextInt((int) (100.0F / f)) == 0) {
 					++meta;
 					if (meta == 5) {
 						world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.WATERMELON.id(), 0);
@@ -67,8 +67,8 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
 	public float getGrowthRate(World world, int x, int y, int z) {
 		float growthRate = 1.0F;
 
-		for(int dx = x - 1; dx <= x + 1; ++dx) {
-			for(int dz = z - 1; dz <= z + 1; ++dz) {
+		for (int dx = x - 1; dx <= x + 1; ++dx) {
+			for (int dz = z - 1; dz <= z + 1; ++dz) {
 				int id = world.getBlockId(dx, y - 1, dz);
 				float growthRateMod = 0.0F;
 				if (id == Blocks.FARMLAND_DIRT.id()) {

@@ -15,8 +15,9 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SlotCraftingMixin {
 	@Shadow
 	private Player thePlayer;
+
 	@Inject(method = "onTake", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/ItemStack;onCrafting(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/Player;)V", shift = At.Shift.AFTER))
-	public void addCraftingAchievements(ItemStack itemstack, CallbackInfo ci){
+	public void addCraftingAchievements(ItemStack itemstack, CallbackInfo ci) {
 		if (itemstack.itemID == StardewBlocks.SAPLING_APPLE_GOLDEN.id()) {
 			thePlayer.addStat(StardewAchievements.GAPPLE, 1);
 		}

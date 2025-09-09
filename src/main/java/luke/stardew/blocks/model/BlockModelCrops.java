@@ -3,15 +3,11 @@ package luke.stardew.blocks.model;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.tessellator.Tessellator;
-import net.minecraft.client.render.texture.stitcher.TextureRegistry;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.Side;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BlockModelCrops<T extends BlockLogic> extends BlockModelExtended<T> {
 	public BlockModelCrops(Block<T> block) {
@@ -28,9 +24,9 @@ public class BlockModelCrops<T extends BlockLogic> extends BlockModelExtended<T>
 		}
 
 		int color = BlockColorDispatcher.getInstance().getDispatch(this.block).getWorldColor(renderBlocks.blockAccess, x, y, z);
-		float r = (float)(color >> 16 & 255) / 255.0F;
-		float g = (float)(color >> 8 & 255) / 255.0F;
-		float b = (float)(color & 255) / 255.0F;
+		float r = (float) (color >> 16 & 255) / 255.0F;
+		float g = (float) (color >> 8 & 255) / 255.0F;
+		float b = (float) (color & 255) / 255.0F;
 		tessellator.setColorOpaque_F(brightness * r, brightness * g, brightness * b);
 
 		int metadata = renderBlocks.blockAccess.getBlockMetadata(x, y, z);
@@ -47,7 +43,7 @@ public class BlockModelCrops<T extends BlockLogic> extends BlockModelExtended<T>
 		double maxX = (double) x + 0.5 + 0.45;
 		double minZ = (double) z + 0.5 - 0.45;
 		double maxZ = (double) z + 0.5 + 0.45;
-		double yd = (float)y - 0.0625F;
+		double yd = (float) y - 0.0625F;
 		tessellator.addVertexWithUV(minX, yd + 1.0 + 0.0, minZ, minU, minV);
 		tessellator.addVertexWithUV(minX, yd + 0.0, minZ, minU, maxV);
 		tessellator.addVertexWithUV(maxX, yd + 0.0, maxZ, maxU, maxV);

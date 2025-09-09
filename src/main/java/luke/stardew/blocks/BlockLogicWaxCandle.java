@@ -58,13 +58,13 @@ public class BlockLogicWaxCandle extends BlockLogic {
 		if (heldItem != null && heldItem.getItem() instanceof ItemFireStriker && !this.burning) {
 			boolean adjacentFluid =
 				StardewBlocks.isBlockLogic(world, x + 1, y, z, BlockLogicFluid.class) ||
-				StardewBlocks.isBlockLogic(world, x - 1, y, z, BlockLogicFluid.class) ||
-				StardewBlocks.isBlockLogic(world, x, y, z + 1, BlockLogicFluid.class) ||
-				StardewBlocks.isBlockLogic(world, x, y, z - 1, BlockLogicFluid.class);
+					StardewBlocks.isBlockLogic(world, x - 1, y, z, BlockLogicFluid.class) ||
+					StardewBlocks.isBlockLogic(world, x, y, z + 1, BlockLogicFluid.class) ||
+					StardewBlocks.isBlockLogic(world, x, y, z - 1, BlockLogicFluid.class);
 			if (!adjacentFluid) {
 				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CANDLE_ACTIVE.id(), 0);
 				heldItem.damageItem(1, player);
-				world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+				world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 				return true;
 			} else {
 				return false;
@@ -97,9 +97,9 @@ public class BlockLogicWaxCandle extends BlockLogic {
 			if (rand.nextInt(2) == 0) {
 				world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
 				world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
-				}
 			}
 		}
+	}
 
 	@Override
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {

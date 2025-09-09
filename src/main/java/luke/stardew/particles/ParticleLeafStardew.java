@@ -29,7 +29,7 @@ public class ParticleLeafStardew extends ParticleLeaf {
 		if (block != null && block.getLogic() instanceof BlockLogicLeavesSeasonal) { // Very hacky awful mess I hate particles
 			if (((BlockLogicLeavesSeasonal) block.getLogic()).getSapling() == StardewBlocks.SAPLING_APPLE) {
 				tex = TextureRegistry.getTexture(StardewMod.MOD_ID + ":block/leaves_apple_fancy");
-			}else {
+			} else {
 				tex = TextureRegistry.getTexture(StardewMod.MOD_ID + ":block/leaves_apple_golden_fancy");
 			}
 

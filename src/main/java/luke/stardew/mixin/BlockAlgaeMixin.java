@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Random;
 
-@Mixin(value= BlockLogicAlgae.class,remap=false)
+@Mixin(value = BlockLogicAlgae.class, remap = false)
 public abstract class BlockAlgaeMixin extends BlockLogic implements IBonemealable {
 	@Unique
 	public boolean canBeBonemealed = true;

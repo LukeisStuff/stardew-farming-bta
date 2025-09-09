@@ -20,6 +20,7 @@ public class MobDuck extends MobAnimal implements Creature {
 	public float oFlap;
 	public float flapping = 1.0F;
 	public int eggTimer;
+
 	public MobDuck(World world) {
 		super(world);
 		this.textureIdentifier = NamespaceID.getPermanent("stardew", "duck");
@@ -40,7 +41,7 @@ public class MobDuck extends MobAnimal implements Creature {
 		super.updateAI(); //Stop jumping in water
 		this.wasInWater = inWater;
 
-		if(this.isInWater()) {
+		if (this.isInWater()) {
 			double yh = this.bb.minY - MathHelper.floor(this.bb.minY);
 
 			int x = MathHelper.floor(this.x);
@@ -49,10 +50,10 @@ public class MobDuck extends MobAnimal implements Creature {
 			int z = MathHelper.floor(this.z);
 			boolean air = this.world.getBlockLogic(x, y2, z, BlockLogicFluid.class) == null;
 			if (this.world != null && this.world.getBlockLogic(x, y, z, BlockLogicFluid.class) != null && air) {
-				if(yh < 0.125) {
+				if (yh < 0.125) {
 					this.yd = 0;
 				}
-			}else {
+			} else {
 				this.yd = 0.1;
 			}
 		}

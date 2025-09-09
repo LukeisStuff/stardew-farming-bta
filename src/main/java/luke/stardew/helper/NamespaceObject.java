@@ -3,7 +3,7 @@ package luke.stardew.helper;
 import net.minecraft.core.util.collection.NamespaceID;
 
 public interface NamespaceObject {
-    NamespaceID id();
+	NamespaceID stardew_farming_bta$id();
 
-    String cleanValue();
+	String stardew_farming_bta$cleanValue();
 }

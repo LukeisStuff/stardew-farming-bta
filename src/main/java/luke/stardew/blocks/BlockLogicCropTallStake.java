@@ -19,7 +19,7 @@ public class BlockLogicCropTallStake extends BlockLogicCropTall {
 		if (this.growTopMeta < 0) {
 			world.setBlockAndMetadataWithNotify(x, y - 1, z, StardewBlocks.PLANT_STAKE.id(), 0);
 			world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
-		}else {
+		} else {
 			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.PLANT_STAKE.id(), 0);
 			world.setBlockAndMetadataWithNotify(x, y + 1, z, 0, 0);
 		}

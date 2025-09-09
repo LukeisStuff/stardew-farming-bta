@@ -68,7 +68,7 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 			}
 		} else if (meta == 5) {
 			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x + 1 + q , (double) y - random, (double) z + h, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("bee", x + 1 + q, (double) y - random, (double) z + h, 0.0, 0.0, 0.0, 0);
 				if (rand.nextInt(2) == 0) {
 					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
 				}
@@ -105,6 +105,6 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 			player.triggerAchievement(StardewAchievements.BEEHIVE);
 			return true;
 		}
-        return false;
-    }
+		return false;
+	}
 }

@@ -24,7 +24,7 @@ public abstract class ChunkDecoratorOverworldMixin {
 	private World world;
 
 	@Inject(method = "decorate", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I", ordinal = 104))
-	public void generateCauliflower(Chunk chunk, CallbackInfo ci, @Local(name = "rand")Random rand, @Local(name = "x") int x, @Local(name = "z") int z) {
+	public void generateCauliflower(Chunk chunk, CallbackInfo ci, @Local(name = "rand") Random rand, @Local(name = "x") int x, @Local(name = "z") int z) {
 		if (rand.nextInt(64) == 0) {
 			int xf = x + rand.nextInt(16) + 8;
 			int zf = z + rand.nextInt(16) + 8;

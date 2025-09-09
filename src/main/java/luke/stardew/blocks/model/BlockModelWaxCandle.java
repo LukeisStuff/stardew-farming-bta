@@ -3,8 +3,8 @@ package luke.stardew.blocks.model;
 import luke.stardew.blocks.BlockLogicWaxCandle;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.tessellator.Tessellator;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.Side;
@@ -15,12 +15,12 @@ public class BlockModelWaxCandle<T extends BlockLogicWaxCandle> extends BlockMod
 	}
 
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		float minX = (float)x + 0.5F - 0.09375F;
-		float minY = (float)y + 0.0F;
-		float minZ = (float)z + 0.5F - 0.09375F;
-		float maxX = (float)x + 0.5F + 0.09375F;
-		float maxY = (float)y + 0.5F;
-		float maxZ = (float)z + 0.5F + 0.09375F;
+		float minX = (float) x + 0.5F - 0.09375F;
+		float minY = (float) y + 0.0F;
+		float minZ = (float) z + 0.5F - 0.09375F;
+		float maxX = (float) x + 0.5F + 0.09375F;
+		float maxY = (float) y + 0.5F;
+		float maxZ = (float) z + 0.5F + 0.09375F;
 		float wickMaxY = maxY + 0.375F;
 		float brightness = 1.0F;
 		if (LightmapHelper.isLightmapEnabled()) {
@@ -39,7 +39,7 @@ public class BlockModelWaxCandle<T extends BlockLogicWaxCandle> extends BlockMod
 
 		double texV = texIndex.getIconVMin();
 		double onePix = 0.0625;
-		double uOffset =  onePix * 3.0;
+		double uOffset = onePix * 3.0;
 		double sideMinU = texIndex.getSubIconU(uOffset);
 		double sideMaxU = texIndex.getSubIconU(uOffset + onePix * 3.0);
 		double sideMinV = texIndex.getSubIconV(onePix * 3.0);

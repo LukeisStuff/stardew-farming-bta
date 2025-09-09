@@ -4,17 +4,16 @@
   "package": "luke.stardew.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BiomeSpawnListMixin",
     "BlockAlgaeMixin",
     "BlockMixin",
     "ChunkDecoratorOverworldMixin",
     "EntityBobberMixin",
-    "ItemPickupAchievementMixin",
     "ItemFishingRodMixin",
     "ItemMixin",
-    "ItemsAccessor",
+    "ItemPickupAchievementMixin",
     "ItemStackMixin",
     "ItemToolHoeMixin",
-    "MinecraftServerMixin",
     "PigDigTruffleMixin",
     "PlayerMixin",
     "PlayerRendererAddWormCans",
@@ -24,7 +23,6 @@
     "WorldFeatureLabyrinthMixin"
   ],
   "client": [
-    "MinecraftMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -5,24 +5,24 @@ public class PlayerEffect {
 
 	public static final PlayerEffect speedBoost;
 
-	public PlayerEffect(){
+	public PlayerEffect() {
 	}
 
-	public PlayerEffect speedIncrement(float value){
+	public PlayerEffect speedIncrement(float value) {
 		speedIncrement = value;
 
 		return this;
 	}
 
-	public boolean isSpeedChange(){
+	public boolean isSpeedChange() {
 		return speedIncrement != 0.0f;
 	}
 
-	public float getSpeedIncrement(){
+	public float getSpeedIncrement() {
 		return speedIncrement;
 	}
 
-	static{
+	static {
 		speedBoost = new PlayerEffect().speedIncrement(0.1f);
 	}
 }

@@ -42,10 +42,10 @@ public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 	}
 
 	@Unique
-	public void decreaseEffects(){
-		for (Map.Entry<PlayerEffect, Integer> entry : currentEffects.entrySet()){
+	public void decreaseEffects() {
+		for (Map.Entry<PlayerEffect, Integer> entry : currentEffects.entrySet()) {
 			entry.setValue(entry.getValue() - 1);
-			if (entry.getValue() <= 0){
+			if (entry.getValue() <= 0) {
 				currentEffects.remove(entry.getKey());
 			}
 		}
@@ -57,9 +57,9 @@ public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 	}
 
 	@Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/Player;speed:F", shift = At.Shift.AFTER))
-	public void boostSpeed(CallbackInfo ci){
+	public void boostSpeed(CallbackInfo ci) {
 		decreaseEffects();
-		if (currentEffects.containsKey(PlayerEffect.speedBoost)){
+		if (currentEffects.containsKey(PlayerEffect.speedBoost)) {
 			this.speed = baseSpeed + PlayerEffect.speedBoost.getSpeedIncrement();
 		}
 	}

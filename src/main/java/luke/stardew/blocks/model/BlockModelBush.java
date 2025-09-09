@@ -3,15 +3,12 @@ package luke.stardew.blocks.model;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
-import net.minecraft.client.render.texture.stitcher.IconCoordinate;
-import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.render.tessellator.Tessellator;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
-
-import static luke.stardew.StardewMod.MOD_ID;
 
 public class BlockModelBush<T extends BlockLogic> extends BlockModelStandard<T> {
 	// 0 spring > 1 summer > 2 fall > 3 winter > 4 dead
@@ -30,12 +27,12 @@ public class BlockModelBush<T extends BlockLogic> extends BlockModelStandard<T> 
 		}
 
 		int color = BlockColorDispatcher.getInstance().getDispatch(this.block).getWorldColor(renderBlocks.blockAccess, x, y, z);
-		float r = (float)(color >> 16 & 255) / 255.0F;
-		float g = (float)(color >> 8 & 255) / 255.0F;
-		float b = (float)(color & 255) / 255.0F;
+		float r = (float) (color >> 16 & 255) / 255.0F;
+		float g = (float) (color >> 8 & 255) / 255.0F;
+		float b = (float) (color & 255) / 255.0F;
 		tessellator.setColorOpaque_F(brightness * r, brightness * g, brightness * b);
 
-        int metadata = renderBlocks.blockAccess.getBlockMetadata(x, y, z);
+		int metadata = renderBlocks.blockAccess.getBlockMetadata(x, y, z);
 		IconCoordinate texIndex = this.getBlockTextureFromSideAndMetadata(Side.BOTTOM, metadata);
 		if (renderBlocks.overrideBlockTexture != null) {
 			texIndex = renderBlocks.overrideBlockTexture;

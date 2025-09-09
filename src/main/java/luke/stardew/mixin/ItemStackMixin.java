@@ -23,8 +23,8 @@ public abstract class ItemStackMixin {
 	//TODO BlockFruit, not just ItemFruit
 
 	@Inject(method = "getItemDescription", at = @At(value = "HEAD"), cancellable = true)
-	public void addSpecialJarJamDesc(CallbackInfoReturnable<String> cir){
-		if (itemID == StardewItems.JAR_JAM.id && tag.containsKey("itemIds")){
+	public void addSpecialJarJamDesc(CallbackInfoReturnable<String> cir) {
+		if (itemID == StardewItems.JAR_JAM.id && tag.containsKey("itemIds")) {
 			I18n i18n = I18n.getInstance();
 
 			StringBuilder strFinal = new StringBuilder();
