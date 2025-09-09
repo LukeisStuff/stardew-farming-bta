@@ -6,6 +6,7 @@ import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.fx.ParticleBee;
 import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.items.StardewItems;
+import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.achievements.data.AchievementPages;
@@ -25,7 +26,7 @@ import static luke.stardew.StardewMod.LOGGER;
 import static luke.stardew.StardewMod.MOD_ID;
 
 @Environment(EnvType.CLIENT)
-public class StardewClient implements ClientStartEntrypoint {
+public class StardewClient implements ClientModInitializer, ClientStartEntrypoint {
 	@Override
 	public void beforeClientStart() {
 		ParticleHelper.createParticle("bee", (world, x, y, z, xa, ya, za, id) -> new ParticleBee(world, x, y, z, xa, ya, za));
@@ -61,5 +62,10 @@ public class StardewClient implements ClientStartEntrypoint {
 		page.addAchievement(StardewAchievements.AMATEUR_FISHER, 0, 2);
 		page.addAchievement(StardewAchievements.MASTER_FISHER, 1, 4);
 		AchievementPages.register(page);
+	}
+
+	@Override
+	public void onInitializeClient() {
+		LOGGER.info("Stardew Farming client initialized.");
 	}
 }
