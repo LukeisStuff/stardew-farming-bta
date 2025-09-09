@@ -12,7 +12,6 @@
     "ItemFishingRodMixin",
     "ItemMixin",
     "ItemPickupAchievementMixin",
-    "ItemStackMixin",
     "ItemToolHoeMixin",
     "PigDigTruffleMixin",
     "PlayerMixin",
