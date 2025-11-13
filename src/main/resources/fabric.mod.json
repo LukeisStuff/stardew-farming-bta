@@ -1,57 +1,57 @@
 {
-  "schemaVersion": 1,
-  "id": "stardew",
-  "version": "${version}",
-
-  "name": "Stardew Farming",
-  "description": "A farming mod for BTA inspired by Stardew Valley",
-  "authors": [
-    "LukeisStuff",
+	"schemaVersion": 1,
+	"id": "stardew",
+	"version": "${version}",
+	"name": "Stardew Farming",
+	"description": "A farming mod for BTA inspired by Stardew Valley",
+	"authors": [
+		"LukeisStuff",
 		"Dundi Gundi",
 		"BigSir"
-  ],
-  "contact": {
-    "homepage": "",
-    "sources": ""
-  },
-
+	],
+	"contact": {
+		"homepage": "",
+		"sources": ""
+	},
 	"icon": "icon.png",
-  "license": "CC0-1.0",
-
-  "environment": "*",
-  "entrypoints": {
+	"license": "CC0-1.0",
+	"environment": "*",
+	"entrypoints": {
 		"main": [
 			"luke.stardew.StardewMod"
 		],
-		"beforeGameStart" : [
+		"beforeGameStart": [
 			"luke.stardew.StardewMod"
 		],
-		"beforeClientStart" : [
+		"beforeClientStart": [
 			"luke.stardew.StardewClient"
 		],
-		"afterClientStart" : [
+		"afterClientStart": [
 			"luke.stardew.StardewClient"
 		],
 		"recipesReady": [
 			"luke.stardew.StardewRecipes"
 		],
-		"afterGameStart" : [
+		"afterGameStart": [
 			"luke.stardew.StardewMod"
 		],
-		"initModels" : [
+		"initModels": [
 			"luke.stardew.blocks.model.StardewModels"
 		],
-		"afterItemInit" : [
+		"afterItemInit": [
 			"luke.stardew.StardewMod"
 		]
 	},
-  "mixins": [
-    "stardew.mixins.json"
-  ],
-
-  "depends": {
-    "fabricloader": ">=0.15.6-beta"
-  },
-  "suggests": {
-  }
+	"mixins": [
+		"stardew.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${fabricloader}",
+		"halplibe": ">=${halplibe}",
+		"minecraft": "*",
+		"java": ">=${java}"
+	},
+	"suggests": {
+		"modmenu": ">=${modmenu}"
+	}
 }
