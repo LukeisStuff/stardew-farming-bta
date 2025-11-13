@@ -4,6 +4,7 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
+import net.minecraft.core.item.Items;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import net.minecraft.core.world.World;
@@ -142,85 +143,99 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 		//Spring Crops
 
 		// Spring Vegetables
-		CROPS_CARROT = crops.build("crops_carrot", blockID("CROPS_CARROT"), BlockLogicCropBase::new);
+		CROPS_CARROT = crops
+			.build("crops.carrot", "crops_carrot", blockID("CROPS_CARROT"), BlockLogicCropBase::new);
 
 
 		// Spring Fruits
-		CROPS_BLUEBERRY = crops.build("crops_blueberry", blockID("CROPS_BLUEBERRY"), BlockLogicCropBase::new);
+		CROPS_BLUEBERRY = crops
+			.build("crops.blueberry", "crops_blueberry", blockID("CROPS_BLUEBERRY"), BlockLogicCropBase::new);
 
-		CROPS_PINEAPPLE = crops.build("crops_pineapple", blockID("CROPS_PINEAPPLE"), BlockLogicCropBase::new);
+		CROPS_PINEAPPLE = crops
+			.build("crops.pineapple", "crops_pineapple", blockID("CROPS_PINEAPPLE"), BlockLogicCropBase::new);
 
 
 		//Summer Crops
 
 		// Summer Vegetables
-		CROPS_TOMATO = crops.build("crops_tomato", blockID("CROPS_TOMATO"), BlockLogicCropBase::new);
+		CROPS_TOMATO = crops
+			.build("crops.tomato", "crops_tomato", blockID("CROPS_TOMATO"), BlockLogicCropBase::new);
 
-		CROPS_POTATO = crops.build("crops_potato", blockID("CROPS_POTATO"), BlockLogicCropBase::new);
+		CROPS_POTATO = crops
+			.build("crops.potato", "crops_potato", blockID("CROPS_POTATO"), BlockLogicCropBase::new);
+
 
 		// Summer Fruits
 
-		CROPS_STRAWBERRY = crops.build("crops_strawberry", blockID("CROPS_STRAWBERRY"), BlockLogicCropBase::new);
+		CROPS_STRAWBERRY = crops
+			.build("crops.strawberry", "crops_strawberry", blockID("CROPS_STRAWBERRY"), BlockLogicCropBase::new);
 
 		WATERMELON = blocks
-			.build("watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
-		CROPS_WATERMELON = cropsBlock.build("crops_watermelon", blockID("CROPS_WATERMELON"), BlockLogicCropsWatermelon::new); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
+			.build("watermelon", "watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
+		CROPS_WATERMELON = cropsBlock.build("crops.watermelon", "crops_watermelon", blockID("CROPS_WATERMELON"), BlockLogicCropsWatermelon::new); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
 
 		//Fall Crops
 		CROPS_CORN_BOTTOM = crops
-			.build("crops_corn_bottom", blockID("CROPS_CORN_BOTTOM"), BlockLogicCropTall::new);
+			.build("crops.corn.bottom", "crops_corn_bottom", blockID("CROPS_CORN_BOTTOM"), BlockLogicCropTall::new);
 		CROPS_CORN_TOP = crops
-			.build("crops_corn_top", blockID("CROPS_CORN_TOP"), BlockLogicCropTall::new);
+			.build("crops.corn.top", "crops_corn_top", blockID("CROPS_CORN_TOP"), BlockLogicCropTall::new);
 
 		CROPS_GRAPE_TOP = crops
-			.build("crops_grape_top", blockID("CROPS_GRAPE_TOP"), BlockLogicCropTallStake::new);
+			.build("crops.grape.top", "crops_grape_top", blockID("CROPS_GRAPE_TOP"), BlockLogicCropTallStake::new);
 		CROPS_GRAPE_BOTTOM = crops
-			.build("crops_grape_bottom", blockID("CROPS_GRAPE_BOTTOM"), BlockLogicCropTallStake::new);
+			.build("crops.grape.bottom", "crops_grape_bottom", blockID("CROPS_GRAPE_BOTTOM"), BlockLogicCropTallStake::new);
 
 
 		// Fall Tree
 		LOG_APPLE = log
-			.build("log_apple", blockID("LOG_APPLE"), BlockLogicLog::new);
+			.build("log.apple", "log_apple", blockID("LOG_APPLE"), BlockLogicLog::new);
+
 		LEAVES_APPLE = leaves
-			.build("leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));
+			.build("leaves.apple", "leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));
+
 		LEAVES_APPLE_FLOWERING = leaves
-			.build("leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"), b -> new BlockLogicLeavesAppleFlowering(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));
+			.build("leaves.apple.flowering", "leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"),
+				b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL, Items.FOOD_APPLE, LEAVES_APPLE_FLOWERING));
+
 		SAPLING_APPLE = sapling
-			.build("sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
+			.build("sapling.apple", "sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
 
 		LOG_APPLE_GOLDEN = log
-			.build("log_apple_golden", blockID("LOG_APPLE_GOLDEN"), BlockLogicLog::new);
+			.build("log.apple.golden", "log_apple_golden", blockID("LOG_APPLE_GOLDEN"), BlockLogicLog::new);
+
 		LEAVES_APPLE_GOLDEN = leaves
-			.build("leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER));
+			.build("leaves.apple.golden", "leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER));
+
 		LEAVES_APPLE_GOLDEN_FLOWERING = leaves
-			.build("leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"), b -> new BlockLogicLeavesAppleFlowering(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER));
+			.build("leaves.apple.golden.flowering", "leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"),
+				b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER, Items.FOOD_APPLE_GOLD, LEAVES_APPLE_GOLDEN_FLOWERING));
+
 		SAPLING_APPLE_GOLDEN = sapling
-			.build("sapling_apple_golden", blockID("SAPLING_APPLE_GOLDEN"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN_FLOWERING, 20));
+			.build("sapling.apple.golden", "sapling_apple_golden", blockID("SAPLING_APPLE_GOLDEN"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN_FLOWERING, 20));
 
 
 		//Winter Crops
 		CAULIFLOWER = blocks
-			.build("cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
+			.build("cauliflower", "cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
 		CROPS_CAULIFLOWER = cropsBlock
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
-			.build("crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
+			.build("crops.cauliflower", "crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
 
-		CROPS_CRANBERRIES = crops.build("crops_cranberries", blockID("CROPS_CRANBERRIES"), BlockLogicCropBase::new);
+		CROPS_CRANBERRIES = crops.build("crops.cranberries", "crops_cranberries", blockID("CROPS_CRANBERRIES"), BlockLogicCropBase::new);
 
 		BUSH = crops
 			.setTags(BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
 			.setTicking(true)
 			.setTickOnLoad()
-			.build("bush", blockID("BUSH"), BlockLogicBush::new);
-
+			.build("bush", "bush", blockID("BUSH"), BlockLogicBush::new);
 
 		BEEHIVE_IDLE = wood
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehiveActive(b, false));
+			.build("beehive.idle", "beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehiveActive(b, false));
 
 		BEEHIVE_HONEY = wood
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("beehive_honey", blockID("BEEHIVE_HONEY"), b -> new BlockLogicBeehiveActive(b, true));
+			.build("beehive.honey", "beehive_honey", blockID("BEEHIVE_HONEY"), b -> new BlockLogicBeehiveActive(b, true));
 
 		BLOCK_HONEY = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.5f))
@@ -228,27 +243,27 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 			.setResistance(0.2f)
 			.setLightOpacity(6)
 			.setTags(BlockTags.MINEABLE_BY_AXE)
-			.build("block_honey", blockID("BLOCK_HONEY"), BlockLogicHoney::new);
+			.build("block.honey", "block_honey", blockID("BLOCK_HONEY"), BlockLogicHoney::new);
 
-
-		CROPS_BEANS_BOTTOM = crops.build("crops_beans_bottom", blockID("CROPS_BEANS_BOTTOM"), BlockLogicCropTallStake::new);
-		CROPS_BEANS_TOP = crops.build("crops_beans_top", blockID("CROPS_BEANS_TOP"), BlockLogicCropTallStake::new);
+		CROPS_BEANS_BOTTOM = crops.build("crops.beans.bottom", "crops_beans_bottom", blockID("CROPS_BEANS_BOTTOM"), BlockLogicCropTallStake::new);
+		CROPS_BEANS_TOP = crops.build("crops.beans.top", "crops_beans_top", blockID("CROPS_BEANS_TOP"), BlockLogicCropTallStake::new);
 
 		CAKE_CHOCOLATE = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
 			.setHardness(0.5f)
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("cake_chocolate", blockID("CAKE_CHOCOLATE"), b -> new BlockLogicEdibleCustom(b, 0.5f, () -> StardewItems.FOOD_CAKE_CHOCOLATE));
+			.build("cake.chocolate", "cake_chocolate", blockID("CAKE_CHOCOLATE"), b -> new BlockLogicEdibleCustom(b, 0.5f, () -> StardewItems.FOOD_CAKE_CHOCOLATE));
 
-		BEEHIVE = wood.build("beehive", blockID("BEEHIVE"), BlockLogicBeehive::new);
+		BEEHIVE = wood
+			.build("beehive", "beehive", blockID("BEEHIVE"), BlockLogicBeehive::new);
 
 		PIZZA = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
 			.setHardness(0.5f)
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 0.25F, () -> StardewItems.FOOD_PIZZA));
+			.build("pizza", "pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 0.25F, () -> StardewItems.FOOD_PIZZA));
 
 		CANDLE = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
@@ -256,7 +271,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 			.setResistance(0.0f)
 			.setVisualUpdateOnMetadata()
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
-			.build("candle", blockID("CANDLE"), b -> new BlockLogicWaxCandle(b, false));
+			.build("candle", "candle", blockID("CANDLE"), b -> new BlockLogicWaxCandle(b, false));
 
 		CANDLE_ACTIVE = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
@@ -266,22 +281,21 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 			.setUseInternalLight()
 			.setVisualUpdateOnMetadata()
 			.setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("candle_active", blockID("CANDLE_ACTIVE"), b -> new BlockLogicWaxCandle(b, true));
+			.build("candle.active", "candle_active", blockID("CANDLE_ACTIVE"), b -> new BlockLogicWaxCandle(b, true));
 
 		PLANT_STAKE = new BlockBuilder(MOD_ID)
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setBlockSound(new BlockSound("step.gravel", "step.wood", 1.0f, 1.0f))
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-			.build("plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Material.plant));
-
+			.build("plant.stake", "plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Material.plant));
 
 		MUSHROOM_TRUFFLE = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR, BlockTags.PIGS_FAVOURITE_BLOCK)
-			.build("mushroom_truffle", blockID("MUSHROOM_TRUFFLE"), BlockLogicMushroom::new);
+			.build("mushroom.truffle", "mushroom_truffle", blockID("MUSHROOM_TRUFFLE"), BlockLogicMushroom::new);
 
 		THATCH = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.grass", "step.grass", 0.6f, 1.2f))
@@ -289,7 +303,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 			.setResistance(0.6f)
 			.setFlammability(60, 120)
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS)
-			.build("thatch", blockID("THATCH"), b -> new BlockLogicThatch(b, Material.grass));
+			.build("thatch", "thatch", blockID("THATCH"), b -> new BlockLogicThatch(b, Material.grass));
 	}
 
 	public static void initializeCrops() {

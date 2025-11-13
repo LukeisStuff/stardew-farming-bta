@@ -40,9 +40,9 @@ public class StardewModels implements ModelEntrypoint {
 		dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_GOLDEN, new BlockModelLeaves<>(StardewBlocks.LEAVES_APPLE_GOLDEN,
 			"stardew:block/leaves/apple_gold"));
 
-		dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_FLOWERING, new BlockModelLeavesAppleFlowering<>(StardewBlocks.LEAVES_APPLE,
+		dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_FLOWERING, new BlockModelLeavesSeasonalFlowering<>(StardewBlocks.LEAVES_APPLE,
 			"stardew:block/leaves/apple", "apple"));
-		dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_GOLDEN_FLOWERING, new BlockModelLeavesAppleFlowering<>(StardewBlocks.LEAVES_APPLE_GOLDEN,
+		dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_GOLDEN_FLOWERING, new BlockModelLeavesSeasonalFlowering<>(StardewBlocks.LEAVES_APPLE_GOLDEN,
 			"stardew:block/leaves/apple_gold", "apple_gold"));
 
 		dispatcher.addDispatch(StardewBlocks.SAPLING_APPLE, new BlockModelCrossedSquares<>(StardewBlocks.SAPLING_APPLE).setAllTextures(0, "stardew:block/sapling/apple"));
@@ -77,7 +77,17 @@ public class StardewModels implements ModelEntrypoint {
 
 		dispatcher.addDispatch(StardewBlocks.BUSH, new BlockModelBush<>(StardewBlocks.BUSH));
 
-		dispatcher.addDispatch(StardewBlocks.BLOCK_HONEY, new BlockModelIce<>(StardewBlocks.BLOCK_HONEY));
+		dispatcher.addDispatch(StardewBlocks.CAKE_CHOCOLATE, new BlockModelEdible<>(StardewBlocks.CAKE_CHOCOLATE, 0.5f, "cake_chocolate")
+			.setTex(BLOCK_TEXTURES, "stardew:block/cake_chocolate/side", Side.sides)
+			.setTex(BLOCK_TEXTURES, "stardew:block/cake_chocolate/top", Side.TOP)
+			.setTex(BLOCK_TEXTURES, "stardew:block/cake_chocolate/bottom", Side.BOTTOM));
+		dispatcher.addDispatch(StardewBlocks.PIZZA, new BlockModelEdible<>(StardewBlocks.PIZZA, 0.25f, "pizza")
+			.setTex(BLOCK_TEXTURES, "stardew:block/pizza/side", Side.sides)
+			.setTex(BLOCK_TEXTURES, "stardew:block/pizza/top", Side.TOP)
+			.setTex(BLOCK_TEXTURES, "stardew:block/pizza/bottom", Side.BOTTOM));
+
+		dispatcher.addDispatch(StardewBlocks.BLOCK_HONEY, new BlockModelIce<>(StardewBlocks.BLOCK_HONEY)
+			.setAllTextures(BLOCK_TEXTURES, "stardew:block/block_honey"));
 
 		dispatcher.addDispatch(StardewBlocks.BEEHIVE, new BlockModelHorizontalRotation<>(StardewBlocks.BEEHIVE)
 			.setTex(BLOCK_TEXTURES, "stardew:block/beehive/side", Side.sides)
