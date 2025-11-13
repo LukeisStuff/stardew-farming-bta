@@ -22,7 +22,10 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
 
 	@Override
 	public void beforeGameStart() {
-		new StardewEntities().initializeEntities();
+		StardewConfig.init();
+		StardewEntities.init();
+		StardewBlocks.init();
+		StardewItems.init();
 	}
 
 	@Override
@@ -31,10 +34,6 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
 
 	@Override
 	public void afterItemInit() {
-		//Initialize here because Blocks and items may refer to vanilla items
-		StardewBlocks.initializeBlocks();
-		StardewItems.initializeItems();
-
 		LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 400);
 
 		StardewBlocks.initializeCrops();

@@ -6,7 +6,6 @@
   "mixins": [
     "BiomeSpawnListMixin",
     "BlockAlgaeMixin",
-    "BlockMixin",
     "ChunkDecoratorOverworldMixin",
     "EntityBobberMixin",
     "ItemFishingRodMixin",

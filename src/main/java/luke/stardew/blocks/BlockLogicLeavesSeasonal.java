@@ -1,33 +1,32 @@
 package luke.stardew.blocks;
 
-import luke.stardew.StardewMod;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicLeavesBase;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.season.Seasons;
-import org.jetbrains.annotations.NotNull;
+import net.minecraft.core.world.season.Season;
+import org.jspecify.annotations.NonNull;
+import turniplabs.halplibe.helper.EnvironmentHelper;
 
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class BlockLogicLeavesSeasonal extends BlockLogicLeavesBase {
-	public @NotNull Supplier<Block<?>> saplingSupplier;
+import static luke.stardew.StardewMod.MOD_ID;
 
-	public BlockLogicLeavesSeasonal(Block<?> block, @NotNull Supplier<Block<?>> sapling) {
+public class BlockLogicLeavesSeasonal extends BlockLogicLeavesBase {
+	public @NonNull Supplier<Block<?>> saplingSupplier;
+	protected static Season season;
+
+	public BlockLogicLeavesSeasonal(Block<?> block, @NonNull Supplier<Block<?>> sapling, Season season) {
 		super(block, Material.leaves, null);
 		this.saplingSupplier = sapling;
-	}
-
-	@Override
-	public Block<?> getSapling() {
-		return saplingSupplier.get();
+		this.season = season;
 	}
 
 	@Override
 	public void animationTick(World world, int x, int y, int z, Random rand) {
-		if (world.seasonManager.getCurrentSeason() != null && world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL && rand.nextInt(40) == 0) {
-			world.spawnParticle(StardewMod.MOD_ID + "$fallingleaf", x, y - 0.10000000149011612, z, 0.0, 0.0, 0.0, 0);
+		if (world.getSeasonManager().getCurrentSeason() != null && world.getSeasonManager().getCurrentSeason() == season && rand.nextInt(40) == 0 && !EnvironmentHelper.isServerEnvironment()) {
+			world.spawnParticle(MOD_ID + "$fallingleaf", x, (double) y - (double) 0.1F, z, 0.0F, 0.0F, 0.0F, 0);
 		}
 	}
 }

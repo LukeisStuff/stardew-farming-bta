@@ -3,7 +3,7 @@ package luke.stardew;
 import luke.stardew.achievements.AchievementPageStardew;
 import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.entities.duck.MobDuck;
-import luke.stardew.entities.fx.ParticleBee;
+import luke.stardew.particles.ParticleBee;
 import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ClientModInitializer;

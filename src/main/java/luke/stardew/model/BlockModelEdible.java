@@ -1,4 +1,4 @@
-package luke.stardew.blocks.model;
+package luke.stardew.model;
 
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.block.Block;
@@ -13,6 +13,7 @@ public class BlockModelEdible<T extends BlockLogic> extends BlockModelExtended<T
 		this.withCustomItemBounds(f, 0.0, f, 1.0F - f, height, 1.0F - f);
 	}
 
+	@Override
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
 		return data > 0 && side == Side.WEST ? this.getIcon(0) : super.getBlockTextureFromSideAndMetadata(side, data);
 	}

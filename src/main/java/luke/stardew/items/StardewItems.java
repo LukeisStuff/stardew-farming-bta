@@ -1,31 +1,15 @@
 package luke.stardew.items;
 
-import luke.stardew.StardewConfig;
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.item.*;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.item.tag.ItemTags;
 import turniplabs.halplibe.helper.ItemBuilder;
 
+import static luke.stardew.StardewConfig.itemID;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewItems {
-
-	protected static int startingItemID = 22000;
-
-	public static int itemID(String itemName) {
-		try {
-			return StardewConfig.cfg.getInt("Item IDs." + itemName);
-		} catch (NullPointerException e) {
-			StardewConfig.properties.addEntry("Item IDs." + itemName, startingItemID);
-			return startingItemID++;
-		}
-	}
-
-	public static String itemKey(String string) {
-		return MOD_ID + ":item/" + string;
-	}
-
 
 	//Spring Crops
 	public static Item SEEDS_CARROT;
@@ -122,6 +106,18 @@ public class StardewItems {
 	public static Item FOOD_STEW_TRUFFLE;
 	public static Item FOOD_SEEDS_ROASTED;
 
+	private static boolean hasInit = false;
+
+	public static void init() {
+		if (!hasInit) {
+			hasInit = true;
+			initializeItems();
+		}
+	}
+
+	public static String itemKey(String string) {
+		return MOD_ID + ":item/" + string;
+	}
 
 	public static void initializeItems() {
 
@@ -284,7 +280,7 @@ public class StardewItems {
 			.build(new ItemToolFishingRodTiered("tool.fishingrod.steel", itemKey("tool_fishingrod_steel"), itemID("TOOL_FISHINGROD_STEEL"), ToolMaterial.steel));
 
 		WORM = new ItemBuilder(MOD_ID)
-			.setStackSize(16)
+			.setStackSize(64)
 			.build(new Item("worm", itemKey("worm"), itemID("WORM")));
 
 		ARMOR_CAN_OF_WORMS = new ItemBuilder(MOD_ID)

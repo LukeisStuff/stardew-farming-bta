@@ -1,8 +1,7 @@
-package luke.stardew.blocks.model;
+package luke.stardew.model;
 
 import net.minecraft.client.render.block.model.BlockModelStandard;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
-import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 
@@ -24,11 +23,4 @@ public class BlockModelExtended<T extends BlockLogic> extends BlockModelStandard
 		return this.icons.get(index);
 	}
 
-	public void addIcon(String texKey) {
-		addIcon(TextureRegistry.getTexture(texKey));
-	}
-
-	public void addIcon(IconCoordinate coordinate) {
-		this.icons.add(coordinate);
-	}
 }

@@ -1,4 +1,4 @@
-package luke.stardew.blocks.model;
+package luke.stardew.model;
 
 import net.minecraft.client.render.block.model.BlockModelLeaves;
 import net.minecraft.client.render.tessellator.Tessellator;
@@ -22,10 +22,12 @@ public class BlockModelLeavesSeasonal<T extends BlockLogic> extends BlockModelLe
 		super(block, "minecraft:block/leaves/oak"); //Dummy texture, should be overridden
 	}
 
+	@Override
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
 		return fancyGraphics ? this.blockTextures.get(3) : this.blockTextures.get(0);
 	}
 
+	@Override
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
 		super.render(tessellator, x, y, z);
 		int growthRate = BlockLogicLeavesCherryFlowering.getGrowthRate(renderBlocks.blockAccess.getBlockMetadata(x, y, z));
@@ -40,6 +42,7 @@ public class BlockModelLeavesSeasonal<T extends BlockLogic> extends BlockModelLe
 		return true;
 	}
 
+	@Override
 	public void renderBlockOnInventory(Tessellator tessellator, int metadata, float brightness, float alpha, @Nullable Integer lightmapCoordinate) {
 		super.renderBlockOnInventory(tessellator, metadata, brightness, alpha, lightmapCoordinate);
 		AABB aabb = this.block.getBoundsRaw();

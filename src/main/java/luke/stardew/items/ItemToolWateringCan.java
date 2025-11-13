@@ -21,10 +21,10 @@ public class ItemToolWateringCan extends Item {
 	public boolean onUseItemOnBlock(ItemStack itemstack, Player entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
 		int blockToWater = world.getBlockId(blockX, blockY, blockZ);
 		int meta = world.getBlockMetadata(blockX, blockY, blockZ);
-		if (blockToWater == Blocks.FARMLAND_DIRT.id()) {
+		if (blockToWater == Blocks.FARMLAND_DIRT.id() && meta == 0) {
 			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
 			if (!world.isClientSide) {
-				world.setBlockMetadataWithNotify(blockX, blockY, blockZ, meta + 1);
+				world.setBlockMetadataWithNotify(blockX, blockY, blockZ, 1);
 				itemstack.damageItem(1, entityplayer);
 				entityplayer.swingItem();
 			}

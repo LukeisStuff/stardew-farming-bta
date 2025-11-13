@@ -1,26 +1,28 @@
-package luke.stardew.blocks.model;
+package luke.stardew.model;
 
-import luke.stardew.blocks.BlockLogicWaxCandle;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
 import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.Side;
 
-public class BlockModelWaxCandle<T extends BlockLogicWaxCandle> extends BlockModelStandard<T> {
+public class BlockModelWaxCandle<T extends BlockLogic> extends BlockModelStandard<T> {
+
 	public BlockModelWaxCandle(Block<T> block) {
 		super(block);
 	}
 
+	@Override
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		float minX = (float) x + 0.5F - 0.09375F;
-		float minY = (float) y + 0.0F;
-		float minZ = (float) z + 0.5F - 0.09375F;
-		float maxX = (float) x + 0.5F + 0.09375F;
-		float maxY = (float) y + 0.5F;
-		float maxZ = (float) z + 0.5F + 0.09375F;
+		float minX = x + 0.5F - 0.09375F;
+		float minY = y + 0.0F;
+		float minZ = z + 0.5F - 0.09375F;
+		float maxX = x + 0.5F + 0.09375F;
+		float maxY = y + 0.5F;
+		float maxZ = z + 0.5F + 0.09375F;
 		float wickMaxY = maxY + 0.375F;
 		float brightness = 1.0F;
 		if (LightmapHelper.isLightmapEnabled()) {
@@ -98,6 +100,7 @@ public class BlockModelWaxCandle<T extends BlockLogicWaxCandle> extends BlockMod
 		return true;
 	}
 
+	@Override
 	public boolean shouldItemRender3d() {
 		return false;
 	}

@@ -1,4 +1,4 @@
-package luke.stardew.blocks.model;
+package luke.stardew.model;
 
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
@@ -10,31 +10,28 @@ import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.Side;
 
 public class BlockModelCropsGrowing<T extends BlockLogic> extends BlockModelStandard<T> {
-	public final IconCoordinate[] GROWTH_STAGE_TEXTURES_TOP = new IconCoordinate[4];
-	public final IconCoordinate[] GROWTH_STAGE_TEXTURES_SIDE = new IconCoordinate[4];
+	protected final IconCoordinate[] growthStageTop;
+	protected final IconCoordinate[] growthStageSide;
+	protected final IconCoordinate leafTexture;
 
-	public IconCoordinate LEAF_TEXTURE;
-
-	public BlockModelCropsGrowing(Block<T> block) {
+	public BlockModelCropsGrowing(Block<T> block, String cropName) {
 		super(block);
-	}
 
-	public void setLeafTexture(String key) {
-		LEAF_TEXTURE = TextureRegistry.getTexture(key);
-	}
+		String basePath = "stardew:block/crops_" + cropName + "/";
 
-	public void setTopTextures(String... key) {
-		for (int i = 0; i < Math.min(key.length, 4); i++) {
-			GROWTH_STAGE_TEXTURES_TOP[i] = TextureRegistry.getTexture(key[i]);
+		this.growthStageTop = new IconCoordinate[4];
+		this.growthStageSide = new IconCoordinate[4];
+
+		for (int i = 0; i < 4; i++) {
+			int stage = i + 1;
+			this.growthStageTop[i] = TextureRegistry.getTexture(basePath + "stage" + stage + "_top");
+			this.growthStageSide[i] = TextureRegistry.getTexture(basePath + "stage" + stage + "_side");
 		}
+
+		this.leafTexture = TextureRegistry.getTexture(basePath + "stage0");
 	}
 
-	public void setSideTextures(String... key) {
-		for (int i = 0; i < Math.min(key.length, 4); i++) {
-			GROWTH_STAGE_TEXTURES_SIDE[i] = TextureRegistry.getTexture(key[i]);
-		}
-	}
-
+	@Override
 	public boolean render(Tessellator tessellator, int x, int y, int z) {
 		float brightness = 1.0F;
 		if (LightmapHelper.isLightmapEnabled()) {
@@ -45,21 +42,23 @@ public class BlockModelCropsGrowing<T extends BlockLogic> extends BlockModelStan
 
 		tessellator.setColorOpaque_F(brightness, brightness, brightness);
 		int meta = renderBlocks.blockAccess.getBlockMetadata(x, y, z);
-		IconCoordinate leafTexture = LEAF_TEXTURE;
+
+		IconCoordinate leafTex = leafTexture;
 		if (renderBlocks.overrideBlockTexture != null) {
-			leafTexture = renderBlocks.overrideBlockTexture;
+			leafTex = renderBlocks.overrideBlockTexture;
 		}
 
-		double uMin = leafTexture.getIconUMin();
-		double uMax = leafTexture.getIconUMax();
-		double vMin = leafTexture.getIconVMin();
-		double vMax = leafTexture.getIconVMax();
-		double xMin = (double) x + 0.5 - 0.25;
-		double xMax = (double) x + 0.5 + 0.25;
-		double yMin = (double) y + 0.0;
-		double yMax = (double) y + 0.1875;
-		double zMin = (double) z + 0.5 - 0.5;
-		double zMax = (double) z + 0.5 + 0.5;
+		double uMin = leafTex.getIconUMin();
+		double uMax = leafTex.getIconUMax();
+		double vMin = leafTex.getIconVMin();
+		double vMax = leafTex.getIconVMax();
+
+		double xMin = x + 0.5 - 0.25;
+		double xMax = x + 0.5 + 0.25;
+		double yMin = y + 0.0;
+		double yMax = y + 0.1875;
+		double zMin = z + 0.5 - 0.5;
+		double zMax = z + 0.5 + 0.5;
 		double extra = 0.625;
 		tessellator.addVertexWithUV(xMin - extra, yMax, zMax, uMin, vMin);
 		tessellator.addVertexWithUV(xMax, yMin, zMax, uMin, vMax);
@@ -77,23 +76,24 @@ public class BlockModelCropsGrowing<T extends BlockLogic> extends BlockModelStan
 		tessellator.addVertexWithUV(xMin, yMin, zMax, uMin, vMax);
 		tessellator.addVertexWithUV(xMin, yMin, zMin, uMax, vMax);
 		tessellator.addVertexWithUV(xMax + extra, yMax, zMin, uMax, vMin);
-		if (meta >= 1) {
+		if (meta >= 1 && meta <= 4) {
 			this.renderStandardBlock(tessellator, this.block.getBlockBoundsFromState(renderBlocks.blockAccess, x, y, z), x, y, z);
 		}
 
 		return true;
 	}
 
+	@Override
 	public boolean shouldItemRender3d() {
 		return false;
 	}
 
+	@Override
 	public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
 		if (data < 1 || data > 4) {
 			data = 1;
 		}
-
-		return side != Side.TOP && side != Side.BOTTOM ? GROWTH_STAGE_TEXTURES_SIDE[data - 1] : GROWTH_STAGE_TEXTURES_TOP[data - 1];
+		int index = data - 1;
+		return side == Side.TOP || side == Side.BOTTOM ? growthStageTop[index] : growthStageSide[index];
 	}
 }
-

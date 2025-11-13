@@ -8,13 +8,22 @@ import turniplabs.halplibe.helper.EntityHelper;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class StardewEntities {
+public final class StardewEntities {
+	private static boolean hasInit = false;
 
-	public String entityKey(String string) {
+	public static void init() {
+		if (!hasInit) {
+			hasInit = true;
+			initializeEntities();
+		}
+
+	}
+
+	public static String entityKey(String string) {
 		return MOD_ID + ".entity." + string;
 	}
 
-	public void initializeEntities() {
+	public static void initializeEntities() {
 		EntityHelper.createEntity(MobDuck.class, NamespaceID.getPermanent(MOD_ID, "duck"), entityKey("duck"));
 		EntityHelper.createEntity(MobGoat.class, NamespaceID.getPermanent(MOD_ID, "goat"), entityKey("goat"));
 		EntityHelper.createEntity(EntityEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), entityKey("duck.egg"));

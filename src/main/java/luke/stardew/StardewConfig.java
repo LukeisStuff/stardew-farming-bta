@@ -1,44 +1,102 @@
 package luke.stardew;
 
-import luke.stardew.blocks.StardewBlocks;
-import luke.stardew.items.StardewItems;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.item.Item;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.util.TomlConfigHandler;
 import turniplabs.halplibe.util.toml.Toml;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
+import java.io.IOException;
+
+import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewConfig {
-	public static final Toml properties = new Toml("Stardew Farming TOML Config");
-	public static final TomlConfigHandler cfg;
+	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	public static int blockIDs = 6000;
+	private static TomlConfigHandler cfg;
 
-	public static int itemIDs = 22000;
-
-	static {
-		properties.addCategory("stardew")
-			.addEntry("cfgVersion", 6);
-
-		properties.addCategory("Block IDs");
-		properties.addEntry("Block IDs.startingID", blockIDs);
-		properties.addCategory("Item IDs");
-		properties.addEntry("Item IDs.startingID", itemIDs);
+	public static final Object CONFIGURATION_LOCK = new Object();
 
 
-		List<Field> blockFields = Arrays.stream(StardewBlocks.class.getDeclaredFields()).filter(f -> Block.class.isAssignableFrom(f.getType())).collect(Collectors.toList());
-		for (Field blockField : blockFields) {
-			properties.addEntry("Block IDs." + blockField.getName(), blockIDs++);
+	public static final String GeneralCategory = "General";
+
+	private static int BLOCK_ID_STARTING_FROM = 6000;
+	private static int ITEM_ID_STARTING_FROM = 22000;
+
+	public static int currentBlockID;
+	public static int currentItemID;
+
+	static void init() {
+		LOGGER.info("Initializing config..");
+
+		Toml props = new Toml("Stardew Farming Configs.toml");
+		assembleProperties(props);
+
+		cfg = new TomlConfigHandler(MOD_ID, props);
+
+		if (cfg.getConfigFile().exists()) cfg.loadConfig();
+		else {
+			try {
+				cfg.getConfigFile().createNewFile();
+			} catch (IOException e) {
+				throw new RuntimeException(e);
+			}
+
+			cfg.writeConfig();
 		}
-		List<Field> itemFields = Arrays.stream(StardewItems.class.getDeclaredFields()).filter(f -> Item.class.isAssignableFrom(f.getType())).collect(Collectors.toList());
-		for (Field itemField : itemFields) {
-			properties.addEntry("Item IDs." + itemField.getName(), itemIDs++);
+
+		loadProperties();
+	}
+
+	private static void loadProperties() {
+		currentBlockID = BLOCK_ID_STARTING_FROM = cfgGetValueOrDefault(GeneralCategory + ".BLOCK_ID_STARTING_FROM", BLOCK_ID_STARTING_FROM);
+		currentItemID = ITEM_ID_STARTING_FROM = cfgGetValueOrDefault(GeneralCategory + ".ITEM_ID_STARTING_FROM", ITEM_ID_STARTING_FROM);
+	}
+
+	private static void assembleProperties(Toml properties) {
+		properties.addCategory(GeneralCategory)
+			.addEntry("cfgVersion", 6)
+			.addEntry("BLOCK_ID_STARTING_FROM", BLOCK_ID_STARTING_FROM)
+			.addEntry("ITEM_ID_STARTING_FROM", ITEM_ID_STARTING_FROM);
+	}
+
+	public static int itemID(String itemName) {
+		return currentItemID++;
+	}
+
+	public static int blockID(String blockName) {
+		return currentBlockID++;
+	}
+
+	@SuppressWarnings("unchecked")
+	static <T> T cfgGetValueOrDefault(String key, T def) {
+		T res = null;
+
+		try {
+			if (def instanceof String) {
+				res = (T) cfg.getString(key);
+			} else if (def instanceof Integer) {
+				res = (T) Integer.valueOf(cfg.getInt(key));
+			} else if (def instanceof Long) {
+				res = (T) Long.valueOf(cfg.getLong(key));
+			} else if (def instanceof Boolean) {
+				res = (T) Boolean.valueOf(cfg.getBoolean(key));
+			} else if (def instanceof Double || def instanceof Float) {
+				double raw = cfg.getDouble(key);
+
+				if (def instanceof Float) res = (T) Float.valueOf((float) raw);
+				else res = (T) Double.valueOf(raw);
+			} else {
+				throw new RuntimeException("Invalid value type!");
+			}
+
+		} catch (NullPointerException ignored) {
 		}
 
-		cfg = new TomlConfigHandler(StardewMod.MOD_ID, properties);
+		if (res == null) {
+			LOGGER.warn("Failed to load \"{}\"! Assuming default...", key);
+			return def;
+		}
+
+		return res;
 	}
 }

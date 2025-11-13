@@ -1,33 +1,20 @@
 package luke.stardew.blocks;
 
-import luke.stardew.StardewConfig;
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
-import net.minecraft.core.block.BlockLogicLog;
-import net.minecraft.core.block.BlockLogicMushroom;
+import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.block.tag.BlockTags;
-import net.minecraft.core.item.Items;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.BlockBuilder;
+import turniplabs.halplibe.util.BlockInitEntrypoint;
 
+import static luke.stardew.StardewConfig.blockID;
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class StardewBlocks {
-	public static int startingBlockID = 6000;
-
-	public static int blockID(String blockName) {
-		try {
-			return StardewConfig.cfg.getInt("Block IDs." + blockName);
-		} catch (NullPointerException e) {
-			System.out.println(startingBlockID);
-			StardewConfig.properties.addEntry("Block IDs." + blockName, startingBlockID);
-			return startingBlockID++;
-		}
-	}
+public final class StardewBlocks implements BlockInitEntrypoint {
 
 	//Spring Crops
 	public static Block<?> CROPS_CARROT;
@@ -92,6 +79,15 @@ public class StardewBlocks {
 	public static Block<?> MUSHROOM_TRUFFLE;
 
 	public static Block<?> THATCH;
+
+	private static boolean hasInit = false;
+
+	public static void init() {
+		if (!hasInit) {
+			hasInit = true;
+			initializeBlocks();
+		}
+	}
 
 	public static void initializeBlocks() {
 
@@ -167,7 +163,7 @@ public class StardewBlocks {
 		CROPS_STRAWBERRY = crops.build("crops_strawberry", blockID("CROPS_STRAWBERRY"), BlockLogicCropBase::new);
 
 		WATERMELON = blocks
-			.build("watermelon", blockID("WATERMELON"), b -> new BlockLogic(b, Material.vegetable));
+			.build("watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
 		CROPS_WATERMELON = cropsBlock.build("crops_watermelon", blockID("CROPS_WATERMELON"), BlockLogicCropsWatermelon::new); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
 
 		//Fall Crops
@@ -186,25 +182,25 @@ public class StardewBlocks {
 		LOG_APPLE = log
 			.build("log_apple", blockID("LOG_APPLE"), BlockLogicLog::new);
 		LEAVES_APPLE = leaves
-			.build("leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE));
+			.build("leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));
 		LEAVES_APPLE_FLOWERING = leaves
-			.build("leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"), b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE, Items.FOOD_APPLE));
+			.build("leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"), b -> new BlockLogicLeavesAppleFlowering(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));
 		SAPLING_APPLE = sapling
 			.build("sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
 
 		LOG_APPLE_GOLDEN = log
 			.build("log_apple_golden", blockID("LOG_APPLE_GOLDEN"), BlockLogicLog::new);
 		LEAVES_APPLE_GOLDEN = leaves
-			.build("leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN));
+			.build("leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER));
 		LEAVES_APPLE_GOLDEN_FLOWERING = leaves
-			.build("leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"), b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE_GOLDEN, Items.FOOD_APPLE_GOLD));
+			.build("leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"), b -> new BlockLogicLeavesAppleFlowering(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER));
 		SAPLING_APPLE_GOLDEN = sapling
 			.build("sapling_apple_golden", blockID("SAPLING_APPLE_GOLDEN"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN_FLOWERING, 20));
 
 
 		//Winter Crops
 		CAULIFLOWER = blocks
-			.build("cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogic(b, Material.vegetable));
+			.build("cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
 		CROPS_CAULIFLOWER = cropsBlock
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
 			.build("crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
@@ -416,5 +412,10 @@ public class StardewBlocks {
 	public static boolean isBlockLogic(World world, int x, int y, int z, Class<? extends BlockLogic> logic) {
 		Block<?> block = world.getBlock(x, y, z);
 		return block != null && logic.isAssignableFrom(block.getLogic().getClass());
+	}
+
+	@Override
+	public void afterBlockInit() {
+		init();
 	}
 }

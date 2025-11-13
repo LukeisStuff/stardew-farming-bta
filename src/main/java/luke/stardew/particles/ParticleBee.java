@@ -1,4 +1,4 @@
-package luke.stardew.entities.fx;
+package luke.stardew.particles;
 
 import net.minecraft.client.entity.particle.Particle;
 import net.minecraft.client.render.tessellator.Tessellator;
