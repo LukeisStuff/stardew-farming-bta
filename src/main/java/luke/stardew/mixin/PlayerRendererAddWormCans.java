@@ -1,7 +1,6 @@
 package luke.stardew.mixin;
 
-import luke.stardew.items.ItemCanOfWorms;
-import luke.stardew.items.ItemCanOfWormsEndless;
+import luke.stardew.items.StardewItems;
 import net.minecraft.client.render.entity.MobRenderer;
 import net.minecraft.client.render.entity.MobRendererPlayer;
 import net.minecraft.client.render.model.ModelBase;
@@ -28,29 +27,26 @@ public abstract class PlayerRendererAddWormCans extends MobRenderer<Player> {
 	}
 
 	@Inject(method = "prepareArmor(Lnet/minecraft/core/entity/player/Player;IF)Z", at = @At("HEAD"), cancellable = true)
-	public void addCanOfWormsRender(Player player, int renderPass, float partialTick, CallbackInfoReturnable<Boolean> info) {
-		ItemStack armorStack = player.inventory.armorInventory[renderPass];
-		if (armorStack == null) return;
-		Item item = armorStack.getItem();
-
-		if (item instanceof ItemCanOfWorms && renderPass == 3) {
-			String path = "/assets/minecraft/textures/armor/quiver.png";
-			this.bindTexture(path);
-			ModelBiped modelbiped = this.modelArmorChestplate;
-			modelbiped.legRight.visible = true;
-			modelbiped.legLeft.visible = false;
-			this.setArmorModel(modelbiped);
-			info.setReturnValue(true);
-			return;
-		}
-		if (item instanceof ItemCanOfWormsEndless && renderPass == 3) {
-			String path = "/assets/minecraft/textures/armor/quiver_golden.png";
-			this.bindTexture(path);
-			ModelBiped modelbiped = this.modelArmorChestplate;
-			modelbiped.legRight.visible = true;
-			modelbiped.legLeft.visible = false;
-			this.setArmorModel(modelbiped);
-			info.setReturnValue(true);
+	public void addCanOfWormsRender(Player entity, int renderPass, float partialTick, CallbackInfoReturnable<Boolean> cir) {
+		ItemStack itemstack = entity.inventory.armorItemInSlot(3 - renderPass);
+		if (itemstack != null) {
+			Item item = itemstack.getItem();
+			if (item.equals(StardewItems.ARMOR_CAN_OF_WORMS)) {
+				this.bindTexture("/assets/stardew/textures/armor/bait.png");
+				ModelBiped modelbiped = this.modelArmorChestplate;
+				modelbiped.legRight.visible = renderPass == 2 || renderPass == 3;
+				modelbiped.legLeft.visible = false;
+				this.setArmorModel(modelbiped);
+				cir.setReturnValue(true);
+			}
+			if (item.equals(StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN)) {
+				this.bindTexture("/assets/stardew/textures/armor/bait_golden.png");
+				ModelBiped modelbiped = this.modelArmorChestplate;
+				modelbiped.legRight.visible = renderPass == 2 || renderPass == 3;
+				modelbiped.legLeft.visible = false;
+				this.setArmorModel(modelbiped);
+				cir.setReturnValue(true);
+			}
 		}
 	}
 }

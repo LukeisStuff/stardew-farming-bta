@@ -16,6 +16,7 @@ import org.spongepowered.asm.mixin.Unique;
 import java.util.Random;
 
 public class BlockLogicPlantStake extends BlockLogic {
+
 	public BlockLogicPlantStake(Block<?> block, Material material) {
 		super(block, material);
 		this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);

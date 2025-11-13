@@ -8,8 +8,8 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
 public class BlockLogicCropTall extends BlockLogicCropBase {
-	public int growTopMeta = -1; //Block is considered top if -1
-	public Block<? extends BlockLogicCropTall> otherBlock;
+	protected int growTopMeta = -1; //Block is considered top if -1
+	protected Block<? extends BlockLogicCropTall> otherBlock;
 
 	public BlockLogicCropTall(Block<?> block) {
 		super(block);

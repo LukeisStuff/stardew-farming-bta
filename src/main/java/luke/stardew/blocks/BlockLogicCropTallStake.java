@@ -10,6 +10,7 @@ import net.minecraft.core.world.World;
 import java.util.List;
 
 public class BlockLogicCropTallStake extends BlockLogicCropTall {
+
 	public BlockLogicCropTallStake(Block<?> block) {
 		super(block);
 	}

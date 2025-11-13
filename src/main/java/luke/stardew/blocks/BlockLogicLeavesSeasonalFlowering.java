@@ -16,7 +16,6 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal implements IBonemealable {
-
 	public final Item fruitItem;
 
 	public BlockLogicLeavesSeasonalFlowering(Block<?> block, Supplier<Block<?>> sapling, Item fruitItem) {

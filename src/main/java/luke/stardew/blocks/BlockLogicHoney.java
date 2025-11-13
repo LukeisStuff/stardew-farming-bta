@@ -10,6 +10,7 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
 public class BlockLogicHoney extends BlockLogicTransparent {
+
 	public BlockLogicHoney(Block<?> block) {
 		super(block, Material.leaves);
 		block.setTicking(true);

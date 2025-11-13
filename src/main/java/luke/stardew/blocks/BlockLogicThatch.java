@@ -9,9 +9,9 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 
 public class BlockLogicThatch extends BlockLogicFullyRotatable {
+
 	public BlockLogicThatch(Block<?> block, Material material) {
 		super(block, material);
-
 	}
 
 	@Override

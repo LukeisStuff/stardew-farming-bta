@@ -18,6 +18,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Random;
 
 public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBonemealable {
+
 	public BlockLogicCropsWatermelon(Block<?> block) {
 		super(block);
 	}
