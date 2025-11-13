@@ -111,7 +111,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 			.setTags(BlockTags.MINEABLE_BY_AXE);
 
 		BlockBuilder leaves = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.GRASS)
 			.setHardness(0.2F)
 			.setResistance(0.2F)
 			.setFlammability(30, 60)
@@ -120,20 +120,20 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_HOE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS, BlockTags.SHEARS_DO_SILK_TOUCH);
 
 		BlockBuilder sapling = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.GRASS)
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR);
 
 		BlockBuilder log = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.WOOD)
 			.setHardness(2.0F)
 			.setResistance(1.0f)
 			.setFlammability(5, 5)
 			.setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT);
 
 		BlockBuilder wood = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.WOOD)
 			.setHardness(2.5f)
 			.setResistance(1.0f)
 			.setFlammability(5, 5)
@@ -195,7 +195,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
 		LEAVES_APPLE_FLOWERING = leaves
 			.build("leaves.apple.flowering", "leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"),
-				b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL, Items.FOOD_APPLE, LEAVES_APPLE_FLOWERING));
+				b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL, () -> Items.FOOD_APPLE, LEAVES_APPLE_FLOWERING));
 
 		SAPLING_APPLE = sapling
 			.build("sapling.apple", "sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
@@ -208,7 +208,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
 		LEAVES_APPLE_GOLDEN_FLOWERING = leaves
 			.build("leaves.apple.golden.flowering", "leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"),
-				b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER, Items.FOOD_APPLE_GOLD, LEAVES_APPLE_GOLDEN_FLOWERING));
+				b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER, () -> Items.FOOD_APPLE_GOLD, LEAVES_APPLE_GOLDEN_FLOWERING));
 
 		SAPLING_APPLE_GOLDEN = sapling
 			.build("sapling.apple.golden", "sapling_apple_golden", blockID("SAPLING_APPLE_GOLDEN"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN_FLOWERING, 20));
@@ -249,7 +249,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 		CROPS_BEANS_TOP = crops.build("crops.beans.top", "crops_beans_top", blockID("CROPS_BEANS_TOP"), BlockLogicCropTallStake::new);
 
 		CAKE_CHOCOLATE = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.CLOTH)
 			.setHardness(0.5f)
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
@@ -259,7 +259,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 			.build("beehive", "beehive", blockID("BEEHIVE"), BlockLogicBeehive::new);
 
 		PIZZA = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.CLOTH)
 			.setHardness(0.5f)
 			.setResistance(0.5f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
@@ -286,12 +286,12 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 		PLANT_STAKE = new BlockBuilder(MOD_ID)
 			.setHardness(0.0f)
 			.setResistance(0.0f)
-			.setBlockSound(new BlockSound("step.gravel", "step.wood", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.GRAVEL)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
 			.build("plant.stake", "plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Material.plant));
 
 		MUSHROOM_TRUFFLE = new BlockBuilder(MOD_ID)
-			.setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.0f))
+			.setBlockSound(BlockSounds.GRASS)
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR, BlockTags.PIGS_FAVOURITE_BLOCK)

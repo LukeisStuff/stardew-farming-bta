@@ -14,11 +14,11 @@ import java.util.function.Supplier;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class BlockLogicLeavesSeasonal extends BlockLogicLeavesBase {
-	public @NonNull Supplier<Block<?>> saplingSupplier;
-	protected static Season season;
+	protected final @NonNull Supplier<Block<?>> saplingSupplier;
+	protected final Season season;
 
 	public BlockLogicLeavesSeasonal(Block<?> block, @NonNull Supplier<Block<?>> sapling, Season season) {
-		super(block, Material.leaves, null);
+		super(block, Material.leaves, sapling.get());
 		this.saplingSupplier = sapling;
 		this.season = season;
 	}

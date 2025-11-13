@@ -6,11 +6,13 @@ import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicRotatable;
 import net.minecraft.core.block.entity.TileEntity;
+import net.minecraft.core.block.entity.TileEntityActivator;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
@@ -42,7 +44,7 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 	@Override
 	public void animationTick(World world, int x, int y, int z, Random rand) {
 		int meta = world.getBlockMetadata(x, y, z);
-		double h = 0.5;
+		double h	 = 0.5;
 		double q = 0.25;
 		double random = (world.rand.nextInt(1) - Math.random());
 		if (meta == 2) {
@@ -81,7 +83,16 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 				}
 			}
 		}
+	}
 
+	@Override
+	public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
+		int l = world.getBlockMetadata(x, y, z);
+		if (this.isActive) {
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE.id(), l);
+			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.pop", 0.2F, 0.5F);
+			world.dropItem(x, y, z, new ItemStack(StardewItems.HONEY, world.rand.nextInt(2) + 1));
+		}
 	}
 
 	@Override

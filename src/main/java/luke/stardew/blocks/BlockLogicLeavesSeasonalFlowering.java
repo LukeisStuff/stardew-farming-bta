@@ -12,6 +12,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Season;
+import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
@@ -21,10 +22,10 @@ import java.util.function.Supplier;
 public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal implements IBonemealable {
 	public static final int MASK_GROWTH_DATA = 240;
 	public static final int MAX_GROWTH_STATE = 1;
-	protected static Item fruit;
-	public final Block<?> floweringLeaves;
+	protected final Supplier<Item> fruit;
+	protected final Block<?> floweringLeaves;
 
-	public BlockLogicLeavesSeasonalFlowering(Block<?> block, @NonNull Supplier<Block<?>> sapling, Season season, Item fruit, Block<?> floweringLeaves) {
+	public BlockLogicLeavesSeasonalFlowering(Block<?> block, @NonNull Supplier<Block<?>> sapling, Season season, Supplier<Item> fruit, Block<?> floweringLeaves) {
 		super(block, sapling, season);
 		this.fruit = fruit;
 		this.floweringLeaves = floweringLeaves;
@@ -34,7 +35,7 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
 	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
 		int growthRate = getGrowthRate(meta);
 		if (dropCause != EnumDropCause.PICK_BLOCK && dropCause != EnumDropCause.SILK_TOUCH) {
-			return growthRate == 0 ? null : new ItemStack[]{new ItemStack(fruit, world.rand.nextInt(2) + 1)};
+			return growthRate == 0 ? null : new ItemStack[]{new ItemStack(fruit.get(), world.rand.nextInt(2) + 1)};
 		} else {
 			return new ItemStack[]{new ItemStack(this)};
 		}
@@ -103,9 +104,11 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
 					return true;
 				}
 
-				world.setBlockMetadataWithNotify(blockX, blockY, blockZ, setGrowthRate(meta, MAX_GROWTH_STATE));
-				if (player == null || player.getGamemode().consumeBlocks()) {
-					--itemstack.stackSize;
+				if (world.getSeasonManager().getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
+					world.setBlockMetadataWithNotify(blockX, blockY, blockZ, setGrowthRate(meta, MAX_GROWTH_STATE));
+					if (player == null || player.getGamemode().consumeBlocks()) {
+						--itemstack.stackSize;
+					}
 				}
 			}
 

@@ -4,12 +4,14 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicFluid;
 import net.minecraft.core.block.entity.TileEntity;
+import net.minecraft.core.block.entity.TileEntityActivator;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemFireStriker;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.sound.SoundCategory;
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
@@ -63,6 +65,13 @@ public class BlockLogicWaxCandle extends BlockLogic {
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	@Override
+	public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
+		if (this.burning) {
+			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CANDLE.id(), 0);
 		}
 	}
 
