@@ -47,37 +47,37 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 		double random = (world.rand.nextInt(1) - Math.random());
 		if (meta == 2) {
 			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", (double) x + h, (double) y - random, z - q, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("bee", x + h, y - random, z - q, 0.0, 0.0, 0.0, 0);
 				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
 				}
 			}
 		} else if (meta == 3) {
 			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x + h, (double) y - random, z + 1 + q, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("bee", x + h, y - random, z + 1 + q, 0.0, 0.0, 0.0, 0);
 				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
 				}
 			}
 		} else if (meta == 4) {
 			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x - q, (double) y - random, z + h, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("bee", x - q, y - random, z + h, 0.0, 0.0, 0.0, 0);
 				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
 				}
 			}
 		} else if (meta == 5) {
 			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x + 1 + q, (double) y - random, (double) z + h, 0.0, 0.0, 0.0, 0);
+				world.spawnParticle("bee", x + 1 + q, y - random, z + h, 0.0, 0.0, 0.0, 0);
 				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
 				}
 			}
 		} else {
 			if (rand.nextInt(2) == 0) {
 				world.spawnParticle("bee", x, y, z, 0.0, 0.0, 0.0, 0);
 				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
 				}
 			}
 		}

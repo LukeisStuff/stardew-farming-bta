@@ -21,9 +21,6 @@ import java.util.Map;
 public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 
 	@Shadow
-	public abstract void addStat(Stat statbase, int i);
-
-	@Shadow
 	protected float baseSpeed;
 
 	@Shadow
@@ -32,7 +29,7 @@ public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 	@Unique
 	public Map<PlayerEffect, Integer> currentEffects = new HashMap<>();
 
-	public PlayerMixin(World world) {
+	protected PlayerMixin(World world) {
 		super(world);
 	}
 

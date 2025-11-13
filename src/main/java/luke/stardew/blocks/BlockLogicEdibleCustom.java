@@ -20,7 +20,7 @@ public class BlockLogicEdibleCustom extends BlockLogicEdible {
 	public AABB getBlockBoundsFromState(WorldSource world, int x, int y, int z) {
 		int l = world.getBlockMetadata(x, y, z);
 		float f = 0.0625f;
-		float f1 = (float) (1 + l * 2) / 16.0f;
+		float f1 = (1 + l * 2) / 16.0f;
 		return AABB.getTemporaryBB(f1, 0.0, f, 1.0f - f, this.height, 1.0f - f);
 	}
 }

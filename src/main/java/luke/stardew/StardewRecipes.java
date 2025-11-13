@@ -15,10 +15,6 @@ import static luke.stardew.StardewMod.MOD_ID;
 public class StardewRecipes implements RecipeEntrypoint {
 
 	public void initializeRecipes() {
-		RecipeBuilderShaped templateLogtoPlank = new RecipeBuilderShaped(MOD_ID, "X", "X", "X");
-
-		RecipeBuilderShaped template9ItemtoBlock = new RecipeBuilderShaped(MOD_ID, "XXX", "XXX", "XXX");
-
 		RecipeBuilderShaped template4ItemtoBlock = new RecipeBuilderShaped(MOD_ID, "XX", "XX");
 
 		RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("cookie");

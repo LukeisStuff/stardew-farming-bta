@@ -44,7 +44,7 @@ public class AchievementPageStardew extends AchievementPage {
 	}
 
 	@Override
-	public void postProcessBackground(ScreenAchievements screen, Random random, ScreenAchievements.BGLayer bGLayer, int i, int j) {
+	public void postProcessBackground(ScreenAchievements screenAchievements, Random random, ScreenAchievements.BGLayer bGLayer, int i, int j) {
 	}
 
 	@Override

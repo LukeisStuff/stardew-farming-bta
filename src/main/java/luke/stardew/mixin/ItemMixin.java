@@ -27,7 +27,7 @@ public abstract class ItemMixin implements NamespaceObject {
 			player.getCurrentEquippedItem().consumeItem(player);
 			world.setBlockWithNotify(blockX, blockY + 1, blockZ, StardewBlocks.PLANT_STAKE.id());
 			player.swingItem();
-			world.playBlockSoundEffect(player, (float) blockX + 0.5F, (float) blockY + 0.5F, (float) blockZ + 0.5F, Blocks.DIRT, EnumBlockSoundEffectType.PLACE);
+			world.playBlockSoundEffect(player, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, Blocks.DIRT, EnumBlockSoundEffectType.PLACE);
 		}
 	}
 

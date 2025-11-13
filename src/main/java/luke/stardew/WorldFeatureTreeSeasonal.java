@@ -16,6 +16,7 @@ public class WorldFeatureTreeSeasonal extends WorldFeatureTree {
 		this.rarity = rarity;
 	}
 
+	@Override
 	public void placeLeaves(World world, int x, int y, int z, Random rand) {
 		if (rand.nextInt(this.rarity) == 0) {
 			world.setBlockAndMetadataWithNotify(x, y, z, this.leavesFloweringID, world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL ? 1 : 0);
@@ -25,6 +26,7 @@ public class WorldFeatureTreeSeasonal extends WorldFeatureTree {
 
 	}
 
+	@Override
 	public boolean isLeaf(int id) {
 		return id == leavesFloweringID || id == leavesID;
 	}

@@ -16,6 +16,7 @@ public class ItemToolFishingRodTiered extends Item {
 		this.setMaxDamage(material.getDurability());
 	}
 
+	@Override
 	public ItemStack onUseItem(ItemStack itemstack, World world, Player entityplayer) {
 		ItemStack canSlot = entityplayer.inventory.armorItemInSlot(1);
 
@@ -39,11 +40,10 @@ public class ItemToolFishingRodTiered extends Item {
 				if (entityplayer.bobberEntity instanceof IEntityBobberMixin) {
 					((IEntityBobberMixin) entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 				}
-			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.WORM.id)) {
-				if (entityplayer.bobberEntity instanceof IEntityBobberMixin) {
-					((IEntityBobberMixin) entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
-				}
+			} else if (entityplayer.inventory.consumeInventoryItem(StardewItems.WORM.id) && entityplayer.bobberEntity instanceof IEntityBobberMixin) {
+				((IEntityBobberMixin) entityplayer.bobberEntity).stardew_farming_bta$setBait(true);
 			}
+
 		}
 
 		entityplayer.swingItem();

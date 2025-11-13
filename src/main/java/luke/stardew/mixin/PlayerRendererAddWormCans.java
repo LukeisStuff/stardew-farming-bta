@@ -23,7 +23,7 @@ public abstract class PlayerRendererAddWormCans extends MobRenderer<Player> {
 	@Final
 	private ModelBiped modelArmorChestplate;
 
-	public PlayerRendererAddWormCans(ModelBase model, float shadowSize) {
+	protected PlayerRendererAddWormCans(ModelBase model, float shadowSize) {
 		super(model, shadowSize);
 	}
 

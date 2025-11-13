@@ -74,7 +74,7 @@ public class MobDuck extends MobAnimal implements Creature {
 		} else {
 			this.oFlap = this.flap;
 			this.oFlapSpeed = this.flapSpeed;
-			this.flapSpeed = (float) ((double) this.flapSpeed + (double) (this.onGround ? -1 : 4) * 0.3);
+			this.flapSpeed = (float) (this.flapSpeed + (this.onGround ? -1 : 4) * 0.3);
 			if (this.flapSpeed < 0.0F) {
 				this.flapSpeed = 0.0F;
 			}
@@ -87,7 +87,7 @@ public class MobDuck extends MobAnimal implements Creature {
 				this.flapping = 1.0F;
 			}
 
-			this.flapping = (float) ((double) this.flapping * 0.9);
+			this.flapping = (float) (this.flapping * 0.9);
 			if (!this.onGround && this.yd < 0.0) {
 				this.yd *= 0.6;
 			}
@@ -102,7 +102,9 @@ public class MobDuck extends MobAnimal implements Creature {
 		}
 	}
 
+	@Override
 	public void causeFallDamage(float distance) {
+		// No fall damage
 	}
 
 	@Override
@@ -130,6 +132,7 @@ public class MobDuck extends MobAnimal implements Creature {
 		return StardewMod.MOD_ID + ":mob.duck.death";
 	}
 
+	@Override
 	public boolean isFavouriteItem(ItemStack itemStack) {
 		return itemStack != null && itemStack.getItem().hasTag(ItemTags.CHICKENS_FAVOURITE_ITEM);
 	}

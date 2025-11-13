@@ -21,7 +21,7 @@ public abstract class BlockAlgaeMixin extends BlockLogic implements IBonemealabl
 	@Unique
 	public boolean canBeBonemealed = true;
 
-	public BlockAlgaeMixin(Block<?> block, Material material) {
+	protected BlockAlgaeMixin(Block<?> block, Material material) {
 		super(block, material);
 	}
 
@@ -49,7 +49,7 @@ public abstract class BlockAlgaeMixin extends BlockLogic implements IBonemealabl
 					}
 				}
 
-				if (world.getBlockId(k1, l1, i2) == 0 && (double) rand.nextFloat() > 0.90) {
+				if (world.getBlockId(k1, l1, i2) == 0 && rand.nextFloat() > 0.90) {
 					world.setBlockWithNotify(k1, l1, i2, Blocks.ALGAE.id());
 				}
 			}

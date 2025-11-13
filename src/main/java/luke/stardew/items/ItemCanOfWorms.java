@@ -27,8 +27,8 @@ public class ItemCanOfWorms extends Item implements IArmorItem {
 		int totalSpace = this.getMaxDamage();
 		int wormCount = this.getWormCount(canItem);
 		int freeSpace = totalSpace - wormCount;
+		int amount;
 		if (isItemGrabbed) {
-			int amount;
 			if (stackInSlot == null) {
 				int amount2 = Math.min(16, wormCount);
 				ItemStack arrowStack = new ItemStack(StardewItems.WORM, amount2, 0);
@@ -41,7 +41,6 @@ public class ItemCanOfWorms extends Item implements IArmorItem {
 				stackInSlot.stackSize -= amount;
 			}
 		} else {
-			int amount;
 			ItemStack grabbedItem = player.inventory.getHeldItemStack();
 			if (grabbedItem != null && grabbedItem.itemID == StardewItems.WORM.id) {
 				int amount3 = Math.min(grabbedItem.stackSize, freeSpace);

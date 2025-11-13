@@ -12,5 +12,6 @@ public class EntityItemFireResistant extends EntityItem {
 
 	@Override
 	public void burn(int damage) {
+		// Unburnable
 	}
 }

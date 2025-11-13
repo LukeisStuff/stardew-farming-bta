@@ -31,6 +31,7 @@ public class ParticleBee extends Particle {
 		super.render(tessellator, partialTick, x, y, z, rotationX, rotationXZ, rotationZ, rotationYZ, rotationXY);
 	}
 
+	@Override
 	public void tick() {
 		this.tex = this.age % 2 == 0 ? bee1 : bee2;
 

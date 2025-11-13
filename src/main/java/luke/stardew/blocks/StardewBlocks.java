@@ -17,15 +17,15 @@ import turniplabs.halplibe.helper.BlockBuilder;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewBlocks {
-	public static int blockID = 6000;
+	public static int startingBlockID = 6000;
 
 	public static int blockID(String blockName) {
 		try {
 			return StardewConfig.cfg.getInt("Block IDs." + blockName);
 		} catch (NullPointerException e) {
-			System.out.println(blockID);
-			StardewConfig.properties.addEntry("Block IDs." + blockName, blockID);
-			return blockID++;
+			System.out.println(startingBlockID);
+			StardewConfig.properties.addEntry("Block IDs." + blockName, startingBlockID);
+			return startingBlockID++;
 		}
 	}
 
@@ -146,45 +146,45 @@ public class StardewBlocks {
 		//Spring Crops
 
 		// Spring Vegetables
-		CROPS_CARROT = crops.build("crops_carrot", blockID("CROPS_CARROT"), (b) -> new BlockLogicCropBase(b));
+		CROPS_CARROT = crops.build("crops_carrot", blockID("CROPS_CARROT"), BlockLogicCropBase::new);
 
 
 		// Spring Fruits
-		CROPS_BLUEBERRY = crops.build("crops_blueberry", blockID("CROPS_BLUEBERRY"), (b) -> new BlockLogicCropBase(b));
+		CROPS_BLUEBERRY = crops.build("crops_blueberry", blockID("CROPS_BLUEBERRY"), BlockLogicCropBase::new);
 
-		CROPS_PINEAPPLE = crops.build("crops_pineapple", blockID("CROPS_PINEAPPLE"), (b) -> new BlockLogicCropBase(b));
+		CROPS_PINEAPPLE = crops.build("crops_pineapple", blockID("CROPS_PINEAPPLE"), BlockLogicCropBase::new);
 
 
 		//Summer Crops
 
 		// Summer Vegetables
-		CROPS_TOMATO = crops.build("crops_tomato", blockID("CROPS_TOMATO"), (b) -> new BlockLogicCropBase(b));
+		CROPS_TOMATO = crops.build("crops_tomato", blockID("CROPS_TOMATO"), BlockLogicCropBase::new);
 
-		CROPS_POTATO = crops.build("crops_potato", blockID("CROPS_POTATO"), (b) -> new BlockLogicCropBase(b));
+		CROPS_POTATO = crops.build("crops_potato", blockID("CROPS_POTATO"), BlockLogicCropBase::new);
 
 		// Summer Fruits
 
-		CROPS_STRAWBERRY = crops.build("crops_strawberry", blockID("CROPS_STRAWBERRY"), (b) -> new BlockLogicCropBase(b));
+		CROPS_STRAWBERRY = crops.build("crops_strawberry", blockID("CROPS_STRAWBERRY"), BlockLogicCropBase::new);
 
 		WATERMELON = blocks
 			.build("watermelon", blockID("WATERMELON"), b -> new BlockLogic(b, Material.vegetable));
-		CROPS_WATERMELON = cropsBlock.build("crops_watermelon", blockID("CROPS_WATERMELON"), (b) -> new BlockLogicCropsWatermelon(b)); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
+		CROPS_WATERMELON = cropsBlock.build("crops_watermelon", blockID("CROPS_WATERMELON"), BlockLogicCropsWatermelon::new); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
 
 		//Fall Crops
 		CROPS_CORN_BOTTOM = crops
-			.build("crops_corn_bottom", blockID("CROPS_CORN_BOTTOM"), b -> new BlockLogicCropTall(b));
+			.build("crops_corn_bottom", blockID("CROPS_CORN_BOTTOM"), BlockLogicCropTall::new);
 		CROPS_CORN_TOP = crops
-			.build("crops_corn_top", blockID("CROPS_CORN_TOP"), b -> new BlockLogicCropTall(b));
+			.build("crops_corn_top", blockID("CROPS_CORN_TOP"), BlockLogicCropTall::new);
 
 		CROPS_GRAPE_TOP = crops
-			.build("crops_grape_top", blockID("CROPS_GRAPE_TOP"), b -> new BlockLogicCropTallStake(b));
+			.build("crops_grape_top", blockID("CROPS_GRAPE_TOP"), BlockLogicCropTallStake::new);
 		CROPS_GRAPE_BOTTOM = crops
-			.build("crops_grape_bottom", blockID("CROPS_GRAPE_BOTTOM"), b -> new BlockLogicCropTallStake(b));
+			.build("crops_grape_bottom", blockID("CROPS_GRAPE_BOTTOM"), BlockLogicCropTallStake::new);
 
 
 		// Fall Tree
 		LOG_APPLE = log
-			.build("log_apple", blockID("LOG_APPLE"), b -> new BlockLogicLog(b));
+			.build("log_apple", blockID("LOG_APPLE"), BlockLogicLog::new);
 		LEAVES_APPLE = leaves
 			.build("leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE));
 		LEAVES_APPLE_FLOWERING = leaves
@@ -193,7 +193,7 @@ public class StardewBlocks {
 			.build("sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
 
 		LOG_APPLE_GOLDEN = log
-			.build("log_apple_golden", blockID("LOG_APPLE_GOLDEN"), b -> new BlockLogicLog(b));
+			.build("log_apple_golden", blockID("LOG_APPLE_GOLDEN"), BlockLogicLog::new);
 		LEAVES_APPLE_GOLDEN = leaves
 			.build("leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN));
 		LEAVES_APPLE_GOLDEN_FLOWERING = leaves
@@ -207,9 +207,9 @@ public class StardewBlocks {
 			.build("cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogic(b, Material.vegetable));
 		CROPS_CAULIFLOWER = cropsBlock
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
-			.build("crops_cauliflower", blockID("CROPS_CAULIFLOWER"), (b) -> new BlockLogicCropsCauliflower(b));
+			.build("crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
 
-		CROPS_CRANBERRIES = crops.build("crops_cranberries", blockID("CROPS_CRANBERRIES"), (b) -> new BlockLogicCropBase(b));
+		CROPS_CRANBERRIES = crops.build("crops_cranberries", blockID("CROPS_CRANBERRIES"), BlockLogicCropBase::new);
 
 		BUSH = crops
 			.setTags(BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
@@ -235,8 +235,8 @@ public class StardewBlocks {
 			.build("block_honey", blockID("BLOCK_HONEY"), BlockLogicHoney::new);
 
 
-		CROPS_BEANS_BOTTOM = crops.build("crops_beans_bottom", blockID("CROPS_BEANS_BOTTOM"), b -> new BlockLogicCropTallStake(b));
-		CROPS_BEANS_TOP = crops.build("crops_beans_top", blockID("CROPS_BEANS_TOP"), b -> new BlockLogicCropTallStake(b));
+		CROPS_BEANS_BOTTOM = crops.build("crops_beans_bottom", blockID("CROPS_BEANS_BOTTOM"), BlockLogicCropTallStake::new);
+		CROPS_BEANS_TOP = crops.build("crops_beans_top", blockID("CROPS_BEANS_TOP"), BlockLogicCropTallStake::new);
 
 		CAKE_CHOCOLATE = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.cloth", "step.cloth", 1.0f, 1.0f))
@@ -285,7 +285,7 @@ public class StardewBlocks {
 			.setHardness(0.0f)
 			.setResistance(0.0f)
 			.setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.PLANTABLE_IN_JAR, BlockTags.PIGS_FAVOURITE_BLOCK)
-			.build("mushroom_truffle", blockID("MUSHROOM_TRUFFLE"), b -> new BlockLogicMushroom(b));
+			.build("mushroom_truffle", blockID("MUSHROOM_TRUFFLE"), BlockLogicMushroom::new);
 
 		THATCH = new BlockBuilder(MOD_ID)
 			.setBlockSound(new BlockSound("step.grass", "step.grass", 0.6f, 1.2f))

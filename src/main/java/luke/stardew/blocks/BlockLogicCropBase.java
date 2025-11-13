@@ -110,17 +110,16 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
-		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
-			if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-				int meta = world.getBlockMetadata(x, y, z);
-				if (meta++ < this.maxGrowth) {
-					float growthRate = this.getGrowthRate(world, x, y, z);
-					if (rand.nextInt((int) (100.0F / growthRate)) == 0) {
-						this.onGrowth(world, x, y, z, meta);
-					}
+		if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER && world.getBlockLightValue(x, y + 1, z) >= 9) {
+			int meta = world.getBlockMetadata(x, y, z);
+			if (meta++ < this.maxGrowth) {
+				float growthRate = this.getGrowthRate(world, x, y, z);
+				if (rand.nextInt((int) (100.0F / growthRate)) == 0) {
+					this.onGrowth(world, x, y, z, meta);
 				}
 			}
 		}
+
 	}
 
 	public float getGrowthRate(World world, int x, int y, int z) {
@@ -199,6 +198,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 		return getDrops(world, dropCause, x, y, z, meta, tileEntity).toArray(new ItemStack[]{});
 	}
 
+	@Override
 	public boolean onBonemealUsed(ItemStack stack, Player player, World world, int x, int y, int z, Side side, double xPlaced, double yPlaced) {
 		if (world.getBlockMetadata(x, y, z) < this.maxGrowth) {
 			if (!world.isClientSide) {
@@ -214,7 +214,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 	}
 
 	public void onHarvest(World world, int x, int y, int z, int meta) {
-		world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
+		world.setBlockAndMetadataWithNotify(x, y, z, 0, meta);
 	}
 
 	@Override
@@ -228,11 +228,10 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 				onGrowth(world, x, y, z, this.resetMeta);
 			}
 
-			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "random.pop", 0.3F, 1.0f);
-			if (!world.isClientSide) {
-				if (this.cropItem != null)
-					world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
-			}
+			world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, x + 0.5, y + 0.5, z + 0.5, "random.pop", 0.3F, 1.0f);
+			if (!world.isClientSide && this.cropItem != null)
+				world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
+
 			return true;
 		}
 		return false;

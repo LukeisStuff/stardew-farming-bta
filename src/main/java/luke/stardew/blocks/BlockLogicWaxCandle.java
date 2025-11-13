@@ -5,7 +5,6 @@ import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicFluid;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
-import net.minecraft.core.entity.Mob;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemFireStriker;
@@ -14,7 +13,6 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -39,15 +37,6 @@ public class BlockLogicWaxCandle extends BlockLogic {
 	}
 
 	@Override
-	public void onBlockPlacedByMob(World world, int x, int y, int z, @NotNull Side side, Mob mob, double xPlaced, double yPlaced) {
-		super.onBlockPlacedByMob(world, x, y, z, side, mob, xPlaced, yPlaced);
-	}
-
-	/*public void onBlockAdded(World world, int x, int y, int z) {
-		world.isBlockNormalCube(x, y - 1, z);
-	}*/
-
-	@Override
 	public boolean canPlaceBlockAt(World world, int x, int y, int z) {
 		return world.isBlockNormalCube(x, y - 1, z) || world.canPlaceOnSurfaceOfBlock(x, y - 1, z);
 	}
@@ -64,7 +53,7 @@ public class BlockLogicWaxCandle extends BlockLogic {
 			if (!adjacentFluid) {
 				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CANDLE_ACTIVE.id(), 0);
 				heldItem.damageItem(1, player);
-				world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, (double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
+				world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x + 0.5, y + 0.5, z + 0.5, "fire.ignite", 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
 				return true;
 			} else {
 				return false;
@@ -93,12 +82,11 @@ public class BlockLogicWaxCandle extends BlockLogic {
 
 	@Override
 	public void animationTick(World world, int x, int y, int z, Random rand) {
-		if (this.burning) {
-			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
-				world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
-			}
+		if (this.burning && rand.nextInt(2) == 0) {
+			world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
+			world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
 		}
+
 	}
 
 	@Override

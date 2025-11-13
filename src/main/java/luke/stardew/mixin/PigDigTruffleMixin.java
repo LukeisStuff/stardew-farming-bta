@@ -16,11 +16,12 @@ public abstract class PigDigTruffleMixin extends MobAnimal {
 	@Unique
 	public int timeUntilNextTruffle = this.random.nextInt(6000) + 6000;
 
-	public PigDigTruffleMixin(World world) {
+	protected PigDigTruffleMixin(World world) {
 		super(world);
 	}
 
 
+	@Override
 	public void onLivingUpdate() {
 		Block<?> blockBelow;
 		int blockZ;
@@ -32,15 +33,14 @@ public abstract class PigDigTruffleMixin extends MobAnimal {
 		blockZ = MathHelper.floor(this.z);
 		assert this.world != null;
 		blockBelow = this.world.getBlock(blockX, blockY - 1, blockZ);
-		if (!(blockBelow != Blocks.GRASS && blockBelow != Blocks.GRASS_RETRO && blockBelow != Blocks.DIRT && blockBelow != Blocks.MUD && blockBelow != Blocks.FARMLAND_DIRT || this.world.isClientSide)) {
-			if (--this.timeUntilNextTruffle <= 0) {
-				this.world.playBlockSoundEffect(null, (int) this.x, (int) this.y - 1, (int) this.z, this.world.getBlock((int) this.x, (int) this.y - 1, (int) this.z), EnumBlockSoundEffectType.MINE);
-				this.dropItem(StardewBlocks.MUSHROOM_TRUFFLE.id(), world.rand.nextInt(2) + 1);
-				this.isMovementBlocked();
-				this.world.setBlockWithNotify(blockX, blockY - 1, blockZ, Blocks.DIRT.id());
-				this.timeUntilNextTruffle = this.random.nextInt(6000) + 6000;
-			}
+		if (!(blockBelow != Blocks.GRASS && blockBelow != Blocks.GRASS_RETRO && blockBelow != Blocks.DIRT && blockBelow != Blocks.MUD && blockBelow != Blocks.FARMLAND_DIRT || this.world.isClientSide) && --this.timeUntilNextTruffle <= 0) {
+			this.world.playBlockSoundEffect(null, (int) this.x, (int) this.y - 1, (int) this.z, this.world.getBlock((int) this.x, (int) this.y - 1, (int) this.z), EnumBlockSoundEffectType.MINE);
+			this.dropItem(StardewBlocks.MUSHROOM_TRUFFLE.id(), world.rand.nextInt(2) + 1);
+			this.isMovementBlocked();
+			this.world.setBlockWithNotify(blockX, blockY - 1, blockZ, Blocks.DIRT.id());
+			this.timeUntilNextTruffle = this.random.nextInt(6000) + 6000;
 		}
+
 	}
 
 	@Override

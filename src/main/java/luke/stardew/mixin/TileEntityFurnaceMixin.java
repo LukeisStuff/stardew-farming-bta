@@ -26,6 +26,7 @@ public class TileEntityFurnaceMixin {
 				furnace.worldObj.markBlockNeedsUpdate(furnace.x, furnace.y, furnace.z);
 			}
 		} else {
+			assert input != null;
 			input.stackSize = newStackSize;
 		}
 	}

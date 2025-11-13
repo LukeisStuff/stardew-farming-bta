@@ -11,14 +11,14 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewItems {
 
-	public static int itemID = 22000;
+	protected static int startingItemID = 22000;
 
 	public static int itemID(String itemName) {
 		try {
 			return StardewConfig.cfg.getInt("Item IDs." + itemName);
 		} catch (NullPointerException e) {
-			StardewConfig.properties.addEntry("Item IDs." + itemName, itemID);
-			return itemID++;
+			StardewConfig.properties.addEntry("Item IDs." + itemName, startingItemID);
+			return startingItemID++;
 		}
 	}
 

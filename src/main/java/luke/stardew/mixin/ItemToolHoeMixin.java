@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemToolHoe.class, remap = false)
 public abstract class ItemToolHoeMixin extends ItemTool {
-	public ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
+	protected ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
 		super(name, namespaceID, id, damageDealt, toolMaterial, tagEffectiveAgainst);
 	}
 

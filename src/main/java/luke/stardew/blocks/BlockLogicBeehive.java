@@ -16,6 +16,7 @@ public class BlockLogicBeehive extends BlockLogicRotatable {
 		block.setTicking(true);
 	}
 
+	@Override
 	public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
 		int l = world.getBlockMetadata(x, y, z);
 		ItemStack stack = player.getHeldItem();

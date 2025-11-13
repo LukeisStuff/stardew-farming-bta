@@ -15,6 +15,7 @@ public class ItemJam extends ItemFood {
 		this.maxStackSize = maxStackSize;
 	}
 
+	@Override
 	public ItemStack onUseItem(ItemStack itemstack, World world, Player entityplayer) {
 		if (entityplayer.getHealth() < entityplayer.getMaxHealth() && itemstack.consumeItem(entityplayer)) {
 			entityplayer.heal(this.healAmount);
@@ -23,7 +24,4 @@ public class ItemJam extends ItemFood {
 		return itemstack;
 	}
 
-	public int getHealAmount() {
-		return this.healAmount;
-	}
 }

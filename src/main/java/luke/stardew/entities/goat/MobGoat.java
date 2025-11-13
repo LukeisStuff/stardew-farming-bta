@@ -1,6 +1,5 @@
 package luke.stardew.entities.goat;
 
-import com.mojang.nbt.tags.CompoundTag;
 import luke.stardew.StardewMod;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
@@ -14,7 +13,6 @@ import net.minecraft.core.item.Items;
 import net.minecraft.core.item.tag.ItemTags;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
-import org.jetbrains.annotations.NotNull;
 
 public class MobGoat extends MobAnimal implements Creature {
 	public MobGoat(World world) {
@@ -23,16 +21,6 @@ public class MobGoat extends MobAnimal implements Creature {
 		this.setSize(1.0f, 1.4f);
 		this.mobDrops.add(new WeightedRandomLootObject(Items.LEATHER.getDefaultStack(), 0, 2));
 		this.mobDrops.add(new WeightedRandomLootObject(Blocks.WOOL.getDefaultStack(), 1, 2));
-	}
-
-	@Override
-	public void addAdditionalSaveData(@NotNull CompoundTag tag) {
-		super.addAdditionalSaveData(tag);
-	}
-
-	@Override
-	public void readAdditionalSaveData(@NotNull CompoundTag tag) {
-		super.readAdditionalSaveData(tag);
 	}
 
 	@Override
@@ -55,6 +43,7 @@ public class MobGoat extends MobAnimal implements Creature {
 		return 0.6f;
 	}
 
+	@Override
 	public boolean isFavouriteItem(ItemStack itemStack) {
 		if (itemStack != null && itemStack.getItem().hasTag(ItemTags.COWS_FAVOURITE_ITEM)) return true;
 		return itemStack != null && itemStack.itemID < Blocks.blocksList.length && Blocks.blocksList[itemStack.itemID].hasTag(BlockTags.SHEEPS_FAVOURITE_BLOCK);

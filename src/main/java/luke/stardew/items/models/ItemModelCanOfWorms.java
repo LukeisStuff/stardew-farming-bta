@@ -13,6 +13,7 @@ public class ItemModelCanOfWorms extends ItemModelExtended {
 		super(item);
 	}
 
+	@Override
 	public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
 		return itemStack.getMetadata() >= itemStack.getItem().getMaxDamage() ? super.getIcon(entity, itemStack) : this.getIcon(0);
 	}
