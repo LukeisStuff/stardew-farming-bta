@@ -69,15 +69,13 @@ public class BlockLogicBush extends BlockLogicFlower {
 						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_PINEAPPLE)};
 				}
 				if (meta == 1) {
-					int random = (world.rand.nextInt(4));
+					int random = (world.rand.nextInt(3));
 					if (random == 0) {
 						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_TOMATO)};
 					} else if (random == 1) {
 						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_POTATO)};
-					} else if (random == 2) {
-						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_STRAWBERRY)};
 					} else
-						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_WATERMELON)};
+						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_STRAWBERRY)};
 				}
 				if (meta == 2) {
 					if (world.rand.nextInt(2) == 0) {
@@ -86,10 +84,8 @@ public class BlockLogicBush extends BlockLogicFlower {
 						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_GRAPES)};
 				}
 				if (meta == 3) {
-					int random = (world.rand.nextInt(3));
+					int random = (world.rand.nextInt(2));
 					if (random == 0) {
-						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CAULIFLOWER)};
-					} else if (random == 1) {
 						return new ItemStack[]{new ItemStack(StardewItems.BEANS_COFFEE)};
 					} else
 						return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CRANBERRIES)};

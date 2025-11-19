@@ -460,7 +460,6 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 			Entity var15 = this.hookedEntity;
 			var15.xd += dx * scale;
 			var15.yd += dy * scale + MathHelper.sqrt(distance) * 0.08;
-			var15 = this.hookedEntity;
 			var15.zd += dz * scale;
 			damage = 3;
 		} else if (this.ticksCatchable > 0) {
