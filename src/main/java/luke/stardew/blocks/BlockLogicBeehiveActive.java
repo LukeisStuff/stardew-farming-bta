@@ -44,7 +44,7 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
 	@Override
 	public void animationTick(World world, int x, int y, int z, Random rand) {
 		int meta = world.getBlockMetadata(x, y, z);
-		double h	 = 0.5;
+		double h = 0.5;
 		double q = 0.25;
 		double random = (world.rand.nextInt(1) - Math.random());
 		if (meta == 2) {
