@@ -1,57 +1,57 @@
 {
-	"schemaVersion": 1,
-	"id": "stardew",
-	"version": "${version}",
-	"name": "Stardew Farming",
-	"description": "A farming mod for BTA inspired by Stardew Valley",
-	"authors": [
-		"LukeisStuff",
-		"Dundi Gundi",
-		"BigSir"
-	],
-	"contact": {
-		"homepage": "",
-		"sources": ""
-	},
-	"icon": "icon.png",
-	"license": "CC0-1.0",
-	"environment": "*",
-	"entrypoints": {
-		"main": [
-			"luke.stardew.StardewMod"
-		],
-		"beforeGameStart": [
-			"luke.stardew.StardewMod"
-		],
-		"beforeClientStart": [
-			"luke.stardew.StardewClient"
-		],
-		"afterClientStart": [
-			"luke.stardew.StardewClient"
-		],
-		"recipesReady": [
-			"luke.stardew.StardewRecipes"
-		],
-		"afterGameStart": [
-			"luke.stardew.StardewMod"
-		],
-		"initModels": [
-			"luke.stardew.model.StardewModels"
-		],
-		"afterItemInit": [
-			"luke.stardew.StardewMod"
-		]
-	},
-	"mixins": [
-		"stardew.mixins.json"
-	],
-	"depends": {
-		"fabricloader": ">=${fabricloader}",
-		"halplibe": ">=${halplibe}",
-		"minecraft": "*",
-		"java": ">=${java}"
-	},
-	"suggests": {
-		"modmenu": ">=${modmenu}"
-	}
+  "schemaVersion": 1,
+  "id": "stardew",
+  "version": "${version}",
+  "name": "Stardew Farming",
+  "description": "A farming mod for BTA inspired by Stardew Valley",
+  "authors": [
+    "LukeisStuff",
+    "Dundi Gundi",
+    "BigSir"
+  ],
+  "icon": "icon.png",
+  "contact": {
+    "homepage": "",
+    "sources": ""
+  },
+  "license": "CC0-1.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "luke.stardew.StardewMod"
+    ],
+    "beforeGameStart": [
+      "luke.stardew.StardewMod"
+    ],
+    "beforeClientStart": [
+      "luke.stardew.StardewClient"
+    ],
+    "afterClientStart": [
+      "luke.stardew.StardewClient"
+    ],
+    "recipesReady": [
+      "luke.stardew.StardewRecipes"
+    ],
+    "afterGameStart": [
+      "luke.stardew.StardewMod"
+    ],
+    "initModels": [
+      "luke.stardew.model.StardewModels"
+    ],
+    "afterItemInit": [
+      "luke.stardew.StardewMod"
+    ]
+  },
+  "mixins": [
+    "stardew.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${fabricloader}",
+    "halplibe": ">=${halplibe}",
+    "minecraft": "*",
+    "java": ">=${java}"
+  },
+  "suggests": {
+    "modmenu": ">=${modmenu}"
+  }
 }

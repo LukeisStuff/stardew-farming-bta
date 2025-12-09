@@ -1,53 +1,24 @@
-@file:Suppress("UnstableApiUsage", "PropertyName")
-
-import org.apache.tools.ant.taskdefs.condition.Os
-
+import com.smushytaco.lwjgl_gradle.Preset
 plugins {
-	id("fabric-loom")
+	alias(libs.plugins.loom)
+	alias(libs.plugins.lwjgl)
 	java
 }
-
-val lwjglVersion = providers.gradleProperty("lwjgl_version")
-val lwjglNatives = when {
-	Os.isFamily(Os.FAMILY_UNIX) && !Os.isFamily(Os.FAMILY_MAC) -> "natives-linux"
-	Os.isFamily(Os.FAMILY_WINDOWS) -> "natives-windows"
-	Os.isFamily(Os.FAMILY_MAC) -> "natives-macos${if (Os.isArch("aarch64")) "-arm64" else ""}"
-	else -> error("Unsupported OS")
-}
-
 val modVersion = providers.gradleProperty("mod_version")
 val modGroup = providers.gradleProperty("mod_group")
 val modName = providers.gradleProperty("mod_name")
 
-val btaChannel = providers.gradleProperty("bta_channel")
-val btaVersion = providers.gradleProperty("bta_version")
+val javaVersion = libs.versions.java.map { it.toInt() }
 
-val loaderVersion = providers.gradleProperty("loader_version")
-
-val halplibeVersion = providers.gradleProperty("halplibe_version")
-val modMenuVersion = providers.gradleProperty("mod_menu_version")
-
-val slf4jApiVersion = providers.gradleProperty("slf4j_api_version")
-val log4jVersion = providers.gradleProperty("log4j_version")
-val guavaVersion = providers.gradleProperty("guava_version")
-val gsonVersion = providers.gradleProperty("gson_version")
-val commonsLang3Version = providers.gradleProperty("commons_lang3_version")
-
-val javaVersion = providers.gradleProperty("java_version")
-
+base.archivesName = modName
 group = modGroup.get()
-base.archivesName = modName.get()
 version = modVersion.get()
-
 loom {
-	noIntermediateMappings()
-	customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${btaChannel.get()}/v${btaVersion.get()}/manifest.json")
+	customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/v${libs.versions.bta.get()}/manifest.json")
 }
-
 repositories {
 	mavenCentral()
 	maven("https://jitpack.io")
-	maven("https://maven.glass-launcher.net/babric") { name = "Babric" }
 	maven("https://maven.fabricmc.net/") { name = "Fabric" }
 	maven("https://maven.thesignalumproject.net/infrastructure") { name = "SignalumMavenInfrastructure" }
 	maven("https://maven.thesignalumproject.net/releases") { name = "SignalumMavenReleases" }
@@ -55,11 +26,11 @@ repositories {
 		patternLayout { artifact("[organisation]/releases/download/v[revision]/[module].jar") }
 		metadataSources { artifact() }
 	}
-	ivy("https://downloads.betterthanadventure.net/bta-client/${btaChannel.get()}/") {
+	ivy("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/") {
 		patternLayout { artifact("/v[revision]/client.jar") }
 		metadataSources { artifact() }
 	}
-	ivy("https://downloads.betterthanadventure.net/bta-server/${btaChannel.get()}/") {
+	ivy("https://downloads.betterthanadventure.net/bta-server/${libs.versions.btaChannel.get()}/") {
 		patternLayout { artifact("/v[revision]/server.jar") }
 		metadataSources { artifact() }
 	}
@@ -67,78 +38,84 @@ repositories {
 		patternLayout { artifact("v1/[organisation]/[revision]/[module].jar") }
 		metadataSources { artifact() }
 	}
+	ivy("https://github.com/") {
+		patternLayout { artifact("v1/[organisation]/[revision]/[module].jar") }
+		metadataSources { artifact() }
+	}
+	ivy ("https://github.com/"){
+		patternLayout { artifact("[organization]/[module]/releases/download/[revision]/[module]-[revision].jar")}
+		metadataSources { artifact() }
+	}
 }
-
+lwjgl {
+	version = libs.versions.lwjgl
+	implementation(Preset.MINIMAL_OPENGL)
+}
 dependencies {
-	minecraft("::${btaVersion.get()}")
-	mappings(loom.layered {})
+	minecraft("::${libs.versions.bta.get()}")
 
-	// https://piston-data.mojang.com/v1/objects/43db9b498cb67058d2e12d394e6507722e71bb45/client.jar
-	modRuntimeOnly("objects:client:43db9b498cb67058d2e12d394e6507722e71bb45")
-	// If you do not need Halplibe you can comment out or delete this line.
-	modImplementation("turniplabs:halplibe:${halplibeVersion.get()}")
-	modImplementation("turniplabs:modmenu-bta:${modMenuVersion.get()}")
-	modImplementation("net.fabricmc:fabric-loader:${loaderVersion.get()}")
-	modImplementation("com.github.Better-than-Adventure:legacy-lwjgl3:1.0.5")
+	compileOnly(libs.btwaila)
+	compileOnly(libs.commandly)
 
-	implementation(platform("org.lwjgl:lwjgl-bom:${lwjglVersion.get()}"))
-	implementation("org.slf4j:slf4j-api:${slf4jApiVersion.get()}")
+	runtimeOnly(libs.clientJar)
+	implementation(libs.loader)
+	implementation(libs.halplibe)
+	implementation(libs.modMenu)
+	implementation(libs.legacyLwjgl)
 
-	implementation("com.google.guava:guava:${guavaVersion.get()}")
-	implementation("com.google.code.gson:gson:${gsonVersion.get()}")
+	implementation(libs.slf4jApi)
+	implementation(libs.guava)
+	implementation(libs.log4j.slf4j2.impl)
+	implementation(libs.log4j.core)
+	implementation(libs.log4j.api)
+	implementation(libs.log4j.api12)
+	implementation(libs.gson)
 
-	implementation("org.apache.logging.log4j:log4j-slf4j2-impl:${log4jVersion.get()}")
-	implementation("org.apache.logging.log4j:log4j-core:${log4jVersion.get()}")
-	implementation("org.apache.logging.log4j:log4j-api:${log4jVersion.get()}")
-	implementation("org.apache.logging.log4j:log4j-1.2-api:${log4jVersion.get()}")
-
-	implementation("org.apache.commons:commons-lang3:${commonsLang3Version.get()}")
-	include("org.apache.commons:commons-lang3:${commonsLang3Version.get()}")
-
-	implementation("org.lwjgl:lwjgl:${lwjglVersion.get()}")
-	implementation("org.lwjgl:lwjgl-assimp:${lwjglVersion.get()}")
-	implementation("org.lwjgl:lwjgl-glfw:${lwjglVersion.get()}")
-	implementation("org.lwjgl:lwjgl-openal:${lwjglVersion.get()}")
-	implementation("org.lwjgl:lwjgl-opengl:${lwjglVersion.get()}")
-	implementation("org.lwjgl:lwjgl-stb:${lwjglVersion.get()}")
-
-	runtimeOnly("org.lwjgl:lwjgl::$lwjglNatives")
-	runtimeOnly("org.lwjgl:lwjgl-assimp::$lwjglNatives")
-	runtimeOnly("org.lwjgl:lwjgl-glfw::$lwjglNatives")
-	runtimeOnly("org.lwjgl:lwjgl-openal::$lwjglNatives")
-	runtimeOnly("org.lwjgl:lwjgl-opengl::$lwjglNatives")
-	runtimeOnly("org.lwjgl:lwjgl-stb::$lwjglNatives")
+	implementation(libs.commonsLang3)
+	include(libs.commonsLang3)
 }
-
+java {
+	toolchain {
+		languageVersion = javaVersion.map { JavaLanguageVersion.of(it) }
+		vendor = JvmVendorSpec.ADOPTIUM
+	}
+	sourceCompatibility = JavaVersion.toVersion(javaVersion.get())
+	targetCompatibility = JavaVersion.toVersion(javaVersion.get())
+	withSourcesJar()
+}
+val licenseFile = run {
+	val rootLicense = layout.projectDirectory.file("LICENSE")
+	val parentLicense = layout.projectDirectory.file("../LICENSE")
+	when {
+		rootLicense.asFile.exists() -> {
+			logger.lifecycle("Using LICENSE from project root: {}", rootLicense.asFile)
+			rootLicense
+		}
+		parentLicense.asFile.exists() -> {
+			logger.lifecycle("Using LICENSE from parent directory: {}", parentLicense.asFile)
+			parentLicense
+		}
+		else -> {
+			logger.warn("No LICENSE file found in project or parent directory.")
+			null
+		}
+	}
+}
 tasks {
 	withType<JavaCompile>().configureEach {
 		options.encoding = "UTF-8"
-		sourceCompatibility = javaVersion.get()
-		targetCompatibility = javaVersion.get()
-		if (javaVersion.get().toInt() > 8) options.release = javaVersion.get().toInt()
+		sourceCompatibility = javaVersion.get().toString()
+		targetCompatibility = javaVersion.get().toString()
+		if (javaVersion.get() > 8) options.release = javaVersion
+	}
+	named<UpdateDaemonJvm>("updateDaemonJvm") {
+		languageVersion = libs.versions.gradleJava.map { JavaLanguageVersion.of(it.toInt()) }
+		vendor = JvmVendorSpec.ADOPTIUM
 	}
 	withType<JavaExec>().configureEach { defaultCharacterEncoding = "UTF-8" }
 	withType<Javadoc>().configureEach { options.encoding = "UTF-8" }
 	withType<Test>().configureEach { defaultCharacterEncoding = "UTF-8" }
-	named<Jar>("jar") {
-		val rootLicense = layout.projectDirectory.file("LICENSE")
-		val parentLicense = layout.projectDirectory.file("../LICENSE")
-		val licenseFile = when {
-			rootLicense.asFile.exists() -> {
-				logger.lifecycle("Using LICENSE from project root: ${rootLicense.asFile}")
-				rootLicense
-			}
-
-			parentLicense.asFile.exists() -> {
-				logger.lifecycle("Using LICENSE from parent directory: ${parentLicense.asFile}")
-				parentLicense
-			}
-
-			else -> {
-				logger.warn("No LICENSE file found in project or parent directory.")
-				null
-			}
-		}
+	withType<Jar>().configureEach {
 		licenseFile?.let {
 			from(it) {
 				rename { original -> "${original}_${archiveBaseName.get()}" }
@@ -146,34 +123,16 @@ tasks {
 		}
 	}
 	processResources {
-		val stringModVersion = modVersion.get()
-		val stringLoaderVersion = loaderVersion.get()
-		val stringJavaVersion = javaVersion.get()
-		val stringHalplibeVersion = halplibeVersion.get()
-		val stringModMenuVersion = modMenuVersion.get()
-		inputs.property("modVersion", stringModVersion)
-		inputs.property("loaderVersion", stringLoaderVersion)
-		inputs.property("javaVersion", stringJavaVersion)
-		inputs.property("HalplibeVersion", stringHalplibeVersion)
-		inputs.property("modMenuVersion", stringModMenuVersion)
-		filesMatching("fabric.mod.json") {
-			expand(
-				mapOf(
-					"version" to stringModVersion,
-					"fabricloader" to stringLoaderVersion,
-					"halplibe" to stringHalplibeVersion,
-					"java" to stringJavaVersion,
-					"modmenu" to stringModMenuVersion
-				)
-			)
-		}
-		filesMatching("*.mixins.json") { expand(mapOf("java" to stringJavaVersion)) }
-	}
-	java {
-		toolchain.languageVersion = JavaLanguageVersion.of(javaVersion.get())
-		sourceCompatibility = JavaVersion.toVersion(javaVersion.get().toInt())
-		targetCompatibility = JavaVersion.toVersion(javaVersion.get().toInt())
-		withSourcesJar()
+		val resourceMap = mapOf(
+			"version" to modVersion.get(),
+			"fabricloader" to libs.versions.loader.get(),
+			"halplibe" to libs.versions.halplibe.get(),
+			"java" to libs.versions.java.get(),
+			"modmenu" to libs.versions.modMenu.get()
+		)
+		inputs.properties(resourceMap)
+		filesMatching("fabric.mod.json") { expand(resourceMap) }
+		filesMatching("**/*.mixins.json") { expand(resourceMap.filterKeys { it == "java" }) }
 	}
 }
 // Removes LWJGL2 dependencies
