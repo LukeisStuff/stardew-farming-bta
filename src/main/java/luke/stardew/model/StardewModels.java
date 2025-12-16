@@ -138,7 +138,7 @@ public class StardewModels implements ModelEntrypoint {
 		dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_POTATO, null).setIcon("stardew:item/seeds_potato"));
 		dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_WATERMELON, null).setIcon("stardew:item/seeds_watermelon"));
 
-		dispatcher.addDispatch(new ItemModelStandard(StardewItems.BLUEBERRY, null).setIcon("stardew:item/food_carrot"));
+		dispatcher.addDispatch(new ItemModelStandard(StardewItems.BLUEBERRY, null).setIcon("stardew:item/food_blueberry"));
 		dispatcher.addDispatch(new ItemModelStandard(StardewItems.CARROT, null).setIcon("stardew:item/food_carrot"));
 		dispatcher.addDispatch(new ItemModelStandard(StardewItems.CORN, null).setIcon("stardew:item/food_corn"));
 		dispatcher.addDispatch(new ItemModelStandard(StardewItems.GRAPES, null).setIcon("stardew:item/food_grapes"));
