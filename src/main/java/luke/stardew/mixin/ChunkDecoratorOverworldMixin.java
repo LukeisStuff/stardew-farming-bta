@@ -18,31 +18,25 @@ import java.util.Random;
 
 @Mixin(value = ChunkDecoratorOverworld.class, remap = false)
 public abstract class ChunkDecoratorOverworldMixin {
-	@Shadow
-	@Final
-	private World world;
+    @Shadow
+    @Final
+    private World world;
 
-	@Inject(method = "decorate", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I", ordinal = 104))
-	public void stardewDecorations(Chunk chunk, CallbackInfo ci, @Local(name = "rand") Random rand, @Local(name = "x") int x, @Local(name = "z") int z) {
-		if (rand.nextInt(64) == 0) {
-			int xf = x + rand.nextInt(16) + 8;
-			int zf = z + rand.nextInt(16) + 8;
-			int yf = this.world.getHeightValue(x, z);
-			(new WorldFeatureCauliflower()).place(this.world, rand, xf, yf, zf);
-		}
+    @Inject(method = "decorate", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I", ordinal = 104))
+    public void stardewDecorations(Chunk chunk, CallbackInfo ci, @Local(name = "rand") Random rand, @Local(name = "x") int x, @Local(name = "z") int z) {
+        int xf = x + rand.nextInt(16) + 8;
+        int zf = z + rand.nextInt(16) + 8;
+        int yf = this.world.getHeightValue(x, z);
 
-		if (rand.nextInt(64) == 0) {
-			int xf = x + rand.nextInt(16) + 8;
-			int zf = z + rand.nextInt(16) + 8;
-			int yf = this.world.getHeightValue(x, z);
-			(new WorldFeatureMelon()).place(this.world, rand, xf, yf, zf);
-		}
+        if (rand.nextInt(64) == 0)
+            (new WorldFeatureCauliflower()).place(this.world, rand, xf, yf, zf);
 
-		if (rand.nextInt(12) == 0) {
-			int xf = x + rand.nextInt(16) + 8;
-			int zf = z + rand.nextInt(16) + 8;
-			int yf = this.world.getHeightValue(x, z);
-			(new WorldFeatureBush(96)).place(this.world, rand, xf, yf, zf);
-		}
-	}
+        if (rand.nextInt(64) == 0) {
+            (new WorldFeatureMelon()).place(this.world, rand, xf, yf, zf);
+        }
+
+        if (rand.nextInt(12) == 0) {
+            (new WorldFeatureBush(96)).place(this.world, rand, xf, yf, zf);
+        }
+    }
 }

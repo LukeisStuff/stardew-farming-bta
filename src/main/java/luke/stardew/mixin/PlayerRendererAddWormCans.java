@@ -23,7 +23,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = MobRendererPlayer.class, remap = false)
 public abstract class PlayerRendererAddWormCans extends MobRenderer<Player> {
 
-    @Shadow @Final
+    @Shadow
+    @Final
     private ModelBiped modelArmorChestplate;
 
     protected PlayerRendererAddWormCans(ModelBase model, float shadowSize) {
@@ -34,15 +35,13 @@ public abstract class PlayerRendererAddWormCans extends MobRenderer<Player> {
     private void renderWormCans(Player player, int renderPass, float partialTick, CallbackInfoReturnable<Boolean> cir) {
         ItemStack stack = (renderPass > 3) ? player.inventory.armorInventory[renderPass] : player.inventory.armorItemInSlot(3 - renderPass);
         if (stack == null) return;
+
         Item item = stack.getItem();
-        if (!(item instanceof ItemCanOfWorms) &&
-            !(item instanceof ItemCanOfWormsEndless)) {
-            return;
-        }
+        if (!(item instanceof ItemCanOfWorms) && !(item instanceof ItemCanOfWormsEndless)) return;
+
         IArmorItem armor = (IArmorItem) item;
-        if (renderPass <= 3 && armor.getArmorPiece() != 3 - renderPass) {
-            return;
-        }
+        if (renderPass <= 3 && armor.getArmorPiece() != 3 - renderPass) return;
+
         ModelBiped model = this.modelArmorChestplate;
         model.head.visible = false;
         model.hair.visible = false;
@@ -60,7 +59,6 @@ public abstract class PlayerRendererAddWormCans extends MobRenderer<Player> {
 
         model.legRight.visible = true;
         this.setArmorModel(model);
-
         cir.setReturnValue(true);
     }
 }
