@@ -85,59 +85,11 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
         this.ignoreFrustumCheck = true;
     }
 
-    protected EntityBobberMixin(World world, double d, double d1, double d2) {
-        this(world);
-        this.setPos(d, d1, d2);
-        this.ignoreFrustumCheck = true;
-    }
-
-    protected EntityBobberMixin(World world, Player player) {
-        super(world);
-        this.ticksInAir = 0;
-        this.ticksCatchable = 0;
-        this.hookedEntity = null;
-        this.ignoreFrustumCheck = true;
-        this.owner = player;
-        this.setSize(0.25F, 0.25F);
-        this.moveTo(player.x, player.y + 1.62 - player.heightOffset, player.z, player.yRot, player.xRot);
-        this.x -= MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * 0.16F;
-        this.y -= 0.1;
-        this.z -= MathHelper.sin(this.yRot / 180.0F * 3.1415927F) * 0.16F;
-        this.setPos(this.x, this.y, this.z);
-        this.heightOffset = 0.0F;
-        float f = 0.4F;
-        this.xd = -MathHelper.sin(this.yRot / 180.0F * 3.1415927F) * MathHelper.cos(this.xRot / 180.0F * 3.1415927F) * f;
-        this.zd = MathHelper.cos(this.yRot / 180.0F * 3.1415927F) * MathHelper.cos(this.xRot / 180.0F * 3.1415927F) * f;
-        this.yd = -MathHelper.sin(this.xRot / 180.0F * 3.1415927F) * f;
-        this.func_4042_a(this.xd, this.yd, this.zd, 1.5F, 1.0F);
-        this.owner.bobberEntity = (EntityFishingBobber) (Object) this;
-    }
-
     @Override
     public boolean shouldRenderAtSqrDistance(double distance) {
         double d1 = this.bb.getSize() * 4.0;
         d1 *= 64.0;
         return distance < d1 * d1;
-    }
-
-    @Unique
-    public void func_4042_a(double d, double d1, double d2, float f, float f1) {
-        float f2 = MathHelper.sqrt(d * d + d1 * d1 + d2 * d2);
-        d /= f2;
-        d1 /= f2;
-        d2 /= f2;
-        d += this.random.nextGaussian() * 0.0075 * f1;
-        d1 += this.random.nextGaussian() * 0.0075 * f1;
-        d2 += this.random.nextGaussian() * 0.0075 * f1;
-        d *= f;
-        d1 *= f;
-        d2 *= f;
-        this.xd = d;
-        this.yd = d1;
-        this.zd = d2;
-        float f3 = MathHelper.sqrt(d * d + d2 * d2);
-        this.yRotO = this.yRot = (float) (Math.atan2(d, d2) * 180.0 / Math.PI);
-        this.xRotO = this.xRot = (float) (Math.atan2(d1, f3) * 180.0 / Math.PI);
     }
 
     @Override
