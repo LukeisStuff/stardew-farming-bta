@@ -13,16 +13,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(value = SlotResult.class, remap = false)
 public abstract class SlotCraftingMixin {
-	@Shadow
-	private Player thePlayer;
+    @Shadow
+    private Player thePlayer;
 
-	@Inject(method = "onTake", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/ItemStack;onCrafting(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/Player;)V", shift = At.Shift.AFTER))
-	public void addCraftingAchievements(ItemStack itemstack, CallbackInfo ci) {
-		if (itemstack.itemID == StardewBlocks.SAPLING_APPLE_GOLDEN.id()) {
-			thePlayer.addStat(StardewAchievements.GAPPLE, 1);
-		}
-		if (itemstack.itemID == StardewBlocks.CANDLE.id()) {
-			thePlayer.addStat(StardewAchievements.CANDLE, 1);
-		}
-	}
+    @Inject(method = "onTake", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/ItemStack;onCrafting(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/Player;)V", shift = At.Shift.AFTER))
+    public void addCraftingAchievements(ItemStack itemstack, CallbackInfo ci) {
+        if (itemstack.itemID == StardewBlocks.SAPLING_APPLE_GOLDEN.id()) {
+            thePlayer.addStat(StardewAchievements.GAPPLE, 1);
+        }
+        if (itemstack.itemID == StardewBlocks.CANDLE.id()) {
+            thePlayer.addStat(StardewAchievements.CANDLE, 1);
+        }
+    }
 }

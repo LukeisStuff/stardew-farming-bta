@@ -5,13 +5,13 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
 public class EntityItemFireResistant extends EntityItem {
-	public EntityItemFireResistant(World world, double d, double d1, double d2, ItemStack itemstack) {
-		super(world, d, d1, d2, itemstack);
-		this.fireImmune = true;
-	}
+    public EntityItemFireResistant(World world, double d, double d1, double d2, ItemStack itemstack) {
+        super(world, d, d1, d2, itemstack);
+        this.fireImmune = true;
+    }
 
-	@Override
-	public void burn(int damage) {
-		// Unburnable
-	}
+    @Override
+    public void burn(int damage) {
+        // Unburnable
+    }
 }

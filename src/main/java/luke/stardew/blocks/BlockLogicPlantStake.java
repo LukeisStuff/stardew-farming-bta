@@ -17,56 +17,56 @@ import java.util.Random;
 
 public class BlockLogicPlantStake extends BlockLogic {
 
-	public BlockLogicPlantStake(Block<?> block, Material material) {
-		super(block, material);
-		this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
-	}
+    public BlockLogicPlantStake(Block<?> block, Material material) {
+        super(block, material);
+        this.setBlockBounds(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F);
+    }
 
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		this.checkSupport(world, x, y, z);
-	}
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random rand) {
+        this.checkSupport(world, x, y, z);
+    }
 
-	@Override
-	public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
-		this.checkSupport(world, x, y, z);
-	}
+    @Override
+    public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
+        this.checkSupport(world, x, y, z);
+    }
 
-	@Unique
-	public void checkSupport(World world, int x, int y, int z) {
-		if (!this.canBlockStay(world, x, y, z)) {
-			world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
-			this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, world.getBlockMetadata(x, y, z), null, null);
-		}
-	}
+    @Unique
+    public void checkSupport(World world, int x, int y, int z) {
+        if (!this.canBlockStay(world, x, y, z)) {
+            world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
+            this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, world.getBlockMetadata(x, y, z), null, null);
+        }
+    }
 
-	@Override
-	public boolean canBlockStay(World world, int x, int y, int z) {
-		return world.getBlockLogic(x, y - 1, z, BlockLogicFarmland.class) != null;
-	}
+    @Override
+    public boolean canBlockStay(World world, int x, int y, int z) {
+        return world.getBlockLogic(x, y - 1, z, BlockLogicFarmland.class) != null;
+    }
 
-	@Override
-	public boolean canPlaceOnSurfaceOfBlock(World world, int x, int y, int z) {
-		return world.getBlockLogic(x, y, z, BlockLogicFarmland.class) != null;
-	}
+    @Override
+    public boolean canPlaceOnSurfaceOfBlock(World world, int x, int y, int z) {
+        return world.getBlockLogic(x, y, z, BlockLogicFarmland.class) != null;
+    }
 
-	@Override
-	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		return new ItemStack[]{new ItemStack(Items.STICK)};
-	}
+    @Override
+    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
+        return new ItemStack[]{new ItemStack(Items.STICK)};
+    }
 
-	@Override
-	public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
-		return null;
-	}
+    @Override
+    public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+        return null;
+    }
 
-	@Override
-	public boolean isSolidRender() {
-		return false;
-	}
+    @Override
+    public boolean isSolidRender() {
+        return false;
+    }
 
-	@Override
-	public boolean renderAsNormalBlockOnCondition(WorldSource world, int x, int y, int z) {
-		return false;
-	}
+    @Override
+    public boolean renderAsNormalBlockOnCondition(WorldSource world, int x, int y, int z) {
+        return false;
+    }
 }

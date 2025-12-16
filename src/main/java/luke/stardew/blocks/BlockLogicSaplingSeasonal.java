@@ -10,26 +10,26 @@ import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeFancy;
 import java.util.Random;
 
 public class BlockLogicSaplingSeasonal extends BlockLogicSaplingBase {
-	public final Block<?> logBlock;
-	public final Block<?> leafBlock;
-	public final Block<?> leafFloweringBlock;
-	public final int flowerRarity;
+    public final Block<?> logBlock;
+    public final Block<?> leafBlock;
+    public final Block<?> leafFloweringBlock;
+    public final int flowerRarity;
 
-	public BlockLogicSaplingSeasonal(Block<?> block, Block<?> logBlock, Block<?> leafBlock, Block<?> leafFloweringBlock, int flowerRarity) {
-		super(block);
-		this.logBlock = logBlock;
-		this.leafBlock = leafBlock;
-		this.leafFloweringBlock = leafFloweringBlock;
-		this.flowerRarity = flowerRarity;
-	}
+    public BlockLogicSaplingSeasonal(Block<?> block, Block<?> logBlock, Block<?> leafBlock, Block<?> leafFloweringBlock, int flowerRarity) {
+        super(block);
+        this.logBlock = logBlock;
+        this.leafBlock = leafBlock;
+        this.leafFloweringBlock = leafFloweringBlock;
+        this.flowerRarity = flowerRarity;
+    }
 
-	public void growTree(World world, int i, int j, int k, Random random) {
-		WorldFeature treeBig = new WorldFeatureTreeFancy(this.leafBlock.id(), this.logBlock.id());
-		WorldFeature treeSmall = new WorldFeatureTreeSeasonal(this.leafBlock.id(), this.leafFloweringBlock.id(), this.logBlock.id(), 4, this.flowerRarity);
-		world.setBlock(i, j, k, 0);
-		if (!treeSmall.place(world, random, i, j, k) && !treeBig.place(world, random, i, j, k)) {
-			world.setBlock(i, j, k, this.id());
-		}
+    public void growTree(World world, int i, int j, int k, Random random) {
+        WorldFeature treeBig = new WorldFeatureTreeFancy(this.leafBlock.id(), this.logBlock.id());
+        WorldFeature treeSmall = new WorldFeatureTreeSeasonal(this.leafBlock.id(), this.leafFloweringBlock.id(), this.logBlock.id(), 4, this.flowerRarity);
+        world.setBlock(i, j, k, 0);
+        if (!treeSmall.place(world, random, i, j, k) && !treeBig.place(world, random, i, j, k)) {
+            world.setBlock(i, j, k, this.id());
+        }
 
-	}
+    }
 }

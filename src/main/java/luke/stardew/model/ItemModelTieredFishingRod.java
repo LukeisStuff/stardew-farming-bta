@@ -14,23 +14,23 @@ import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class ItemModelTieredFishingRod extends ItemModelStandard {
-	protected final String material;
-	protected IconCoordinate rodCast;
+    protected final String material;
+    protected IconCoordinate rodCast;
 
-	public ItemModelTieredFishingRod(Item item, String namespace, String material) {
-		super(item, namespace);
-		this.material = material;
-		this.rodCast = TextureRegistry.getTexture("stardew:item/tool_fishingrod_" + material + "_cast");
-	}
+    public ItemModelTieredFishingRod(Item item, String namespace, String material) {
+        super(item, namespace);
+        this.material = material;
+        this.rodCast = TextureRegistry.getTexture("stardew:item/tool_fishingrod_" + material + "_cast");
+    }
 
-	@Override
-	public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
-		if (entity instanceof Player) {
-			Player player = (Player) entity;
-			if (itemStack == player.getHeldItem() && player.bobberEntity != null) {
-				return this.rodCast;
-			}
-		}
-		return super.getIcon(entity, itemStack);
-	}
+    @Override
+    public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
+        if (entity instanceof Player) {
+            Player player = (Player) entity;
+            if (itemStack == player.getHeldItem() && player.bobberEntity != null) {
+                return this.rodCast;
+            }
+        }
+        return super.getIcon(entity, itemStack);
+    }
 }

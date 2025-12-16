@@ -17,29 +17,29 @@ import java.util.Random;
 
 @Mixin(value = WorldFeatureLabyrinth.class, remap = false)
 public abstract class WorldFeatureLabyrinthMixin {
-	@Unique
-	boolean isHot = false;
+    @Unique
+    boolean isHot = false;
 
-	@Inject(method = "place", at = @At("HEAD"))
-	public void generate(World world, Random random, int x, int y, int z, CallbackInfoReturnable<Boolean> cir) {
-		Biome biome = world.getBlockBiome(x, y, z);
-		if (biome == Biomes.OVERWORLD_DESERT || biome == Biomes.OVERWORLD_OUTBACK || biome == Biomes.OVERWORLD_OUTBACK_GRASSY) {
-			this.isHot = true;
-		}
-	}
+    @Inject(method = "place", at = @At("HEAD"))
+    public void generate(World world, Random random, int x, int y, int z, CallbackInfoReturnable<Boolean> cir) {
+        Biome biome = world.getBlockBiome(x, y, z);
+        if (biome == Biomes.OVERWORLD_DESERT || biome == Biomes.OVERWORLD_OUTBACK || biome == Biomes.OVERWORLD_OUTBACK_GRASSY) {
+            this.isHot = true;
+        }
+    }
 
-	@Inject(method = "pickCheckLootItem", at = @At("HEAD"), cancellable = true)
-	public void pickCheckLootItem(Random random, CallbackInfoReturnable<ItemStack> cir) {
-		if (random.nextInt(16) == 0 && random.nextInt(10) == 0) {
-			cir.setReturnValue(new ItemStack(StardewBlocks.SAPLING_APPLE, random.nextInt(1) + 1));
-		}
-	}
+    @Inject(method = "pickCheckLootItem", at = @At("HEAD"), cancellable = true)
+    public void pickCheckLootItem(Random random, CallbackInfoReturnable<ItemStack> cir) {
+        if (random.nextInt(16) == 0 && random.nextInt(10) == 0) {
+            cir.setReturnValue(new ItemStack(StardewBlocks.SAPLING_APPLE, random.nextInt(1) + 1));
+        }
+    }
 
-	@Inject(method = "pickCheckLootItem(Ljava/util/Random;)Lnet/minecraft/core/item/ItemStack;", at = @At(value = "FIELD", target = "Lnet/minecraft/core/world/generate/feature/WorldFeatureLabyrinth;treasureGenerated:Z", ordinal = 1, shift = At.Shift.AFTER), cancellable = true)
-	public void addTreasure(Random random, CallbackInfoReturnable<ItemStack> cir) {
-		if (isHot) {
-			cir.setReturnValue(new ItemStack(StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN));
-		}
-	}
+    @Inject(method = "pickCheckLootItem(Ljava/util/Random;)Lnet/minecraft/core/item/ItemStack;", at = @At(value = "FIELD", target = "Lnet/minecraft/core/world/generate/feature/WorldFeatureLabyrinth;treasureGenerated:Z", ordinal = 1, shift = At.Shift.AFTER), cancellable = true)
+    public void addTreasure(Random random, CallbackInfoReturnable<ItemStack> cir) {
+        if (isHot) {
+            cir.setReturnValue(new ItemStack(StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN));
+        }
+    }
 
 }

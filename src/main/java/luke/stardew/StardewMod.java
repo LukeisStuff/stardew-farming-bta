@@ -12,30 +12,30 @@ import turniplabs.halplibe.util.ItemInitEntrypoint;
 
 
 public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInitEntrypoint {
-	public static final String MOD_ID = "stardew";
-	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+    public static final String MOD_ID = "stardew";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
-	@Override
-	public void onInitialize() {
-		LOGGER.info("Stardew Farming initialized.");
-	}
+    @Override
+    public void onInitialize() {
+        LOGGER.info("Stardew Farming initialized.");
+    }
 
-	@Override
-	public void beforeGameStart() {
-		StardewConfig.init();
-		StardewEntities.init();
-		StardewBlocks.init();
-		StardewItems.init();
-	}
+    @Override
+    public void beforeGameStart() {
+        StardewConfig.init();
+        StardewEntities.init();
+        StardewBlocks.init();
+        StardewItems.init();
+    }
 
-	@Override
-	public void afterGameStart() {
-	}
+    @Override
+    public void afterGameStart() {
+    }
 
-	@Override
-	public void afterItemInit() {
-		LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 400);
+    @Override
+    public void afterItemInit() {
+        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 400);
 
-		StardewBlocks.initializeCrops();
-	}
+        StardewBlocks.initializeCrops();
+    }
 }

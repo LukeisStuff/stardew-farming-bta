@@ -20,102 +20,102 @@ import net.minecraft.core.world.season.Seasons;
 import java.util.Random;
 
 public class BlockLogicBeehiveActive extends BlockLogicRotatable {
-	public final boolean isActive;
+    public final boolean isActive;
 
-	public BlockLogicBeehiveActive(Block<?> block, boolean flag) {
-		super(block, Material.wood);
-		block.setTicking(true);
-		this.isActive = flag;
-	}
+    public BlockLogicBeehiveActive(Block<?> block, boolean flag) {
+        super(block, Material.wood);
+        block.setTicking(true);
+        this.isActive = flag;
+    }
 
-	@Override
-	public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-		switch (dropCause) {
-			case PICK_BLOCK:
-			case EXPLOSION:
-			case PROPER_TOOL:
-			case SILK_TOUCH:
-				return new ItemStack[]{new ItemStack(StardewBlocks.BEEHIVE)};
-			default:
-				return null;
-		}
-	}
+    @Override
+    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
+        switch (dropCause) {
+            case PICK_BLOCK:
+            case EXPLOSION:
+            case PROPER_TOOL:
+            case SILK_TOUCH:
+                return new ItemStack[]{new ItemStack(StardewBlocks.BEEHIVE)};
+            default:
+                return null;
+        }
+    }
 
-	@Override
-	public void animationTick(World world, int x, int y, int z, Random rand) {
-		int meta = world.getBlockMetadata(x, y, z);
-		double h = 0.5;
-		double q = 0.25;
-		double random = (world.rand.nextInt(1) - Math.random());
-		if (meta == 2) {
-			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x + h, y - random, z - q, 0.0, 0.0, 0.0, 0);
-				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
-				}
-			}
-		} else if (meta == 3) {
-			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x + h, y - random, z + 1 + q, 0.0, 0.0, 0.0, 0);
-				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
-				}
-			}
-		} else if (meta == 4) {
-			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x - q, y - random, z + h, 0.0, 0.0, 0.0, 0);
-				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
-				}
-			}
-		} else if (meta == 5) {
-			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x + 1 + q, y - random, z + h, 0.0, 0.0, 0.0, 0);
-				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
-				}
-			}
-		} else {
-			if (rand.nextInt(2) == 0) {
-				world.spawnParticle("bee", x, y, z, 0.0, 0.0, 0.0, 0);
-				if (rand.nextInt(2) == 0) {
-					world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
-				}
-			}
-		}
-	}
+    @Override
+    public void animationTick(World world, int x, int y, int z, Random rand) {
+        int meta = world.getBlockMetadata(x, y, z);
+        double h = 0.5;
+        double q = 0.25;
+        double random = (world.rand.nextInt(1) - Math.random());
+        if (meta == 2) {
+            if (rand.nextInt(2) == 0) {
+                world.spawnParticle("bee", x + h, y - random, z - q, 0.0, 0.0, 0.0, 0);
+                if (rand.nextInt(2) == 0) {
+                    world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+                }
+            }
+        } else if (meta == 3) {
+            if (rand.nextInt(2) == 0) {
+                world.spawnParticle("bee", x + h, y - random, z + 1 + q, 0.0, 0.0, 0.0, 0);
+                if (rand.nextInt(2) == 0) {
+                    world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+                }
+            }
+        } else if (meta == 4) {
+            if (rand.nextInt(2) == 0) {
+                world.spawnParticle("bee", x - q, y - random, z + h, 0.0, 0.0, 0.0, 0);
+                if (rand.nextInt(2) == 0) {
+                    world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+                }
+            }
+        } else if (meta == 5) {
+            if (rand.nextInt(2) == 0) {
+                world.spawnParticle("bee", x + 1 + q, y - random, z + h, 0.0, 0.0, 0.0, 0);
+                if (rand.nextInt(2) == 0) {
+                    world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+                }
+            }
+        } else {
+            if (rand.nextInt(2) == 0) {
+                world.spawnParticle("bee", x, y, z, 0.0, 0.0, 0.0, 0);
+                if (rand.nextInt(2) == 0) {
+                    world.playSoundEffect(null, SoundCategory.ENTITY_SOUNDS, x + 0.5, y + 0.5, z + 0.5, StardewMod.MOD_ID + ":mob.bee", 0.4F, rand.nextFloat() * 0.4F + 0.8F);
+                }
+            }
+        }
+    }
 
-	@Override
-	public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
-		int l = world.getBlockMetadata(x, y, z);
-		if (this.isActive) {
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE.id(), l);
-			world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.pop", 0.2F, 0.5F);
-			world.dropItem(x, y, z, new ItemStack(StardewItems.HONEY, world.rand.nextInt(2) + 1));
-		}
-	}
+    @Override
+    public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
+        int l = world.getBlockMetadata(x, y, z);
+        if (this.isActive) {
+            world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE.id(), l);
+            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x, y, z, "random.pop", 0.2F, 0.5F);
+            world.dropItem(x, y, z, new ItemStack(StardewItems.HONEY, world.rand.nextInt(2) + 1));
+        }
+    }
 
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random rand) {
-		super.updateTick(world, x, y, z, rand);
-		if (world.seasonManager.getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
-			int l = world.getBlockMetadata(x, y, z);
-			if (rand.nextInt(50) == 0) {
-				world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE_HONEY.id(), l);
-			}
-		}
-	}
+    @Override
+    public void updateTick(World world, int x, int y, int z, Random rand) {
+        super.updateTick(world, x, y, z, rand);
+        if (world.seasonManager.getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
+            int l = world.getBlockMetadata(x, y, z);
+            if (rand.nextInt(50) == 0) {
+                world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE_HONEY.id(), l);
+            }
+        }
+    }
 
-	@Override
-	public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
-		int l = world.getBlockMetadata(x, y, z);
-		if (this.isActive) {
-			world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE.id(), l);
-			world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
-			player.inventory.insertItem(new ItemStack(StardewItems.HONEY, world.rand.nextInt(2) + 1), true);
-			player.triggerAchievement(StardewAchievements.BEEHIVE);
-			return true;
-		}
-		return false;
-	}
+    @Override
+    public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
+        int l = world.getBlockMetadata(x, y, z);
+        if (this.isActive) {
+            world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE.id(), l);
+            world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
+            player.inventory.insertItem(new ItemStack(StardewItems.HONEY, world.rand.nextInt(2) + 1), true);
+            player.triggerAchievement(StardewAchievements.BEEHIVE);
+            return true;
+        }
+        return false;
+    }
 }

@@ -11,97 +11,97 @@ import net.minecraft.core.util.helper.Side;
 
 public class BlockModelWaxCandle<T extends BlockLogic> extends BlockModelStandard<T> {
 
-	public BlockModelWaxCandle(Block<T> block) {
-		super(block);
-	}
+    public BlockModelWaxCandle(Block<T> block) {
+        super(block);
+    }
 
-	@Override
-	public boolean render(Tessellator tessellator, int x, int y, int z) {
-		float minX = x + 0.5F - 0.09375F;
-		float minY = y + 0.0F;
-		float minZ = z + 0.5F - 0.09375F;
-		float maxX = x + 0.5F + 0.09375F;
-		float maxY = y + 0.5F;
-		float maxZ = z + 0.5F + 0.09375F;
-		float wickMaxY = maxY + 0.375F;
-		float brightness = 1.0F;
-		if (LightmapHelper.isLightmapEnabled()) {
-			tessellator.setLightmapCoord(this.block.getLightmapCoord(renderBlocks.blockAccess, x, y, z));
-		} else {
-			brightness = this.getBlockBrightness(renderBlocks.blockAccess, x, y, z);
-			if (Blocks.lightBlock[block.id()] > 0) {
-				brightness = 1.0F;
-			}
-		}
-		tessellator.setColorOpaque_F(brightness, brightness, brightness);
-		IconCoordinate texIndex = this.getParticleTexture(Side.TOP, 0);
-		if (renderBlocks.overrideBlockTexture != null) {
-			texIndex = renderBlocks.overrideBlockTexture;
-		}
+    @Override
+    public boolean render(Tessellator tessellator, int x, int y, int z) {
+        float minX = x + 0.5F - 0.09375F;
+        float minY = y + 0.0F;
+        float minZ = z + 0.5F - 0.09375F;
+        float maxX = x + 0.5F + 0.09375F;
+        float maxY = y + 0.5F;
+        float maxZ = z + 0.5F + 0.09375F;
+        float wickMaxY = maxY + 0.375F;
+        float brightness = 1.0F;
+        if (LightmapHelper.isLightmapEnabled()) {
+            tessellator.setLightmapCoord(this.block.getLightmapCoord(renderBlocks.blockAccess, x, y, z));
+        } else {
+            brightness = this.getBlockBrightness(renderBlocks.blockAccess, x, y, z);
+            if (Blocks.lightBlock[block.id()] > 0) {
+                brightness = 1.0F;
+            }
+        }
+        tessellator.setColorOpaque_F(brightness, brightness, brightness);
+        IconCoordinate texIndex = this.getParticleTexture(Side.TOP, 0);
+        if (renderBlocks.overrideBlockTexture != null) {
+            texIndex = renderBlocks.overrideBlockTexture;
+        }
 
-		double texV = texIndex.getIconVMin();
-		double onePix = 0.0625;
-		double uOffset = onePix * 3.0;
-		double sideMinU = texIndex.getSubIconU(uOffset);
-		double sideMaxU = texIndex.getSubIconU(uOffset + onePix * 3.0);
-		double sideMinV = texIndex.getSubIconV(onePix * 3.0);
-		double sideMaxV = texIndex.getSubIconV(onePix * 3.0 + onePix * 8.0);
-		double topMinU = texIndex.getSubIconU(0.0);
-		double topMaxU = texIndex.getSubIconU(0.1875);
-		double topMaxV = texIndex.getSubIconV(uOffset);
-		double bottomMinU = texIndex.getSubIconU(onePix * 3.0);
-		double bottomMaxU = texIndex.getSubIconU(onePix * 3.0 + onePix * 3.0);
-		double bottomMaxV = texIndex.getSubIconV(onePix * 3.0);
-		double wickMinU = texIndex.getSubIconU(onePix * 6.0 + uOffset);
-		double wickMaxU = texIndex.getSubIconU(onePix * 6.0 + uOffset + onePix * 3.0);
-		double wickMaxV = texIndex.getSubIconV(onePix * 6.0);
-		tessellator.setColorOpaque_F(brightness, brightness, brightness);
-		renderBlocks.enableAO = true;
-		tessellator.addVertexWithUV(maxX, minY, minZ, sideMinU, sideMaxV);
-		tessellator.addVertexWithUV(minX, minY, minZ, sideMaxU, sideMaxV);
-		tessellator.addVertexWithUV(minX, maxY, minZ, sideMaxU, sideMinV);
-		tessellator.addVertexWithUV(maxX, maxY, minZ, sideMinU, sideMinV);
-		tessellator.addVertexWithUV(minX, minY, maxZ, sideMinU, sideMaxV);
-		tessellator.addVertexWithUV(maxX, minY, maxZ, sideMaxU, sideMaxV);
-		tessellator.addVertexWithUV(maxX, maxY, maxZ, sideMaxU, sideMinV);
-		tessellator.addVertexWithUV(minX, maxY, maxZ, sideMinU, sideMinV);
-		tessellator.addVertexWithUV(maxX, minY, maxZ, sideMinU, sideMaxV);
-		tessellator.addVertexWithUV(maxX, minY, minZ, sideMaxU, sideMaxV);
-		tessellator.addVertexWithUV(maxX, maxY, minZ, sideMaxU, sideMinV);
-		tessellator.addVertexWithUV(maxX, maxY, maxZ, sideMinU, sideMinV);
-		tessellator.addVertexWithUV(minX, minY, minZ, sideMinU, sideMaxV);
-		tessellator.addVertexWithUV(minX, minY, maxZ, sideMaxU, sideMaxV);
-		tessellator.addVertexWithUV(minX, maxY, maxZ, sideMaxU, sideMinV);
-		tessellator.addVertexWithUV(minX, maxY, minZ, sideMinU, sideMinV);
-		tessellator.addVertexWithUV(minX, maxY, maxZ, topMinU, topMaxV);
-		tessellator.addVertexWithUV(maxX, maxY, maxZ, topMaxU, topMaxV);
-		tessellator.addVertexWithUV(maxX, maxY, minZ, topMaxU, texV);
-		tessellator.addVertexWithUV(minX, maxY, minZ, topMinU, texV);
-		tessellator.addVertexWithUV(minX, minY, minZ, bottomMinU, texV);
-		tessellator.addVertexWithUV(maxX, minY, minZ, bottomMaxU, texV);
-		tessellator.addVertexWithUV(maxX, minY, maxZ, bottomMaxU, bottomMaxV);
-		tessellator.addVertexWithUV(minX, minY, maxZ, bottomMinU, bottomMaxV);
-		tessellator.addVertexWithUV(minX, maxY, minZ, wickMinU, wickMaxV);
-		tessellator.addVertexWithUV(maxX, maxY, maxZ, wickMaxU, wickMaxV);
-		tessellator.addVertexWithUV(maxX, wickMaxY, maxZ, wickMaxU, texV);
-		tessellator.addVertexWithUV(minX, wickMaxY, minZ, wickMinU, texV);
-		tessellator.addVertexWithUV(minX, wickMaxY, minZ, wickMaxU, texV);
-		tessellator.addVertexWithUV(maxX, wickMaxY, maxZ, wickMinU, texV);
-		tessellator.addVertexWithUV(maxX, maxY, maxZ, wickMinU, wickMaxV);
-		tessellator.addVertexWithUV(minX, maxY, minZ, wickMaxU, wickMaxV);
-		tessellator.addVertexWithUV(minX, maxY, maxZ, wickMinU, wickMaxV);
-		tessellator.addVertexWithUV(maxX, maxY, minZ, wickMaxU, wickMaxV);
-		tessellator.addVertexWithUV(maxX, wickMaxY, minZ, wickMaxU, texV);
-		tessellator.addVertexWithUV(minX, wickMaxY, maxZ, wickMinU, texV);
-		tessellator.addVertexWithUV(minX, wickMaxY, maxZ, wickMaxU, texV);
-		tessellator.addVertexWithUV(maxX, wickMaxY, minZ, wickMinU, texV);
-		tessellator.addVertexWithUV(maxX, maxY, minZ, wickMinU, wickMaxV);
-		tessellator.addVertexWithUV(minX, maxY, maxZ, wickMaxU, wickMaxV);
-		return true;
-	}
+        double texV = texIndex.getIconVMin();
+        double onePix = 0.0625;
+        double uOffset = onePix * 3.0;
+        double sideMinU = texIndex.getSubIconU(uOffset);
+        double sideMaxU = texIndex.getSubIconU(uOffset + onePix * 3.0);
+        double sideMinV = texIndex.getSubIconV(onePix * 3.0);
+        double sideMaxV = texIndex.getSubIconV(onePix * 3.0 + onePix * 8.0);
+        double topMinU = texIndex.getSubIconU(0.0);
+        double topMaxU = texIndex.getSubIconU(0.1875);
+        double topMaxV = texIndex.getSubIconV(uOffset);
+        double bottomMinU = texIndex.getSubIconU(onePix * 3.0);
+        double bottomMaxU = texIndex.getSubIconU(onePix * 3.0 + onePix * 3.0);
+        double bottomMaxV = texIndex.getSubIconV(onePix * 3.0);
+        double wickMinU = texIndex.getSubIconU(onePix * 6.0 + uOffset);
+        double wickMaxU = texIndex.getSubIconU(onePix * 6.0 + uOffset + onePix * 3.0);
+        double wickMaxV = texIndex.getSubIconV(onePix * 6.0);
+        tessellator.setColorOpaque_F(brightness, brightness, brightness);
+        renderBlocks.enableAO = true;
+        tessellator.addVertexWithUV(maxX, minY, minZ, sideMinU, sideMaxV);
+        tessellator.addVertexWithUV(minX, minY, minZ, sideMaxU, sideMaxV);
+        tessellator.addVertexWithUV(minX, maxY, minZ, sideMaxU, sideMinV);
+        tessellator.addVertexWithUV(maxX, maxY, minZ, sideMinU, sideMinV);
+        tessellator.addVertexWithUV(minX, minY, maxZ, sideMinU, sideMaxV);
+        tessellator.addVertexWithUV(maxX, minY, maxZ, sideMaxU, sideMaxV);
+        tessellator.addVertexWithUV(maxX, maxY, maxZ, sideMaxU, sideMinV);
+        tessellator.addVertexWithUV(minX, maxY, maxZ, sideMinU, sideMinV);
+        tessellator.addVertexWithUV(maxX, minY, maxZ, sideMinU, sideMaxV);
+        tessellator.addVertexWithUV(maxX, minY, minZ, sideMaxU, sideMaxV);
+        tessellator.addVertexWithUV(maxX, maxY, minZ, sideMaxU, sideMinV);
+        tessellator.addVertexWithUV(maxX, maxY, maxZ, sideMinU, sideMinV);
+        tessellator.addVertexWithUV(minX, minY, minZ, sideMinU, sideMaxV);
+        tessellator.addVertexWithUV(minX, minY, maxZ, sideMaxU, sideMaxV);
+        tessellator.addVertexWithUV(minX, maxY, maxZ, sideMaxU, sideMinV);
+        tessellator.addVertexWithUV(minX, maxY, minZ, sideMinU, sideMinV);
+        tessellator.addVertexWithUV(minX, maxY, maxZ, topMinU, topMaxV);
+        tessellator.addVertexWithUV(maxX, maxY, maxZ, topMaxU, topMaxV);
+        tessellator.addVertexWithUV(maxX, maxY, minZ, topMaxU, texV);
+        tessellator.addVertexWithUV(minX, maxY, minZ, topMinU, texV);
+        tessellator.addVertexWithUV(minX, minY, minZ, bottomMinU, texV);
+        tessellator.addVertexWithUV(maxX, minY, minZ, bottomMaxU, texV);
+        tessellator.addVertexWithUV(maxX, minY, maxZ, bottomMaxU, bottomMaxV);
+        tessellator.addVertexWithUV(minX, minY, maxZ, bottomMinU, bottomMaxV);
+        tessellator.addVertexWithUV(minX, maxY, minZ, wickMinU, wickMaxV);
+        tessellator.addVertexWithUV(maxX, maxY, maxZ, wickMaxU, wickMaxV);
+        tessellator.addVertexWithUV(maxX, wickMaxY, maxZ, wickMaxU, texV);
+        tessellator.addVertexWithUV(minX, wickMaxY, minZ, wickMinU, texV);
+        tessellator.addVertexWithUV(minX, wickMaxY, minZ, wickMaxU, texV);
+        tessellator.addVertexWithUV(maxX, wickMaxY, maxZ, wickMinU, texV);
+        tessellator.addVertexWithUV(maxX, maxY, maxZ, wickMinU, wickMaxV);
+        tessellator.addVertexWithUV(minX, maxY, minZ, wickMaxU, wickMaxV);
+        tessellator.addVertexWithUV(minX, maxY, maxZ, wickMinU, wickMaxV);
+        tessellator.addVertexWithUV(maxX, maxY, minZ, wickMaxU, wickMaxV);
+        tessellator.addVertexWithUV(maxX, wickMaxY, minZ, wickMaxU, texV);
+        tessellator.addVertexWithUV(minX, wickMaxY, maxZ, wickMinU, texV);
+        tessellator.addVertexWithUV(minX, wickMaxY, maxZ, wickMaxU, texV);
+        tessellator.addVertexWithUV(maxX, wickMaxY, minZ, wickMinU, texV);
+        tessellator.addVertexWithUV(maxX, maxY, minZ, wickMinU, wickMaxV);
+        tessellator.addVertexWithUV(minX, maxY, maxZ, wickMaxU, wickMaxV);
+        return true;
+    }
 
-	@Override
-	public boolean shouldItemRender3d() {
-		return false;
-	}
+    @Override
+    public boolean shouldItemRender3d() {
+        return false;
+    }
 }

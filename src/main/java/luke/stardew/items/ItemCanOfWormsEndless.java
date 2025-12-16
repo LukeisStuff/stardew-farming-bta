@@ -6,18 +6,18 @@ import net.minecraft.core.item.material.ArmorMaterial;
 import org.jetbrains.annotations.Nullable;
 
 public class ItemCanOfWormsEndless extends Item implements IArmorItem {
-	public ItemCanOfWormsEndless(String translationKey, String namespaceID, int id) {
-		super(translationKey, namespaceID, id);
-		this.setMaxStackSize(1);
-	}
+    public ItemCanOfWormsEndless(String translationKey, String namespaceID, int id) {
+        super(translationKey, namespaceID, id);
+        this.setMaxStackSize(1);
+    }
 
-	@Override
-	public @Nullable ArmorMaterial getArmorMaterial() {
-		return null;
-	}
+    @Override
+    public @Nullable ArmorMaterial getArmorMaterial() {
+        return null;
+    }
 
-	@Override
-	public int getArmorPiece() {
-		return IArmorItem.PIECE_LEGS;
-	}
+    @Override
+    public int getArmorPiece() {
+        return IArmorItem.PIECE_LEGS;
+    }
 }

@@ -27,45 +27,45 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class StardewClient implements ClientModInitializer, ClientStartEntrypoint {
-	@Override
-	public void beforeClientStart() {
-		ParticleHelper.createParticle("bee", (world, x, y, z, xa, ya, za, id) -> new ParticleBee(world, x, y, z, xa, ya, za));
+    @Override
+    public void beforeClientStart() {
+        ParticleHelper.createParticle("bee", (world, x, y, z, xa, ya, za, id) -> new ParticleBee(world, x, y, z, xa, ya, za));
 
-		SoundRepository.registerNamespace(MOD_ID);
+        SoundRepository.registerNamespace(MOD_ID);
 
-		try {
-			TextureRegistry.initializeAllFiles(MOD_ID, TextureRegistry.particleAtlas, false);
-		} catch (URISyntaxException | IOException e) {
-			LOGGER.error("Failed to initialize textures!");
-		}
-	}
+        try {
+            TextureRegistry.initializeAllFiles(MOD_ID, TextureRegistry.particleAtlas, false);
+        } catch (URISyntaxException | IOException e) {
+            LOGGER.error("Failed to initialize textures!");
+        }
+    }
 
-	@Override
-	public void afterClientStart() {
-		MobInfoRegistry.register(MobDuck.class, "guidebook.section.mob.duck.name", "guidebook.section.mob.duck.desc",
-			4, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Items.FEATHER_CHICKEN), 1.0f, 0, 1)});
+    @Override
+    public void afterClientStart() {
+        MobInfoRegistry.register(MobDuck.class, "guidebook.section.mob.duck.name", "guidebook.section.mob.duck.desc",
+            4, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Items.FEATHER_CHICKEN), 1.0f, 0, 1)});
 
-		MobInfoRegistry.register(MobGoat.class, "guidebook.section.mob.goat.name", "guidebook.section.mob.goat.desc",
-			10, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Items.LEATHER), 1.0f, 0, 2), new MobInfoRegistry.MobDrop(new ItemStack(Blocks.WOOL), 1.0f, 1, 2)});
-	}
+        MobInfoRegistry.register(MobGoat.class, "guidebook.section.mob.goat.name", "guidebook.section.mob.goat.desc",
+            10, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Items.LEATHER), 1.0f, 0, 2), new MobInfoRegistry.MobDrop(new ItemStack(Blocks.WOOL), 1.0f, 1, 2)});
+    }
 
-	public static void initAchievementsPage() {
-		AchievementPageStardew page = new AchievementPageStardew(MOD_ID, StardewItems.WATERING_CAN.getDefaultStack());
-		page.addAchievement(StardewAchievements.STARDEW, 0, 0);
-		page.addAchievement(StardewAchievements.FRUIT, 2, -2);
-		page.addAchievement(StardewAchievements.VEGETABLE, -2, -2);
-		page.addAchievement(StardewAchievements.EGG, 0, -4);
-		page.addAchievement(StardewAchievements.APPLE, -2, 0);
-		page.addAchievement(StardewAchievements.GAPPLE, -4, 1);
-		page.addAchievement(StardewAchievements.BEEHIVE, 2, 0);
-		page.addAchievement(StardewAchievements.CANDLE, 4, -1);
-		page.addAchievement(StardewAchievements.AMATEUR_FISHER, 0, 2);
-		page.addAchievement(StardewAchievements.MASTER_FISHER, 1, 4);
-		AchievementPages.register(page);
-	}
+    public static void initAchievementsPage() {
+        AchievementPageStardew page = new AchievementPageStardew(MOD_ID, StardewItems.WATERING_CAN.getDefaultStack());
+        page.addAchievement(StardewAchievements.STARDEW, 0, 0);
+        page.addAchievement(StardewAchievements.FRUIT, 2, -2);
+        page.addAchievement(StardewAchievements.VEGETABLE, -2, -2);
+        page.addAchievement(StardewAchievements.EGG, 0, -4);
+        page.addAchievement(StardewAchievements.APPLE, -2, 0);
+        page.addAchievement(StardewAchievements.GAPPLE, -4, 1);
+        page.addAchievement(StardewAchievements.BEEHIVE, 2, 0);
+        page.addAchievement(StardewAchievements.CANDLE, 4, -1);
+        page.addAchievement(StardewAchievements.AMATEUR_FISHER, 0, 2);
+        page.addAchievement(StardewAchievements.MASTER_FISHER, 1, 4);
+        AchievementPages.register(page);
+    }
 
-	@Override
-	public void onInitializeClient() {
-		LOGGER.info("Stardew Farming client initialized.");
-	}
+    @Override
+    public void onInitializeClient() {
+        LOGGER.info("Stardew Farming client initialized.");
+    }
 }

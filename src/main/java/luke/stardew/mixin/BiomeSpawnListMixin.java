@@ -14,12 +14,12 @@ import java.util.List;
 
 @Mixin(value = Biome.class, remap = false)
 public class BiomeSpawnListMixin {
-	@Shadow
-	protected List<SpawnListEntry> spawnableCreatureList;
+    @Shadow
+    protected List<SpawnListEntry> spawnableCreatureList;
 
-	@Inject(method = "<init>", at = @At("TAIL"))
-	public void injectMethod(String key, CallbackInfo ci) {
-		this.spawnableCreatureList.add(new SpawnListEntry(MobDuck.class, 51));
-		this.spawnableCreatureList.add(new SpawnListEntry(MobGoat.class, 51));
-	}
+    @Inject(method = "<init>", at = @At("TAIL"))
+    public void injectMethod(String key, CallbackInfo ci) {
+        this.spawnableCreatureList.add(new SpawnListEntry(MobDuck.class, 51));
+        this.spawnableCreatureList.add(new SpawnListEntry(MobGoat.class, 51));
+    }
 }

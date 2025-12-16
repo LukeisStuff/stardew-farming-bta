@@ -20,44 +20,44 @@ import java.util.Map;
 @Mixin(value = Player.class, remap = false)
 public abstract class PlayerMixin extends Mob implements IPlayerEffects {
 
-	@Shadow
-	protected float baseSpeed;
+    @Shadow
+    protected float baseSpeed;
 
-	@Shadow
-	public abstract void triggerAchievement(Stat statbase);
+    @Shadow
+    public abstract void triggerAchievement(Stat statbase);
 
-	@Unique
-	public Map<PlayerEffect, Integer> currentEffects = new HashMap<>();
+    @Unique
+    public Map<PlayerEffect, Integer> currentEffects = new HashMap<>();
 
-	protected PlayerMixin(World world) {
-		super(world);
-	}
+    protected PlayerMixin(World world) {
+        super(world);
+    }
 
-	@Override
-	public void stardew_farming_bta$addEffect(PlayerEffect effect, int tick) {
-		currentEffects.put(effect, tick);
-	}
+    @Override
+    public void stardew_farming_bta$addEffect(PlayerEffect effect, int tick) {
+        currentEffects.put(effect, tick);
+    }
 
-	@Unique
-	public void decreaseEffects() {
-		for (Map.Entry<PlayerEffect, Integer> entry : currentEffects.entrySet()) {
-			entry.setValue(entry.getValue() - 1);
-			if (entry.getValue() <= 0) {
-				currentEffects.remove(entry.getKey());
-			}
-		}
-	}
+    @Unique
+    public void decreaseEffects() {
+        for (Map.Entry<PlayerEffect, Integer> entry : currentEffects.entrySet()) {
+            entry.setValue(entry.getValue() - 1);
+            if (entry.getValue() <= 0) {
+                currentEffects.remove(entry.getKey());
+            }
+        }
+    }
 
-	@Inject(method = "tick", at = @At("HEAD"))
-	public void addStardew(CallbackInfo ci) {
-		this.triggerAchievement(StardewAchievements.STARDEW);
-	}
+    @Inject(method = "tick", at = @At("HEAD"))
+    public void addStardew(CallbackInfo ci) {
+        this.triggerAchievement(StardewAchievements.STARDEW);
+    }
 
-	@Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/Player;speed:F", shift = At.Shift.AFTER))
-	public void boostSpeed(CallbackInfo ci) {
-		decreaseEffects();
-		if (currentEffects.containsKey(PlayerEffect.speedBoost)) {
-			this.speed = baseSpeed + PlayerEffect.speedBoost.getSpeedIncrement();
-		}
-	}
+    @Inject(method = "onLivingUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/core/entity/player/Player;speed:F", shift = At.Shift.AFTER))
+    public void boostSpeed(CallbackInfo ci) {
+        decreaseEffects();
+        if (currentEffects.containsKey(PlayerEffect.speedBoost)) {
+            this.speed = baseSpeed + PlayerEffect.speedBoost.getSpeedIncrement();
+        }
+    }
 }
