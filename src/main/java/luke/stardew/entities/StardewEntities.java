@@ -19,13 +19,9 @@ public final class StardewEntities {
 
     }
 
-    public static String entityKey(String string) {
-        return MOD_ID + ".entity." + string;
-    }
-
     public static void initializeEntities() {
-        EntityHelper.createEntity(MobDuck.class, NamespaceID.getPermanent(MOD_ID, "duck"), entityKey("duck"));
-        EntityHelper.createEntity(MobGoat.class, NamespaceID.getPermanent(MOD_ID, "goat"), entityKey("goat"));
-        EntityHelper.createEntity(EntityEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), entityKey("duck.egg"));
+        EntityHelper.createEntity(MobDuck.class, NamespaceID.getPermanent(MOD_ID, "duck"), "guidebook.section.mob.duck.name");
+        EntityHelper.createEntity(MobGoat.class, NamespaceID.getPermanent(MOD_ID, "goat"),"guidebook.section.mob.goat.name");
+        EntityHelper.createEntity(EntityEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), null);
     }
 }

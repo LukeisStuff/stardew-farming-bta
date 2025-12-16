@@ -5,6 +5,7 @@ import luke.stardew.entities.StardewEntities;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.crafting.LookupFuelFurnace;
+import net.minecraft.core.sound.SoundTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.util.GameStartEntrypoint;
@@ -26,6 +27,8 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         StardewEntities.init();
         StardewBlocks.init();
         StardewItems.init();
+
+        SoundTypes.loadSoundsJson(MOD_ID);
     }
 
     @Override

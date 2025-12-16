@@ -1,6 +1,5 @@
 package luke.stardew.entities.goat;
 
-import luke.stardew.StardewMod;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.tag.BlockTags;
@@ -25,17 +24,17 @@ public class MobGoat extends MobAnimal implements Creature {
 
     @Override
     public String getLivingSound() {
-        return StardewMod.MOD_ID + ":mob.goat.idle";
+        return "stardew:mob.goat.idle";
     }
 
     @Override
     public String getHurtSound() {
-        return StardewMod.MOD_ID + ":mob.goat.death";
+        return "stardew:mob.goat.death";
     }
 
     @Override
     public String getDeathSound() {
-        return StardewMod.MOD_ID + ":mob.goat.death";
+        return "stardew:mob.goat.death";
     }
 
     @Override

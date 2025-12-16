@@ -14,14 +14,14 @@
     "ItemToolHoeMixin",
     "PigDigTruffleMixin",
     "PlayerMixin",
-    "PlayerRendererAddWormCans",
     "SlotCraftingMixin",
     "TileEntityFurnaceMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"
   ],
   "client": [
-    "MinecraftMixin"
+    "MinecraftMixin",
+    "PlayerRendererAddWormCans"
   ],
   "injectors": {
     "defaultRequire": 1

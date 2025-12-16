@@ -1,14 +1,20 @@
 package luke.stardew.items;
 
+import luke.stardew.StardewParticleMaker;
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Blocks;
+import net.minecraft.core.block.entity.TileEntityActivator;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.sound.SoundCategory;
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import org.jspecify.annotations.Nullable;
+
+import java.util.Random;
 
 public class ItemToolWateringCan extends Item {
     public ItemToolWateringCan(String translationKey, String namespaceID, int id, ToolMaterial material) {
@@ -18,86 +24,69 @@ public class ItemToolWateringCan extends Item {
     }
 
     @Override
-    public boolean onUseItemOnBlock(ItemStack itemstack, Player entityplayer, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+    public boolean onUseItemOnBlock(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+        return this.waterBlock(itemstack, player, world, blockX, blockY, blockZ);
+    }
+
+    @Override
+    public void onUseByActivator(ItemStack itemStack, TileEntityActivator activatorBlock, World world, Random itemRand, int blockX, int blockY, int blockZ, double offX, double offY, double offZ, Direction direction) {
+        this.waterBlock(itemStack, null, world, blockX + direction.getOffsetX(), blockY + direction.getOffsetY(), blockZ + direction.getOffsetZ());
+    }
+
+    public boolean waterBlock(ItemStack itemstack, @Nullable Player player, World world, int blockX, int blockY, int blockZ) {
         int blockToWater = world.getBlockId(blockX, blockY, blockZ);
         int meta = world.getBlockMetadata(blockX, blockY, blockZ);
+
         if (blockToWater == Blocks.FARMLAND_DIRT.id() && meta == 0) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            if (!world.isClientSide) {
-                world.setBlockMetadataWithNotify(blockX, blockY, blockZ, 1);
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, false, Blocks.FARMLAND_DIRT.id(), 1);
+            return true;
         }
         if (blockToWater == Blocks.MUD_BAKED.id()) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            if (!world.isClientSide) {
-                world.setBlockAndMetadataWithNotify(blockX, blockY, blockZ, Blocks.MUD.id(), meta);
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, false, Blocks.MUD.id(), meta);
+            return true;
         }
         if (blockToWater == Blocks.SPONGE_DRY.id()) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            if (!world.isClientSide) {
-                world.setBlockAndMetadataWithNotify(blockX, blockY, blockZ, Blocks.SPONGE_WET.id(), meta);
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, false, Blocks.SPONGE_WET.id(), meta);
+            return true;
         }
         if (blockToWater == Blocks.FIRE.id()) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5, blockY + 0.5, blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-            if (!world.isClientSide) {
-                world.setBlockWithNotify(blockX, blockY, blockZ, 0);
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, true, 0, 0);
+            return true;
         }
         if (blockToWater == Blocks.BRAZIER_ACTIVE.id()) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5, blockY + 0.5, blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-            if (!world.isClientSide) {
-                world.setBlockWithNotify(blockX, blockY, blockZ, Blocks.BRAZIER_INACTIVE.id());
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, true, Blocks.BRAZIER_INACTIVE.id(), meta);
+            return true;
         }
         if (blockToWater == StardewBlocks.CANDLE_ACTIVE.id()) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5, blockY + 0.5, blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-            if (!world.isClientSide) {
-                world.setBlockWithNotify(blockX, blockY, blockZ, StardewBlocks.CANDLE.id());
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, true, StardewBlocks.CANDLE.id(), meta);
+            return true;
         }
         if (blockToWater == Blocks.PUMICE_WET.id()) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5, blockY + 0.5, blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-            if (!world.isClientSide) {
-                world.setBlockWithNotify(blockX, blockY, blockZ, Blocks.PUMICE_DRY.id());
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, true, Blocks.PUMICE_DRY.id(), meta);
+            return true;
         }
         if (blockToWater == Blocks.COBBLE_NETHERRACK_IGNEOUS.id()) {
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
-            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5, blockY + 0.5, blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
-            if (!world.isClientSide) {
-                world.setBlockWithNotify(blockX, blockY, blockZ, Blocks.OBSIDIAN.id());
-                itemstack.damageItem(1, entityplayer);
-                entityplayer.swingItem();
-            }
-            entityplayer.swingItem();
+            water(world, blockX, blockY, blockZ, itemstack, player, true, Blocks.COBBLE_NETHERRACK.id(), meta);
+            return true;
+        } else {
+            return false;
         }
-        return false;
+    }
+
+    private void water(World world, int blockX, int blockY, int blockZ, ItemStack itemstack, Player player, boolean playFizz, int blockToBecome, int meta) {
+        for (int i = 0; i < 16; ++i) {
+            StardewParticleMaker.spawnBlockBreakParticles(world, "splash", blockX, blockY, blockZ);
+            if (playFizz) {
+                StardewParticleMaker.spawnBlockBreakParticles(world, "smoke", blockX, blockY, blockZ);
+            }
+        }
+        if (!world.isClientSide) {
+            world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, "liquid.splash", 0.2F, 1.0F);
+            if (playFizz) {
+                world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockX + 0.5, blockY + 0.5, blockZ + 0.5, "random.fizz", 0.3F, 2.6F + (world.rand.nextFloat() - world.rand.nextFloat()) * 0.8F);
+            }
+            world.setBlockAndMetadataWithNotify(blockX, blockY, blockZ, blockToBecome, meta);
+            itemstack.damageItem(1, player);
+        }
     }
 }
