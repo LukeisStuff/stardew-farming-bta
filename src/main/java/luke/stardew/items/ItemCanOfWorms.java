@@ -13,7 +13,7 @@ public class ItemCanOfWorms extends Item implements IArmorItem {
     public ItemCanOfWorms(String translationKey, String namespaceID, int id) {
         super(translationKey, namespaceID, id);
         this.setMaxStackSize(1);
-        this.setMaxDamage(192);
+        this.setMaxDamage(256);
     }
 
     @Override

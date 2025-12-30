@@ -122,7 +122,6 @@ public class StardewItems {
     public static void initializeItems() {
 
         ItemBuilder seeds = new ItemBuilder(MOD_ID)
-            .setStackSize(64)
             .setTags(ItemTags.CHICKENS_FAVOURITE_ITEM);
 
         //Spring Crops
@@ -263,7 +262,6 @@ public class StardewItems {
             .build(new ItemToolWateringCan("tool.wateringcan.steel", itemKey("wateringcan_steel"), itemID("WATERING_CAN_STEEL"), ToolMaterial.steel));
 
         WAX = new ItemBuilder(MOD_ID)
-            .setStackSize(16)
             .build(new Item("wax", itemKey("wax"), itemID("WAX")));
 
 
@@ -280,7 +278,6 @@ public class StardewItems {
             .build(new ItemToolFishingRodTiered("tool.fishingrod.steel", itemKey("tool_fishingrod_steel"), itemID("TOOL_FISHINGROD_STEEL"), ToolMaterial.steel));
 
         WORM = new ItemBuilder(MOD_ID)
-            .setStackSize(64)
             .build(new Item("worm", itemKey("worm"), itemID("WORM")));
 
         ARMOR_CAN_OF_WORMS = new ItemBuilder(MOD_ID)
@@ -296,16 +293,13 @@ public class StardewItems {
             .build(new ItemDiscMusic("record.pink", itemKey("record_pink"), itemID("RECORD_PINK"), "stardew:axolotl", "C418"));
 
         BEANS_COFFEE = new ItemBuilder(MOD_ID)
-            .setStackSize(64)
             .build(new ItemSeedsStake("bean.coffee", itemKey("beans_coffee"), itemID("BEANS_COFFEE"), StardewBlocks.CROPS_BEANS_BOTTOM));
 
         EGG_DUCK = new ItemBuilder(MOD_ID)
-            .setStackSize(64)
             .build(new ItemEggDuck("egg.duck", itemKey("egg_duck"), itemID("EGG_DUCK")));
 
 
         FIBER = new ItemBuilder(MOD_ID)
-            .setStackSize(64)
             .build(new Item("fiber", itemKey("fiber"), itemID("FIBER")));
     }
 
