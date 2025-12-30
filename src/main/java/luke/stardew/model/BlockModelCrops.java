@@ -1,5 +1,7 @@
 package luke.stardew.model;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelStandard;
@@ -11,6 +13,7 @@ import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.helper.Side;
 
+@Environment(EnvType.CLIENT)
 public class BlockModelCrops<T extends BlockLogic> extends BlockModelStandard<T> {
     private final IconCoordinate[] stageTextures;
     private final int maxStages;

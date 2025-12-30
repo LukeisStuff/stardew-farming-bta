@@ -9,6 +9,8 @@ import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.entities.goat.MobRendererGoat;
 import luke.stardew.entities.goat.ModelGoat;
 import luke.stardew.items.StardewItems;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.EntityRenderDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
@@ -22,6 +24,7 @@ import turniplabs.halplibe.util.ModelEntrypoint;
 
 import static net.minecraft.client.render.block.model.BlockModelStandard.BLOCK_TEXTURES;
 
+@Environment(EnvType.CLIENT)
 public class StardewModels implements ModelEntrypoint {
 
     @Override

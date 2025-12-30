@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.ItemInitEntrypoint;
 
-
 public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInitEntrypoint {
     public static final String MOD_ID = "stardew";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -37,7 +36,15 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
 
     @Override
     public void afterItemInit() {
-        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 400);
+        LookupFuelFurnace.instance.addFuelEntry(StardewItems.FIBER.id, 200);
+        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 300);
+
+        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.LOG_APPLE.id(), 300);
+        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.LOG_APPLE_GOLDEN.id(), 300);
+
+        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.BEEHIVE.id(), 300);
+        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.BEEHIVE_HONEY.id(), 300);
+        LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.BEEHIVE_IDLE.id(), 300);
 
         StardewBlocks.initializeCrops();
     }

@@ -15,6 +15,7 @@
     "PigDigTruffleMixin",
     "PlayerMixin",
     "SlotCraftingMixin",
+    "SlotFurnaceMixin",
     "TileEntityFurnaceMixin",
     "WorldFeatureDungeonMixin",
     "WorldFeatureLabyrinthMixin"

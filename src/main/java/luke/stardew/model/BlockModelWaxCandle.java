@@ -1,5 +1,7 @@
 package luke.stardew.model;
 
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.client.render.LightmapHelper;
 import net.minecraft.client.render.block.model.BlockModelStandard;
 import net.minecraft.client.render.tessellator.Tessellator;
@@ -9,6 +11,7 @@ import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.util.helper.Side;
 
+@Environment(EnvType.CLIENT)
 public class BlockModelWaxCandle<T extends BlockLogic> extends BlockModelStandard<T> {
 
     public BlockModelWaxCandle(Block<T> block) {
