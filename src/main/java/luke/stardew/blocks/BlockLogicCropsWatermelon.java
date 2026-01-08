@@ -10,12 +10,8 @@ import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.IBonemealable;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.WorldSource;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Random;
 
 public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBonemealable {
 
@@ -23,45 +19,45 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
         super(block);
     }
 
-    @Override
-    public AABB getBlockBoundsFromState(WorldSource world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        float onePix = 0.0625F;
-        float size = 0.0F;
-        if (meta == 0) {
-            size = 6.0F * onePix;
-        } else if (meta == 1) {
-            size = 8.0F * onePix;
-        } else if (meta == 2) {
-            size = 10.0F * onePix;
-        } else if (meta == 3) {
-            size = 12.0F * onePix;
-        } else if (meta == 4) {
-            size = 14.0F * onePix;
-        }
+//    @Override
+//    public AABB getBlockBoundsFromState(WorldSource world, int x, int y, int z) {
+//        int meta = world.getBlockMetadata(x, y, z);
+//        float onePix = 0.0625F;
+//        float size = 0.0F;
+//        if (meta == 0) {
+//            size = 6.0F * onePix;
+//        } else if (meta == 1) {
+//            size = 8.0F * onePix;
+//        } else if (meta == 2) {
+//            size = 10.0F * onePix;
+//        } else if (meta == 3) {
+//            size = 12.0F * onePix;
+//        } else if (meta == 4) {
+//            size = 14.0F * onePix;
+//        }
+//
+//        return AABB.getTemporaryBB(0.5F - size / 2.0F, 0.0, 0.5F - size / 2.0F, 0.5F + size / 2.0F, size, 0.5F + size / 2.0F);
+//    }
 
-        return AABB.getTemporaryBB(0.5F - size / 2.0F, 0.0, 0.5F - size / 2.0F, 0.5F + size / 2.0F, size, 0.5F + size / 2.0F);
-    }
-
-    @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        super.updateTick(world, x, y, z, rand);
-        if (world.getBlockLightValue(x, y + 1, z) >= 9) {
-            int meta = world.getBlockMetadata(x, y, z);
-            if (meta < 6) {
-                float f = this.getGrowthRate(world, x, y, z);
-                if (rand.nextInt((int) (100.0F / f)) == 0) {
-                    ++meta;
-                    if (meta == 5) {
-                        world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.WATERMELON.id(), 0);
-                    } else {
-                        world.setBlockMetadataWithNotify(x, y, z, meta);
-                    }
-                }
-            }
-        }
-
-    }
+//    @Override
+//    public void updateTick(World world, int x, int y, int z, Random rand) {
+//        super.updateTick(world, x, y, z, rand);
+//        if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+//            int meta = world.getBlockMetadata(x, y, z);
+//            if (meta < 6) {
+//                float f = this.getGrowthRate(world, x, y, z);
+//                if (rand.nextInt((int) (100.0F / f)) == 0) {
+//                    ++meta;
+//                    if (meta == 5) {
+//                        world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.WATERMELON.id(), 0);
+//                    } else {
+//                        world.setBlockMetadataWithNotify(x, y, z, meta);
+//                    }
+//                }
+//            }
+//        }
+//
+//    }
 
     @Override
     public void fertilize(World world, int x, int y, int z) {
@@ -108,11 +104,11 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
         return new ItemStack[]{new ItemStack(StardewItems.SEEDS_WATERMELON, 1)};
     }
 
-    @Override
-    public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        return meta == 0 ? null : this.getBlockBoundsFromState(world, x, y, z).move(x, y, z);
-    }
+//    @Override
+//    public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+//        int meta = world.getBlockMetadata(x, y, z);
+//        return meta == 0 ? null : this.getBlockBoundsFromState(world, x, y, z).move(x, y, z);
+//    }
 
     @Override
     public boolean onBonemealUsed(ItemStack itemstack, @Nullable Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
@@ -121,7 +117,7 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
         } else {
             if (!world.isClientSide) {
                 this.fertilize(world, blockX, blockY, blockZ);
-                if (player == null || player.getGamemode().consumeBlocks()) {
+                if (player == null || player.getGamemode().hasBlockConsumption()) {
                     --itemstack.stackSize;
                 }
             }

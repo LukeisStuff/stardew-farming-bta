@@ -3,9 +3,7 @@ package luke.stardew.blocks;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.util.helper.MathHelper;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.WorldSource;
 
 public class BlockLogicCropTall extends BlockLogicCropBase {
     protected int growTopMeta = -1; //Block is considered top if -1
@@ -31,10 +29,10 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
         return this;
     }
 
-    @Override
-    public boolean mayPlaceOn(int blockId) {
-        return this.growTopMeta < 0 || super.mayPlaceOn(blockId);
-    }
+//    @Override
+//    public boolean mayPlaceOn(int blockId) {
+//        return this.growTopMeta < 0 || super.mayPlaceOn(blockId);
+//    }
 
     @Override
     public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) { //This isn't very good but it works
@@ -49,11 +47,11 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
         }
     }
 
-    @Override
-    public AABB getBlockBoundsFromState(WorldSource world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        return meta < this.growTopMeta ? AABB.getTemporaryBB(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F) : this.bounds.copy();
-    }
+//    @Override
+//    public AABB getBlockBoundsFromState(WorldSource world, int x, int y, int z) {
+//        int meta = world.getBlockMetadata(x, y, z);
+//        return meta < this.growTopMeta ? AABB.getTemporaryBB(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F) : this.bounds.copy();
+//    }
 
     @Override
     public void onGrowth(World world, int x, int y, int z, int meta) {

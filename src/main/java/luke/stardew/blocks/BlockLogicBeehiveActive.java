@@ -7,7 +7,7 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicRotatable;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.entity.TileEntityActivator;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
@@ -15,7 +15,6 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.season.Seasons;
 
 import java.util.Random;
 
@@ -23,7 +22,7 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
     public final boolean isActive;
 
     public BlockLogicBeehiveActive(Block<?> block, boolean flag) {
-        super(block, Material.wood);
+        super(block, Materials.WOOD);
         block.setTicking(true);
         this.isActive = flag;
     }
@@ -95,16 +94,16 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
         }
     }
 
-    @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        super.updateTick(world, x, y, z, rand);
-        if (world.seasonManager.getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
-            int l = world.getBlockMetadata(x, y, z);
-            if (rand.nextInt(50) == 0) {
-                world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE_HONEY.id(), l);
-            }
-        }
-    }
+//    @Override
+//    public void updateTick(World world, int x, int y, int z, Random rand) {
+//        super.updateTick(world, x, y, z, rand);
+//        if (world.getSeasonManager().getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
+//            int l = world.getBlockMetadata(x, y, z);
+//            if (rand.nextInt(50) == 0) {
+//                world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.BEEHIVE_HONEY.id(), l);
+//            }
+//        }
+//    }
 
     @Override
     public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {

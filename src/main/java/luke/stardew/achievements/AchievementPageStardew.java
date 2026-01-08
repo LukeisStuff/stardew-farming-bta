@@ -25,12 +25,12 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public @NotNull String getName() {
-        return I18n.getInstance().translateNameKey(name);
+        return I18n.getInstance().translateKey(name);
     }
 
     @Override
     public @NotNull String getDescription() {
-        return I18n.getInstance().translateNameKey(name);
+        return I18n.getInstance().translateKey(name);
     }
 
     @Override

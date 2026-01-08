@@ -12,8 +12,6 @@ import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Random;
-
 public class BlockLogicBush extends BlockLogicFlower {
 
     public BlockLogicBush(Block<?> block) {
@@ -21,31 +19,31 @@ public class BlockLogicBush extends BlockLogicFlower {
         block.setTicking(true);
     }
 
-    @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        super.updateTick(world, x, y, z, rand);
-        if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
-            world.setBlockMetadataWithNotify(x, y, z, 0);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
-            world.setBlockMetadataWithNotify(x, y, z, 1);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
-            world.setBlockMetadataWithNotify(x, y, z, 2);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
-            world.setBlockMetadataWithNotify(x, y, z, 3);
-        } else {
-            world.setBlockMetadataWithNotify(x, y, z, 4);
-        }
-    }
+//    @Override
+//    public void updateTick(World world, int x, int y, int z, Random rand) {
+//        super.updateTick(world, x, y, z, rand);
+//        if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
+//            world.setBlockMetadataWithNotify(x, y, z, 0);
+//        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
+//            world.setBlockMetadataWithNotify(x, y, z, 1);
+//        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL) {
+//            world.setBlockMetadataWithNotify(x, y, z, 2);
+//        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
+//            world.setBlockMetadataWithNotify(x, y, z, 3);
+//        } else {
+//            world.setBlockMetadataWithNotify(x, y, z, 4);
+//        }
+//    }
 
     @Override
     public void onBlockPlacedByMob(World world, int x, int y, int z, @NotNull Side side, Mob mob, double xPlaced, double yPlaced) {
-        if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
+        if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
             world.setBlockMetadataWithNotify(x, y, z, 0);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
+        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
             world.setBlockMetadataWithNotify(x, y, z, 1);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
+        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL) {
             world.setBlockMetadataWithNotify(x, y, z, 2);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
+        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
             world.setBlockMetadataWithNotify(x, y, z, 3);
         } else {
             world.setBlockMetadataWithNotify(x, y, z, 4);

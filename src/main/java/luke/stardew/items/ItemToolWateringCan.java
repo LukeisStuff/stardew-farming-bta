@@ -12,6 +12,8 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Random;
@@ -24,13 +26,13 @@ public class ItemToolWateringCan extends Item {
     }
 
     @Override
-    public boolean onUseItemOnBlock(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-        return this.waterBlock(itemstack, player, world, blockX, blockY, blockZ);
+    public boolean onUseOnBlock(@NotNull ItemStack selfStack, @NotNull World world, @org.jetbrains.annotations.Nullable Player player, @NotNull TilePosc blockPos, @NotNull Side side, double xHit, double yHit) {
+        return this.waterBlock(selfStack, player, world, blockPos.x(), blockPos.y(), blockPos.z());
     }
 
     @Override
-    public void onUseByActivator(ItemStack itemStack, TileEntityActivator activatorBlock, World world, Random itemRand, int blockX, int blockY, int blockZ, double offX, double offY, double offZ, Direction direction) {
-        this.waterBlock(itemStack, null, world, blockX + direction.getOffsetX(), blockY + direction.getOffsetY(), blockZ + direction.getOffsetZ());
+    public void onUseByActivator(@NotNull ItemStack selfStack, @NotNull World world, @NotNull TileEntityActivator activator, @NotNull Random random, @NotNull TilePosc blockPos, @NotNull Direction direction, double offX, double offY, double offZ) {
+        this.waterBlock(selfStack, null, world, blockPos.x() + direction.getOffsetX(), blockPos.y() + direction.getOffsetY(), blockPos.z() + direction.getOffsetZ());
     }
 
     public boolean waterBlock(ItemStack itemstack, @Nullable Player player, World world, int blockX, int blockY, int blockZ) {
@@ -65,7 +67,7 @@ public class ItemToolWateringCan extends Item {
             water(world, blockX, blockY, blockZ, itemstack, player, true, Blocks.PUMICE_DRY.id(), meta);
             return true;
         }
-        if (blockToWater == Blocks.COBBLE_NETHERRACK_IGNEOUS.id()) {
+        if (blockToWater == Blocks.MAGMA.id()) {
             water(world, blockX, blockY, blockZ, itemstack, player, true, Blocks.COBBLE_NETHERRACK.id(), meta);
             return true;
         } else {

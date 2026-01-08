@@ -11,10 +11,10 @@ import static luke.stardew.StardewMod.MOD_ID;
 public final class StardewAchievements {
 
     public static NamespaceID key(String string) {
-        return NamespaceID.getPermanent(MOD_ID, string);
+        return NamespaceID.fromPool(MOD_ID, string);
     }
 
-    public static final Achievement STARDEW = new Achievement(key("stardew"), "stardew.stardew", StardewItems.WATERING_CAN, null).registerAchievement();
+    public static final Achievement STARDEW = new Achievement(key("stardew"), "stardew.stardew", StardewItems.TOOL_WATERING_CAN, null).registerAchievement();
 
     public static final Achievement FRUIT = new Achievement(key("get_fruit"), "stardew.fruit", StardewItems.STRAWBERRY, STARDEW).registerAchievement();
     public static final Achievement VEGETABLE = new Achievement(key("get_vegetable"), "stardew.vegetable", StardewItems.CARROT, STARDEW).registerAchievement();

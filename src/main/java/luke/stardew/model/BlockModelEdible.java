@@ -8,6 +8,7 @@ import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.util.helper.Side;
+import org.jspecify.annotations.NonNull;
 
 @Environment(EnvType.CLIENT)
 public class BlockModelEdible<T extends BlockLogic> extends BlockModelStandard<T> {
@@ -21,7 +22,7 @@ public class BlockModelEdible<T extends BlockLogic> extends BlockModelStandard<T
     }
 
     @Override
-    public IconCoordinate getBlockTextureFromSideAndMetadata(Side side, int data) {
+    public IconCoordinate getBlockTextureFromSideAndMetadata(@NonNull Side side, int data) {
         return data > 0 && side == Side.WEST ? this.inner : super.getBlockTextureFromSideAndMetadata(side, data);
     }
 }

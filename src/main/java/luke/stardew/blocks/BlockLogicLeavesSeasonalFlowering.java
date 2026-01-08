@@ -11,10 +11,10 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
 import net.minecraft.core.world.season.Season;
-import net.minecraft.core.world.season.Seasons;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jspecify.annotations.NonNull;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -22,98 +22,105 @@ import java.util.function.Supplier;
 public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal implements IBonemealable {
     public static final int MASK_GROWTH_DATA = 240;
     public static final int MAX_GROWTH_STATE = 1;
-    protected final Supplier<Item> fruit;
-    protected final Block<?> floweringLeaves;
 
-    public BlockLogicLeavesSeasonalFlowering(Block<?> block, @NonNull Supplier<Block<?>> sapling, Season season, Supplier<Item> fruit, Block<?> floweringLeaves) {
+    private final Supplier<Item> fruit;
+    private final Block<?> floweringLeaves;
+
+    public BlockLogicLeavesSeasonalFlowering(@NotNull Block<?> block, @NotNull Supplier<Block<?>> sapling, Season season, Supplier<Item> fruit, Block<?> floweringLeaves) {
         super(block, sapling, season);
         this.fruit = fruit;
         this.floweringLeaves = floweringLeaves;
     }
 
     @Override
-    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
-        int growthRate = getGrowthRate(meta);
+    public ItemStack @Nullable [] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, @NotNull TilePosc tilePos, int data, @Nullable TileEntity tileEntity) {
+        int growthRate = getGrowthRate(data);
         if (dropCause != EnumDropCause.PICK_BLOCK && dropCause != EnumDropCause.SILK_TOUCH) {
             return growthRate == 0 ? null : new ItemStack[]{new ItemStack(fruit.get(), world.rand.nextInt(2) + 1)};
         } else {
-            return new ItemStack[]{new ItemStack(this)};
+            return new ItemStack[]{new ItemStack(this.block)};
         }
     }
 
     @Override
-    public void onBlockLeftClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
-        this.onBlockRightClicked(world, x, y, z, player, null, 0.0F, 0.0F);
+    public boolean onInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @Nullable Side side, double xHit, double yHit) {
+        return harvest(world, tilePos, player);
     }
 
     @Override
-    public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xPlaced, double yPlaced) {
-        return this.harvest(world, x, y, z, player);
+    public void onAttacked(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @NotNull Side side, double xHit, double yHit) {
+        // Left-click harvesting (same as right-click)
+        harvest(world, tilePos, player);
     }
 
-    public boolean harvest(World world, int x, int y, int z, @Nullable Player player) {
-        int meta = world.getBlockMetadata(x, y, z);
+    private boolean harvest(@NotNull World world, @NotNull TilePosc tilePos, @Nullable Player player) {
+        int meta = world.getBlockData(tilePos);
         int growthRate = getGrowthRate(meta);
+
         if (growthRate > 0) {
             if (player != null) {
                 world.playSoundAtEntity(player, player, "item.pickup", 1.0F, 1.0F);
             }
 
             if (!world.isClientSide) {
-                this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, meta, null, null);
+                dropWithCause(world, EnumDropCause.WORLD, tilePos, meta, null, player);
             }
 
-            world.setBlockMetadataWithNotify(x, y, z, setGrowthRate(meta, 0));
-            world.scheduleBlockUpdate(x, y, z, this.floweringLeaves.id(), this.tickDelay());
+            world.setBlockDataNotify(tilePos, setGrowthRate(meta, 0));
+            world.scheduleBlockUpdate(tilePos, floweringLeaves, tickDelay());
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     @Override
-    public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
-        this.harvest(world, x, y, z, null);
+    public void onActivatorInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull TileEntityActivator activator, @NotNull Direction direction) {
+        harvest(world, tilePos, null);
     }
 
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        super.updateTick(world, x, y, z, rand);
-        int meta = world.getBlockMetadata(x, y, z);
+    public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
+        super.updateTick(world, tilePos, rand, isRandomTick);
+
+        int meta = world.getBlockData(tilePos);
         int growthRate = getGrowthRate(meta);
-        if (world.getSeasonManager().getCurrentSeason() == season) {
+
+        Season currentSeason = world.getSeasonManager().getCurrentSeason();
+
+        if (currentSeason == season) {
             if (rand.nextInt(20) == 0 && growthRate == 0) {
-                world.setBlockMetadataWithNotify(x, y, z, setGrowthRate(meta, MAX_GROWTH_STATE));
-                world.scheduleBlockUpdate(x, y, z, this.floweringLeaves.id(), this.tickDelay());
+                world.setBlockDataNotify(tilePos, setGrowthRate(meta, MAX_GROWTH_STATE));
+                world.scheduleBlockUpdate(tilePos, floweringLeaves, tickDelay());
             }
         } else if (growthRate > 0) {
-            world.setBlockMetadataWithNotify(x, y, z, meta & 15);
-            world.scheduleBlockUpdate(x, y, z, this.floweringLeaves.id(), this.tickDelay());
+            world.setBlockDataNotify(tilePos, meta & 15); // Reset growth bits
+            world.scheduleBlockUpdate(tilePos, floweringLeaves, tickDelay());
         }
-
     }
 
     @Override
-    public boolean onBonemealUsed(ItemStack itemstack, @Nullable Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-        int meta = world.getBlockMetadata(blockX, blockY, blockZ);
+    public boolean onBonemealUsed(@NotNull ItemStack itemStack, @Nullable Player player, @NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+        int meta = world.getBlockData(tilePos);
         if (getGrowthRate(meta) != 0) {
             return false;
-        } else {
-            if (!world.isClientSide) {
-                if (world.getSeasonManager().getCurrentSeason() != season) {
-                    return true;
-                }
+        }
 
-                if (world.getSeasonManager().getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
-                    world.setBlockMetadataWithNotify(blockX, blockY, blockZ, setGrowthRate(meta, MAX_GROWTH_STATE));
-                    if (player == null || player.getGamemode().consumeBlocks()) {
-                        --itemstack.stackSize;
-                    }
-                }
+        if (!world.isClientSide) {
+            Season currentSeason = world.getSeasonManager().getCurrentSeason();
+
+            // Only allow bonemeal in the correct season (or always, depending on design)
+            if (currentSeason != season) {
+                return true; // Consume bonemeal but do nothing
             }
 
-            return true;
+            world.setBlockDataNotify(tilePos, setGrowthRate(meta, MAX_GROWTH_STATE));
+
+            if (player == null || player.getGamemode().hasBlockConsumption()) {
+                --itemStack.stackSize;
+            }
         }
+
+        return true;
     }
 
     public static int getGrowthRate(int meta) {
@@ -121,6 +128,6 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     public static int setGrowthRate(int meta, int growthRate) {
-        return meta & -241 | growthRate << 4 & MASK_GROWTH_DATA;
+        return (meta & ~MASK_GROWTH_DATA) | ((growthRate << 4) & MASK_GROWTH_DATA);
     }
 }

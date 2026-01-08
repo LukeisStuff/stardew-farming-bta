@@ -17,11 +17,9 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.season.Seasons;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealable {
     public float fertilizedRate;
@@ -92,10 +90,10 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         this.canHarvest = false;
     }
 
-    @Override
-    public boolean mayPlaceOn(int blockId) {
-        return Blocks.FARMLAND_DIRT.id() == blockId;
-    }
+//    @Override
+//    public boolean mayPlaceOn(int blockId) {
+//        return Blocks.FARMLAND_DIRT.id() == blockId;
+//    }
 
     public void fertilize(World world, int x, int y, int z) {
         world.setBlockMetadataWithNotify(x, y, z, this.maxGrowth);
@@ -109,20 +107,20 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         }
     }
 
-    @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        super.updateTick(world, x, y, z, rand);
-        if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER && world.getBlockLightValue(x, y + 1, z) >= 9) {
-            int meta = world.getBlockMetadata(x, y, z);
-            if (meta++ < this.maxGrowth) {
-                float growthRate = this.getGrowthRate(world, x, y, z);
-                if (rand.nextInt((int) (100.0F / growthRate)) == 0) {
-                    this.onGrowth(world, x, y, z, meta);
-                }
-            }
-        }
-
-    }
+//    @Override
+//    public void updateTick(World world, int x, int y, int z, Random rand) {
+//        super.updateTick(world, x, y, z, rand);
+//        if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SUMMER && world.getBlockLightValue(x, y + 1, z) >= 9) {
+//            int meta = world.getBlockMetadata(x, y, z);
+//            if (meta++ < this.maxGrowth) {
+//                float growthRate = this.getGrowthRate(world, x, y, z);
+//                if (rand.nextInt((int) (100.0F / growthRate)) == 0) {
+//                    this.onGrowth(world, x, y, z, meta);
+//                }
+//            }
+//        }
+//
+//    }
 
     public float getGrowthRate(World world, int x, int y, int z) {
         float growthRate = 1.0F;
@@ -205,7 +203,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         if (world.getBlockMetadata(x, y, z) < this.maxGrowth) {
             if (!world.isClientSide) {
                 this.onGrowth(world, x, y, z, this.maxGrowth);
-                if (player.getGamemode().consumeBlocks()) {
+                if (player.getGamemode().hasBlockConsumption()) {
                     stack.stackSize--;
                 }
             }

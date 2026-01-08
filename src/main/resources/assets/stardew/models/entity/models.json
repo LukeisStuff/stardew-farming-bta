@@ -1,0 +1,14 @@
+{
+  "model_paths": [
+    "/assets/stardew/models/entity/duck/duck.geo.json",
+    "/assets/stardew/models/entity/goat/goat.geo.json"
+  ],
+  "renderers": {
+    "stardew:goat": {
+      "main":"geometry.goat"
+    },
+    "stardew:duck": {
+      "main":"geometry.duck"
+    }
+  }
+}

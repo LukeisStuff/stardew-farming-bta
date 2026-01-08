@@ -19,7 +19,7 @@ public class WorldFeatureTreeSeasonal extends WorldFeatureTree {
     @Override
     public void placeLeaves(World world, int x, int y, int z, Random rand) {
         if (rand.nextInt(this.rarity) == 0) {
-            world.setBlockAndMetadataWithNotify(x, y, z, this.leavesFloweringID, world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL ? 1 : 0);
+            world.setBlockAndMetadataWithNotify(x, y, z, this.leavesFloweringID, world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL ? 1 : 0);
         } else {
             world.setBlockWithNotify(x, y, z, this.leavesID);
         }

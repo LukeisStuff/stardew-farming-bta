@@ -2,7 +2,7 @@ package luke.stardew.blocks;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicRotatable;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -12,7 +12,7 @@ import net.minecraft.core.world.World;
 public class BlockLogicBeehive extends BlockLogicRotatable {
 
     public BlockLogicBeehive(Block<?> block) {
-        super(block, Material.wood);
+        super(block, Materials.WOOD);
         block.setTicking(true);
     }
 

@@ -2,17 +2,21 @@ package luke.stardew.blocks;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicTransparent;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.enums.EnumBlockSoundEffectType;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
+import org.joml.primitives.AABBd;
+import org.joml.primitives.AABBdc;
 
 public class BlockLogicHoney extends BlockLogicTransparent {
 
     public BlockLogicHoney(Block<?> block) {
-        super(block, Material.leaves);
+        super(block, Materials.LEAVES);
         block.setTicking(true);
     }
 
@@ -22,13 +26,13 @@ public class BlockLogicHoney extends BlockLogicTransparent {
     }
 
     @Override
-    public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
-        float f = 0.125F;
-        return AABB.getTemporaryBB(x + f, y + f, z + f, (x + 1) - f, (y + 1) - f, (z + 1) - f);
+    public @Nullable AABBdc getCollisionAABB(@NonNull WorldSource source, @NonNull TilePosc tilePos) {
+        double f = 0.125F;
+        return new AABBd(tilePos.x(), tilePos.y(), tilePos.z(), tilePos.x() + 1, (double)(tilePos.y() + 1) - f, tilePos.z() + 1);
     }
 
     @Override
-    public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
+    public void onEntityCollidedWithBlock(@NonNull World world, int x, int y, int z, Entity entity) {
         entity.xd *= 0.4;
         entity.yd *= 0.1;
         entity.zd *= 0.4;

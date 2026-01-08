@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class ItemModelBait extends ItemModelStandard {
-    protected IconCoordinate baitFull = TextureRegistry.getTexture("stardew:item/armor_bait_empty");
+    protected IconCoordinate baitFull = TextureRegistry.getTexture("stardew:item/armor_can_worms_empty");
 
     public ItemModelBait(Item item, String namespace) {
         super(item, namespace);

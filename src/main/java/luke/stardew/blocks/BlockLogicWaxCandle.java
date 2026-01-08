@@ -5,7 +5,7 @@ import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicFluid;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.entity.TileEntityActivator;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemFireStriker;
@@ -22,7 +22,7 @@ public class BlockLogicWaxCandle extends BlockLogic {
     public final boolean burning;
 
     public BlockLogicWaxCandle(Block<?> block, boolean flag) {
-        super(block, Material.decoration);
+        super(block, Materials.DECORATION);
         block.setTicking(true);
         this.burning = flag;
         this.setBlockBounds(0.40625F, 0.0F, 0.40625F, 0.59375F, 0.5F, 0.59375F);

@@ -6,6 +6,8 @@ import net.minecraft.core.block.BlockLogicSaplingBase;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.WorldFeature;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTreeFancy;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Random;
 
@@ -23,12 +25,13 @@ public class BlockLogicSaplingSeasonal extends BlockLogicSaplingBase {
         this.flowerRarity = flowerRarity;
     }
 
-    public void growTree(World world, int i, int j, int k, Random random) {
+    @Override
+    public void growTree(@NonNull World world, @NonNull TilePosc tilePosc, @NonNull Random random) {
         WorldFeature treeBig = new WorldFeatureTreeFancy(this.leafBlock.id(), this.logBlock.id());
         WorldFeature treeSmall = new WorldFeatureTreeSeasonal(this.leafBlock.id(), this.leafFloweringBlock.id(), this.logBlock.id(), 4, this.flowerRarity);
-        world.setBlock(i, j, k, 0);
-        if (!treeSmall.place(world, random, i, j, k) && !treeBig.place(world, random, i, j, k)) {
-            world.setBlock(i, j, k, this.id());
+        world.setBlock(tilePosc.x(), tilePosc.y(), tilePosc.z(), 0);
+        if (!treeSmall.place(world, random, tilePosc.x(), tilePosc.y(), tilePosc.z()) && !treeBig.place(world, random, tilePosc.x(), tilePosc.y(), tilePosc.z())) {
+            world.setBlock(tilePosc.x(), tilePosc.y(), tilePosc.z(), this.id());
         }
 
     }

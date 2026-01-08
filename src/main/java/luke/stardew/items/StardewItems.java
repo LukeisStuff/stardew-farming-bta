@@ -47,7 +47,6 @@ public class StardewItems {
     public static Item CRANBERRIES;
 
     //Processed Foods
-    public static Item DOUGH;
     public static Item EGG_COOKED;
     public static Item HONEY;
     public static Item JAR_JAM;
@@ -61,8 +60,8 @@ public class StardewItems {
 
 
     //Watering Cans
-    public static Item WATERING_CAN;
-    public static Item WATERING_CAN_STEEL;
+    public static Item TOOL_WATERING_CAN;
+    public static Item TOOL_WATERING_CAN_STEEL;
 
     public static Item WAX;
 
@@ -89,8 +88,8 @@ public class StardewItems {
     public static Item TOOL_FISHINGROD_STEEL;
 
     public static Item WORM;
-    public static Item ARMOR_CAN_OF_WORMS;
-    public static Item ARMOR_CAN_OF_WORMS_GOLDEN;
+    public static Item ARMOR_CAN_WORMS;
+    public static Item ARMOR_CAN_WORMS_GOLD;
 
     //Treasures
     public static Item RECORD_PINK;
@@ -201,7 +200,7 @@ public class StardewItems {
 
         FISH_EEL_LAVA = new ItemBuilder(MOD_ID)
             .setStackSize(1)
-            .build(new Item("fish.lavaeel", itemKey("fish_lavaeel"), itemID("FISH_EEL_LAVA")));
+            .build(new Item("fish.eel.lava", itemKey("fish_eel.lava"), itemID("FISH_EEL_LAVA")));
         FISH_SWORD = new ItemBuilder(MOD_ID)
             .setStackSize(1)
             .build(new Item("fish.sword", itemKey("fish_sword"), itemID("FISH_SWORD")));
@@ -214,9 +213,6 @@ public class StardewItems {
 
 
         //Processed Foods
-        DOUGH = new ItemBuilder(MOD_ID)
-            .build(new ItemFood("food.dough", itemKey("dough"), itemID("DOUGH"), -1, 0, false, 64));
-
         EGG_COOKED = new ItemBuilder(MOD_ID)
             .build(new ItemFood("food.egg.cooked", itemKey("food_egg_cooked"), itemID("EGG_COOKED"), 10, 8, false, 16));
 
@@ -255,11 +251,11 @@ public class StardewItems {
 
 
         //Tools
-        WATERING_CAN = new ItemBuilder(MOD_ID)
-            .build(new ItemToolWateringCan("tool.wateringcan", itemKey("wateringcan"), itemID("WATERING_CAN"), ToolMaterial.iron));
+        TOOL_WATERING_CAN = new ItemBuilder(MOD_ID)
+            .build(new ItemToolWateringCan("tool.watering.can", itemKey("tool_watering_can"), itemID("TOOL_WATERING_CAN"), ToolMaterial.iron));
 
-        WATERING_CAN_STEEL = new ItemBuilder(MOD_ID)
-            .build(new ItemToolWateringCan("tool.wateringcan.steel", itemKey("wateringcan_steel"), itemID("WATERING_CAN_STEEL"), ToolMaterial.steel));
+        TOOL_WATERING_CAN_STEEL = new ItemBuilder(MOD_ID)
+            .build(new ItemToolWateringCan("tool.watering.can.steel", itemKey("tool_watering_can_steel"), itemID("TOOL_WATERING_CAN_STEEL"), ToolMaterial.steel));
 
         WAX = new ItemBuilder(MOD_ID)
             .build(new Item("wax", itemKey("wax"), itemID("WAX")));
@@ -280,11 +276,11 @@ public class StardewItems {
         WORM = new ItemBuilder(MOD_ID)
             .build(new Item("worm", itemKey("worm"), itemID("WORM")));
 
-        ARMOR_CAN_OF_WORMS = new ItemBuilder(MOD_ID)
-            .build(new ItemCanOfWorms("armor.canofworms", itemKey("armor_canofworms"), itemID("ARMOR_CAN_OF_WORMS")));
+        ARMOR_CAN_WORMS = new ItemBuilder(MOD_ID)
+            .build(new ItemCanOfWorms("armor.can.worms", itemKey("armor_can_worms"), itemID("ARMOR_CAN_WORMS")));
 
-        ARMOR_CAN_OF_WORMS_GOLDEN = new ItemBuilder(MOD_ID)
-            .build(new ItemCanOfWormsEndless("armor.canofworms.gold", itemKey("armor_canofworms_golden"), itemID("ARMOR_CAN_OF_WORMS_GOLDEN")));
+        ARMOR_CAN_WORMS_GOLD = new ItemBuilder(MOD_ID)
+            .build(new ItemCanOfWormsEndless("armor.can.worms.gold", itemKey("armor_can_worms_gold"), itemID("ARMOR_CAN_WORMS_GOLD")));
 
 
         //Treasures
@@ -293,7 +289,7 @@ public class StardewItems {
             .build(new ItemDiscMusic("record.pink", itemKey("record_pink"), itemID("RECORD_PINK"), "stardew:axolotl", "C418"));
 
         BEANS_COFFEE = new ItemBuilder(MOD_ID)
-            .build(new ItemSeedsStake("bean.coffee", itemKey("beans_coffee"), itemID("BEANS_COFFEE"), StardewBlocks.CROPS_BEANS_BOTTOM));
+            .build(new ItemSeedsStake("beans.coffee", itemKey("beans_coffee"), itemID("BEANS_COFFEE"), StardewBlocks.CROPS_BEANS_BOTTOM));
 
         EGG_DUCK = new ItemBuilder(MOD_ID)
             .build(new ItemEggDuck("egg.duck", itemKey("egg_duck"), itemID("EGG_DUCK")));

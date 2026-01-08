@@ -8,9 +8,12 @@ import net.minecraft.core.block.material.Material;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.Nullable;
+import org.joml.primitives.AABBdc;
+import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Random;
@@ -23,12 +26,12 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        this.checkSupport(world, x, y, z);
+    public void updateTick(@NonNull World world, @NonNull TilePosc tilePos, @NonNull Random rand, boolean isRandomTick) {
+        this.checkSupport(world, tilePos.x(), tilePos.y(), tilePos.z());
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
+    public void onNeighborBlockChange(@NonNull World world, int x, int y, int z, int blockId) {
         this.checkSupport(world, x, y, z);
     }
 
@@ -51,12 +54,12 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
+    public ItemStack[] getBreakResult(@NonNull World world, @NonNull EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
         return new ItemStack[]{new ItemStack(Items.STICK)};
     }
 
     @Override
-    public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+    public @Nullable AABBdc getCollisionAABB(@NonNull WorldSource source, @NonNull TilePosc tilePos) {
         return null;
     }
 
@@ -66,7 +69,7 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public boolean renderAsNormalBlockOnCondition(WorldSource world, int x, int y, int z) {
+    public boolean renderAsNormalBlockOnCondition(@NonNull WorldSource world, int x, int y, int z) {
         return false;
     }
 }

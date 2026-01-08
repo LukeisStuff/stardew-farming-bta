@@ -1,32 +1,48 @@
 package luke.stardew.entities.duck;
 
-import luke.stardew.StardewMod;
+import com.mojang.nbt.tags.CompoundTag;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicFluid;
-import net.minecraft.core.entity.animal.Creature;
+import net.minecraft.core.entity.AgedMob;
+import net.minecraft.core.entity.EntityItem;
+import net.minecraft.core.entity.MobAge;
 import net.minecraft.core.entity.animal.MobAnimal;
+import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.item.tag.ItemTags;
-import net.minecraft.core.util.collection.NamespaceID;
+import net.minecraft.core.item.tool.ItemToolShears;
+import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
-public class MobDuck extends MobAnimal implements Creature {
+import static luke.stardew.StardewMod.MOD_ID;
+
+public class MobDuck extends MobAnimal implements AgedMob {
     public float flap = 0.0F;
     public float flapSpeed = 0.0F;
     public float oFlapSpeed;
     public float oFlap;
     public float flapping = 1.0F;
     public int eggTimer;
+    public int featherTimer;
+    private final @NonNull MobAge age;
 
     public MobDuck(World world) {
         super(world);
-        this.textureIdentifier = NamespaceID.getPermanent("stardew", "duck");
+        this.setTextureIdentifier(MOD_ID, "duck");
         this.setSize(0.6f, 1.0f);
         this.eggTimer = this.random.nextInt(3000) + 3000;
+        this.featherTimer = this.random.nextInt(3000) + 3000;
         this.mobDrops.add(new WeightedRandomLootObject(Items.FEATHER_CHICKEN.getDefaultStack(), 0, 1));
+        this.age = MobAge.newRandom(this, 168, 14, 140);
+    }
+
+    public @NonNull MobAge getMobAge() {
+        return this.age;
     }
 
     @Override
@@ -62,44 +78,78 @@ public class MobDuck extends MobAnimal implements Creature {
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
-        this.checkOnWater(false);
-        if (this.isInWater()) {
-            this.oFlap = this.flap;
-            this.oFlapSpeed = this.flapSpeed;
-            this.flapSpeed = 0;
-            this.flapping = 0;
-            this.flap = 0;
-            this.yd *= 0.1;
-
-        } else {
-            this.oFlap = this.flap;
-            this.oFlapSpeed = this.flapSpeed;
-            this.flapSpeed = (float) (this.flapSpeed + (this.onGround ? -1 : 4) * 0.3);
-            if (this.flapSpeed < 0.0F) {
-                this.flapSpeed = 0.0F;
-            }
-
-            if (this.flapSpeed > 1.0F) {
-                this.flapSpeed = 1.0F;
-            }
-
-            if (!this.onGround && this.flapping < 1.0F) {
-                this.flapping = 1.0F;
-            }
-
-            this.flapping = (float) (this.flapping * 0.9);
-            if (!this.onGround && this.yd < 0.0) {
-                this.yd *= 0.6;
-            }
-
-            this.flap += this.flapping * 2.0F;
+        this.oFlap = this.flap;
+        this.oFlapSpeed = this.flapSpeed;
+        this.flapSpeed = (float) ((double) this.flapSpeed + (double) (this.onGround ? -1 : 4) * 0.3);
+        if (this.flapSpeed < 0.0F) {
+            this.flapSpeed = 0.0F;
         }
 
-        if (this.world != null && !this.world.isClientSide && --this.eggTimer <= 0) {
-            this.world.playSoundAtEntity(null, this, "mob.chickenplop", 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f - 1.0f);
+        if (this.flapSpeed > 1.0F) {
+            this.flapSpeed = 1.0F;
+        }
+
+        if (!this.onGround && this.flapping < 1.0F) {
+            this.flapping = 1.0F;
+        }
+
+        this.flapping = (float) ((double) this.flapping * 0.9);
+        if (!this.onGround && this.yd < (double) 0.0F) {
+            this.yd *= 0.6;
+        }
+
+        this.flap += this.flapping * 2.0F;
+        if (!this.world.isClientSide && --this.eggTimer <= 0) {
+            this.world.playSoundAtEntity(null, this, "mob.chickenplop", 1.0F, (this.random.nextFloat() - this.random.nextFloat()) * 0.2F + 1.0F);
             this.dropItem(StardewItems.EGG_DUCK.id, 1);
             this.eggTimer = this.random.nextInt(3000) + 3000;
         }
+
+        if (!this.world.isClientSide && --this.featherTimer <= 0) {
+            this.dropItem(Items.FEATHER_CHICKEN.id, 1);
+            this.featherTimer = this.random.nextInt(6000) + 6000;
+        }
+
+        this.getMobAge().tick(this.world);
+    }
+
+    @Override
+    public boolean interact(@NotNull Player player) {
+        if (super.interact(player)) {
+            return true;
+        } else {
+            ItemStack heldItem = player.getHeldItem();
+            if (heldItem != null && heldItem.getItem() instanceof ItemToolShears && this.getHealth() > 0 && this.hurtTime <= 0 && !this.world.isClientSide) {
+                int count = 1 + this.random.nextInt(2);
+
+                for (int j = 0; j < count; ++j) {
+                    EntityItem feather = this.dropItem(new ItemStack(Items.FEATHER_CHICKEN, 1), 1.0F);
+                    feather.yd += this.random.nextFloat() * 0.05F;
+                    feather.xd += (this.random.nextFloat() - this.random.nextFloat()) * 0.1F;
+                    feather.zd += (this.random.nextFloat() - this.random.nextFloat()) * 0.1F;
+                }
+
+                heldItem.damageItem(1, player);
+                if (heldItem.stackSize <= 0) {
+                    player.destroyCurrentEquippedItem();
+                }
+
+                this.hurt(player, 1, DamageType.COMBAT);
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+    public void readAdditionalSaveData(@NotNull CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        this.age.readTag(tag);
+    }
+
+    public void addAdditionalSaveData(@NotNull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        this.age.writeTag(tag);
     }
 
     @Override
@@ -119,17 +169,17 @@ public class MobDuck extends MobAnimal implements Creature {
 
     @Override
     public String getLivingSound() {
-        return StardewMod.MOD_ID + ":mob.duck.idle";
+        return MOD_ID + ":mob.duck.idle";
     }
 
     @Override
     public String getHurtSound() {
-        return StardewMod.MOD_ID + ":mob.duck.hurt";
+        return MOD_ID + ":mob.duck.hurt";
     }
 
     @Override
     public String getDeathSound() {
-        return StardewMod.MOD_ID + ":mob.duck.death";
+        return MOD_ID + ":mob.duck.death";
     }
 
     @Override

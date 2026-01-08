@@ -10,14 +10,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 @Mixin(value = TileEntityFurnace.class, remap = false)
 public class TileEntityFurnaceMixin {
-    @Redirect(
-        method = "smeltItem()V",
-        at = @At(
-            value = "FIELD",
-            target = "Lnet/minecraft/core/item/ItemStack;stackSize:I",
-            opcode = 181
-        )
-    )
+    @Redirect(method = "smeltItem()V", at = @At(value = "FIELD", target = "Lnet/minecraft/core/item/ItemStack;stackSize:I", opcode = 181))
     private void redirectStackSizeDecrement(ItemStack input, int newStackSize) {
         TileEntityFurnace furnace = (TileEntityFurnace) (Object) this;
         if (input != null && input.getItem().equals(Items.BUCKET_MILK)) {
