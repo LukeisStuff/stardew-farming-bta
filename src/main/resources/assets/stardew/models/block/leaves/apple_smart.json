@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves/leaves_smart",
+  "textures": {
+    "all": "stardew:block/leaves/apple_fancy"
+  }
+}

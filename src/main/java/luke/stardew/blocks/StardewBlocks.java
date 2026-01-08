@@ -1,5 +1,7 @@
 package luke.stardew.blocks;
 
+import luke.stardew.blocks.beehive.BlockLogicBeehive;
+import luke.stardew.blocks.beehive.TileEntityBeehive;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Materials;
@@ -59,7 +61,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
     public static Block<?> BUSH;
 
     public static Block<?> BEEHIVE_IDLE;
-    public static Block<?> BEEHIVE_HONEY;
+    public static Block<?> BEEHIVE_ACTIVE;
 
     public static Block<?> BLOCK_HONEY;
 
@@ -67,8 +69,6 @@ public final class StardewBlocks implements BlockInitEntrypoint {
     public static Block<?> CROPS_BEANS_TOP;
 
     public static Block<?> CAKE_CHOCOLATE;
-
-    public static Block<?> BEEHIVE;
 
     public static Block<?> PIZZA;
 
@@ -228,12 +228,13 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("bush", "bush", blockID("BUSH"), BlockLogicBush::new);
 
         BEEHIVE_IDLE = wood
-            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-            .build("beehive.idle", "beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehiveActive(b, false));
+            .setTileEntity(TileEntityBeehive::new)
+            .build("beehive.idle", "beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehive(b, false));
 
-        BEEHIVE_HONEY = wood
-            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-            .build("beehive.honey", "beehive_honey", blockID("BEEHIVE_HONEY"), b -> new BlockLogicBeehiveActive(b, true));
+        BEEHIVE_ACTIVE = wood
+            .addTags(BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTileEntity(TileEntityBeehive::new)
+            .build("beehive.active", "beehive_active", blockID("BEEHIVE_ACTIVE"), b -> new BlockLogicBeehive(b, true));
 
         BLOCK_HONEY = new BlockBuilder(MOD_ID)
             .setBlockSound(new BlockSound("step.grass", "step.grass", 1.0f, 1.5f))
@@ -252,9 +253,6 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setResistance(0.5f)
             .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
             .build("cake.chocolate", "cake_chocolate", blockID("CAKE_CHOCOLATE"), BlockLogicCakeChocolate::new);
-
-        BEEHIVE = wood
-            .build("beehive", "beehive", blockID("BEEHIVE"), BlockLogicBeehive::new);
 
         PIZZA = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.CLOTH)

@@ -96,11 +96,8 @@ tile.stardew.crops.cranberries.desc=Ripe cranberry bush, plucked straight from t
 tile.stardew.bush.name=Bush
 tile.stardew.bush.desc=A wild bush that drops seeds based on the season.
 
-tile.stardew.beehive.name=Beehive
-tile.stardew.beehive.desc=A man-made nest for bees to create a sweet and sticky nectar.
-
-tile.stardew.beehive.idle.name=Active Beehive
-tile.stardew.beehive.idle.desc=A man-made nest for bees creating sweet and sticky nectar.
+tile.stardew.beehive.idle.name=Beehive
+tile.stardew.beehive.idle.desc=A man-made nest for bees to create a sweet and sticky nectar.
 
 tile.stardew.beehive.honey.name=Loaded Beehive
 tile.stardew.beehive.honey.desc=A man-made nest for bees that created a sweet and sticky nectar.

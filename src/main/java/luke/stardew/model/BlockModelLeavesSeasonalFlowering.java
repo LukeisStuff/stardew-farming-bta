@@ -12,34 +12,37 @@ import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.world.WorldSource;
 import net.minecraft.core.world.pos.TilePosc;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 import org.useless.dragonfly.models.block.StaticBlockModel;
 
 @Environment(EnvType.CLIENT)
 public class BlockModelLeavesSeasonalFlowering<T extends BlockLogic> extends BlockModelGenericLeaves<T> {
-    private final @NotNull StaticBlockModel overlayGrown;
-    private final @NotNull StaticBlockModel overlayFlowering;
+    private final @NonNull StaticBlockModel overlay;
+    private final @NonNull StaticBlockModel overlayFlowering;
 
-    public BlockModelLeavesSeasonalFlowering(@NotNull Block<T> block, String baseTexturePath, String overlayName) {
+    public BlockModelLeavesSeasonalFlowering(@NonNull Block<T> block, String baseTexturePath, String overlayName) {
         super(block, baseTexturePath);
-        this.overlayGrown = BlockModelDispatcher.loadDataModel("stardew:block/leaves/" + overlayName + "_overlay").asModel();
-        this.overlayFlowering = BlockModelDispatcher.loadDataModel("stardew:block/leaves/" + overlayName + "_flowering_overlay").asModel();
+        this.overlay = BlockModelDispatcher.loadDataModel("stardew:block/leaves/" + overlayName + "_overlay").asModel();
+        this.overlayFlowering = BlockModelDispatcher.loadDataModel("stardew:block/leaves/" + overlayName + "_overlay_flowering").asModel();
     }
 
     @Override
-    public boolean renderAttached(@NotNull TessellatorGeneral tessellator, @NotNull WorldSource worldSource, @NotNull TilePosc tilePos, boolean cullFaces, @Nullable IconCoordinate overrideTexture) {
-        boolean rendered = super.renderAttached(tessellator, worldSource, tilePos, cullFaces, overrideTexture);
-        int meta = worldSource.getBlockData(tilePos);
-        int growthRate = BlockLogicLeavesSeasonalFlowering.getGrowthRate(meta);
-        StaticBlockModel overlay = growthRate > 0 ? overlayGrown : overlayFlowering;
-        rendered |= overlay.renderAttached(this, tessellator, worldSource, tilePos, 0, 0, 0, 0.0, 0.0, 0.0, false, cullFaces, overrideTexture);
-        return rendered;
-    }
-
-    @Override
-    public void renderStandalone(@NotNull TessellatorGeneral tessellator, int metadata, byte lightIndex) {
+    public void renderStandalone(@NonNull TessellatorGeneral tessellator, int metadata, byte lightIndex) {
         super.renderStandalone(tessellator, metadata, lightIndex);
-        overlayGrown.renderStandalone(this, tessellator, 0.0, 0.0, 0.0, metadata, lightIndex, BlockColorDispatcher.getInstance().getDispatch(this.block));
+        this.overlay.renderStandalone(this, tessellator, 0.0F, 0.0F, 0.0F, metadata, lightIndex, BlockColorDispatcher.getInstance().getDispatch(this.block));
+    }
+
+    @Override
+    public boolean renderAttached(@NonNull TessellatorGeneral tessellator, @NonNull WorldSource worldSource, @NonNull TilePosc tilePos, boolean cullFaces, @Nullable IconCoordinate overrideTexture) {
+        boolean didRender = super.renderAttached(tessellator, worldSource, tilePos, cullFaces, overrideTexture);
+        int growthRate = BlockLogicLeavesSeasonalFlowering.getGrowthRate(worldSource.getBlockData(tilePos));
+        if (growthRate > 0) {
+            didRender |= this.overlay.renderAttached(this, tessellator, worldSource, tilePos, 0, 0, 0, 0.0F, 0.0F, 0.0F, false, cullFaces, overrideTexture);
+        } else {
+            didRender |= this.overlayFlowering.renderAttached(this, tessellator, worldSource, tilePos, 0, 0, 0, 0.0F, 0.0F, 0.0F, false, cullFaces, overrideTexture);
+        }
+
+        return didRender;
     }
 }

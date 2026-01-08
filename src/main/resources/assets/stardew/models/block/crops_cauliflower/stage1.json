@@ -1,0 +1,31 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"side": "block/crops_pumpkin/stage1_side",
+		"top": "block/crops_pumpkin/stage1_top",
+		"overlay": "#top",
+		"particle_up": "#top",
+		"particle_down": "#top",
+		"particle_north": "#side",
+		"particle_south": "#side",
+		"particle_west": "#side",
+		"particle_east": "#side"
+	},
+	"elements": [
+		{
+			"name": "pumpkin",
+			"from": [4, 0, 4],
+			"to": [12, 8, 12],
+			"rotation": {"angle": 0, "axis": "y", "origin": [4, 0, 4]},
+			"faces": {
+				"north": {"uv": [4, 8, 12, 16], "texture": "#side"},
+				"east": {"uv": [4, 8, 12, 16], "texture": "#side"},
+				"south": {"uv": [4, 8, 12, 16], "texture": "#side"},
+				"west": {"uv": [4, 8, 12, 16], "texture": "#top"},
+				"up": {"uv": [4, 4, 12, 12], "texture": "#top"},
+				"down": {"uv": [4, 4, 12, 12], "texture": "#top"}
+			}
+		}
+	]
+}

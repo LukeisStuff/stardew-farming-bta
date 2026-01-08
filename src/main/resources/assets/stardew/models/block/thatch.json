@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "stardew:block/thatch/top",
+    "down": "stardew:block/thatch/top",
+    "south": "stardew:block/thatch/side",
+    "north": "stardew:block/thatch/side",
+    "west": "stardew:block/thatch/side",
+    "east": "stardew:block/thatch/side"
+  }
+}

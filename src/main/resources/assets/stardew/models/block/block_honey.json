@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "renderlayer": 1,
+  "textures": {
+    "all": "stardew:block/block_honey"
+  }
+}

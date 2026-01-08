@@ -1,9 +1,12 @@
 package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
+import luke.stardew.blocks.beehive.RecipeEntryBeehive;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.data.registry.Registries;
+import net.minecraft.core.data.registry.recipe.RecipeGroup;
+import net.minecraft.core.data.registry.recipe.RecipeSymbol;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import turniplabs.halplibe.helper.RecipeBuilder;
@@ -13,6 +16,10 @@ import turniplabs.halplibe.util.RecipeEntrypoint;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewRecipes implements RecipeEntrypoint {
+
+    public static final RecipeGroup<RecipeEntryBeehive> BEEHIVE = new RecipeGroup<>(
+        new RecipeSymbol(new ItemStack(StardewBlocks.BEEHIVE_ACTIVE))
+    );
 
     public void initializeRecipes() {
         RecipeBuilderShaped template4ItemtoBlock = new RecipeBuilderShaped(MOD_ID, "XX", "XX");
@@ -64,7 +71,7 @@ public class StardewRecipes implements RecipeEntrypoint {
         RecipeBuilder.Shaped(MOD_ID, "PPP", "SSS", "PPP")
             .addInput('P', "minecraft:planks")
             .addInput('S', MOD_ID + ":block/flower")
-            .create("beehive", new ItemStack(StardewBlocks.BEEHIVE, 1));
+            .create("beehive", new ItemStack(StardewBlocks.BEEHIVE_IDLE, 1));
 
         template4ItemtoBlock
             .addInput('X', StardewItems.HONEY)
@@ -308,12 +315,12 @@ public class StardewRecipes implements RecipeEntrypoint {
             .setInput(MOD_ID + ":item/seeds")
             .create("roasted_seeds", new ItemStack(StardewItems.FOOD_SEEDS_ROASTED, 1));
 
-
     }
 
     @Override
     public void onRecipesReady() {
         initializeRecipes();
+//        Registries.RECIPES.MINECRAFT.register("beehive", BEEHIVE);
     }
 
     @Override

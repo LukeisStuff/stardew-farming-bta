@@ -1,0 +1,32 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"textures": {
+		"bottom": "stardew:block/cake_chocolate/bottom",
+		"inner": "stardew:block/cake_chocolate/inner",
+		"side": "stardew:block/cake_chocolate/side",
+		"up": "stardew:block/cake_chocolate/top",
+		"overlay": "#up",
+		"particle_up": "#up",
+		"particle_down": "#bottom",
+		"particle_north": "#side",
+		"particle_south": "#side",
+		"particle_west": "#inner",
+		"particle_east": "#side"
+	},
+	"elements": [
+		{
+			"from": [11, 0, 1],
+			"to": [15, 8, 15],
+			"rotation": {"angle": 0, "axis": "y", "origin": [1, 0, 1]},
+			"faces": {
+				"north": {"uv": [1, 8, 5, 16], "texture": "#side"},
+				"east": {"uv": [1, 8, 15, 16], "texture": "#side"},
+				"south": {"uv": [11, 8, 15, 16], "texture": "#side"},
+				"west": {"uv": [1, 8, 15, 16], "texture": "#inner"},
+				"up": {"uv": [11, 1, 15, 15], "texture": "#up"},
+				"down": {"uv": [11, 1, 15, 15], "texture": "#bottom", "cullface": "down"}
+			}
+		}
+	]
+}

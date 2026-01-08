@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "stardew:block/log/apple_gold_top",
+		"side": "stardew:block/log/apple_gold_side"
+	}
+}

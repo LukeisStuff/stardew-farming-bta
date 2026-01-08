@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "stardew:block/watermelon/top",
+    "down": "stardew:block/watermelon/bottom",
+    "south": "stardew:block/watermelon/side",
+    "north": "stardew:block/watermelon/side",
+    "west": "stardew:block/watermelon/side",
+    "east": "stardew:block/watermelon/side"
+  }
+}

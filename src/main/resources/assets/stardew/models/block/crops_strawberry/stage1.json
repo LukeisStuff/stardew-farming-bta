@@ -1,0 +1,6 @@
+{
+  "parent": "stardew:block/crops_template",
+  "textures": {
+    "crop": "stardew:block/crops_strawberry/stage1"
+  }
+}

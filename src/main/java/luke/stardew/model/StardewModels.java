@@ -41,45 +41,44 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(new BlockModelLeavesSeasonalFlowering<>(StardewBlocks.LEAVES_APPLE_GOLDEN_FLOWERING, "stardew:block/leaves/apple_gold", "apple_gold"));
 
         dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.SAPLING_APPLE, loadDataModel("stardew:block/sapling/apple")).render3D(false));
-        dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.SAPLING_APPLE_GOLDEN, loadDataModel("stardew:block/sapling/apple_golden")).render3D(false));
+        dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.SAPLING_APPLE_GOLDEN, loadDataModel("stardew:block/sapling/apple_gold")).render3D(false));
 
         dispatcher.addDispatch((new BlockModelGeneric<>(StardewBlocks.MUSHROOM_TRUFFLE, loadDataModel("stardew:block/mushroom_truffle"))).render3D(false));
 
         dispatcher.addDispatch(new BlockModelGenericFullyRotatable<>(StardewBlocks.THATCH, loadDataModel("stardew:block/thatch")));
 
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_STRAWBERRY));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_BLUEBERRY));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_CARROT));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_TOMATO));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_POTATO));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_CRANBERRIES));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_PINEAPPLE));
+        dispatcher.addDispatch(new BlockModelGenericCrops<>(StardewBlocks.CROPS_STRAWBERRY, "strawberry", 4));
+        dispatcher.addDispatch(new BlockModelGenericCrops<>(StardewBlocks.CROPS_BLUEBERRY, "blueberry", 5));
+        dispatcher.addDispatch(new BlockModelGenericCrops<>(StardewBlocks.CROPS_CARROT, "carrot", 3));
+        dispatcher.addDispatch(new BlockModelGenericCrops<>(StardewBlocks.CROPS_TOMATO, "tomato", 6));
+        dispatcher.addDispatch(new BlockModelGenericCrops<>(StardewBlocks.CROPS_POTATO, "potato", 5));
+        dispatcher.addDispatch(new BlockModelGenericCrops<>(StardewBlocks.CROPS_CRANBERRIES, "cranberry", 4));
+        dispatcher.addDispatch(new BlockModelGenericCrops<>(StardewBlocks.CROPS_PINEAPPLE, "pineapple", 5));
 
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_GRAPE_BOTTOM));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_GRAPE_TOP));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_CORN_BOTTOM));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_CORN_TOP));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_BEANS_BOTTOM));
-        dispatcher.addDispatch(new BlockModelGenericCropsWheat<>(StardewBlocks.CROPS_BEANS_TOP));
+        dispatcher.addDispatch(new BlockModelGenericCropsDouble<>(StardewBlocks.CROPS_GRAPE_BOTTOM, "grape", 6, false));
+        dispatcher.addDispatch(new BlockModelGenericCropsDouble<>(StardewBlocks.CROPS_GRAPE_TOP, "grape", 3, true));
+        dispatcher.addDispatch(new BlockModelGenericCropsDouble<>(StardewBlocks.CROPS_CORN_BOTTOM, "corn", 7, false));
+        dispatcher.addDispatch(new BlockModelGenericCropsDouble<>(StardewBlocks.CROPS_CORN_TOP, "corn", 4, true));
+        dispatcher.addDispatch(new BlockModelGenericCropsDouble<>(StardewBlocks.CROPS_BEANS_BOTTOM, "beans", 7, false));
+        dispatcher.addDispatch(new BlockModelGenericCropsDouble<>(StardewBlocks.CROPS_BEANS_TOP, "beans", 3, true));
 
-        dispatcher.addDispatch(new BlockModelGenericCropsPumpkin<>(StardewBlocks.CROPS_WATERMELON));
-        dispatcher.addDispatch(new BlockModelGenericCropsPumpkin<>(StardewBlocks.CROPS_CAULIFLOWER));
+        dispatcher.addDispatch(new BlockModelGenericCropsCube<>(StardewBlocks.CROPS_WATERMELON, "watermelon"));
+        dispatcher.addDispatch(new BlockModelGenericCropsCube<>(StardewBlocks.CROPS_CAULIFLOWER, "cauliflower"));
 
-        dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.BUSH, loadDataModel("stardew:block/bush")));
+        dispatcher.addDispatch(new BlockModelBush<>(StardewBlocks.BUSH));
 
-        dispatcher.addDispatch(new BlockModelGenericCake<>(StardewBlocks.CAKE_CHOCOLATE));
-        dispatcher.addDispatch(new BlockModelGenericPie<>(StardewBlocks.PIZZA));
+        dispatcher.addDispatch(new BlockModelGenericCakeChocolate<>(StardewBlocks.CAKE_CHOCOLATE));
+        dispatcher.addDispatch(new BlockModelGenericPizza<>(StardewBlocks.PIZZA));
 
         dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.BLOCK_HONEY, loadDataModel("stardew:block/block_honey")).forceCullSelf(true));
 
-        dispatcher.addDispatch(new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE, loadDataModel("stardew:block/beehive")));
-        dispatcher.addDispatch(new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_IDLE, loadDataModel("stardew:block/beehive")));
-        dispatcher.addDispatch(new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_HONEY, loadDataModel("stardew:block/beehive")));
+        dispatcher.addDispatch(new BlockModelGenericFurnace<>(StardewBlocks.BEEHIVE_IDLE, "stardew:block/beehive/idle"));
+        dispatcher.addDispatch(new BlockModelGenericFurnace<>(StardewBlocks.BEEHIVE_ACTIVE, "stardew:block/beehive/active"));
 
         dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.CANDLE, loadDataModel("stardew:block/candle")));
         dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.CANDLE_ACTIVE, loadDataModel("stardew:block/candle")));
 
-        dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.PLANT_STAKE, loadDataModel("stardew:block/plant_stake")));
+        dispatcher.addDispatch(new BlockModelGeneric<>(StardewBlocks.PLANT_STAKE, loadDataModel("stardew:block/plant_stake")).render3D(false));
 
         dispatcher.addDispatch(new BlockModelGenericFullyRotatable<>(StardewBlocks.WATERMELON, loadDataModel("stardew:block/watermelon")));
         dispatcher.addDispatch(new BlockModelGenericFullyRotatable<>(StardewBlocks.CAULIFLOWER, loadDataModel("stardew:block/cauliflower")));

@@ -1,0 +1,39 @@
+{
+	"format_version": "1.21.6",
+	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
+	"textures": {
+		"leaf": "stardew:block/crops_watermelon/stage0",
+		"overlay": "#leaf",
+		"particle_up": "#leaf",
+		"particle_down": "#leaf",
+		"particle_north": "#leaf",
+		"particle_south": "#leaf",
+		"particle_west": "#leaf",
+		"particle_east": "#leaf"
+	},
+	"elements": [
+		{
+			"name": "leaf0",
+			"from": [4, 0, 0],
+			"to": [20, 0, 16],
+			"shade": false,
+			"rotation": {"angle": 10, "axis": "z", "origin": [4, 0, 0], "rescale": true},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#leaf"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#leaf"}
+			}
+		},
+		{
+			"name": "leaf1",
+			"from": [-4, 0, 0],
+			"to": [12, 0, 16],
+			"shade": false,
+			"rotation": {"angle": -10, "axis": "z", "origin": [12, 0, 0], "rescale": true},
+			"faces": {
+				"up": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#leaf"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 270, "texture": "#leaf"}
+			}
+		}
+	]
+}

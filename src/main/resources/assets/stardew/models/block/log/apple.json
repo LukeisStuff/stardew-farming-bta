@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/cube_column",
+	"textures": {
+		"end": "stardew:block/log/apple_top",
+		"side": "stardew:block/log/apple_side"
+	}
+}

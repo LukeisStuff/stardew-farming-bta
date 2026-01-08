@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "stardew:block/cauliflower/top",
+    "down": "stardew:block/cauliflower/bottom",
+    "south": "stardew:block/cauliflower/side",
+    "north": "stardew:block/cauliflower/side",
+    "west": "stardew:block/cauliflower/side",
+    "east": "stardew:block/cauliflower/side"
+  }
+}
