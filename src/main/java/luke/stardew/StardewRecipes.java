@@ -179,21 +179,28 @@ public class StardewRecipes implements RecipeEntrypoint {
             .create("cake_chocolate", new ItemStack(StardewItems.FOOD_CAKE_CHOCOLATE, 1));
 
         RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
-            .addInput('M', (Items.BUCKET_MILK))
-            .addInput('W', (StardewItems.DOUGH))
-            .addInput('S', (Items.DUST_SUGAR))
-            .addInput('E', (MOD_ID + ":item/eggs"))
-            .addInput('P', (Blocks.PUMPKIN))
+            .addInput('M', Items.BUCKET_MILK)
+            .addInput('W', StardewItems.DOUGH)
+            .addInput('S', Items.DUST_SUGAR)
+            .addInput('E', MOD_ID + ":item/eggs")
+            .addInput('P', Blocks.PUMPKIN)
             .setConsumeContainer(false)
             .create("pumpkin_pie", new ItemStack(Items.FOOD_PUMPKIN_PIE, 1));
 
         RecipeBuilder.Shaped(MOD_ID, " W ", "SES", "DDD")
-            .addInput('W', (Items.BUCKET_WATER))
-            .addInput('D', (StardewItems.DOUGH))
-            .addInput('S', (StardewItems.TOMATO))
-            .addInput('E', (StardewItems.CHEESE))
+            .addInput('W', Items.BUCKET_WATER)
+            .addInput('D', StardewItems.DOUGH)
+            .addInput('S', StardewItems.TOMATO)
+            .addInput('E', StardewItems.CHEESE)
             .setConsumeContainer(false)
             .create("pizza", new ItemStack(StardewItems.FOOD_PIZZA, 1));
+
+        RecipeBuilder.Shaped(MOD_ID, "S", "B", "M")
+            .addInput('B', StardewItems.BEANS_COFFEE)
+            .addInput('M', Items.BUCKET_MILK)
+            .addInput('S', Items.DUST_SUGAR)
+            .setConsumeContainer(true)
+            .create("food_coffee", new ItemStack(StardewItems.FOOD_COFFEE, 1));
 
         RecipeBuilder.Shapeless(MOD_ID)
             .addInput(new ItemStack(StardewBlocks.LOG_APPLE, 1))
@@ -250,12 +257,6 @@ public class StardewRecipes implements RecipeEntrypoint {
             .addInput('I', Items.STRING)
             .addInput('S', StardewItems.WAX)
             .create("wax", new ItemStack(StardewBlocks.CANDLE, 4));
-
-        RecipeBuilder.Shapeless(MOD_ID)
-            .addInput(new ItemStack(StardewItems.BEANS_COFFEE, 1))
-            .addInput(new ItemStack(Items.BUCKET_MILK, 1))
-            .addInput(new ItemStack(Items.DUST_SUGAR, 1))
-            .create("food_coffee", new ItemStack(StardewItems.FOOD_COFFEE, 1));
 
         RecipeBuilder.Shapeless(MOD_ID)
             .addInput(new ItemStack(StardewItems.FISH_STONE, 1))
