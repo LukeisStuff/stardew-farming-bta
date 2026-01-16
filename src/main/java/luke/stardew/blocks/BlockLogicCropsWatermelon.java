@@ -53,19 +53,18 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
                 if (rand.nextInt((int) (100.0F / f)) == 0) {
                     ++meta;
                     if (meta == 5) {
-                        world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.WATERMELON.id(), 0);
+                        world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.WATERMELON.id(), 1);
                     } else {
                         world.setBlockMetadataWithNotify(x, y, z, meta);
                     }
                 }
             }
         }
-
     }
 
     @Override
     public void fertilize(World world, int x, int y, int z) {
-        world.setBlockWithNotify(x, y, z, StardewBlocks.WATERMELON.id());
+        world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.WATERMELON.id(), 1);
     }
 
     @Override

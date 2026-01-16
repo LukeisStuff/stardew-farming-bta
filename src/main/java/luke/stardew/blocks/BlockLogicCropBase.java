@@ -205,13 +205,12 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         if (world.getBlockMetadata(x, y, z) < this.maxGrowth) {
             if (!world.isClientSide) {
                 this.onGrowth(world, x, y, z, this.maxGrowth);
-                if (player.getGamemode().consumeBlocks()) {
+                if (player != null && player.getGamemode().consumeBlocks()) {
                     stack.stackSize--;
                 }
             }
             return true;
         }
-
         return false;
     }
 
