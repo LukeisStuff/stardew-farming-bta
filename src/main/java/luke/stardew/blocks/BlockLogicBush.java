@@ -30,7 +30,7 @@ public class BlockLogicBush extends BlockLogicFlower {
             world.setBlockMetadataWithNotify(x, y, z, 1);
         } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
             world.setBlockMetadataWithNotify(x, y, z, 2);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
+        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER_ENDLESS) {
             world.setBlockMetadataWithNotify(x, y, z, 3);
         } else {
             world.setBlockMetadataWithNotify(x, y, z, 4);
@@ -45,7 +45,7 @@ public class BlockLogicBush extends BlockLogicFlower {
             world.setBlockMetadataWithNotify(x, y, z, 1);
         } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
             world.setBlockMetadataWithNotify(x, y, z, 2);
-        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
+        } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER_ENDLESS) {
             world.setBlockMetadataWithNotify(x, y, z, 3);
         } else {
             world.setBlockMetadataWithNotify(x, y, z, 4);

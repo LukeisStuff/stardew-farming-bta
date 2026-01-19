@@ -345,5 +345,8 @@ public class StardewRecipes implements RecipeEntrypoint {
             (Blocks.FLOWER_RED, Blocks.FLOWER_YELLOW, Blocks.FLOWER_ORANGE, Blocks.FLOWER_PINK, Blocks.FLOWER_PURPLE, Blocks.FLOWER_LIGHT_BLUE));
 
         Registries.ITEM_GROUPS.register(MOD_ID + ":block/grass", Registries.stackListOf(Blocks.TALLGRASS, Blocks.TALLGRASS_FERN, Blocks.SPINIFEX));
+
+        Registries.ITEM_GROUPS.getItem("minecraft:logs").add(StardewBlocks.LOG_APPLE.getDefaultStack());
+        Registries.ITEM_GROUPS.getItem("minecraft:logs").add(StardewBlocks.LOG_APPLE_GOLDEN.getDefaultStack());
     }
 }
