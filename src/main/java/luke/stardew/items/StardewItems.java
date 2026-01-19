@@ -106,6 +106,9 @@ public class StardewItems {
     public static Item FOOD_STEW_TRUFFLE;
     public static Item FOOD_SEEDS_ROASTED;
 
+    public static Item FOOD_APPLE_PIE;
+    public static Item FOOD_APPLE_PIE_SLICE;
+
     private static boolean hasInit = false;
 
     public static void init() {
@@ -301,6 +304,12 @@ public class StardewItems {
 
         FIBER = new ItemBuilder(MOD_ID)
             .build(new Item("fiber", itemKey("fiber"), itemID("FIBER")));
+
+        FOOD_APPLE_PIE = new ItemBuilder(MOD_ID)
+            .build(new ItemPlaceable("food.apple.pie", itemKey("food_apple_pie"), itemID("FOOD_APPLE_PIE"), StardewBlocks.APPLE_PIE).setMaxStackSize(1));
+
+        FOOD_APPLE_PIE_SLICE = new ItemBuilder(MOD_ID)
+            .build(new ItemFood("food.apple.pie.slice", itemKey("food_apple_pie_slice"), itemID("FOOD_APPLE_PIE_SLICE"), 3, 4, false, 4));
     }
 
 

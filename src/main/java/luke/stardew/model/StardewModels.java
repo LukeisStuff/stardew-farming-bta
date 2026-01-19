@@ -90,6 +90,11 @@ public class StardewModels implements ModelEntrypoint {
             .setTex(BLOCK_TEXTURES, "stardew:block/pizza/top", Side.TOP)
             .setTex(BLOCK_TEXTURES, "stardew:block/pizza/bottom", Side.BOTTOM));
 
+        dispatcher.addDispatch(StardewBlocks.APPLE_PIE, new BlockModelPieApple<>(StardewBlocks.APPLE_PIE)
+            .setTex(BLOCK_TEXTURES, "stardew:block/apple_pie/side", Side.sides)
+            .setTex(BLOCK_TEXTURES, "stardew:block/apple_pie/top", Side.TOP)
+            .setTex(BLOCK_TEXTURES, "stardew:block/apple_pie/bottom", Side.BOTTOM));
+
         dispatcher.addDispatch(StardewBlocks.BLOCK_HONEY, new BlockModelIce<>(StardewBlocks.BLOCK_HONEY)
             .setAllTextures(BLOCK_TEXTURES, "stardew:block/block_honey"));
 
@@ -197,6 +202,9 @@ public class StardewModels implements ModelEntrypoint {
 
         dispatcher.addDispatch(new ItemModelStandard(StardewBlocks.CANDLE.asItem(), null).setIcon("stardew:item/candle"));
         dispatcher.addDispatch(new ItemModelStandard(StardewBlocks.CANDLE_ACTIVE.asItem(), null).setIcon("stardew:item/candle").setFullBright());
+
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_APPLE_PIE, null).setIcon("stardew:item/food_apple_pie"));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_APPLE_PIE_SLICE, null).setIcon("stardew:item/food_apple_pie_slice"));
     }
 
     @Override

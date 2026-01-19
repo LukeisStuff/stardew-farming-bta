@@ -81,6 +81,8 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
     public static Block<?> THATCH;
 
+    public static Block<BlockLogicPieApple> APPLE_PIE;
+
     private static boolean hasInit = false;
 
     public static void init() {
@@ -304,6 +306,14 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setFlammability(60, 120)
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS)
             .build("thatch", "thatch", blockID("THATCH"), b -> new BlockLogicThatch(b, Material.grass));
+
+        APPLE_PIE = new BlockBuilder(MOD_ID)
+            .setBlockSound(BlockSounds.CLOTH)
+            .setHardness(0.5F)
+            .setVisualUpdateOnMetadata()
+            .setTags(BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.BROKEN_BY_FLUIDS)
+            .build("apple.pie", "apple_pie", blockID("APPLE_PIE"), BlockLogicPieApple::new).setStatParent(() -> StardewItems.FOOD_APPLE_PIE);
+
     }
 
     public static void initializeCrops() {
