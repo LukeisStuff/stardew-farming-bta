@@ -13,10 +13,7 @@ import net.minecraft.core.util.phys.AABB;
 
 @Environment(EnvType.CLIENT)
 public class BlockModelPieApple<T extends BlockLogicEdible> extends BlockModelStandard<T> {
-    protected IconCoordinate sideTexture = TextureRegistry.getTexture("stardew:block/apple_pie/side");
     protected IconCoordinate insideTexture = TextureRegistry.getTexture("stardew:block/apple_pie/inner");
-    protected IconCoordinate topTexture = TextureRegistry.getTexture("stardew:block/apple_pie/top");
-    public int maxSlices;
 
     public BlockModelPieApple(Block<T> block) {
         super(block);
@@ -53,11 +50,22 @@ public class BlockModelPieApple<T extends BlockLogicEdible> extends BlockModelSt
         boolean insideNorth = sliceZ == 1;
         boolean insideEast = sliceX == 0;
         boolean insideWest = sliceX == 2;
-
-        this.maxSlices = this.block.getLogic().maxBites;
         bounds.set(xMin + offsetXMin, 0.0D, zMin + offsetZMin, xMax - offsetXMax, 0.375D, zMax - offsetZMax);
         this.renderSide(tessellator, bounds, x, y, z, Side.TOP, 0);
         this.renderSide(tessellator, bounds, x, y, z, Side.BOTTOM, 0);
+
+        int sliceIndex = sliceZ * 3 + sliceX + 1;
+
+        switch (sliceIndex) {
+            case 2:
+            case 5:
+                insideWest = true;
+                break;
+            case 6:
+                insideNorth = true;
+                break;
+        }
+
         this.renderSliceSide(tessellator, bounds, x, y, z, Side.SOUTH, insideSouth);
         this.renderSliceSide(tessellator, bounds, x, y, z, Side.WEST, insideWest);
         renderBlocks.flipTexture = true;
