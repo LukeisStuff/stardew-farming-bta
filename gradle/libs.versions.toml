@@ -29,6 +29,8 @@ legacyLwjgl = "1.0.6"
 btwaila = "1.2.2-7.3_04"
 # Check this on https://github.com/Redart15/Commandly/releases/
 commandly = "1.1.3+7.3_04"
+# Check this on https://github.com/bta-team-port/better-with-aether/releases
+aether = "1.0.0+7.3_04"
 ##########################################################################
 # Dependencies
 # Check this on https://central.sonatype.com/artifact/org.slf4j/slf4j-api/
@@ -52,6 +54,7 @@ modMenu = { group = "turniplabs", name = "modmenu-bta", version.ref = "modMenu" 
 legacyLwjgl = { group = "com.github.Better-than-Adventure", name = "legacy-lwjgl3", version.ref = "legacyLwjgl" }
 btwaila = { group = "useless", name = "btwaila", version.ref = "btwaila" }
 commandly = { group = "redart15", name = "Commandly", version.ref = "commandly" }
+aether = { group = "maven.modrinth", name = "better-with-aether-bta", version.ref = "aether" }
 slf4jApi = { group = "org.slf4j", name = "slf4j-api", version.ref = "slf4jApi" }
 guava = { group = "com.google.guava", name = "guava", version.ref = "guava" }
 log4j-slf4j2-impl = { group = "org.apache.logging.log4j", name = "log4j-slf4j2-impl", version.ref = "log4j" }

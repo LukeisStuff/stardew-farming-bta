@@ -7,6 +7,9 @@ import net.minecraft.core.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
+import teamport.aether.item.AetherItems;
+
+import static luke.stardew.compat.aether.StardewAetherCompatibility.IS_AETHER_LOADED;
 
 @Mixin(value = TileEntityFurnace.class, remap = false)
 public class TileEntityFurnaceMixin {
@@ -24,6 +27,14 @@ public class TileEntityFurnaceMixin {
             furnace.setItem(0, new ItemStack(Items.BUCKET, 1));
             if (furnace.worldObj != null && !furnace.worldObj.isClientSide) {
                 furnace.worldObj.markBlockNeedsUpdate(furnace.x, furnace.y, furnace.z);
+            }
+        }
+        if (IS_AETHER_LOADED) {
+            if (input != null && input.getItem().equals(AetherItems.BUCKET_SKYROOT_MILK)) {
+                furnace.setItem(0, new ItemStack(AetherItems.BUCKET_SKYROOT, 1));
+                if (furnace.worldObj != null && !furnace.worldObj.isClientSide) {
+                    furnace.worldObj.markBlockNeedsUpdate(furnace.x, furnace.y, furnace.z);
+                }
             }
         } else {
             assert input != null;

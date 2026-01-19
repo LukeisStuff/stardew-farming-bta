@@ -193,6 +193,8 @@ item.stardew.bean.coffee.desc=Can be used to mix up a brew, or planted on a trel
 
 item.stardew.food.coffee.name=Coffee
 item.stardew.food.coffee.desc=A delicious brew that gives you a brief boost of speed!
+item.stardew.food.coffee.skyroot.name=Skyroot Coffee
+item.stardew.food.coffee.skyroot.desc=A sweet brew that gives you a brief boost of speed!
 
 item.stardew.food.seeds.roasted.name=Roasted Seeds
 item.stardew.food.seeds.roasted.desc=Seeds that have been cooked and seasoned.

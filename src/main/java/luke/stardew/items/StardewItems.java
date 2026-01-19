@@ -233,7 +233,7 @@ public class StardewItems {
             .build(new ItemFood("food.cheese", itemKey("cheese"), itemID("CHEESE"), 4, 8, false, 4));
 
         FOOD_COFFEE = new ItemBuilder(MOD_ID)
-            .build(new ItemCoffee("food.coffee", itemKey("food_coffee"), itemID("FOOD_COFFEE"), 1, 4));
+            .build(new ItemCoffee("food.coffee", itemKey("food_coffee"), itemID("FOOD_COFFEE"), 1, 4, Items.BUCKET));
 
         FOOD_STEW_VEGETABLE = new ItemBuilder(MOD_ID)
             .build(new ItemSoup("food.stew.vegetable", itemKey("food_stew_vegetable"), itemID("FOOD_STEW_VEGETABLE"), 12, 17));

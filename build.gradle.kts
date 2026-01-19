@@ -17,35 +17,43 @@ loom {
 	customMinecraftMetadata.set("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/v${libs.versions.bta.get()}/manifest.json")
 }
 repositories {
-	mavenCentral()
-	maven("https://jitpack.io")
-	maven("https://maven.fabricmc.net/") { name = "Fabric" }
-	maven("https://maven.thesignalumproject.net/infrastructure") { name = "SignalumMavenInfrastructure" }
-	maven("https://maven.thesignalumproject.net/releases") { name = "SignalumMavenReleases" }
-	ivy("https://github.com/Better-than-Adventure") {
-		patternLayout { artifact("[organisation]/releases/download/v[revision]/[module].jar") }
-		metadataSources { artifact() }
-	}
-	ivy("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/") {
-		patternLayout { artifact("/v[revision]/client.jar") }
-		metadataSources { artifact() }
-	}
-	ivy("https://downloads.betterthanadventure.net/bta-server/${libs.versions.btaChannel.get()}/") {
-		patternLayout { artifact("/v[revision]/server.jar") }
-		metadataSources { artifact() }
-	}
-	ivy("https://piston-data.mojang.com") {
-		patternLayout { artifact("v1/[organisation]/[revision]/[module].jar") }
-		metadataSources { artifact() }
-	}
-	ivy("https://github.com/") {
-		patternLayout { artifact("v1/[organisation]/[revision]/[module].jar") }
-		metadataSources { artifact() }
-	}
-	ivy ("https://github.com/"){
-		patternLayout { artifact("[organization]/[module]/releases/download/[revision]/[module]-[revision].jar")}
-		metadataSources { artifact() }
-	}
+    mavenCentral()
+    maven("https://jitpack.io")
+    maven("https://maven.fabricmc.net/") { name = "Fabric" }
+    maven("https://maven.thesignalumproject.net/infrastructure") { name = "SignalumMavenInfrastructure" }
+    maven("https://maven.thesignalumproject.net/releases") { name = "SignalumMavenReleases" }
+    ivy("https://github.com/Better-than-Adventure") {
+        patternLayout { artifact("[organisation]/releases/download/v[revision]/[module].jar") }
+        metadataSources { artifact() }
+    }
+    ivy("https://downloads.betterthanadventure.net/bta-client/${libs.versions.btaChannel.get()}/") {
+        patternLayout { artifact("/v[revision]/client.jar") }
+        metadataSources { artifact() }
+    }
+    ivy("https://downloads.betterthanadventure.net/bta-server/${libs.versions.btaChannel.get()}/") {
+        patternLayout { artifact("/v[revision]/server.jar") }
+        metadataSources { artifact() }
+    }
+    ivy("https://piston-data.mojang.com") {
+        patternLayout { artifact("v1/[organisation]/[revision]/[module].jar") }
+        metadataSources { artifact() }
+    }
+    ivy("https://github.com/") {
+        patternLayout { artifact("v1/[organisation]/[revision]/[module].jar") }
+        metadataSources { artifact() }
+    }
+    ivy ("https://github.com/"){
+        patternLayout { artifact("[organization]/[module]/releases/download/[revision]/[module]-[revision].jar")}
+        metadataSources { artifact() }
+    }
+    repositories {
+        exclusiveContent {
+            forRepository {
+                maven("https://api.modrinth.com/maven") { name = "Modrinth" }
+            }
+            filter { includeGroup("maven.modrinth") }
+        }
+    }
 }
 lwjgl {
 	version = libs.versions.lwjgl
@@ -56,6 +64,8 @@ dependencies {
 
 	compileOnly(libs.btwaila)
 	compileOnly(libs.commandly)
+
+    compileOnly(libs.aether)
 
 	runtimeOnly(libs.clientJar)
 	implementation(libs.loader)
