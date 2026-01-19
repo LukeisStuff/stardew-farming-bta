@@ -18,6 +18,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -201,17 +202,18 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
     }
 
     @Override
-    public boolean onBonemealUsed(ItemStack stack, Player player, World world, int x, int y, int z, Side side, double xPlaced, double yPlaced) {
-        if (world.getBlockMetadata(x, y, z) < this.maxGrowth) {
+    public boolean onBonemealUsed(ItemStack itemstack, @Nullable Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
+        if (world.getBlockMetadata(blockX, blockY, blockZ) >= this.maxGrowth) {
+            return false;
+        } else {
             if (!world.isClientSide) {
-                this.onGrowth(world, x, y, z, this.maxGrowth);
-                if (player != null && player.getGamemode().consumeBlocks()) {
-                    stack.stackSize--;
+                this.onGrowth(world, blockX, blockY, blockZ, this.maxGrowth);
+                if (player == null || player.getGamemode().consumeBlocks()) {
+                    --itemstack.stackSize;
                 }
             }
             return true;
         }
-        return false;
     }
 
     public void onHarvest(World world, int x, int y, int z, int meta) {
@@ -229,8 +231,9 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
                     onGrowth(world, x, y, z, this.resetMeta);
                 }
                 world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x + 0.5, y + 0.5, z + 0.5, "random.pop", 0.3F, 1.0f);
-                if (!world.isClientSide && this.cropItem != null)
+                if (!world.isClientSide && this.cropItem != null) {
                     world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
+                }
             }
         }
     }

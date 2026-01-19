@@ -63,7 +63,7 @@ item.stardew.food.pie.desc=Pumpkin spiced custard filled dessert.
 
 
 item.stardew.seeds.grapes.name=Grape Seeds
-item.stardew.seeds.grapes.desc=Grape seeds that can be planted.
+item.stardew.seeds.grapes.desc=Grape seeds that can be planted on a trellis.
 
 item.stardew.food.grapes.name=Grapes
 item.stardew.food.grapes.desc=Bundle of purple berries loaded with juice.
@@ -156,7 +156,7 @@ item.stardew.armor.canofworms.gold.name=Golden Bait Can
 item.stardew.armor.canofworms.gold.desc=Supplies an endless amount of worms.
 
 item.stardew.wax.name=Wax
-item.stardew.wax.desc=A sticky yellowish moldable substance secreted from honey.
+item.stardew.wax.desc=A sticky, yellowish, moldable substance secreted from honey.
 
 item.stardew.food.salmon.raw.name=Raw Salmon
 item.stardew.food.salmon.raw.desc=Can be cooked to produce a tasty meal.
@@ -189,7 +189,7 @@ item.stardew.record.pink.name=Music Disc
 item.stardew.record.pink.desc=§6axolotl
 
 item.stardew.bean.coffee.name=Coffee Bean
-item.stardew.bean.coffee.desc=Smells like coffee... Can be used to mix up a brew.
+item.stardew.bean.coffee.desc=Can be used to mix up a brew, or planted on a trellis.
 
 item.stardew.food.coffee.name=Coffee
 item.stardew.food.coffee.desc=A delicious brew that gives you a brief boost of speed!
@@ -199,5 +199,13 @@ item.stardew.food.seeds.roasted.desc=Seeds that have been cooked and seasoned.
 
 item.stardew.fiber.name=Fiber
 item.stardew.fiber.desc=A bundle of dry fibers taken from grass plants.
+
+item.stardew.food.apple.pie.name=Apple Pie
+item.stardew.food.apple.pie.desc=Not a pie!
+
+item.stardew.food.apple.pie.slice.name=Apple Pie Slice
+item.stardew.food.apple.pie.slice.desc=Perfect piece of a sweet and flaky pastry.
+
+item.stick.desc=Found at the end of a branch. Can craft various items or be a trellis for farmland.
 
 stardew.ingredients=Ingredients

@@ -37,13 +37,21 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) { //This isn't very good but it works
+    public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
         int meta = world.getBlockMetadata(x, y, z);
-        if (growTopMeta > -1 && meta >= this.growTopMeta) {
-            if (world.getBlock(x, y + 1, z) != otherBlock) world.setBlockWithNotify(x, y, z, 0);
-        } else if (growTopMeta < 0) {
-            if (world.getBlock(x, y - 1, z) != otherBlock) world.setBlockWithNotify(x, y, z, 0);
-        } else if (!this.canBlockStay(world, x, y, z)) {
+        if (growTopMeta < 0) {
+            if (world.getBlock(x, y - 1, z) != otherBlock) {
+                world.setBlockWithNotify(x, y, z, 0);
+            }
+            return;
+        }
+
+        if (meta >= growTopMeta && world.getBlock(x, y + 1, z) != otherBlock) {
+            world.setBlockWithNotify(x, y, z, 0);
+            return;
+        }
+
+        if (!super.canBlockStay(world, x, y, z)) {
             world.setBlockWithNotify(x, y, z, 0);
             this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, meta, null, null);
         }

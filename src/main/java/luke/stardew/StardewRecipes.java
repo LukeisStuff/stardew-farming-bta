@@ -187,6 +187,15 @@ public class StardewRecipes implements RecipeEntrypoint {
             .setConsumeContainer(false)
             .create("pumpkin_pie", new ItemStack(Items.FOOD_PUMPKIN_PIE, 1));
 
+        RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
+            .addInput('M', Items.BUCKET_MILK)
+            .addInput('W', StardewItems.DOUGH)
+            .addInput('S', Items.DUST_SUGAR)
+            .addInput('E', MOD_ID + ":item/eggs")
+            .addInput('P', Items.FOOD_APPLE)
+            .setConsumeContainer(false)
+            .create("apple_pie", new ItemStack(StardewItems.FOOD_APPLE_PIE, 1));
+
         RecipeBuilder.Shaped(MOD_ID, " W ", "SES", "DDD")
             .addInput('W', Items.BUCKET_WATER)
             .addInput('D', StardewItems.DOUGH)

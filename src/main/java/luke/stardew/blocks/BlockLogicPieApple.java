@@ -16,21 +16,22 @@ public class BlockLogicPieApple extends BlockLogicEdible {
     }
 
     private void addSlice(World world, int x, int y, int z, Player entityplayer) {
-        if (entityplayer.getHealth() < entityplayer.getMaxHealth()) {
-            if (entityplayer.isSneaking()) {
-                entityplayer.heal(this.healAmount);
-            } else {
-                entityplayer.inventory.insertItem(new ItemStack(StardewItems.FOOD_APPLE_PIE_SLICE), true);
+        if (entityplayer.isSneaking()) {
+            entityplayer.inventory.insertItem(new ItemStack(StardewItems.FOOD_APPLE_PIE_SLICE), true);
+        } else {
+            if (entityplayer.getHealth() >= entityplayer.getMaxHealth()) {
+                return;
             }
-            int data = world.getBlockMetadata(x, y, z) + 1;
-            if (data >= this.maxBites) {
-                world.setBlockWithNotify(x, y, z, 0);
-            } else {
-                world.setBlockMetadataWithNotify(x, y, z, data);
-                world.markBlockDirty(x, y, z);
-            }
+            entityplayer.heal(this.healAmount);
         }
 
+        int newData = world.getBlockMetadata(x, y, z) + 1;
+        if (newData >= this.maxBites) {
+            world.setBlockWithNotify(x, y, z, 0);
+        } else {
+            world.setBlockMetadataWithNotify(x, y, z, newData);
+            world.markBlockDirty(x, y, z);
+        }
     }
 
     @Override
