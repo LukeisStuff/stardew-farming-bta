@@ -19,8 +19,6 @@ Watering can to speedup farmland cultivation
 ## Requires
 
 - Halplibe
-- TerrainAPI
-- Dragonfly Model Library
 
 ## Instructions
 
@@ -32,6 +30,6 @@ LukeisStuff - Creator, Lead Developer
 
 Dundi Gundi - Developer
 
-Beatrice - Textures
+Beatrice, zotheyeen - Textures
 
 Useless, CookieCakes - Mod Help
