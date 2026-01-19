@@ -1,7 +1,8 @@
 package luke.stardew.model;
 
 import luke.stardew.blocks.StardewBlocks;
-import luke.stardew.entities.duck.EntityEggDuck;
+import luke.stardew.entities.ProjectileTomato;
+import luke.stardew.entities.duck.ProjectileEggDuck;
 import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.duck.MobRendererDuck;
 import luke.stardew.entities.duck.ModelDuck;
@@ -202,7 +203,8 @@ public class StardewModels implements ModelEntrypoint {
     public void initEntityModels(EntityRenderDispatcher dispatcher) {
         ModelHelper.setEntityModel(MobDuck.class, () -> new MobRendererDuck(new ModelDuck(), 0.4F));
         ModelHelper.setEntityModel(MobGoat.class, () -> new MobRendererGoat(new ModelGoat(), 0.7F));
-        ModelHelper.setEntityModel(EntityEggDuck.class, () -> new EntityRendererSprite<>(StardewItems.EGG_DUCK));
+        ModelHelper.setEntityModel(ProjectileEggDuck.class, () -> new EntityRendererSprite<>(StardewItems.EGG_DUCK));
+        ModelHelper.setEntityModel(ProjectileTomato.class, () -> new EntityRendererSprite<>(StardewItems.TOMATO));
     }
 
     @Override

@@ -6,18 +6,18 @@ import net.minecraft.core.entity.projectile.Projectile;
 import net.minecraft.core.util.phys.HitResult;
 import net.minecraft.core.world.World;
 
-public class EntityEggDuck extends Projectile {
-    public EntityEggDuck(World world) {
+public class ProjectileEggDuck extends Projectile {
+    public ProjectileEggDuck(World world) {
         super(world);
         this.modelItem = StardewItems.EGG_DUCK;
     }
 
-    public EntityEggDuck(World world, Player player) {
+    public ProjectileEggDuck(World world, Player player) {
         super(world, player);
         this.modelItem = StardewItems.EGG_DUCK;
     }
 
-    public EntityEggDuck(World world, double d, double d1, double d2) {
+    public ProjectileEggDuck(World world, double d, double d1, double d2) {
         super(world, d, d1, d2);
         this.modelItem = StardewItems.EGG_DUCK;
     }

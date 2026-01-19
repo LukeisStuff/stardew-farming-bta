@@ -145,7 +145,7 @@ public class StardewItems {
         SEEDS_TOMATO = seeds
             .build(new ItemSeeds("seeds.tomato", itemKey("seeds_tomato"), itemID("SEEDS_TOMATO"), StardewBlocks.CROPS_TOMATO));
         TOMATO = new ItemBuilder(MOD_ID)
-            .build(new ItemFood("food.tomato", itemKey("tomato"), itemID("TOMATO"), 2, 8, false, 8));
+            .build(new ItemTomato("food.tomato", itemKey("tomato"), itemID("TOMATO"), 2, 8, false, 8));
 
         SEEDS_POTATO = seeds
             .build(new ItemSeeds("seeds.potato", itemKey("seeds_potato"), itemID("SEEDS_POTATO"), StardewBlocks.CROPS_POTATO));

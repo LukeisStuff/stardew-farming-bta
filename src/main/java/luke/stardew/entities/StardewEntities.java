@@ -1,6 +1,6 @@
 package luke.stardew.entities;
 
-import luke.stardew.entities.duck.EntityEggDuck;
+import luke.stardew.entities.duck.ProjectileEggDuck;
 import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.goat.MobGoat;
 import net.minecraft.core.util.collection.NamespaceID;
@@ -22,6 +22,8 @@ public final class StardewEntities {
     public static void initializeEntities() {
         EntityHelper.createEntity(MobDuck.class, NamespaceID.getPermanent(MOD_ID, "duck"), "guidebook.section.mob.duck.name");
         EntityHelper.createEntity(MobGoat.class, NamespaceID.getPermanent(MOD_ID, "goat"),"guidebook.section.mob.goat.name");
-        EntityHelper.createEntity(EntityEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), null);
+        EntityHelper.createEntity(ProjectileEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), null);
+
+        EntityHelper.createEntity(ProjectileTomato.class, NamespaceID.getPermanent(MOD_ID, "tomato"), null);
     }
 }

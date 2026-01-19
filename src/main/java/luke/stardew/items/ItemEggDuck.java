@@ -1,6 +1,6 @@
 package luke.stardew.items;
 
-import luke.stardew.entities.duck.EntityEggDuck;
+import luke.stardew.entities.duck.ProjectileEggDuck;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.IDispensable;
 import net.minecraft.core.item.Item;
@@ -20,14 +20,14 @@ public class ItemEggDuck extends Item implements IDispensable {
         itemstack.consumeItem(player);
         world.playSoundAtEntity(player, player, "random.bow", 0.5f, 0.4f / (itemRand.nextFloat() * 0.4f + 0.8f));
         if (!world.isClientSide) {
-            world.entityJoinedWorld(new EntityEggDuck(world, player));
+            world.entityJoinedWorld(new ProjectileEggDuck(world, player));
         }
         return itemstack;
     }
 
     @Override
     public void onDispensed(ItemStack stack, World world, double x, double y, double z, int xOffset, int yOffset, int zOffset, Random random) {
-        EntityEggDuck egg = new EntityEggDuck(world, x, y, z);
+        ProjectileEggDuck egg = new ProjectileEggDuck(world, x, y, z);
         egg.setHeading(xOffset, 0.1, zOffset, 1.1f, 6.0f);
         world.entityJoinedWorld(egg);
     }
