@@ -5,6 +5,7 @@ import net.minecraft.core.block.Blocks;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
+import teamport.aether.block.AetherBlocks;
 import teamport.aether.item.AetherItems;
 import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.util.RecipeEntrypoint;
@@ -84,6 +85,8 @@ public class StardewAetherRecipes implements RecipeEntrypoint {
         Registries.ITEM_GROUPS.getItem("stardew:item/eggs").add(AetherItems.EGG_MOA_BLUE.getDefaultStack());
         Registries.ITEM_GROUPS.getItem("stardew:item/eggs").add(AetherItems.EGG_MOA_WHITE.getDefaultStack());
         Registries.ITEM_GROUPS.getItem("stardew:item/eggs").add(AetherItems.EGG_MOA_BLACK.getDefaultStack());
+
+        Registries.ITEM_GROUPS.getItem("stardew:block/grass").add(AetherBlocks.TALLGRASS_AETHER.getDefaultStack());
 
     }
 }
