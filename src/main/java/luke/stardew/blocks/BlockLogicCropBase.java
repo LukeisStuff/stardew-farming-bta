@@ -17,7 +17,6 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -95,7 +94,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 
     @Override
     public boolean mayPlaceOn(int blockId) {
-        return Blocks.FARMLAND_DIRT.id() == blockId;
+        return blockId == Blocks.FARMLAND_DIRT.id();
     }
 
     public void fertilize(World world, int x, int y, int z) {
@@ -113,9 +112,9 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         super.updateTick(world, x, y, z, rand);
-        if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER && world.getBlockLightValue(x, y + 1, z) >= 9) {
+        if (world.getBlockLightValue(x, y + 1, z) >= 9) {
             int meta = world.getBlockMetadata(x, y, z);
-            if (meta++ < this.maxGrowth) {
+            if (meta < this.maxGrowth) {
                 float growthRate = this.getGrowthRate(world, x, y, z);
                 if (rand.nextInt((int) (100.0F / growthRate)) == 0) {
                     this.onGrowth(world, x, y, z, meta);

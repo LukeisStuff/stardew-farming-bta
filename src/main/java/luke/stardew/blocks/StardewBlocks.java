@@ -1,5 +1,6 @@
 package luke.stardew.blocks;
 
+import luke.stardew.StardewTags;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
@@ -98,13 +99,13 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU);
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, StardewTags.NEARBY_CROP);
 
         BlockBuilder cropsBlock = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND);
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, StardewTags.NEARBY_CROP);
 
         BlockBuilder blocks = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.WOOD)

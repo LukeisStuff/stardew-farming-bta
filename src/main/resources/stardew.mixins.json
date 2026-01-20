@@ -5,6 +5,7 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BiomeSpawnListMixin",
+    "BlockLogicFarmlandMixin",
     "BlockLogicGrassMixin",
     "ChunkDecoratorOverworldMixin",
     "EntityBobberMixin",
