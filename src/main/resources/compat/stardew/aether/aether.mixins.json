@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
+  "package": "luke.stardew.compat.aether.mixin",
+  "compatibilityLevel": "JAVA_${java}",
+  "mixins": [
+    "TileEntityFurnaceAetherMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

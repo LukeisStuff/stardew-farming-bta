@@ -1,18 +1,20 @@
-package luke.stardew.mixin;
+package luke.stardew.compat.aether.mixin;
 
 import net.minecraft.core.block.entity.TileEntityFurnace;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import teamport.aether.item.AetherItems;
 
 import java.util.Objects;
 
+@Pseudo
 @Mixin(value = TileEntityFurnace.class, remap = false)
-public abstract class TileEntityFurnaceMixin {
+public abstract class TileEntityFurnaceAetherMixin {
 
     @Unique
     private ItemStack previousInput;
@@ -24,14 +26,13 @@ public abstract class TileEntityFurnaceMixin {
     }
 
     @Inject(method = "smeltItem()V", at = @At("TAIL"))
-    private void restoreBucket(CallbackInfo ci) {
+    private void restoreAetherBucket(CallbackInfo ci) {
         TileEntityFurnace furnace = (TileEntityFurnace) (Object) this;
 
         if (previousInput == null) return;
 
-        if (Objects.equals(previousInput.getItem(), Items.BUCKET_MILK)) {
-            furnace.setItem(0, new ItemStack(Items.BUCKET));
+        if (Objects.equals(previousInput.getItem(), AetherItems.BUCKET_SKYROOT_MILK)) {
+            furnace.setItem(0, new ItemStack(AetherItems.BUCKET_SKYROOT));
         }
     }
 }
-
