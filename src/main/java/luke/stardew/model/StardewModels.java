@@ -96,7 +96,7 @@ public class StardewModels implements ModelEntrypoint {
             .setTex(BLOCK_TEXTURES, "stardew:block/apple_pie/bottom", Side.BOTTOM));
 
         dispatcher.addDispatch(StardewBlocks.BLOCK_HONEY, new BlockModelIce<>(StardewBlocks.BLOCK_HONEY)
-            .setAllTextures(BLOCK_TEXTURES, "stardew:block/block_honey"));
+            .setAllTextures(BLOCK_TEXTURES, "stardew:block/block_honey").onRenderLayer(1));
 
         dispatcher.addDispatch(StardewBlocks.BEEHIVE, new BlockModelHorizontalRotation<>(StardewBlocks.BEEHIVE)
             .setTex(BLOCK_TEXTURES, "stardew:block/beehive/side", Side.sides)

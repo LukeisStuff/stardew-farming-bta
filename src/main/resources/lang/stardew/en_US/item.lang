@@ -161,17 +161,17 @@ item.stardew.wax.desc=A sticky, yellowish, moldable substance secreted from hone
 item.stardew.food.salmon.raw.name=Raw Salmon
 item.stardew.food.salmon.raw.desc=Can be cooked to produce a tasty meal.
 item.stardew.food.salmon.cooked.name=Cooked Salmon
-item.stardew.food.salmon.cooked.desc=Delicious fish!
+item.stardew.food.salmon.cooked.desc=Flavorful fish!
 
 item.stardew.food.bass.raw.name=Raw Bass
 item.stardew.food.bass.raw.desc=Can be cooked to produce a tasty meal.
 item.stardew.food.bass.cooked.name=Cooked Bass
-item.stardew.food.bass.cooked.desc=Delicious fish!
+item.stardew.food.bass.cooked.desc=Delectable fish!
 
 item.stardew.food.snapper.raw.name=Raw Snapper
 item.stardew.food.snapper.raw.desc=Can be cooked to produce a tasty meal.
 item.stardew.food.snapper.cooked.name=Cooked Snapper
-item.stardew.food.snapper.cooked.desc=Delicious fish!
+item.stardew.food.snapper.cooked.desc=Scrumptious  fish!
 
 item.stardew.fish.lavaeel.name=Lava Eel
 item.stardew.fish.lavaeel.desc=One of the legendary fishes, found in lava lakes.
@@ -191,9 +191,9 @@ item.stardew.record.pink.desc=§6axolotl
 item.stardew.bean.coffee.name=Coffee Bean
 item.stardew.bean.coffee.desc=Can be used to mix up a brew, or planted on a trellis.
 
-item.stardew.food.coffee.name=Coffee
+item.stardew.food.coffee.name=Bucket of Coffee
 item.stardew.food.coffee.desc=A delicious brew that gives you a brief boost of speed!
-item.stardew.food.coffee.skyroot.name=Skyroot Coffee
+item.stardew.food.coffee.skyroot.name=Skyroot Bucket of Coffee
 item.stardew.food.coffee.skyroot.desc=A sweet brew that gives you a brief boost of speed!
 
 item.stardew.food.seeds.roasted.name=Roasted Seeds

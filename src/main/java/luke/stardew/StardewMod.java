@@ -5,6 +5,7 @@ import luke.stardew.entities.StardewEntities;
 import luke.stardew.entities.duck.NetEntryEggDuck;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.block.material.MaterialColor;
 import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.sound.SoundTypes;
 import org.slf4j.Logger;
@@ -50,6 +51,22 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.BEEHIVE.id(), 300);
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.BEEHIVE_HONEY.id(), 300);
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.BEEHIVE_IDLE.id(), 300);
+
+        MaterialColor.registerManualBlockColor(StardewBlocks.THATCH, 0, MaterialColor.paintedYellow);
+        MaterialColor.registerManualBlockColor(StardewBlocks.MUSHROOM_TRUFFLE, 0, MaterialColor.paintedBlack);
+        MaterialColor.registerManualBlockColor(StardewBlocks.BLOCK_HONEY, 0, MaterialColor.paintedYellow);
+
+        MaterialColor.registerManualBlockColor(StardewBlocks.CAULIFLOWER, 1, MaterialColor.paintedWhite);
+        MaterialColor.registerManualBlockColor(StardewBlocks.CAULIFLOWER, 0, MaterialColor.paintedGreen);
+
+        MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE_GOLDEN, 0, MaterialColor.paintedYellow);
+        MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE_GOLDEN_FLOWERING, 0, MaterialColor.paintedYellow);
+        MaterialColor.registerManualBlockColor(StardewBlocks.SAPLING_APPLE_GOLDEN, 0, MaterialColor.paintedYellow);
+
+        MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE, 0, MaterialColor.paintedRed);
+        MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE_FLOWERING, 0, MaterialColor.paintedRed);
+        MaterialColor.registerManualBlockColor(StardewBlocks.SAPLING_APPLE, 0, MaterialColor.paintedRed);
+
 
         StardewBlocks.initializeCrops();
     }
