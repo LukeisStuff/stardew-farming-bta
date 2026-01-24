@@ -13,7 +13,6 @@ import java.util.function.Supplier;
 public class ItemCoffee extends ItemFood {
     private final Supplier<Item> bucketSupplier;
 
-
     public ItemCoffee(String name, String namespaceID, int id, int healAmount, int ticksPerHeal, Supplier<Item> bucket) {
         super(name, namespaceID, id, healAmount, ticksPerHeal, false, 1);
         this.bucketSupplier = bucket;
