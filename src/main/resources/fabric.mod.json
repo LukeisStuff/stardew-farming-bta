@@ -38,7 +38,8 @@
       "luke.stardew.compat.aether.StardewAetherCompatibility"
     ],
     "afterGameStart": [
-      "luke.stardew.StardewMod"
+      "luke.stardew.StardewMod",
+      "luke.stardew.compat.aether.StardewAetherCompatibility"
     ],
     "initModels": [
       "luke.stardew.model.StardewModels",

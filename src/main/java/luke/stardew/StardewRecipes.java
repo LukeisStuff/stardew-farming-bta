@@ -12,6 +12,7 @@ import turniplabs.halplibe.helper.recipeBuilders.RecipeBuilderShaped;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 
 import static luke.stardew.StardewMod.MOD_ID;
+import static luke.stardew.compat.aether.StardewAetherCompatibility.IS_AETHER_LOADED;
 
 public class StardewRecipes implements RecipeEntrypoint {
 
@@ -322,7 +323,9 @@ public class StardewRecipes implements RecipeEntrypoint {
     public void onRecipesReady() {
         initializeRecipes();
 
-        DataLoader.loadRecipesFromFile("/assets/stardew/recipes/incubator.json");
+        if (IS_AETHER_LOADED) {
+            DataLoader.loadRecipesFromFile("/assets/stardew/recipes/incubator.json");
+        }
     }
 
     @Override
