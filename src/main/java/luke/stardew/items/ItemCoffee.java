@@ -8,18 +8,21 @@ import net.minecraft.core.item.ItemFood;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 
-public class ItemCoffee extends ItemFood {
-    Item bucket;
+import java.util.function.Supplier;
 
-    public ItemCoffee(String name, String namespaceID, int id, int healAmount, int ticksPerHeal, Item bucket) {
+public class ItemCoffee extends ItemFood {
+    private final Supplier<Item> bucketSupplier;
+
+
+    public ItemCoffee(String name, String namespaceID, int id, int healAmount, int ticksPerHeal, Supplier<Item> bucket) {
         super(name, namespaceID, id, healAmount, ticksPerHeal, false, 1);
-        this.bucket = bucket;
+        this.bucketSupplier = bucket;
     }
 
     @Override
     public ItemStack onUseItem(ItemStack itemstack, World world, Player entityplayer) {
         super.onUseItem(itemstack, world, entityplayer);
         ((IPlayerEffects) entityplayer).stardew_farming_bta$addEffect(PlayerEffect.speedBoost, 240);
-        return new ItemStack(bucket);
+        return new ItemStack(bucketSupplier.get().asItem());
     }
 }

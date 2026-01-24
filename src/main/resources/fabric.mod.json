@@ -25,7 +25,7 @@
     ],
     "beforeGameStart": [
       "luke.stardew.StardewMod",
-      "luke.stardew.compat.aether.StardewAetherCompatibility"
+      "luke.stardew.compat.aether.StardewAetherMod"
     ],
     "beforeClientStart": [
       "luke.stardew.StardewClient"
@@ -35,21 +35,20 @@
     ],
     "recipesReady": [
       "luke.stardew.StardewRecipes",
-      "luke.stardew.compat.aether.StardewAetherCompatibility"
+      "luke.stardew.compat.aether.StardewAetherMod"
     ],
     "afterGameStart": [
-      "luke.stardew.StardewMod",
-      "luke.stardew.compat.aether.StardewAetherCompatibility"
+      "luke.stardew.StardewMod"
     ],
     "initModels": [
       "luke.stardew.model.StardewModels",
-      "luke.stardew.compat.aether.StardewAetherCompatibility"
+      "luke.stardew.compat.aether.StardewAetherClient"
     ],
     "afterItemInit": [
       "luke.stardew.StardewMod"
     ],
     "preLaunch": [
-      "luke.stardew.compat.aether.StardewAetherCompatibility"
+      "luke.stardew.compat.aether.StardewAetherMod"
     ]
   },
 

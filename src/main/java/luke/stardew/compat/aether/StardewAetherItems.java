@@ -26,7 +26,7 @@ public class StardewAetherItems {
 
     public static void initializeItems() {
         FOOD_COFFEE_SKYROOT = new ItemBuilder(MOD_ID)
-            .build(new ItemCoffee("food.coffee.skyroot", itemKey("food_coffee_skyroot"), itemID("FOOD_COFFEE_SKYROOT"), 1, 4, AetherItems.BUCKET_SKYROOT));
+            .build(new ItemCoffee("food.coffee.skyroot", itemKey("food_coffee_skyroot"), itemID("FOOD_COFFEE_SKYROOT"), 1, 4, () -> AetherItems.BUCKET_SKYROOT));
     }
 
 
