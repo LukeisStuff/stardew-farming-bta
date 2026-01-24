@@ -3,6 +3,7 @@ package luke.stardew;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Blocks;
+import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -320,6 +321,8 @@ public class StardewRecipes implements RecipeEntrypoint {
     @Override
     public void onRecipesReady() {
         initializeRecipes();
+
+        DataLoader.loadRecipesFromFile("/assets/stardew/recipes/incubator.json");
     }
 
     @Override

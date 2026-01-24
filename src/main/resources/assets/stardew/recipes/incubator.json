@@ -1,0 +1,16 @@
+[
+  {
+    "name": "aether:incubator/hatch_duck",
+    "type": "aether:incubator",
+    "time": 200,
+    "input": {
+      "stack": {
+        "id": "stardew:item/egg_duck"
+      }
+    },
+    "output": {
+      "entity": "stardew:duck",
+      "amount": 1
+    }
+  }
+]
