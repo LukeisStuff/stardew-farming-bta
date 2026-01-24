@@ -19,10 +19,12 @@ public class StardewAetherClient implements ModelEntrypoint {
     static {
         if (IS_AETHER_LOADED) {
             try {
+
                 modelEntryPointDelegate = (ModelEntrypoint) Class
                     .forName("luke.stardew.compat.aether.StardewAetherModels")
                     .getConstructor()
                     .newInstance();
+
             } catch (Exception e) {
                 throw new RuntimeException("Failed to init Aether model delegate", e);
             }
