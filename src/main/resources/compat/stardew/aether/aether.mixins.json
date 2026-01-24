@@ -6,6 +6,7 @@
   "package": "luke.stardew.compat.aether.mixin",
   "compatibilityLevel": "JAVA_${java}",
   "mixins": [
+    "AetherRecipeStardewMixin",
     "TileEntityFurnaceAetherMixin"
   ],
   "injectors": {

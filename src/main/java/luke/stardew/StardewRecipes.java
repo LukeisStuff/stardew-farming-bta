@@ -3,7 +3,6 @@ package luke.stardew;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Blocks;
-import net.minecraft.core.data.DataLoader;
 import net.minecraft.core.data.registry.Registries;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -12,7 +11,6 @@ import turniplabs.halplibe.helper.recipeBuilders.RecipeBuilderShaped;
 import turniplabs.halplibe.util.RecipeEntrypoint;
 
 import static luke.stardew.StardewMod.MOD_ID;
-import static luke.stardew.compat.aether.StardewAetherCompatibility.IS_AETHER_LOADED;
 
 public class StardewRecipes implements RecipeEntrypoint {
 
@@ -316,16 +314,11 @@ public class StardewRecipes implements RecipeEntrypoint {
             .setInput(MOD_ID + ":item/seeds")
             .create("roasted_seeds", new ItemStack(StardewItems.FOOD_SEEDS_ROASTED, 1));
 
-
     }
 
     @Override
     public void onRecipesReady() {
         initializeRecipes();
-
-        if (IS_AETHER_LOADED) {
-            DataLoader.loadRecipesFromFile("/assets/stardew/recipes/incubator.json");
-        }
     }
 
     @Override
