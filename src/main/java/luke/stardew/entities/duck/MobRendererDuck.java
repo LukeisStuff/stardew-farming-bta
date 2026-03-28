@@ -16,6 +16,7 @@ public class MobRendererDuck extends MobRenderer<MobDuck> {
         super(shadowSize);
     }
 
+    @Override
     protected @Nullable StaticEntityModel getAndSetupModelForLayer(@NotNull MobDuck entity, float brightness, float partialTick, int layer) {
         StaticEntityModel model = this.getModel("main");
         model.resetBones();

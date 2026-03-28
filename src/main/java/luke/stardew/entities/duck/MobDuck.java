@@ -1,12 +1,9 @@
 package luke.stardew.entities.duck;
 
-import com.mojang.nbt.tags.CompoundTag;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicFluid;
-import net.minecraft.core.entity.AgedMob;
 import net.minecraft.core.entity.EntityItem;
-import net.minecraft.core.entity.MobAge;
 import net.minecraft.core.entity.animal.MobAnimal;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
@@ -17,11 +14,10 @@ import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.NotNull;
-import org.jspecify.annotations.NonNull;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class MobDuck extends MobAnimal implements AgedMob {
+public class MobDuck extends MobAnimal {
     public float flap = 0.0F;
     public float flapSpeed = 0.0F;
     public float oFlapSpeed;
@@ -29,7 +25,6 @@ public class MobDuck extends MobAnimal implements AgedMob {
     public float flapping = 1.0F;
     public int eggTimer;
     public int featherTimer;
-    private final @NonNull MobAge age;
 
     public MobDuck(World world) {
         super(world);
@@ -38,11 +33,6 @@ public class MobDuck extends MobAnimal implements AgedMob {
         this.eggTimer = this.random.nextInt(3000) + 3000;
         this.featherTimer = this.random.nextInt(3000) + 3000;
         this.mobDrops.add(new WeightedRandomLootObject(Items.FEATHER_CHICKEN.getDefaultStack(), 0, 1));
-        this.age = MobAge.newRandom(this, 168, 14, 140);
-    }
-
-    public @NonNull MobAge getMobAge() {
-        return this.age;
     }
 
     @Override
@@ -109,8 +99,6 @@ public class MobDuck extends MobAnimal implements AgedMob {
             this.dropItem(Items.FEATHER_CHICKEN.id, 1);
             this.featherTimer = this.random.nextInt(6000) + 6000;
         }
-
-        this.getMobAge().tick(this.world);
     }
 
     @Override
@@ -140,16 +128,6 @@ public class MobDuck extends MobAnimal implements AgedMob {
                 return false;
             }
         }
-    }
-
-    public void readAdditionalSaveData(@NotNull CompoundTag tag) {
-        super.readAdditionalSaveData(tag);
-        this.age.readTag(tag);
-    }
-
-    public void addAdditionalSaveData(@NotNull CompoundTag tag) {
-        super.addAdditionalSaveData(tag);
-        this.age.writeTag(tag);
     }
 
     @Override
