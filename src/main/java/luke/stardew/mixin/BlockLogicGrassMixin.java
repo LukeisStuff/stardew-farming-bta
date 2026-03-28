@@ -18,7 +18,10 @@ public abstract class BlockLogicGrassMixin {
     @ModifyArg(method = "updateTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/world/World;setBlockWithNotify(IIII)Z"), index = 3)
     private int fernOrBush(int id) {
         if (id == Blocks.TALLGRASS_FERN.id()) {
-            return random.nextBoolean() ? Blocks.TALLGRASS_FERN.id() : StardewBlocks.BUSH.id();
+            if (random.nextInt(10) == 0) {
+                return StardewBlocks.BUSH.id();
+            }
+            return Blocks.TALLGRASS_FERN.id();
         }
         return id;
     }
