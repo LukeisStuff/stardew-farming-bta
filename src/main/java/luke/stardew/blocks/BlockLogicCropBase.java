@@ -101,8 +101,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         world.setBlockMetadataWithNotify(x, y, z, this.maxGrowth);
     }
 
-    public void onGrowth(World world, int x, int y, int z, int currentMeta) {
-        int newMeta = currentMeta + 1;
+    public void onGrowth(World world, int x, int y, int z, int newMeta) {
         if (this.growsInto != null && newMeta >= this.maxGrowth) {
             world.setBlockAndMetadataWithNotify(x, y, z, this.growsInto.id(), 0);
         } else {
@@ -118,7 +117,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
             if (meta < this.maxGrowth) {
                 float growthRate = this.getGrowthRate(world, x, y, z);
                 if (rand.nextInt((int) (100.0F / growthRate)) == 0) {
-                    this.onGrowth(world, x, y, z, meta);
+                    this.onGrowth(world, x, y, z, meta + 1);
                 }
             }
         }
