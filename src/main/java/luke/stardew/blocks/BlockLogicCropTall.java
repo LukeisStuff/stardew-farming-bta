@@ -64,31 +64,30 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
     }
 
     @Override
-    public void onGrowth(World world, int x, int y, int z, int meta) {
-        if (this.growTopMeta > -1 && meta >= this.growTopMeta) {
+    public void onGrowth(World world, int x, int y, int z, int newMeta) {
+        // this.growTopMeta > -1 == BOTTOM Block of a tall crop
+        if (this.growTopMeta > -1 && newMeta >= this.growTopMeta) {
             Block<?> blockAbove = world.getBlock(x, y + 1, z);
-            if (blockAbove == null) { //FIXME this is kinda awful
-                world.setBlockMetadataWithNotify(x, y, z, meta);
+            if (blockAbove == otherBlock || blockAbove == null) {
+                world.setBlockMetadataWithNotify(x, y, z, newMeta);
                 int max = otherBlock.getLogic().maxGrowth;
-                int topMeta = MathHelper.clamp(meta - growTopMeta, 0, max);
+                int topMeta = MathHelper.clamp(newMeta - growTopMeta, 0, max);
                 world.setBlockAndMetadataWithNotify(x, y + 1, z, otherBlock.id(), topMeta);
-            } else if (blockAbove == otherBlock) {
-                world.setBlockMetadataWithNotify(x, y, z, meta);
-                int max = otherBlock.getLogic().maxGrowth;
-                int topMeta = MathHelper.clamp(meta - growTopMeta, 0, max);
-                world.setBlockMetadataWithNotify(x, y + 1, z, topMeta);
             }
-        } else if (this.growTopMeta < 0) { //TODO: top shouldn't be ticking, but it's better to handle it
-            world.setBlockMetadataWithNotify(x, y, z, meta);
+        } else if (this.growTopMeta < 0) {
+            // NOTE: You generally don't want the top block to be
+            // ticking since it would result in tall blocks growing
+            // more frequently, but this is handled regardless
+            world.setBlockMetadataWithNotify(x, y, z, newMeta);
             Block<?> blockBelow = world.getBlock(x, y - 1, z);
             if (blockBelow == otherBlock) {
                 int max = otherBlock.getLogic().maxGrowth;
                 int diff = max - this.maxGrowth;
-                int bottomMeta = MathHelper.clamp(meta + diff, 0, max);
+                int bottomMeta = MathHelper.clamp(newMeta + diff, 0, max);
                 world.setBlockMetadataWithNotify(x, y - 1, z, bottomMeta);
             }
         } else {
-            world.setBlockMetadataWithNotify(x, y, z, meta);
+            world.setBlockMetadataWithNotify(x, y, z, newMeta);
         }
     }
 
