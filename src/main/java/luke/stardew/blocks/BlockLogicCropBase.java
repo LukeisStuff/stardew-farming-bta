@@ -17,11 +17,10 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.season.Season;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealable {
     public float fertilizedRate;
@@ -32,6 +31,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
     public Range seedRange = Range.EMPTY;
     public Range cropRange = Range.ONE;
     public int resetMeta = -1;
+    public Set<Season> season = new HashSet<>();
     public Block<?> growsInto;
     public boolean canHarvest;
 
@@ -70,6 +70,14 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 
     public BlockLogicCropBase withFertilizedRate(float fertilizedRate) {
         this.fertilizedRate = fertilizedRate;
+        return this;
+    }
+
+    public BlockLogicCropBase withProperSeason(Season... seasons) {
+        this.season.clear();
+        for (Season s : seasons) {
+            if (s != null) this.season.add(s);
+        }
         return this;
     }
 
@@ -112,7 +120,8 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         super.updateTick(world, x, y, z, rand);
-        if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+        Season current = world.getSeasonManager().getCurrentSeason();
+        if (world.getBlockLightValue(x, y + 1, z) >= 9 && season.contains(current)) {
             int meta = world.getBlockMetadata(x, y, z);
             if (meta < this.maxGrowth) {
                 float growthRate = this.getGrowthRate(world, x, y, z);

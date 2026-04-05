@@ -318,10 +318,12 @@ public final class StardewBlocks implements BlockInitEntrypoint {
     }
 
     public static void initializeCrops() {
+        //Spring Crops
         StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_CARROT)
             .withCrop(StardewItems.CARROT)
             .withSeed(StardewItems.SEEDS_CARROT, 2, 2)
             .withGrowth(2)
+            .withProperSeason(Seasons.OVERWORLD_SPRING)
             .notFertilized()
             .noHarvest();
 
@@ -329,6 +331,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withCrop(StardewItems.BLUEBERRY, 1, 4)
             .withSeed(StardewItems.SEEDS_BLUEBERRY, 1, 2)
             .withGrowth(4)
+            .withProperSeason(Seasons.OVERWORLD_SPRING)
             .withResetMeta(2)
             .notFertilized();
 
@@ -336,13 +339,16 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withCrop(StardewItems.PINEAPPLE)
             .withSeed(StardewItems.SEEDS_PINEAPPLE, 1, 2)
             .withGrowth(4)
+            .withProperSeason(Seasons.OVERWORLD_SPRING)
             .withResetMeta(2)
             .notFertilized();
 
+        //Summer Crops
         StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_TOMATO)
             .withCrop(StardewItems.TOMATO, 1, 2)
             .withSeed(StardewItems.SEEDS_TOMATO, 1, 1)
             .withGrowth(5)
+            .withProperSeason(Seasons.OVERWORLD_SUMMER)
             .withResetMeta(3)
             .notFertilized();
 
@@ -350,13 +356,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withCrop(StardewItems.POTATO)
             .withSeed(StardewItems.SEEDS_POTATO, 2, 2)
             .withGrowth(4)
-            .notFertilized()
-            .noHarvest();
-
-        StardewBlocks.<BlockLogicCropsCauliflower>getLogicAs(CROPS_CAULIFLOWER)
-            .withSeed(StardewItems.SEEDS_CAULIFLOWER, 0, 0)
-            .withGrowth(4)
-            .growsInto(CAULIFLOWER)
+            .withProperSeason(Seasons.OVERWORLD_SUMMER)
             .notFertilized()
             .noHarvest();
 
@@ -365,24 +365,21 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withSeed(StardewItems.SEEDS_STRAWBERRY, 1, 1)
             .withResetMeta(1)
             .withGrowth(3)
-            .notFertilized();
-
-        StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_CRANBERRIES)
-            .withCrop(StardewItems.CRANBERRIES, 1, 3)
-            .withSeed(StardewItems.SEEDS_CRANBERRIES, 1, 2)
-            .withGrowth(3)
-            .withResetMeta(2)
+            .withProperSeason(Seasons.OVERWORLD_SUMMER)
             .notFertilized();
 
         StardewBlocks.<BlockLogicCropsWatermelon>getLogicAs(CROPS_WATERMELON)
             .withSeed(StardewItems.SEEDS_WATERMELON, 0, 0)
             .withGrowth(4)
+            .withProperSeason(Seasons.OVERWORLD_SUMMER)
             .growsInto(WATERMELON)
             .noHarvest();
 
+        //Fall Crops
         StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_CORN_BOTTOM)
             .growsTop(CROPS_CORN_TOP, 3)
             .withGrowth(6)
+            .withProperSeason(Seasons.OVERWORLD_FALL)
             .withSeed(StardewItems.SEEDS_CORN, 2, 2)
             .withCrop(StardewItems.CORN)
             .notFertilized()
@@ -391,30 +388,16 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_CORN_TOP)
             .asTop(CROPS_CORN_BOTTOM)
             .withGrowth(3)
+            .withProperSeason(Seasons.OVERWORLD_FALL)
             .withSeed(StardewItems.SEEDS_CORN, 2, 2)
             .withCrop(StardewItems.CORN)
             .notFertilized()
             .noHarvest();
 
-        StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_BOTTOM)
-            .growsTop(CROPS_BEANS_TOP, 4)
-            .withGrowth(6)
-            .withResetMeta(4)
-            .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
-            .notFertilized()
-            .seedItem = (StardewItems.BEANS_COFFEE);
-
-        StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_TOP)
-            .asTop(CROPS_BEANS_BOTTOM)
-            .withGrowth(2)
-            .withResetMeta(0)
-            .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
-            .notFertilized()
-            .seedItem = (StardewItems.BEANS_COFFEE);
-
         StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_GRAPE_TOP)
             .asTop(CROPS_GRAPE_BOTTOM)
             .withGrowth(2)
+            .withProperSeason(Seasons.OVERWORLD_FALL)
             .withSeed(StardewItems.SEEDS_GRAPES, 2, 2)
             .withResetMeta(0)
             .withCrop(StardewItems.GRAPES, 1, 3)
@@ -423,10 +406,47 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_GRAPE_BOTTOM)
             .growsTop(CROPS_GRAPE_TOP, 3)
             .withGrowth(5)
+            .withProperSeason(Seasons.OVERWORLD_FALL)
             .withSeed(StardewItems.SEEDS_GRAPES, 2, 2)
             .withResetMeta(3)
             .withCrop(StardewItems.GRAPES, 1, 3)
             .notFertilized();
+
+        //Winter Crops
+
+        StardewBlocks.<BlockLogicCropBase>getLogicAs(CROPS_CRANBERRIES)
+            .withCrop(StardewItems.CRANBERRIES, 1, 3)
+            .withSeed(StardewItems.SEEDS_CRANBERRIES, 1, 2)
+            .withGrowth(3)
+            .withProperSeason(Seasons.OVERWORLD_WINTER, Seasons.OVERWORLD_WINTER_ENDLESS)
+            .withResetMeta(2)
+            .notFertilized();
+
+        StardewBlocks.<BlockLogicCropsCauliflower>getLogicAs(CROPS_CAULIFLOWER)
+            .withSeed(StardewItems.SEEDS_CAULIFLOWER, 0, 0)
+            .withGrowth(4)
+            .withProperSeason(Seasons.OVERWORLD_WINTER, Seasons.OVERWORLD_WINTER_ENDLESS)
+            .growsInto(CAULIFLOWER)
+            .notFertilized()
+            .noHarvest();
+
+        StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_BOTTOM)
+            .growsTop(CROPS_BEANS_TOP, 4)
+            .withGrowth(6)
+            .withProperSeason(Seasons.OVERWORLD_WINTER, Seasons.OVERWORLD_WINTER_ENDLESS)
+            .withResetMeta(4)
+            .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
+            .notFertilized()
+            .seedItem = (StardewItems.BEANS_COFFEE);
+
+        StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_TOP)
+            .asTop(CROPS_BEANS_BOTTOM)
+            .withGrowth(2)
+            .withProperSeason(Seasons.OVERWORLD_WINTER, Seasons.OVERWORLD_WINTER_ENDLESS)
+            .withResetMeta(0)
+            .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
+            .notFertilized()
+            .seedItem = (StardewItems.BEANS_COFFEE);
     }
 
     @SuppressWarnings("unchecked")

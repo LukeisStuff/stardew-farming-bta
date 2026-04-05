@@ -13,6 +13,7 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.season.Season;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
@@ -46,7 +47,8 @@ public class BlockLogicCropsCauliflower extends BlockLogicCropBase implements IB
     @Override
     public void updateTick(World world, int x, int y, int z, Random rand) {
         super.updateTick(world, x, y, z, rand);
-        if (world.getBlockLightValue(x, y + 1, z) >= 9) {
+        Season current = world.getSeasonManager().getCurrentSeason();
+        if (world.getBlockLightValue(x, y + 1, z) >= 9 && season.contains(current)) {
             int meta = world.getBlockMetadata(x, y, z);
             if (meta < 6) {
                 float f = this.getGrowthRate(world, x, y, z);
