@@ -1,6 +1,7 @@
 package luke.stardew;
 
 import luke.stardew.blocks.StardewBlocks;
+import luke.stardew.entities.NetEntryTomato;
 import luke.stardew.entities.StardewEntities;
 import luke.stardew.entities.duck.NetEntryEggDuck;
 import luke.stardew.items.StardewItems;
@@ -8,13 +9,12 @@ import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.block.material.MaterialColor;
 import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.item.Items;
+import net.minecraft.core.net.entity.NetEntityHandler;
 import net.minecraft.core.sound.SoundTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.ItemInitEntrypoint;
-
-import static net.minecraft.core.net.entity.NetEntityHandler.registerNetworkEntry;
 
 public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInitEntrypoint {
     public static final String MOD_ID = "stardew";
@@ -32,7 +32,8 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         StardewBlocks.init();
         StardewItems.init();
 
-        registerNetworkEntry(new NetEntryEggDuck(), 300);
+        NetEntityHandler.registerNetworkEntry(new NetEntryEggDuck(), 300);
+        NetEntityHandler.registerNetworkEntry(new NetEntryTomato(), 301);
 
         SoundTypes.loadSoundsJson(MOD_ID);
     }

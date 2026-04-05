@@ -3,11 +3,13 @@ package luke.stardew.achievements;
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.client.gui.achievements.ScreenAchievements;
 import net.minecraft.client.gui.achievements.data.AchievementPage;
+import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.lang.I18n;
+import net.minecraft.core.util.helper.Side;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -40,7 +42,7 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public @Nullable IconCoordinate getBackgroundTile(ScreenAchievements screen, int i, Random random, int j, int k) {
-        return getTextureFromBlock(StardewBlocks.THATCH);
+        return BlockModelDispatcher.getInstance().getDispatch(StardewBlocks.THATCH).getBlockTextureFromSideAndMetadata(random.nextBoolean() ? Side.TOP : Side.NORTH, 0);
     }
 
     @Override
@@ -79,7 +81,7 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public int lineColorCanUnlock(boolean bl) {
-        return 65280;
+        return 0xFFFF00;
     }
 
 }

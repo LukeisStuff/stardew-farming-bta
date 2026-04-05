@@ -234,6 +234,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
         BEEHIVE_IDLE = wood
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTickOnLoad()
             .build("beehive.idle", "beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehiveActive(b, false));
 
         BEEHIVE_HONEY = wood

@@ -30,6 +30,8 @@ LukeisStuff - Creator, Lead Developer
 
 Dundi Gundi - Developer
 
+big sir - Developer
+
 Beatrice, zotheyeen - Textures
 
 Useless, CookieCakes - Mod Help
