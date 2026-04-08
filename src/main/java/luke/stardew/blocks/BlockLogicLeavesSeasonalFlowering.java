@@ -13,8 +13,8 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePosc;
 import net.minecraft.core.world.season.Season;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -26,14 +26,14 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     private final Supplier<Item> fruit;
     private final Block<?> floweringLeaves;
 
-    public BlockLogicLeavesSeasonalFlowering(@NotNull Block<?> block, @NotNull Supplier<Block<?>> sapling, Season season, Supplier<Item> fruit, Block<?> floweringLeaves) {
+    public BlockLogicLeavesSeasonalFlowering(@NonNull Block<?> block, @NonNull Supplier<Block<?>> sapling, Season season, Supplier<Item> fruit, Block<?> floweringLeaves) {
         super(block, sapling, season);
         this.fruit = fruit;
         this.floweringLeaves = floweringLeaves;
     }
 
     @Override
-    public ItemStack @Nullable [] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, @NotNull TilePosc tilePos, int data, @Nullable TileEntity tileEntity) {
+    public ItemStack @Nullable [] getBreakResult(@NonNull World world, @NonNull EnumDropCause dropCause, @NonNull TilePosc tilePos, int data, @Nullable TileEntity tileEntity) {
         int growthRate = getGrowthRate(data);
         if (dropCause != EnumDropCause.PICK_BLOCK && dropCause != EnumDropCause.SILK_TOUCH) {
             return growthRate == 0 ? null : new ItemStack[]{new ItemStack(fruit.get(), world.rand.nextInt(2) + 1)};
@@ -43,17 +43,17 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     @Override
-    public boolean onInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @Nullable Side side, double xHit, double yHit) {
+    public boolean onInteracted(@NonNull World world, @NonNull TilePosc tilePos, @NonNull Player player, @Nullable Side side, double xHit, double yHit) {
         return harvest(world, tilePos, player);
     }
 
     @Override
-    public void onAttacked(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @NotNull Side side, double xHit, double yHit) {
+    public void onAttacked(@NonNull World world, @NonNull TilePosc tilePos, @NonNull Player player, @NonNull Side side, double xHit, double yHit) {
         // Left-click harvesting (same as right-click)
         harvest(world, tilePos, player);
     }
 
-    private boolean harvest(@NotNull World world, @NotNull TilePosc tilePos, @Nullable Player player) {
+    private boolean harvest(@NonNull World world, @NonNull TilePosc tilePos, @Nullable Player player) {
         int meta = world.getBlockData(tilePos);
         int growthRate = getGrowthRate(meta);
 
@@ -74,12 +74,12 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     @Override
-    public void onActivatorInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull TileEntityActivator activator, @NotNull Direction direction) {
+    public void onActivatorInteracted(@NonNull World world, @NonNull TilePosc tilePos, @NonNull TileEntityActivator activator, @NonNull Direction direction) {
         harvest(world, tilePos, null);
     }
 
     @Override
-    public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
+    public void updateTick(@NonNull World world, @NonNull TilePosc tilePos, @NonNull Random rand, boolean isRandomTick) {
         super.updateTick(world, tilePos, rand, isRandomTick);
 
         int meta = world.getBlockData(tilePos);
@@ -99,7 +99,7 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     @Override
-    public boolean onBonemealUsed(@NotNull ItemStack itemStack, @Nullable Player player, @NotNull World world, @NotNull TilePosc tilePos, @NotNull Side side, double xHit, double yHit) {
+    public boolean onBonemealUsed(@NonNull ItemStack itemStack, @Nullable Player player, @NonNull World world, @NonNull TilePosc tilePos, @NonNull Side side, double xHit, double yHit) {
         int meta = world.getBlockData(tilePos);
         if (getGrowthRate(meta) != 0) {
             return false;

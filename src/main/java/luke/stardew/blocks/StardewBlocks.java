@@ -187,7 +187,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
         // Fall Tree
         LOG_APPLE = log
-            .build("log.apple", "log_apple", blockID("LOG_APPLE"), BlockLogicLog::new);
+            .build("log.apple", blockID("LOG_APPLE"), BlockLogicLog::new);
 
         LEAVES_APPLE = leaves
             .build("leaves.apple", "leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));

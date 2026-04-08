@@ -13,7 +13,7 @@ import net.minecraft.core.item.tool.ItemToolShears;
 import net.minecraft.core.util.helper.DamageType;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
@@ -102,7 +102,7 @@ public class MobDuck extends MobAnimal {
     }
 
     @Override
-    public boolean interact(@NotNull Player player) {
+    public boolean interact(@NonNull Player player) {
         if (super.interact(player)) {
             return true;
         } else {

@@ -5,8 +5,8 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.render.entity.MobRenderer;
 import net.minecraft.client.render.renderer.GLRenderer;
 import net.minecraft.core.util.helper.MathHelper;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 import org.useless.dragonfly.models.entity.BoneTransform;
 import org.useless.dragonfly.models.entity.StaticEntityModel;
 
@@ -17,7 +17,7 @@ public class MobRendererDuck extends MobRenderer<MobDuck> {
     }
 
     @Override
-    protected @Nullable StaticEntityModel getAndSetupModelForLayer(@NotNull MobDuck entity, float brightness, float partialTick, int layer) {
+    protected @Nullable StaticEntityModel getAndSetupModelForLayer(@NonNull MobDuck entity, float brightness, float partialTick, int layer) {
         StaticEntityModel model = this.getModel("main");
         model.resetBones();
         float limbSwing = this.getLimbSwing(entity, partialTick);
@@ -35,14 +35,14 @@ public class MobRendererDuck extends MobRenderer<MobDuck> {
     }
 
     @Override
-    protected float getLimbPitch(@NotNull MobDuck entity, float partialTick) {
+    protected float getLimbPitch(@NonNull MobDuck entity, float partialTick) {
         float flap = MathHelper.lerp(entity.oFlap, entity.flap, partialTick);
         float flapSpeed = MathHelper.lerp(entity.oFlapSpeed, entity.flapSpeed, partialTick);
         return (MathHelper.sin(flap) + 1.0F) * flapSpeed;
     }
 
     @Override
-    protected void preRenderTransform(@NotNull MobDuck entity, double x, double y, double z, float yaw, float partialTick) {
+    protected void preRenderTransform(@NonNull MobDuck entity, double x, double y, double z, float yaw, float partialTick) {
         super.preRenderTransform(entity, x, y, z, yaw, partialTick);
         GLRenderer.modelM4f().translate(0.0F, 0.3F, 0.0F);
     }

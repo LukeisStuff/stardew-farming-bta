@@ -16,6 +16,8 @@ import org.slf4j.LoggerFactory;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.ItemInitEntrypoint;
 
+import static net.minecraft.core.data.registry.Registries.NAMESPACES;
+
 public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInitEntrypoint {
     public static final String MOD_ID = "stardew";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
@@ -28,6 +30,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
     @Override
     public void beforeGameStart() {
         Registries.RECIPE_TYPES.register("stardew:beehive", RecipeEntryBeehive.class);
+        NAMESPACES.register("stardew", "stardew");
 
         StardewConfig.init();
         StardewEntities.init();

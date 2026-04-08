@@ -9,8 +9,8 @@ import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class ItemModelTieredFishingRod extends ItemModelStandard {
@@ -24,7 +24,7 @@ public class ItemModelTieredFishingRod extends ItemModelStandard {
     }
 
     @Override
-    public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
+    public @NonNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
         if (entity instanceof Player player && itemStack == player.getHeldItem() && player.bobberEntity != null) {
             return this.rodCast;
         }

@@ -16,7 +16,7 @@ public class TileEntityFurnaceMixin {
         if (input != null && input.getItem().equals(Items.BUCKET_MILK)) {
             furnace.setItem(0, new ItemStack(Items.BUCKET, 1));
             if (furnace.worldObj != null && !furnace.worldObj.isClientSide) {
-                furnace.worldObj.markBlockNeedsUpdate(furnace.x, furnace.y, furnace.z);
+                furnace.worldObj.markBlockNeedsUpdate(furnace.tilePos.x, furnace.tilePos.y, furnace.tilePos.z);
             }
         } else {
             assert input != null;

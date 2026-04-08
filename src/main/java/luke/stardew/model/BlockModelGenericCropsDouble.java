@@ -6,7 +6,7 @@ import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.block.model.generic.BlockModelGeneric;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.useless.dragonfly.models.block.StaticBlockModel;
 
 @Environment(EnvType.CLIENT)
@@ -16,7 +16,7 @@ public class BlockModelGenericCropsDouble<T extends BlockLogic> extends BlockMod
     public final boolean isTop;
     public final StaticBlockModel[] models;
 
-    public BlockModelGenericCropsDouble(@NotNull Block<T> block, String cropName, int cropLength, boolean isTop) {
+    public BlockModelGenericCropsDouble(@NonNull Block<T> block, String cropName, int cropLength, boolean isTop) {
         super(block, BlockModelDispatcher.loadDataModel("stardew:block/crops_" + cropName + "/stage0" + (isTop ? "_top" : "_bottom")));
 
         this.cropName = cropName;
@@ -32,7 +32,7 @@ public class BlockModelGenericCropsDouble<T extends BlockLogic> extends BlockMod
     }
 
     @Override
-    public @NotNull StaticBlockModel getModelFromData(int data) {
+    public @NonNull StaticBlockModel getModelFromData(int data) {
         return this.models[Math.min(data, cropLength - 1)];
     }
 }

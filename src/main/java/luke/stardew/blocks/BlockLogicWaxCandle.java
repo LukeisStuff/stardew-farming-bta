@@ -92,8 +92,8 @@ public class BlockLogicWaxCandle extends BlockLogic {
     @Override
     public void animationTick(World world, int x, int y, int z, Random rand) {
         if (this.burning && rand.nextInt(2) == 0) {
-            world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
-            world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
+            world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0, false);
+            world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0, false);
         }
 
     }

@@ -7,17 +7,17 @@ import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.material.ArmorMaterial;
 import net.minecraft.core.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class ItemCanOfWormsEndless extends Item implements IArmorItem<HumanArmorShape> {
-    public ItemCanOfWormsEndless(@NotNull String name, @NotNull String namespaceId, int id) {
+    public ItemCanOfWormsEndless(@NonNull String name, @NonNull String namespaceId, int id) {
         super(name, namespaceId, id);
         this.setMaxStackSize(1);
     }
 
     @Override
-    public @Nullable ItemStack onUse(@NotNull ItemStack selfStack, @NotNull World world, @NotNull Player player) {
+    public @Nullable ItemStack onUse(@NonNull ItemStack selfStack, @NonNull World world, @NonNull Player player) {
         HumanArmorShape humanArmorShape = this.getArmorShape();
         ItemStack currentArmorInSlot = player.getItemInArmorSlot(humanArmorShape);
         player.setItemInArmorSlot(humanArmorShape, selfStack);
@@ -28,7 +28,7 @@ public class ItemCanOfWormsEndless extends Item implements IArmorItem<HumanArmor
         return null;
     }
 
-    public @NotNull HumanArmorShape getArmorShape() {
+    public @NonNull HumanArmorShape getArmorShape() {
         return HumanArmorShape.LEGS;
     }
 }

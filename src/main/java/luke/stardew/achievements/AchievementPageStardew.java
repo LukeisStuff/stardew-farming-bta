@@ -8,8 +8,8 @@ import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.lang.I18n;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
 
 import java.util.Objects;
 import java.util.Random;
@@ -24,17 +24,16 @@ public class AchievementPageStardew extends AchievementPage {
     }
 
     @Override
-    public @NotNull String getName() {
-        return I18n.getInstance().translateKey(name);
+    public @NonNull String getName() {
+        return I18n.getInstance().translateKey(this.name + ".name");
+    }
+
+    public @NonNull String getDescription() {
+        return I18n.getInstance().translateKey(this.name + ".desc");
     }
 
     @Override
-    public @NotNull String getDescription() {
-        return I18n.getInstance().translateKey(name);
-    }
-
-    @Override
-    public @NotNull AchievementEntry onOpenAchievement() {
+    public AchievementPage.@NonNull AchievementEntry onOpenAchievement() {
         return Objects.requireNonNull(this.getEntry(StardewAchievements.STARDEW));
     }
 
@@ -48,7 +47,7 @@ public class AchievementPageStardew extends AchievementPage {
     }
 
     @Override
-    public @NotNull ItemStack getIcon() {
+    public @NonNull ItemStack getIcon() {
         return this.icon;
     }
 

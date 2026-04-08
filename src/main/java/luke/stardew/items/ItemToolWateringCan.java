@@ -13,7 +13,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePosc;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Random;
@@ -26,12 +26,12 @@ public class ItemToolWateringCan extends Item {
     }
 
     @Override
-    public boolean onUseOnBlock(@NotNull ItemStack selfStack, @NotNull World world, @org.jetbrains.annotations.Nullable Player player, @NotNull TilePosc blockPos, @NotNull Side side, double xHit, double yHit) {
+    public boolean onUseOnBlock(@NonNull ItemStack selfStack, @NonNull World world, @org.jetbrains.annotations.Nullable Player player, @NonNull TilePosc blockPos, @NonNull Side side, double xHit, double yHit) {
         return this.waterBlock(selfStack, player, world, blockPos.x(), blockPos.y(), blockPos.z());
     }
 
     @Override
-    public void onUseByActivator(@NotNull ItemStack selfStack, @NotNull World world, @NotNull TileEntityActivator activator, @NotNull Random random, @NotNull TilePosc blockPos, @NotNull Direction direction, double offX, double offY, double offZ) {
+    public void onUseByActivator(@NonNull ItemStack selfStack, @NonNull World world, @NonNull TileEntityActivator activator, @NonNull Random random, @NonNull TilePosc blockPos, @NonNull Direction direction, double offX, double offY, double offZ) {
         this.waterBlock(selfStack, null, world, blockPos.x() + direction.getOffsetX(), blockPos.y() + direction.getOffsetY(), blockPos.z() + direction.getOffsetZ());
     }
 

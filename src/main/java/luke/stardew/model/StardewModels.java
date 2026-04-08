@@ -3,6 +3,8 @@ package luke.stardew.model;
 import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.duck.MobRendererDuck;
+import luke.stardew.entities.duck.ProjectileEggDuck;
+import luke.stardew.entities.goat.MobGoat;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -11,12 +13,13 @@ import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.block.model.generic.*;
+import net.minecraft.client.render.entity.EntityRendererSprite;
+import net.minecraft.client.render.entity.MobRendererQuadruped;
 import net.minecraft.client.render.item.model.ItemModelBlock;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.item.model.ItemModelStandard;
 import net.minecraft.core.item.block.ItemBlock;
 import org.useless.dragonfly.DisplayPos;
-import turniplabs.halplibe.helper.ModelHelper;
 import turniplabs.halplibe.util.ModelEntrypoint;
 
 import static luke.stardew.StardewMod.MOD_ID;
@@ -182,9 +185,9 @@ public class StardewModels implements ModelEntrypoint {
 
     @Override
     public void initEntityModels(EntityRendererDispatcher dispatcher) {
-        ModelHelper.setEntityModel(MobDuck.class, () -> new MobRendererDuck(0.4F));
-//        ModelHelper.setEntityModel(MobGoat.class, () -> new MobRendererQuadruped<>(0.7F));
-//        ModelHelper.setEntityModel(ProjectileEggDuck.class, () -> new EntityRendererSprite<>(StardewItems.EGG_DUCK));
+        dispatcher.assignRenderer(MobDuck.class, new MobRendererDuck(0.4F));
+        dispatcher.assignRenderer(MobGoat.class, new MobRendererQuadruped<>(0.7F));
+        dispatcher.assignRenderer(ProjectileEggDuck.class, new EntityRendererSprite<>(StardewItems.EGG_DUCK));
     }
 
     @Override

@@ -14,9 +14,8 @@ import net.minecraft.core.net.packet.Packet;
 import net.minecraft.core.net.packet.PacketTileEntityData;
 import net.minecraft.core.player.inventory.container.Container;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.pos.TilePos;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 import java.util.Random;
 
@@ -43,18 +42,20 @@ public class TileEntityBeehive extends TileEntity implements Container {
             if (this.inventory[slot].stackSize <= takeAmount) {
                 ItemStack itemstack = this.inventory[slot];
                 this.inventory[slot] = null;
-                if (this.worldObj != null && slot == SLOT_RESULT) {
-                    this.worldObj.markBlockNeedsUpdate(this.x, this.y, this.z);
+                if (this.worldObj != null && slot == 2) {
+                    this.worldObj.markBlockNeedsUpdate(this.tilePos.x, this.tilePos.y, this.tilePos.z);
                 }
+
                 return itemstack;
             } else {
                 ItemStack itemstack1 = this.inventory[slot].splitStack(takeAmount);
                 if (this.inventory[slot].stackSize <= 0) {
                     this.inventory[slot] = null;
-                    if (this.worldObj != null && slot == SLOT_RESULT) {
-                        this.worldObj.markBlockNeedsUpdate(this.x, this.y, this.z);
+                    if (this.worldObj != null && slot == 2) {
+                        this.worldObj.markBlockNeedsUpdate(this.tilePos.x, this.tilePos.y, this.tilePos.z);
                     }
                 }
+
                 return itemstack1;
             }
         } else {
@@ -68,16 +69,17 @@ public class TileEntityBeehive extends TileEntity implements Container {
             stack.stackSize = this.getMaxStackSize();
         }
 
-        if (this.worldObj != null && slot == SLOT_RESULT && stack == null) {
-            this.worldObj.markBlockNeedsUpdate(this.x, this.y, this.z);
+        if (this.worldObj != null && slot == 2 && stack == null) {
+            this.worldObj.markBlockNeedsUpdate(this.tilePos.x, this.tilePos.y, this.tilePos.z);
         }
+
     }
 
-    public @NotNull String getNameTranslationKey() {
+    public @NonNull String getNameTranslationKey() {
         return "container.beehive.name";
     }
 
-    public void readAdditionalData(@NotNull CompoundTag compoundTag) {
+    public void readAdditionalData(@NonNull CompoundTag compoundTag) {
         ListTag itemsTag = compoundTag.getList("Items");
         this.inventory = new ItemStack[this.getContainerSize()];
 
@@ -92,7 +94,7 @@ public class TileEntityBeehive extends TileEntity implements Container {
         this.currentCookTime = compoundTag.getShort("CookTime");
     }
 
-    public void writeAdditionalData(@NotNull CompoundTag compoundTag) {
+    public void writeAdditionalData(@NonNull CompoundTag compoundTag) {
         compoundTag.putShort("CookTime", (short) this.currentCookTime);
         ListTag itemsTag = new ListTag();
 
@@ -139,7 +141,7 @@ public class TileEntityBeehive extends TileEntity implements Container {
 
             boolean isProcessing = this.canSmelt();
             if (this.worldObj != null) {
-                BlockLogicBeehive.updateBeehiveBlockState(this.worldObj, new TilePos(this.x, this.y, this.z), isProcessing);
+//                BlockLogicBeehive.updateBeehiveBlockState(this.worldObj, new TilePos(this.x, this.y, this.z), isProcessing);
             } else if (this.carriedBlock != null) {
                 this.carriedBlock.blockId = isProcessing ? StardewBlocks.BEEHIVE_ACTIVE.id() : StardewBlocks.BEEHIVE_IDLE.id();
             }
@@ -201,10 +203,10 @@ public class TileEntityBeehive extends TileEntity implements Container {
         }
     }
 
-    public boolean stillValid(@NotNull Player player) {
-        if (this.worldObj != null && this.worldObj.getTileEntity(this.x, this.y, this.z) == this) {
-            return player.distanceToSqr((double) this.x + 0.5, (double) this.y + 0.5, (double) this.z + 0.5) <= 64.0;
-        }
+    public boolean stillValid(@NonNull Player player) {
+//        if (this.worldObj != null && this.worldObj.getTileEntity(this.x, this.y, this.z) == this) {
+//            return player.distanceToSqr((double) this.x + 0.5, (double) this.y + 0.5, (double) this.z + 0.5) <= 64.0;
+//        }
         return false;
     }
 

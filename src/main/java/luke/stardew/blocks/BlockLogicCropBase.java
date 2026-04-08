@@ -19,7 +19,7 @@ import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.pos.TilePosc;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.NonNull;
 import org.jspecify.annotations.Nullable;
 
@@ -115,7 +115,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         }
     }
 
-    public float getGrowthRate(@NotNull World world, @NotNull TilePosc tilePos) {
+    public float getGrowthRate(@NonNull World world, @NonNull TilePosc tilePos) {
         float growthRate = 1.0F;
         TilePos queryPos = new TilePos();
         Block<?> bNegZ = world.getBlockType(tilePos.north(queryPos));

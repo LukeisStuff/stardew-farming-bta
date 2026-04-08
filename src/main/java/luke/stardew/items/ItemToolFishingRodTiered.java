@@ -8,8 +8,8 @@ import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.world.World;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class ItemToolFishingRodTiered extends Item {
 
@@ -21,7 +21,7 @@ public class ItemToolFishingRodTiered extends Item {
 
 
     @Override
-    public @Nullable ItemStack onUse(@NotNull ItemStack selfStack, @NotNull World world, @NotNull Player player) {
+    public @Nullable ItemStack onUse(@NonNull ItemStack selfStack, @NonNull World world, @NonNull Player player) {
         ItemStack canSlot = player.inventory.armorItemInSlot(HumanArmorShape.LEGS);
 
         if (player.bobberEntity != null) {

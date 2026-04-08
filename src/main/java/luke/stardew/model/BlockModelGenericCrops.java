@@ -6,7 +6,7 @@ import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.block.model.generic.BlockModelGeneric;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
-import org.jetbrains.annotations.NotNull;
+import org.jspecify.annotations.NonNull;
 import org.useless.dragonfly.models.block.StaticBlockModel;
 
 @Environment(EnvType.CLIENT)
@@ -15,7 +15,7 @@ public class BlockModelGenericCrops<T extends BlockLogic> extends BlockModelGene
     public final String cropName;
     public final StaticBlockModel[] models;
 
-    public BlockModelGenericCrops(@NotNull Block<T> block, String cropName, int cropLength) {
+    public BlockModelGenericCrops(@NonNull Block<T> block, String cropName, int cropLength) {
         super(block, BlockModelDispatcher.loadDataModel("stardew:block/crops_" + cropName + "/stage0"));
         this.cropName = cropName;
         this.cropLength = cropLength;
@@ -27,7 +27,7 @@ public class BlockModelGenericCrops<T extends BlockLogic> extends BlockModelGene
     }
 
     @Override
-    public @NotNull StaticBlockModel getModelFromData(int data) {
+    public @NonNull StaticBlockModel getModelFromData(int data) {
         return this.models[Math.min(data, cropLength - 1)];
     }
 }

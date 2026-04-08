@@ -8,8 +8,8 @@ import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 @Environment(EnvType.CLIENT)
 public class ItemModelBait extends ItemModelStandard {
@@ -20,7 +20,7 @@ public class ItemModelBait extends ItemModelStandard {
     }
 
     @Override
-    public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
+    public @NonNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
         return itemStack.getMetadata() >= itemStack.getItem().getMaxDamage() ? this.baitFull : super.getIcon(entity, itemStack);
     }
 }

@@ -11,7 +11,7 @@ import net.minecraft.core.item.Items;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 import net.minecraft.core.world.pos.TilePosc;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.Nullable;
 import org.joml.primitives.AABBdc;
 import org.jspecify.annotations.NonNull;
 import org.spongepowered.asm.mixin.Unique;

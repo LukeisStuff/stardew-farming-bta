@@ -14,7 +14,6 @@ import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
 import net.minecraft.client.render.particle.Particle;
 import net.minecraft.client.render.particle.ParticleDispatcher;
 import net.minecraft.client.render.particle.ParticleEntry;
-import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
@@ -36,8 +35,6 @@ public class StardewClient implements ClientModInitializer, ClientStartEntrypoin
                 return new ParticleBee(world, x, y, z, xa, ya, za);
             }
         });
-
-        SoundRepository.registerNamespace(MOD_ID);
     }
 
     @Override

@@ -10,8 +10,8 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.pos.TilePosc;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
 public class ItemSeedsStake extends ItemSeeds {
     public ItemSeedsStake(String name, String namespaceId, int id, Block<?> cropsBlock) {
@@ -19,7 +19,7 @@ public class ItemSeedsStake extends ItemSeeds {
     }
 
     @Override
-    public boolean onUseOnBlock(@NotNull ItemStack selfStack, @NotNull World world, @Nullable Player player, @NotNull TilePosc blockPos, @NotNull Side side, double xHit, double yHit) {
+    public boolean onUseOnBlock(@NonNull ItemStack selfStack, @NonNull World world, @Nullable Player player, @NonNull TilePosc blockPos, @NonNull Side side, double xHit, double yHit) {
         if (world.getBlock(blockPos.x(), blockPos.y(), blockPos.z()) == StardewBlocks.PLANT_STAKE) {
             if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.SEEDS_GRAPES.id && world.getBlockId(blockPos.x(), blockPos.y() - 1, blockPos.z()) == Blocks.FARMLAND_DIRT.id()) {
                 player.getCurrentEquippedItem().consumeItem(player);
