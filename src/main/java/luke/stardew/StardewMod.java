@@ -40,7 +40,8 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
 
     @Override
     public void afterGameStart() {
-        StardewItems.FOOD_COFFEE.setContainerItem(Items.BUCKET);
+        // TODO: make coffee use the new system.
+        //StardewItems.FOOD_COFFEE.setContainerItem(Items.BUCKET);
     }
 
     @Override

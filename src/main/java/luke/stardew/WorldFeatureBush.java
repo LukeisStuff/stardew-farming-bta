@@ -34,13 +34,13 @@ public class WorldFeatureBush extends WorldFeature {
             if (!StardewBlocks.BUSH.canBlockStay(world, px, py, pz)) continue;
 
             int meta;
-            if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
+            if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
                 meta = 0;
-            } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
+            } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
                 meta = 1;
-            } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_FALL) {
+            } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL) {
                 meta = 2;
-            } else if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER_ENDLESS) {
+            } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER_ENDLESS) {
                 meta = 3;
             } else {
                 meta = 4;

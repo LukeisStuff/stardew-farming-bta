@@ -276,7 +276,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
                                     for (catchRate = 0; catchRate < k; ++catchRate) {
                                         double d8 = this.bb.minY + (this.bb.maxY - this.bb.minY) * catchRate / k - 0.125 + 0.125;
                                         double d9 = this.bb.minY + (this.bb.maxY - this.bb.minY) * (catchRate + 1) / k - 0.125 + 0.125;
-                                        AABB axisalignedbb1 = AABB.getTemporaryBB(this.bb.minX, d8, this.bb.minZ, this.bb.maxX, d9, this.bb.maxZ);
+                                        AABB axisalignedbb1 = new AABBd(this.bb.minX, d8, this.bb.minZ, this.bb.maxX, d9, this.bb.maxZ);
                                         if (this.world.isAABBInMaterial(axisalignedbb1, Material.water) || this.world.isAABBInMaterial(axisalignedbb1, Material.lava)) {
                                             d5 += 1.0 / k;
                                         }
@@ -454,7 +454,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
     @Unique
     public Item getCatchableFish() {
         assert world != null;
-        Season season = world.seasonManager.getCurrentSeason();
+        Season season = world.getSeasonManager().getCurrentSeason();
         Weather weather = world.weatherManager.getCurrentWeather();
         Item[] treasuresLowValue = {Items.OLIVINE, Items.QUARTZ, Items.DUST_REDSTONE, Items.COAL};
         Item[] treasuresMiddleValue = {Items.ORE_RAW_IRON, Items.ORE_RAW_GOLD};

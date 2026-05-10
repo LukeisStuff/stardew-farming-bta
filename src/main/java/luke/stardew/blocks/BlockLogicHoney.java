@@ -2,17 +2,17 @@ package luke.stardew.blocks;
 
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicTransparent;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.entity.Entity;
 import net.minecraft.core.enums.EnumBlockSoundEffectType;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import org.joml.primitives.AABBd;
 
 public class BlockLogicHoney extends BlockLogicTransparent {
 
     public BlockLogicHoney(Block<?> block) {
-        super(block, Material.leaves);
+        super(block, Materials.LEAVES);
         block.setTicking(true);
     }
 
@@ -22,9 +22,9 @@ public class BlockLogicHoney extends BlockLogicTransparent {
     }
 
     @Override
-    public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+    public AABBd getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
         float f = 0.125F;
-        return AABB.getTemporaryBB(x + f, y + f, z + f, (x + 1) - f, (y + 1) - f, (z + 1) - f);
+        return new AABBd(x + f, y + f, z + f, (x + 1) - f, (y + 1) - f, (z + 1) - f);
     }
 
     @Override

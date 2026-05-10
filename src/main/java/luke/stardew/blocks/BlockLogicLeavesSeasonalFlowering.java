@@ -11,8 +11,10 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
 import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.jspecify.annotations.NonNull;
 
@@ -32,7 +34,7 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     @Override
-    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int meta, TileEntity tileEntity) {
+    public ItemStack[] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, int meta, TileEntity tileEntity) {
         int growthRate = getGrowthRate(meta);
         if (dropCause != EnumDropCause.PICK_BLOCK && dropCause != EnumDropCause.SILK_TOUCH) {
             return growthRate == 0 ? null : new ItemStack[]{new ItemStack(fruit.get(), world.rand.nextInt(2) + 1)};
@@ -42,17 +44,18 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     @Override
-    public void onBlockLeftClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
+    public void onBlockLeftClicked(@NotNull World world, int x, int y, int z, @NotNull Player player, @NotNull Side side, double xHit, double yHit) {
         this.onBlockRightClicked(world, x, y, z, player, null, 0.0F, 0.0F);
     }
 
     @Override
-    public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xPlaced, double yPlaced) {
-        return this.harvest(world, x, y, z, player);
+    public boolean onInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @Nullable Side side, double xHit, double yHit) {
+        return this.harvest(world, tilePos, player);
     }
 
-    public boolean harvest(World world, int x, int y, int z, @Nullable Player player) {
-        int meta = world.getBlockMetadata(x, y, z);
+
+    public boolean harvest(World world, TilePosc tilePos, @Nullable Player player) {
+        int meta = world.getBlockData(tilePos);
         int growthRate = getGrowthRate(meta);
         if (growthRate > 0) {
             if (player != null) {
@@ -60,11 +63,11 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
             }
 
             if (!world.isClientSide) {
-                this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, meta, null, null);
+                this.dropWithCause(world, EnumDropCause.WORLD, tilePos, meta, null, null);
             }
 
-            world.setBlockMetadataWithNotify(x, y, z, setGrowthRate(meta, 0));
-            world.scheduleBlockUpdate(x, y, z, this.floweringLeaves.id(), this.tickDelay());
+            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), setGrowthRate(meta, 0));
+            world.scheduleBlockUpdate(tilePos.x(), tilePos.y(), tilePos.z(), this.floweringLeaves.id(), this.tickDelay());
             return true;
         } else {
             return false;
@@ -72,30 +75,30 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     @Override
-    public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
-        this.harvest(world, x, y, z, null);
+    public void onActivatorInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull TileEntityActivator activator, @NotNull Direction direction) {
+        this.harvest(world, tilePos, null);
     }
 
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        super.updateTick(world, x, y, z, rand);
-        int meta = world.getBlockMetadata(x, y, z);
+    public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
+        super.updateTick(world, tilePos, rand, isRandomTick);;
+        int meta = world.getBlockData(tilePos);
         int growthRate = getGrowthRate(meta);
         if (world.getSeasonManager().getCurrentSeason() == season) {
             if (rand.nextInt(20) == 0 && growthRate == 0) {
-                world.setBlockMetadataWithNotify(x, y, z, setGrowthRate(meta, MAX_GROWTH_STATE));
-                world.scheduleBlockUpdate(x, y, z, this.floweringLeaves.id(), this.tickDelay());
+                world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), setGrowthRate(meta, MAX_GROWTH_STATE));
+                world.scheduleBlockUpdate(tilePos.x(), tilePos.y(), tilePos.z(), this.floweringLeaves.id(), this.tickDelay());
             }
         } else if (growthRate > 0) {
-            world.setBlockMetadataWithNotify(x, y, z, meta & 15);
-            world.scheduleBlockUpdate(x, y, z, this.floweringLeaves.id(), this.tickDelay());
+            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), meta & 15);
+            world.scheduleBlockUpdate(tilePos.x(), tilePos.y(), tilePos.z(), this.floweringLeaves.id(), this.tickDelay());
         }
 
     }
 
     @Override
-    public boolean onBonemealUsed(ItemStack itemstack, @Nullable Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced) {
-        int meta = world.getBlockMetadata(blockX, blockY, blockZ);
+    public boolean onBonemealUsed(@NotNull ItemStack itemStack, @Nullable Player player, @NotNull World world, @NotNull TilePosc tilePosc, @NotNull Side side, double v, double v1) {
+        int meta = world.getBlockData(tilePosc);
         if (getGrowthRate(meta) != 0) {
             return false;
         } else {
@@ -105,9 +108,9 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
                 }
 
                 if (world.getSeasonManager().getCurrentSeason() != Seasons.OVERWORLD_WINTER) {
-                    world.setBlockMetadataWithNotify(blockX, blockY, blockZ, setGrowthRate(meta, MAX_GROWTH_STATE));
-                    if (player == null || player.getGamemode().consumeBlocks()) {
-                        --itemstack.stackSize;
+                    world.setBlockDataNotify(tilePosc, setGrowthRate(meta, MAX_GROWTH_STATE));
+                    if (player == null || player.getGamemode().hasBlockConsumption()) {
+                        --itemStack.stackSize;
                     }
                 }
             }

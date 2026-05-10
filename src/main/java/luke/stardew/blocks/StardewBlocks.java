@@ -4,6 +4,7 @@ import luke.stardew.StardewTags;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.sound.BlockSound;
@@ -118,7 +119,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setHardness(0.2F)
             .setResistance(0.2F)
             .setFlammability(30, 60)
-            .setTickOnLoad()
+            .setTicking(true)
             .setVisualUpdateOnMetadata()
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_HOE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS, BlockTags.SHEARS_DO_SILK_TOUCH);
 
@@ -174,7 +175,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("crops.strawberry", "crops_strawberry", blockID("CROPS_STRAWBERRY"), BlockLogicCropBase::new);
 
         WATERMELON = blocks
-            .build("watermelon", "watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
+            .build("watermelon", "watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Materials.VEGETABLE));
         CROPS_WATERMELON = cropsBlock.build("crops.watermelon", "crops_watermelon", blockID("CROPS_WATERMELON"), BlockLogicCropsWatermelon::new); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
 
         //Fall Crops
@@ -219,7 +220,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
         //Winter Crops
         CAULIFLOWER = blocks
-            .build("cauliflower", "cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
+            .build("cauliflower", "cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Materials.VEGETABLE));
         CROPS_CAULIFLOWER = cropsBlock
             .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
             .build("crops.cauliflower", "crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
@@ -229,12 +230,11 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         BUSH = crops
             .setTags(BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
             .setTicking(true)
-            .setTickOnLoad()
             .build("bush", "bush", blockID("BUSH"), BlockLogicBush::new);
 
         BEEHIVE_IDLE = wood
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-            .setTickOnLoad()
+            .setTicking(true)
             .build("beehive.idle", "beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehiveActive(b, false));
 
         BEEHIVE_HONEY = wood
@@ -292,7 +292,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setResistance(0.0f)
             .setBlockSound(BlockSounds.GRAVEL)
             .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-            .build("plant.stake", "plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Material.plant));
+            .build("plant.stake", "plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Materials.PLANT));
 
         MUSHROOM_TRUFFLE = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.GRASS)
@@ -307,7 +307,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setResistance(0.6f)
             .setFlammability(60, 120)
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS)
-            .build("thatch", "thatch", blockID("THATCH"), b -> new BlockLogicThatch(b, Material.grass));
+            .build("thatch", "thatch", blockID("THATCH"), b -> new BlockLogicThatch(b, Materials.GRANITE));
 
         APPLE_PIE = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.CLOTH)

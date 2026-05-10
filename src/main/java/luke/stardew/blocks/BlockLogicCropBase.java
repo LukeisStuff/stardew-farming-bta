@@ -17,7 +17,9 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePosc;
 import net.minecraft.core.world.season.Season;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
@@ -101,12 +103,12 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
     }
 
     @Override
-    public boolean mayPlaceOn(int blockId) {
-        return blockId == Blocks.FARMLAND_DIRT.id();
+    protected boolean mayPlaceOn(@NotNull Block<?> block) {
+        return block == Blocks.FARMLAND_DIRT;
     }
 
-    public void fertilize(World world, int x, int y, int z) {
-        world.setBlockMetadataWithNotify(x, y, z, this.maxGrowth);
+    public void fertilize(World world, TilePosc tilePosc) {
+        world.setBlockDataNotify(tilePosc, this.maxGrowth);
     }
 
     public void onGrowth(World world, int x, int y, int z, int newMeta) {
@@ -118,47 +120,47 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
     }
 
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        super.updateTick(world, x, y, z, rand);
+    public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
+        super.updateTick(world, tilePos, rand, isRandomTick);;
         Season current = world.getSeasonManager().getCurrentSeason();
-        if (world.getBlockLightValue(x, y + 1, z) >= 9 && season.contains(current)) {
-            int meta = world.getBlockMetadata(x, y, z);
+        if (world.getBlockLightValue(tilePos.x(), tilePos.y() + 1, tilePos.z()) >= 9 && season.contains(current)) {
+            int meta = world.getBlockMetadata(tilePos.x(), tilePos.y(), tilePos.z());
             if (meta < this.maxGrowth) {
-                float growthRate = this.getGrowthRate(world, x, y, z);
+                float growthRate = this.getGrowthRate(world, tilePos);
                 if (rand.nextInt((int) (100.0F / growthRate)) == 0) {
-                    this.onGrowth(world, x, y, z, meta + 1);
+                    this.onGrowth(world, tilePos.x(), tilePos.y(), tilePos.z(), meta + 1);
                 }
             }
         }
 
     }
 
-    public float getGrowthRate(World world, int x, int y, int z) {
+    public float getGrowthRate(World world, TilePosc tilePos) {
         float growthRate = 1.0F;
-        int idNegZ = world.getBlockId(x, y, z - 1);
-        int idPosZ = world.getBlockId(x, y, z + 1);
-        int idNegX = world.getBlockId(x - 1, y, z);
-        int idPosX = world.getBlockId(x + 1, y, z);
-        int idNegXNegZ = world.getBlockId(x - 1, y, z - 1);
-        int idPosXNegZ = world.getBlockId(x + 1, y, z - 1);
-        int idPosXPosZ = world.getBlockId(x + 1, y, z + 1);
-        int idNegXPosZ = world.getBlockId(x - 1, y, z + 1);
+        int idNegZ = world.getBlockId(tilePos.x(), tilePos.y(), tilePos.z() - 1);
+        int idPosZ = world.getBlockId(tilePos.x(), tilePos.y(), tilePos.z() + 1);
+        int idNegX = world.getBlockId(tilePos.x() - 1, tilePos.y(), tilePos.z());
+        int idPosX = world.getBlockId(tilePos.x() + 1, tilePos.y(), tilePos.z());
+        int idNegXNegZ = world.getBlockId(tilePos.x() - 1, tilePos.y(), tilePos.z() - 1);
+        int idPosXNegZ = world.getBlockId(tilePos.x() + 1, tilePos.y(), tilePos.z() - 1);
+        int idPosXPosZ = world.getBlockId(tilePos.x() + 1, tilePos.y(), tilePos.z() + 1);
+        int idNegXPosZ = world.getBlockId(tilePos.x() - 1, tilePos.y(), tilePos.z() + 1);
         boolean xNeighbor = idNegX == this.id() || idPosX == this.id();
         boolean zNeighbor = idNegZ == this.id() || idPosZ == this.id();
         boolean diagNeighbor = idNegXNegZ == this.id() || idPosXNegZ == this.id() || idPosXPosZ == this.id() || idNegXPosZ == this.id();
 
-        for (int dx = x - 1; dx <= x + 1; ++dx) {
-            for (int dz = z - 1; dz <= z + 1; ++dz) {
-                int id = world.getBlockId(dx, y - 1, dz);
+        for (int dx = tilePos.x() - 1; dx <= tilePos.x() + 1; ++dx) {
+            for (int dz = tilePos.z() - 1; dz <= tilePos.z() + 1; ++dz) {
+                int id = world.getBlockId(dx, tilePos.y() - 1, dz);
                 float growthRateMod = 0.0F;
                 if (id == Blocks.FARMLAND_DIRT.id()) {
                     growthRateMod = 1.0F;
-                    if (world.getBlockMetadata(dx, y - 1, dz) > 0) {
+                    if (world.getBlockMetadata(dx, tilePos.y() - 1, dz) > 0) {
                         growthRateMod = 3.0F;
                     }
                 }
 
-                if (dx != x || dz != z) {
+                if (dx != tilePos.x() || dz != tilePos.z()) {
                     growthRateMod /= 4.0F;
                 }
 
@@ -171,7 +173,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         }
 
         if (this.canFertilize) {
-            boolean isFertilized = BlockLogicFarmland.isFertilized(world.getBlockMetadata(x, y - 1, z));
+            boolean isFertilized = BlockLogicFarmland.isFertilized(world.getBlockMetadata(tilePos.x(), tilePos.y() - 1, tilePos.z()));
             if (isFertilized) growthRate *= this.fertilizedRate;
         } else {
             if (world.getSeasonManager().getCurrentSeason() != null) {
@@ -216,7 +218,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         } else {
             if (!world.isClientSide) {
                 this.onGrowth(world, blockX, blockY, blockZ, this.maxGrowth);
-                if (player == null || player.getGamemode().consumeBlocks()) {
+                if (player == null || player.getGamemode().hasBlockConsumption()) {
                     --itemstack.stackSize;
                 }
             }
@@ -229,40 +231,43 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
     }
 
     @Override
-    public void onActivatorInteract(World world, int x, int y, int z, TileEntityActivator activator, Direction direction) {
+    public void onActivatorInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull TileEntityActivator activator, @NotNull Direction direction) {
         if (this.canHarvest) {
-            int meta = world.getBlockMetadata(x, y, z);
+            int meta = world.getBlockData(tilePos);
             if (meta >= this.maxGrowth) {
                 if (this.resetMeta < 0) {
-                    onHarvest(world, x, y, z, meta);
+                    onHarvest(world, tilePos.x(), tilePos.y(), tilePos.z(), meta);
                 } else {
-                    onGrowth(world, x, y, z, this.resetMeta);
+                    onGrowth(world, tilePos.x(), tilePos.y(), tilePos.z(), this.resetMeta);
                 }
-                world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, x + 0.5, y + 0.5, z + 0.5, "random.pop", 0.3F, 1.0f);
+                world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, tilePos.x() + 0.5, tilePos.y() + 0.5, tilePos.z() + 0.5, "random.pop", 0.3F, 1.0f);
                 if (!world.isClientSide && this.cropItem != null) {
-                    world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
+                    world.dropItem(tilePos, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
                 }
             }
         }
     }
 
+
     @Override
-    public boolean onBlockRightClicked(World world, int x, int y, int z, Player player, Side side, double xHit, double yHit) {
+    public boolean onInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @Nullable Side side, double xHit, double yHit) {
         if (!this.canHarvest) return false;
-        int meta = world.getBlockMetadata(x, y, z);
+
+        int meta = world.getBlockData(tilePos);
         if (meta >= this.maxGrowth) {
             if (this.resetMeta < 0) {
-                onHarvest(world, x, y, z, meta);
+                onHarvest(world, tilePos.x(), tilePos.y(), tilePos.z(), meta);
             } else {
-                onGrowth(world, x, y, z, this.resetMeta);
+                onGrowth(world, tilePos.x(), tilePos.y(), tilePos.z(), this.resetMeta);
             }
 
-            world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, x + 0.5, y + 0.5, z + 0.5, "random.pop", 0.3F, 1.0f);
+            world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, tilePos.x() + 0.5, tilePos.y() + 0.5, tilePos.z() + 0.5, "random.pop", 0.3F, 1.0f);
             if (!world.isClientSide && this.cropItem != null)
-                world.dropItem(x, y, z, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
+                world.dropItem(tilePos.x(), tilePos.y(), tilePos.z(), new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
 
             return true;
         }
         return false;
     }
+
 }

@@ -3,6 +3,7 @@ package luke.stardew.blocks;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicFarmland;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.material.Material;
 import net.minecraft.core.enums.EnumDropCause;
@@ -11,6 +12,9 @@ import net.minecraft.core.item.Items;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
+import org.joml.primitives.AABBd;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Random;
@@ -23,20 +27,20 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
-        this.checkSupport(world, x, y, z);
+    public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
+        this.checkSupport(world, tilePos);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
-        this.checkSupport(world, x, y, z);
+    public void onNeighborChanged(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Block<?> block) {
+        this.checkSupport(world, tilePos);
     }
 
     @Unique
-    public void checkSupport(World world, int x, int y, int z) {
-        if (!this.canBlockStay(world, x, y, z)) {
-            world.setBlockAndMetadataWithNotify(x, y, z, 0, 0);
-            this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, world.getBlockMetadata(x, y, z), null, null);
+    public void checkSupport(World world, TilePosc tilePos) {
+        if (!this.canStay(world, tilePos)) {
+            world.setBlockTypeDataNotify(tilePos, Blocks.AIR, 0);
+            this.dropWithCause(world, EnumDropCause.WORLD, tilePos, world.getBlockData(tilePos), null, null);
         }
     }
 
@@ -56,7 +60,7 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public AABB getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+    public AABBd getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
         return null;
     }
 

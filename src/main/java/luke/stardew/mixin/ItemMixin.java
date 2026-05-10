@@ -36,7 +36,7 @@ public abstract class ItemMixin {
 
     @Inject(method = "onUseByActivator", at = @At(value = "HEAD"))
     public void addSugarToBeehive(ItemStack itemStack, TileEntityActivator activator, World world, Random random, int activatorX, int activatorY, int activatorZ, double offX, double offY, double offZ, Direction direction, CallbackInfo ci) {
-        if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
+        if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
             return;
         }
 

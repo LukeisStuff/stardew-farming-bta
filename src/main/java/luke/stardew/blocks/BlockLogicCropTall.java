@@ -6,6 +6,10 @@ import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
+import org.joml.primitives.AABBd;
+import org.joml.primitives.AABBdc;
 
 public class BlockLogicCropTall extends BlockLogicCropBase {
     protected int growTopMeta = -1; //Block is considered top if -1
@@ -32,35 +36,36 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
     }
 
     @Override
-    public boolean mayPlaceOn(int blockId) {
-        return this.growTopMeta < 0 || super.mayPlaceOn(blockId);
+    protected boolean mayPlaceOn(@NotNull Block<?> block) {
+        return this.growTopMeta < 0 || super.mayPlaceOn(block);
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
-        int meta = world.getBlockMetadata(x, y, z);
+    public void onNeighborChanged(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Block<?> block) {
+        int meta = world.getBlockData(tilePos);
         if (growTopMeta < 0) {
-            if (world.getBlock(x, y - 1, z) != otherBlock) {
-                world.setBlockWithNotify(x, y, z, 0);
+            if (world.getBlock(tilePos.x(), tilePos.y() - 1, tilePos.z()) != otherBlock) {
+                world.setBlockWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
             }
             return;
         }
 
-        if (meta >= growTopMeta && world.getBlock(x, y + 1, z) != otherBlock) {
-            world.setBlockWithNotify(x, y, z, 0);
+        if (meta >= growTopMeta && world.getBlock(tilePos.x(), tilePos.y() + 1, tilePos.z()) != otherBlock) {
+            world.setBlockWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
             return;
         }
 
-        if (!super.canBlockStay(world, x, y, z)) {
-            world.setBlockWithNotify(x, y, z, 0);
-            this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, meta, null, null);
+        if (!super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z())) {
+            world.setBlockWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
+            this.dropBlockWithCause(world, EnumDropCause.WORLD, tilePos.x(), tilePos.y(), tilePos.z(), meta, null, null);
         }
     }
 
+
     @Override
-    public AABB getBlockBoundsFromState(WorldSource world, int x, int y, int z) {
-        int meta = world.getBlockMetadata(x, y, z);
-        return meta < this.growTopMeta ? AABB.getTemporaryBB(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F) : this.bounds.copy();
+    public AABBdc getBoundsFromState(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
+        int meta = source.getBlockData(tilePos);
+        return meta < this.growTopMeta ? new AABBd(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F) : this.bounds;
     }
 
     @Override
@@ -92,15 +97,15 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
     }
 
     @Override
-    public boolean canBlockStay(World world, int x, int y, int z) {
+    public boolean canStay(@NotNull World world, @NotNull TilePosc tilePos) {
         if (this.growTopMeta < 0) {
-            return super.canBlockStay(world, x, y, z) && world.getBlockId(x, y - 1, z) == this.otherBlock.id();
+            return super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z()) && world.getBlockId(tilePos.x(), tilePos.y() - 1, tilePos.z()) == this.otherBlock.id();
         } else {
-            int meta = world.getBlockMetadata(x, y, z);
+            int meta = world.getBlockData(tilePos);
             if (meta >= this.growTopMeta) {
-                return super.canBlockStay(world, x, y, z) && world.getBlockId(x, y + 1, z) == this.otherBlock.id();
+                return super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z()) && world.getBlockId(tilePos.x(), tilePos.y() + 1, tilePos.z()) == this.otherBlock.id();
             } else {
-                return super.canBlockStay(world, x, y, z);
+                return super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z());
             }
         }
     }

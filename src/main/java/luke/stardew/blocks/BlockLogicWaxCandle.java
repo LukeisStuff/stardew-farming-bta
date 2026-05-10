@@ -3,9 +3,10 @@ package luke.stardew.blocks;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicFluid;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.entity.TileEntity;
 import net.minecraft.core.block.entity.TileEntityActivator;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemFireStriker;
@@ -15,6 +16,8 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
@@ -22,7 +25,7 @@ public class BlockLogicWaxCandle extends BlockLogic {
     public final boolean burning;
 
     public BlockLogicWaxCandle(Block<?> block, boolean flag) {
-        super(block, Material.decoration);
+        super(block, Materials.DECORATION);
         block.setTicking(true);
         this.burning = flag;
         this.setBlockBounds(0.40625F, 0.0F, 0.40625F, 0.59375F, 0.5F, 0.59375F);
@@ -76,10 +79,10 @@ public class BlockLogicWaxCandle extends BlockLogic {
     }
 
     @Override
-    public void onNeighborBlockChange(World world, int x, int y, int z, int blockId) {
-        if (!this.canBlockStay(world, x, y, z)) {
-            this.dropBlockWithCause(world, EnumDropCause.WORLD, x, y, z, world.getBlockMetadata(x, y, z), null, null);
-            world.setBlockWithNotify(x, y, z, 0);
+    public void onNeighborChanged(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Block<?> block) {
+        if (!this.canStay(world, tilePos)) {
+            this.dropWithCause(world, EnumDropCause.WORLD, tilePos, world.getBlockData(tilePos), null, null);
+            world.setBlockTypeNotify(tilePos, Blocks.AIR);
         }
 
     }
@@ -92,8 +95,8 @@ public class BlockLogicWaxCandle extends BlockLogic {
     @Override
     public void animationTick(World world, int x, int y, int z, Random rand) {
         if (this.burning && rand.nextInt(2) == 0) {
-            world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
-            world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0);
+            world.spawnParticle("smoke", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0, true);
+            world.spawnParticle("flame", x + 0.5, y + 0.7, z + 0.5, 0.0, 0.0, 0.0, 0, true);
         }
 
     }
