@@ -7,6 +7,8 @@ import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemFood;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
@@ -19,9 +21,10 @@ public class ItemCoffee extends ItemFood {
     }
 
     @Override
-    public ItemStack onUseItem(ItemStack itemstack, World world, Player entityplayer) {
-        super.onUseItem(itemstack, world, entityplayer);
-        ((IPlayerEffects) entityplayer).stardew_farming_bta$addEffect(PlayerEffect.speedBoost, 240);
+    public @Nullable ItemStack onUse(@NotNull ItemStack selfStack, @NotNull World world, @NotNull Player player) {
+        super.onUse(selfStack, world, player);
+        ((IPlayerEffects) player).stardew_farming_bta$addEffect(PlayerEffect.speedBoost, 240);
         return new ItemStack(bucketSupplier.get().asItem());
     }
+
 }

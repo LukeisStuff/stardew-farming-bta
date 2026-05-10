@@ -5,6 +5,7 @@ import net.minecraft.core.item.ItemFood;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class ItemJam extends ItemFood {
     public final int healAmount;
@@ -16,7 +17,7 @@ public class ItemJam extends ItemFood {
     }
 
     @Override
-    public ItemStack onUseItem(ItemStack itemstack, World world, Player entityplayer) {
+    public ItemStack onUse(@NotNull ItemStack itemstack, @NotNull World world, Player entityplayer) {
         if (entityplayer.getHealth() < entityplayer.getMaxHealth() && itemstack.consumeItem(entityplayer)) {
             entityplayer.heal(this.healAmount);
             entityplayer.inventory.insertItem(new ItemStack(Items.JAR, 1), true);
