@@ -8,7 +8,6 @@ import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.block.material.MaterialColor;
 import net.minecraft.core.crafting.LookupFuelFurnace;
-import net.minecraft.core.item.Items;
 import net.minecraft.core.net.entity.NetEntityHandler;
 import net.minecraft.core.sound.SoundTypes;
 import org.slf4j.Logger;

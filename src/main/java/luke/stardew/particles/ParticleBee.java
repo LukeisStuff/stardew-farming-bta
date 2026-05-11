@@ -1,10 +1,12 @@
 package luke.stardew.particles;
 
-import net.minecraft.client.entity.particle.Particle;
+import net.minecraft.client.render.particle.Particle;
 import net.minecraft.client.render.tessellator.Tessellator;
+import net.minecraft.client.render.tessellator.TessellatorParticle;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
@@ -26,9 +28,9 @@ public class ParticleBee extends Particle {
     }
 
     @Override
-    public void render(Tessellator tessellator, float partialTick, double x, double y, double z, float rotationX, float rotationXZ, float rotationZ, float rotationYZ, float rotationXY) {
+    public void render(@NotNull TessellatorParticle t, float partialTick) {
         this.size = this.originalScale - this.originalScale * ((float) this.age / this.lifetime);
-        super.render(tessellator, partialTick, x, y, z, rotationX, rotationXZ, rotationZ, rotationYZ, rotationXY);
+        super.render(t, partialTick);
     }
 
     @Override

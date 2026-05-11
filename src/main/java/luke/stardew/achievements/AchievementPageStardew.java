@@ -27,12 +27,12 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public @NotNull String getName() {
-        return I18n.getInstance().translateNameKey(name);
+        return I18n.getInstance().translateKey(name);
     }
 
     @Override
     public @NotNull String getDescription() {
-        return I18n.getInstance().translateNameKey(name);
+        return I18n.getInstance().translateKey(name);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public @Nullable IconCoordinate getBackgroundTile(ScreenAchievements screen, int i, Random random, int j, int k) {
-        return BlockModelDispatcher.getInstance().getDispatch(StardewBlocks.THATCH).getBlockTextureFromSideAndMetadata(random.nextBoolean() ? Side.TOP : Side.NORTH, 0);
+        return TextureRegistry.getTexture("stardew:block/thatch/side");
     }
 
     @Override

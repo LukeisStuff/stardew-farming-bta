@@ -5,28 +5,34 @@
   },
   "package": "luke.stardew.mixin",
   "compatibilityLevel": "JAVA_${java}",
-  "mixins": [
-    "BiomeSpawnListMixin",
-    "BlockLogicFarmlandMixin",
-    "BlockLogicGrassMixin",
-    "ChunkDecoratorOverworldMixin",
-    "EntityBobberMixin",
-    "ItemFishingRodMixin",
-    "ItemMixin",
-    "ItemPickupAchievementMixin",
-    "ItemToolHoeMixin",
-    "PigDigTruffleMixin",
-    "PlayerMixin",
-    "SlotCraftingMixin",
-    "SlotFurnaceMixin",
-    "TileEntityFurnaceMixin",
-    "WorldFeatureDungeonMixin",
-    "WorldFeatureLabyrinthMixin"
-  ],
+  "mixins": [],
   "client": [
-    "MinecraftMixin",
-    "PlayerRendererAddWormCans"
+    "RenderWormArmorMixin"
   ],
+  "disabled": {
+    "mixins": [
+      "BiomeSpawnListMixin",
+      "BlockLogicFarmlandMixin",
+      "BlockLogicGrassMixin",
+      "ChunkDecoratorOverworldMixin",
+      "EntityBobberMixin",
+      "ItemFishingRodMixin",
+      "ItemMixin",
+      "ItemPickupAchievementMixin",
+      "ItemToolHoeMixin",
+      "PigDigTruffleMixin",
+      "PlayerMixin",
+      "SlotCraftingMixin",
+      "SlotFurnaceMixin",
+      "TileEntityFurnaceMixin",
+      "WorldFeatureDungeonMixin",
+      "WorldFeatureLabyrinthMixin"
+    ],
+    "client": [
+      "MinecraftMixin",
+      "PlayerRendererAddWormCans"
+    ]
+  },
   "injectors": {
     "defaultRequire": 1
   }

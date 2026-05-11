@@ -11,11 +11,15 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.achievements.data.AchievementPages;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
+import net.minecraft.client.render.particle.Particle;
+import net.minecraft.client.render.particle.ParticleEntry;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.client.sound.SoundRepository;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
+import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
 import turniplabs.halplibe.helper.ParticleHelper;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 
@@ -29,12 +33,21 @@ import static luke.stardew.StardewMod.MOD_ID;
 public class StardewClient implements ClientModInitializer, ClientStartEntrypoint {
     @Override
     public void beforeClientStart() {
-        ParticleHelper.createParticle("bee", (world, x, y, z, xa, ya, za, id) -> new ParticleBee(world, x, y, z, xa, ya, za));
 
-        SoundRepository.registerNamespace(MOD_ID);
+        ParticleHelper.createParticle(
+            "bee",
+            new ParticleEntry() {
+                @Override
+                public Particle newParticle(@NotNull World world, double x, double y, double z, double xa, double ya, double za, int i) {
+                    return new ParticleBee(world, x, y, z, xa, ya, za);
+                }
+            }
+        );
+
+        SoundRepository.namespaceAdded(MOD_ID);
 
         try {
-            TextureRegistry.initializeAllFiles(MOD_ID, TextureRegistry.particleAtlas, false);
+            TextureRegistry.initializeAllFiles(MOD_ID, TextureRegistry.worldAtlas, false);
         } catch (URISyntaxException | IOException e) {
             LOGGER.error("Failed to initialize textures!");
         }

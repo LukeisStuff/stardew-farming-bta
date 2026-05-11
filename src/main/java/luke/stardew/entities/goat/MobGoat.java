@@ -6,7 +6,7 @@ import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.entity.animal.Creature;
 import net.minecraft.core.entity.animal.MobAnimal;
 import net.minecraft.core.entity.player.Player;
-import net.minecraft.core.item.ItemBucketEmpty;
+import net.minecraft.core.item.ItemBucket;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.item.tag.ItemTags;
@@ -51,8 +51,19 @@ public class MobGoat extends MobAnimal implements Creature {
     @Override
     public boolean interact(Player player) {
         ItemStack itemstack = player.inventory.getCurrentItem();
-        if (itemstack != null && itemstack.itemID == Items.BUCKET.id) {
-            ItemBucketEmpty.useBucket(player, new ItemStack(Items.BUCKET_MILK));
+        if (itemstack != null && itemstack.getItem() instanceof ItemBucket item) {
+            var state = ItemBucket.getState(itemstack);
+
+            if (state != ItemBucket.STATE_MILK && state != ItemBucket.STATE_EMPTY)  {
+                return false;
+            }
+
+            if (item.maxCharges >= item.getCharges(itemstack)) {
+                return false;
+            }
+
+            ItemBucket.useBucket(itemstack, player, player.world, ItemBucket.STATE_MILK);
+
             return true;
         }
         return super.interact(player);

@@ -4,6 +4,7 @@ import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.data.registry.Registries;
+import net.minecraft.core.item.ItemBucket;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import turniplabs.halplibe.helper.RecipeBuilder;
@@ -46,7 +47,7 @@ public class StardewRecipes implements RecipeEntrypoint {
         RecipeBuilder.Shaped(MOD_ID, "BMB", "SES", "DDD")
             .addInput('D', StardewItems.DOUGH)
             .addInput('B', StardewItems.STRAWBERRY)
-            .addInput('M', Items.BUCKET_MILK)
+            .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .addInput('S', Items.DUST_SUGAR)
             .addInput('E', MOD_ID + ":item/eggs")
             .create("cake", new ItemStack(Items.FOOD_CAKE, 1));
@@ -172,14 +173,14 @@ public class StardewRecipes implements RecipeEntrypoint {
         RecipeBuilder.Shaped(MOD_ID, "CMC", "SES", "DDD")
             .addInput('D', StardewItems.DOUGH)
             .addInput('C', Items.DYE, 3)
-            .addInput('M', Items.BUCKET_MILK)
+            .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .addInput('S', Items.DUST_SUGAR)
             .addInput('E', MOD_ID + ":item/eggs")
             .setConsumeContainer(false)
             .create("cake_chocolate", new ItemStack(StardewItems.FOOD_CAKE_CHOCOLATE, 1));
 
         RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
-            .addInput('M', Items.BUCKET_MILK)
+            .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .addInput('W', StardewItems.DOUGH)
             .addInput('S', Items.DUST_SUGAR)
             .addInput('E', MOD_ID + ":item/eggs")
@@ -188,7 +189,7 @@ public class StardewRecipes implements RecipeEntrypoint {
             .create("pumpkin_pie", new ItemStack(Items.FOOD_PUMPKIN_PIE, 1));
 
         RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
-            .addInput('M', Items.BUCKET_MILK)
+            .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .addInput('W', StardewItems.DOUGH)
             .addInput('S', Items.DUST_SUGAR)
             .addInput('E', MOD_ID + ":item/eggs")
@@ -197,7 +198,7 @@ public class StardewRecipes implements RecipeEntrypoint {
             .create("apple_pie", new ItemStack(StardewItems.FOOD_APPLE_PIE, 1));
 
         RecipeBuilder.Shaped(MOD_ID, " W ", "SES", "DDD")
-            .addInput('W', Items.BUCKET_WATER)
+            .addInput('W', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_WATER))
             .addInput('D', StardewItems.DOUGH)
             .addInput('S', StardewItems.TOMATO)
             .addInput('E', StardewItems.CHEESE)
@@ -206,7 +207,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
         RecipeBuilder.Shaped(MOD_ID, "S", "B", "M")
             .addInput('B', StardewItems.BEANS_COFFEE)
-            .addInput('M', Items.BUCKET_MILK)
+            .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .addInput('S', Items.DUST_SUGAR)
             .setConsumeContainer(true)
             .create("food_coffee", new ItemStack(StardewItems.FOOD_COFFEE, 1));
@@ -221,12 +222,12 @@ public class StardewRecipes implements RecipeEntrypoint {
 
         RecipeBuilder.Shaped(MOD_ID, "I  ", "IBI", " I ")
             .addInput('I', Items.INGOT_IRON)
-            .addInput('B', Items.BUCKET_WATER)
+            .addInput('B', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_WATER))
             .create("watering_can", new ItemStack(StardewItems.WATERING_CAN, 1));
 
         RecipeBuilder.Shaped(MOD_ID, "I  ", "IBI", " I ")
             .addInput('I', Items.INGOT_STEEL)
-            .addInput('B', Items.BUCKET_WATER)
+            .addInput('B', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_WATER))
             .create("watering_can_steel", new ItemStack(StardewItems.WATERING_CAN_STEEL, 1));
 
 
@@ -291,7 +292,7 @@ public class StardewRecipes implements RecipeEntrypoint {
             .create("bread", Items.FOOD_BREAD.getDefaultStack());
 
         RecipeBuilder.Furnace(MOD_ID)
-            .setInput(Items.BUCKET_MILK)
+            .setInput(ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .create("cheese", StardewItems.CHEESE.getDefaultStack());
 
         RecipeBuilder.Furnace(MOD_ID)

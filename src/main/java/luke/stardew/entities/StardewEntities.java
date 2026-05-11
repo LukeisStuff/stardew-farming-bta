@@ -20,10 +20,11 @@ public final class StardewEntities {
     }
 
     public static void initializeEntities() {
-        EntityHelper.createEntity(MobDuck.class, NamespaceID.getPermanent(MOD_ID, "duck"), "guidebook.section.mob.duck.name");
-        EntityHelper.createEntity(MobGoat.class, NamespaceID.getPermanent(MOD_ID, "goat"),"guidebook.section.mob.goat.name");
-        EntityHelper.createEntity(ProjectileEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), null);
+        var helper = new EntityHelper();
+        helper.createEntity(MobDuck.class, NamespaceID.getPermanent(MOD_ID, "duck"), null);
+        helper.createEntity(MobGoat.class, NamespaceID.getPermanent(MOD_ID, "goat"),null);
+        helper.createEntity(ProjectileEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), null);
 
-        EntityHelper.createEntity(ProjectileTomato.class, NamespaceID.getPermanent(MOD_ID, "tomato"), null);
+        helper.createEntity(ProjectileTomato.class, NamespaceID.getPermanent(MOD_ID, "tomato"), null);
     }
 }

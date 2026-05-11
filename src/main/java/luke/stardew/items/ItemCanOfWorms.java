@@ -8,11 +8,12 @@ import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.material.ArmorMaterial;
 import net.minecraft.core.player.inventory.slot.Slot;
+import net.minecraft.core.util.collection.NamespaceID;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 
-public class ItemCanOfWorms extends Item implements IArmorItem {
+public class ItemCanOfWorms extends Item implements IArmorItem<IArmorShape> {
     public ItemCanOfWorms(String translationKey, String namespaceID, int id) {
         super(translationKey, namespaceID, id);
         this.setMaxStackSize(1);
@@ -25,9 +26,10 @@ public class ItemCanOfWorms extends Item implements IArmorItem {
     }
 
     @Override
-    public ItemStack onInventoryInteract(Player player, Slot slot, ItemStack stackInSlot, boolean isItemGrabbed) {
+    public ItemStack onInventoryInteract(@NotNull Player player, @NotNull Slot slot, ItemStack stackInSlot, boolean isItemGrabbed) {
         ItemStack canItem = isItemGrabbed ? player.inventory.getHeldItemStack() : stackInSlot;
         int totalSpace = this.getMaxDamage();
+        assert canItem != null;
         int wormCount = this.getWormCount(canItem);
         int freeSpace = totalSpace - wormCount;
         int amount;
