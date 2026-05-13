@@ -267,7 +267,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setHardness(0.5f)
             .setResistance(0.5f)
             .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-            .build("pizza", "pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 0.25F, () -> StardewItems.FOOD_PIZZA));
+            .build("pizza", "pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 2F/16F, () -> StardewItems.FOOD_PIZZA));
 
         CANDLE = new BlockBuilder(MOD_ID)
             .setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))

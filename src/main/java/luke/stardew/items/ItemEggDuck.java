@@ -31,7 +31,7 @@ public class ItemEggDuck extends Item implements IDispensable {
     @Override
     public void onDispensed(@NotNull ItemStack itemStack, @NotNull World world, @NotNull Random random, @NotNull Direction direction, double x, double y, double z) {
         ProjectileEggDuck egg = new ProjectileEggDuck(world, x, y, z);
-        egg.setHeading(direction.getOffsetX(), 0.1, direction.getOffsetZ(), 1.1f, 6.0f);
+        egg.setHeading(direction.offsetX(), 0.1, direction.offsetZ(), 1.1f, 6.0f);
         world.entityJoinedWorld(egg);
     }
 }

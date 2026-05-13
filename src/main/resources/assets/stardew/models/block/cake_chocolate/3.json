@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cake/3",
+  "textures": {
+    "bottom": "stardew:block/cake_chocolate/bottom",
+    "side": "stardew:block/cake_chocolate/side",
+    "up": "stardew:block/cake_chocolate/top",
+    "inner": "stardew:block/cake_chocolate/inner"
+  }
+}

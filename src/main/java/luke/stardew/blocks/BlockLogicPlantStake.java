@@ -50,8 +50,8 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public boolean canPlaceOnSurfaceOfBlock(World world, int x, int y, int z) {
-        return world.getBlockLogic(x, y, z, BlockLogicFarmland.class) != null;
+    public boolean canPlaceAt(@NotNull World world, @NotNull TilePosc tilePos) {
+        return world.getBlockLogic(tilePos.x(), tilePos.y(), tilePos.z(), BlockLogicFarmland.class) != null;
     }
 
     @Override

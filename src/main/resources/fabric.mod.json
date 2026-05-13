@@ -43,6 +43,12 @@
     ],
     "afterItemInit": [
       "luke.stardew.StardewMod"
+    ],
+    "populateCreativeBlocks": [
+      "luke.stardew.StardewCreativeInventory"
+    ],
+    "populateCreativeItems": [
+      "luke.stardew.StardewCreativeInventory"
     ]
   },
 

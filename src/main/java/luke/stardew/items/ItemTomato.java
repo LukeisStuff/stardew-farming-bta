@@ -39,8 +39,9 @@ public class ItemTomato extends ItemFood implements IDispensable {
 
     @Override
     public void onUseByActivator(@NotNull ItemStack selfStack, @NotNull World world, @NotNull TileEntityActivator activator, @NotNull Random random, @NotNull TilePosc blockPos, @NotNull Direction direction, double offX, double offY, double offZ) {
-       ProjectileTomato projectileTomato = new ProjectileTomato(world, (double) blockPos.x() + offX, (double) blockPos.y() + offY, (double) blockPos.z() + offZ);
-        projectileTomato.setHeading((double) direction.getOffsetX() * 0.6, direction.getOffsetY() == 0 ? 0.1 : (double) direction.getOffsetY() * 0.6, (float) direction.getOffsetZ() * 0.6F, 1.1F, 6.0F);
+        ProjectileTomato projectileTomato = new ProjectileTomato(world, (double) blockPos.x() + offX, (double) blockPos.y() + offY, (double) blockPos.z() + offZ);
+
+        projectileTomato.setHeading((double) direction.offsetX() * 0.6, direction.offsetY() == 0 ? 0.1 : (double) direction.offsetY() * 0.6, (float) direction.offsetZ() * 0.6F, 1.1F, 6.0F);
         world.entityJoinedWorld(projectileTomato);
         --selfStack.stackSize;
     }
@@ -48,7 +49,7 @@ public class ItemTomato extends ItemFood implements IDispensable {
     @Override
     public void onDispensed(@NotNull ItemStack itemStack, @NotNull World world, @NotNull Random random, @NotNull Direction direction, double x, double y, double z) {
         ProjectileTomato projectileTomato = new ProjectileTomato(world, x, y, z);
-        projectileTomato.setHeading(direction.getOffsetX(), (double) direction.getOffsetY() + 0.1, direction.getOffsetZ(), 1.1F, 6.0F);
+        projectileTomato.setHeading(direction.offsetX(), (double) direction.offsetY() + 0.1, direction.offsetZ(), 1.1F, 6.0F);
         world.entityJoinedWorld(projectileTomato);
     }
 }

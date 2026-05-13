@@ -20,7 +20,7 @@ gradleJava = "21"
 # Mod Dependencies
 
 # Check this on https://downloads.betterthanadventure.net/bta-client/
-bta = "2026-04-24"
+bta = "2026-05-13"
 
 # Options are release, prerelease, nightly, and misc.
 btaChannel = "nightly"

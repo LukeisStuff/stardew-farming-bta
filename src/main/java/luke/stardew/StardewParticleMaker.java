@@ -41,9 +41,9 @@ public class StardewParticleMaker {
             double faceY = blockY + 0.5 + (random.nextDouble() * 0.6 - 0.3);
             double faceZ = blockZ + 0.5 + (random.nextDouble() * 0.6 - 0.3);
 
-            double offX = face.getOffsetX() * (random.nextDouble() * 0.3);
-            double offY = face.getOffsetY() * (random.nextDouble() * 0.3);
-            double offZ = face.getOffsetZ() * (random.nextDouble() * 0.3);
+            double offX = face.offsetX() * (random.nextDouble() * 0.3);
+            double offY = face.offsetY() * (random.nextDouble() * 0.3);
+            double offZ = face.offsetZ() * (random.nextDouble() * 0.3);
 
             double spawnX = faceX + offX;
             double spawnY = faceY + offY;

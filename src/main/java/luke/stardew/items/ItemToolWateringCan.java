@@ -32,7 +32,7 @@ public class ItemToolWateringCan extends Item {
 
     @Override
     public void onUseByActivator(@NotNull ItemStack selfStack, @NotNull World world, @NotNull TileEntityActivator activator, @NotNull Random random, @NotNull TilePosc blockPos, @NotNull Direction direction, double offX, double offY, double offZ) {
-        this.waterBlock(selfStack, null, world, blockPos.x() + direction.getOffsetX(), blockPos.y() + direction.getOffsetY(), blockPos.z() + direction.getOffsetZ());
+        this.waterBlock(selfStack, null, world, blockPos.x() + direction.offsetX(), blockPos.y() + direction.offsetY(), blockPos.z() + direction.offsetZ());
     }
 
     public boolean waterBlock(ItemStack itemstack, @Nullable Player player, World world, int blockX, int blockY, int blockZ) {

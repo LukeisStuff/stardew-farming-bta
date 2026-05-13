@@ -40,9 +40,9 @@ public abstract class ItemMixin {
             return;
         }
 
-        int targetX = activatorX + direction.getOffsetX();
-        int targetY = activatorY + direction.getOffsetY();
-        int targetZ = activatorZ + direction.getOffsetZ();
+        int targetX = activatorX + direction.offsetX();
+        int targetY = activatorY + direction.offsetY();
+        int targetZ = activatorZ + direction.offsetZ();
         int targetBlockId = world.getBlockId(targetX, targetY, targetZ);
 
         if (targetBlockId != StardewBlocks.BEEHIVE.id()) {

@@ -71,14 +71,12 @@ public class StardewModels implements ModelEntrypoint {
 //
 //        dispatcher.addDispatch(StardewBlocks.BUSH, new BlockModelBush<>(StardewBlocks.BUSH));
 //
-//        dispatcher.addDispatch(StardewBlocks.CAKE_CHOCOLATE, new BlockModelEdible<>(StardewBlocks.CAKE_CHOCOLATE, 0.5f, "cake_chocolate")
-//            .setTex("stardew:block/cake_chocolate/side", Side.sides)
-//            .setTex("stardew:block/cake_chocolate/top", Side.TOP)
-//            .setTex("stardew:block/cake_chocolate/bottom", Side.BOTTOM));
-//        dispatcher.addDispatch(StardewBlocks.PIZZA, new BlockModelEdible<>(StardewBlocks.PIZZA, 0.25f, "pizza")
-//            .setTex("stardew:block/pizza/side", Side.sides)
-//            .setTex("stardew:block/pizza/top", Side.TOP)
-//            .setTex("stardew:block/pizza/bottom", Side.BOTTOM));
+
+
+        dispatcher.addDispatch(StardewBlocks.CAKE_CHOCOLATE, new BlockModelGenericProgressive<>(StardewBlocks.CAKE_CHOCOLATE, "stardew:block/cake_chocolate" , 6));
+        dispatcher.addDispatch(StardewBlocks.PIZZA, new BlockModelGenericProgressive<>(StardewBlocks.PIZZA, "stardew:block/pizza" , 6));
+        dispatcher.addDispatch(StardewBlocks.APPLE_PIE, new BlockModelGenericProgressive<>(StardewBlocks.APPLE_PIE, "stardew:block/apple_pie" , 3));
+
 //
 //        dispatcher.addDispatch(StardewBlocks.APPLE_PIE, new BlockModelPieApple<>(StardewBlocks.APPLE_PIE)
 //            .setTex("stardew:block/apple_pie/side", Side.sides)

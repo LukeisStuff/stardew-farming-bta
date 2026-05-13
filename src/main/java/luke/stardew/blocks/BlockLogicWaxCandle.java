@@ -16,6 +16,7 @@ import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.pos.TilePosc;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,8 +43,8 @@ public class BlockLogicWaxCandle extends BlockLogic {
     }
 
     @Override
-    public boolean canPlaceBlockAt(World world, int x, int y, int z) {
-        return world.isBlockNormalCube(x, y - 1, z) || world.canPlaceOnSurfaceOfBlock(x, y - 1, z);
+    public boolean canPlaceAt(@NotNull World world, @NotNull TilePosc tilePos) {
+        return world.getSupport(tilePos.down(new TilePos()), Side.BOTTOM).canSupport(this.getSupport(world, tilePos, Side.BOTTOM), Side.TOP);
     }
 
     @Override
@@ -88,8 +89,8 @@ public class BlockLogicWaxCandle extends BlockLogic {
     }
 
     @Override
-    public boolean canBlockStay(World world, int x, int y, int z) {
-        return world.canPlaceOnSurfaceOfBlock(x, y - 1, z);
+    public boolean canStay(@NotNull World world, @NotNull TilePosc tilePos) {
+        return this.canPlaceAt(world, tilePos);
     }
 
     @Override
