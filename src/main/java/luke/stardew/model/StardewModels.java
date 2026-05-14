@@ -98,17 +98,17 @@ public class StardewModels implements ModelEntrypoint {
 
         dispatcher.addDispatch(
             StardewBlocks.BEEHIVE,
-            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE, BlockModelDispatcher.loadDataModel("stardew:/block/apiary/inactive"))
+            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE, BlockModelDispatcher.loadDataModel("stardew:/block/beehive/inactive"))
         );
 
         dispatcher.addDispatch(
             StardewBlocks.BEEHIVE_IDLE,
-            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_IDLE, BlockModelDispatcher.loadDataModel("stardew:/block/apiary/idle"))
+            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_IDLE, BlockModelDispatcher.loadDataModel("stardew:/block/beehive/idle"))
         );
 
         dispatcher.addDispatch(
             StardewBlocks.BEEHIVE_HONEY,
-            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_HONEY, BlockModelDispatcher.loadDataModel("stardew:/block/apiary/full"))
+            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_HONEY, BlockModelDispatcher.loadDataModel("stardew:/block/beehive/full"))
         );
 
         dispatcher.addDispatch(
@@ -125,15 +125,15 @@ public class StardewModels implements ModelEntrypoint {
 //        dispatcher.addDispatch(StardewBlocks.PLANT_STAKE, new BlockModelStake<>(StardewBlocks.PLANT_STAKE)
 //            .setAllTextures("stardew:block/plant_stake"));
 
-        dispatcher.addDispatch(new BlockModelFullyRotatable<>(StardewBlocks.WATERMELON)
-            .setTex("stardew:block/watermelon/side", Side.sides)
-            .setTex("stardew:block/watermelon/top", Side.TOP)
-            .setTex("stardew:block/watermelon/bottom", Side.BOTTOM));
-        dispatcher.addDispatch(new BlockModelFullyRotatable<>(StardewBlocks.CAULIFLOWER)
-            .setTex("stardew:block/cauliflower/side", Side.sides)
-            .setTex("stardew:block/cauliflower/top", Side.TOP)
-            .setTex("stardew:block/cauliflower/bottom", Side.BOTTOM));
+        dispatcher.addDispatch(
+            StardewBlocks.WATERMELON,
+            new BlockModelGenericFullyRotatable<>(StardewBlocks.WATERMELON, BlockModelDispatcher.loadDataModel("stardew:/block/watermelon").asModel())
+        );
 
+        dispatcher.addDispatch(
+            StardewBlocks.CAULIFLOWER,
+            new BlockModelGenericFullyRotatable<>(StardewBlocks.CAULIFLOWER, BlockModelDispatcher.loadDataModel("stardew:/block/cauliflower").asModel())
+        );
     }
 
     @Override
@@ -170,7 +170,6 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.WORM, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.EGG_DUCK, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FIBER, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.DOUGH, MOD_ID));
 
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.WATERING_CAN, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.WATERING_CAN_STEEL, MOD_ID));

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "up": "stardew:block/watermelon/top",
+    "down": "stardew:block/watermelon/bottom",
+    "side": "stardew:block/watermelon/side"
+  }
+}

@@ -30,6 +30,7 @@ public class StardewCreativeInventory implements CreativeBlocksEntrypoint, Creat
     @Override
     public void populateOrganic(List<ItemStack> list) {
         list.add(new ItemStack(StardewBlocks.WATERMELON));
+        list.add(new ItemStack(StardewBlocks.CAULIFLOWER));
         list.add(new ItemStack(StardewBlocks.LEAVES_APPLE));
         list.add(new ItemStack(StardewBlocks.LEAVES_APPLE_FLOWERING));
         list.add(new ItemStack(StardewBlocks.LEAVES_APPLE_GOLDEN));

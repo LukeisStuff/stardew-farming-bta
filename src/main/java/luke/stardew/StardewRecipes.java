@@ -24,9 +24,10 @@ public class StardewRecipes implements RecipeEntrypoint {
         RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("golden_apple");
         RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("pumpkin_pie");
         RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("basket");
+        RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("dough");
 
         RecipeBuilder.Shaped(MOD_ID, "DCD")
-            .addInput('D', StardewItems.DOUGH)
+            .addInput('D', Items.DOUGH)
             .addInput('C', Items.DYE, 3)
             .create("cookie", new ItemStack(Items.FOOD_COOKIE, 1));
 
@@ -42,10 +43,10 @@ public class StardewRecipes implements RecipeEntrypoint {
 
         RecipeBuilder.Shaped(MOD_ID, "WWW")
             .addInput('W', Items.WHEAT)
-            .create("dough", new ItemStack(StardewItems.DOUGH, 3));
+            .create("dough", new ItemStack(Items.DOUGH, 3));
 
         RecipeBuilder.Shaped(MOD_ID, "BMB", "SES", "DDD")
-            .addInput('D', StardewItems.DOUGH)
+            .addInput('D', Items.DOUGH)
             .addInput('B', StardewItems.STRAWBERRY)
             .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .addInput('S', Items.DUST_SUGAR)
@@ -171,7 +172,7 @@ public class StardewRecipes implements RecipeEntrypoint {
             .create("truffle_soup", new ItemStack(StardewItems.FOOD_STEW_TRUFFLE, 1));
 
         RecipeBuilder.Shaped(MOD_ID, "CMC", "SES", "DDD")
-            .addInput('D', StardewItems.DOUGH)
+            .addInput('D', Items.DOUGH)
             .addInput('C', Items.DYE, 3)
             .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
             .addInput('S', Items.DUST_SUGAR)
@@ -181,7 +182,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
         RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
             .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
-            .addInput('W', StardewItems.DOUGH)
+            .addInput('W', Items.DOUGH)
             .addInput('S', Items.DUST_SUGAR)
             .addInput('E', MOD_ID + ":item/eggs")
             .addInput('P', Blocks.PUMPKIN)
@@ -190,7 +191,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
         RecipeBuilder.Shaped(MOD_ID, " M ", "SES", "WPW")
             .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))
-            .addInput('W', StardewItems.DOUGH)
+            .addInput('W', Items.DOUGH)
             .addInput('S', Items.DUST_SUGAR)
             .addInput('E', MOD_ID + ":item/eggs")
             .addInput('P', Items.FOOD_APPLE)
@@ -199,7 +200,7 @@ public class StardewRecipes implements RecipeEntrypoint {
 
         RecipeBuilder.Shaped(MOD_ID, " W ", "SES", "DDD")
             .addInput('W', ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_WATER))
-            .addInput('D', StardewItems.DOUGH)
+            .addInput('D', Items.DOUGH)
             .addInput('S', StardewItems.TOMATO)
             .addInput('E', StardewItems.CHEESE)
             .setConsumeContainer(false)
@@ -289,10 +290,6 @@ public class StardewRecipes implements RecipeEntrypoint {
         RecipeBuilder.Furnace(MOD_ID)
             .setInput(MOD_ID + ":item/eggs")
             .create("egg_cooked", StardewItems.EGG_COOKED.getDefaultStack());
-
-        RecipeBuilder.Furnace(MOD_ID)
-            .setInput(StardewItems.DOUGH)
-            .create("bread", Items.FOOD_BREAD.getDefaultStack());
 
         RecipeBuilder.Furnace(MOD_ID)
             .setInput(ItemBucket.createRecipeInput(Items.BUCKET_IRON, ItemBucket.STATE_MILK))

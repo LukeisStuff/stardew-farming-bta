@@ -50,7 +50,6 @@ public class StardewItems {
     public static Item CRANBERRIES;
 
     //Processed Foods
-    public static Item DOUGH;
     public static Item EGG_COOKED;
     public static Item HONEY;
     public static Item JAR_JAM;
@@ -226,11 +225,6 @@ public class StardewItems {
         FISH_STONE = new ItemBuilder(MOD_ID)
             .setStackSize(1)
             .build(new Item(MOD_ID + ".fish.stone", itemNSID("fish_stone"), itemID("FISH_STONE")));
-
-
-        //Processed Foods
-        DOUGH = new ItemBuilder(MOD_ID)
-            .build(new ItemFood(MOD_ID + ".food.dough", itemNSID("dough"), itemID("DOUGH"), -1, 0, false, 64));
 
         EGG_COOKED = new ItemBuilder(MOD_ID)
             .build(new ItemFood(MOD_ID + ".food.egg.cooked", itemNSID("food_egg_cooked"), itemID("EGG_COOKED"), 10, 8, false, 16));

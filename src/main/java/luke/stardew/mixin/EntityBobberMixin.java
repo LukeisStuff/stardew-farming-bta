@@ -21,6 +21,7 @@ import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
 import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
+import org.jetbrains.annotations.NotNull;
 import org.joml.Vector3d;
 import org.joml.primitives.AABBdc;
 import org.spongepowered.asm.mixin.Mixin;
@@ -32,24 +33,13 @@ import org.spongepowered.asm.mixin.injection.At;
 public abstract class EntityBobberMixin extends Entity implements IEntityBobberMixin {
     @Shadow
     public Player owner;
-    @Shadow
-    private int ticksInAir;
-    @Shadow
-    private int ticksCatchable;
-    @Shadow
-    public Entity hookedEntity;
-
-    protected EntityBobberMixin(World world) {
-        super(world);
-        this.ticksInAir = 0;
-        this.ticksCatchable = 0;
-        this.hookedEntity = null;
-        this.setSize(0.25F, 0.25F);
-        this.ignoreFrustumCheck = true;
-    }
 
     @Unique
     private boolean hasBait = false;
+
+    public EntityBobberMixin(@NotNull World world) {
+        super(world);
+    }
 
     @Override
     public boolean stardew_farming_bta$hasBait() {
