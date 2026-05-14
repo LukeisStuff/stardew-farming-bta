@@ -1,3 +1,6 @@
+item.stardew.bush.name=Bush
+item.stardew.bush.desc=A wild bush that drops seeds based on the season.
+
 Spring Crops=
 
 item.stardew.seeds.carrot.name=Carrot Seeds
@@ -152,11 +155,14 @@ item.stardew.worm.desc=Used mainly as bait.
 item.stardew.armor.canofworms.name=Bait Can
 item.stardew.armor.canofworms.desc=Hold your worms in style.
 
-item.stardew.armor.canofworms.gold.name=Golden Bait Can
-item.stardew.armor.canofworms.gold.desc=Supplies an endless amount of worms.
+item.stardew.armor.canofworms.golden.name=Golden Bait Can
+item.stardew.armor.canofworms.golden.desc=Supplies an endless amount of worms.
 
 item.stardew.wax.name=Wax
 item.stardew.wax.desc=A sticky, yellowish, moldable substance secreted from honey.
+
+item.stardew.candle.name=Wax Candle
+item.stardew.candle.desc=A waxy light-source made from honey!
 
 item.stardew.food.salmon.raw.name=Raw Salmon
 item.stardew.food.salmon.raw.desc=Can be cooked to produce a tasty meal.
@@ -181,6 +187,9 @@ item.stardew.fish.sword.desc=One of the legendary fishes, found in the stormy se
 
 item.stardew.fish.ghost.name=Ghostfish
 item.stardew.fish.ghost.desc=One of the legendary fishes, found during a foggy night.
+
+item.stardew.fish.pig.name=Baconfish
+item.stardew.fish.pig.desc=Lovecraftian horrors beyond your understanding.
 
 item.stardew.fish.stone.name=Stonefish
 item.stardew.fish.stone.desc=One of the legendary fishes, found underground.

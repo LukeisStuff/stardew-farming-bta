@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "up": "stardew:block/beehive/top",
+    "down": "stardew:block/beehive/top",
+    "north": "stardew:block/beehive/side",
+    "south": "stardew:block/beehive/active_front",
+    "west": "stardew:block/beehive/side",
+    "east": "stardew:block/beehive/side"
+  }
+}

@@ -1,21 +1,56 @@
 package luke.stardew.blocks;
 
 import luke.stardew.items.StardewItems;
+import net.minecraft.core.WeightedRandomBag;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogicFlower;
 import net.minecraft.core.block.entity.TileEntity;
-import net.minecraft.core.entity.Mob;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
-import net.minecraft.core.world.pos.TilePosc;
+import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.Random;
+import java.util.HashMap;
+
 
 public class BlockLogicBush extends BlockLogicFlower {
+
+    protected static final HashMap<Season, WeightedRandomBag<ItemStack[]>> LOOT_BAG = new HashMap<>();
+
+    static {
+        var springBag = new WeightedRandomBag<ItemStack[]>();
+        var summerBag = new WeightedRandomBag<ItemStack[]>();
+        var fallBag = new WeightedRandomBag<ItemStack[]>();
+        var winterBag = new WeightedRandomBag<ItemStack[]>();
+
+        LOOT_BAG.put(Seasons.OVERWORLD_SPRING, springBag);
+        LOOT_BAG.put(Seasons.OVERWORLD_SUMMER, summerBag);
+        LOOT_BAG.put(Seasons.OVERWORLD_FALL, fallBag);
+        LOOT_BAG.put(Seasons.OVERWORLD_WINTER, winterBag);
+        LOOT_BAG.put(Seasons.OVERWORLD_WINTER_ENDLESS, winterBag);
+
+        // spring
+        springBag.addEntry(new ItemStack[]{new ItemStack(StardewItems.SEEDS_CARROT)}, 1);
+        springBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_BLUEBERRY)}, 1);
+        springBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_PINEAPPLE)}, 1);
+
+        // summer
+        summerBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_TOMATO)}, 1);
+        summerBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_POTATO)}, 1);
+        summerBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_STRAWBERRY)}, 1);
+
+        // fall
+        fallBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_CORN)}, 1);
+        fallBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_GRAPES)}, 1);
+
+
+        // winter
+        winterBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.BEANS_COFFEE)}, 1);
+        winterBag.addEntry( new ItemStack[]{new ItemStack(StardewItems.SEEDS_CRANBERRIES)}, 1);
+    }
 
     public BlockLogicBush(Block<?> block) {
         super(block);
@@ -23,78 +58,18 @@ public class BlockLogicBush extends BlockLogicFlower {
     }
 
     @Override
-    public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
-        super.updateTick(world, tilePos, rand, isRandomTick);
-        if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
-        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 1);
-        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL) {
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 2);
-        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER_ENDLESS) {
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 3);
-        } else {
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 4);
-        }
-    }
-
-    @Override
-    public void onBlockPlacedByMob(World world, int x, int y, int z, @NotNull Side side, Mob mob, double xPlaced, double yPlaced) {
-        if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
-            world.setBlockMetadataWithNotify(x, y, z, 0);
-        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SUMMER) {
-            world.setBlockMetadataWithNotify(x, y, z, 1);
-        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL) {
-            world.setBlockMetadataWithNotify(x, y, z, 2);
-        } else if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER || world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER_ENDLESS) {
-            world.setBlockMetadataWithNotify(x, y, z, 3);
-        } else {
-            world.setBlockMetadataWithNotify(x, y, z, 4);
-        }
-    }
-
-    @Override
-    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
+    public @NotNull ItemStack @Nullable [] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, int data, @Nullable TileEntity tileEntity) {
         switch (dropCause) {
             case PICK_BLOCK:
             case SILK_TOUCH:
                 return new ItemStack[]{new ItemStack(this)};
+
             default:
-                if (meta == 0) {
-                    int random = (world.rand.nextInt(3));
-                    if (random == 0) {
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CARROT)};
-                    } else if (random == 1) {
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_BLUEBERRY)};
-                    } else
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_PINEAPPLE)};
-                }
-                if (meta == 1) {
-                    int random = (world.rand.nextInt(3));
-                    if (random == 0) {
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_TOMATO)};
-                    } else if (random == 1) {
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_POTATO)};
-                    } else
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_STRAWBERRY)};
-                }
-                if (meta == 2) {
-                    if (world.rand.nextInt(2) == 0) {
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CORN)};
-                    } else
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_GRAPES)};
-                }
-                if (meta == 3) {
-                    int random = (world.rand.nextInt(2));
-                    if (random == 0) {
-                        return new ItemStack[]{new ItemStack(StardewItems.BEANS_COFFEE)};
-                    } else
-                        return new ItemStack[]{new ItemStack(StardewItems.SEEDS_CRANBERRIES)};
-                }
-                if (meta == 4) {
-                    return null;
-                }
-                return null;
+               var lootBag = LOOT_BAG.get(world.getSeasonManager().getCurrentSeason());
+
+               if (lootBag != null) { return lootBag.getRandom(); }
+               return null;
         }
     }
+
 }

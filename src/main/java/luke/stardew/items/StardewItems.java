@@ -11,6 +11,9 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 public class StardewItems {
 
+    //Other Natural
+    public static Item BUSH;
+
     //Spring Crops
     public static Item SEEDS_CARROT;
     public static Item CARROT;
@@ -65,6 +68,8 @@ public class StardewItems {
     public static Item WATERING_CAN_STEEL;
 
     public static Item WAX;
+    public static Item CANDLE;
+
 
     public static Item FOOD_PIZZA;
 
@@ -79,6 +84,7 @@ public class StardewItems {
     public static Item FISH_EEL_LAVA;
     public static Item FISH_SWORD;
     public static Item FISH_GHOST;
+    public static Item FISH_PIG;
     public static Item FISH_STONE;
 
     //Fishing Rods
@@ -127,28 +133,31 @@ public class StardewItems {
         ItemBuilder seeds = new ItemBuilder(MOD_ID)
             .setTags(ItemTags.CHICKENS_FAVOURITE_ITEM);
 
+        BUSH = new ItemBuilder(MOD_ID)
+            .build(new ItemPlaceable(MOD_ID + ".bush", itemNSID("bush"), itemID("BUSH"), StardewBlocks.BUSH));
+
         //Spring Crops
         SEEDS_CARROT = seeds
             .build(new ItemSeeds(MOD_ID + ".seeds.carrot", itemNSID("seeds_carrot"), itemID("SEEDS_CARROT"), StardewBlocks.CROPS_CARROT));
         CARROT = new ItemBuilder(MOD_ID)
-            .build(new ItemFood(MOD_ID + ".food.carrot", itemNSID("carrot"), itemID("CARROT"), 2, 8, false, 8));
+            .build(new ItemFood(MOD_ID + ".food.carrot", itemNSID("food_carrot"), itemID("CARROT"), 2, 8, false, 8));
 
         SEEDS_BLUEBERRY = seeds
             .build(new ItemSeeds(MOD_ID + ".seeds.blueberry", itemNSID("seeds_blueberry"), itemID("SEEDS_BLUEBERRY"), StardewBlocks.CROPS_BLUEBERRY));
         BLUEBERRY = new ItemBuilder(MOD_ID)
-            .build(new ItemFruit(MOD_ID + ".food.blueberry", itemNSID("blueberry"), itemID("BLUEBERRY"), 1, 8, 16));
+            .build(new ItemFruit(MOD_ID + ".food.blueberry", itemNSID("food_blueberry"), itemID("BLUEBERRY"), 1, 8, 16));
 
         SEEDS_PINEAPPLE = seeds
             .build(new ItemSeeds(MOD_ID + ".seeds.pineapple", itemNSID("seeds_pineapple"), itemID("SEEDS_PINEAPPLE"), StardewBlocks.CROPS_PINEAPPLE));
         PINEAPPLE = new ItemBuilder(MOD_ID)
-            .build(new ItemFruit(MOD_ID + ".food.pineapple", itemNSID("pineapple"), itemID("PINEAPPLE"), 4, 8, 4));
+            .build(new ItemFruit(MOD_ID + ".food.pineapple", itemNSID("food_pineapple"), itemID("PINEAPPLE"), 4, 8, 4));
 
 
         //Summer Crops
         SEEDS_TOMATO = seeds
             .build(new ItemSeeds(MOD_ID + ".seeds.tomato", itemNSID("seeds_tomato"), itemID("SEEDS_TOMATO"), StardewBlocks.CROPS_TOMATO));
         TOMATO = new ItemBuilder(MOD_ID)
-            .build(new ItemTomato(MOD_ID + ".food.tomato", itemNSID("tomato"), itemID("TOMATO"), 2, 8, false, 8));
+            .build(new ItemTomato(MOD_ID + ".food.tomato", itemNSID("food_tomato"), itemID("TOMATO"), 2, 8, false, 8));
 
         SEEDS_POTATO = seeds
             .build(new ItemSeeds(MOD_ID + ".seeds.potato", itemNSID("seeds_potato"), itemID("SEEDS_POTATO"), StardewBlocks.CROPS_POTATO));
@@ -168,12 +177,12 @@ public class StardewItems {
         SEEDS_CORN = seeds
             .build(new ItemSeeds(MOD_ID + ".seeds.corn", itemNSID("seeds_corn"), itemID("SEEDS_CORN"), StardewBlocks.CROPS_CORN_BOTTOM));
         CORN = new ItemBuilder(MOD_ID)
-            .build(new ItemFood(MOD_ID + ".food.corn", itemNSID("corn"), itemID("CORN"), 2, 8, false, 8));
+            .build(new ItemFood(MOD_ID + ".food.corn", itemNSID("food_corn"), itemID("CORN"), 2, 8, false, 8));
 
         SEEDS_GRAPES = seeds
             .build(new ItemSeedsStake(MOD_ID + ".seeds.grapes", itemNSID("seeds_grapes"), itemID("SEEDS_GRAPES"), StardewBlocks.CROPS_GRAPE_BOTTOM));
         GRAPES = new ItemBuilder(MOD_ID)
-            .build(new ItemFruit(MOD_ID + ".food.grapes", itemNSID("grapes"), itemID("GRAPES"), 1, 8, 16));
+            .build(new ItemFruit(MOD_ID + ".food.grapes", itemNSID("food_grapes"), itemID("GRAPES"), 1, 8, 16));
 
 
         //Winter Crops
@@ -183,7 +192,7 @@ public class StardewItems {
         SEEDS_CRANBERRIES = seeds
             .build(new ItemSeeds(MOD_ID + ".seeds.cranberries", itemNSID("seeds_cranberries"), itemID("SEEDS_CRANBERRIES"), StardewBlocks.CROPS_CRANBERRIES));
         CRANBERRIES = new ItemBuilder(MOD_ID)
-            .build(new ItemFruit(MOD_ID + ".food.cranberries", itemNSID("cranberries"), itemID("CRANBERRIES"), 1, 8, 16));
+            .build(new ItemFruit(MOD_ID + ".food.cranberries", itemNSID("food_cranberries"), itemID("CRANBERRIES"), 1, 8, 16));
 
 
         //Fishes
@@ -211,6 +220,9 @@ public class StardewItems {
         FISH_GHOST = new ItemBuilder(MOD_ID)
             .setStackSize(1)
             .build(new Item(MOD_ID + ".fish.ghost", itemNSID("fish_ghost"), itemID("FISH_GHOST")));
+        FISH_PIG = new ItemBuilder(MOD_ID)
+            .setStackSize(1)
+            .build(new Item(MOD_ID + ".fish.pig", itemNSID("fish_pig"), itemID("FISH_PIG")));
         FISH_STONE = new ItemBuilder(MOD_ID)
             .setStackSize(1)
             .build(new Item(MOD_ID + ".fish.stone", itemNSID("fish_stone"), itemID("FISH_STONE")));
@@ -230,7 +242,7 @@ public class StardewItems {
             .build(new ItemJam(MOD_ID + ".food.jam", itemNSID("food_jam"), itemID("JAR_JAM"), 8, 16, false, 1));
 
         CHEESE = new ItemBuilder(MOD_ID)
-            .build(new ItemFood(MOD_ID + ".food.cheese", itemNSID("cheese"), itemID("CHEESE"), 4, 8, false, 4));
+            .build(new ItemFood(MOD_ID + ".food.cheese", itemNSID("food_cheese"), itemID("CHEESE"), 4, 8, false, 4));
 
         FOOD_COFFEE = new ItemBuilder(MOD_ID)
             .setContainerItem(() -> Items.BUCKET_IRON)
@@ -268,6 +280,9 @@ public class StardewItems {
         WAX = new ItemBuilder(MOD_ID)
             .build(new Item(MOD_ID + ".wax", itemNSID("wax"), itemID("WAX")));
 
+        CANDLE = new ItemBuilder(MOD_ID)
+            .build(new ItemPlaceable(MOD_ID + ".candle", itemNSID("candle"), itemID("CANDLE"), StardewBlocks.CANDLE));
+
 
         //Fishing
         TOOL_FISHINGROD_STONE = new ItemBuilder(MOD_ID)
@@ -288,7 +303,7 @@ public class StardewItems {
             .build(new ItemCanOfWorms(MOD_ID + ".armor.canofworms", itemNSID("armor_canofworms"), itemID("ARMOR_CAN_OF_WORMS")));
 
         ARMOR_CAN_OF_WORMS_GOLDEN = new ItemBuilder(MOD_ID)
-            .build(new ItemCanOfWormsEndless(MOD_ID + ".armor.canofworms.gold", itemNSID("armor_canofworms_golden"), itemID("ARMOR_CAN_OF_WORMS_GOLDEN")));
+            .build(new ItemCanOfWormsEndless(MOD_ID + ".armor.canofworms.golden", itemNSID("armor_canofworms_golden"), itemID("ARMOR_CAN_OF_WORMS_GOLDEN")));
 
 
         //Treasures

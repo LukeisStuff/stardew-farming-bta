@@ -1,34 +1,39 @@
 package luke.stardew.model;
 
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.minecraft.client.render.block.model.BlockModelCrossedSquares;
-import net.minecraft.client.render.texture.stitcher.IconCoordinate;
-import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.block.Block;
 import net.minecraft.core.block.BlockLogic;
-import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.WorldSource;
 import net.minecraft.core.world.pos.TilePosc;
+import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import org.useless.dragonfly.models.block.StaticBlockModel;
 
-@Environment(EnvType.CLIENT)
-public class BlockModelBush<T extends BlockLogic> extends BlockModelCrossedSquares<T> {
-    public final IconCoordinate[] seasonalTextures = new IconCoordinate[]{
-        TextureRegistry.getTexture("stardew:block/bush/spring"),
-        TextureRegistry.getTexture("stardew:block/bush/summer"),
-        TextureRegistry.getTexture("stardew:block/bush/fall"),
-        TextureRegistry.getTexture("stardew:block/bush/winter"),
-        TextureRegistry.getTexture("stardew:block/bush/dead")
-    };
 
-    public BlockModelBush(Block block) {
-        super(block);
+public class BlockModelBush<T extends BlockLogic> extends BlockModelGenericProgressive<T> {
+    public BlockModelBush(@NotNull Block<T> block, @NotNull String dataModelPath) {
+        super(block, dataModelPath, 4);
     }
 
     @Override
-    public @Nullable IconCoordinate getBlockTexture(@NotNull WorldSource source, @NotNull TilePosc tilePos, @NotNull Side side) {
-        return seasonalTextures[source.getBlockData(tilePos) % seasonalTextures.length];
+    public @NotNull StaticBlockModel getModel(@NotNull WorldSource source, @NotNull TilePosc tilePosc) {
+        var season = source.getSeasonManager().getCurrentSeason();
+
+        if (season == Seasons.OVERWORLD_SPRING) {
+            return models[0];
+        }
+
+        if (season == Seasons.OVERWORLD_SUMMER) {
+            return models[1];
+        }
+
+        if (season == Seasons.OVERWORLD_FALL) {
+            return models[2];
+        }
+
+        if (season == Seasons.OVERWORLD_WINTER || season == Seasons.OVERWORLD_WINTER_ENDLESS) {
+            return models[3];
+        }
+
+        return models[4];
     }
 }

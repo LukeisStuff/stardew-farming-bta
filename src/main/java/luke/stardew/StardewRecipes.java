@@ -266,7 +266,7 @@ public class StardewRecipes implements RecipeEntrypoint {
         RecipeBuilder.Shaped(MOD_ID, "I", "S")
             .addInput('I', Items.STRING)
             .addInput('S', StardewItems.WAX)
-            .create("wax", new ItemStack(StardewBlocks.CANDLE, 4));
+            .create("wax", new ItemStack(StardewItems.CANDLE, 4));
 
         RecipeBuilder.Shapeless(MOD_ID)
             .addInput(new ItemStack(StardewItems.FISH_STONE, 1))
@@ -282,6 +282,9 @@ public class StardewRecipes implements RecipeEntrypoint {
             .addInput('I', Items.INGOT_IRON)
             .create("can_of_worms", itemStack);
 
+        RecipeBuilder.Furnace(MOD_ID)
+            .setInput(StardewItems.FISH_PIG)
+            .create("egg_cooked", Items.FOOD_PORKCHOP_COOKED.getDefaultStack());
 
         RecipeBuilder.Furnace(MOD_ID)
             .setInput(MOD_ID + ":item/eggs")

@@ -455,11 +455,6 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         return (A) block.getLogic();
     }
 
-    public static boolean isBlockLogic(World world, int x, int y, int z, Class<? extends BlockLogic> logic) {
-        Block<?> block = world.getBlock(x, y, z);
-        return block != null && logic.isAssignableFrom(block.getLogic().getClass());
-    }
-
     @Override
     public void afterBlockInit() {
         init();

@@ -5,7 +5,10 @@
   },
   "package": "luke.stardew.mixin",
   "compatibilityLevel": "JAVA_${java}",
-  "mixins": [],
+  "mixins": [
+    "EntityBobberMixin",
+    "ItemFishingRodMixin"
+  ],
   "client": [
     "itemModelFixMixin",
     "RenderWormArmorMixin"

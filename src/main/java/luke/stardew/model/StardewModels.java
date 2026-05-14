@@ -8,6 +8,9 @@ import net.minecraft.client.render.EntityRendererDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.*;
+import net.minecraft.client.render.block.model.generic.BlockModelGeneric;
+import net.minecraft.client.render.block.model.generic.BlockModelGenericFullyRotatable;
+import net.minecraft.client.render.block.model.generic.BlockModelGenericRotatable;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.item.model.ItemModelStandard;
 import net.minecraft.core.util.helper.Side;
@@ -34,10 +37,24 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_GOLDEN, new BlockModelLeaves<>(StardewBlocks.LEAVES_APPLE_GOLDEN,
             "stardew:block/leaves/apple_gold"));
 
-//        dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_FLOWERING, new BlockModelLeavesSeasonalFlowering<>(StardewBlocks.LEAVES_APPLE,
-//            "stardew:block/leaves/apple", "apple"));
-//        dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_GOLDEN_FLOWERING, new BlockModelLeavesSeasonalFlowering<>(StardewBlocks.LEAVES_APPLE_GOLDEN,
-//            "stardew:block/leaves/apple_gold", "apple_gold"));
+        dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_FLOWERING,
+            new BlockModelLeavesFlowering<>(
+                StardewBlocks.LEAVES_APPLE,
+                "stardew:block/leaves/apple/base",
+                "stardew:block/leaves/apple/overlay",
+                "stardew:block/leaves/apple/overlay_flowering"
+            )
+        );
+
+        dispatcher.addDispatch(StardewBlocks.LEAVES_APPLE_GOLDEN_FLOWERING,
+            new BlockModelLeavesFlowering<>(
+                StardewBlocks.LEAVES_APPLE_GOLDEN,
+                "stardew:block/leaves/apple_golden/base",
+                "stardew:block/leaves/apple_golden/overlay",
+                "stardew:block/leaves/apple_golden/overlay_flowering"
+            )
+        );
+
 
         dispatcher.addDispatch(StardewBlocks.SAPLING_APPLE, new BlockModelCrossedSquares<>(StardewBlocks.SAPLING_APPLE).setAllTextures("stardew:block/sapling/apple"));
         dispatcher.addDispatch(StardewBlocks.SAPLING_APPLE_GOLDEN, new BlockModelCrossedSquares<>(StardewBlocks.SAPLING_APPLE_GOLDEN).setAllTextures("stardew:block/sapling/apple_gold"));
@@ -69,42 +86,41 @@ public class StardewModels implements ModelEntrypoint {
 //
 //        dispatcher.addDispatch(StardewBlocks.CROPS_CAULIFLOWER, new BlockModelCropsGrowing<>(StardewBlocks.CROPS_CAULIFLOWER, "cauliflower"));
 //
-//        dispatcher.addDispatch(StardewBlocks.BUSH, new BlockModelBush<>(StardewBlocks.BUSH));
-//
-
+        dispatcher.addDispatch(StardewBlocks.BUSH, new BlockModelBush<>(StardewBlocks.BUSH, "stardew:block/bush"));
 
         dispatcher.addDispatch(StardewBlocks.CAKE_CHOCOLATE, new BlockModelGenericProgressive<>(StardewBlocks.CAKE_CHOCOLATE, "stardew:block/cake_chocolate" , 6));
         dispatcher.addDispatch(StardewBlocks.PIZZA, new BlockModelGenericProgressive<>(StardewBlocks.PIZZA, "stardew:block/pizza" , 6));
         dispatcher.addDispatch(StardewBlocks.APPLE_PIE, new BlockModelGenericProgressive<>(StardewBlocks.APPLE_PIE, "stardew:block/apple_pie" , 3));
 
-//
-//        dispatcher.addDispatch(StardewBlocks.APPLE_PIE, new BlockModelPieApple<>(StardewBlocks.APPLE_PIE)
-//            .setTex("stardew:block/apple_pie/side", Side.sides)
-//            .setTex("stardew:block/apple_pie/top", Side.TOP)
-//            .setTex("stardew:block/apple_pie/bottom", Side.BOTTOM));
-
         dispatcher.addDispatch(StardewBlocks.BLOCK_HONEY, new BlockModelGlass<>(StardewBlocks.BLOCK_HONEY, "stardew:block/block_honey")
             .setAllTextures("stardew:block/block_honey").onRenderLayer(1));
 
-        dispatcher.addDispatch(StardewBlocks.BEEHIVE, new BlockModelHorizontalRotation<>(StardewBlocks.BEEHIVE)
-            .setTex("stardew:block/beehive/side", Side.sides)
-            .setTex("stardew:block/beehive/idle_front", Side.NORTH)
-            .setTex("stardew:block/beehive/top", Side.TOP, Side.BOTTOM));
 
-        dispatcher.addDispatch(StardewBlocks.BEEHIVE_IDLE, new BlockModelHorizontalRotation<>(StardewBlocks.BEEHIVE_IDLE)
-            .setTex("stardew:block/beehive/side", Side.sides)
-            .setTex("stardew:block/beehive/idle_front", Side.NORTH)
-            .setTex("stardew:block/beehive/top", Side.TOP, Side.BOTTOM));
+        dispatcher.addDispatch(
+            StardewBlocks.BEEHIVE,
+            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE, BlockModelDispatcher.loadDataModel("stardew:/block/apiary/inactive"))
+        );
 
-        dispatcher.addDispatch(StardewBlocks.BEEHIVE_HONEY, new BlockModelHorizontalRotation<>(StardewBlocks.BEEHIVE_HONEY)
-            .setTex("stardew:block/beehive/side", Side.sides)
-            .setTex("stardew:block/beehive/active_front", Side.NORTH)
-            .setTex("stardew:block/beehive/top", Side.TOP, Side.BOTTOM));
+        dispatcher.addDispatch(
+            StardewBlocks.BEEHIVE_IDLE,
+            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_IDLE, BlockModelDispatcher.loadDataModel("stardew:/block/apiary/idle"))
+        );
 
-//        dispatcher.addDispatch(StardewBlocks.CANDLE, new BlockModelWaxCandle<>(StardewBlocks.CANDLE)
-//            .setAllTextures("stardew:block/candle"));
-//        dispatcher.addDispatch(StardewBlocks.CANDLE_ACTIVE, new BlockModelWaxCandle<>(StardewBlocks.CANDLE_ACTIVE)
-//            .setAllTextures("stardew:block/candle"));
+        dispatcher.addDispatch(
+            StardewBlocks.BEEHIVE_HONEY,
+            new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_HONEY, BlockModelDispatcher.loadDataModel("stardew:/block/apiary/full"))
+        );
+
+        dispatcher.addDispatch(
+            StardewBlocks.CANDLE,
+            new BlockModelGeneric<>(StardewBlocks.CANDLE, BlockModelDispatcher.loadDataModel("stardew:block/candle").asModel())
+        );
+
+        dispatcher.addDispatch(
+            StardewBlocks.CANDLE_ACTIVE,
+            new BlockModelGeneric<>(StardewBlocks.CANDLE_ACTIVE, BlockModelDispatcher.loadDataModel("stardew:block/candle").asModel())
+        );
+
 //
 //        dispatcher.addDispatch(StardewBlocks.PLANT_STAKE, new BlockModelStake<>(StardewBlocks.PLANT_STAKE)
 //            .setAllTextures("stardew:block/plant_stake"));
@@ -122,6 +138,8 @@ public class StardewModels implements ModelEntrypoint {
 
     @Override
     public void initItemModels(ItemModelDispatcher dispatcher) {
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.BUSH, MOD_ID));
+
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_BLUEBERRY, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CARROT, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CAULIFLOWER, MOD_ID));
@@ -147,6 +165,7 @@ public class StardewModels implements ModelEntrypoint {
 
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.HONEY, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.WAX, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CANDLE, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.RECORD_PINK, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.WORM, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.EGG_DUCK, MOD_ID));
@@ -176,15 +195,16 @@ public class StardewModels implements ModelEntrypoint {
 
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_EEL_LAVA, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_GHOST, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_PIG, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_STONE, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_SWORD, MOD_ID));
 
-//        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STONE, MODID, "stone");
-//        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_IRON, MODID, "iron");
-//        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_GOLD, MODID, "gold");
-//        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_DIAMOND, MODID, "diamond");
-//        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STEEL, MODID, "steel");
-//
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STONE, MOD_ID, "stone"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_IRON, MOD_ID, "iron"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_GOLD, MOD_ID, "gold"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_DIAMOND, MOD_ID, "diamond"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STEEL, MOD_ID, "steel"));
+
         dispatcher.addDispatch(new ItemModelBait(StardewItems.ARMOR_CAN_OF_WORMS, MOD_ID));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN, MOD_ID));
 

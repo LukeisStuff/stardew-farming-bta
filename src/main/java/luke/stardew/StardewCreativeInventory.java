@@ -25,16 +25,20 @@ public class StardewCreativeInventory implements CreativeBlocksEntrypoint, Creat
     public void populateWood(List<ItemStack> list) {
         list.add(new ItemStack(StardewBlocks.BEEHIVE));
         list.add(new ItemStack(StardewBlocks.LOG_APPLE));
-        list.add(new ItemStack(StardewBlocks.CANDLE));
     }
 
     @Override
     public void populateOrganic(List<ItemStack> list) {
-        list.add(new ItemStack(StardewBlocks.THATCH));
         list.add(new ItemStack(StardewBlocks.WATERMELON));
         list.add(new ItemStack(StardewBlocks.LEAVES_APPLE));
-        list.add(new ItemStack(StardewBlocks.BUSH));
+        list.add(new ItemStack(StardewBlocks.LEAVES_APPLE_FLOWERING));
+        list.add(new ItemStack(StardewBlocks.LEAVES_APPLE_GOLDEN));
+        list.add(new ItemStack(StardewBlocks.LEAVES_APPLE_GOLDEN_FLOWERING));
         list.add(new ItemStack(StardewBlocks.BLOCK_HONEY));
+        list.add(new ItemStack(StardewBlocks.SAPLING_APPLE));
+        list.add(new ItemStack(StardewBlocks.SAPLING_APPLE_GOLDEN));
+        list.add(new ItemStack(StardewItems.BUSH));
+        list.add(new ItemStack(StardewBlocks.THATCH));
     }
 
     @Override

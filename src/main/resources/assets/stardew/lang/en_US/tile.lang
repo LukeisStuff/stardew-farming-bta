@@ -93,8 +93,8 @@ tile.stardew.cauliflower.desc=Large leaf covered vegetable with bumpy flesh.
 tile.stardew.crops.cranberries.name=Cranberry Crops
 tile.stardew.crops.cranberries.desc=Ripe cranberry bush, plucked straight from the ground.
 
-tile.stardew.bush.name=Bush
-tile.stardew.bush.desc=A wild bush that drops seeds based on the season.
+tile.stardew.bush.name=Bush Block
+tile.stardew.bush.desc=How did you get this?
 
 tile.stardew.beehive.name=Beehive
 tile.stardew.beehive.desc=A man-made nest for bees to create a sweet and sticky nectar.

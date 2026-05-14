@@ -55,6 +55,8 @@ public class StardewClient implements ClientModInitializer, ClientStartEntrypoin
 
     @Override
     public void afterClientStart() {
+        initAchievementsPage();
+
         MobInfoRegistry.register(MobDuck.class, "guidebook.section.mob.duck.name", "guidebook.section.mob.duck.desc",
             4, 10, new MobInfoRegistry.MobDrop[]{new MobInfoRegistry.MobDrop(new ItemStack(Items.FEATHER_CHICKEN), 1.0f, 0, 1)});
 
