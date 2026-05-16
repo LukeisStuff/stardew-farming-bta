@@ -138,65 +138,65 @@ public class StardewModels implements ModelEntrypoint {
 
     @Override
     public void initItemModels(ItemModelDispatcher dispatcher) {
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.BUSH, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.BUSH));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_BLUEBERRY, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CARROT, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CAULIFLOWER, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CORN, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_GRAPES, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CRANBERRIES, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_PINEAPPLE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_TOMATO, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_STRAWBERRY, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.BEANS_COFFEE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_POTATO, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_WATERMELON, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_BLUEBERRY));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CARROT));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CAULIFLOWER));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CORN));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_GRAPES));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_CRANBERRIES));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_PINEAPPLE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_TOMATO));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_STRAWBERRY));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.BEANS_COFFEE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_POTATO));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_WATERMELON));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.BLUEBERRY, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CARROT, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CORN, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.GRAPES, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CRANBERRIES, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.PINEAPPLE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.TOMATO, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.STRAWBERRY, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.POTATO, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.BLUEBERRY));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CARROT));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CORN));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.GRAPES));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CRANBERRIES));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.PINEAPPLE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.TOMATO));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.STRAWBERRY));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.POTATO));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.HONEY, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WAX, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CANDLE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.RECORD_PINK, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WORM, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.EGG_DUCK, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FIBER, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.HONEY));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WAX));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CANDLE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.RECORD_PINK));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WORM));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.EGG_DUCK));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FIBER));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WATERING_CAN, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WATERING_CAN_STEEL, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WATERING_CAN));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.WATERING_CAN_STEEL));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_PIZZA, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_CAKE_CHOCOLATE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_BASS_COOKED, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_BASS_RAW, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_COFFEE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SALMON_COOKED, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SALMON_RAW, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SNAPPER_COOKED, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SNAPPER_RAW, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_FRUIT, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_CHEESE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_VEGETABLE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_TRUFFLE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.EGG_COOKED, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CHEESE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.JAR_JAM, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SEEDS_ROASTED, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_PIZZA));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_CAKE_CHOCOLATE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_BASS_COOKED));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_BASS_RAW));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_COFFEE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SALMON_COOKED));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SALMON_RAW));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SNAPPER_COOKED));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SNAPPER_RAW));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_FRUIT));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_CHEESE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_VEGETABLE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_STEW_TRUFFLE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.EGG_COOKED));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.CHEESE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.JAR_JAM));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SEEDS_ROASTED));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_EEL_LAVA, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_GHOST, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_PIG, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_STONE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_SWORD, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_EEL_LAVA));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_GHOST));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_PIG));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_STONE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_SWORD));
 
         dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STONE, MOD_ID, "stone"));
         dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_IRON, MOD_ID, "iron"));
@@ -205,13 +205,13 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STEEL, MOD_ID, "steel"));
 
         dispatcher.addDispatch(new ItemModelBait(StardewItems.ARMOR_CAN_OF_WORMS, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewBlocks.CANDLE.asItem(), MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewBlocks.CANDLE_ACTIVE.asItem(), MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewBlocks.CANDLE.asItem()));
+        dispatcher.addDispatch(new ItemModelStandard(StardewBlocks.CANDLE_ACTIVE.asItem()));
 
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_APPLE_PIE, MOD_ID));
-        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_APPLE_PIE_SLICE, MOD_ID));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_APPLE_PIE));
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_APPLE_PIE_SLICE));
     }
 
     @Override

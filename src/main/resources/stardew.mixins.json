@@ -10,7 +10,6 @@
     "ItemFishingRodMixin"
   ],
   "client": [
-    "itemModelFixMixin",
     "RenderWormArmorMixin"
   ],
   "disabled": {
