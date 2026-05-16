@@ -101,13 +101,13 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, StardewTags.NEARBY_CROP);
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, StardewTags.NEARBY_CROP);
 
         BlockBuilder cropsBlock = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, StardewTags.NEARBY_CROP);
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.OVERRIDE_STEPSOUND, StardewTags.NEARBY_CROP);
 
         BlockBuilder blocks = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.WOOD)
@@ -235,7 +235,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("cauliflower", "cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Materials.VEGETABLE));
 
         CROPS_CAULIFLOWER = cropsBlock
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
             .build("crops.cauliflower", "crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
 
         CROPS_CRANBERRIES = crops.build("crops.cranberries", "crops_cranberries", blockID("CROPS_CRANBERRIES"), BlockLogicCropBase::new);
@@ -246,12 +246,12 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("bush", "bush", blockID("BUSH"), BlockLogicBush::new);
 
         BEEHIVE_IDLE = wood
-            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT)
             .setTicking(true)
             .build("beehive.idle", "beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehiveActive(b, false));
 
         BEEHIVE_HONEY = wood
-            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT)
             .build("beehive.honey", "beehive_honey", blockID("BEEHIVE_HONEY"), b -> new BlockLogicBeehiveActive(b, true));
 
         BLOCK_HONEY = new BlockBuilder(MOD_ID)
@@ -269,7 +269,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setBlockSound(BlockSounds.CLOTH)
             .setHardness(0.5f)
             .setResistance(0.5f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.BROKEN_BY_FLUIDS)
             .build("cake.chocolate", "cake_chocolate", blockID("CAKE_CHOCOLATE"), b -> new BlockLogicEdibleCustom(b, 0.5f, () -> StardewItems.FOOD_CAKE_CHOCOLATE));
 
         BEEHIVE = wood
@@ -280,7 +280,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setBlockSound(BlockSounds.CLOTH)
             .setHardness(0.5f)
             .setResistance(0.5f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.BROKEN_BY_FLUIDS)
             .build("pizza", "pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 2F/16F, () -> StardewItems.FOOD_PIZZA));
 
         CANDLE = new BlockBuilder(MOD_ID)
@@ -298,18 +298,18 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setLuminance(14)
             .setUseInternalLight()
             .setVisualUpdateOnMetadata()
-            .setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
             .build("candle.active", "candle_active", blockID("CANDLE_ACTIVE"), b -> new BlockLogicWaxCandle(b, true));
 
         PLANT_STAKE = new BlockBuilder(MOD_ID)
-            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
             .setHardness(0.0f)
             .setResistance(0.0f)
             .setBlockSound(BlockSounds.GRAVEL)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.BROKEN_BY_FLUIDS)
             .build("plant.stake", "plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Materials.PLANT));
 
         MUSHROOM_TRUFFLE = new BlockBuilder(MOD_ID)
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.MUSHROOM_RED))
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)

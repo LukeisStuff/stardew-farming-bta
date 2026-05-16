@@ -189,7 +189,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
 
             world.playSoundEffect(player, SoundCategory.WORLD_SOUNDS, tilePos.x() + 0.5, tilePos.y() + 0.5, tilePos.z() + 0.5, "random.pop", 0.3F, 1.0f);
             if (!world.isClientSide && this.cropItem != null)
-                world.dropItem(tilePos.x(), tilePos.y(), tilePos.z(), new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
+                world.dropItem(tilePos, new ItemStack(this.cropItem, this.cropRange.get(world.rand)));
 
             return true;
         }

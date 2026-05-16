@@ -16,15 +16,6 @@ import java.util.Objects;
 @Mixin(value = TileEntityFurnace.class, remap = false)
 public abstract class TileEntityFurnaceAetherMixin {
 
-    @Unique
-    private ItemStack previousInput;
-
-    @Inject(method = "smeltItem()V", at = @At("HEAD"))
-    private void captureInput(CallbackInfo ci) {
-        TileEntityFurnace furnace = (TileEntityFurnace) (Object) this;
-        previousInput = furnace.getItem(0) == null ? null : Objects.requireNonNull(furnace.getItem(0)).copy();
-    }
-
     @Inject(method = "smeltItem()V", at = @At("TAIL"))
     private void restoreAetherBucket(CallbackInfo ci) {
         TileEntityFurnace furnace = (TileEntityFurnace) (Object) this;

@@ -1,15 +1,12 @@
 package luke.stardew.achievements;
 
-import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.client.gui.achievements.ScreenAchievements;
 import net.minecraft.client.gui.achievements.data.AchievementPage;
-import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.lang.I18n;
-import net.minecraft.core.util.helper.Side;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 

@@ -17,11 +17,11 @@ public abstract class SlotCraftingMixin {
     private Player thePlayer;
 
     @Inject(method = "onTake", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/item/ItemStack;onCrafting(Lnet/minecraft/core/world/World;Lnet/minecraft/core/entity/player/Player;)V", shift = At.Shift.AFTER))
-    public void addCraftingAchievements(ItemStack itemstack, CallbackInfo ci) {
-        if (itemstack.itemID == StardewBlocks.SAPLING_APPLE_GOLDEN.id()) {
+    public void addCraftingAchievements(ItemStack itemStack, CallbackInfo ci) {
+        if (itemStack.itemID == StardewBlocks.SAPLING_APPLE_GOLDEN.id()) {
             thePlayer.addStat(StardewAchievements.GAPPLE, 1);
         }
-        if (itemstack.itemID == StardewBlocks.CANDLE.id()) {
+        if (itemStack.itemID == StardewBlocks.CANDLE.id()) {
             thePlayer.addStat(StardewAchievements.CANDLE, 1);
         }
     }

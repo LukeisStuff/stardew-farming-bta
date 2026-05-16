@@ -8,21 +8,12 @@ import net.minecraft.client.render.EntityRendererDispatcher;
 import net.minecraft.client.render.TileEntityRenderDispatcher;
 import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.*;
-import net.minecraft.client.render.block.model.generic.BlockModelGeneric;
 import net.minecraft.client.render.block.model.generic.BlockModelGenericFullyRotatable;
 import net.minecraft.client.render.block.model.generic.BlockModelGenericRotatable;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.item.model.ItemModelStandard;
-import net.minecraft.client.render.tessellator.TessellatorGeneral;
-import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.util.helper.Side;
-import net.minecraft.core.world.WorldSource;
-import net.minecraft.core.world.pos.TilePosc;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import turniplabs.halplibe.util.ModelEntrypoint;
-
-import static luke.stardew.StardewMod.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class StardewModels implements ModelEntrypoint {
@@ -180,9 +171,10 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(StardewBlocks.CANDLE,new BlockModelCandle(StardewBlocks.CANDLE));
         dispatcher.addDispatch(StardewBlocks.CANDLE_ACTIVE,new BlockModelCandle(StardewBlocks.CANDLE_ACTIVE));
 
-//
-//        dispatcher.addDispatch(StardewBlocks.PLANT_STAKE, new BlockModelStake<>(StardewBlocks.PLANT_STAKE)
-//            .setAllTextures("stardew:block/plant_stake"));
+        dispatcher.addDispatch(
+            StardewBlocks.PLANT_STAKE,
+            new BlockModelGenericFullyRotatable<>(StardewBlocks.PLANT_STAKE, BlockModelDispatcher.loadDataModel("stardew:/block/plant_stake").asModel())
+        );
 
         dispatcher.addDispatch(
             StardewBlocks.WATERMELON,
