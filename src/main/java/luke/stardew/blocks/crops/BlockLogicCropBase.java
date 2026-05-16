@@ -146,7 +146,7 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         }
 
         if (!world.isClientSide) {
-            this.onGrowth(world, tilePos, blockData+1);
+            this.onGrowth(world, tilePos, this.maxGrowth);
             if (player == null || player.getGamemode().hasBlockConsumption()) {
                 --itemStack.stackSize;
             }

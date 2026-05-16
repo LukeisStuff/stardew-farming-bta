@@ -1,0 +1,9 @@
+
+{
+    "parent": "minecraft:block/crops_pumpkin/stage2",
+
+    "textures": {
+        "side": "stardew:block/crops_watermelon/stage2_side",
+        "top": "stardew:block/crops_watermelon/stage2_top"
+    }
+}

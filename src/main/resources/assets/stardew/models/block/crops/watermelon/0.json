@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/crops_pumpkin/leaf",
+
+  "textures": {
+    "leaf": "stardew:block/crops_watermelon/stage0"
+  }
+}

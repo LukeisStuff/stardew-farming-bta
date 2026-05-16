@@ -1,30 +1,21 @@
 from textwrap import dedent
 from pathlib import Path
 
-items: list[tuple[str, int]] = [
-    ("grape_bottom", 6),
-    ("grape_top", 3),
-    ("corn_bottom", 7),
-    ("corn_top", 4),
-    ("beans_bottom", 7),
-    ("beans_top", 3),
-]
+def content(stage, name):
+    return dedent(f"""
+        {{
+            "parent": "minecraft:block/crops_pumpkin/stage{stage}",
 
-for name, stages in items:
-    for stage in range(stages):
-        file = Path(f"./model/block/crops/{name}/{stage}.json")
-        content = dedent(f"""
-            {{
-                "parent": "minecraft:block/crops_wheat/template",
-
-                "textures": {{
-                    "crop": "stardew:block/crops_{name.split("_")[0]}/stage{stage}_{name.split("_")[1]}"
-                }}
+            "textures": {{
+                "side": "stardew:block/crops_{name}/stage{stage}_side.png",
+                "top": "stardew:block/crops_{name}/stage{stage}_top.png"
             }}
-        """)
-
-        file.parent.mkdir(exist_ok=True, parents=True)
-        with file.open("w", encoding="utf-8") as writer:
-            writer.write(content)
-    #fi
+        }}
+    """)
 #fi
+
+for name in ["cauliflower", "watermelon"]:
+    for stage in range(1, 5):
+        file = Path(f"./models/block/crops/{name}/{stage-1}.json")
+        file.parent.mkdir(parents=True, exist_ok=True)
+        file.open("w", encoding="utf-8").write(content(stage, name))

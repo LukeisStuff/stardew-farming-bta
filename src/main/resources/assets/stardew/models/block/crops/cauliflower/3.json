@@ -1,0 +1,9 @@
+
+{
+    "parent": "minecraft:block/crops_pumpkin/stage3",
+
+    "textures": {
+        "side": "stardew:block/crops_cauliflower/stage3_side",
+        "top": "stardew:block/crops_cauliflower/stage3_top"
+    }
+}

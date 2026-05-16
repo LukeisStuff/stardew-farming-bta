@@ -141,10 +141,15 @@ public class StardewModels implements ModelEntrypoint {
              new BlockModelGenericProgressive<>(StardewBlocks.CROPS_BEANS_TOP, "stardew:block/crops/beans_top", 3)
         );
 
+        dispatcher.addDispatch(
+            StardewBlocks.CROPS_WATERMELON,
+            new BlockModelCropPumplike<>(StardewBlocks.CROPS_WATERMELON, "stardew:block/crops/watermelon", 5)
+        );
 
-//        dispatcher.addDispatch(StardewBlocks.CROPS_WATERMELON, new BlockModelCropsGrowing<>(StardewBlocks.CROPS_WATERMELON, "watermelon"));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_CAULIFLOWER, new BlockModelCropsGrowing<>(StardewBlocks.CROPS_CAULIFLOWER, "cauliflower"));
-
+        dispatcher.addDispatch(
+            StardewBlocks.CROPS_CAULIFLOWER,
+            new BlockModelCropPumplike<>(StardewBlocks.CROPS_CAULIFLOWER, "stardew:block/crops/cauliflower", 5)
+        );
 
         dispatcher.addDispatch(StardewBlocks.BUSH, new BlockModelBush<>(StardewBlocks.BUSH, "stardew:block/bush"));
 
