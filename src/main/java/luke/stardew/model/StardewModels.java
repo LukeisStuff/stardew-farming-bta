@@ -65,27 +65,81 @@ public class StardewModels implements ModelEntrypoint {
             .setTex("stardew:block/thatch/side", Side.sides)
             .setTex("stardew:block/thatch/top", Side.TOP, Side.BOTTOM));
 
-//        dispatcher.addDispatch(StardewBlocks.CROPS_STRAWBERRY, new BlockModelCrops<>(StardewBlocks.CROPS_STRAWBERRY, "strawberry", 4));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_BLUEBERRY, new BlockModelCrops<>(StardewBlocks.CROPS_BLUEBERRY, "blueberry", 5));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_CARROT, new BlockModelCrops<>(StardewBlocks.CROPS_CARROT, "carrot", 3));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_TOMATO, new BlockModelCrops<>(StardewBlocks.CROPS_TOMATO, "tomato", 6));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_POTATO, new BlockModelCrops<>(StardewBlocks.CROPS_POTATO, "potato", 5));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_CRANBERRIES, new BlockModelCrops<>(StardewBlocks.CROPS_CRANBERRIES, "cranberry", 4));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_PINEAPPLE, new BlockModelCrops<>(StardewBlocks.CROPS_PINEAPPLE, "pineapple", 5));
-//
-//        dispatcher.addDispatch(StardewBlocks.CROPS_GRAPE_BOTTOM, new BlockModelCrops<>(StardewBlocks.CROPS_GRAPE_BOTTOM, "grape", 6, "bottom"));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_GRAPE_TOP, new BlockModelCrops<>(StardewBlocks.CROPS_GRAPE_TOP, "grape", 3, "top"));
-//
-//        dispatcher.addDispatch(StardewBlocks.CROPS_CORN_BOTTOM, new BlockModelCrops<>(StardewBlocks.CROPS_CORN_BOTTOM, "corn", 7, "bottom"));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_CORN_TOP, new BlockModelCrops<>(StardewBlocks.CROPS_CORN_TOP, "corn", 4, "top"));
-//
-//        dispatcher.addDispatch(StardewBlocks.CROPS_BEANS_BOTTOM, new BlockModelCrops<>(StardewBlocks.CROPS_BEANS_BOTTOM, "beans", 7, "bottom"));
-//        dispatcher.addDispatch(StardewBlocks.CROPS_BEANS_TOP, new BlockModelCrops<>(StardewBlocks.CROPS_BEANS_TOP, "beans", 3, "top"));
-//
+        // short crops
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_STRAWBERRY,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_STRAWBERRY, "stardew:block/crops/strawberry", 4)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_BLUEBERRY,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_BLUEBERRY, "stardew:block/crops/blueberry", 5)
+        );
+
+         dispatcher.addDispatch(
+             StardewBlocks.CROPS_CARROT,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_CARROT, "stardew:block/crops/carrot", 3)
+         );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_TOMATO,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_TOMATO, "stardew:block/crops/tomato", 6)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_POTATO,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_POTATO, "stardew:block/crops/potato", 5)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_CRANBERRIES,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_CRANBERRIES, "stardew:block/crops/cranberry", 4)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_PINEAPPLE,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_PINEAPPLE, "stardew:block/crops/pineapple", 5)
+        );
+
+
+        // tall crops
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_GRAPE_BOTTOM,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_GRAPE_BOTTOM, "stardew:block/crops/grape_bottom", 6)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_GRAPE_TOP,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_GRAPE_TOP, "stardew:block/crops/grape_top", 3)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_CORN_BOTTOM,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_CORN_BOTTOM, "stardew:block/crops/corn_bottom", 7)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_CORN_TOP,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_CORN_TOP, "stardew:block/crops/corn_top", 4)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_BEANS_BOTTOM,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_BEANS_BOTTOM, "stardew:block/crops/beans_bottom", 7)
+        );
+
+        dispatcher.addDispatch(
+             StardewBlocks.CROPS_BEANS_TOP,
+             new BlockModelGenericProgressive<>(StardewBlocks.CROPS_BEANS_TOP, "stardew:block/crops/beans_top", 3)
+        );
+
+
 //        dispatcher.addDispatch(StardewBlocks.CROPS_WATERMELON, new BlockModelCropsGrowing<>(StardewBlocks.CROPS_WATERMELON, "watermelon"));
-//
 //        dispatcher.addDispatch(StardewBlocks.CROPS_CAULIFLOWER, new BlockModelCropsGrowing<>(StardewBlocks.CROPS_CAULIFLOWER, "cauliflower"));
-//
+
+
         dispatcher.addDispatch(StardewBlocks.BUSH, new BlockModelBush<>(StardewBlocks.BUSH, "stardew:block/bush"));
 
         dispatcher.addDispatch(StardewBlocks.CAKE_CHOCOLATE, new BlockModelGenericProgressive<>(StardewBlocks.CAKE_CHOCOLATE, "stardew:block/cake_chocolate" , 6));
@@ -198,13 +252,13 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_STONE));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FISH_SWORD));
 
-        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STONE, MOD_ID, "stone"));
-        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_IRON, MOD_ID, "iron"));
-        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_GOLD, MOD_ID, "gold"));
-        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_DIAMOND, MOD_ID, "diamond"));
-        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STEEL, MOD_ID, "steel"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STONE, "stone"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_IRON, "iron"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_GOLD, "gold"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_DIAMOND, "diamond"));
+        dispatcher.addDispatch(new ItemModelTieredFishingRod(StardewItems.TOOL_FISHINGROD_STEEL, "steel"));
 
-        dispatcher.addDispatch(new ItemModelBait(StardewItems.ARMOR_CAN_OF_WORMS, MOD_ID));
+        dispatcher.addDispatch(new ItemModelBait(StardewItems.ARMOR_CAN_OF_WORMS));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.ARMOR_CAN_OF_WORMS_GOLDEN));
 
         dispatcher.addDispatch(new ItemModelStandard(StardewBlocks.CANDLE.asItem()));

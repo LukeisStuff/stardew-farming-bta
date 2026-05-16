@@ -1,11 +1,12 @@
-package luke.stardew.blocks;
+package luke.stardew.blocks.crops;
 
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.util.helper.MathHelper;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.pos.TilePosc;
 import org.jetbrains.annotations.NotNull;
 import org.joml.primitives.AABBd;
@@ -69,44 +70,57 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
     }
 
     @Override
-    public void onGrowth(World world, int x, int y, int z, int newMeta) {
+    public void onGrowth(World world, TilePosc tilePos, int newMeta) {
         // this.growTopMeta > -1 == BOTTOM Block of a tall crop
+
         if (this.growTopMeta > -1 && newMeta >= this.growTopMeta) {
-            Block<?> blockAbove = world.getBlock(x, y + 1, z);
-            if (blockAbove == otherBlock || blockAbove == null) {
-                world.setBlockMetadataWithNotify(x, y, z, newMeta);
+            Block<?> blockAbove = world.getBlockType(tilePos.up(new TilePos()));
+
+            if (blockAbove == otherBlock || blockAbove == Blocks.AIR) {
+                world.setBlockDataNotify(tilePos, newMeta);
+
                 int max = otherBlock.getLogic().maxGrowth;
                 int topMeta = MathHelper.clamp(newMeta - growTopMeta, 0, max);
-                world.setBlockAndMetadataWithNotify(x, y + 1, z, otherBlock.id(), topMeta);
+
+                world.setBlockTypeDataNotify(tilePos.up(new TilePos()), otherBlock, topMeta);
             }
-        } else if (this.growTopMeta < 0) {
+        }
+
+        else if (this.growTopMeta < 0) {
+
             // NOTE: You generally don't want the top block to be
             // ticking since it would result in tall blocks growing
             // more frequently, but this is handled regardless
-            world.setBlockMetadataWithNotify(x, y, z, newMeta);
-            Block<?> blockBelow = world.getBlock(x, y - 1, z);
+            world.setBlockDataNotify(tilePos, newMeta);
+            Block<?> blockBelow = world.getBlockType(tilePos.down(new TilePos()));
+
             if (blockBelow == otherBlock) {
                 int max = otherBlock.getLogic().maxGrowth;
                 int diff = max - this.maxGrowth;
                 int bottomMeta = MathHelper.clamp(newMeta + diff, 0, max);
-                world.setBlockMetadataWithNotify(x, y - 1, z, bottomMeta);
+                world.setBlockDataNotify(tilePos.down(new TilePos()), bottomMeta);
             }
-        } else {
-            world.setBlockMetadataWithNotify(x, y, z, newMeta);
+
+        }
+
+        else {
+            world.setBlockDataNotify(tilePos, newMeta);
         }
     }
+
 
     @Override
     public boolean canStay(@NotNull World world, @NotNull TilePosc tilePos) {
         if (this.growTopMeta < 0) {
-            return super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z()) && world.getBlockId(tilePos.x(), tilePos.y() - 1, tilePos.z()) == this.otherBlock.id();
-        } else {
-            int meta = world.getBlockData(tilePos);
-            if (meta >= this.growTopMeta) {
-                return super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z()) && world.getBlockId(tilePos.x(), tilePos.y() + 1, tilePos.z()) == this.otherBlock.id();
-            } else {
-                return super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z());
-            }
+            return super.canStay(world, tilePos) && world.getBlockType(tilePos.down(new TilePos())) == this.otherBlock;
         }
+
+        int meta = world.getBlockData(tilePos);
+
+        if (meta >= this.growTopMeta) {
+            return super.canStay(world, tilePos) && world.getBlockType(tilePos.up(new TilePos())) == this.otherBlock;
+        }
+
+        return super.canStay(world, tilePos);
     }
 }

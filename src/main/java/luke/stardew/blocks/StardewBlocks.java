@@ -1,6 +1,7 @@
 package luke.stardew.blocks;
 
 import luke.stardew.StardewTags;
+import luke.stardew.blocks.crops.*;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.*;
 import net.minecraft.core.block.material.Materials;

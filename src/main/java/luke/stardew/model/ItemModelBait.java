@@ -15,8 +15,8 @@ import org.jetbrains.annotations.Nullable;
 public class ItemModelBait extends ItemModelStandard {
     protected IconCoordinate baitFull = TextureRegistry.getTexture("stardew:item/armor_bait_empty");
 
-    public ItemModelBait(Item item, String namespace) {
-        super(item, namespace);
+    public ItemModelBait(Item item) {
+        super(item);
     }
 
     @Override

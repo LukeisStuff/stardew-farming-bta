@@ -17,8 +17,8 @@ public class ItemModelTieredFishingRod extends ItemModelStandard {
     protected final String material;
     protected IconCoordinate rodCast;
 
-    public ItemModelTieredFishingRod(Item item, String namespace, String material) {
-        super(item, namespace);
+    public ItemModelTieredFishingRod(Item item, String material) {
+        super(item);
         this.material = material;
         this.rodCast = TextureRegistry.getTexture("stardew:item/tool_fishingrod_" + material + "_cast");
     }
