@@ -10,6 +10,8 @@ import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
 import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.BlockBuilder;
+import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryCategory;
+import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
 import turniplabs.halplibe.util.BlockInitEntrypoint;
 
 import static luke.stardew.StardewConfig.blockID;
@@ -173,7 +175,9 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("crops.strawberry", "crops_strawberry", blockID("CROPS_STRAWBERRY"), BlockLogicCropBase::new);
 
         WATERMELON = blocks
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
             .build("watermelon", "watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Materials.VEGETABLE));
+
         CROPS_WATERMELON = cropsBlock.build("crops.watermelon", "crops_watermelon", blockID("CROPS_WATERMELON"), BlockLogicCropsWatermelon::new); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
 
         //Fall Crops
@@ -190,35 +194,45 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
         // Fall Tree
         LOG_APPLE = log
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.LOGS))
             .build("log.apple", "log_apple", blockID("LOG_APPLE"), BlockLogicLog::new);
 
         LEAVES_APPLE = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple", "leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));
 
         LEAVES_APPLE_FLOWERING = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple.flowering", "leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"),
                 b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL, () -> Items.FOOD_APPLE, LEAVES_APPLE_FLOWERING));
 
         SAPLING_APPLE = sapling
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.SAPLING_CACAO))
             .build("sapling.apple", "sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
 
         LOG_APPLE_GOLDEN = log
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.LOGS))
             .build("log.apple.golden", "log_apple_golden", blockID("LOG_APPLE_GOLDEN"), BlockLogicLog::new);
 
         LEAVES_APPLE_GOLDEN = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple.golden", "leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER));
 
         LEAVES_APPLE_GOLDEN_FLOWERING = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple.golden.flowering", "leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"),
                 b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER, () -> Items.FOOD_APPLE_GOLD, LEAVES_APPLE_GOLDEN_FLOWERING));
 
         SAPLING_APPLE_GOLDEN = sapling
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.SAPLING_CACAO))
             .build("sapling.apple.golden", "sapling_apple_golden", blockID("SAPLING_APPLE_GOLDEN"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN_FLOWERING, 20));
 
 
         //Winter Crops
         CAULIFLOWER = blocks
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
             .build("cauliflower", "cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Materials.VEGETABLE));
+
         CROPS_CAULIFLOWER = cropsBlock
             .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
             .build("crops.cauliflower", "crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
@@ -258,6 +272,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("cake.chocolate", "cake_chocolate", blockID("CAKE_CHOCOLATE"), b -> new BlockLogicEdibleCustom(b, 0.5f, () -> StardewItems.FOOD_CAKE_CHOCOLATE));
 
         BEEHIVE = wood
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.WORKBENCHES))
             .build("beehive", "beehive", blockID("BEEHIVE"), BlockLogicBeehive::new);
 
         PIZZA = new BlockBuilder(MOD_ID)
@@ -286,6 +301,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("candle.active", "candle_active", blockID("CANDLE_ACTIVE"), b -> new BlockLogicWaxCandle(b, true));
 
         PLANT_STAKE = new BlockBuilder(MOD_ID)
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
             .setHardness(0.0f)
             .setResistance(0.0f)
             .setBlockSound(BlockSounds.GRAVEL)
@@ -300,6 +316,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("mushroom.truffle", "mushroom_truffle", blockID("MUSHROOM_TRUFFLE"), BlockLogicMushroom::new);
 
         THATCH = new BlockBuilder(MOD_ID)
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
             .setBlockSound(new BlockSound("step.grass", "step.grass", 0.6f, 1.2f))
             .setHardness(0.6f)
             .setResistance(0.6f)

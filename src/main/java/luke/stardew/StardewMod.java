@@ -49,6 +49,7 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
 
     @Override
     public void afterItemInit() {
+
         LookupFuelFurnace.instance.addFuelEntry(StardewItems.FIBER.id, 200);
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 300);
 
