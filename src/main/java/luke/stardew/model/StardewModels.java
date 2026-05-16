@@ -13,7 +13,13 @@ import net.minecraft.client.render.block.model.generic.BlockModelGenericFullyRot
 import net.minecraft.client.render.block.model.generic.BlockModelGenericRotatable;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.item.model.ItemModelStandard;
+import net.minecraft.client.render.tessellator.TessellatorGeneral;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.util.helper.Side;
+import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import turniplabs.halplibe.util.ModelEntrypoint;
 
 import static luke.stardew.StardewMod.MOD_ID;
@@ -165,15 +171,9 @@ public class StardewModels implements ModelEntrypoint {
             new BlockModelGenericRotatable<>(StardewBlocks.BEEHIVE_HONEY, BlockModelDispatcher.loadDataModel("stardew:/block/beehive/full"))
         );
 
-        dispatcher.addDispatch(
-            StardewBlocks.CANDLE,
-            new BlockModelGeneric<>(StardewBlocks.CANDLE, BlockModelDispatcher.loadDataModel("stardew:block/candle").asModel())
-        );
 
-        dispatcher.addDispatch(
-            StardewBlocks.CANDLE_ACTIVE,
-            new BlockModelGeneric<>(StardewBlocks.CANDLE_ACTIVE, BlockModelDispatcher.loadDataModel("stardew:block/candle").asModel())
-        );
+        dispatcher.addDispatch(StardewBlocks.CANDLE,new BlockModelCandle(StardewBlocks.CANDLE));
+        dispatcher.addDispatch(StardewBlocks.CANDLE_ACTIVE,new BlockModelCandle(StardewBlocks.CANDLE_ACTIVE));
 
 //
 //        dispatcher.addDispatch(StardewBlocks.PLANT_STAKE, new BlockModelStake<>(StardewBlocks.PLANT_STAKE)
