@@ -12,6 +12,9 @@ import net.minecraft.core.item.tag.ItemTags;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
+
+import static luke.stardew.StardewMod.MOD_ID;
 
 public class MobDuck extends MobAnimal implements Creature {
     public float flap = 0.0F;
@@ -23,7 +26,7 @@ public class MobDuck extends MobAnimal implements Creature {
 
     public MobDuck(World world) {
         super(world);
-        this.textureIdentifier = NamespaceID.getPermanent("stardew", "duck");
+        this.setTextureIdentifier(MOD_ID, "duck");
         this.setSize(0.6f, 1.0f);
         this.eggTimer = this.random.nextInt(3000) + 3000;
         this.mobDrops.add(new WeightedRandomLootObject(Items.FEATHER_CHICKEN.getDefaultStack(), 0, 1));
@@ -119,22 +122,21 @@ public class MobDuck extends MobAnimal implements Creature {
 
     @Override
     public String getLivingSound() {
-        return StardewMod.MOD_ID + ":mob.duck.idle";
+        return MOD_ID + ":mob.duck.idle";
     }
 
     @Override
     public String getHurtSound() {
-        return StardewMod.MOD_ID + ":mob.duck.hurt";
+        return MOD_ID + ":mob.duck.hurt";
     }
 
     @Override
     public String getDeathSound() {
-        return StardewMod.MOD_ID + ":mob.duck.death";
+        return MOD_ID + ":mob.duck.death";
     }
 
     @Override
     public boolean isFavouriteItem(ItemStack itemStack) {
         return itemStack != null && itemStack.getItem().hasTag(ItemTags.CHICKENS_FAVOURITE_ITEM);
     }
-
 }

@@ -1,6 +1,5 @@
 package luke.stardew.achievements;
 
-import luke.stardew.blocks.StardewBlocks;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.item.Items;

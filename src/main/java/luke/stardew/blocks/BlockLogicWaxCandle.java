@@ -131,7 +131,7 @@ public class BlockLogicWaxCandle extends BlockLogic implements ISupportable {
     }
 
     public static int getRotX(TilePosc tilePos) {
-        return new Random((tilePos.x() / tilePos.y() * (tilePos.z() * 100 * 27L)) / 5).nextInt(27) % 3;
+        return new Random(tilePos.x() * (tilePos.y() * 27L) * tilePos.z()).nextInt(4);
     }
 
     @Override

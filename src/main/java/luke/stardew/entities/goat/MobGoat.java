@@ -13,10 +13,12 @@ import net.minecraft.core.item.tag.ItemTags;
 import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.world.World;
 
+import static luke.stardew.StardewMod.MOD_ID;
+
 public class MobGoat extends MobAnimal implements Creature {
     public MobGoat(World world) {
         super(world);
-        this.textureIdentifier = NamespaceID.getPermanent("stardew", "goat");
+        this.setTextureIdentifier(MOD_ID, "goat");
         this.setSize(1.0f, 1.4f);
         this.mobDrops.add(new WeightedRandomLootObject(Items.LEATHER.getDefaultStack(), 0, 2));
         this.mobDrops.add(new WeightedRandomLootObject(Blocks.WOOL.getDefaultStack(), 1, 2));

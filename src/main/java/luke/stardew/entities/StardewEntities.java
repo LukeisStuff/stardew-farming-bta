@@ -3,6 +3,7 @@ package luke.stardew.entities;
 import luke.stardew.entities.duck.ProjectileEggDuck;
 import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.goat.MobGoat;
+import net.minecraft.core.entity.EntityDispatcher;
 import net.minecraft.core.util.collection.NamespaceID;
 import turniplabs.halplibe.helper.EntityHelper;
 
@@ -20,11 +21,27 @@ public final class StardewEntities {
     }
 
     public static void initializeEntities() {
-        var helper = new EntityHelper();
-        helper.createEntity(MobDuck.class, NamespaceID.getPermanent(MOD_ID, "duck"), null);
-        helper.createEntity(MobGoat.class, NamespaceID.getPermanent(MOD_ID, "goat"),null);
-        helper.createEntity(ProjectileEggDuck.class, NamespaceID.getPermanent(MOD_ID, "duck_egg"), null);
+        EntityDispatcher dispatcher = EntityDispatcher.getInstance();
 
-        helper.createEntity(ProjectileTomato.class, NamespaceID.getPermanent(MOD_ID, "tomato"), null);
+        dispatcher.addMapping(
+            MobDuck.class,
+            NamespaceID.fromPool(MOD_ID, "duck"),
+            MobDuck::new,
+            "guidebook.section.mob.stardew.duck.name"
+        );
+
+        dispatcher.addMapping(
+            MobGoat.class,
+            NamespaceID.fromPool(MOD_ID, "goat"),
+            MobGoat::new,
+            "guidebook.section.mob.stardew.goat.name"
+        );
+
+        dispatcher.addMapping(
+            ProjectileEggDuck.class,
+            NamespaceID.fromPool(MOD_ID, "duck_egg"),
+            ProjectileEggDuck::new,
+            "guidebook.section.mob.stardew.duck_egg.name"
+        );
     }
 }
