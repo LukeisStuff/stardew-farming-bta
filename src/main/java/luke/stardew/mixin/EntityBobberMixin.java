@@ -17,12 +17,12 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
 import net.minecraft.core.world.weather.Weather;
 import net.minecraft.core.world.weather.Weathers;
 import org.jetbrains.annotations.NotNull;
-import org.joml.Vector3d;
 import org.joml.primitives.AABBdc;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -114,6 +114,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
     @ModifyExpressionValue(method = "yoink", at = @At("MIXINEXTRAS:EXPRESSION"))
     EntityItem filletOFish(EntityItem original) {
         ItemStack fish = new ItemStack(getCatchableFish());
+
         if (this.isInLava()) {
             return new EntityItemFireResistant(this.world, this.x, this.y, this.z, fish);
         }
@@ -123,7 +124,6 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
 
     @Unique
     public Item getCatchableFish() {
-        assert world != null;
         Season season = world.getSeasonManager().getCurrentSeason();
         Weather weather = world.getWeatherManager().getCurrentWeather();
         Item[] treasuresLowValue = {Items.OLIVINE, Items.QUARTZ, Items.DUST_REDSTONE, Items.COAL};
@@ -140,7 +140,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
             } else if (weather == Weathers.OVERWORLD_FOG && !world.isDaytime() && world.rand.nextInt(15) == 0) {
                 return StardewItems.FISH_GHOST;
 
-            } else if (!world.canBlockSeeTheSky(MathHelper.floor(this.x), MathHelper.floor(this.y) + 1, MathHelper.floor(this.z)) && MathHelper.floor(this.y) + 1 <= 32 && world.rand.nextInt(15) == 0) {
+            } else if (!world.canBlockSeeSky(new TilePos(this).up()) && MathHelper.floor(this.y) + 1 <= 32 && world.rand.nextInt(15) == 0) {
                 return StardewItems.FISH_STONE;
 
             } else if (season == Seasons.OVERWORLD_SPRING) {

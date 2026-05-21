@@ -7,31 +7,37 @@ import net.minecraft.core.block.BlockLogicFlowerStackable;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.MethodParametersAnnotation;
-import net.minecraft.core.world.generate.feature.WorldFeature;
 import net.minecraft.core.world.generate.feature.WorldFeatureFlowers;
+import net.minecraft.core.world.generate.feature.WorldFeatureInterface;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
 import net.minecraft.core.world.season.Seasons;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.Random;
 
-public class WorldFeatureBush extends WorldFeature {
+public class WorldFeatureBush implements WorldFeatureInterface {
     private final int count;
 
     @MethodParametersAnnotation(
         names = {"count"}
     )
+
     public WorldFeatureBush(int count) {
         this.count = count;
     }
 
-    @Override
-    public boolean place(World world, Random random, int x, int y, int z) {
+    public boolean place(@NotNull World world, @NotNull Random random, @NotNull TilePosc tilePosc) {
         for (int i = 0; i < this.count; ++i) {
-            int px = x + random.nextInt(8) - random.nextInt(8);
-            int py = y + random.nextInt(4) - random.nextInt(4);
-            int pz = z + random.nextInt(8) - random.nextInt(8);
+            var block = tilePosc.add(
+                random.nextInt(8) - random.nextInt(8),
+                random.nextInt(4) - random.nextInt(4),
+                random.nextInt(8) - random.nextInt(8),
+                new TilePos()
+            );
 
-            if (!world.isAirBlock(px, py, pz)) continue;
-            if (!StardewBlocks.BUSH.canBlockStay(world, px, py, pz)) continue;
+            if (!world.isAirBlock(block)) continue;
+            if (!StardewBlocks.BUSH.canStay(world, block)) continue;
 
             int meta;
             if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_SPRING) {
@@ -51,7 +57,7 @@ public class WorldFeatureBush extends WorldFeature {
                 meta = BlockLogicFlowerStackable.setStackCount(meta, stackSize);
             }
 
-            world.setBlockAndMetadata(px, py, pz, StardewBlocks.BUSH.id(), meta);
+            world.setBlockTypeDataNotify(block, StardewBlocks.BUSH, meta);
         }
         return true;
     }

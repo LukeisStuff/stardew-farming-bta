@@ -21,9 +21,10 @@ public class ItemSeedsStake extends ItemSeeds {
 
     @Override
     public boolean onUseOnBlock(@NotNull ItemStack selfStack, @NotNull World world, @Nullable Player player, @NotNull TilePosc blockPos, @NotNull Side side, double xHit, double yHit) {
-         if (world.getBlockType(blockPos) == StardewBlocks.PLANT_STAKE) {
+        if (player == null) return false;
 
-            if (player.inventory.getCurrentItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.SEEDS_GRAPES.id && world.getBlockId(blockPos.x(), blockPos.y() - 1, blockPos.z()) == Blocks.FARMLAND_DIRT.id()) {
+        if (world.getBlockType(blockPos) == StardewBlocks.PLANT_STAKE) {
+            if (player.inventory.getCurrentItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.SEEDS_GRAPES.id && world.getBlockType(blockPos.down(new TilePos())) == Blocks.FARMLAND_DIRT) {
                 player.getCurrentEquippedItem().consumeItem(player);
                 world.setBlockTypeDataNotify(blockPos, StardewBlocks.CROPS_GRAPE_BOTTOM, 0);
                 player.swingItem();

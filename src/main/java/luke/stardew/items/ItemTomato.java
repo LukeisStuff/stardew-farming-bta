@@ -20,7 +20,7 @@ public class ItemTomato extends ItemFood implements IDispensable {
     }
 
     @Override
-    public ItemStack onUse(ItemStack itemstack, World world, Player player) {
+    public ItemStack onUse(@NotNull ItemStack itemstack, @NotNull World world, Player player) {
         if (player.getHealth() < player.getMaxHealth() && player.getHealth() + player.getTotalHealingRemaining() < player.getMaxHealth()) {
             if (itemstack.consumeItem(player)) {
                 player.eatFood(itemstack);

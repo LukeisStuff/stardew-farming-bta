@@ -1,7 +1,6 @@
 package luke.stardew.particles;
 
 import net.minecraft.client.render.particle.Particle;
-import net.minecraft.client.render.tessellator.Tessellator;
 import net.minecraft.client.render.tessellator.TessellatorParticle;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;

@@ -124,8 +124,8 @@ public class BlockLogicWaxCandle extends BlockLogic implements ISupportable {
             if (this.burning && rand.nextInt(2) == 0) {
                 var off = pos[i];
 
-                world.spawnParticle("smoke", tilePos.x() + off.x(), tilePos.y() + off.y(), tilePos.z() + off.z(), 0.0, 0.0, 0.0, 0, true);
-                world.spawnParticle("flame", tilePos.x() + off.x(), tilePos.y() + off.y(), tilePos.z() + off.z(), 0.0, 0.0, 0.0, 0, true);
+                world.spawnParticle("smoke", tilePos.x() + off.x(), tilePos.y() + off.y(), tilePos.z() + off.z(), 0.0, 0.0, 0.0, 0, false);
+                world.spawnParticle("flame", tilePos.x() + off.x(), tilePos.y() + off.y(), tilePos.z() + off.z(), 0.0, 0.0, 0.0, 0, false);
             }
         }
     }

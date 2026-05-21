@@ -2,10 +2,8 @@ package luke.stardew.mixin;
 
 import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.block.BlockLogicGrass;
 import net.minecraft.core.block.Blocks;
-import net.minecraft.core.world.pos.TilePosc;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

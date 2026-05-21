@@ -1,9 +1,7 @@
 package luke.stardew.mixin;
 
 import luke.stardew.interfaces.IEntityBobberMixin;
-import luke.stardew.items.ItemCanOfWorms;
 import luke.stardew.items.StardewItems;
-import net.minecraft.core.entity.EntityFishingBobber;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.enums.HumanArmorShape;
 import net.minecraft.core.item.Item;

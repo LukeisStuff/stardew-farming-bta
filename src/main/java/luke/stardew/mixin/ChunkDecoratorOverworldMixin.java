@@ -7,6 +7,7 @@ import luke.stardew.WorldFeatureMelon;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.chunk.Chunk;
 import net.minecraft.core.world.generate.chunk.perlin.overworld.ChunkDecoratorOverworld;
+import net.minecraft.core.world.pos.TilePos;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -24,19 +25,17 @@ public abstract class ChunkDecoratorOverworldMixin {
 
     @Inject(method = "decorate", at = @At(value = "INVOKE", target = "Ljava/util/Random;nextInt(I)I", ordinal = 104))
     public void stardewDecorations(Chunk chunk, CallbackInfo ci, @Local(name = "rand") Random rand, @Local(name = "x") int x, @Local(name = "z") int z) {
-        int xf = x + rand.nextInt(16) + 8;
-        int zf = z + rand.nextInt(16) + 8;
-        int yf = this.world.getHeightValue(x, z);
+        var pos = new TilePos(x + rand.nextInt(16) + 8, this.world.getHeightValue(x, z), z + rand.nextInt(16) + 8);
 
         if (rand.nextInt(64) == 0)
-            (new WorldFeatureCauliflower()).place(this.world, rand, xf, yf, zf);
+            (new WorldFeatureCauliflower()).place(this.world, rand, pos);
 
         if (rand.nextInt(64) == 0) {
-            (new WorldFeatureMelon()).place(this.world, rand, xf, yf, zf);
+            (new WorldFeatureMelon()).place(this.world, rand, pos);
         }
 
         if (rand.nextInt(12) == 0) {
-            (new WorldFeatureBush(96)).place(this.world, rand, xf, yf, zf);
+            (new WorldFeatureBush(96)).place(this.world, rand, pos);
         }
     }
 }
