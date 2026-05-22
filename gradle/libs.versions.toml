@@ -29,7 +29,7 @@ btaChannel = "prerelease"
 loader = "0.18.4-bta.11"
 
 # Check this on https://github.com/Turnip-Labs/ModMenu/releases/latest/
-modMenu = "5.0.0+nightly"
+modMenu = "5.0.0"
 
 # Check this on https://github.com/Turnip-Labs/bta-halplibe/releases/latest/
 halplibe = "5.4.1"

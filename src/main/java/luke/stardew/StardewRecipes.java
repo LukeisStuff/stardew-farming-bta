@@ -213,6 +213,13 @@ public class StardewRecipes implements RecipeEntrypoint {
             .setConsumeContainer(true)
             .create("food_coffee", new ItemStack(StardewItems.FOOD_COFFEE, 1));
 
+        RecipeBuilder.Shaped(MOD_ID, "SSS", "BBB", " M ")
+            .addInput('B', StardewItems.BEANS_COFFEE)
+            .addInput('M', ItemBucket.createRecipeInput(Items.BUCKET_STEEL, ItemBucket.STATE_MILK))
+            .addInput('S', Items.DUST_SUGAR)
+            .setConsumeContainer(true)
+            .create("food_coffee_large", new ItemStack(StardewItems.FOOD_COFFEE_LARGE, 1));
+
         RecipeBuilder.Shapeless(MOD_ID)
             .addInput(new ItemStack(StardewBlocks.LOG_APPLE, 1))
             .create("apple_log_to_red_wooden_planks", new ItemStack(Blocks.PLANKS_OAK_PAINTED, 4, 14));

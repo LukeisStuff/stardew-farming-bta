@@ -106,6 +106,7 @@ public class StardewItems {
     // Beans/Coffee
     public static Item BEANS_COFFEE;
     public static Item FOOD_COFFEE;
+    public static Item FOOD_COFFEE_LARGE;
 
     public static Item EGG_DUCK;
 
@@ -287,7 +288,12 @@ public class StardewItems {
         FOOD_COFFEE = new ItemBuilder(MOD_ID)
             .setContainerItem(() -> Items.BUCKET_IRON)
             .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.FOOD))
-            .build(new ItemCoffee(MOD_ID + ".food.coffee", itemNSID("food_coffee"), itemID("FOOD_COFFEE"), 1, 4, () -> Items.BUCKET_IRON));
+            .build(new ItemCoffee(MOD_ID + ".food.coffee", itemNSID("food_coffee"), itemID("FOOD_COFFEE"), 1, 1, 4, () -> Items.BUCKET_IRON));
+
+        FOOD_COFFEE_LARGE = new ItemBuilder(MOD_ID)
+            .setContainerItem(() -> Items.BUCKET_STEEL)
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.FOOD))
+            .build(new ItemCoffee(MOD_ID + ".food.coffee.large", itemNSID("food_coffee_large"), itemID("FOOD_COFFEE_LARGE"), 3, 1, 4, () -> Items.BUCKET_STEEL));
 
         FOOD_STEW_VEGETABLE = new ItemBuilder(MOD_ID)
             .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Items.FOOD_STEW_MUSHROOM))

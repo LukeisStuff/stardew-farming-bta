@@ -200,11 +200,6 @@ item.stardew.record.pink.desc=§6axolotl
 item.stardew.bean.coffee.name=Coffee Bean
 item.stardew.bean.coffee.desc=Can be used to mix up a brew, or planted on a trellis.
 
-item.stardew.food.coffee.name=Bucket of Coffee
-item.stardew.food.coffee.desc=A delicious brew that gives you a brief boost of speed!
-item.stardew.food.coffee.skyroot.name=Skyroot Bucket of Coffee
-item.stardew.food.coffee.skyroot.desc=A sweet brew that gives you a brief boost of speed!
-
 item.stardew.food.seeds.roasted.name=Roasted Seeds
 item.stardew.food.seeds.roasted.desc=Seeds that have been cooked and seasoned.
 
@@ -220,3 +215,12 @@ item.stardew.food.apple.pie.slice.desc=Perfect piece of a sweet and flaky pastry
 item.stick.desc=Found at the end of a branch. Can craft various items or be a trellis for farmland.
 
 stardew.ingredients=Ingredients
+
+item.stardew.food.coffee.name=Iron Bucket of Coffee
+item.stardew.food.coffee.desc=A delicious brew that gives you a brief boost of speed!
+
+item.stardew.food.coffee.large.name=Steel Bucket of Coffee
+item.stardew.food.coffee.large.desc=A healthy amount of a delicious brew. You feel like you could have a few more.
+
+item.stardew.food.coffee.skyroot.name=Skyroot Bucket of Coffee
+item.stardew.food.coffee.skyroot.desc=A sweet brew that gives you a brief boost of speed!

@@ -18,7 +18,14 @@ import net.minecraft.client.render.entity.EntityRendererSprite;
 import net.minecraft.client.render.entity.MobRendererQuadruped;
 import net.minecraft.client.render.item.model.ItemModelDispatcher;
 import net.minecraft.client.render.item.model.ItemModelStandard;
+import net.minecraft.client.render.texture.stitcher.IconCoordinate;
+import net.minecraft.client.render.texture.stitcher.TextureRegistry;
+import net.minecraft.core.entity.Entity;
+import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.Side;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import turniplabs.halplibe.helper.ModelHelper;
 import turniplabs.halplibe.util.ModelEntrypoint;
 
@@ -237,6 +244,14 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_BASS_COOKED));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_BASS_RAW));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_COFFEE));
+
+        dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_COFFEE_LARGE) {
+            @Override
+            public @NotNull IconCoordinate getIcon(@Nullable Entity entity, @NotNull ItemStack itemStack) {
+                return TextureRegistry.getTexture(new NamespaceID(item.namespaceID.namespace(), item.namespaceID.value() + "_" + (itemStack.getMetadata() + 1)));
+            }
+        });
+
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SALMON_COOKED));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SALMON_RAW));
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_SNAPPER_COOKED));
