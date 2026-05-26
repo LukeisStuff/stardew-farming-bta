@@ -6,20 +6,33 @@ import luke.stardew.entities.StardewEntities;
 import luke.stardew.entities.duck.NetEntryEggDuck;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.Global;
 import net.minecraft.core.block.material.MaterialColor;
 import net.minecraft.core.crafting.LookupFuelFurnace;
 import net.minecraft.core.net.entity.NetEntityHandler;
 import net.minecraft.core.sound.SoundTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import sunsetsatellite.catalyst.effects.api.attribute.Attributes;
+import sunsetsatellite.catalyst.effects.api.attribute.type.IntAttribute;
+import sunsetsatellite.catalyst.effects.api.effect.Effect;
+import sunsetsatellite.catalyst.effects.api.effect.EffectTimeType;
+import sunsetsatellite.catalyst.effects.api.effect.Effects;
+import sunsetsatellite.catalyst.effects.api.modifier.ModifierType;
+import sunsetsatellite.catalyst.effects.api.modifier.type.IntModifier;
 import turniplabs.halplibe.util.GameStartEntrypoint;
 import turniplabs.halplibe.util.ItemInitEntrypoint;
+
+import java.util.List;
 
 import static net.minecraft.core.data.registry.Registries.NAMESPACES;
 
 public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInitEntrypoint {
     public static final String MOD_ID = "stardew";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+    public static IntAttribute TWEAK_SPEED_ATTRIBUTE = (IntAttribute) new IntAttribute("attribute.stardew.tweak_speed", 0).setAsDefault();
+    public static Effect TWEAKED_ON_COFFEE_EFFECT;
 
     @Override
     public void onInitialize() {
@@ -43,8 +56,19 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
 
     @Override
     public void afterGameStart() {
-        // TODO: make coffee use the new system.
-        //StardewItems.FOOD_COFFEE.setContainerItem(Items.BUCKET);
+        Attributes.getInstance().register("stardew:tweak_speed", TWEAK_SPEED_ATTRIBUTE);
+
+        TWEAKED_ON_COFFEE_EFFECT = new Effect(
+            "stardew.effect.tweaked_out",
+            "stardew:tweaked",
+            List.of(
+                new IntModifier(TWEAK_SPEED_ATTRIBUTE, ModifierType.ADD, 1)
+            ),
+            EffectTimeType.RESET,
+            6
+        ).setDefaultDuration(Global.TICKS_PER_SECOND * 20);
+
+        Effects.getInstance().register(TWEAKED_ON_COFFEE_EFFECT.id, TWEAKED_ON_COFFEE_EFFECT);
     }
 
     @Override

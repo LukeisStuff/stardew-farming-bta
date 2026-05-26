@@ -22,6 +22,9 @@ repositories {
     maven("https://maven.thesignalumproject.net/infrastructure") { name = "SignalumMavenInfrastructure" }
     maven("https://maven.thesignalumproject.net/nightly") { name = "signalumMavenNightly" }
     maven("https://maven.thesignalumproject.net/releases") { name = "SignalumMavenReleases" }
+
+    maven { url = uri("https://www.jitpack.io") }
+
     ivy("https://github.com/Better-than-Adventure") {
         patternLayout { artifact("[organisation]/releases/download/[revision]/[module]-bta-[revision].jar") }
         metadataSources { artifact() }
@@ -49,6 +52,12 @@ dependencies {
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)
     implementation(files("libs/halplibe-6.0.2.jar"))
+    //implementation(files("libs/tmb-2.2.0-v8.0-pre2.jar"))
+    implementation(files("libs/catalyst-core-3.0.0-v8.0-pre2.jar"))
+    implementation(files("libs/catalyst-effects-3.0.0-v8.0-pre2.jar"))
+    implementation(files("libs/catalyst-screens-3.0.0-v8.0-pre2.jar"))
+
+    //implementation(libs.catalyst)
 //	include(files("libs/halplibe-6.0.0.jar"))
     implementation(libs.modMenu)
     implementation(libs.legacyLwjgl)
