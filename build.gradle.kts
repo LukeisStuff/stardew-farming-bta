@@ -51,6 +51,7 @@ dependencies {
 
     runtimeOnly(libs.clientJar)
     implementation(libs.loader)
+
     implementation(files("libs/halplibe-6.0.2.jar"))
     //implementation(files("libs/tmb-2.2.0-v8.0-pre2.jar"))
     implementation(files("libs/catalyst-core-3.0.0-v8.0-pre2.jar"))

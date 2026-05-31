@@ -24,6 +24,7 @@
     "WorldFeatureLabyrinthMixin"
   ],
   "client": [
+    "ListComponentTestMixin",
     "RenderWormArmorMixin"
   ],
   "injectors": {

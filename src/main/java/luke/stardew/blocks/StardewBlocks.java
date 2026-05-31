@@ -121,7 +121,6 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setResistance(0.2F)
             .setFlammability(30, 60)
             .setTicking(true)
-            .setVisualUpdateOnMetadata()
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_HOE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS, BlockTags.SHEARS_DO_SILK_TOUCH);
 
         BlockBuilder sapling = new BlockBuilder(MOD_ID)
@@ -287,7 +286,6 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setVisualUpdateOnMetadata()
             .setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
             .build("candle", "candle", blockID("CANDLE"), b -> new BlockLogicWaxCandle(b, false));
 
@@ -297,7 +295,6 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setResistance(0.0f)
             .setLuminance(14)
             .setUseInternalLight()
-            .setVisualUpdateOnMetadata()
             .setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
             .build("candle.active", "candle_active", blockID("CANDLE_ACTIVE"), b -> new BlockLogicWaxCandle(b, true));
 
@@ -328,7 +325,6 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         APPLE_PIE = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.CLOTH)
             .setHardness(0.5F)
-            .setVisualUpdateOnMetadata()
             .setTags(BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.BROKEN_BY_FLUIDS)
             .build("apple.pie", "apple_pie", blockID("APPLE_PIE"), BlockLogicPieApple::new).setStatParent(() -> StardewItems.FOOD_APPLE_PIE);
 

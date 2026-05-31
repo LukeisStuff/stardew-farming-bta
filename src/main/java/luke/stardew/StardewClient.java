@@ -20,11 +20,8 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.NotNull;
-import sunsetsatellite.catalyst.effects.api.effect.Effect;
-import sunsetsatellite.catalyst.effects.api.effect.Effects;
 import sunsetsatellite.catalyst.effects.api.effect.render.EffectRenderer;
 import sunsetsatellite.catalyst.effects.api.effect.render.EffectRendererDispatcher;
-import sunsetsatellite.catalyst.effects.api.effect.render.TintEffectRender;
 import turniplabs.halplibe.helper.ParticleHelper;
 import turniplabs.halplibe.util.ClientStartEntrypoint;
 
