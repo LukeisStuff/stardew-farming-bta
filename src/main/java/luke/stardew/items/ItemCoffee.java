@@ -1,6 +1,7 @@
 package luke.stardew.items;
 
 import luke.stardew.StardewMod;
+import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemFood;
@@ -8,7 +9,6 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.world.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import sunsetsatellite.catalyst.effects.api.effect.EffectContainer;
 import sunsetsatellite.catalyst.effects.api.effect.EffectStack;
 import sunsetsatellite.catalyst.effects.api.effect.IHasEffects;
 
@@ -40,9 +40,8 @@ public class ItemCoffee extends ItemFood {
             1.1F + (itemRand.nextFloat() - itemRand.nextFloat()) * 0.1F
         );
 
-        ((IHasEffects) player).getContainer().add(
-            new EffectStack((IHasEffects<?>) player, StardewMod.TWEAKED_ON_COFFEE_EFFECT, 1)
-        );
+        var playerEffects = (IHasEffects<?>) player;
+        playerEffects.getContainer().start(new EffectStack((IHasEffects<?>) player, StardewMod.TWEAKED_ON_COFFEE_EFFECT, 1));
 
         if (selfStack.getMetadata() >= this.getMaxDamage()) {
             return new ItemStack(bucketSupplier.get().asItem());

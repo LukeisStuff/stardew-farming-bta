@@ -21,11 +21,19 @@
     "StardewAchievementMixin",
     "TileEntityFurnaceMixin",
     "WorldFeatureDungeonMixin",
-    "WorldFeatureLabyrinthMixin"
+    "WorldFeatureLabyrinthMixin",
+    "coffee.BlockLogicBedMixin",
+    "coffee.EntitySpeedMixin",
+    "coffee.PlayerSpeedMixin",
+    "coffee.chat.PlayerlocalRemoteMixin"
   ],
   "client": [
     "ListComponentTestMixin",
-    "RenderWormArmorMixin"
+    "RenderWormArmorMixin",
+    "coffee.LayoutAbsoluteMixin",
+    "coffee.LayoutSnapMixin",
+    "coffee.MobRendererMixin",
+    "coffee.chat.PlayerLocalMixin"
   ],
   "injectors": {
     "defaultRequire": 1

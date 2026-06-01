@@ -64,9 +64,12 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
             List.of(
                 new IntModifier(TWEAK_SPEED_ATTRIBUTE, ModifierType.ADD, 1)
             ),
-            EffectTimeType.RESET,
-            6
-        ).setDefaultDuration(Global.TICKS_PER_SECOND * 20);
+            EffectTimeType.ADD,
+            4
+        )
+        .setDefaultDuration(Global.TICKS_PER_SECOND * 20)
+        .setDurationIncrease(Global.TICKS_PER_SECOND * 20);
+
 
         Effects.getInstance().register(TWEAKED_ON_COFFEE_EFFECT.id, TWEAKED_ON_COFFEE_EFFECT);
     }
