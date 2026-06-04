@@ -4,6 +4,7 @@ import luke.stardew.achievements.AchievementPageStardew;
 import luke.stardew.achievements.StardewAchievements;
 import luke.stardew.entities.duck.MobDuck;
 import luke.stardew.entities.goat.MobGoat;
+import luke.stardew.gui.hud.MoneyHudElement;
 import luke.stardew.items.StardewItems;
 import luke.stardew.particles.ParticleBee;
 import net.fabricmc.api.ClientModInitializer;
@@ -11,6 +12,9 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.gui.achievements.data.AchievementPages;
 import net.minecraft.client.gui.guidebook.mobs.MobInfoRegistry;
+import net.minecraft.client.gui.hud.component.ComponentAnchor;
+import net.minecraft.client.gui.hud.component.HudComponents;
+import net.minecraft.client.gui.hud.component.layout.LayoutSnap;
 import net.minecraft.client.render.particle.Particle;
 import net.minecraft.client.render.particle.ParticleEntry;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
@@ -33,6 +37,9 @@ import static luke.stardew.StardewMod.MOD_ID;
 
 @Environment(EnvType.CLIENT)
 public class StardewClient implements ClientModInitializer, ClientStartEntrypoint {
+
+    public static MoneyHudElement MONEY_HUD_COMPONENT;
+
     @Override
     public void beforeClientStart() {
 
@@ -57,6 +64,10 @@ public class StardewClient implements ClientModInitializer, ClientStartEntrypoin
 
     @Override
     public void afterClientStart() {
+        MONEY_HUD_COMPONENT = HudComponents.register(
+            new MoneyHudElement("stadew.money", 0, 0, new LayoutSnap(HudComponents.CROSSHAIR, ComponentAnchor.BOTTOM_RIGHT, ComponentAnchor.TOP_LEFT))
+        );
+
         EffectRendererDispatcher.getInstance().addDispatch(
             StardewMod.TWEAKED_ON_COFFEE_EFFECT,
             (
