@@ -13,7 +13,8 @@ public class PlayerLocalMixin {
 
     @WrapMethod(method = "sendChatMessage")
     private void tweakSend(String s, Operation<Void> original) {
-        original.call(StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate((IHasEffects<?>) this) > 1 ? TweakMyMessage.tweakMessage(s) : s);
+        var hasEffect = (IHasEffects<?>) this;
+        original.call( hasEffect.getContainer().hasAttribute(StardewMod.TWEAK_SPEED_ATTRIBUTE) && StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate(hasEffect) > 1 ? TweakMyMessage.tweakMessage(s) : s);
     }
 
 }

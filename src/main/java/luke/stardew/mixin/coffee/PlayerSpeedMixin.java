@@ -16,7 +16,13 @@ public class PlayerSpeedMixin {
     @Expression("this.baseSpeed")
     @ModifyExpressionValue(method = "onLivingUpdate", at = @At("MIXINEXTRAS:EXPRESSION"))
     float speedModify(float original) {
-        final var modifier = 1 + StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate((IHasEffects<?>) this) * 0.30;
-        return (float) (original * modifier);
+        var hasEffect = (IHasEffects<?>) this;
+
+        if (hasEffect.getContainer().hasAttribute(StardewMod.TWEAK_SPEED_ATTRIBUTE)) {
+            final var modifier = 1 + StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate(hasEffect) * 0.30;
+            return (float) (original * modifier);
+        }
+
+        return original;
     }
 }

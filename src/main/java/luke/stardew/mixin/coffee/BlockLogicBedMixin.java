@@ -19,11 +19,13 @@ public class BlockLogicBedMixin {
     @Expression("?.sleepInBedAt(?, ?, ?)")
     @WrapOperation(method = "onInteracted", at = @At("MIXINEXTRAS:EXPRESSION"))
     private EnumSleepStatus canSleep(Player player, int x, int y, int z, Operation<EnumSleepStatus> original) {
-        final var tweak = StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate((IHasEffects<?>) player);
+        if (((IHasEffects<?>) player).getContainer().hasAttribute(StardewMod.TWEAK_SPEED_ATTRIBUTE)) {
+            final var tweak = StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate((IHasEffects<?>) player);
 
-        if (tweak > 1) {
-            player.sendStatusMessageTranslated("messages.bed.noAllowSleeping");
-            return EnumSleepStatus.OTHER_PROBLEM;
+            if (tweak > 1) {
+                player.sendStatusMessageTranslated("messages.bed.noAllowSleeping");
+                return EnumSleepStatus.OTHER_PROBLEM;
+            }
         }
 
         return original.call(player, x, y, z);

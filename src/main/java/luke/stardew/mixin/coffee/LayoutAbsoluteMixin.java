@@ -21,10 +21,15 @@ public class LayoutAbsoluteMixin {
     @WrapMethod(method = "getComponentX")
     private int getCompX(HudComponent component, int xSizeScreen, Operation<Integer> original) {
         final var minecraft = Minecraft.getMinecraft();
-        final var tweaking = StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate((IHasEffects<?>) minecraft.thePlayer);
+        var hasEffect = (IHasEffects<?>) minecraft.thePlayer;
 
-        final double pos = (original.call(component, xSizeScreen) + (((double) tweaking /2) * rand.nextFloat() * (rand.nextBoolean() ? 1 : -1)));
-        return (int) Math.floor(pos);
+        if (hasEffect.getContainer().hasAttribute(StardewMod.TWEAK_SPEED_ATTRIBUTE)) {
+            final var tweaking = StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate(hasEffect);
+            final double pos = (original.call(component, xSizeScreen) + (((double) tweaking / 2) * rand.nextFloat() * (rand.nextBoolean() ? 1 : -1)));
+            return (int) Math.floor(pos);
+        }
+
+        return original.call(component, xSizeScreen);
     }
 
 }

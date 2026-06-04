@@ -30,7 +30,10 @@ public class EntitySpeedMixin {
     private void tick(Operation<Void> original) {
         final var entity = ((IHasEffects<?>) this);
 
-        this.moveSpeed = (float) (initialSpeed * (1 + (StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate(entity) * 0.30)));
+        if (entity.getContainer().hasAttribute(StardewMod.TWEAK_SPEED_ATTRIBUTE)) {
+            this.moveSpeed = (float) (initialSpeed * (1 + (StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate(entity) * 0.30)));
+        }
+
         original.call();
     }
 

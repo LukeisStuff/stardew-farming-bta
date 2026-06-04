@@ -23,13 +23,16 @@ public class MobRendererMixin<T extends Mob> {
     private @Nullable StaticEntityModel tweak(@NotNull T entity, @Nullable StaticEntityModel model, float partialTick, int layer, Operation<StaticEntityModel> original) {
         final var outModel = original.call(entity, model, partialTick, layer);
 
-        final var tweak = StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate(((IHasEffects<?>) entity));
+        var hasEffect = (IHasEffects<?>) entity;
 
+        if (hasEffect.getContainer().hasAttribute(StardewMod.TWEAK_SPEED_ATTRIBUTE)) {
+            final var tweak = StardewMod.TWEAK_SPEED_ATTRIBUTE.calculate(((IHasEffects<?>) entity));
 
-        if (tweak > 0 && outModel instanceof StaticEntityModelMojang modelMojang) {
-            for (var bone : modelMojang.bones) {
-                var transform = outModel.getTransform(bone.bone().name);
-                transform.posX += ((double) tweak /6) * (rand.nextFloat() * (rand.nextBoolean() ? 1 : -1));
+            if (tweak > 0 && outModel instanceof StaticEntityModelMojang modelMojang) {
+                for (var bone : modelMojang.bones) {
+                    var transform = outModel.getTransform(bone.bone().name);
+                    transform.posX += ((double) tweak /6) * (rand.nextFloat() * (rand.nextBoolean() ? 1 : -1));
+                }
             }
         }
 
