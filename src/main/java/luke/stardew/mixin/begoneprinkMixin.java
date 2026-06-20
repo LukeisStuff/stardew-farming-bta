@@ -24,6 +24,13 @@ public abstract class begoneprinkMixin {
     @Unique
     private static final UUID UUID_HOBBLE = UUID.fromString("18fb3279-ce41-40ca-be5c-6017f384f22f");
 
+    /**
+     * @reason
+     * This is here because this guy is an absolute prick.
+     * I do not wish to support them or even see them for that matter.
+     * I've ever so kindly (to my sanity) unilateraly decide remove them from playing with this mod.
+     */
+
     @Inject(method = "tick", at = @At("TAIL"))
     private void hobble(CallbackInfo ci) {
         if (uuid.equals(UUID_HOBBLE)) {
