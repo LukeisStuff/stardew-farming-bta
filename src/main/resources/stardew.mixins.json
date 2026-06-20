@@ -6,6 +6,7 @@
   "package": "luke.stardew.mixin",
   "compatibilityLevel": "JAVA_${java}",
   "mixins": [
+    "begoneprinkMixin",
     "BiomeSpawnListMixin",
     "BlockLogicFarmlandMixin",
     "BlockLogicGrassMixin",
@@ -28,7 +29,6 @@
     "coffee.chat.PlayerlocalRemoteMixin"
   ],
   "client": [
-    "ListComponentTestMixin",
     "RenderWormArmorMixin",
     "coffee.LayoutAbsoluteMixin",
     "coffee.LayoutSnapMixin",
