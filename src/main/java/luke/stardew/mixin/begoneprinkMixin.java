@@ -24,11 +24,11 @@ public abstract class begoneprinkMixin {
     @Unique
     private static final UUID UUID_HOBBLE = UUID.fromString("18fb3279-ce41-40ca-be5c-6017f384f22f");
 
-    @Inject(method = "tick", at = @At("HEAD"))
+    @Inject(method = "tick", at = @At("TAIL"))
     private void hobble(CallbackInfo ci) {
-        final var thisAs = ((Player) (Object) this);
-
         if (uuid.equals(UUID_HOBBLE)) {
+            final var thisAs = ((Player) (Object) this);
+
             this.hurt(thisAs, Integer.MAX_VALUE, DamageType.FIRE);
             thisAs.setHealthRaw(-1);
             thisAs.onDeath(thisAs);
