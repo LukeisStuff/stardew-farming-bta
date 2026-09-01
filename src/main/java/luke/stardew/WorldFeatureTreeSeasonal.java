@@ -1,7 +1,9 @@
 package luke.stardew;
 
+import net.minecraft.core.block.Blocks;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.generate.feature.tree.WorldFeatureTree;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.season.Seasons;
 
 import java.util.Random;
@@ -19,9 +21,9 @@ public class WorldFeatureTreeSeasonal extends WorldFeatureTree {
     @Override
     public void placeLeaves(World world, int x, int y, int z, Random rand) {
         if (rand.nextInt(this.rarity) == 0) {
-            world.setBlockAndMetadataWithNotify(x, y, z, this.leavesFloweringID, world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL ? 1 : 0);
+            world.setBlockTypeDataNotify(new TilePos(x, y, z), Blocks.getBlock(this.leavesFloweringID), world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_FALL ? 1 : 0);
         } else {
-            world.setBlockWithNotify(x, y, z, this.leavesID);
+            world.setBlockTypeNotify(new TilePos(x, y, z), Blocks.getBlock(this.leavesID));
         }
 
     }

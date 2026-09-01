@@ -5,6 +5,7 @@ import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.entity.projectile.Projectile;
 import net.minecraft.core.util.phys.HitResult;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
 
 public class ProjectileEggDuck extends Projectile {
     public ProjectileEggDuck(World world) {
@@ -23,7 +24,7 @@ public class ProjectileEggDuck extends Projectile {
     }
 
     @Override
-    public void onHit(HitResult hitResult) {
+    public void onHit(@NotNull HitResult hitResult) {
         if (!this.world.isClientSide && this.random.nextInt(8) == 0) {
             int byte0 = 1;
             if (this.random.nextInt(32) == 0) {

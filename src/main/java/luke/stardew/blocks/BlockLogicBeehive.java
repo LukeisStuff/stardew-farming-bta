@@ -21,11 +21,11 @@ public class BlockLogicBeehive extends BlockLogicRotatable {
 
     @Override
     public boolean onInteracted(@NotNull World world, @NotNull TilePosc tile, @NotNull Player player, @Nullable Side side, double xHit, double yHit) {
-        int l = world.getBlockMetadata(tile.x(), tile.y(), tile.z());
+        int l = world.getBlockData(tile);
         ItemStack stack = player.getHeldItem();
         if (world.getSeasonManager().getCurrentSeason() != Seasons.OVERWORLD_WINTER && stack != null && stack.getItem().equals(Items.DUST_SUGAR)) {
             stack.consumeItem(player);
-            world.setBlockAndMetadataWithNotify(tile.x(), tile.y(), tile.z(), StardewBlocks.BEEHIVE_IDLE.id(), l);
+            world.setBlockTypeDataNotify(tile, StardewBlocks.BEEHIVE_IDLE, l);
             world.playSoundAtEntity(player, player, "random.pop", 0.2F, 0.5F);
             return true;
         }

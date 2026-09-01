@@ -27,17 +27,17 @@ import java.util.*;
 
 public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealable, IStardewCrop {
 
-    public float fertilizedRate;
-    public int maxGrowth;
-    public boolean canFertilize;
-    public Item seedItem = Items.SEEDS_WHEAT;
-    public Item cropItem;
-    public Range seedRange = Range.EMPTY;
-    public Range cropRange = Range.ONE;
-    public int resetMeta = -1;
-    public Set<Season> season = new HashSet<>();
-    public Block<?> growsInto;
-    public boolean canHarvest;
+    private float fertilizedRate;
+    protected int maxGrowth;
+    private boolean canFertilize;
+    private Item seedItem = Items.SEEDS_WHEAT;
+    private Item cropItem;
+    private Range seedRange = Range.EMPTY;
+    private Range cropRange = Range.ONE;
+    private int resetMeta = -1;
+    protected Set<Season> season = new HashSet<>();
+    private Block<?> growsInto;
+    private boolean canHarvest;
 
     // constructors
 
@@ -49,6 +49,11 @@ public class BlockLogicCropBase extends BlockLogicFlower implements IBonemealabl
         this.canFertilize = true;
         this.canHarvest = true;
         this.setBlockBounds(0, 0.0F, 0, 1, 0.25F, 1);
+    }
+
+    public BlockLogicCropBase setSeedItem(Item seedItem){
+        this.seedItem = seedItem;
+        return this;
     }
 
     public BlockLogicCropBase withGrowth(int maxGrowth) {

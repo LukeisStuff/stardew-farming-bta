@@ -1,7 +1,6 @@
 package luke.stardew.items;
 
 import luke.stardew.StardewMod;
-import net.minecraft.core.entity.Entity;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemFood;

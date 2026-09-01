@@ -31,6 +31,7 @@ public class NetEntryTomato implements IVehicleEntry<ProjectileTomato>, ITracked
     }
 
     public void onEntityTracked(EntityTracker tracker, EntityTrackerEntry trackerEntry, ProjectileTomato trackedObject) {
+        /* no need */
     }
 
     public Entity getEntity(World world, double x, double y, double z, int metadata, boolean hasVelocity, double xd, double yd, double zd, Entity owner, @Nullable CompoundTag tag) {

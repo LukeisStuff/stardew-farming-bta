@@ -49,6 +49,7 @@ public class BlockLogicWaxCandle extends BlockLogic implements ISupportable {
         return false;
     }
 
+
     @Override
     public boolean onInteracted(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @Nullable Side side, double xHit, double yHit) {
        ItemStack heldItem = player.getHeldItem();

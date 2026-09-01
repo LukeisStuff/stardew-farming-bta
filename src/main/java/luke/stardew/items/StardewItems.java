@@ -12,7 +12,9 @@ import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
 import static luke.stardew.StardewConfig.itemID;
 import static luke.stardew.StardewMod.MOD_ID;
 
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S3008"})
 public class StardewItems {
+    private StardewItems(){}
 
     //Other Natural
     public static Item BUSH;

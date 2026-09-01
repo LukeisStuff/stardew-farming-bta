@@ -45,26 +45,26 @@ public class BlockLogicCropTall extends BlockLogicCropBase {
     public void onNeighborChanged(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Block<?> block) {
         int meta = world.getBlockData(tilePos);
         if (growTopMeta < 0) {
-            if (world.getBlock(tilePos.x(), tilePos.y() - 1, tilePos.z()) != otherBlock) {
-                world.setBlockWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
+            if (world.getBlockType(new TilePos(tilePos.x(), tilePos.y() - 1, tilePos.z())).id() != otherBlock.id()) {
+                world.setBlockDataNotify(tilePos, 0);
             }
             return;
         }
 
-        if (meta >= growTopMeta && world.getBlock(tilePos.x(), tilePos.y() + 1, tilePos.z()) != otherBlock) {
-            world.setBlockWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
+        if (meta >= growTopMeta && world.getBlockType(new TilePos(tilePos.x(), tilePos.y() + 1, tilePos.z())) != otherBlock) {
+            world.setBlockDataNotify(tilePos, 0);
             return;
         }
 
-        if (!super.canBlockStay(world, tilePos.x(), tilePos.y(), tilePos.z())) {
-            world.setBlockWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
-            this.dropBlockWithCause(world, EnumDropCause.WORLD, tilePos.x(), tilePos.y(), tilePos.z(), meta, null, null);
+        if (!super.canStay(world, tilePos)) {
+            world.setBlockDataNotify(tilePos, 0);
+            this.dropWithCause(world, EnumDropCause.WORLD, tilePos, meta, null, null);
         }
     }
 
 
     @Override
-    public AABBdc getBoundsFromState(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
+    public @NotNull AABBdc getBoundsFromState(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
         int meta = source.getBlockData(tilePos);
         return meta < this.growTopMeta ? new AABBd(0.25F, 0.0F, 0.25F, 0.75F, 1.0F, 0.75F) : this.bounds;
     }

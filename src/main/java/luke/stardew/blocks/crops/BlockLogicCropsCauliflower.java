@@ -51,18 +51,18 @@ public class BlockLogicCropsCauliflower extends BlockLogicCropBase implements IB
 
     @Override
     public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
-        super.updateTick(world, tilePos, rand, isRandomTick);;
+        super.updateTick(world, tilePos, rand, isRandomTick);
         Season current = world.getSeasonManager().getCurrentSeason();
-        if (world.getBlockLightValue(tilePos.x(), tilePos.y() + 1, tilePos.z()) >= 9 && season.contains(current)) {
-            int meta = world.getBlockMetadata(tilePos.x(), tilePos.y(), tilePos.z());
+        if (world.getBlockLightValue(new TilePos(tilePos.x(), tilePos.y() + 1, tilePos.z())) >= 9 && season.contains(current)) {
+            int meta = world.getBlockData(tilePos);
             if (meta < 6) {
                 float f = this.getGrowthRate(world, tilePos);
                 if (rand.nextInt((int) (100.0F / f)) == 0) {
                     ++meta;
                     if (meta == 5) {
-                        world.setBlockAndMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), StardewBlocks.CAULIFLOWER.id(), 1);
+                        world.setBlockTypeDataNotify(tilePos, StardewBlocks.CAULIFLOWER, 1);
                     } else {
-                        world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), meta);
+                        world.setBlockDataNotify(tilePos, meta);
                     }
                 }
             }
@@ -80,11 +80,12 @@ public class BlockLogicCropsCauliflower extends BlockLogicCropBase implements IB
 
         for (int dx = tilePos.x() - 1; dx <= tilePos.x() + 1; ++dx) {
             for (int dz = tilePos.z() - 1; dz <= tilePos.z() + 1; ++dz) {
-                int id = world.getBlockId(dx, tilePos.y() - 1, dz);
+                TilePos tilepos = new TilePos(dx, tilePos.y() - 1, dz);
+                Block<?> block = world.getBlockType(tilepos);
                 float growthRateMod = 0.0F;
-                if (id == Blocks.FARMLAND_DIRT.id()) {
+                if (block.id() == Blocks.FARMLAND_DIRT.id()) {
                     growthRateMod = 1.0F;
-                    if (world.getBlockMetadata(dx, tilePos.y() - 1, dz) > 0) {
+                    if (world.getBlockData(tilepos) > 0) {
                         growthRateMod = 3.0F;
                     }
                 }

@@ -9,13 +9,14 @@ import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import turniplabs.halplibe.helper.RecipeBuilder;
 import turniplabs.halplibe.helper.recipeBuilders.RecipeBuilderShaped;
-import turniplabs.halplibe.util.RecipeEntrypoint;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
-public class StardewRecipes implements RecipeEntrypoint {
+public class StardewRecipes {
 
-    public void initializeRecipes() {
+    private StardewRecipes(){}
+
+    public static void initializeRecipes() {
         RecipeBuilderShaped template4ItemtoBlock = new RecipeBuilderShaped(MOD_ID, "XX", "XX");
 
         RecipeBuilder.ModifyWorkbench("minecraft").removeRecipe("cookie");
@@ -324,13 +325,11 @@ public class StardewRecipes implements RecipeEntrypoint {
 
     }
 
-    @Override
-    public void onRecipesReady() {
+    public static void onRecipesReady() {
         initializeRecipes();
     }
 
-    @Override
-    public void initNamespaces() {
+    public static void initNamespaces() {
         RecipeBuilder.initNameSpace(MOD_ID);
         RecipeBuilder.getRecipeNamespace(MOD_ID);
         Registries.ITEM_GROUPS.register(MOD_ID + ":item/small_fruits", Registries.stackListOf(StardewItems.BLUEBERRY, StardewItems.CRANBERRIES));

@@ -8,7 +8,7 @@ import net.minecraft.core.item.material.ArmorMaterial;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class ItemCanOfWormsEndless extends Item implements IArmorItem {
+public class ItemCanOfWormsEndless extends Item implements IArmorItem<HumanArmorShape> {
     public ItemCanOfWormsEndless(String translationKey, String namespaceID, int id) {
         super(translationKey, namespaceID, id);
         this.setMaxStackSize(1);
@@ -20,7 +20,7 @@ public class ItemCanOfWormsEndless extends Item implements IArmorItem {
     }
 
     @Override
-    public @NotNull IArmorShape getArmorShape() {
+    public @NotNull HumanArmorShape getArmorShape() {
         return HumanArmorShape.LEGS;
     }
 }

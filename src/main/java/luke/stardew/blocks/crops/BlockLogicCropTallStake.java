@@ -20,13 +20,8 @@ public class BlockLogicCropTallStake extends BlockLogicCropTall {
 
     @Override
     public void onHarvest(World world, TilePosc tilePos, int meta) {
-        if (this.growTopMeta < 0) {
-            world.setBlockTypeDataNotify(tilePos, StardewBlocks.PLANT_STAKE,0);
-            world.setBlockTypeDataNotify(tilePos, Blocks.AIR,0);
-        } else {
-            world.setBlockTypeDataNotify(tilePos, StardewBlocks.PLANT_STAKE,0);
-            world.setBlockTypeDataNotify(tilePos, Blocks.AIR,0);
-        }
+        world.setBlockTypeDataNotify(tilePos, StardewBlocks.PLANT_STAKE,0);
+        world.setBlockTypeDataNotify(tilePos, Blocks.AIR,0);
     }
 
     @Override

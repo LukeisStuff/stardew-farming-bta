@@ -13,12 +13,13 @@ import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.BlockBuilder;
 import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryCategory;
 import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
-import turniplabs.halplibe.util.BlockInitEntrypoint;
 
 import static luke.stardew.StardewConfig.blockID;
 import static luke.stardew.StardewMod.MOD_ID;
 
-public final class StardewBlocks implements BlockInitEntrypoint {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S3008"})
+public final class StardewBlocks {
+    private StardewBlocks(){}
 
     //Spring Crops
     public static Block<?> CROPS_CARROT;
@@ -450,7 +451,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withResetMeta(4)
             .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
             .notFertilized()
-            .seedItem = (StardewItems.BEANS_COFFEE);
+            .setSeedItem((StardewItems.BEANS_COFFEE));
 
         StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_TOP)
             .asTop(CROPS_BEANS_BOTTOM)
@@ -459,7 +460,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withResetMeta(0)
             .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
             .notFertilized()
-            .seedItem = (StardewItems.BEANS_COFFEE);
+            .setSeedItem((StardewItems.BEANS_COFFEE));
     }
 
     @SuppressWarnings("unchecked")
@@ -467,8 +468,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         return (A) block.getLogic();
     }
 
-    @Override
-    public void afterBlockInit() {
+    public static void afterBlockInit() {
         init();
     }
 }

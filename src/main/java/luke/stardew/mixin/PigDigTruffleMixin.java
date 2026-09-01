@@ -19,7 +19,7 @@ public abstract class PigDigTruffleMixin extends MobAnimal {
     @Unique
     public int timeUntilNextTruffle = this.random.nextInt(6000) + 6000;
 
-    protected PigDigTruffleMixin(World world) {
+    private PigDigTruffleMixin(World world) {
         super(world);
     }
 

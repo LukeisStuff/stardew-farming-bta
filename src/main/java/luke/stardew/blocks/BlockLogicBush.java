@@ -60,10 +60,8 @@ public class BlockLogicBush extends BlockLogicFlower {
     @Override
     public @NotNull ItemStack @Nullable [] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, int data, @Nullable TileEntity tileEntity) {
         switch (dropCause) {
-            case PICK_BLOCK:
-            case SILK_TOUCH:
+            case PICK_BLOCK, SILK_TOUCH:
                 return new ItemStack[]{new ItemStack(this)};
-
             default:
                var lootBag = LOOT_BAG.get(world.getSeasonManager().getCurrentSeason());
 

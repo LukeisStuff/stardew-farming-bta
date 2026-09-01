@@ -24,12 +24,13 @@ public class NetEntryEggDuck implements IVehicleEntry<ProjectileEggDuck>, ITrack
     public int getMovementPacketDelay() {
         return 10;
     }
-    
+
     public boolean sendMotionUpdates() {
         return true;
     }
 
     public void onEntityTracked(EntityTracker tracker, EntityTrackerEntry trackerEntry, ProjectileEggDuck trackedObject) {
+        /*no need*/
     }
 
     public Entity getEntity(World world, double x, double y, double z, int metadata, boolean hasVelocity, double xd, double yd, double zd, Entity owner, @Nullable CompoundTag tag) {

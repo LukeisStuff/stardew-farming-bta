@@ -12,7 +12,7 @@ import static luke.stardew.StardewMod.MOD_ID;
 public class ParticleBee extends Particle {
     public static final IconCoordinate bee1 = TextureRegistry.getTexture(MOD_ID + ":particle/bee");
     public static final IconCoordinate bee2 = TextureRegistry.getTexture(MOD_ID + ":particle/bee_2");
-    public float originalScale;
+    private final float originalScale;
 
     public ParticleBee(World world, double d, double d1, double d2, double d3, double d4, double d5) {
         super(world, d, d1, d2, d3, d4, d5);

@@ -37,7 +37,7 @@ public abstract class EntityBobberMixin extends Entity implements IEntityBobberM
     @Unique
     private boolean hasBait = false;
 
-    public EntityBobberMixin(@NotNull World world) {
+    private EntityBobberMixin(@NotNull World world) {
         super(world);
     }
 

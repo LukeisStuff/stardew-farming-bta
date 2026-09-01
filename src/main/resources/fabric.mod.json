@@ -20,30 +20,8 @@
   "environment": "*",
 
   "entrypoints": {
-    "main": [
-      "luke.stardew.StardewMod"
-    ],
-    "beforeGameStart": [
-      "luke.stardew.StardewMod"
-    ],
-    "beforeClientStart": [
-      "luke.stardew.StardewClient"
-    ],
-    "afterClientStart": [
-      "luke.stardew.StardewClient"
-    ],
-    "recipesReady": [
-      "luke.stardew.StardewRecipes"
-    ],
-    "afterGameStart": [
-      "luke.stardew.StardewMod"
-    ],
-    "initModels": [
-      "luke.stardew.model.StardewModels"
-    ],
-    "afterItemInit": [
-      "luke.stardew.StardewMod"
-    ]
+    "main":   ["luke.stardew.StardewMod"    ],
+    "client": ["luke.stardew.StardewClient" ]
   },
 
   "mixins": [
@@ -54,6 +32,8 @@
     "fabricloader": ">=${fabricloader}",
     "halplibe": ">=${halplibe}",
     "minecraft": "*",
+    "catalyst-core": ">=${catalystcore}",
+    "catalyst-effects": ">=${catalysteffects}",
     "java": ">=${java}"
   },
   "suggests": {

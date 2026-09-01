@@ -8,9 +8,10 @@ import net.minecraft.core.util.collection.NamespaceID;
 import static luke.stardew.StardewMod.MOD_ID;
 
 public final class StardewAchievements {
+    private StardewAchievements(){}
 
     public static NamespaceID key(String string) {
-        return NamespaceID.getPermanent(MOD_ID, string);
+        return NamespaceID.fromPool(MOD_ID, string);
     }
 
     public static final Achievement STARDEW = new Achievement(key("stardew"), "stardew.stardew", StardewItems.WATERING_CAN, null).registerAchievement();

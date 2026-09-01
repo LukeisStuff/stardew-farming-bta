@@ -6,7 +6,6 @@ import net.minecraft.core.block.BlockLogicEdible;
 import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
 import net.minecraft.core.world.pos.TilePosc;
@@ -30,12 +29,12 @@ public class BlockLogicPieApple extends BlockLogicEdible {
             entityplayer.heal(this.getHealAmount(world, tilePos));
         }
 
-        int newData = world.getBlockMetadata(tilePos.x(), tilePos.y(), tilePos.z()) + 1;
+        int newData = world.getBlockData(tilePos) + 1;
         if (newData >= this.maxBites) {
-            world.setBlockWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), 0);
+            world.setBlockDataNotify(tilePos, 0);
         } else {
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), newData);
-            world.markBlockDirty(tilePos.x(), tilePos.y(), tilePos.z());
+            world.setBlockDataNotify(tilePos, newData);
+            world.markBlockDirty(tilePos);
         }
     }
 
@@ -46,7 +45,7 @@ public class BlockLogicPieApple extends BlockLogicEdible {
     }
 
     @Override
-    public AABBdc getBoundsFromState(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
+    public @NotNull AABBdc getBoundsFromState(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
         int meta = source.getBlockData(tilePos);
         float pix = 0.0625F;
         float height = 0.375F;
@@ -56,6 +55,7 @@ public class BlockLogicPieApple extends BlockLogicEdible {
 
         return new AABBd(xMin, 0.0F, pix, 1.0F - pix, height, 1.0F - pix);
     }
+
 
     @Override
     public int getHealAmount(@NotNull World world, @NotNull TilePosc tilePosc) {

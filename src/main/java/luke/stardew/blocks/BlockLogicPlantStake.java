@@ -9,12 +9,13 @@ import net.minecraft.core.block.material.Material;
 import net.minecraft.core.enums.EnumDropCause;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
-import net.minecraft.core.util.phys.AABB;
 import net.minecraft.core.world.World;
 import net.minecraft.core.world.WorldSource;
+import net.minecraft.core.world.pos.TilePos;
 import net.minecraft.core.world.pos.TilePosc;
 import org.jetbrains.annotations.NotNull;
-import org.joml.primitives.AABBd;
+import org.jetbrains.annotations.Nullable;
+import org.joml.primitives.AABBdc;
 import org.spongepowered.asm.mixin.Unique;
 
 import java.util.Random;
@@ -45,22 +46,22 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public boolean canBlockStay(World world, int x, int y, int z) {
-        return world.getBlockLogic(x, y - 1, z, BlockLogicFarmland.class) != null;
+    public boolean canStay(@NotNull World world, @NotNull TilePosc tilePos) {
+        return world.getBlockLogic(new TilePos(tilePos.x(), tilePos.y() - 1, tilePos.z()), BlockLogicFarmland.class) != null;
     }
 
     @Override
     public boolean canPlaceAt(@NotNull World world, @NotNull TilePosc tilePos) {
-        return world.getBlockLogic(tilePos.x(), tilePos.y(), tilePos.z(), BlockLogicFarmland.class) != null;
+        return world.getBlockLogic(tilePos, BlockLogicFarmland.class) != null;
     }
 
     @Override
-    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
+    public @NotNull ItemStack @Nullable [] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, @NotNull TilePosc tilePos, int data, @Nullable TileEntity tileEntity) {
         return new ItemStack[]{new ItemStack(Items.STICK)};
     }
 
     @Override
-    public AABBd getCollisionBoundingBoxFromPool(WorldSource world, int x, int y, int z) {
+    public @Nullable AABBdc getCollisionAABB(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
         return null;
     }
 
@@ -70,7 +71,7 @@ public class BlockLogicPlantStake extends BlockLogic {
     }
 
     @Override
-    public boolean renderAsNormalBlockOnCondition(WorldSource world, int x, int y, int z) {
+    public boolean renderAsNormalBlockOnCondition(@NotNull WorldSource world, @NotNull TilePosc tilePosc) {
         return false;
     }
 }

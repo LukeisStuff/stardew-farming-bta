@@ -20,14 +20,14 @@ import sunsetsatellite.catalyst.effects.api.effect.EffectTimeType;
 import sunsetsatellite.catalyst.effects.api.effect.Effects;
 import sunsetsatellite.catalyst.effects.api.modifier.ModifierType;
 import sunsetsatellite.catalyst.effects.api.modifier.type.IntModifier;
-import turniplabs.halplibe.util.GameStartEntrypoint;
-import turniplabs.halplibe.util.ItemInitEntrypoint;
+import turniplabs.halplibe.event.defs.CommonEvents;
+import turniplabs.halplibe.util.dependency.Key;
 
 import java.util.List;
 
 import static net.minecraft.core.data.registry.Registries.NAMESPACES;
 
-public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInitEntrypoint {
+public class StardewMod implements ModInitializer{
     public static final String MOD_ID = "stardew";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -37,10 +37,16 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
     @Override
     public void onInitialize() {
         LOGGER.info("Stardew Farming initialized.");
+        Key key = Key.of(MOD_ID);
+        CommonEvents.AFTER_GAME_START.listen(key, StardewMod::afterGameStart);
+        CommonEvents.BEFORE_GAME_START.listen(key, StardewMod::beforeGameStart);
+        CommonEvents.RECIPES_NAMESPACE_INIT.listen(key, StardewRecipes::initNamespaces);
+        CommonEvents.RECIPES_READY.listen(key, StardewRecipes::onRecipesReady);
+        CommonEvents.AFTER_ITEM_INIT.listen(key, StardewMod::afterItemInit);
+        CommonEvents.AFTER_BLOCK_INIT.listen(key, StardewBlocks::afterBlockInit);
     }
 
-    @Override
-    public void beforeGameStart() {
+    public static void beforeGameStart() {
         NAMESPACES.register(MOD_ID, MOD_ID);
 
         StardewConfig.init();
@@ -54,8 +60,8 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         SoundTypes.loadSoundsJson(MOD_ID);
     }
 
-    @Override
-    public void afterGameStart() {
+
+    public static void afterGameStart() {
         Attributes.getInstance().register("stardew:tweak_speed", TWEAK_SPEED_ATTRIBUTE);
 
         TWEAKED_ON_COFFEE_EFFECT = new Effect(
@@ -74,12 +80,11 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         Effects.getInstance().register(TWEAKED_ON_COFFEE_EFFECT.id, TWEAKED_ON_COFFEE_EFFECT);
     }
 
-    @Override
-    public void afterItemInit() {
+
+    public static void afterItemInit() {
 
         LookupFuelFurnace.instance.addFuelEntry(StardewItems.FIBER.id, 200);
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 300);
-
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.LOG_APPLE.id(), 300);
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.LOG_APPLE_GOLDEN.id(), 300);
 
@@ -101,7 +106,6 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE, 0, MaterialColor.paintedRed);
         MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE_FLOWERING, 0, MaterialColor.paintedRed);
         MaterialColor.registerManualBlockColor(StardewBlocks.SAPLING_APPLE, 0, MaterialColor.paintedRed);
-
 
         StardewBlocks.initializeCrops();
     }

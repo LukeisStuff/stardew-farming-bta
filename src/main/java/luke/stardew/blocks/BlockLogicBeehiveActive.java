@@ -32,16 +32,12 @@ public class BlockLogicBeehiveActive extends BlockLogicRotatable {
     }
 
     @Override
-    public ItemStack[] getBreakResult(World world, EnumDropCause dropCause, int x, int y, int z, int meta, TileEntity tileEntity) {
-        switch (dropCause) {
-            case PICK_BLOCK:
-            case EXPLOSION:
-            case PROPER_TOOL:
-            case SILK_TOUCH:
-                return new ItemStack[]{new ItemStack(StardewBlocks.BEEHIVE)};
-            default:
-                return null;
-        }
+    public @NotNull ItemStack @Nullable [] getBreakResult(@NotNull World world, @NotNull EnumDropCause dropCause, @NotNull TilePosc tilePos, int data, @Nullable TileEntity tileEntity) {
+        return switch (dropCause) {
+            case PICK_BLOCK, EXPLOSION, PROPER_TOOL, SILK_TOUCH ->
+                new ItemStack[]{new ItemStack(StardewBlocks.BEEHIVE)};
+            default -> null;
+        };
     }
 
     @Override

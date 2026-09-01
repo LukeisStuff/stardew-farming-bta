@@ -24,9 +24,8 @@ public class ItemModelTieredFishingRod extends ItemModelStandard {
     }
 
     @Override
-    public @NotNull IconCoordinate getIcon(@Nullable Entity entity, ItemStack itemStack) {
-        if (entity instanceof Player) {
-            Player player = (Player) entity;
+    public @NotNull IconCoordinate getIcon(@Nullable Entity entity, @NotNull ItemStack itemStack) {
+        if (entity instanceof Player player) {
             if (itemStack == player.getHeldItem() && player.bobberEntity != null) {
                 return this.rodCast;
             }

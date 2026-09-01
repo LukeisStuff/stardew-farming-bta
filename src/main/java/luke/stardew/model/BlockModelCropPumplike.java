@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 public class BlockModelCropPumplike<T extends BlockLogic> extends BlockModelGenericProgressive<T>{
 
-    public BlockModelCropPumplike(@NotNull Block block, @NotNull String dataModelPath, int amount) {
+    public BlockModelCropPumplike(@NotNull Block<T> block, @NotNull String dataModelPath, int amount) {
         super(block, dataModelPath, amount);
     }
 

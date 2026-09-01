@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(value = ItemFishingRod.class, remap = false)
 public abstract class ItemFishingRodMixin extends Item {
 
-    public ItemFishingRodMixin(@NotNull NamespaceID namespaceId, @NotNull String translationKey, int id) {
+    private ItemFishingRodMixin(@NotNull NamespaceID namespaceId, @NotNull String translationKey, int id) {
         super(namespaceId, translationKey, id);
     }
 

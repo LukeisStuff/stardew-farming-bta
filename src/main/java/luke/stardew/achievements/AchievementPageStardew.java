@@ -44,6 +44,7 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public void postProcessBackground(ScreenAchievements screenAchievements, Random random, ScreenAchievements.BGLayer bGLayer, int i, int j) {
+        /*no need*/
     }
 
     @Override
@@ -63,7 +64,7 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public IconCoordinate getAchievementIcon(Achievement achievement) {
-        return TextureRegistry.getTexture(achievement.getType().texture);
+        return TextureRegistry.getTexture(achievement.getType().texture());
     }
 
     @Override

@@ -23,6 +23,7 @@ public class BlockModelGenericProgressive<T extends BlockLogic> extends BlockMod
 
     }
 
+    @Override
     public @NotNull StaticBlockModel getModelFromData(int data) {
         return this.models[data % this.models.length];
     }

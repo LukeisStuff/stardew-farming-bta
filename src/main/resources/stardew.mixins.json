@@ -33,7 +33,8 @@
     "coffee.LayoutAbsoluteMixin",
     "coffee.LayoutSnapMixin",
     "coffee.MobRendererMixin",
-    "coffee.chat.PlayerLocalMixin"
+    "coffee.chat.PlayerLocalMixin",
+    "fix.AfterCommonClientEvent"
   ],
   "injectors": {
     "defaultRequire": 1

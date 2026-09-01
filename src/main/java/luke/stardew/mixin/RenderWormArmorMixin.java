@@ -16,7 +16,7 @@ import org.useless.dragonfly.models.entity.StaticEntityModel;
 
 @Mixin(MobRendererBipedArmored.class)
 public abstract class RenderWormArmorMixin<T extends Mob & IArmorWearing<HumanArmorShape>> extends MobRendererBiped<T> {
-    public RenderWormArmorMixin(float shadowSize) {
+    private RenderWormArmorMixin(float shadowSize) {
         super(shadowSize);
     }
 

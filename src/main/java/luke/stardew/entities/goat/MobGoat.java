@@ -1,6 +1,7 @@
 package luke.stardew.entities.goat;
 
 import net.minecraft.core.WeightedRandomLootObject;
+import net.minecraft.core.block.Block;
 import net.minecraft.core.block.Blocks;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.entity.animal.Creature;
@@ -46,8 +47,15 @@ public class MobGoat extends MobAnimal implements Creature {
 
     @Override
     public boolean isFavouriteItem(ItemStack itemStack) {
-        if (itemStack != null && itemStack.getItem().hasTag(ItemTags.COWS_FAVOURITE_ITEM)) return true;
-        return itemStack != null && itemStack.itemID < Blocks.blocksList.length && Blocks.blocksList[itemStack.itemID].hasTag(BlockTags.SHEEPS_FAVOURITE_BLOCK);
+        if (itemStack != null && itemStack.getItem().hasTag(ItemTags.COWS_FAVOURITE_ITEM)) {
+            return true;
+        }
+        if (itemStack == null || itemStack.itemID >= Blocks.blocksList.length) {
+            return false;
+        }
+        Block<?> block = Blocks.blocksList[itemStack.itemID];
+        if (block == null) return false;
+        return block.hasTag(BlockTags.SHEEPS_FAVOURITE_BLOCK);
     }
 
     @Override
@@ -60,7 +68,7 @@ public class MobGoat extends MobAnimal implements Creature {
                 return false;
             }
 
-            if (item.maxCharges >= item.getCharges(itemstack)) {
+            if (item.maxCharges >= ItemBucket.getCharges(itemstack)) {
                 return false;
             }
 

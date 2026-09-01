@@ -21,7 +21,7 @@ public class BlockLogicEdibleCustom extends BlockLogicEdible {
     }
 
     @Override
-    public AABBdc getBoundsFromState(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
+    public @NotNull AABBdc getBoundsFromState(@NotNull WorldSource source, @NotNull TilePosc tilePos) {
         int l = source.getBlockData(tilePos);
         float f = 0.0625f;
         float f1 = (1 + l * 2) / 16.0f;

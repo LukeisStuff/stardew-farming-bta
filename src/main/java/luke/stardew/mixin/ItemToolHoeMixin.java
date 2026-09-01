@@ -22,7 +22,7 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(value = ItemToolHoe.class, remap = false)
 public abstract class ItemToolHoeMixin extends ItemTool {
 
-    protected ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
+    private ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
         super(name, namespaceID, id, damageDealt, toolMaterial, tagEffectiveAgainst);
     }
 

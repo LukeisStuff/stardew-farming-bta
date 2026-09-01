@@ -80,11 +80,12 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
 
         for (int dx = tilePos.x() - 1; dx <= tilePos.x() + 1; ++dx) {
             for (int dz = tilePos.z() - 1; dz <= tilePos.z() + 1; ++dz) {
-                int id = world.getBlockId(dx, tilePos.y() - 1, dz);
+                TilePos tilepos = new TilePos(dx, tilePos.y() - 1, dz);
+                Block<?> block = world.getBlockType(tilepos);
                 float growthRateMod = 0.0F;
-                if (id == Blocks.FARMLAND_DIRT.id()) {
+                if (block.id() == Blocks.FARMLAND_DIRT.id()) {
                     growthRateMod = 1.0F;
-                    if (world.getBlockMetadata(dx, tilePos.y() - 1, dz) > 0) {
+                    if (world.getBlockData(tilepos) > 0) {
                         growthRateMod = 3.0F;
                     }
                 }
@@ -97,7 +98,7 @@ public class BlockLogicCropsWatermelon extends BlockLogicCropBase implements IBo
             }
         }
 
-        boolean isFertilized = BlockLogicFarmland.isFertilized(world.getBlockMetadata(tilePos.x(), tilePos.y() - 1, tilePos.z()));
+        boolean isFertilized = BlockLogicFarmland.isFertilized(world.getBlockData(new TilePos(tilePos.x(), tilePos.y() - 1, tilePos.z())));
         if (!isFertilized) {
             if (world.getSeasonManager().getCurrentSeason() != null) {
                 growthRate *= world.getSeasonManager().getCurrentSeason().cropGrowthFactor;

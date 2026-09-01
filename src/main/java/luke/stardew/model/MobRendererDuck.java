@@ -42,18 +42,14 @@ public class MobRendererDuck<T extends MobDuck> extends MobRenderer<T> {
 
     @Override
     protected float getLimbPitch(@NotNull T entity, float partialTick) {
-        float flap = MathHelper.lerp(entity.oFlap, entity.flap, partialTick);
-        float flapSpeed = MathHelper.lerp(entity.oFlapSpeed, entity.flapSpeed, partialTick);
+        float flap = MathHelper.lerp(entity.oFlap(), entity.flap(), partialTick);
+        float flapSpeed = MathHelper.lerp(entity.oFlapSpeed(), entity.flapSpeed(), partialTick);
         return (MathHelper.sin(flap) + 1.0F) * flapSpeed;
     }
 
+    @Override
     protected void preRenderTransform(@NotNull T entity, double x, double y, double z, float yaw, float partialTick) {
         super.preRenderTransform(entity, x, y, z, yaw, partialTick);
         GLRenderer.modelM4f().translate(0.0F, 0.3F, 0.0F);
-    }
-
-    @Override
-    protected void bindTexture(@NotNull String texturePath) {
-        super.bindTexture(texturePath);
     }
 }

@@ -9,8 +9,6 @@ import luke.stardew.items.StardewItems;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.render.EntityRendererDispatcher;
-import net.minecraft.client.render.TileEntityRenderDispatcher;
-import net.minecraft.client.render.block.color.BlockColorDispatcher;
 import net.minecraft.client.render.block.model.*;
 import net.minecraft.client.render.block.model.generic.BlockModelGenericFullyRotatable;
 import net.minecraft.client.render.block.model.generic.BlockModelGenericRotatable;
@@ -26,14 +24,13 @@ import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.Side;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import turniplabs.halplibe.helper.ModelHelper;
-import turniplabs.halplibe.util.ModelEntrypoint;
 
 @Environment(EnvType.CLIENT)
-public class StardewModels implements ModelEntrypoint {
+public class StardewModels {
 
-    @Override
-    public void initBlockModels(BlockModelDispatcher dispatcher) {
+    private StardewModels(){}
+
+    public static void initBlockModels(BlockModelDispatcher dispatcher) {
 
         dispatcher.addDispatch(new BlockModelAxisAligned<>(StardewBlocks.LOG_APPLE)
             .setTex("stardew:block/log/apple_side", Side.sides)
@@ -201,8 +198,7 @@ public class StardewModels implements ModelEntrypoint {
         );
     }
 
-    @Override
-    public void initItemModels(ItemModelDispatcher dispatcher) {
+    public static void initItemModels(ItemModelDispatcher dispatcher) {
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.BUSH));
 
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.SEEDS_BLUEBERRY));
@@ -287,23 +283,13 @@ public class StardewModels implements ModelEntrypoint {
         dispatcher.addDispatch(new ItemModelStandard(StardewItems.FOOD_APPLE_PIE_SLICE));
     }
 
-    @Override
-    public void initEntityModels(EntityRendererDispatcher dispatcher) {
-        ModelHelper.setEntityModel(MobDuck.class, new MobRendererDuck<>(0.4F));
-        ModelHelper.setEntityModel(MobGoat.class, new MobRendererQuadruped<>(0.7F));
 
-        ModelHelper.setEntityModel(ProjectileEggDuck.class, new EntityRendererSprite<>(StardewItems.EGG_DUCK));
-        ModelHelper.setEntityModel(ProjectileTomato.class,  new EntityRendererSprite<>(StardewItems.TOMATO));
-    }
+    public static void initEntityModels(EntityRendererDispatcher dispatcher) {
+        dispatcher.assignRenderer(MobDuck.class, new MobRendererDuck<>(0.4F));
+        dispatcher.assignRenderer(MobGoat.class, new MobRendererQuadruped<>(0.7F));
 
-    @Override
-    public void initTileEntityModels(TileEntityRenderDispatcher dispatcher) {
-
-    }
-
-    @Override
-    public void initBlockColors(BlockColorDispatcher dispatcher) {
-
+        dispatcher.assignRenderer(ProjectileEggDuck.class, new EntityRendererSprite<>(StardewItems.EGG_DUCK));
+        dispatcher.assignRenderer(ProjectileTomato.class,  new EntityRendererSprite<>(StardewItems.TOMATO));
     }
 
 }

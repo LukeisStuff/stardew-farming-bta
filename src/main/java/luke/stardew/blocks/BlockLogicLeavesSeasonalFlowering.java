@@ -16,7 +16,6 @@ import net.minecraft.core.world.season.Season;
 import net.minecraft.core.world.season.Seasons;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jspecify.annotations.NonNull;
 
 import java.util.Random;
 import java.util.function.Supplier;
@@ -27,7 +26,7 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     protected final Supplier<Item> fruit;
     protected final Block<?> floweringLeaves;
 
-    public BlockLogicLeavesSeasonalFlowering(Block<?> block, @NonNull Supplier<Block<?>> sapling, Season season, Supplier<Item> fruit, Block<?> floweringLeaves) {
+    public BlockLogicLeavesSeasonalFlowering(Block<?> block, @NotNull Supplier<Block<?>> sapling, Season season, Supplier<Item> fruit, Block<?> floweringLeaves) {
         super(block, sapling, season);
         this.fruit = fruit;
         this.floweringLeaves = floweringLeaves;
@@ -44,8 +43,8 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
     }
 
     @Override
-    public void onBlockLeftClicked(@NotNull World world, int x, int y, int z, @NotNull Player player, @NotNull Side side, double xHit, double yHit) {
-        this.onBlockRightClicked(world, x, y, z, player, null, 0.0F, 0.0F);
+    public void onAttacked(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Player player, @NotNull Side side, double xHit, double yHit) {
+        this.onInteracted(world, tilePos, player, null, 0.0F, 0.0F);
     }
 
     @Override
@@ -65,9 +64,8 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
             if (!world.isClientSide) {
                 this.dropWithCause(world, EnumDropCause.WORLD, tilePos, meta, null, null);
             }
-
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), setGrowthRate(meta, 0));
-            world.scheduleBlockUpdate(tilePos.x(), tilePos.y(), tilePos.z(), this.floweringLeaves.id(), this.tickDelay());
+            world.setBlockDataNotify(tilePos, setGrowthRate(meta, 0));
+            world.scheduleBlockUpdate(tilePos, this.floweringLeaves, this.tickDelay());
             return true;
         } else {
             return false;
@@ -81,17 +79,17 @@ public class BlockLogicLeavesSeasonalFlowering extends BlockLogicLeavesSeasonal 
 
     @Override
     public void updateTick(@NotNull World world, @NotNull TilePosc tilePos, @NotNull Random rand, boolean isRandomTick) {
-        super.updateTick(world, tilePos, rand, isRandomTick);;
+        super.updateTick(world, tilePos, rand, isRandomTick);
         int meta = world.getBlockData(tilePos);
         int growthRate = getGrowthRate(meta);
         if (world.getSeasonManager().getCurrentSeason() == season) {
             if (rand.nextInt(20) == 0 && growthRate == 0) {
-                world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), setGrowthRate(meta, MAX_GROWTH_STATE));
-                world.scheduleBlockUpdate(tilePos.x(), tilePos.y(), tilePos.z(), this.floweringLeaves.id(), this.tickDelay());
+                world.setBlockDataNotify(tilePos, setGrowthRate(meta, MAX_GROWTH_STATE));
+                world.scheduleBlockUpdate(tilePos, this.floweringLeaves, this.tickDelay());
             }
         } else if (growthRate > 0) {
-            world.setBlockMetadataWithNotify(tilePos.x(), tilePos.y(), tilePos.z(), meta & 15);
-            world.scheduleBlockUpdate(tilePos.x(), tilePos.y(), tilePos.z(), this.floweringLeaves.id(), this.tickDelay());
+            world.setBlockDataNotify(tilePos, meta & 15);
+            world.scheduleBlockUpdate(tilePos, this.floweringLeaves, this.tickDelay());
         }
 
     }

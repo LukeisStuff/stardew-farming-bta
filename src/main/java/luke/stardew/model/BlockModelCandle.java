@@ -4,6 +4,7 @@ import luke.stardew.blocks.BlockLogicWaxCandle;
 import net.minecraft.client.render.tessellator.TessellatorGeneral;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.core.block.Block;
+import net.minecraft.core.block.BlockLogic;
 import net.minecraft.core.world.WorldSource;
 import net.minecraft.core.world.pos.TilePosc;
 import org.jetbrains.annotations.NotNull;
@@ -11,9 +12,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
-public class BlockModelCandle extends BlockModelGenericProgressive{
+public class BlockModelCandle<T extends BlockLogic> extends BlockModelGenericProgressive<T>{
 
-    public BlockModelCandle(@NotNull Block block) {
+    public BlockModelCandle(@NotNull Block<T> block) {
         super(block, "stardew:block/candle", 4);
     }
 
