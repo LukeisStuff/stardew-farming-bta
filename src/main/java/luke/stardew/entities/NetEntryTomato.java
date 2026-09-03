@@ -20,15 +20,18 @@ public class NetEntryTomato implements IVehicleEntry<ProjectileTomato>, ITracked
         return 64;
     }
 
-    public int getPacketDelay() {
+    @Override
+    public int getMovementPacketDelay() {
         return 10;
     }
+
 
     public boolean sendMotionUpdates() {
         return true;
     }
 
     public void onEntityTracked(EntityTracker tracker, EntityTrackerEntry trackerEntry, ProjectileTomato trackedObject) {
+        /* no need */
     }
 
     public Entity getEntity(World world, double x, double y, double z, int metadata, boolean hasVelocity, double xd, double yd, double zd, Entity owner, @Nullable CompoundTag tag) {

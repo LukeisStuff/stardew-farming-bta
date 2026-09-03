@@ -12,6 +12,8 @@ import net.minecraft.core.sound.SoundCategory;
 import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
 import net.minecraft.core.world.season.Seasons;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -24,39 +26,40 @@ import java.util.Random;
 @Mixin(value = Item.class, remap = false)
 public abstract class ItemMixin {
 
-    @Inject(method = "onUseItemOnBlock", at = @At(value = "HEAD"))
-    public void addStickFunctionality(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir) {
-        if (player.getCurrentEquippedItem().itemID == Items.STICK.id && world.getBlockId(blockX, blockY, blockZ) == Blocks.FARMLAND_DIRT.id() && world.getBlockId(blockX, blockY + 1, blockZ) == 0 && side == Side.TOP) {
+    @Inject(method = "onUseOnBlock", at = @At(value = "HEAD"))
+    public void addStickFunctionality(ItemStack selfStack, World world, Player player, TilePosc blockPos, Side side, double xHit, double yHit, CallbackInfoReturnable<Boolean> cir) {
+        if (
+            player.getCurrentEquippedItem().itemID == Items.STICK.id
+            && world.getBlockType(blockPos) == Blocks.FARMLAND_DIRT
+            && world.getBlockType(blockPos.up(new TilePos())) == Blocks.AIR
+            && side == Side.TOP
+        ) {
             player.getCurrentEquippedItem().consumeItem(player);
-            world.setBlockWithNotify(blockX, blockY + 1, blockZ, StardewBlocks.PLANT_STAKE.id());
+            world.setBlockTypeNotify(blockPos.up(new TilePos()), StardewBlocks.PLANT_STAKE);
             player.swingItem();
-            world.playBlockSoundEffect(player, blockX + 0.5F, blockY + 0.5F, blockZ + 0.5F, Blocks.DIRT, EnumBlockSoundEffectType.PLACE);
+            world.playBlockSoundEffect(player, blockPos.x() + 0.5F, blockPos.y() + 0.5F, blockPos.z() + 0.5F, Blocks.DIRT, EnumBlockSoundEffectType.PLACE);
         }
     }
 
-    @Inject(method = "onUseByActivator", at = @At(value = "HEAD"))
-    public void addSugarToBeehive(ItemStack itemStack, TileEntityActivator activator, World world, Random random, int activatorX, int activatorY, int activatorZ, double offX, double offY, double offZ, Direction direction, CallbackInfo ci) {
-        if (world.seasonManager.getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
+    @Inject(method = "onUseByActivator(Lnet/minecraft/core/item/ItemStack;Lnet/minecraft/core/world/World;Lnet/minecraft/core/block/entity/TileEntityActivator;Ljava/util/Random;Lnet/minecraft/core/world/pos/TilePosc;Lnet/minecraft/core/util/helper/Direction;DDD)V", at = @At(value = "HEAD"))
+    public void addSugarToBeehive(ItemStack selfStack, World world, TileEntityActivator activator, Random random, TilePosc blockPos, Direction direction, double offX, double offY, double offZ, CallbackInfo ci) {
+        if (world.getSeasonManager().getCurrentSeason() == Seasons.OVERWORLD_WINTER) {
             return;
         }
 
-        int targetX = activatorX + direction.getOffsetX();
-        int targetY = activatorY + direction.getOffsetY();
-        int targetZ = activatorZ + direction.getOffsetZ();
-        int targetBlockId = world.getBlockId(targetX, targetY, targetZ);
-
-        if (targetBlockId != StardewBlocks.BEEHIVE.id()) {
+        if (world.getBlockType(blockPos) != StardewBlocks.BEEHIVE) {
             return;
         }
 
-        if (itemStack == null || !itemStack.getItem().equals(Items.DUST_SUGAR)) {
+        if (selfStack == null || !selfStack.getItem().equals(Items.DUST_SUGAR)) {
             return;
         }
 
-        int meta = world.getBlockMetadata(targetX, targetY, targetZ);
-        world.setBlockAndMetadataWithNotify(targetX, targetY, targetZ, StardewBlocks.BEEHIVE_IDLE.id(), meta);
-        world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, targetX + 0.5, targetY + 0.5, targetZ + 0.5, "random.pop", 0.2F, 0.5F);
-        --itemStack.stackSize;
+        int meta = world.getBlockData(blockPos);
+        world.setBlockTypeDataNotify(blockPos, StardewBlocks.BEEHIVE_IDLE, meta);
+
+        world.playSoundEffect(null, SoundCategory.WORLD_SOUNDS, blockPos.x() + 0.5, blockPos.y() + 0.5, blockPos.z() + 0.5, "random.pop", 0.2F, 0.5F);
+        --selfStack.stackSize;
     }
 }
 

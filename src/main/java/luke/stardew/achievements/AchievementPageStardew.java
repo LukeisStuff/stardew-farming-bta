@@ -1,15 +1,12 @@
 package luke.stardew.achievements;
 
-import luke.stardew.blocks.StardewBlocks;
 import net.minecraft.client.gui.achievements.ScreenAchievements;
 import net.minecraft.client.gui.achievements.data.AchievementPage;
-import net.minecraft.client.render.block.model.BlockModelDispatcher;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.achievement.Achievement;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.lang.I18n;
-import net.minecraft.core.util.helper.Side;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,12 +24,12 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public @NotNull String getName() {
-        return I18n.getInstance().translateNameKey(name);
+        return I18n.getInstance().translateKey(name);
     }
 
     @Override
     public @NotNull String getDescription() {
-        return I18n.getInstance().translateNameKey(name);
+        return I18n.getInstance().translateKey(name);
     }
 
     @Override
@@ -42,11 +39,12 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public @Nullable IconCoordinate getBackgroundTile(ScreenAchievements screen, int i, Random random, int j, int k) {
-        return BlockModelDispatcher.getInstance().getDispatch(StardewBlocks.THATCH).getBlockTextureFromSideAndMetadata(random.nextBoolean() ? Side.TOP : Side.NORTH, 0);
+        return TextureRegistry.getTexture("stardew:block/thatch/side");
     }
 
     @Override
     public void postProcessBackground(ScreenAchievements screenAchievements, Random random, ScreenAchievements.BGLayer bGLayer, int i, int j) {
+        /*no need*/
     }
 
     @Override
@@ -66,7 +64,7 @@ public class AchievementPageStardew extends AchievementPage {
 
     @Override
     public IconCoordinate getAchievementIcon(Achievement achievement) {
-        return TextureRegistry.getTexture(achievement.getType().texture);
+        return TextureRegistry.getTexture(achievement.getType().texture());
     }
 
     @Override

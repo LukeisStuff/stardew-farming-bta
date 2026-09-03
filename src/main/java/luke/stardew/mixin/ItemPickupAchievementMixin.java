@@ -21,7 +21,7 @@ public abstract class ItemPickupAchievementMixin {
     @Shadow
     public ItemStack item;
 
-    @Inject(method = "playerTouch", at = @At("TAIL"), cancellable = true)
+    @Inject(method = "playerTouch", at = @At("TAIL"))
     public void playerTouch(Player player, CallbackInfo ci) {
 
         String pickUpKey = StatList.STAT_PICKED_UP;
@@ -47,8 +47,9 @@ public abstract class ItemPickupAchievementMixin {
             && player.getStat(StardewItems.FISH_SWORD.getStat(pickUpKey)) > 0
             && player.getStat(StardewItems.FISH_GHOST.getStat(pickUpKey)) > 0
             && player.getStat(StardewItems.FISH_EEL_LAVA.getStat(pickUpKey)) > 0
-            && player.getStat(StardewItems.FISH_STONE.getStat(pickUpKey)) > 0) {
-            player.triggerAchievement(StardewAchievements.MASTER_FISHER);
+            && player.getStat(StardewItems.FISH_STONE.getStat(pickUpKey)) > 0
+            && player.getStat(StardewItems.FISH_PIG.getStat(pickUpKey)) > 0) {
+                player.triggerAchievement(StardewAchievements.MASTER_FISHER);
         }
         if ((this.item.itemID == StardewItems.CRANBERRIES.id
             || this.item.itemID == StardewItems.GRAPES.id
@@ -88,6 +89,5 @@ public abstract class ItemPickupAchievementMixin {
             && player.getStat(Items.EGG_CHICKEN.getStat(pickUpKey)) > 0) {
             player.triggerAchievement(StardewAchievements.EGG);
         }
-        ci.cancel();
     }
 }

@@ -1,0 +1,28 @@
+stardew.name=Stardew Farming
+# achievements
+achievements.page.stardew.desc=Stardew Farming achievements.
+achievement.stardew.stardew=Stardew Farming
+achievement.stardew.stardew.desc=The start of your farm.
+achievement.stardew.fruit=Fruit Basket
+achievement.stardew.fruit.desc=Harvest every fruit crop.
+achievement.stardew.vegetable=Cornucopia
+achievement.stardew.vegetable.desc=Harvest every vegetable crop.
+achievement.stardew.egg=Carton Collector
+achievement.stardew.egg.desc=Harvest both egg types.
+achievement.stardew.beehive=Means Bees-ness
+achievement.stardew.beehive.desc=Collect honey from a beehive.
+achievement.stardew.candle=Getting Lit
+achievement.stardew.candle.desc=Make a candle from wax.
+achievement.stardew.apple=Johnny Appleseed
+achievement.stardew.apple.desc=Collect an apple tree sapling.
+achievement.stardew.gapple=Tree of Life
+achievement.stardew.gapple.desc=Create a golden apple tree sapling.
+achievement.stardew.amateur.fisher=Amateur Fisher
+achievement.stardew.amateur.fisher.desc=Catch every common fish type.
+achievement.stardew.master.fisher=Master Angler
+achievement.stardew.master.fisher.desc=Catch every legendary fish type.
+# guidebook
+guidebook.section.mob.duck.name=Duck
+guidebook.section.mob.duck.desc=Ducks are a good source of eggs, which are useful for cooking, they can be found rarely in most biomes.
+guidebook.section.mob.goat.name=Goat
+guidebook.section.mob.goat.desc=Goats are a loud mob that function like a sheep and a cow.\nThey can be found rarely in most biomes.

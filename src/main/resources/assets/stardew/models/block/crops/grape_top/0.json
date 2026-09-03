@@ -1,0 +1,8 @@
+
+{
+    "parent": "minecraft:block/crops_wheat/template",
+
+    "textures": {
+        "crop": "stardew:block/crops_grape/stage0_top"
+    }
+}

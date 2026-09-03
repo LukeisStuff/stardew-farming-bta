@@ -20,7 +20,8 @@ public class NetEntryEggDuck implements IVehicleEntry<ProjectileEggDuck>, ITrack
         return 64;
     }
 
-    public int getPacketDelay() {
+    @Override
+    public int getMovementPacketDelay() {
         return 10;
     }
 
@@ -29,6 +30,7 @@ public class NetEntryEggDuck implements IVehicleEntry<ProjectileEggDuck>, ITrack
     }
 
     public void onEntityTracked(EntityTracker tracker, EntityTrackerEntry trackerEntry, ProjectileEggDuck trackedObject) {
+        /*no need*/
     }
 
     public Entity getEntity(World world, double x, double y, double z, int metadata, boolean hasVelocity, double xd, double yd, double zd, Entity owner, @Nullable CompoundTag tag) {

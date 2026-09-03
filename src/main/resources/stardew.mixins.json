@@ -6,6 +6,7 @@
   "package": "luke.stardew.mixin",
   "compatibilityLevel": "JAVA_${java}",
   "mixins": [
+    "begoneprinkMixin",
     "BiomeSpawnListMixin",
     "BlockLogicFarmlandMixin",
     "BlockLogicGrassMixin",
@@ -16,16 +17,24 @@
     "ItemPickupAchievementMixin",
     "ItemToolHoeMixin",
     "PigDigTruffleMixin",
-    "PlayerMixin",
     "SlotCraftingMixin",
     "SlotFurnaceMixin",
+    "StardewAchievementMixin",
     "TileEntityFurnaceMixin",
     "WorldFeatureDungeonMixin",
-    "WorldFeatureLabyrinthMixin"
+    "WorldFeatureLabyrinthMixin",
+    "coffee.BlockLogicBedMixin",
+    "coffee.EntitySpeedMixin",
+    "coffee.PlayerSpeedMixin",
+    "coffee.chat.PlayerlocalRemoteMixin"
   ],
   "client": [
-    "MinecraftMixin",
-    "PlayerRendererAddWormCans"
+    "RenderWormArmorMixin",
+    "coffee.LayoutAbsoluteMixin",
+    "coffee.LayoutSnapMixin",
+    "coffee.MobRendererMixin",
+    "coffee.chat.PlayerLocalMixin",
+    "fix.AfterCommonClientEvent"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -1,22 +1,25 @@
 package luke.stardew.blocks;
 
 import luke.stardew.StardewTags;
+import luke.stardew.blocks.crops.*;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.*;
-import net.minecraft.core.block.material.Material;
+import net.minecraft.core.block.material.Materials;
 import net.minecraft.core.block.tag.BlockTags;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.sound.BlockSound;
 import net.minecraft.core.sound.BlockSounds;
-import net.minecraft.core.world.World;
 import net.minecraft.core.world.season.Seasons;
 import turniplabs.halplibe.helper.BlockBuilder;
-import turniplabs.halplibe.util.BlockInitEntrypoint;
+import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryCategory;
+import turniplabs.halplibe.helper.creativeInventory.CreativeInventoryPlacement;
 
 import static luke.stardew.StardewConfig.blockID;
 import static luke.stardew.StardewMod.MOD_ID;
 
-public final class StardewBlocks implements BlockInitEntrypoint {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S3008"})
+public final class StardewBlocks {
+    private StardewBlocks(){}
 
     //Spring Crops
     public static Block<?> CROPS_CARROT;
@@ -99,13 +102,13 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, StardewTags.NEARBY_CROP);
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, StardewTags.NEARBY_CROP);
 
         BlockBuilder cropsBlock = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, StardewTags.NEARBY_CROP);
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.OVERRIDE_STEPSOUND, StardewTags.NEARBY_CROP);
 
         BlockBuilder blocks = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.WOOD)
@@ -118,8 +121,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setHardness(0.2F)
             .setResistance(0.2F)
             .setFlammability(30, 60)
-            .setTickOnLoad()
-            .setVisualUpdateOnMetadata()
+            .setTicking(true)
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_HOE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS, BlockTags.SHEARS_DO_SILK_TOUCH);
 
         BlockBuilder sapling = new BlockBuilder(MOD_ID)
@@ -174,7 +176,9 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("crops.strawberry", "crops_strawberry", blockID("CROPS_STRAWBERRY"), BlockLogicCropBase::new);
 
         WATERMELON = blocks
-            .build("watermelon", "watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+            .build("watermelon", "watermelon", blockID("WATERMELON"), b -> new BlockLogicFullyRotatable(b, Materials.VEGETABLE));
+
         CROPS_WATERMELON = cropsBlock.build("crops.watermelon", "crops_watermelon", blockID("CROPS_WATERMELON"), BlockLogicCropsWatermelon::new); //These need to be assigned in order because awful things happen if watermelon is null when assigning here
 
         //Fall Crops
@@ -191,37 +195,47 @@ public final class StardewBlocks implements BlockInitEntrypoint {
 
         // Fall Tree
         LOG_APPLE = log
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.LOGS))
             .build("log.apple", "log_apple", blockID("LOG_APPLE"), BlockLogicLog::new);
 
         LEAVES_APPLE = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple", "leaves_apple", blockID("LEAVES_APPLE"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL));
 
         LEAVES_APPLE_FLOWERING = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple.flowering", "leaves_apple_flowering", blockID("LEAVES_APPLE_FLOWERING"),
                 b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE, Seasons.OVERWORLD_FALL, () -> Items.FOOD_APPLE, LEAVES_APPLE_FLOWERING));
 
         SAPLING_APPLE = sapling
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.SAPLING_CACAO))
             .build("sapling.apple", "sapling_apple", blockID("SAPLING_APPLE"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE, LEAVES_APPLE, LEAVES_APPLE_FLOWERING, 5));
 
         LOG_APPLE_GOLDEN = log
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.LOGS))
             .build("log.apple.golden", "log_apple_golden", blockID("LOG_APPLE_GOLDEN"), BlockLogicLog::new);
 
         LEAVES_APPLE_GOLDEN = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple.golden", "leaves_apple_golden", blockID("LEAVES_APPLE_GOLDEN"), b -> new BlockLogicLeavesSeasonal(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER));
 
         LEAVES_APPLE_GOLDEN_FLOWERING = leaves
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.LEAVES_CACAO))
             .build("leaves.apple.golden.flowering", "leaves_apple_golden_flowering", blockID("LEAVES_APPLE_GOLDEN_FLOWERING"),
                 b -> new BlockLogicLeavesSeasonalFlowering(b, () -> SAPLING_APPLE_GOLDEN, Seasons.OVERWORLD_WINTER, () -> Items.FOOD_APPLE_GOLD, LEAVES_APPLE_GOLDEN_FLOWERING));
 
         SAPLING_APPLE_GOLDEN = sapling
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.SAPLING_CACAO))
             .build("sapling.apple.golden", "sapling_apple_golden", blockID("SAPLING_APPLE_GOLDEN"), b -> new BlockLogicSaplingSeasonal(b, LOG_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN, LEAVES_APPLE_GOLDEN_FLOWERING, 20));
 
 
         //Winter Crops
         CAULIFLOWER = blocks
-            .build("cauliflower", "cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Material.vegetable));
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
+            .build("cauliflower", "cauliflower", blockID("CAULIFLOWER"), b -> new BlockLogicFullyRotatable(b, Materials.VEGETABLE));
+
         CROPS_CAULIFLOWER = cropsBlock
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
+            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.OVERRIDE_STEPSOUND, BlockTags.PLANTABLE_IN_JAR)
             .build("crops.cauliflower", "crops_cauliflower", blockID("CROPS_CAULIFLOWER"), BlockLogicCropsCauliflower::new);
 
         CROPS_CRANBERRIES = crops.build("crops.cranberries", "crops_cranberries", blockID("CROPS_CRANBERRIES"), BlockLogicCropBase::new);
@@ -229,16 +243,15 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         BUSH = crops
             .setTags(BlockTags.PLANTABLE_IN_JAR, BlockTags.SHEARS_DO_SILK_TOUCH, BlockTags.MINEABLE_BY_SHEARS)
             .setTicking(true)
-            .setTickOnLoad()
             .build("bush", "bush", blockID("BUSH"), BlockLogicBush::new);
 
         BEEHIVE_IDLE = wood
-            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
-            .setTickOnLoad()
+            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT)
+            .setTicking(true)
             .build("beehive.idle", "beehive_idle", blockID("BEEHIVE_IDLE"), b -> new BlockLogicBeehiveActive(b, false));
 
         BEEHIVE_HONEY = wood
-            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.FENCES_CONNECT)
             .build("beehive.honey", "beehive_honey", blockID("BEEHIVE_HONEY"), b -> new BlockLogicBeehiveActive(b, true));
 
         BLOCK_HONEY = new BlockBuilder(MOD_ID)
@@ -256,24 +269,24 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setBlockSound(BlockSounds.CLOTH)
             .setHardness(0.5f)
             .setResistance(0.5f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.BROKEN_BY_FLUIDS)
             .build("cake.chocolate", "cake_chocolate", blockID("CAKE_CHOCOLATE"), b -> new BlockLogicEdibleCustom(b, 0.5f, () -> StardewItems.FOOD_CAKE_CHOCOLATE));
 
         BEEHIVE = wood
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.WORKBENCHES))
             .build("beehive", "beehive", blockID("BEEHIVE"), BlockLogicBeehive::new);
 
         PIZZA = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.CLOTH)
             .setHardness(0.5f)
             .setResistance(0.5f)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-            .build("pizza", "pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 0.25F, () -> StardewItems.FOOD_PIZZA));
+            .setTags(BlockTags.BROKEN_BY_FLUIDS)
+            .build("pizza", "pizza", blockID("PIZZA"), b -> new BlockLogicEdibleCustom(b, 2F/16F, () -> StardewItems.FOOD_PIZZA));
 
         CANDLE = new BlockBuilder(MOD_ID)
             .setBlockSound(new BlockSound("step.wood", "step.wood", 1.0f, 1.2f))
             .setHardness(0.0f)
             .setResistance(0.0f)
-            .setVisualUpdateOnMetadata()
             .setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
             .build("candle", "candle", blockID("CANDLE"), b -> new BlockLogicWaxCandle(b, false));
 
@@ -283,18 +296,18 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .setResistance(0.0f)
             .setLuminance(14)
             .setUseInternalLight()
-            .setVisualUpdateOnMetadata()
-            .setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
+            .setTags(BlockTags.MINEABLE_BY_SWORD, BlockTags.BROKEN_BY_FLUIDS)
             .build("candle.active", "candle_active", blockID("CANDLE_ACTIVE"), b -> new BlockLogicWaxCandle(b, true));
 
         PLANT_STAKE = new BlockBuilder(MOD_ID)
             .setHardness(0.0f)
             .setResistance(0.0f)
             .setBlockSound(BlockSounds.GRAVEL)
-            .setTags(BlockTags.BROKEN_BY_FLUIDS, BlockTags.NOT_IN_CREATIVE_MENU)
-            .build("plant.stake", "plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Material.plant));
+            .setTags(BlockTags.BROKEN_BY_FLUIDS)
+            .build("plant.stake", "plant_stake", blockID("PLANT_STAKE"), b -> new BlockLogicPlantStake(b, Materials.PLANT));
 
         MUSHROOM_TRUFFLE = new BlockBuilder(MOD_ID)
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.After(() -> Blocks.MUSHROOM_RED))
             .setBlockSound(BlockSounds.GRASS)
             .setHardness(0.0f)
             .setResistance(0.0f)
@@ -302,17 +315,17 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .build("mushroom.truffle", "mushroom_truffle", blockID("MUSHROOM_TRUFFLE"), BlockLogicMushroom::new);
 
         THATCH = new BlockBuilder(MOD_ID)
+            .setCreativeInventoryPlacement(new CreativeInventoryPlacement.Category(CreativeInventoryCategory.ORGANIC))
             .setBlockSound(new BlockSound("step.grass", "step.grass", 0.6f, 1.2f))
             .setHardness(0.6f)
             .setResistance(0.6f)
             .setFlammability(60, 120)
             .setTags(BlockTags.MINEABLE_BY_AXE, BlockTags.MINEABLE_BY_SWORD, BlockTags.MINEABLE_BY_SHEARS)
-            .build("thatch", "thatch", blockID("THATCH"), b -> new BlockLogicThatch(b, Material.grass));
+            .build("thatch", "thatch", blockID("THATCH"), b -> new BlockLogicThatch(b, Materials.GRANITE));
 
         APPLE_PIE = new BlockBuilder(MOD_ID)
             .setBlockSound(BlockSounds.CLOTH)
             .setHardness(0.5F)
-            .setVisualUpdateOnMetadata()
             .setTags(BlockTags.NOT_IN_CREATIVE_MENU, BlockTags.BROKEN_BY_FLUIDS)
             .build("apple.pie", "apple_pie", blockID("APPLE_PIE"), BlockLogicPieApple::new).setStatParent(() -> StardewItems.FOOD_APPLE_PIE);
 
@@ -438,7 +451,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withResetMeta(4)
             .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
             .notFertilized()
-            .seedItem = (StardewItems.BEANS_COFFEE);
+            .setSeedItem((StardewItems.BEANS_COFFEE));
 
         StardewBlocks.<BlockLogicCropTall>getLogicAs(CROPS_BEANS_TOP)
             .asTop(CROPS_BEANS_BOTTOM)
@@ -447,7 +460,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
             .withResetMeta(0)
             .withCrop(StardewItems.BEANS_COFFEE, 1, 3)
             .notFertilized()
-            .seedItem = (StardewItems.BEANS_COFFEE);
+            .setSeedItem((StardewItems.BEANS_COFFEE));
     }
 
     @SuppressWarnings("unchecked")
@@ -455,13 +468,7 @@ public final class StardewBlocks implements BlockInitEntrypoint {
         return (A) block.getLogic();
     }
 
-    public static boolean isBlockLogic(World world, int x, int y, int z, Class<? extends BlockLogic> logic) {
-        Block<?> block = world.getBlock(x, y, z);
-        return block != null && logic.isAssignableFrom(block.getLogic().getClass());
-    }
-
-    @Override
-    public void afterBlockInit() {
+    public static void afterBlockInit() {
         init();
     }
 }

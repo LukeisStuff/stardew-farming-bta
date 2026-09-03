@@ -1,17 +1,18 @@
 package luke.stardew.particles;
 
-import net.minecraft.client.entity.particle.Particle;
-import net.minecraft.client.render.tessellator.Tessellator;
+import net.minecraft.client.render.particle.Particle;
+import net.minecraft.client.render.tessellator.TessellatorParticle;
 import net.minecraft.client.render.texture.stitcher.IconCoordinate;
 import net.minecraft.client.render.texture.stitcher.TextureRegistry;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
 
 import static luke.stardew.StardewMod.MOD_ID;
 
 public class ParticleBee extends Particle {
     public static final IconCoordinate bee1 = TextureRegistry.getTexture(MOD_ID + ":particle/bee");
     public static final IconCoordinate bee2 = TextureRegistry.getTexture(MOD_ID + ":particle/bee_2");
-    public float originalScale;
+    private final float originalScale;
 
     public ParticleBee(World world, double d, double d1, double d2, double d3, double d4, double d5) {
         super(world, d, d1, d2, d3, d4, d5);
@@ -26,9 +27,9 @@ public class ParticleBee extends Particle {
     }
 
     @Override
-    public void render(Tessellator tessellator, float partialTick, double x, double y, double z, float rotationX, float rotationXZ, float rotationZ, float rotationYZ, float rotationXY) {
+    public void render(@NotNull TessellatorParticle t, float partialTick) {
         this.size = this.originalScale - this.originalScale * ((float) this.age / this.lifetime);
-        super.render(tessellator, partialTick, x, y, z, rotationX, rotationXZ, rotationZ, rotationYZ, rotationXY);
+        super.render(t, partialTick);
     }
 
     @Override

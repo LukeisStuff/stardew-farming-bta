@@ -6,27 +6,49 @@ import luke.stardew.entities.StardewEntities;
 import luke.stardew.entities.duck.NetEntryEggDuck;
 import luke.stardew.items.StardewItems;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.core.Global;
 import net.minecraft.core.block.material.MaterialColor;
 import net.minecraft.core.crafting.LookupFuelFurnace;
-import net.minecraft.core.item.Items;
 import net.minecraft.core.net.entity.NetEntityHandler;
 import net.minecraft.core.sound.SoundTypes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import turniplabs.halplibe.util.GameStartEntrypoint;
-import turniplabs.halplibe.util.ItemInitEntrypoint;
+import sunsetsatellite.catalyst.effects.api.attribute.Attributes;
+import sunsetsatellite.catalyst.effects.api.attribute.type.IntAttribute;
+import sunsetsatellite.catalyst.effects.api.effect.Effect;
+import sunsetsatellite.catalyst.effects.api.effect.EffectTimeType;
+import sunsetsatellite.catalyst.effects.api.effect.Effects;
+import sunsetsatellite.catalyst.effects.api.modifier.ModifierType;
+import sunsetsatellite.catalyst.effects.api.modifier.type.IntModifier;
+import turniplabs.halplibe.event.defs.CommonEvents;
+import turniplabs.halplibe.util.dependency.Key;
 
-public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInitEntrypoint {
+import java.util.List;
+
+import static net.minecraft.core.data.registry.Registries.NAMESPACES;
+
+public class StardewMod implements ModInitializer{
     public static final String MOD_ID = "stardew";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
+    public static IntAttribute TWEAK_SPEED_ATTRIBUTE = (IntAttribute) new IntAttribute("attribute.stardew.tweak_speed", 0).setAsDefault();
+    public static Effect TWEAKED_ON_COFFEE_EFFECT;
 
     @Override
     public void onInitialize() {
         LOGGER.info("Stardew Farming initialized.");
+        Key key = Key.of(MOD_ID);
+        CommonEvents.AFTER_GAME_START.listen(key, StardewMod::afterGameStart);
+        CommonEvents.BEFORE_GAME_START.listen(key, StardewMod::beforeGameStart);
+        CommonEvents.RECIPES_NAMESPACE_INIT.listen(key, StardewRecipes::initNamespaces);
+        CommonEvents.RECIPES_READY.listen(key, StardewRecipes::onRecipesReady);
+        CommonEvents.AFTER_ITEM_INIT.listen(key, StardewMod::afterItemInit);
+        CommonEvents.AFTER_BLOCK_INIT.listen(key, StardewBlocks::afterBlockInit);
     }
 
-    @Override
-    public void beforeGameStart() {
+    public static void beforeGameStart() {
+        NAMESPACES.register(MOD_ID, MOD_ID);
+
         StardewConfig.init();
         StardewEntities.init();
         StardewBlocks.init();
@@ -38,16 +60,31 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         SoundTypes.loadSoundsJson(MOD_ID);
     }
 
-    @Override
-    public void afterGameStart() {
-        StardewItems.FOOD_COFFEE.setContainerItem(Items.BUCKET);
+
+    public static void afterGameStart() {
+        Attributes.getInstance().register("stardew:tweak_speed", TWEAK_SPEED_ATTRIBUTE);
+
+        TWEAKED_ON_COFFEE_EFFECT = new Effect(
+            "stardew.effect.tweaked_out",
+            "stardew:tweaked",
+            List.of(
+                new IntModifier(TWEAK_SPEED_ATTRIBUTE, ModifierType.ADD, 1)
+            ),
+            EffectTimeType.ADD,
+            4
+        )
+        .setDefaultDuration(Global.TICKS_PER_SECOND * 20)
+        .setDurationIncrease(Global.TICKS_PER_SECOND * 20);
+
+
+        Effects.getInstance().register(TWEAKED_ON_COFFEE_EFFECT.id, TWEAKED_ON_COFFEE_EFFECT);
     }
 
-    @Override
-    public void afterItemInit() {
+
+    public static void afterItemInit() {
+
         LookupFuelFurnace.instance.addFuelEntry(StardewItems.FIBER.id, 200);
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.THATCH.id(), 300);
-
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.LOG_APPLE.id(), 300);
         LookupFuelFurnace.instance.addFuelEntry(StardewBlocks.LOG_APPLE_GOLDEN.id(), 300);
 
@@ -69,7 +106,6 @@ public class StardewMod implements ModInitializer, GameStartEntrypoint, ItemInit
         MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE, 0, MaterialColor.paintedRed);
         MaterialColor.registerManualBlockColor(StardewBlocks.LEAVES_APPLE_FLOWERING, 0, MaterialColor.paintedRed);
         MaterialColor.registerManualBlockColor(StardewBlocks.SAPLING_APPLE, 0, MaterialColor.paintedRed);
-
 
         StardewBlocks.initializeCrops();
     }

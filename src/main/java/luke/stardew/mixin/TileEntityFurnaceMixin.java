@@ -1,37 +1,37 @@
 package luke.stardew.mixin;
 
+import com.llamalad7.mixinextras.expression.Definition;
+import com.llamalad7.mixinextras.expression.Expression;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
+import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.entity.TileEntityFurnace;
+import net.minecraft.core.item.ItemBucket;
 import net.minecraft.core.item.ItemStack;
-import net.minecraft.core.item.Items;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-
-import java.util.Objects;
 
 @Mixin(value = TileEntityFurnace.class, remap = false)
 public abstract class TileEntityFurnaceMixin {
 
-    @Unique
-    private ItemStack previousInput;
+    @Definition(id = "furnaceItemStacks", field = "Lnet/minecraft/core/block/entity/TileEntityFurnace;furnaceItemStacks:[Lnet/minecraft/core/item/ItemStack;")
+    @Expression("this.furnaceItemStacks[0] = null")
+    @WrapOperation(method = "smeltItem()V", at = @At("MIXINEXTRAS:EXPRESSION"))
+    private void restoreBucket(ItemStack[] array, int index, ItemStack value, Operation<Void> original, @Local(type = ItemStack.class, name = "itemstack") ItemStack itemStack) {
+        var bucket = array[index];
 
-    @Inject(method = "smeltItem()V", at = @At("HEAD"))
-    private void captureInput(CallbackInfo ci) {
-        TileEntityFurnace furnace = (TileEntityFurnace) (Object) this;
-        previousInput = furnace.getItem(0) == null ? null : Objects.requireNonNull(furnace.getItem(0)).copy();
-    }
-
-    @Inject(method = "smeltItem()V", at = @At("TAIL"))
-    private void restoreBucket(CallbackInfo ci) {
-        TileEntityFurnace furnace = (TileEntityFurnace) (Object) this;
-
-        if (previousInput == null) return;
-
-        if (Objects.equals(previousInput.getItem(), Items.BUCKET_MILK)) {
-            furnace.setItem(0, new ItemStack(Items.BUCKET));
+        if (
+            bucket.getItem() instanceof ItemBucket
+            && ItemBucket.getState(bucket).equals(ItemBucket.STATE_MILK)
+            && itemStack.getItem().equals(StardewItems.CHEESE)
+        ) {
+            bucket.stackSize++;
+            ItemBucket.setState(bucket, ItemBucket.STATE_EMPTY);
+            return;
         }
+
+       original.call(array, index, value);
     }
 }
 

@@ -1,74 +1,40 @@
 package luke.stardew.mixin;
 
+import com.llamalad7.mixinextras.expression.Definition;
+import com.llamalad7.mixinextras.expression.Expression;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import com.llamalad7.mixinextras.sugar.Local;
 import luke.stardew.items.StardewItems;
 import net.minecraft.core.block.Block;
-import net.minecraft.core.block.Blocks;
 import net.minecraft.core.data.tag.Tag;
-import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.material.ToolMaterial;
 import net.minecraft.core.item.tool.ItemTool;
 import net.minecraft.core.item.tool.ItemToolHoe;
-import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(value = ItemToolHoe.class, remap = false)
 public abstract class ItemToolHoeMixin extends ItemTool {
-    protected ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
+
+    private ItemToolHoeMixin(String name, String namespaceID, int id, int damageDealt, ToolMaterial toolMaterial, Tag<Block<?>> tagEffectiveAgainst) {
         super(name, namespaceID, id, damageDealt, toolMaterial, tagEffectiveAgainst);
     }
 
-    @Inject(method = "onUseItemOnBlock", at = @At(value = "HEAD", target = "Lnet/minecraft/core/world/World;playBlockSoundEffect(Lnet/minecraft/core/entity/Entity;DDDLnet/minecraft/core/block/Block;Lnet/minecraft/core/enums/EnumBlockSoundEffectType;)V"))
-    public void dropWorms(ItemStack itemstack, Player player, World world, int blockX, int blockY, int blockZ, Side side, double xPlaced, double yPlaced, CallbackInfoReturnable<Boolean> cir) {
-        int i1 = world.getBlockId(blockX, blockY, blockZ);
-        if (i1 == Blocks.GRASS.id()) {
-            if (!world.isClientSide) {
-                if (world.rand.nextInt(8) == 0) {
-                    world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
-                }
-                player.swingItem();
-            }
-            player.swingItem();
+    @Definition(id = "setBlockTypeDataNotify", method = "Lnet/minecraft/core/world/World;setBlockTypeDataNotify(Lnet/minecraft/core/world/pos/TilePosc;Lnet/minecraft/core/block/Block;I)Z")
+    @Definition(id = "FARMLAND_DIRT", field = "Lnet/minecraft/core/block/Blocks;FARMLAND_DIRT:Lnet/minecraft/core/block/Block;")
+    @Expression("?.setBlockTypeDataNotify(?, FARMLAND_DIRT, ?)")
+    @WrapOperation(method = "till", at = @At("MIXINEXTRAS:EXPRESSION"))
+    public boolean onUseOnBlock(World instance, @NotNull TilePosc tilePos, @NotNull Block<?> block, int data, Operation<Boolean> original) {
+        if (instance.rand.nextInt(10) == 0) {
+            instance.dropItem(tilePos.up(new TilePos()), new ItemStack(StardewItems.WORM, instance.rand.nextInt(2) + 2) );
         }
-        if (i1 == Blocks.DIRT.id()) {
-            if (!world.isClientSide) {
-                if (world.rand.nextInt(8) == 0) {
-                    world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
-                }
-                player.swingItem();
-            }
-            player.swingItem();
-        }
-        if (i1 == Blocks.GRASS_RETRO.id()) {
-            if (!world.isClientSide) {
-                if (world.rand.nextInt(8) == 0) {
-                    world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
-                }
-                player.swingItem();
-            }
-            player.swingItem();
-        }
-        if (i1 == Blocks.MUD.id()) {
-            if (!world.isClientSide) {
-                if (world.rand.nextInt(8) == 0) {
-                    world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
-                }
-                player.swingItem();
-            }
-            player.swingItem();
-        }
-        if (i1 == Blocks.PATH_DIRT.id()) {
-            if (!world.isClientSide) {
-                if (world.rand.nextInt(8) == 0) {
-                    world.dropItem(blockX, blockY + 1, blockZ, new ItemStack(StardewItems.WORM, world.rand.nextInt(2) + 2));
-                }
-                player.swingItem();
-            }
-            player.swingItem();
-        }
+
+        return original.call(instance, tilePos, block, data);
     }
 }

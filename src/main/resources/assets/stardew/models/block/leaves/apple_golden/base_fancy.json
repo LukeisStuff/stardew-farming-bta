@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/leaves/leaves",
+  "textures": {
+    "all": "stardew:block/leaves/apple_gold_fancy"
+  }
+}

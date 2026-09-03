@@ -5,7 +5,10 @@ import net.minecraft.core.entity.player.Player;
 import net.minecraft.core.item.IDispensable;
 import net.minecraft.core.item.Item;
 import net.minecraft.core.item.ItemStack;
+import net.minecraft.core.util.helper.Direction;
 import net.minecraft.core.world.World;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
 
@@ -16,19 +19,19 @@ public class ItemEggDuck extends Item implements IDispensable {
     }
 
     @Override
-    public ItemStack onUseItem(ItemStack itemstack, World world, Player player) {
-        itemstack.consumeItem(player);
+    public @Nullable ItemStack onUse(@NotNull ItemStack selfStack, @NotNull World world, @NotNull Player player) {
+        selfStack.consumeItem(player);
         world.playSoundAtEntity(player, player, "random.bow", 0.5f, 0.4f / (itemRand.nextFloat() * 0.4f + 0.8f));
         if (!world.isClientSide) {
             world.entityJoinedWorld(new ProjectileEggDuck(world, player));
         }
-        return itemstack;
+        return selfStack;
     }
 
     @Override
-    public void onDispensed(ItemStack stack, World world, double x, double y, double z, int xOffset, int yOffset, int zOffset, Random random) {
+    public void onDispensed(@NotNull ItemStack itemStack, @NotNull World world, @NotNull Random random, @NotNull Direction direction, double x, double y, double z) {
         ProjectileEggDuck egg = new ProjectileEggDuck(world, x, y, z);
-        egg.setHeading(xOffset, 0.1, zOffset, 1.1f, 6.0f);
+        egg.setHeading(direction.offsetX(), 0.1, direction.offsetZ(), 1.1f, 6.0f);
         world.entityJoinedWorld(egg);
     }
 }

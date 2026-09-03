@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/pumpkin_pie/2",
+  "textures": {
+    "bottom": "stardew:block/apple_pie/bottom",
+    "side": "stardew:block/apple_pie/side",
+    "top": "stardew:block/apple_pie/top",
+    "inner": "stardew:block/apple_pie/inner"
+  }
+}

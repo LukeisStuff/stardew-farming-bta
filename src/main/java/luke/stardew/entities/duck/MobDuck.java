@@ -1,7 +1,7 @@
 package luke.stardew.entities.duck;
 
-import luke.stardew.StardewMod;
 import luke.stardew.items.StardewItems;
+import net.minecraft.client.world.WorldEmpty;
 import net.minecraft.core.WeightedRandomLootObject;
 import net.minecraft.core.block.BlockLogicFluid;
 import net.minecraft.core.entity.animal.Creature;
@@ -9,21 +9,23 @@ import net.minecraft.core.entity.animal.MobAnimal;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.item.Items;
 import net.minecraft.core.item.tag.ItemTags;
-import net.minecraft.core.util.collection.NamespaceID;
 import net.minecraft.core.util.helper.MathHelper;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
+
+import static luke.stardew.StardewMod.MOD_ID;
 
 public class MobDuck extends MobAnimal implements Creature {
-    public float flap = 0.0F;
-    public float flapSpeed = 0.0F;
-    public float oFlapSpeed;
-    public float oFlap;
-    public float flapping = 1.0F;
-    public int eggTimer;
+    protected float flap = 0.0F;
+    protected float flapSpeed = 0.0F;
+    protected float oFlapSpeed;
+    protected float oFlap;
+    protected float flapping = 1.0F;
+    protected int eggTimer;
 
     public MobDuck(World world) {
         super(world);
-        this.textureIdentifier = NamespaceID.getPermanent("stardew", "duck");
+        this.setTextureIdentifier(MOD_ID, "duck");
         this.setSize(0.6f, 1.0f);
         this.eggTimer = this.random.nextInt(3000) + 3000;
         this.mobDrops.add(new WeightedRandomLootObject(Items.FEATHER_CHICKEN.getDefaultStack(), 0, 1));
@@ -48,8 +50,8 @@ public class MobDuck extends MobAnimal implements Creature {
             int y = MathHelper.floor(this.bb.minY + 0.125);
             int y2 = MathHelper.floor(this.bb.minY + 0.6);
             int z = MathHelper.floor(this.z);
-            boolean air = this.world.getBlockLogic(x, y2, z, BlockLogicFluid.class) == null;
-            if (this.world != null && this.world.getBlockLogic(x, y, z, BlockLogicFluid.class) != null && air) {
+            boolean air = this.world.getBlockLogic(new TilePos(x, y2, z), BlockLogicFluid.class) == null;
+            if (!(this.world instanceof WorldEmpty) && this.world.getBlockLogic(new TilePos(x, y, z), BlockLogicFluid.class) != null && air) {
                 if (yh < 0.125) {
                     this.yd = 0;
                 }
@@ -95,7 +97,7 @@ public class MobDuck extends MobAnimal implements Creature {
             this.flap += this.flapping * 2.0F;
         }
 
-        if (this.world != null && !this.world.isClientSide && --this.eggTimer <= 0) {
+        if (!(this.world instanceof WorldEmpty) && !this.world.isClientSide && --this.eggTimer <= 0) {
             this.world.playSoundAtEntity(null, this, "mob.chickenplop", 1.0f, (this.random.nextFloat() - this.random.nextFloat()) * 0.2f - 1.0f);
             this.dropItem(StardewItems.EGG_DUCK.id, 1);
             this.eggTimer = this.random.nextInt(3000) + 3000;
@@ -119,17 +121,17 @@ public class MobDuck extends MobAnimal implements Creature {
 
     @Override
     public String getLivingSound() {
-        return StardewMod.MOD_ID + ":mob.duck.idle";
+        return MOD_ID + ":mob.duck.idle";
     }
 
     @Override
     public String getHurtSound() {
-        return StardewMod.MOD_ID + ":mob.duck.hurt";
+        return MOD_ID + ":mob.duck.hurt";
     }
 
     @Override
     public String getDeathSound() {
-        return StardewMod.MOD_ID + ":mob.duck.death";
+        return MOD_ID + ":mob.duck.death";
     }
 
     @Override
@@ -137,4 +139,19 @@ public class MobDuck extends MobAnimal implements Creature {
         return itemStack != null && itemStack.getItem().hasTag(ItemTags.CHICKENS_FAVOURITE_ITEM);
     }
 
+    public float flap(){
+        return this.flap;
+    }
+
+    public float flapSpeed(){
+        return this.flapSpeed;
+    }
+
+    public float oFlapSpeed(){
+        return this.oFlapSpeed;
+    }
+
+    public float oFlap(){
+        return this.oFlap;
+    }
 }

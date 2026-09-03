@@ -1,0 +1,165 @@
+item.stardew.bush.name=Bush
+item.stardew.bush.desc=A wild bush that drops seeds based on the season.
+
+# Spring crops
+Spring Crops=
+item.stardew.seeds.carrot.name=Carrot Seeds
+item.stardew.seeds.carrot.desc=Carrot seeds that can be planted in soil.
+item.stardew.food.carrot.name=Carrot
+item.stardew.food.carrot.desc=Orange vegetable known for being long and crunchy.
+item.stardew.seeds.blueberry.name=Blueberry Seeds
+item.stardew.seeds.blueberry.desc=Blueberry seeds that can be planted in soil.
+item.stardew.food.blueberry.name=Blueberry
+item.stardew.food.blueberry.desc=Small and sweet blue berry.
+item.stardew.seeds.pineapple.name=Pineapple Seeds
+item.stardew.seeds.pineapple.desc=Pineapple seeds that can be planted in soil.
+item.stardew.food.pineapple.name=Pineapple
+item.stardew.food.pineapple.desc=Cut it into chunks for a delicious treat.
+
+# Summer crops
+Summer Crops=
+
+item.stardew.seeds.tomato.name=Tomato Seeds
+item.stardew.seeds.tomato.desc=Tomato seeds that can be planted in soil.
+item.stardew.food.tomato.name=Tomato
+item.stardew.food.tomato.desc=Its not a vegetable, its a fruit!
+item.stardew.seeds.potato.name=Potato Seeds
+item.stardew.seeds.potato.desc=Potato seeds that can be planted in soil.
+item.stardew.food.potato.name=Potato
+item.stardew.food.potato.desc=Brown lumpy vegetable covered in dirt.
+item.stardew.seeds.strawberry.name=Strawberry Seeds
+item.stardew.seeds.strawberry.desc=Strawberry seeds that can be planted in soil.
+item.stardew.food.strawberry.name=Strawberry
+item.stardew.food.strawberry.desc=Ripe red fruit budding with seeds and flavor.
+item.stardew.seeds.watermelon.name=Watermelon Seeds
+item.stardew.seeds.watermelon.desc=Watermelon seeds that can be planted in soil.
+
+# Fall crops
+Fall Crops=
+
+item.stardew.seeds.corn.name=Corn Seeds
+item.stardew.seeds.corn.desc=Corn seeds that can be planted in soil.
+item.stardew.food.corn.name=Corn
+item.stardew.food.corn.desc=Also known as maize!
+item.stardew.food.pie.name=Pumpkin Pie
+item.stardew.food.pie.desc=Pumpkin spiced custard filled dessert.
+item.stardew.seeds.grapes.name=Grape Seeds
+item.stardew.seeds.grapes.desc=Grape seeds that can be planted on a trellis.
+item.stardew.food.grapes.name=Grapes
+item.stardew.food.grapes.desc=Bundle of purple berries loaded with juice.
+
+# Winter crops
+Winter Crops=
+
+item.stardew.seeds.cauliflower.name=Cauliflower Seeds
+item.stardew.seeds.cauliflower.desc=Cauliflower seeds that can be planted in soil.
+item.stardew.seeds.cranberries.name=Cranberry Seeds
+item.stardew.seeds.cranberries.desc=Cranberry seeds that can be planted in soil.
+item.stardew.food.cranberries.name=Cranberries
+item.stardew.food.cranberries.desc=Bundle of a tart and sour, but slightly sweet fruit.
+
+# Food
+item.stardew.food.dough.name=Dough
+item.stardew.food.dough.desc=Raw and gooey, great for baking!
+item.stardew.food.egg.cooked.name=Cooked Egg
+item.stardew.food.egg.cooked.desc=Cooked.
+item.stardew.egg.duck.name=Duck Egg
+item.stardew.egg.duck.desc=Egged.
+item.egg.chicken.name=Chicken Egg
+item.stardew.food.cheese.name=Cheese
+item.stardew.food.cheese.desc=Fermented milk, still good for your bones.
+item.stardew.food.stew.vegetable.name=Vegetable Stew
+item.stardew.food.stew.vegetable.desc=Mmm... veggies.
+item.stardew.food.stew.cheese.name=Cauliflower Cheese Stew
+item.stardew.food.stew.cheese.desc=Mmm... cheesy.
+item.stardew.food.stew.fruit.name=Fruit Salad
+item.stardew.food.stew.fruit.desc=Mmm... fruity.
+item.stardew.food.stew.truffle.name=Truffle Stew
+item.stardew.food.stew.truffle.desc=Mmm... earthy.
+item.stardew.food.cake.chocolate.name=Chocolate Cake
+item.stardew.food.cake.chocolate.desc=The cake is a lie.
+item.stardew.food.honey.name=Honey
+item.stardew.food.honey.desc=Scooped up honey collected from a beehive.
+item.stardew.food.jam.name=Jam Jar
+item.stardew.food.jam.desc=Mashed up fruit collected in a jar.
+item.stardew.food.pizza.name=Pizza
+item.stardew.food.pizza.desc=Flat base of dough coated with tomato and cheese.
+
+# Tools
+item.stardew.tool.wateringcan.name=Watering Can
+item.stardew.tool.wateringcan.desc=A handy tool for watering crops and soaking blocks.
+item.stardew.tool.wateringcan.steel.name=Steel Watering Can
+item.stardew.tool.wateringcan.steel.desc=A longer lasting variant of regular watering cans.
+item.tool.fishingrod.name=Wooden Fishing Rod
+item.stardew.tool.fishingrod.stone.name=Stone Fishing Rod
+item.stardew.tool.fishingrod.stone.desc=Cast a thick line and catch the big one!
+item.stardew.tool.fishingrod.iron.name=Iron Fishing Rod
+item.stardew.tool.fishingrod.iron.desc=Cast a tough line and catch the big one!
+item.stardew.tool.fishingrod.gold.name=Gold Fishing Rod
+item.stardew.tool.fishingrod.gold.desc=Cast a magic line and catch the big one!
+item.stardew.tool.fishingrod.diamond.name=Diamond Fishing Rod
+item.stardew.tool.fishingrod.diamond.desc=Cast a quick line and catch the big one!
+item.stardew.tool.fishingrod.steel.name=Steel Fishing Rod
+item.stardew.tool.fishingrod.steel.desc=Cast a sturdy line and catch the big one!
+
+# Armor
+item.stardew.worm.name=Worm
+item.stardew.worm.desc=Used mainly as bait.
+item.stardew.armor.canofworms.name=Bait Can
+item.stardew.armor.canofworms.desc=Hold your worms in style.
+item.stardew.armor.canofworms.golden.name=Golden Bait Can
+item.stardew.armor.canofworms.golden.desc=Supplies an endless amount of worms.
+
+# Deco
+item.stardew.wax.name=Wax
+item.stardew.wax.desc=A sticky, yellowish, moldable substance secreted from honey.
+item.stardew.candle.name=Wax Candle
+item.stardew.candle.desc=A waxy light-source made from honey!
+
+# Fish
+item.stardew.food.salmon.raw.name=Raw Salmon
+item.stardew.food.salmon.raw.desc=Can be cooked to produce a tasty meal.
+item.stardew.food.salmon.cooked.name=Cooked Salmon
+item.stardew.food.salmon.cooked.desc=Flavorful fish!
+item.stardew.food.bass.raw.name=Raw Bass
+item.stardew.food.bass.raw.desc=Can be cooked to produce a tasty meal.
+item.stardew.food.bass.cooked.name=Cooked Bass
+item.stardew.food.bass.cooked.desc=Delectable fish!
+item.stardew.food.snapper.raw.name=Raw Snapper
+item.stardew.food.snapper.raw.desc=Can be cooked to produce a tasty meal.
+item.stardew.food.snapper.cooked.name=Cooked Snapper
+item.stardew.food.snapper.cooked.desc=Scrumptious  fish!
+item.stardew.fish.lavaeel.name=Lava Eel
+item.stardew.fish.lavaeel.desc=One of the legendary fishes, found in lava lakes.
+item.stardew.fish.sword.name=Swordfish
+item.stardew.fish.sword.desc=One of the legendary fishes, found in the stormy seas.
+item.stardew.fish.ghost.name=Ghostfish
+item.stardew.fish.ghost.desc=One of the legendary fishes, found during a foggy night.
+item.stardew.fish.pig.name=Baconfish
+item.stardew.fish.pig.desc=Lovecraftian horrors beyond your understanding.
+item.stardew.fish.stone.name=Stonefish
+item.stardew.fish.stone.desc=One of the legendary fishes, found underground.
+
+# Other
+item.stardew.record.pink.name=Music Disc
+item.stardew.record.pink.desc=§6axolotl
+item.stardew.bean.coffee.name=Coffee Bean
+item.stardew.bean.coffee.desc=Can be used to mix up a brew, or planted on a trellis.
+item.stardew.food.seeds.roasted.name=Roasted Seeds
+item.stardew.food.seeds.roasted.desc=Seeds that have been cooked and seasoned.
+item.stardew.fiber.name=Fiber
+item.stardew.fiber.desc=A bundle of dry fibers taken from grass plants.
+item.stardew.food.apple.pie.name=Apple Pie
+item.stardew.food.apple.pie.desc=Not a pie!
+item.stardew.food.apple.pie.slice.name=Apple Pie Slice
+item.stardew.food.apple.pie.slice.desc=Perfect piece of a sweet and flaky pastry.
+item.stick.desc=Found at the end of a branch. Can craft various items or be a trellis for farmland.
+stardew.ingredients=Ingredients
+
+# new
+item.stardew.food.coffee.name=Iron Bucket of Coffee
+item.stardew.food.coffee.desc=A delicious brew that gives you a brief boost of speed!
+item.stardew.food.coffee.large.name=Steel Bucket of Coffee
+item.stardew.food.coffee.large.desc=A healthy amount of a delicious brew. You feel like you could have a few more.
+item.stardew.food.coffee.skyroot.name=Skyroot Bucket of Coffee
+item.stardew.food.coffee.skyroot.desc=A sweet brew that gives you a brief boost of speed!

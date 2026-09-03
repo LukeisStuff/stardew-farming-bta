@@ -9,6 +9,10 @@ import net.minecraft.core.item.ItemSeeds;
 import net.minecraft.core.item.ItemStack;
 import net.minecraft.core.util.helper.Side;
 import net.minecraft.core.world.World;
+import net.minecraft.core.world.pos.TilePos;
+import net.minecraft.core.world.pos.TilePosc;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ItemSeedsStake extends ItemSeeds {
     public ItemSeedsStake(String name, String namespaceId, int id, Block<?> cropsBlock) {
@@ -16,19 +20,22 @@ public class ItemSeedsStake extends ItemSeeds {
     }
 
     @Override
-    public boolean onUseItemOnBlock(ItemStack itemstack, Player player, World world, int x, int y, int z, Side side, double xPlaced, double yPlaced) {
-        if (world.getBlock(x, y, z) == StardewBlocks.PLANT_STAKE) {
-            if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.SEEDS_GRAPES.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
+    public boolean onUseOnBlock(@NotNull ItemStack selfStack, @NotNull World world, @Nullable Player player, @NotNull TilePosc blockPos, @NotNull Side side, double xHit, double yHit) {
+        if (player == null) return false;
+
+        if (world.getBlockType(blockPos) == StardewBlocks.PLANT_STAKE) {
+            if (player.inventory.getCurrentItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.SEEDS_GRAPES.id && world.getBlockType(blockPos.down(new TilePos())) == Blocks.FARMLAND_DIRT) {
                 player.getCurrentEquippedItem().consumeItem(player);
-                world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CROPS_GRAPE_BOTTOM.id(), 0);
+                world.setBlockTypeDataNotify(blockPos, StardewBlocks.CROPS_GRAPE_BOTTOM, 0);
                 player.swingItem();
-                world.playBlockSoundEffect(player, x + 0.5F, y + 0.5F, z + 0.5F, StardewBlocks.CROPS_GRAPE_BOTTOM, EnumBlockSoundEffectType.PLACE);
+                world.playBlockSoundEffect(player, blockPos.x() + 0.5F, blockPos.y() + 0.5F, blockPos.z() + 0.5F, StardewBlocks.CROPS_GRAPE_BOTTOM, EnumBlockSoundEffectType.PLACE);
             }
-            if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.BEANS_COFFEE.id && world.getBlockId(x, y - 1, z) == Blocks.FARMLAND_DIRT.id()) {
+
+            if (player.getCurrentEquippedItem() != null && player.getCurrentEquippedItem().itemID == StardewItems.BEANS_COFFEE.id && world.getBlockType(blockPos.down(new TilePos())) == Blocks.FARMLAND_DIRT) {
                 player.getCurrentEquippedItem().consumeItem(player);
-                world.setBlockAndMetadataWithNotify(x, y, z, StardewBlocks.CROPS_BEANS_BOTTOM.id(), 0);
+                world.setBlockTypeDataNotify(blockPos, StardewBlocks.CROPS_BEANS_BOTTOM, 0);
                 player.swingItem();
-                world.playBlockSoundEffect(player, x + 0.5F, y + 0.5F, z + 0.5F, StardewBlocks.CROPS_BEANS_BOTTOM, EnumBlockSoundEffectType.PLACE);
+                world.playBlockSoundEffect(player, blockPos.x() + 0.5F, blockPos.y() + 0.5F, blockPos.z() + 0.5F, StardewBlocks.CROPS_BEANS_BOTTOM, EnumBlockSoundEffectType.PLACE);
             }
         }
 
